@@ -1,0 +1,1189 @@
+/*!
+ * Materialize v1.0.0 (http://materializecss.com)
+ * Copyright 2014-2017 Materialize
+ * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
+ */
+.card-panel,
+.card {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)
+}
+
+
+.scale-transition {
+    -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63) !important;
+    transition: -webkit-transform 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63) !important;
+    transition: transform 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63) !important;
+    transition: transform 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63), -webkit-transform 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63) !important
+}
+
+.scale-transition.scale-out {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: -webkit-transform .2s !important;
+    transition: -webkit-transform .2s !important;
+    transition: transform .2s !important;
+    transition: transform .2s, -webkit-transform .2s !important
+}
+
+.scale-transition.scale-in {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+}
+
+.card-panel {
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    padding: 24px;
+    margin: .5rem 0 1rem 0;
+    border-radius: 2px;
+    background-color: #fff
+}
+
+.card {
+    position: relative;
+    margin: .5rem 0 1rem 0;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px
+}
+
+.card .card-title {
+    font-size: 24px;
+    font-weight: 300
+}
+
+.card .card-title.activator {
+    cursor: pointer
+}
+
+.card.small,
+.card.medium,
+.card.large {
+    position: relative
+}
+
+.card.small .card-image,
+.card.medium .card-image,
+.card.large .card-image {
+    max-height: 60%;
+    overflow: hidden
+}
+
+.card.small .card-image+.card-content,
+.card.medium .card-image+.card-content,
+.card.large .card-image+.card-content {
+    max-height: 40%
+}
+
+.card.small .card-content,
+.card.medium .card-content,
+.card.large .card-content {
+    max-height: 100%;
+    overflow: hidden
+}
+
+.card.small .card-action,
+.card.medium .card-action,
+.card.large .card-action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
+
+.card.small {
+    height: 300px
+}
+
+.card.medium {
+    height: 400px
+}
+
+.card.large {
+    height: 500px
+}
+
+.card.horizontal {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.card.horizontal.small .card-image,
+.card.horizontal.medium .card-image,
+.card.horizontal.large .card-image {
+    height: 100%;
+    max-height: none;
+    overflow: visible
+}
+
+.card.horizontal.small .card-image img,
+.card.horizontal.medium .card-image img,
+.card.horizontal.large .card-image img {
+    height: 100%
+}
+
+.card.horizontal .card-image {
+    max-width: 50%
+}
+
+.card.horizontal .card-image img {
+    border-radius: 2px 0 0 2px;
+    max-width: 100%;
+    width: auto
+}
+
+.card.horizontal .card-stacked {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative
+}
+
+.card.horizontal .card-stacked .card-content {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.card.sticky-action .card-action {
+    z-index: 2
+}
+
+.card.sticky-action .card-reveal {
+    z-index: 1;
+    padding-bottom: 64px
+}
+
+.card .card-image {
+    position: relative
+}
+
+.card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%
+}
+
+.card .card-image .card-title {
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    padding: 24px
+}
+
+.card .card-content {
+    padding: 24px;
+    border-radius: 0 0 2px 2px
+}
+
+.card .card-content p {
+    margin: 0
+}
+
+.card .card-content .card-title {
+    display: block;
+    line-height: 32px;
+    margin-bottom: 8px
+}
+
+.card .card-content .card-title i {
+    line-height: 32px
+}
+
+.card .card-action {
+    background-color: inherit;
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    position: relative;
+    padding: 16px 24px
+}
+
+.card .card-action:last-child {
+    border-radius: 0 0 2px 2px
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: #ffab40;
+    margin-right: 24px;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+    text-transform: uppercase
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover {
+    color: #ffd8a6
+}
+
+.card .card-reveal {
+    padding: 24px;
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    overflow-y: auto;
+    left: 0;
+    top: 100%;
+    height: 100%;
+    z-index: 3;
+    display: none
+}
+
+.card .card-reveal .card-title {
+    cursor: pointer;
+    display: block
+}
+
+.collapsible {
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    margin: .5rem 0 1rem 0
+}
+
+.collapsible-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.5;
+    padding: 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd
+}
+
+.collapsible-header:focus {
+    outline: 0
+}
+
+.collapsible-header i {
+    width: 2rem;
+    font-size: 1.6rem;
+    display: inline-block;
+    text-align: center;
+    margin-right: 1rem
+}
+
+.keyboard-focused .collapsible-header:focus {
+    background-color: #eee
+}
+
+.collapsible-body {
+    display: none;
+    border-bottom: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 2rem
+}
+
+.sidenav .collapsible,
+.sidenav.fixed .collapsible {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.sidenav .collapsible li,
+.sidenav.fixed .collapsible li {
+    padding: 0
+}
+
+.sidenav .collapsible-header,
+.sidenav.fixed .collapsible-header {
+    background-color: transparent;
+    border: none;
+    line-height: inherit;
+    height: inherit;
+    padding: 0 16px
+}
+
+.sidenav .collapsible-header:hover,
+.sidenav.fixed .collapsible-header:hover {
+    background-color: rgba(0, 0, 0, 0.05)
+}
+
+.sidenav .collapsible-header i,
+.sidenav.fixed .collapsible-header i {
+    line-height: inherit
+}
+
+.sidenav .collapsible-body,
+.sidenav.fixed .collapsible-body {
+    border: 0;
+    background-color: #fff
+}
+
+.sidenav .collapsible-body li a,
+.sidenav.fixed .collapsible-body li a {
+    padding: 0 23.5px 0 31px
+}
+
+.collapsible.popout {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.collapsible.popout>li {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    margin: 0 24px;
+    -webkit-transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+}
+
+.collapsible.popout>li.active {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    margin: 16px 0
+}
+
+.slider {
+    position: relative;
+    height: 400px;
+    width: 100%
+}
+
+.slider.fullscreen {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
+.slider.fullscreen ul.slides {
+    height: 100%
+}
+
+.slider.fullscreen ul.indicators {
+    z-index: 2;
+    bottom: 30px
+}
+
+.slider .slides {
+    background-color: #9e9e9e;
+    margin: 0;
+    height: 400px
+}
+
+.slider .slides li {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: inherit;
+    overflow: hidden
+}
+
+.slider .slides li img {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center
+}
+
+.slider .slides li .caption {
+    color: #fff;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    opacity: 0
+}
+
+.slider .slides li .caption p {
+    color: #e0e0e0
+}
+
+.slider .slides li.active {
+    z-index: 2
+}
+
+.slider .indicators {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0
+}
+
+.slider .indicators .indicator-item {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    margin: 0 12px;
+    background-color: #e0e0e0;
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
+    border-radius: 50%
+}
+
+.slider .indicators .indicator-item.active {
+    background-color: #4CAF50
+}
+
+.carousel {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 400px;
+    -webkit-perspective: 500px;
+    perspective: 500px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 0% 50%;
+    transform-origin: 0% 50%
+}
+
+.carousel.carousel-slider {
+    top: 0;
+    left: 0
+}
+
+.carousel.carousel-slider .carousel-fixed-item {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    z-index: 1
+}
+
+.carousel.carousel-slider .carousel-fixed-item.with-indicators {
+    bottom: 68px
+}
+
+.carousel.carousel-slider .carousel-item {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.carousel.carousel-slider .carousel-item h2 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px
+}
+
+.carousel.carousel-slider .carousel-item p {
+    font-size: 15px
+}
+
+.carousel .carousel-item {
+    visibility: hidden;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.carousel .carousel-item>img {
+    width: 100%
+}
+
+.carousel .indicators {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0
+}
+
+.carousel .indicators .indicator-item {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    height: 8px;
+    width: 8px;
+    margin: 24px 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
+    border-radius: 50%
+}
+
+.carousel .indicators .indicator-item.active {
+    background-color: #fff
+}
+
+.carousel.scrolling .carousel-item .materialboxed,
+.carousel .carousel-item:not(.active) .materialboxed {
+    pointer-events: none
+}
+
+.tap-target-wrapper {
+    width: 800px;
+    height: 800px;
+    position: fixed;
+    z-index: 1000;
+    visibility: hidden;
+    -webkit-transition: visibility 0s .3s;
+    transition: visibility 0s .3s
+}
+
+.tap-target-wrapper.open {
+    visibility: visible;
+    -webkit-transition: visibility 0s;
+    transition: visibility 0s
+}
+
+.tap-target-wrapper.open .tap-target {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: .95;
+    -webkit-transition: opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1), -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+    transition: opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1), -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1), -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1)
+}
+
+.tap-target-wrapper.open .tap-target-wave::before {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+}
+
+.tap-target-wrapper.open .tap-target-wave::after {
+    visibility: visible;
+    -webkit-animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    -webkit-transition: opacity .3s,
+        visibility 0s 1s,
+        -webkit-transform .3s;
+    transition: opacity .3s,
+        visibility 0s 1s,
+        -webkit-transform .3s;
+    transition: opacity .3s,
+        transform .3s,
+        visibility 0s 1s;
+    transition: opacity .3s,
+        transform .3s,
+        visibility 0s 1s,
+        -webkit-transform .3s
+}
+
+.tap-target {
+    position: absolute;
+    font-size: 1rem;
+    border-radius: 50%;
+    background-color: #ee6e73;
+    -webkit-box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.14), 0 10px 50px 0 rgba(0, 0, 0, 0.12), 0 30px 10px -20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.14), 0 10px 50px 0 rgba(0, 0, 0, 0.12), 0 30px 10px -20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1), -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+    transition: opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1), -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1), -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1)
+}
+
+.tap-target-content {
+    position: relative;
+    display: table-cell
+}
+
+.tap-target-wave {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 10001
+}
+
+.tap-target-wave::before,
+.tap-target-wave::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #ffffff
+}
+
+.tap-target-wave::before {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s, -webkit-transform .3s
+}
+
+.tap-target-wave::after {
+    visibility: hidden;
+    -webkit-transition: opacity .3s,
+        visibility 0s,
+        -webkit-transform .3s;
+    transition: opacity .3s,
+        visibility 0s,
+        -webkit-transform .3s;
+    transition: opacity .3s,
+        transform .3s,
+        visibility 0s;
+    transition: opacity .3s,
+        transform .3s,
+        visibility 0s,
+        -webkit-transform .3s;
+    z-index: -1
+}
+
+.tap-target-origin {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 10002;
+    position: absolute !important
+}
+
+.tap-target-origin:not(.btn):not(.btn-large):not(.btn-small),
+.tap-target-origin:not(.btn):not(.btn-large):not(.btn-small):hover {
+    background: none
+}
+
+@media only screen and (max-width: 600px) {
+
+    .tap-target,
+    .tap-target-wrapper {
+        width: 600px;
+        height: 600px
+    }
+}
+
+.pulse {
+    overflow: visible;
+    position: relative
+}
+
+.pulse::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: inherit;
+    border-radius: inherit;
+    -webkit-transition: opacity .3s, -webkit-transform .3s;
+    transition: opacity .3s, -webkit-transform .3s;
+    transition: opacity .3s, transform .3s;
+    transition: opacity .3s, transform .3s, -webkit-transform .3s;
+    -webkit-animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    z-index: -1
+}
+
+@-webkit-keyframes pulse-animation {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+
+    50% {
+        opacity: 0;
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5)
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5)
+    }
+}
+
+@keyframes pulse-animation {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+
+    50% {
+        opacity: 0;
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5)
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5)
+    }
+}
+
+.datepicker-modal {
+    max-width: 325px;
+    min-width: 300px;
+    max-height: none
+}
+
+.datepicker-container.modal-content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 0
+}
+
+.datepicker-controls {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 280px;
+    margin: 0 auto
+}
+
+.datepicker-controls .selects-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.datepicker-controls .select-wrapper input {
+    border-bottom: none;
+    text-align: center;
+    margin: 0
+}
+
+.datepicker-controls .select-wrapper input:focus {
+    border-bottom: none
+}
+
+.datepicker-controls .select-wrapper .caret {
+    display: none
+}
+
+.datepicker-controls .select-year input {
+    width: 50px
+}
+
+.datepicker-controls .select-month input {
+    width: 70px
+}
+
+.month-prev,
+.month-next {
+    margin-top: 4px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none
+}
+
+.datepicker-date-display {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 auto;
+    -ms-flex: 1 auto;
+    flex: 1 auto;
+    background-color: #26a69a;
+    color: #fff;
+    padding: 20px 22px;
+    font-weight: 500
+}
+
+.datepicker-date-display .year-text {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.7)
+}
+
+.datepicker-date-display .date-text {
+    display: block;
+    font-size: 2.8rem;
+    line-height: 47px;
+    font-weight: 500
+}
+
+.datepicker-calendar-container {
+    -webkit-box-flex: 2.5;
+    -webkit-flex: 2.5 auto;
+    -ms-flex: 2.5 auto;
+    flex: 2.5 auto
+}
+
+.datepicker-table {
+    width: 280px;
+    font-size: 1rem;
+    margin: 0 auto
+}
+
+.datepicker-table thead {
+    border-bottom: none
+}
+
+.datepicker-table th {
+    padding: 10px 5px;
+    text-align: center
+}
+
+.datepicker-table tr {
+    border: none
+}
+
+.datepicker-table abbr {
+    text-decoration: none;
+    color: #999
+}
+
+.datepicker-table td {
+    border-radius: 50%;
+    padding: 0
+}
+
+.datepicker-table td.is-today {
+    color: #26a69a
+}
+
+.datepicker-table td.is-selected {
+    background-color: #26a69a;
+    color: #fff
+}
+
+.datepicker-table td.is-outside-current-month,
+.datepicker-table td.is-disabled {
+    color: rgba(0, 0, 0, 0.3);
+    pointer-events: none
+}
+
+.datepicker-day-button {
+    background-color: transparent;
+    border: none;
+    line-height: 38px;
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    padding: 0 5px;
+    cursor: pointer;
+    color: inherit
+}
+
+.datepicker-day-button:focus {
+    background-color: rgba(43, 161, 150, 0.25)
+}
+
+.datepicker-footer {
+    width: 280px;
+    margin: 0 auto;
+    padding-bottom: 5px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.datepicker-cancel,
+.datepicker-clear,
+.datepicker-today,
+.datepicker-done {
+    color: #26a69a;
+    padding: 0 1rem
+}
+
+.datepicker-clear {
+    color: #F44336
+}
+
+@media only screen and (min-width: 601px) {
+    .datepicker-modal {
+        max-width: 625px
+    }
+
+    .datepicker-container.modal-content {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row
+    }
+
+    .datepicker-date-display {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 1 270px;
+        -ms-flex: 0 1 270px;
+        flex: 0 1 270px
+    }
+
+    .datepicker-controls,
+    .datepicker-table,
+    .datepicker-footer {
+        width: 320px
+    }
+
+    .datepicker-day-button {
+        line-height: 44px
+    }
+}
+
+.timepicker-modal {
+    max-width: 325px;
+    max-height: none
+}
+
+.timepicker-container.modal-content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 0
+}
+
+.text-primary {
+    color: #fff
+}
+
+.timepicker-digital-display {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 auto;
+    -ms-flex: 1 auto;
+    flex: 1 auto;
+    background-color: #26a69a;
+    padding: 10px;
+    font-weight: 300
+}
+
+.timepicker-text-container {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.timepicker-span-hours,
+.timepicker-span-minutes,
+.timepicker-span-am-pm div {
+    cursor: pointer
+}
+
+.timepicker-span-hours {
+    margin-right: 3px
+}
+
+.timepicker-span-minutes {
+    margin-left: 3px
+}
+
+.timepicker-display-am-pm {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    font-weight: 400
+}
+
+.timepicker-analog-display {
+    -webkit-box-flex: 2.5;
+    -webkit-flex: 2.5 auto;
+    -ms-flex: 2.5 auto;
+    flex: 2.5 auto
+}
+
+.timepicker-plate {
+    background-color: #eee;
+    border-radius: 50%;
+    width: 270px;
+    height: 270px;
+    overflow: visible;
+    position: relative;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.timepicker-canvas,
+.timepicker-dial {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0
+}
+
+.timepicker-minutes {
+    visibility: hidden
+}
+
+.timepicker-tick {
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.87);
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    cursor: pointer;
+    font-size: 15px
+}
+
+.timepicker-tick.active,
+.timepicker-tick:hover {
+    background-color: rgba(38, 166, 154, 0.25)
+}
+
+.timepicker-dial {
+    -webkit-transition: opacity 350ms, -webkit-transform 350ms;
+    transition: opacity 350ms, -webkit-transform 350ms;
+    transition: transform 350ms, opacity 350ms;
+    transition: transform 350ms, opacity 350ms, -webkit-transform 350ms
+}
+
+.timepicker-dial-out {
+    opacity: 0
+}
+
+.timepicker-dial-out.timepicker-hours {
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1)
+}
+
+.timepicker-dial-out.timepicker-minutes {
+    -webkit-transform: scale(0.8, 0.8);
+    transform: scale(0.8, 0.8)
+}
+
+.timepicker-canvas {
+    -webkit-transition: opacity 175ms;
+    transition: opacity 175ms
+}
+
+.timepicker-canvas line {
+    stroke: #26a69a;
+    stroke-width: 4;
+    stroke-linecap: round
+}
+
+.timepicker-canvas-out {
+    opacity: 0.25
+}
+
+.timepicker-canvas-bearing {
+    stroke: none;
+    fill: #26a69a
+}
+
+.timepicker-canvas-bg {
+    stroke: none;
+    fill: #26a69a
+}
+
+.timepicker-footer {
+    margin: 0 auto;
+    padding: 5px 1rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.timepicker-clear {
+    color: #F44336
+}
+
+.timepicker-close {
+    color: #26a69a
+}
+
+.timepicker-clear,
+.timepicker-close {
+    padding: 0 20px
+}
+
+@media only screen and (min-width: 601px) {
+    .timepicker-modal {
+        max-width: 600px
+    }
+
+    .timepicker-container.modal-content {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row
+    }
+
+    .timepicker-text-container {
+        top: 32%
+    }
+
+    .timepicker-display-am-pm {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        text-align: center;
+        margin-top: 1.2rem
+    }
+}
