@@ -1,0 +1,132 @@
+<html>
+
+<head>
+   <script async src="https://arc.io/widget.min.js#gzfkzVk2"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Player</title>
+   <link href="/css/iframe.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+   <meta name="robots" content="noindex,nofollow">
+   <style>
+      #PlayerDisplay {
+         z-index: 99;
+      }
+
+      .DisplayVideoA {
+         z-index: 9999;
+      }
+   </style>
+</head>
+
+<body class="directAc" style="">
+
+   <div id="msjad" class="msjad" style="display: none;">
+      <div>
+         <p>Los reproductores contienen publicidad y ventanas emergentes ajenas a All-anime, Recomiendo usar el
+            navegador
+            Brave</p>
+         <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y Continuar</button>
+         </p>
+      </div>
+   </div>
+   <div id="DisplayContent">
+      <div id="PlayerDisplay">
+         <div class="wpw"
+            style="background-image: linear-gradient(rgba(16, 16, 23, 0.71), #000000), url('https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/0273e80242d80b0218f640e038269c18.jpe'); background-size: 100%; background-repeat: no-repeat;">
+         </div>
+         <div class="SelectLangDisp">
+            <li onclick="SelLang(this, 'SUB');" class="SLD_A"><img src="https://saidochesto.top/static/lang/SUB.png">
+            </li>
+            <li onclick="SelLang(this, 'LAT');" class=""><img src="https://saidochesto.top/static/lang/LAT.png"></li>
+            <li onclick="SelLang(this, 'ES');" class=""><img src="https://saidochesto.top/static/lang/ES.png"></li>
+         </div>
+         <div class="OptionsLangDisp">
+            <div class="ODDIV">
+               <div class="OD OD_SUB REactiv">
+                  <li onclick="go_to_player('https://netuplayer.top/e/WkF2WEJJeHQ5VlV5YStOVHpxRFRxQT09')">
+                     <img src="https://saidochesto.top/static/server/netuplayer.top.png">
+                     <span>Netuplayer</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamtape.com/e/vlPO0r6jXXu41oL')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.sx/e/rwqd0lw6i6n63')">
+                     <img src="static/server/mixdrop.sx.png">
+                     <span>Mixdrop</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.fembed.com/v/370jrcm8d2dj85m')">
+                     <img src="static/server/www.fembed.com.png">
+                     <span>Fembed</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+               <div class="OD OD_LAT ">
+                  <li onclick="go_to_player('https://netuplayer.top/e/M2x3clVmdlZybXZ3RkRvOENWeE90QT09')">
+                     <img src="https://saidochesto.top/static/server/netuplayer.top.png">
+                     <span>Netuplayer</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamtape.com/e/eK0KMYoDersY3gR')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.sx/e/gnlodv1lfdxxjw')">
+                     <img src="static/server/mixdrop.sx.png">
+                     <span>Mixdrop</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.fembed.com/v/7pejlig647-4gj5')">
+                     <img src="static/server/www.fembed.com.png">
+                     <span>Fembed</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+               <div class="OD OD_ES ">
+                  <li onclick="go_to_player('https://netuplayer.top/e/c0FmVUtzelZoKzNhZ3c5VUJpOEtMUT09')">
+                     <img src="https://saidochesto.top/static/server/netuplayer.top.png">
+                     <span>Netuplayer</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamtape.com/e/d7Pqe8pb2YCkXxd')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.sx/e/1v8plqr6fvdgkr')">
+                     <img src="static/server/mixdrop.sx.png">
+                     <span>Mixdrop</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.fembed.com/v/50ejztdjq2g00px')">
+                     <img src="static/server/www.fembed.com.png">
+                     <span>Fembed</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://upstream.to/embed-ogiz1zhslow4.html')">
+                     <img src="static/server/upstream.to.png">
+                     <span>Upstream</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://dood.la/e/kxy29147n11niqm79ck0yywzca2rlsos')">
+                     <img src="/image/Logo-server/naruto.png">
+                     <span>Dood</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="FirstLoad"></div>
+      <div class="BotHumano"></div>
+      <div class="DisplayVideo"></div>
+   </div>
+   <script src="/js/iframe.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Anime - All-anime</title>
+    <!-- CSS y Librerías -->
+    <link rel="stylesheet" href="/css/index-css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Encabezado -->
+    <header class="scrolled"> <!-- Inicia con fondo para destacar en esta página -->
+        <a href="index.html" class="logo">
+            <img src="/logo-all-anime.svg" alt="All-Anime Logo">
+        </a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a class="active" href="explorar.html">Explorar</a></li>
+                <li><a href="#">Películas</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <div id="menu-icon" class="fas fa-bars"></div>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <div class="page-header">
+            <div class="page-header-controls">
+                <h1>Explorar Anime</h1>
+                <button id="toggle-filters-btn" class="action-btn"><i class="fas fa-filter"></i> Filtros</button>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <section class="filters-section">
+            <div class="filter-group search-filter">
+                <input type="text" id="explore-search" placeholder="Buscar anime...">
+            </div>
+            <div class="filter-group">
+                <label>Géneros</label>
+                <div class="genre-buttons" id="genre-filter-buttons">
+                    <!-- Botones de género generados por JS -->
+                </div>
+            </div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="year-select">Año</label>
+                    <select id="year-select" class="filter-select">
+                        <!-- Opciones de año generadas por JS -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="type-select">Tipo</label>
+                    <select id="type-select" class="filter-select">
+                        <option value="all">Todos los tipos</option>
+                        <option value="TV">TV</option>
+                        <option value="Película">Película</option>
+                        <option value="OVA">OVA</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="status-select">Estado</label>
+                    <select id="status-select" class="filter-select">
+                        <option value="all">Todos los estados</option>
+                        <option value="En emisión">En emisión</option>
+                        <option value="Finalizado">Finalizado</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid de Animes -->
+        <section class="anime-listing-section">
+            <div class="anime-grid" id="explore-anime-grid">
+                <!-- Contenido generado por JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <p><span>Anime HD Online</span> - Ningún vídeo se encuentra alojado en nuestros servidores.</p>
+            <nav class="footer-nav">
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Sobre all-anime</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="module" src="/js/main-2025.js"></script>
+</body>
+
+</html>

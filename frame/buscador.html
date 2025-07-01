@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div class="search-container">
+    <input type="text" placeholder="Search anime..." id="search-input" />
+    <div id="search-results"></div>
+  </div>
+
+  <script>
+    const animes = [
+      {
+        name: "Kimetsu no Yaiba",
+        link: "https://all-anime.net/ver/Kimetsu-no-yaiba/tv",
+        image: "/image/Kimetsu-no-Yaiba-Temporada-1/poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "One Piece",
+        link: "https://all-anime.net/ver/One-Piece/tv",
+        image: "/image/One-Piece-cap/One-Piece-poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Blue lock",
+        link: "https://all-anime.net/ver/Blue-lock/tv",
+        image: "/image/Blue-lock/poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Ousama ranking",
+        link: "https://all-anime.net/ver/Ousama-ranking/tv",
+        image: "/image/Ousama-Ranking/p.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Shingeki no kyojin",
+        link: "https://all-anime.net/Shingeki-no-kyojin-tv",
+        image: "/image/SNK-season-4-part2/poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Jujutsu kaien",
+        link: "https://all-anime.net/Jujutsu-Kaisen-tv",
+        image: "/image/Jujutsu-Kaisen/poster.png",
+        type: "ANIME",
+      },
+      {
+        name: "Shaman king: 2021",
+        link: "https://all-anime.net/Shaman-king(2021)-tv",
+        image: "/image/shamanking.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Naruto",
+        link: "https://all-anime.net/Naruto-tv",
+        image: "/image/naruto.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Dragon ball super: super hero",
+        link: "https://all-anime.net/peliculas/Dragon-ball-Super-super-hero/movie",
+        image: "/image/Dragon-ball-super-Super-Hero/poster.png",
+        type: "PELICULA",
+      },
+      {
+        name: "One piece: Film red",
+        link: "https://all-anime.net/peliculas/One-piece-film-red/movie",
+        image: "/image/One-piece-Film-red/p.jpg",
+        type: "PELICULA",
+      },
+      {
+        name: "Nanatsu no taizai: El rencor de edimburgo",
+        link: "https://all-anime.net/peliculas/Nanatsu-no-taizai-el-rencor-de-edimburgo/movie",
+        image: "/image/Nanatsu-no-taizai-el-rencor-de-edimburgo/poster.jpg",
+        type: "PELICULA",
+      },
+    ];
+
+    const searchInput = document.getElementById("search-input");
+    const searchResults = document.getElementById("search-results");
+
+    searchInput.addEventListener("input", searchAnime);
+    searchInput.addEventListener("keyup", function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        searchAnime();
+      }
+    });
+
+    function searchAnime() {
+      const searchValue = searchInput.value.toLowerCase();
+      if (searchValue === "") {
+        searchResults.innerHTML = "";
+      } else {
+        searchResults.innerHTML = "";
+        const filteredAnime = animes.filter((anime) =>
+          anime.name.toLowerCase().includes(searchValue)
+        );
+        filteredAnime.forEach((anime) => {
+          const animeElement = document.createElement("div");
+          animeElement.classList.add("anime-card");
+          const animeImg = document.createElement("img");
+          animeImg.src = anime.img;
+          animeImg.classList.add("anime-img");
+          const animeTitle = document.createElement("span");
+          animeTitle.classList.add("title");
+          animeTitle.innerHTML = anime.name;
+          const animeLink = document.createElement("a");
+          animeLink.href = anime.link;
+          animeLink.innerHTML = "ir"; //esta
+          animeLink.classList.add("anime-link");
+          const animeType = document.createElement("span");
+          animeType.classList.add("Type");
+          animeType.classList.add("Type-B");
+          animeType.innerHTML = anime.type;
+          animeElement.appendChild(animeImg);
+          animeElement.appendChild(animeTitle);
+          animeElement.appendChild(animeLink);
+          animeElement.appendChild(animeType);
+          searchResults.appendChild(animeElement);
+        });
+      }
+    }
+  </script>
+
+  <style>
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #search-input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 20px;
+    }
+
+    .anime-card {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 60px;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      align-items: center;
+    }
+
+    .anime-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .anime-link {
+      text-decoration: none;
+      color: #333;
+      margin: 0 15px;
+    }
+
+    .title {
+      font-size: 15px;
+    }
+
+    .title:hover {
+      color: rgb(7, 247, 59);
+    }
+
+    .Type {
+      background-color: rgb(7, 247, 59);
+      border-color: rgb(7, 247, 59);
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 16px;
+      width: 60px;
+      color: #fff;
+      height: 16px;
+      border-radius: 8px;
+    }
+
+    .Type:hover {
+      background-color: rgb(32, 106, 243);
+      border-color: rgb(32, 106, 243);
+    }
+  </style>
+</body>
+
+</html>

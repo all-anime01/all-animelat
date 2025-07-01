@@ -70,6 +70,10 @@ header.scrolled {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+header .logo {
+    margin-right: 3rem;
+}
+
 header .logo img {
     height: 45px;
     transition: height 0.4s ease;
@@ -79,13 +83,17 @@ header.scrolled .logo img {
     height: 35px;
 }
 
+header .navbar {
+    margin-right: auto;
+}
+
 header .navbar ul {
     list-style: none;
     display: flex;
 }
 
 header .navbar ul li {
-    margin-left: 4rem;
+    margin-right: 4rem;
 }
 
 header .navbar ul li a {
@@ -94,7 +102,7 @@ header .navbar ul li a {
     font-family: var(--font-headings);
     color: var(--light-text);
     transition: color 0.3s;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 header .navbar ul li a:hover,
@@ -136,6 +144,42 @@ header .navbar ul li a.active {
     font-size: 1.5rem;
 }
 
+#search-results {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    display: none;
+    width: 300px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1001;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+#search-results a {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: var(--light-text);
+    font-size: 1.4rem;
+}
+
+#search-results a:hover {
+    background-color: var(--light-bg);
+}
+
+#search-results img {
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 4px;
+}
+
+
 #menu-icon {
     display: none;
     font-size: 2.5rem;
@@ -147,7 +191,7 @@ header .navbar ul li a.active {
 .hero-section {
     position: relative;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -261,7 +305,6 @@ header .navbar ul li a.active {
 /* --- Contenido Principal y Secciones --- */
 .main-content {
     margin-top: -3vh;
-    /* Solapa un poco con la sección de héroe */
     position: relative;
     z-index: 10;
 }
@@ -298,6 +341,40 @@ header .navbar ul li a.active {
     color: var(--secondary-color);
 }
 
+/* Estilos para Carruseles de Tarjetas */
+.card-carousel-section {
+    margin-bottom: 6rem;
+}
+
+.slick-list {
+    padding: 1rem 0;
+}
+
+.slick-slide {
+    margin: 0 1rem;
+}
+
+.slick-arrow {
+    background-color: rgba(32, 32, 32, 0.8) !important;
+    border-radius: 50%;
+    width: 50px !important;
+    height: 50px !important;
+    z-index: 20;
+}
+
+.slick-arrow:before {
+    font-size: 25px !important;
+    color: var(--light-text) !important;
+}
+
+.slick-prev {
+    left: -60px !important;
+}
+
+.slick-next {
+    right: -60px !important;
+}
+
 /* --- Sección de Nuevos Episodios --- */
 .new-episodes-section {
     background-color: var(--light-bg);
@@ -323,6 +400,10 @@ header .navbar ul li a.active {
 
 .episodes-list {
     list-style: none;
+}
+
+#yesterday-episodes {
+    display: none;
 }
 
 .episode-item a {
@@ -383,6 +464,13 @@ header .navbar ul li a.active {
 .episode-meta {
     font-size: 1.3rem;
     color: var(--grey-text);
+    display: flex;
+    align-items: center;
+}
+
+.episode-meta .fa-play {
+    margin-right: 0.5rem;
+    color: var(--secondary-color);
 }
 
 .episode-time {
@@ -411,7 +499,7 @@ header .navbar ul li a.active {
     background: #a52828;
 }
 
-/* --- Tarjetas Interactivas de Anime --- */
+/* --- Estilos de Tarjeta de Anime y Grid (Consistente) --- */
 .anime-listing-section {
     margin-bottom: 6rem;
 }
@@ -420,6 +508,14 @@ header .navbar ul li a.active {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2.5rem;
+}
+
+.anime-card {
+    transition: transform 0.3s ease;
+}
+
+.anime-card:hover {
+    transform: translateY(-10px);
 }
 
 .anime-card .card-image-container {
@@ -438,6 +534,19 @@ header .navbar ul li a.active {
 
 .anime-card:hover img {
     transform: scale(1.1);
+}
+
+.quality-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--dark-text);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    z-index: 5;
 }
 
 .card-overlay {
@@ -488,10 +597,32 @@ header .navbar ul li a.active {
     margin-bottom: 0.5rem;
 }
 
-.overlay-meta {
+.overlay-stats {
+    display: flex;
+    gap: 1.5rem;
     font-size: 1.2rem;
     color: var(--grey-text);
     margin-bottom: 1rem;
+}
+
+.overlay-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.overlay-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.overlay-genres span {
+    background-color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
 }
 
 .overlay-description {
@@ -522,6 +653,451 @@ header .navbar ul li a.active {
     color: var(--grey-text);
 }
 
+/* --- Estilos de Página Explorar y Calendario --- */
+.page-header {
+    padding: 15rem 0 5rem 0;
+}
+
+.page-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-header h1 {
+    font-size: 4rem;
+    font-family: var(--font-headings);
+    text-align: left;
+}
+
+#toggle-filters-btn {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+.filters-section {
+    padding: 3rem;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    margin-bottom: 4rem;
+    display: none;
+    /* Oculto por defecto */
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.filter-group.search-filter input {
+    width: 100%;
+    padding: 1.2rem;
+    background-color: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--light-text);
+    font-size: 1.6rem;
+}
+
+.filter-group label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--grey-text);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.genre-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.genre-btn {
+    background-color: var(--card-bg);
+    color: var(--light-text);
+    border: 1px solid var(--border-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+}
+
+.genre-btn:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.genre-btn.active {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--dark-text);
+    font-weight: 700;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--light-text);
+    border-radius: 4px;
+    font-size: 1.4rem;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5em;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 4rem;
+    color: var(--grey-text);
+}
+
+/* --- Estilos de Página de Detalles de Anime --- */
+.anime-detail-hero {
+    height: 90vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center 20%;
+}
+
+.anime-detail-hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(16, 16, 16, 1) 20%, transparent 80%);
+}
+
+.anime-detail-hero .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 6rem 5%;
+    max-width: 800px;
+}
+
+.anime-logo {
+    max-width: 500px;
+    margin-bottom: 2rem;
+}
+
+.anime-meta-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: 1.4rem;
+    color: var(--grey-text);
+    margin-bottom: 1.5rem;
+}
+
+.quality-tag-detail {
+    background-color: var(--secondary-color);
+    color: var(--dark-text);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+.anime-description {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    max-width: 90%;
+}
+
+.anime-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.action-btn {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn.play {
+    background-color: var(--light-text);
+    color: var(--dark-text);
+}
+
+.action-btn.play:hover {
+    background-color: var(--secondary-color);
+}
+
+.action-btn.more-info {
+    background-color: rgba(128, 128, 128, 0.4);
+    color: var(--light-text);
+}
+
+.action-btn.more-info:hover {
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+/* Estilos de la Sección de Episodios en Detalles */
+.episodes-section-detail {
+    padding: 4rem 0;
+}
+
+.episodes-section-detail .section-header {
+    align-items: center;
+}
+
+.episodes-season-selector {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.episodes-season-selector label {
+    font-size: 2.4rem;
+    font-family: var(--font-headings);
+}
+
+#season-select {
+    background-color: transparent;
+    color: var(--light-text);
+    font-size: 2.4rem;
+    font-family: var(--font-headings);
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.episodes-view-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.episodes-view-controls input {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--light-text);
+    padding: 0.8rem 1.2rem;
+    border-radius: 4px;
+    font-size: 1.4rem;
+}
+
+.view-toggle {
+    background-color: var(--card-bg);
+    color: var(--grey-text);
+    border: 1px solid var(--border-color);
+    width: 35px;
+    height: 35px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.view-toggle.active {
+    background-color: var(--light-text);
+    color: var(--dark-text);
+}
+
+.episodes-container {
+    margin-top: 3rem;
+    display: grid;
+    gap: 2rem;
+}
+
+.episodes-container.grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.episodes-container.list {
+    grid-template-columns: 1fr;
+}
+
+.episodes-container.list .episode-detail-card {
+    display: flex;
+    background: none;
+}
+
+.episodes-container.list .episode-detail-card a {
+    display: flex;
+    width: 100%;
+    gap: 1.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.episodes-container.list .episode-detail-card:hover a {
+    background-color: var(--card-bg);
+}
+
+.episodes-container.list .episode-img-container {
+    width: 180px;
+    flex-shrink: 0;
+}
+
+.episode-detail-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.episode-img-container {
+    position: relative;
+}
+
+.episode-img-container img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.play-icon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.episode-detail-card:hover .play-icon-overlay {
+    opacity: 1;
+}
+
+.duration-tag {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0.3rem 0.8rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+}
+
+.episode-card-info {
+    padding: 1.5rem;
+}
+
+.episodes-container.list .episode-card-info {
+    padding: 0;
+}
+
+.episode-card-info h5 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* Modal del Tráiler */
+.trailer-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.trailer-modal .modal-content {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 3rem;
+    color: var(--light-text);
+    background: none;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    height: 0;
+    background-color: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-info {
+    padding: 2rem;
+}
+
+.modal-info h3 {
+    font-size: 2.4rem;
+    font-family: var(--font-headings);
+    margin-bottom: 1rem;
+}
+
+.modal-info .overlay-stats {
+    margin-bottom: 1.5rem;
+}
+
+.modal-info p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--grey-text);
+    margin-bottom: 2rem;
+}
+
+.modal-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    font-size: 1.4rem;
+}
+
+.modal-details-grid span {
+    color: var(--grey-text);
+}
+
+.modal-details-grid span strong {
+    color: var(--light-text);
+}
+
 /* --- Pie de Página --- */
 .footer {
     background-color: #0a0a0a;
@@ -530,6 +1106,7 @@ header .navbar ul li a.active {
     text-align: center;
     padding: 4rem 5%;
     border-top: 1px solid var(--border-color);
+    margin-top: 5rem;
 }
 
 .footer p {
@@ -551,6 +1128,16 @@ header .navbar ul li a.active {
 }
 
 /* --- Diseño Responsivo --- */
+@media (max-width: 1200px) {
+    .slick-prev {
+        left: -25px !important;
+    }
+
+    .slick-next {
+        right: -25px !important;
+    }
+}
+
 @media (max-width: 991px) {
     html {
         font-size: 55%;
@@ -615,6 +1202,11 @@ header .navbar ul li a.active {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
+    .card-carousel {
+        margin: 0 -1rem;
+        /* Fix for mobile overflow */
+    }
+
     .episodes-grid {
         grid-template-columns: 1fr;
     }
@@ -625,6 +1217,14 @@ header .navbar ul li a.active {
 
     .hero-description {
         font-size: 1.6rem;
+    }
+
+    .slick-arrow {
+        display: none !important;
+    }
+
+    .filters-grid {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -645,6 +1245,12 @@ header .navbar ul li a.active {
         display: none;
     }
 
+    .page-header-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
     .section-header {
         flex-direction: column;
         align-items: flex-start;
@@ -661,5 +1267,14 @@ header .navbar ul li a.active {
 
     .episode-item .episode-time {
         display: none;
+    }
+
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .episodes-section-detail .section-header {
+        flex-direction: column;
+        gap: 2rem;
     }
 }

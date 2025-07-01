@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div class="search-container">
+    <input type="text" placeholder="Search anime..." id="search-input" oninput="hideResults()" />
+    <div id="search-results"></div>
+  </div>
+  <script>
+    const searchInput = document.getElementById("search-input");
+    const searchResults = document.getElementById("search-results");
+
+    searchInput.addEventListener("input", searchAnime);
+    searchInput.addEventListener("keyup", (event) => {
+      if (event.keyCode === 13) {
+        // 13 es el código de la tecla Enter
+        window.location.href = searchResults.children[0].children[0].href; // Redirecciona a la primera opción de búsqueda
+      }
+    });
+
+    function searchAnime() {
+      const searchValue = searchInput.value;
+      searchResults.innerHTML = "";
+      const filteredAnime = animes.filter((anime) =>
+        anime.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      if (filteredAnime.length === 0) {
+        const noResults = document.createElement("div");
+        noResults.innerHTML = "Sin resultados";
+        searchResults.appendChild(noResults);
+      } else {
+        filteredAnime.forEach((anime) => {
+          // Código para crear los elementos de resultados
+        });
+      }
+      filteredAnime.forEach((anime) => {
+        const animeElement = document.createElement("div");
+        const animeLink = document.createElement("a");
+        animeLink.href = anime.link;
+        const animeImage = document.createElement("img");
+        animeImage.src = anime.image;
+        animeImage.id = "image-min";
+        const animeTitle = document.createElement("span");
+        animeTitle.innerHTML = anime.name;
+        animeTitle.classList.add("title");
+        const animeType = document.createElement("span");
+        animeType.innerHTML = anime.type;
+        animeType.classList.add("Type", "tv");
+        animeLink.appendChild(animeImage);
+        animeLink.appendChild(animeTitle);
+        animeElement.appendChild(animeLink);
+        animeElement.appendChild(animeType);
+        searchResults.appendChild(animeElement);
+      });
+    }
+
+    const animes = [
+      {
+        name: "Kimetsu no Yaiba",
+        link: "https://all-anime.net/ver/Kimetsu-no-yaiba/tv",
+        image: "/image/Kimetsu-no-Yaiba-Temporada-1/poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Demon slayer",
+        link: "https://all-anime.net/ver/Kimetsu-no-yaiba/tv",
+        image: "/image/Kimetsu-no-Yaiba-Temporada-1/poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "One Piece",
+        link: "https://all-anime.net/ver/One-Piece/tv",
+        image: "/image/One-Piece-cap/One-Piece-poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Blue lock",
+        link: "https://all-anime.net/ver/Blue-lock/tv",
+        image: "/image/Blue-lock/poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Ousama ranking",
+        link: "https://all-anime.net/ver/Ousama-ranking/tv",
+        image: "/image/Ousama-Ranking/p.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Ranking of king",
+        link: "https://all-anime.net/ver/Ousama-ranking/tv",
+        image: "/image/Ousama-Ranking/p.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Shingeki no kyojin",
+        link: "https://all-anime.net/Shingeki-no-kyojin-tv",
+        image: "/image/SNK-season-4-part2/poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Jujutsu kaien",
+        link: "https://all-anime.net/Jujutsu-Kaisen-tv",
+        image: "/image/Jujutsu-Kaisen/poster.png",
+        type: "ANIME",
+      },
+      {
+        name: "Shaman king: 2021",
+        link: "https://all-anime.net/Shaman-king(2021)-tv",
+        image: "/image/shamanking.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Naruto",
+        link: "https://all-anime.net/Naruto-tv",
+        image: "/image/Naruto/poster.jpeg",
+        type: "ANIME",
+      },
+      {
+        name: "Naruto shippuden",
+        link: "https://all-anime.net/Naruto-Shippuden-tv.html",
+        image: "/image/Naruto-Shippuden/naruto-shippuden-poster.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Nier: Automata ver1.1a",
+        link: "https://all-anime.net/ver/Nier-automata-ver-1-1a/tv",
+        image: "/image/Nier-automata-ver-1-1a/p.webp",
+        type: "ANIME",
+      },
+      {
+        name: "Tokyo revengers",
+        link: "https://all-anime.net/ver/Tokyo-revengers/tv",
+        image: "/image/Tokyo-revengers-seiya-kessen-hen/p.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Vinland saga",
+        link: "https://all-anime.net/ver/Vinland-saga/tv",
+        image: "/image/Vinland-Saga/T2/p.jpg",
+        type: "ANIME",
+      },
+      {
+        name: "Dragon ball super: super hero",
+        link: "https://all-anime.net/peliculas/Dragon-ball-Super-super-hero/movie",
+        image: "/image/Dragon-ball-super-Super-Hero/poster.png",
+        type: "PELICULA",
+      },
+      {
+        name: "One piece: Film red",
+        link: "https://all-anime.net/peliculas/One-piece-film-red/movie",
+        image: "/image/One-piece-Film-red/p.jpg",
+        type: "PELICULA",
+      },
+      {
+        name: "Nanatsu no taizai: El rencor de edimburgo",
+        link: "https://all-anime.net/peliculas/Nanatsu-no-taizai-el-rencor-de-edimburgo/movie",
+        image: "/image/Nanatsu-no-taizai-el-rencor-de-edimburgo/poster.jpg",
+        type: "PELICULA",
+      },
+    ];
+  </script>
+
+  <style>
+    .search-container {
+      position: relative;
+      top: 20px;
+      left: 95%;
+      transform: translateX(-95%);
+      width: 185px;
+      background: white;
+      z-index: 200;
+      border-radius: 2.5px;
+      opacity: 2;
+    }
+
+    #search-input {
+      padding: 12px 20px;
+      box-sizing: border-box;
+      border: 2px solid gray;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    #search-results {
+      position: absolute;
+      width: 100%;
+      background-color: #f2f2f2;
+      z-index: 1;
+    }
+
+    #search-results div {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #fff;
+    }
+
+    #search-results div a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #333;
+    }
+
+    #search-results img {
+      height: 70px;
+      margin-right: 10px;
+    }
+
+    #search-results .title {
+      font-weight: bold;
+    }
+
+    .title:hover {
+      color: rgb(7, 247, 59);
+    }
+
+    #search-results .Type {
+      margin-left: auto;
+    }
+
+    .Type {
+      background-color: rgb(7, 247, 59);
+      border-color: rgb(7, 247, 59);
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 16px;
+      width: 60px;
+      color: #fff;
+      height: 16px;
+      border-radius: 8px;
+    }
+  </style>
+</body>
+
+</html>

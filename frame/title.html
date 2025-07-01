@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stranger Things | Netflix</title>
+    <style>
+        :root {
+            --netflix-negro: #141414;
+            --netflix-rojo: #E50914;
+            --texto-gris: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--netflix-negro);
+            color: white;
+            font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .contenedor-serie {
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+
+        .header-navegacion {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+
+        .menu-navegacion {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .menu-navegacion a {
+            color: #e5e5e5;
+            text-decoration: none;
+        }
+
+        .banner-principal {
+            position: relative;
+            height: 80vh;
+            background-image: url('https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Blue%20Exorcist/SEASON%204/ULTRA-WIDE/BlueExorcist-S4C1-KV1-UW-LTR.png');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 30px;
+        }
+
+        .overlay-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .info-serie {
+            max-width: 650px;
+        }
+
+        .titulo-serie {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .detalhes-serie {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .etiqueta-serie {
+            color: #46d369;
+            font-weight: bold;
+        }
+
+        .botones-serie {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-reproducir,
+        .btn-mais-info {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-reproducir {
+            background-color: white;
+            color: black;
+        }
+
+        .btn-mais-info {
+            background-color: rgba(109, 109, 110, 0.7);
+            color: white;
+        }
+
+        .secao-episodios {
+            padding: 20px 50px;
+        }
+
+        .titulo-temporada {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .grade-episodios {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .card-episodio {
+            background-color: #2c2c2c;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card-episodio:hover {
+            transform: scale(1.05);
+        }
+
+        .miniatura-episodio {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .info-episodio {
+            padding: 10px;
+        }
+
+        .titulo-episodio {
+            color: #e5e5e5;
+            margin-bottom: 10px;
+        }
+
+        .duracao-episodio {
+            color: #777;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor-serie">
+        <header class="header-navegacion">
+            <img src="https://example.com/netflix-logo.png" alt="Netflix" class="logo">
+            <nav class="menu-navegacion">
+                <a href="#">Início</a>
+                <a href="#">Séries</a>
+                <a href="#">Filmes</a>
+                <a href="#">Minha Lista</a>
+            </nav>
+        </header>
+
+        <div class="banner-principal">
+            <div class="overlay-banner">
+                <div class="info-serie">
+                    <h1 class="titulo-serie"><img
+                            src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABemKOWL1V4rv61wwalKNdi9che_5dUQD3KvcrCf-CHZWg3F8-e6KEvIYBMHanQPGS-ZzKnH9EwrXc_cP8udykMZLMVTVusZ_VQ.webp?r=0b2"
+                            alt="" style="width: 300px;"></h1>
+                    <div class="detalhes-serie">
+                        <span class="etiqueta-serie">Novo</span>
+                        <span>2025</span>
+                        <span>5ª Temporada</span>
+                        <span>8 Episódios</span>
+                    </div>
+                    <div class="botones-serie">
+                        <button class="btn-reproducir">▶ Reproducir</button>
+                        <button class="btn-mais-info">ℹ Mas Informações</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="secao-episodios">
+            <h2 class="titulo-temporada">Temporada 5</h2>
+            <div class="grade-episodios">
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: El asesino legendario</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <!-- Repete para outros episódios -->
+            </div>
+            <h2 class="titulo-temporada">Temporada 4</h2>
+            <div class="grade-episodios">
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: O Retorno</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <div class="card-episodio">
+                    <img src="https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWHnS22C_66n2XVbTMhsuhScaDfHqmG5omAMxMWUgAaAQJgHWtk_9V2oGODtI2RtAxM_C9maBSH-LsN1V4TA_jtJUT4Dxdlt0p-jIev2NegUBKfwPmhiuPXN.webp?r=ef0"
+                        alt="Episódio 1" class="miniatura-episodio">
+                    <div class="info-episodio">
+                        <h3 class="titulo-episodio">Episódio 1: El asesino legendario</h3>
+                        <span class="duracao-episodio">45 min</span>
+                    </div>
+                </div>
+                <!-- Repete para outros episódios -->
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

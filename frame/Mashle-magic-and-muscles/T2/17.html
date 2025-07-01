@@ -1,0 +1,226 @@
+<html>
+
+<head>
+   <script async src="https://arc.io/widget.min.js#gzfkzVk2"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Player</title>
+   <link href="/css/iframe.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+   <meta name="robots" content="noindex,nofollow">
+   <style>
+      #PlayerDisplay {
+         z-index: 99;
+      }
+
+      .DisplayVideoA {
+         z-index: 9999;
+      }
+   </style>
+</head>
+
+<body class="directAc" style="">
+
+   <div id="msjad" class="msjad" style="display: none;">
+      <div>
+         <p>Los reproductores contienen publicidad y ventanas emergentes ajenas a All-anime, Recomiendo usar el
+            navegador
+            Brave</p>
+         <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y Continuar</button>
+         </p>
+      </div>
+   </div>
+
+   <div id="DisplayContent">
+      <div id="PlayerDisplay">
+         <div class="wpw"
+            style="background-image: linear-gradient(rgba(16, 16, 23, 0.71), #000000), url('https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/7ce6bedc77c1c73383d404e7c1de2e4e.jpe'); background-size: 100%; background-repeat: no-repeat;">
+         </div>
+         <div class="SelectLangDisp">
+            <li onclick="SelLang(this, 'SUB');" class="SLD_A"><img src="https://saidochesto.top/static/lang/SUB.png">
+            </li>
+            <li onclick="SelLang(this, 'LAT');" class=""><img src="https://saidochesto.top/static/lang/LAT.png"></li>
+            <li onclick="SelLang(this, 'ES');" class=""><img src="https://saidochesto.top/static/lang/ES.png"></li>
+         </div>
+         <div class="OptionsLangDisp">
+            <div class="ODDIV">
+               <div class="OD OD_SUB REactiv">
+                  <li onclick="go_to_player('https://filemoon.art/e/hoy4fo29mq2f')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/vycsx135pse2')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/taeztuwah210')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamvid.net/embed-4my7wbjia7a8')">
+                     <img src="static/server/streamvid.net.png">
+                     <span>STREAMVID</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más de 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-oa2jy78g2w4k.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/YZ4l8rVL90S3xe/%5BAnimeOnlineNinja%5D_MASHLE_MAGIC_AND_MUSCLES_2_17.mp4')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-fkn9l84mo2t6/[AnimeOnlineNinja]_MASHLE_MAGIC_AND_MUSCLES_2_17.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Japones Sub Español - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/Y3N3eUkvNjVRdS9pYkk4S00rTHNJZz09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Japones Sub Español - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/xOvgIZ6rkP')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Japones Sub Español - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+               </div>
+               <div class="OD OD_LAT ">
+                  <li
+                     onclick="go_to_player('https://filemooon.top/e/255p5awamo4j/_AnimeOnlineNinja__MASHLE_MAGIC_AND_MUSCLES_2_Latino17')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/gu1ziwn588ej')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Latino - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/6p65usovc0fo')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Latino - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamvid.net/embed-30i65pw37me3')">
+                     <img src="static/server/streamvid.net.png">
+                     <span>STREAMVID</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más de 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-wg4jj2tzak75.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/Z2z99y0Qa6UqzVQ/%5BAnimeOnlineNinja%5D_MASHLE_MAGIC_AND_MUSCLES_2_Latino17.mp4')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-qao56jan5e8o/[AnimeOnlineNinja]_MASHLE_MAGIC_AND_MUSCLES_2_Latino17.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Latino - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/TlF6aGVTeUk3N3JnTUtyTFo5NVVmUT09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Latino - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-g91z3v3desr6.html')">
+                     <img src="https://saidochesto.top/static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.is/e/1vk0q398twrdl8')">
+                     <img src="static/server/default.png">
+                     <span>Mixdrop</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.to/embed-p7yqbv34x0qi.html')">
+                     <img src="static/server/default.png">
+                     <span>Uqload</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+               <div class="OD OD_ES ">
+                  <li
+                     onclick="go_to_player('https://filemooon.top/e/pnk8yn4c3v0e/_AnimeOnlineNinja__MASHLE_MAGIC_AND_MUSCLES_2_Castellano_17')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/8tuum7356xo0')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Castellano - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/4uitf2bxh8j8')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Castellano - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamvid.net/embed-qwc91p73e6aj')">
+                     <img src="static/server/streamvid.net.png">
+                     <span>STREAMVID</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más de 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-b3c1jqu57ygk.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/84r0m74KlvuMwe/%5BAnimeOnlineNinja%5D_MASHLE_MAGIC_AND_MUSCLES_2_Castellano_17.mp4')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-k8lmsypa3c12/[AnimeOnlineNinja]_MASHLE_MAGIC_AND_MUSCLES_2_Castellano_17.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Castellano - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/UldxR0FWaG5weVVUTDZORzcrbS9adz09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Castellano - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-u94xb04y7d7m.html')">
+                     <img src="https://saidochesto.top/static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.is/e/zpmle4o7adnvqo')">
+                     <img src="static/server/default.png">
+                     <span>Mixdrop</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.to/embed-l97zhlut0nz0.html')">
+                     <img src="static/server/default.png">
+                     <span>Uqload</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="FirstLoad"></div>
+      <div class="BotHumano"></div>
+      <div class="DisplayVideo"></div>
+   </div>
+   <script src="/js/iframe.js"></script>
+</body>
+
+</html>

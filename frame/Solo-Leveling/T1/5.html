@@ -1,0 +1,233 @@
+<html>
+
+<head>
+   <script async src="https://arc.io/widget.min.js#gzfkzVk2"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Player</title>
+   <link href="/css/iframe.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+   <meta name="robots" content="noindex,nofollow">
+   <style>
+      #PlayerDisplay {
+         z-index: 99;
+      }
+
+      .DisplayVideoA {
+         z-index: 9999;
+      }
+   </style>
+</head>
+
+<body class="directAc" style="">
+
+   <div id="msjad" class="msjad" style="display: none;">
+      <div>
+         <p>Los reproductores contienen publicidad y ventanas emergentes ajenas a All-anime, Recomiendo usar el
+            navegador
+            Brave</p>
+         <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y Continuar</button>
+         </p>
+      </div>
+   </div>
+
+
+   <div id="DisplayContent">
+      <div id="PlayerDisplay">
+         <div class="wpw"
+            style="background-image: linear-gradient(rgba(16, 16, 23, 0.71), #000000), url('https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/4305090653ee4239dd0d797f1a4a6bdf.jpe'); background-size: 100%; background-repeat: no-repeat;">
+         </div>
+         <div class="SelectLangDisp">
+            <li onclick="SelLang(this, 'SUB');" class="SLD_A"><img src="https://saidochesto.top/static/lang/SUB.png">
+            </li>
+            <li onclick="SelLang(this, 'LAT');" class=""><img src="https://saidochesto.top/static/lang/LAT.png"></li>
+            <li onclick="SelLang(this, 'Audio_Coreano_-_Sub_Español');" class=""><img
+                  src="https://saidochesto.top/static/lang/Audio_Coreano_-_Sub_Espa%C3%B1ol.png"></li>
+         </div>
+         <div class="OptionsLangDisp">
+            <div class="ODDIV">
+               <div class="OD OD_SUB REactiv">
+                  <li onclick="go_to_player('https://filemoon.art/e/792aebaccl83')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/0xkeh6md1o12')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/rf0fana4uxqd')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamvid.net/embed-lc2ycojzl49t')">
+                     <img src="static/server/streamvid.net.png">
+                     <span>STREAMVID</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más de 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-a0s3igzzrzih.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/gwrorY9dXMHqRKW/%5BAnimeOnlineNinja%5D_Solo_Leveling_05.mp4')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-evsmtlrskncl/[AnimeOnlineNinja]_Solo_Leveling_05.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Japones Sub Español - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/a3VRL1Z2bUlVZ1BxeTNlQzlVMVMzZz09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Japones Sub Español - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/e4BKKYi7iH')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Japones Sub Español - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+               </div>
+               <div class="OD OD_LAT ">
+                  <li
+                     onclick="go_to_player('https://filemooon.top/e/tdlk4fnw78j7/_AnimeOnlineNinja__Solo_Leveling_Latino_05')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/7v2t7v15xd9z')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Latino - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/g10gr8u70itr')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Latino - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamvid.net/embed-l7ytecl2fb6c')">
+                     <img src="static/server/streamvid.net.png">
+                     <span>STREAMVID</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más de 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-la5nz7jkle2l.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/OP07qo2Ll3UWgL/%5BAnimeOnlineNinja%5D_Solo_Leveling_Latino_05.mp4')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-ba7jchph4kbt/[AnimeOnlineNinja]_Solo_Leveling_Latino_05.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Latino - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/cCtnOGZOVlVCT1NOUStlQ0lqVTdUQT09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Latino - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-uc1hhqzlqwye.html')">
+                     <img src="https://saidochesto.top/static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/16hi3muYj1')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Latino - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.is/e/rw738kmoa3j670')">
+                     <img src="static/server/default.png">
+                     <span>Mixdrop</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.to/embed-u8lf4gu0u4ur.html')">
+                     <img src="static/server/default.png">
+                     <span>Uqload</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.to/embed-u8lf4gu0u4ur.html')">
+                     <img src="static/server/default.png">
+                     <span>Uqload</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+               <div class="OD OD_Audio_Coreano_-_Sub_Español ">
+                  <li
+                     onclick="go_to_player('https://filemooon.top/e/66f6i14vy4xa/_AnimeOnlineNinja__Solo_Leveling_KR_05')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Coreano - Sub Español - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/fyv7uynozw5y')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Coreano - Sub Español - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/jpowkzcixaen')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Coreano - Sub Español - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-aq9fw5d1tb4s.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Coreano - Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/3GVwy16lgzCdO64/%5BAnimeOnlineNinja%5D_Solo_Leveling_KR_05.mp4')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Coreano - Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-6pevtowe70z5/[AnimeOnlineNinja]_Solo_Leveling_KR_05.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Coreano - Sub Español - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/bUU2NHNJV05tM0p2djFldDlKK29LZz09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Coreano - Sub Español - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-vwnjjt5lexf7.html')">
+                     <img src="https://saidochesto.top/static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Coreano - Sub Español - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/YPbkjXJfMS')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Coreano - Sub Español - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.is/e/7rz8mgz6fe8wx')">
+                     <img src="static/server/default.png">
+                     <span>Mixdrop</span>
+                     <p>Audio Coreano - Sub Español - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="FirstLoad"></div>
+      <div class="BotHumano"></div>
+      <div class="DisplayVideo"></div>
+   </div>
+   <script src="/js/iframe.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<html>
+
+<head>
+   <script async src="https://arc.io/widget.min.js#gzfkzVk2"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Player</title>
+   <link href="/css/iframe.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+   <meta name="robots" content="noindex,nofollow">
+   <style>
+      #PlayerDisplay {
+         z-index: 99;
+      }
+
+      .DisplayVideoA {
+         z-index: 9999;
+      }
+   </style>
+</head>
+
+<body class="directAc" style="">
+
+   <div id="msjad" class="msjad" style="display: none;">
+      <div>
+         <p>Los reproductores contienen publicidad y ventanas emergentes ajenas a All-anime, Recomiendo usar el
+            navegador
+            Brave</p>
+         <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y Continuar</button>
+         </p>
+      </div>
+   </div>
+   <div id="DisplayContent">
+      <div id="PlayerDisplay">
+         <div class="wpw"
+            style="background-image: linear-gradient(rgba(16, 16, 23, 0.71), #000000), url('https://www.crunchyroll.com/imgsrv/display/thumbnail/640x360/catalog/crunchyroll/c9f115153a07e900a045e63cc8e78fe1.jpe'); background-size: 100%; background-repeat: no-repeat;">
+         </div>
+         <div class="SelectLangDisp">
+            <li onclick="SelLang(this, 'SUB');" class="SLD_A"><img src="https://saidochesto.top/static/lang/SUB.png">
+            </li>
+            <li onclick="SelLang(this, 'LAT');" class=""><img src="https://saidochesto.top/static/lang/LAT.png"></li>
+            <li onclick="SelLang(this, 'ES');" class=""><img src="https://saidochesto.top/static/lang/ES.png"></li>
+         </div>
+         <div class="OptionsLangDisp">
+            <div class="ODDIV">
+               <div class="OD OD_SUB REactiv">
+                  <li onclick="go_to_player('https://filemoon.art/e/0jijobzmbi8e')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://obeywish.com/e/b6cxje8lq2s1')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamtape.com/e/goWbzV37mjcqw03/')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/hgmhxivcuk8s')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamvid.net/embed-7dnvj69wmgpg')">
+                     <img src="static/server/streamvid.net.png">
+                     <span>STREAMVID</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más de 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-t0u3hlc5ao5n.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/YjRyL28zZnRCS3lFU0VzWVFTNXEyZz09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Japones Sub Español - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-jlsuglnlxmd6.html')">
+                     <img src="https://saidochesto.top/static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.io/embed-5mumbyfh5pwn.html')">
+                     <img src="static/server/uqload.io.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/nyh8IpXFIf')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Japones Sub Español - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-apewxc80j3mi/[AnimeOnlineNinja]_JUJUTSU_KAISEN_2_22.mp4')">
+                     <img src="static/server/default.png">
+                     <span>Hexload</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+               <div class="OD OD_LAT ">
+                  <li
+                     onclick="go_to_player('https://filemooon.top/e/g9wpqvocgm28/_AnimeOnlineNinja__JUJUTSU_KAISEN_2_Latino_22')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/xt96binsgoll')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Latino - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/8bbe7k4yszcz')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Latino - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamvid.net/embed-sfrkegnut3w0')">
+                     <img src="static/server/streamvid.net.png">
+                     <span>STREAMVID</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más de 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-eme38pf4j2ix.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/Dz00QVL4mKSk0LL/%5BAnimeOnlineNinja%5D_JUJUTSU_KAISEN_2_Latino_22.mp4')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-mqi9vzzcsjpx/[AnimeOnlineNinja]_JUJUTSU_KAISEN_2_Latino_22.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Latino - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/Y3o2VnFOS001aUhMNGZPSS9mMGJSZz09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Latino - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-6bwugiluzww3.html')">
+                     <img src="https://saidochesto.top/static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.io/embed-crlc17itg8hx.html')">
+                     <img src="static/server/uqload.io.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/DOpoQjjFqM')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Latino - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+               </div>
+               <div class="OD OD_ES ">
+                  <li
+                     onclick="go_to_player('https://filemooon.top/e/9yll9t34khrc/_AnimeOnlineNinja__JUJUTSU_KAISEN_2_Castellano_22')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/el4w05oymr9g')">
+                     <img src="/image/Logo-server/luffy.png">
+                     <span>Streamwish</span>
+                     <p>Audio Castellano - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/v/ap0xzwvhyu9k')">
+                     <img src="https://i.imgur.com/QXIUovW.png">
+                     <span>FILELIONS</span>
+                     <p>Audio Castellano - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamvid.net/embed-ai2c5s2b73xl')">
+                     <img src="static/server/streamvid.net.png">
+                     <span>STREAMVID</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más de 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-6btujfkt45gh.html')">
+                     <img src="https://saidochesto.top/static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/yxykZpDq7wt14rg/%5BAnimeOnlineNinja%5D_JUJUTSU_KAISEN_2_Castellano_22.mp4')">
+                     <img src="/image/Logo-server/goku.png">
+                     <span>Streamtape</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-lqvbk5raz5ry/[AnimeOnlineNinja]_JUJUTSU_KAISEN_2_Castellano_22.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Castellano - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/bTdjbzk2THFqRTlZcVN0eVAyZlkrUT09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Castellano - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-niz7uh8403jr.html')">
+                     <img src="https://saidochesto.top/static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.io/embed-uk48c26envy2.html')">
+                     <img src="static/server/uqload.io.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/vGy84oXq8Z')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Castellano - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="FirstLoad"></div>
+      <div class="BotHumano"></div>
+      <div class="DisplayVideo"></div>
+   </div>
+   <script src="/js/iframe.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<html>
+
+<head>
+   <script async src="https://arc.io/widget.min.js#gzfkzVk2"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Player</title>
+   <link href="/css/iframe.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+   <meta name="robots" content="noindex,nofollow">
+   <style>
+      #PlayerDisplay {
+         z-index: 99;
+      }
+
+      .DisplayVideoA {
+         z-index: 9999;
+      }
+   </style>
+</head>
+
+<body class="directAc" style="">
+
+   <div id="msjad" class="msjad" style="display: none;">
+      <div>
+         <p>Los reproductores contienen publicidad y ventanas emergentes ajenas a All-anime, Recomiendo usar el
+            navegador
+            Brave</p>
+         <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y Continuar</button>
+         </p>
+      </div>
+   </div>
+
+
+   <div id="DisplayContent">
+      <div id="PlayerDisplay">
+         <div class="wpw"
+            style="background-image: linear-gradient(rgba(16, 16, 23, 0.71), #000000), url('https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/cd7a61f4fade67df2481cb8c8949a6b1.jpg'); background-size: 100%; background-repeat: no-repeat;">
+         </div>
+         <div class="SelectLangDisp">
+            <li onclick="SelLang(this, 'SUB');" class="SLD_A"><img src="https://saidochesto.top/static/lang/SUB.png">
+            </li>
+            <li onclick="SelLang(this, 'LAT');" class=""><img src="https://saidochesto.top/static/lang/LAT.png"></li>
+            <li onclick="SelLang(this, 'ES');" class=""><img src="https://saidochesto.top/static/lang/ES.png"></li>
+         </div>
+         <div class="OptionsLangDisp">
+            <div class="ODDIV">
+               <div class="OD OD_SUB REactiv">
+                  <li
+                     onclick="go_to_player('https://filemooon.link/e/kwriea3k4kuy/_AnimeOnlineNinja__Wistoria__Wand_and_Sword_02')">
+                     <img src="https://images2.imgbox.com/28/9a/0CUxC0nb_o.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/vqw5ci7tqc2p')">
+                     <img src="static/server/streamwish.top.png">
+                     <span>STREAMWISH</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/embed/wofa5srak0n7')">
+                     <img src="https://images2.imgbox.com/c8/48/uhBI1EgS_o.png">
+                     <span>VIDHIDE</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-07wvzy3lfi4k.html')">
+                     <img src="static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.is/e/jdvpjkzla4xmmw')">
+                     <img src="https://i.imgur.com/rq3fxKd.png">
+                     <span>MIXDROP</span>
+                     <p>Audio Japones Sub Español - Rápido | Más de 5 ventanas emergentes.</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/kkX9oMgxqKCOKLv/%5BAnimeOnlineNinja%5D_Wistoria__Wand_and_Sword_02.mp4')">
+                     <img src="static/server/streamtape.com.png">
+                     <span>STREAMTAPE</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-1inne9gft1ou/[AnimeOnlineNinja]_Wistoria__Wand_and_Sword_02.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Japones Sub Español - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/ajQ1SVhjQ3k2Qjg0UUNETVNkTlU0UT09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Japones Sub Español - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-h8urepbwjudi.html')">
+                     <img src="static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.ws/embed-n9qy22tfkl6s.html')">
+                     <img src="static/server/default.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+               </div>
+               <div class="OD OD_LAT ">
+                  <li onclick="go_to_player('https://filemoon.sx/e/ckgx9yh68tw6')">
+                     <img src="https://images2.imgbox.com/28/9a/0CUxC0nb_o.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad | HD+</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://filemooon.link/e/0vyty4q5smhg/_AnimeOnlineNinja__Wistoria__Wand_and_Sword_Latino_02')">
+                     <img src="https://images2.imgbox.com/28/9a/0CUxC0nb_o.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/k8l1kehunz5n')">
+                     <img src="static/server/streamwish.top.png">
+                     <span>STREAMWISH</span>
+                     <p>Audio Latino - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/embed/eq8kwsheeds0')">
+                     <img src="https://images2.imgbox.com/c8/48/uhBI1EgS_o.png">
+                     <span>VIDHIDE</span>
+                     <p>Audio Latino - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-ietltz84d30g.html')">
+                     <img src="static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.is/e/1ndv331lsjj7k9')">
+                     <img src="https://i.imgur.com/rq3fxKd.png">
+                     <span>MIXDROP</span>
+                     <p>Audio Latino - Rápido | Más de 5 ventanas emergentes.</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/7dZZ9d0GX9UVJ0/%5BAnimeOnlineNinja%5D_Wistoria__Wand_and_Sword_Latino_02.mp4')">
+                     <img src="static/server/streamtape.com.png">
+                     <span>STREAMTAPE</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-jm29jet8j4lh/[AnimeOnlineNinja]_Wistoria__Wand_and_Sword_Latino_02.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Latino - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/RkNYalVTS0tQRVVNazJXNmZONG5lUT09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Latino - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-d4qcujkirk61.html')">
+                     <img src="static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/ftoK87RTYv')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Latino - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.ws/embed-4gm1oq0omnlk.html')">
+                     <img src="static/server/default.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+               </div>
+               <div class="OD OD_ES ">
+                  <li
+                     onclick="go_to_player('https://filemooon.link/e/vv1a95p3wek4/_AnimeOnlineNinja__Wistoria__Wand_and_Sword_Castellano_02')">
+                     <img src="https://images2.imgbox.com/28/9a/0CUxC0nb_o.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/mt0jus5icdie')">
+                     <img src="static/server/streamwish.top.png">
+                     <span>STREAMWISH</span>
+                     <p>Audio Castellano - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/embed/zsoungggoxx2')">
+                     <img src="https://images2.imgbox.com/c8/48/uhBI1EgS_o.png">
+                     <span>VIDHIDE</span>
+                     <p>Audio Castellano - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-ft8colf765sj.html')">
+                     <img src="static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://mixdrop.is/e/7k4r77wlsnl6ev')">
+                     <img src="https://i.imgur.com/rq3fxKd.png">
+                     <span>MIXDROP</span>
+                     <p>Audio Castellano - Rápido | Más de 5 ventanas emergentes.</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/VzJJ2A3a3zF9DM/%5BAnimeOnlineNinja%5D_Wistoria__Wand_and_Sword_Castellano_02.mp4')">
+                     <img src="static/server/streamtape.com.png">
+                     <span>STREAMTAPE</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-w8zjuamzm26d/[AnimeOnlineNinja]_Wistoria__Wand_and_Sword_Castellano_02.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Castellano - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/NkIweDduMy8wQ1Y5SGVPTFp3ekxYQT09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Castellano - La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-bs5f3durd7me.html')">
+                     <img src="static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://krakenfiles.com/embed-video/2m1rI6FfTC')">
+                     <img src="static/server/krakenfiles.com.png">
+                     <span>KRAKENFILES</span>
+                     <p>Audio Castellano - Poca publicidad | Solo para redes con buena conexión</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.ws/embed-ljx8npi10a61.html')">
+                     <img src="static/server/default.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="FirstLoad"></div>
+      <div class="BotHumano"></div>
+      <div class="DisplayVideo"></div>
+   </div>
+   <script src="/js/iframe.js"></script>
+</body>
+
+</html>

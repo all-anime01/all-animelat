@@ -1,0 +1,227 @@
+<html>
+
+<head>
+   <script async src="https://arc.io/widget.min.js#gzfkzVk2"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Player</title>
+   <link href="/css/iframe.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+   <meta name="robots" content="noindex,nofollow">
+   <style>
+      #PlayerDisplay {
+         z-index: 99;
+      }
+
+      .DisplayVideoA {
+         z-index: 9999;
+      }
+   </style>
+</head>
+
+<body class="directAc" style="">
+
+   <div id="msjad" class="msjad" style="display: none;">
+      <div>
+         <p>Los reproductores contienen publicidad y ventanas emergentes ajenas a All-anime, Recomiendo usar el
+            navegador
+            Brave</p>
+         <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y Continuar</button>
+         </p>
+      </div>
+   </div>
+
+
+   <div id="DisplayContent">
+      <div id="PlayerDisplay">
+         <div class="wpw"
+            style="background-image: linear-gradient(rgba(16, 16, 23, 0.71), #000000), url('https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/bc5934e65dcfc3e6f1f783160ce023fb.jpg'); background-size: 100%; background-repeat: no-repeat;">
+         </div>
+         <div class="SelectLangDisp">
+            <li onclick="SelLang(this, 'SUB');" class="SLD_A"><img src="https://saidochesto.top/static/lang/SUB.png">
+            </li>
+            <!-- <li onclick="SelLang(this, 'LAT');" class=""><img src="https://saidochesto.top/static/lang/LAT.png"></li> -->
+            <li onclick="SelLang(this, 'ES');" class=""><img src="https://saidochesto.top/static/lang/ES.png"></li>
+         </div>
+         <div class="OptionsLangDisp">
+            <div class="ODDIV">
+               <div class="OD OD_SUB REactiv">
+                  <li onclick="go_to_player('https://filemoon.to/e/oypqeugab2ba')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad | HD+</p>
+                  </li>
+                  <li onclick="go_to_player('https://luluvdo.com/e/m3r398bkbi2h')">
+                     <img src="https://a.lulucdn.com/static/images/logo.svg">
+                     <span>LULU STREAM</span>
+                     <p>Audio Latino - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filemooon.link/e/xi1ogxq63s22/_AnimeOnlineNinja__BLUE_LOCK_35')">
+                     <img src="https://images2.imgbox.com/28/9a/0CUxC0nb_o.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/nwda2gbk5ymx')">
+                     <img src="static/server/streamwish.top.png">
+                     <span>STREAMWISH</span>
+                     <p>Audio Japones Sub Español - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/7KB4opxLxotA6om/%5BAnimeOnlineNinja%5D_BLUE_LOCK_35.mp4')">
+                     <img src="static/server/streamtape.com.png">
+                     <span>STREAMTAPE</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-mopvkslwc9j6/[AnimeOnlineNinja]_BLUE_LOCK_35.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Japones Sub Español - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/WHhpTDltaUZjZGVHSzZhYzdJRW1MZz09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Japones Sub Español - SIN PUBLICIDAD | La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-wtb07kk2yt9w.html')">
+                     <img src="static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.net/embed-nkbi2dn8aibe.html')">
+                     <img src="static/server/default.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Japones Sub Español - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://mxdrop.to/e/jd8xvk8zb76ez88')">
+                     <img src="static/server/default.png">
+                     <span>Mxdrop</span>
+                     <p>Audio Japones Sub Español - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+               <div class="OD OD_LAT ">
+                  <li onclick="go_to_player('https://filemoon.to/e/usu0denf7fvv')">
+                     <img src="https://i.imgur.com/mZVCUNO.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad | HD+</p>
+                  </li>
+                  <li onclick="go_to_player('https://luluvdo.com/e/nlq6i6or2v8x')">
+                     <img src="https://a.lulucdn.com/static/images/logo.svg">
+                     <span>LULU STREAM</span>
+                     <p>Audio Latino - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://filemooon.link/e/29lqk2pc38ph/_AnimeOnlineNinja__BLUE_LOCK_Latino_35')">
+                     <img src="https://images2.imgbox.com/28/9a/0CUxC0nb_o.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/xyohys74xmja')">
+                     <img src="static/server/streamwish.top.png">
+                     <span>STREAMWISH</span>
+                     <p>Audio Latino - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/embed/6idr67zts1bm')">
+                     <img src="https://images2.imgbox.com/c8/48/uhBI1EgS_o.png">
+                     <span>VIDHIDE</span>
+                     <p>Audio Latino - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li onclick="go_to_player('https://gamovideo.com/embed-hcvt5zoyamjm.html')">
+                     <img src="static/server/gamovideo.com.png">
+                     <span>GAMOVIDEO</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/w7vKGeQvJYhGYM/%5BAnimeOnlineNinja%5D_BLUE_LOCK_Latino_35.mp4')">
+                     <img src="static/server/streamtape.com.png">
+                     <span>STREAMTAPE</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-km4a027gwewl/[AnimeOnlineNinja]_BLUE_LOCK_Latino_35.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Latino - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/S2l6VlhycVUrMGc5bytMOHZucENNUT09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Latino - SIN PUBLICIDAD | La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-khmzivla09oa.html')">
+                     <img src="static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.net/embed-3dat7lyprntd.html')">
+                     <img src="static/server/default.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Latino - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://mxdrop.to/e/03mrrpz9fk7v1jo')">
+                     <img src="static/server/default.png">
+                     <span>Mxdrop</span>
+                     <p>Audio Latino - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+               <div class="OD OD_ES ">
+                  <li
+                     onclick="go_to_player('https://filemooon.link/e/xxzq9ywq4lkm/_AnimeOnlineNinja__BLUE_LOCK_Castellano_35')">
+                     <img src="https://images2.imgbox.com/28/9a/0CUxC0nb_o.png">
+                     <span>FILEMOON</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://streamwish.top/e/asju3cmtphfx')">
+                     <img src="static/server/streamwish.top.png">
+                     <span>STREAMWISH</span>
+                     <p>Audio Castellano - Multicalidad | Max. 3 ventanas emergentes</p>
+                  </li>
+                  <li onclick="go_to_player('https://filelions.top/embed/xczafnc8oa0t')">
+                     <img src="https://images2.imgbox.com/c8/48/uhBI1EgS_o.png">
+                     <span>VIDHIDE</span>
+                     <p>Audio Castellano - Multicalidad | Poca Publicidad</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://streamtape.com/e/3krwYRjjJjCdByO/%5BAnimeOnlineNinja%5D_BLUE_LOCK_Castellano_35.mp4')">
+                     <img src="static/server/streamtape.com.png">
+                     <span>STREAMTAPE</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li
+                     onclick="go_to_player('https://hexload.com/embed-aq3uqknzndqs/[AnimeOnlineNinja]_BLUE_LOCK_Castellano_35.mp4')">
+                     <img src="https://images2.imgbox.com/23/e9/TcAJmkeP_o.png">
+                     <span>HEXUPLOAD</span>
+                     <p>Audio Castellano - Max. 3 anuncios</p>
+                  </li>
+                  <li onclick="go_to_player('https://netuplayer.top/e/eEdHakR1cUo3K3J6ZFIxV2RmK0RvZz09')">
+                     <img src="static/server/netuplayer.top.png">
+                     <span>NETU</span>
+                     <p>Audio Castellano - SIN PUBLICIDAD | La vieja confiable | HD</p>
+                  </li>
+                  <li onclick="go_to_player('https://www.mp4upload.com/embed-5zhndt07ilh5.html')">
+                     <img src="static/server/www.mp4upload.com.png">
+                     <span>MP4UPLOAD</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 3 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://uqload.net/embed-8ekv4cmpd3yp.html')">
+                     <img src="static/server/default.png">
+                     <span>UQLOAD</span>
+                     <p>Audio Castellano - Poca Publicidad en Móvil | Más 5 ventanas emergentes en PC</p>
+                  </li>
+                  <li onclick="go_to_player('https://mxdrop.to/e/xwg1v48ebo3pmw')">
+                     <img src="static/server/default.png">
+                     <span>Mxdrop</span>
+                     <p>Audio Castellano - Max. 2 ventanas de publicidad</p>
+                  </li>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="FirstLoad"></div>
+      <div class="BotHumano"></div>
+      <div class="DisplayVideo"></div>
+   </div>
+   <script src="/js/iframe.js"></script>
+</body>
+
+</html>
