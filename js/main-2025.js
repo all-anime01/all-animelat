@@ -5,38 +5,38 @@ $(document).ready(function () {
 
   function createAnimeCard(anime) {
     return `
-            <div class="anime-card">
-                <a href="anime-details.html?id=${anime.id}">
-                    <div class="card-image-container">
-                        <img src="${anime.img}" alt="${anime.title}">
-                        <div class="quality-tag">${anime.quality}</div>
-                        <div class="card-overlay">
-                            <div class="overlay-content">
-                                 <div class="play-button"><i class="fas fa-play"></i></div>
-                                <h3 class="overlay-title">${anime.title}</h3>
-                                <div class="overlay-stats">
-                                    <span><i class="fas fa-star"></i> ${
-                                      anime.rating
-                                    }</span>
-                                    <span>${anime.seasons} Temporada(s)</span>
-                                </div>
-                                <div class="overlay-genres">
-                                    ${anime.genres
-                                      .map((genre) => `<span>${genre}</span>`)
-                                      .join("")}
-                                </div>
-                                <p class="overlay-description">${
-                                  anime.description
-                                }</p>
+        <div class="anime-card">
+            <a href="anime-details.html?id=${anime.id}">
+                <div class="card-image-container">
+                    <img src="${anime.img}" alt="${anime.title}">
+                    <div class="quality-tag">${anime.quality}</div>
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                             <div class="play-button"><i class="fas fa-play"></i></div>
+                            <h3 class="overlay-title">${anime.title}</h3>
+                            <div class="overlay-stats">
+                                <span><i class="fas fa-star"></i> ${
+                                  anime.rating
+                                }</span>
+                                <span>${anime.seasons} Temporada(s)</span>
                             </div>
+                            <div class="overlay-genres">
+                                ${anime.genres
+                                  .map((genre) => `<span>${genre}</span>`)
+                                  .join("")}
+                            </div>
+                            <p class="overlay-description">${
+                              anime.description
+                            }</p>
                         </div>
                     </div>
-                    <div class="card-info">
-                        <h4 class="card-title">${anime.title}</h4>
-                    </div>
-                </a>
-            </div>
-        `;
+                </div>
+                <div class="card-info">
+                    <h4 class="card-title">${anime.title}</h4>
+                </div>
+            </a>
+        </div>
+    `;
   }
 
   function createEpisodeItem(episode) {
@@ -424,9 +424,19 @@ $(document).ready(function () {
       item.find(".episode-meta").html(originalMeta);
     });
 
-  // --- LÓGICA DE BÚSQUEDA ---
+  // --- LÓGICA DE BÚSQUEDA DEL NAVBAR ---
   const searchInput = $("#search-input");
+  const searchIcon = $("#search-icon-toggle");
+  const searchContainer = $(".search-container");
   const searchResults = $("#search-results");
+
+  searchIcon.on("click", function (e) {
+    e.stopPropagation();
+    searchContainer.toggleClass("active");
+    if (searchContainer.hasClass("active")) {
+      searchInput.focus();
+    }
+  });
 
   searchInput.on("input", function () {
     const query = $(this).val().toLowerCase().trim();
@@ -440,10 +450,10 @@ $(document).ready(function () {
       if (filteredAnime.length > 0) {
         filteredAnime.forEach((anime) => {
           const resultItem = `
-                        <a href="anime-details.html?id=${anime.id}">
-                            <img src="${anime.img}" alt="${anime.title}">
-                            <span>${anime.title}</span>
-                        </a>`;
+                      <a href="anime-details.html?id=${anime.id}">
+                          <img src="${anime.img}" alt="${anime.title}">
+                          <span>${anime.title}</span>
+                      </a>`;
           searchResults.append(resultItem);
         });
         searchResults.show();
@@ -451,9 +461,13 @@ $(document).ready(function () {
     }
   });
 
-  // Ocultar resultados al hacer clic fuera
+  // Ocultar buscador y resultados al hacer clic fuera
   $(document).on("click", function (e) {
-    if (!$(e.target).closest(".search-container").length) {
+    if (
+      !searchContainer.is(e.target) &&
+      searchContainer.has(e.target).length === 0
+    ) {
+      searchContainer.removeClass("active");
       searchResults.hide();
     }
   });

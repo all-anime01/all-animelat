@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@600;700&display=swap');
 
 :root {
-    --primary-color: #ca3030;
+    --primary-color: rgb(202, 48, 48);
     --secondary-color: #07f73b;
     --dark-bg: #101010;
     --light-bg: #181818;
@@ -64,7 +64,7 @@ header {
 }
 
 header.scrolled {
-    background-color: rgba(16, 16, 16, 0.9);
+    background-color: rgb(202, 48, 48);
     backdrop-filter: blur(10px);
     padding: 1.5rem 5%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -1152,7 +1152,7 @@ header .navbar ul li a.active {
         top: 100%;
         left: -100%;
         width: 100%;
-        background: var(--dark-bg);
+        background: rgb(202, 48, 48);
         transition: left 0.3s ease;
     }
 
