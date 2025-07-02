@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solo Leveling | All-Anime</title>
+    <link rel="stylesheet" href="css/style-tv.css" />
+</head>
+
+<body>
+    <header class="hero">
+        <img class="hero-bg"
+            src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-LTR.png"
+            alt="Solo Leveling" />
+        <div class="hero-content">
+            <img class="logo"
+                src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-Logo.png"
+                alt="Logo" />
+            <p>En un mundo donde portales misteriosos conectan con mazmorras llenas de monstruos, Sung Jin-Woo debe
+                evolucionar de ser el cazador más débil a convertirse en el más fuerte.</p>
+            <button id="btnPlay">▶ Ver Último Episodio</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="controls">
+            <select id="seasonSelector">
+                <option value="2">Temporada 2</option>
+                <option value="1">Temporada 1</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="Buscar episodio..." />
+            <button id="toggleView">🗂 Vista</button>
+        </section>
+
+        <section id="episodes" class="episodes grid-view"></section>
+    </main>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <iframe id="videoFrame" src="" allowfullscreen></iframe>
+            <h2 id="episodeTitle"></h2>
+            <p id="episodeMeta"></p>
+            <p id="episodeDesc"></p>
+        </div>
+    </div>
+
+    <script src="js/data-SL.js"></script>
+    <script src="js/script-SL.js"></script>
+</body>
+
+</html>

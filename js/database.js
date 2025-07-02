@@ -5,12 +5,12 @@ export const animeData = [
   {
     id: "solo-leveling",
     title: "Solo Leveling",
-    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/010e9f451f47228a462243b853a8176f.jpe",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/f2d6d93f5ba4a24bcb3b0d1322a645ff.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-LTR.png",
     logoImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-Logo.png",
-    trailerUrl: "https://www.youtube.com/embed/eQy9WfQkL3w",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GDKHZEJ0K-title_logo-en-us",
+    trailerUrl: "https://www.youtube.com/embed/TceDFwPXCuI?si=Pwe8qBK_wKzIZ6a7",
     description:
       "Conocido como el cazador más débil de la humanidad, se encuentra en una lucha constante por la supervivencia. Después de una experiencia cercana a la muerte, adquiere un poder único para subir de nivel.",
     genres: ["Acción", "Aventura", "Fantasía"],
@@ -22,7 +22,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(), // Hoy
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 122)), // Hace 122 dias
     episodes: [
       {
         season: 1,
