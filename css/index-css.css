@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@600;700&display=swap');
 
 :root {
-    --primary-color: rgb(202, 48, 48);
+    --primary-color: #ca3030;
     --secondary-color: #07f73b;
+    --gemini-blue: #4285F4;
     --dark-bg: #101010;
     --light-bg: #181818;
     --card-bg: #202020;
@@ -64,7 +65,7 @@ header {
 }
 
 header.scrolled {
-    background-color: rgb(202, 48, 48);
+    background-color: rgba(16, 16, 16, 0.9);
     backdrop-filter: blur(10px);
     padding: 1.5rem 5%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -116,40 +117,54 @@ header .navbar ul li a.active {
     gap: 2rem;
 }
 
+/* --- Estilos de Buscador (Desktop) --- */
 .search-container {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
-#search-input {
+.search-container .search-icon {
+    font-size: 2rem;
+    color: var(--grey-text);
+    cursor: pointer;
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: color 0.3s ease;
+    z-index: 1;
+}
+
+.search-container #search-input {
     background: transparent;
     border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 0.8rem 1.5rem 0.8rem 4rem;
+    border-radius: 25px;
+    padding: 1rem 4.5rem 1rem 2rem;
     color: var(--light-text);
-    width: 220px;
+    width: 40px;
+    opacity: 0;
+    cursor: pointer;
     transition: all 0.4s ease;
 }
 
-#search-input:focus {
-    border-color: var(--secondary-color);
+.search-container.active #search-input {
     background: var(--card-bg);
+    width: 250px;
+    opacity: 1;
+    cursor: text;
 }
 
-.search-icon {
-    position: absolute;
-    left: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--grey-text);
-    font-size: 1.5rem;
+.search-container.active .search-icon {
+    color: var(--secondary-color);
 }
 
-#search-results {
+.search-results-dropdown {
     position: absolute;
-    top: 110%;
+    top: calc(100% + 10px);
     left: 0;
     display: none;
-    width: 300px;
+    width: 250px;
     background-color: var(--card-bg);
     border-radius: 8px;
     max-height: 400px;
@@ -159,7 +174,7 @@ header .navbar ul li a.active {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-#search-results a {
+.search-results-dropdown a {
     display: flex;
     align-items: center;
     padding: 1rem;
@@ -167,11 +182,11 @@ header .navbar ul li a.active {
     font-size: 1.4rem;
 }
 
-#search-results a:hover {
+.search-results-dropdown a:hover {
     background-color: var(--light-bg);
 }
 
-#search-results img {
+.search-results-dropdown img {
     width: 40px;
     height: 60px;
     object-fit: cover;
@@ -179,12 +194,16 @@ header .navbar ul li a.active {
     border-radius: 4px;
 }
 
-
 #menu-icon {
     display: none;
     font-size: 2.5rem;
     color: var(--light-text);
     cursor: pointer;
+}
+
+.search-container-mobile {
+    display: none;
+    /* Oculto en desktop */
 }
 
 /* --- Sección de Héroe (Carrusel) --- */
@@ -523,7 +542,15 @@ header .navbar ul li a.active {
     overflow: hidden;
     border-radius: 8px;
     background-color: var(--light-bg);
+    border: 3px solid transparent;
+    transition: border-color 0.3s ease;
 }
+
+.slick-slide:hover .anime-card .card-image-container,
+.slick-current .anime-card .card-image-container {
+    border-color: var(--light-text);
+}
+
 
 .anime-card .card-image-container img {
     width: 100%;
@@ -662,6 +689,7 @@ header .navbar ul li a.active {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 4rem;
 }
 
 .page-header h1 {
@@ -673,6 +701,10 @@ header .navbar ul li a.active {
 #toggle-filters-btn {
     background-color: var(--primary-color);
     color: var(--light-text);
+}
+
+#toggle-filters-btn:hover {
+    background-color: #a52828;
 }
 
 .filters-section {
@@ -799,10 +831,17 @@ header .navbar ul li a.active {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1rem 2rem;
     font-size: 1.4rem;
     color: var(--grey-text);
     margin-bottom: 1.5rem;
+}
+
+.anime-meta-tags span,
+.anime-meta-tags div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .quality-tag-detail {
@@ -811,6 +850,12 @@ header .navbar ul li a.active {
     padding: 0.2rem 0.6rem;
     border-radius: 3px;
     font-weight: 700;
+}
+
+.age-rating-tag {
+    border: 1px solid var(--grey-text);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
 }
 
 .anime-description {
@@ -823,6 +868,7 @@ header .navbar ul li a.active {
 .anime-actions {
     display: flex;
     gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .action-btn {
@@ -855,80 +901,245 @@ header .navbar ul li a.active {
     background-color: rgba(128, 128, 128, 0.6);
 }
 
-/* Estilos de la Sección de Episodios en Detalles */
+.action-btn.gemini-btn {
+    background-color: var(--gemini-blue);
+    color: var(--light-text);
+}
+
+.action-btn.gemini-btn:hover {
+    background-color: #3367d6;
+    /* Un azul un poco más oscuro */
+}
+
+/* --- Estilos de la Sección de Episodios en Detalles --- */
 .episodes-section-detail {
     padding: 4rem 0;
 }
 
-.episodes-section-detail .section-header {
+.section-header-episodes {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-.episodes-season-selector {
+.section-header-episodes .header-left,
+.section-header-episodes .header-right-episodes {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
-.episodes-season-selector label {
-    font-size: 2.4rem;
-    font-family: var(--font-headings);
+.section-header-episodes .section-title {
+    padding: 0;
+    margin: 0;
 }
 
-#season-select {
+.custom-select-wrapper {
+    position: relative;
+    background-color: var(--card-bg);
+    border-radius: 4px;
+}
+
+.custom-select-wrapper::after {
+    content: '\f078';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--grey-text);
+    font-size: 1.2rem;
+}
+
+.custom-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
     background-color: transparent;
     color: var(--light-text);
-    font-size: 2.4rem;
-    font-family: var(--font-headings);
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-}
-
-.episodes-view-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.episodes-view-controls input {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    color: var(--light-text);
-    padding: 0.8rem 1.2rem;
+    padding: 1rem 4rem 1rem 1.5rem;
     border-radius: 4px;
+    cursor: pointer;
     font-size: 1.4rem;
+    font-family: var(--font-main);
+    font-weight: 500;
+}
+
+.episode-search-wrapper {
+    position: relative;
+}
+
+.episode-search-wrapper input {
+    background-color: var(--card-bg);
+    border-radius: 4px;
+    color: var(--light-text);
+    padding: 1rem 4rem 1rem 1.5rem;
+    font-size: 1.4rem;
+    width: 220px;
+}
+
+.episode-search-wrapper .fa-search {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--grey-text);
+}
+
+.view-controls {
+    display: flex;
+    background-color: var(--card-bg);
+    border-radius: 4px;
+    padding: 0.5rem;
 }
 
 .view-toggle {
-    background-color: var(--card-bg);
+    background-color: transparent;
     color: var(--grey-text);
-    border: 1px solid var(--border-color);
     width: 35px;
     height: 35px;
     font-size: 1.6rem;
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .view-toggle.active {
-    background-color: var(--light-text);
-    color: var(--dark-text);
+    background-color: var(--primary-color);
+    color: var(--light-text);
 }
 
 .episodes-container {
     margin-top: 3rem;
-    display: grid;
-    gap: 2rem;
 }
 
 .episodes-container.grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
 .episodes-container.list {
+    display: grid;
+    gap: 1rem;
     grid-template-columns: 1fr;
+}
+
+.episodes-container.carousel .slick-slide {
+    padding: 0 1rem;
+}
+
+.episodes-container.carousel .slick-arrow {
+    background-color: rgba(32, 32, 32, 0.8) !important;
+    border-radius: 50%;
+    width: 50px !important;
+    height: 50px !important;
+    z-index: 20;
+}
+
+.episodes-container.carousel .slick-arrow:before {
+    font-size: 25px !important;
+    color: var(--light-text) !important;
+}
+
+.episodes-container.carousel .slick-prev {
+    left: -60px !important;
+}
+
+.episodes-container.carousel .slick-next {
+    right: -60px !important;
+}
+
+/* --- NUEVO ESTILO DE TARJETA DE EPISODIO --- */
+.episode-detail-card {
+    background-color: var(--dark-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.episode-detail-card:hover {
+    transform: translateY(-5px);
+}
+
+.episode-detail-card a {
+    color: var(--light-text);
+}
+
+.episode-img-container {
+    position: relative;
+}
+
+.episode-img-container img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.play-icon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.episode-detail-card:hover .play-icon-overlay {
+    opacity: 1;
+}
+
+.duration-tag {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0.3rem 0.8rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+}
+
+.episode-card-info {
+    padding: 1.5rem;
+}
+
+.episode-card-title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.episode-card-meta {
+    font-size: 1.3rem;
+    color: var(--grey-text);
+    margin-bottom: 1rem;
+}
+
+.episode-card-desc {
+    font-size: 1.4rem;
+    color: var(--grey-text);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .episodes-container.list .episode-detail-card {
@@ -953,66 +1164,13 @@ header .navbar ul li a.active {
     flex-shrink: 0;
 }
 
-.episode-detail-card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.episode-img-container {
-    position: relative;
-}
-
-.episode-img-container img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-}
-
-.play-icon-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 4rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.episode-detail-card:hover .play-icon-overlay {
-    opacity: 1;
-}
-
-.duration-tag {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 0.3rem 0.8rem;
-    font-size: 1.2rem;
-    border-radius: 4px;
-}
-
-.episode-card-info {
-    padding: 1.5rem;
-}
-
 .episodes-container.list .episode-card-info {
     padding: 0;
 }
 
-.episode-card-info h5 {
-    font-size: 1.5rem;
-    font-weight: 500;
-}
-
-/* Modal del Tráiler */
-.trailer-modal {
+/* --- Modal del Tráiler y Sinopsis --- */
+.trailer-modal,
+.ai-modal {
     display: none;
     position: fixed;
     z-index: 2000;
@@ -1020,13 +1178,15 @@ header .navbar ul li a.active {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
     justify-content: center;
     align-items: center;
+    padding: 2rem;
 }
 
-.trailer-modal .modal-content {
+.trailer-modal .modal-content,
+.ai-modal .modal-content {
     background-color: var(--card-bg);
     border-radius: 8px;
     width: 90%;
@@ -1063,39 +1223,266 @@ header .navbar ul li a.active {
 }
 
 .modal-info {
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .modal-info h3 {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     font-family: var(--font-headings);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-.modal-info .overlay-stats {
-    margin-bottom: 1.5rem;
+.modal-info .anime-meta-tags {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
 }
 
 .modal-info p {
     font-size: 1.5rem;
     line-height: 1.6;
     color: var(--grey-text);
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .modal-details-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
     font-size: 1.4rem;
 }
 
-.modal-details-grid span {
-    color: var(--grey-text);
+.modal-details-grid div {
+    color: var(--light-text);
 }
 
-.modal-details-grid span strong {
+.modal-details-grid div span {
+    color: var(--grey-text);
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+/* --- Modal del Reproductor --- */
+.episode-player-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 16, 16, 0.95);
+    /* Fondo semitransparente */
+    backdrop-filter: blur(10px);
+    z-index: 3000;
+    flex-direction: column;
+    overflow-y: auto;
+    /* Permite scroll en el modal */
+    padding: 2rem;
+    /* Espaciado para que no pegue a los bordes */
+}
+
+/* NUEVO CONTENEDOR PARA CENTRAR Y LIMITAR ANCHO */
+.player-content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    /* Ancho máximo del contenido */
+    margin: auto;
+    /* Centrar horizontalmente */
+    background-color: var(--dark-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+    background-color: var(--light-bg);
+    /* Un poco más claro */
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.player-logo img {
+    height: 35px;
+}
+
+.close-player {
+    font-size: 3.5rem;
+    background: none;
+    color: var(--grey-text);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-player:hover {
     color: var(--light-text);
+}
+
+
+.player-body {
+    padding: 2.5rem;
+}
+
+.video-main-container {
+    width: 100%;
+    background-color: #000;
+    flex-shrink: 0;
+    border-radius: 8px;
+    /* Bordes redondeados para el video */
+    overflow: hidden;
+    /* Asegura que el iframe respete los bordes */
+    margin-bottom: 2rem;
+}
+
+.video-main-container iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
+}
+
+/* Título movido debajo del video */
+.episode-title-container {
+    text-align: left;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem;
+}
+
+.episode-title-container h3 {
+    font-size: 2.4rem;
+    color: var(--light-text);
+    font-family: var(--font-headings);
+}
+
+.episode-title-container span {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.player-controls {
+    display: flex;
+    justify-content: flex-end;
+    /* Alinea botones a la derecha */
+    gap: 1rem;
+    padding: 0;
+    margin-bottom: 3rem;
+    background: none;
+}
+
+.player-controls button {
+    background: var(--card-bg);
+    color: var(--light-text);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+}
+
+.player-controls button:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.player-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--card-bg);
+}
+
+/* NUEVA SECCIÓN DE TARJETAS DE NAVEGACIÓN */
+.episode-navigation-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.nav-episode-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+}
+
+.nav-episode-card:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.nav-episode-card.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.nav-episode-card img {
+    width: 120px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.nav-episode-card-info h5 {
+    font-size: 1.4rem;
+    color: var(--grey-text);
+    margin-bottom: 0.5rem;
+}
+
+.nav-episode-card-info p {
+    font-size: 1.5rem;
+    color: var(--light-text);
+    font-weight: 500;
+}
+
+/* Estilos para la tarjeta 'siguiente' */
+.nav-episode-card.next {
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+.comments-section {
+    padding: 2.5rem;
+    margin-top: 2rem;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+}
+
+.comments-section h4 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* --- Loader para la API --- */
+.loader {
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--gemini-blue);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* --- Pie de Página --- */
@@ -1152,8 +1539,10 @@ header .navbar ul li a.active {
         top: 100%;
         left: -100%;
         width: 100%;
-        background: rgb(202, 48, 48);
+        background: var(--dark-bg);
         transition: left 0.3s ease;
+        padding: 1rem 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
 
     header .navbar.nav-toggle {
@@ -1167,17 +1556,16 @@ header .navbar ul li a.active {
 
     header .navbar ul li {
         margin: 0;
-        border-bottom: 1px solid var(--border-color);
     }
 
     header .navbar ul li a {
         display: block;
         padding: 2rem;
-        text-align: center;
+        border-bottom: 1px solid var(--border-color);
     }
 
-    .header-right {
-        gap: 2.5rem;
+    .search-container {
+        display: none;
     }
 
     #menu-icon {
@@ -1191,11 +1579,21 @@ header .navbar ul li a.active {
     .hero-content {
         max-width: 90%;
     }
+
+    .main-content.container {
+        margin-top: 5vh;
+    }
+
+    .new-episodes-section,
+    .card-carousel-section,
+    .anime-listing-section {
+        margin-bottom: 4rem;
+    }
 }
 
 @media (max-width: 768px) {
     .main-content {
-        margin-top: -15vh;
+        margin-top: -5vh;
     }
 
     .anime-grid {
@@ -1226,19 +1624,37 @@ header .navbar ul li a.active {
     .filters-grid {
         grid-template-columns: 1fr 1fr;
     }
+
+    .anime-detail-hero {
+        height: 70vh;
+    }
+
+    .section-header-episodes {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .section-header-episodes .header-right-episodes {
+        justify-content: space-between;
+    }
+
+    .episode-search-wrapper input {
+        width: 100%;
+        flex-grow: 1;
+    }
+
+    .episodes-container.carousel .slick-arrow {
+        display: none !important;
+    }
+
+    .episode-navigation-cards {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
     .container {
         width: 95%;
-    }
-
-    .header-right {
-        display: contents;
-    }
-
-    .search-container {
-        display: none;
     }
 
     .hero-navigation {
@@ -1273,8 +1689,25 @@ header .navbar ul li a.active {
         grid-template-columns: 1fr;
     }
 
-    .episodes-section-detail .section-header {
+    .anime-actions {
         flex-direction: column;
-        gap: 2rem;
+        align-items: stretch;
+    }
+
+    .action-btn {
+        justify-content: center;
+    }
+
+    .episodes-container.grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header-episodes .header-right-episodes {
+        gap: 1rem;
+    }
+
+    .view-controls {
+        flex-grow: 1;
+        justify-content: space-around;
     }
 }

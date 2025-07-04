@@ -2,52 +2,151 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solo Leveling | All-Anime</title>
-    <link rel="stylesheet" href="css/style-tv.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Anime - All-anime</title>
+    <link rel="stylesheet" href="css/index-css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 </head>
 
 <body>
-    <header class="hero">
-        <img class="hero-bg"
-            src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-LTR.png"
-            alt="Solo Leveling" />
-        <div class="hero-content">
-            <img class="logo"
-                src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-Logo.png"
-                alt="Logo" />
-            <p>En un mundo donde portales misteriosos conectan con mazmorras llenas de monstruos, Sung Jin-Woo debe
-                evolucionar de ser el cazador más débil a convertirse en el más fuerte.</p>
-            <button id="btnPlay">▶ Ver Último Episodio</button>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="logo-all-anime.svg" alt="All-Anime Logo">
+        </a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="#">Películas</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <div class="search-container">
+                <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
+                <input type="text" placeholder="Buscar..." id="search-input">
+                <div id="search-results" class="search-results-dropdown"></div>
+            </div>
+            <div id="menu-icon" class="fas fa-bars"></div>
         </div>
     </header>
 
-    <main>
-        <section class="controls">
-            <select id="seasonSelector">
-                <option value="2">Temporada 2</option>
-                <option value="1">Temporada 1</option>
-            </select>
-            <input type="text" id="searchInput" placeholder="Buscar episodio..." />
-            <button id="toggleView">🗂 Vista</button>
-        </section>
+    <section class="anime-detail-hero" id="anime-detail-hero">
+    </section>
 
-        <section id="episodes" class="episodes grid-view"></section>
+    <main class="main-content container">
+        <section class="episodes-section-detail">
+            <div class="section-header-episodes">
+                <div class="header-left">
+                    <h2 class="section-title">Episodios</h2>
+                    <div class="custom-select-wrapper">
+                        <select id="season-select">
+                        </select>
+                    </div>
+                </div>
+                <div class="header-right-episodes">
+                    <div class="episode-search-wrapper">
+                        <input type="text" placeholder="Buscar episodio..." id="episode-search">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="custom-select-wrapper">
+                        <select id="sort-episodes">
+                            <option value="desc">Más recientes</option>
+                            <option value="asc">Más antiguos</option>
+                        </select>
+                    </div>
+                    <div class="view-controls">
+                        <button class="view-toggle" id="carousel-view-btn" title="Vista de carrusel"><i
+                                class="fas fa-clone"></i></button>
+                        <button class="view-toggle active" id="grid-view-btn" title="Vista de cuadrícula"><i
+                                class="fas fa-th-large"></i></button>
+                        <button class="view-toggle" id="list-view-btn" title="Vista de lista"><i
+                                class="fas fa-bars"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="episodes-container grid" id="episodes-list-container">
+            </div>
+        </section>
     </main>
 
-    <div id="modal" class="modal hidden">
+    <div class="trailer-modal" id="trailer-modal">
         <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <iframe id="videoFrame" src="" allowfullscreen></iframe>
-            <h2 id="episodeTitle"></h2>
-            <p id="episodeMeta"></p>
-            <p id="episodeDesc"></p>
+            <button class="close-modal" id="close-trailer-modal">&times;</button>
+            <div class="video-container" id="modal-video-container">
+            </div>
+            <div class="modal-info" id="modal-info-content">
+            </div>
         </div>
     </div>
 
-    <script src="js/data-SL.js"></script>
-    <script src="js/script-SL.js"></script>
+    <div class="ai-modal" id="ai-synopsis-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-ai-modal">&times;</button>
+            <h3><i class="fas fa-robot"></i> Sinopsis Generada por IA</h3>
+            <div id="ai-synopsis-content">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="episode-player-modal" id="episode-player-modal">
+        <div class="player-content-wrapper">
+            <div class="player-header">
+                <a href="index.html" class="player-logo">
+                    <img src="https://i.imgur.com/pX4a2Jz.png" alt="All-Anime Logo">
+                </a>
+                <button class="close-player" id="close-player-modal">&times;</button>
+            </div>
+            <div class="player-body">
+                <div class="video-main-container">
+                    <iframe id="episode-iframe" src="" frameborder="0" allow="autoplay; fullscreen"
+                        allowfullscreen></iframe>
+                </div>
+
+                <div class="episode-title-container">
+                    <h3 id="player-anime-title"></h3>
+                    <span id="player-episode-title"></span>
+                </div>
+
+                <div class="player-controls">
+                    <button id="prev-episode-btn"><i class="fas fa-backward"></i> Anterior</button>
+                    <button id="next-episode-btn">Siguiente <i class="fas fa-forward"></i></button>
+                </div>
+
+                <div class="episode-navigation-cards" id="episode-navigation-cards">
+                </div>
+
+                <div class="comments-section">
+                    <h4>Comentarios</h4>
+                    <div id="disqus_thread"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <p><span>Anime HD Online</span> - Ningún vídeo se encuentra alojado en nuestros servidores.</p>
+            <nav class="footer-nav">
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Sobre all-anime</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="module" src="js/main-2025.js"></script>
+    <script id="dsq-config-script" async>
+        // Script de configuración de Disqus (se llenará con JS)
+    </script>
 </body>
 
 </html>

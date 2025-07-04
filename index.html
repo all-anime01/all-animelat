@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All-anime — Disfruta del anime más popular en HD</title>
 
-    <!-- CSS y Librerías -->
     <link rel="stylesheet" href="css/index-css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,7 +16,6 @@
 </head>
 
 <body>
-    <!-- Encabezado -->
     <header>
         <a href="index.html" class="logo">
             <img src="logo-all-anime.svg" alt="All-Anime Logo">
@@ -31,24 +29,24 @@
         </nav>
         <div class="header-right">
             <div class="search-container">
+                <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
                 <input type="text" placeholder="Buscar..." id="search-input">
-                <i class="fas fa-search search-icon"></i>
-                <div id="search-results"></div>
+                <div id="search-results" class="search-results-dropdown"></div>
             </div>
             <div id="menu-icon" class="fas fa-bars"></div>
         </div>
     </header>
 
-    <!-- Sección de Héroe -->
     <section class="hero-section">
         <div class="hero-slide active"
             style="background-image: url('https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-LTR.png');">
             <div class="hero-content">
-                <img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-Logo.png"
+                <img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GDKHZEJ0K-title_logo-en-us"
                     alt="Solo Leveling Logo" class="hero-logo">
                 <p class="hero-meta">+16 <i class="material-icons">lens</i> Sub | Dob</p>
-                <p class="hero-description">Para dominar sus nuevas habilidades, Jinwoo debe luchar contra los enemigos
-                    más duros para salvar a su madre...</p>
+                <p class="hero-description">Conocido como el cazador más débil de la humanidad, se encuentra en una
+                    lucha constante por la supervivencia. Después de una experiencia cercana a la muerte, adquiere un
+                    poder único para subir de nivel.</p>
                 <a href="anime-details.html?id=solo-leveling" class="hero-button"><i class="fas fa-play"></i> VER
                     AHORA</a>
             </div>
@@ -66,18 +64,14 @@
         <div class="hero-navigation"></div>
     </section>
 
-    <!-- Contenido Principal -->
     <main class="main-content container">
 
-        <!-- Nuestras Recomendaciones -->
         <section class="card-carousel-section">
             <h2 class="section-title"><i class="material-icons">thumb_up</i> Nuestras Recomendaciones</h2>
             <div class="card-carousel" id="recommendations-carousel">
-                <!-- Contenido generado por JS desde database.js -->
             </div>
         </section>
 
-        <!-- Nuevos Episodios -->
         <section class="new-episodes-section">
             <div class="section-header">
                 <h2 class="section-title">Episodios Nuevos</h2>
@@ -88,13 +82,11 @@
                 <div class="episodes-day-group">
                     <h3 class="day-title">Hoy</h3>
                     <ul class="episodes-list" id="episodes-hoy">
-                        <!-- Contenido generado por JS -->
                     </ul>
                 </div>
                 <div class="episodes-day-group" id="yesterday-episodes">
                     <h3 class="day-title">Ayer</h3>
                     <ul class="episodes-list" id="episodes-ayer">
-                        <!-- Contenido generado por JS -->
                     </ul>
                 </div>
             </div>
@@ -103,25 +95,20 @@
             </div>
         </section>
 
-        <!-- Doblajes de la Temporada -->
         <section class="card-carousel-section">
             <h2 class="section-title"><i class="material-icons">mic</i> Doblajes de la Temporada</h2>
             <div class="card-carousel" id="dubs-carousel">
-                <!-- Contenido generado por JS -->
             </div>
         </section>
 
-        <!-- Animes Agregados (Grid) -->
         <section class="anime-listing-section">
             <h2 class="section-title"><i class="material-icons" style="color: var(--secondary-color);">stars</i> Animes
                 Agregados</h2>
             <div class="anime-grid" id="added-animes-grid">
-                <!-- Contenido generado por JS -->
             </div>
         </section>
     </main>
 
-    <!-- Pie de página -->
     <footer class="footer">
         <div class="container">
             <p><span>Anime HD Online</span> - Ningún vídeo se encuentra alojado en nuestros servidores.</p>
@@ -133,7 +120,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="module" src="js/main-2025.js"></script>

@@ -5,38 +5,38 @@ $(document).ready(function () {
 
   function createAnimeCard(anime) {
     return `
-        <div class="anime-card">
-            <a href="anime-details.html?id=${anime.id}">
-                <div class="card-image-container">
-                    <img src="${anime.img}" alt="${anime.title}">
-                    <div class="quality-tag">${anime.quality}</div>
-                    <div class="card-overlay">
-                        <div class="overlay-content">
-                             <div class="play-button"><i class="fas fa-play"></i></div>
-                            <h3 class="overlay-title">${anime.title}</h3>
-                            <div class="overlay-stats">
-                                <span><i class="fas fa-star"></i> ${
-                                  anime.rating
-                                }</span>
-                                <span>${anime.seasons} Temporada(s)</span>
+            <div class="anime-card">
+                <a href="anime-details.html?id=${anime.id}">
+                    <div class="card-image-container">
+                        <img src="${anime.img}" alt="${anime.title}">
+                        <div class="quality-tag">${anime.quality}</div>
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                 <div class="play-button"><i class="fas fa-play"></i></div>
+                                <h3 class="overlay-title">${anime.title}</h3>
+                                <div class="overlay-stats">
+                                    <span><i class="fas fa-star"></i> ${
+                                      anime.rating
+                                    }</span>
+                                    <span>${anime.seasons} Temporada(s)</span>
+                                </div>
+                                <div class="overlay-genres">
+                                    ${anime.genres
+                                      .map((genre) => `<span>${genre}</span>`)
+                                      .join("")}
+                                </div>
+                                <p class="overlay-description">${
+                                  anime.description
+                                }</p>
                             </div>
-                            <div class="overlay-genres">
-                                ${anime.genres
-                                  .map((genre) => `<span>${genre}</span>`)
-                                  .join("")}
-                            </div>
-                            <p class="overlay-description">${
-                              anime.description
-                            }</p>
                         </div>
                     </div>
-                </div>
-                <div class="card-info">
-                    <h4 class="card-title">${anime.title}</h4>
-                </div>
-            </a>
-        </div>
-    `;
+                    <div class="card-info">
+                        <h4 class="card-title">${anime.title}</h4>
+                    </div>
+                </a>
+            </div>
+        `;
   }
 
   function createEpisodeItem(episode) {
@@ -100,24 +100,13 @@ $(document).ready(function () {
       $(".card-carousel").slick({
         infinite: false,
         slidesToShow: 6,
-        slidesToScroll: 6,
+        slidesToScroll: 1,
+        focusOnSelect: true,
         responsive: [
-          {
-            breakpoint: 1400,
-            settings: { slidesToShow: 5, slidesToScroll: 5 },
-          },
-          {
-            breakpoint: 1024,
-            settings: { slidesToShow: 4, slidesToScroll: 4 },
-          },
-          {
-            breakpoint: 768,
-            settings: { slidesToShow: 3, slidesToScroll: 3, arrows: false },
-          },
-          {
-            breakpoint: 480,
-            settings: { slidesToShow: 2, slidesToScroll: 2, arrows: false },
-          },
+          { breakpoint: 1400, settings: { slidesToShow: 5 } },
+          { breakpoint: 1024, settings: { slidesToShow: 4 } },
+          { breakpoint: 768, settings: { slidesToShow: 3, arrows: false } },
+          { breakpoint: 480, settings: { slidesToShow: 2, arrows: false } },
         ],
       });
     }
@@ -136,13 +125,11 @@ $(document).ready(function () {
 
     if (!exploreGrid.length) return;
 
-    // Ocultar filtros inicialmente
     filtersSection.hide();
     toggleFiltersBtn.on("click", function () {
       filtersSection.slideToggle();
     });
 
-    // Poblar filtros
     const genres = [...new Set(animeData.flatMap((a) => a.genres))];
     genres.forEach((g) =>
       genreButtonsContainer.append(
@@ -211,7 +198,7 @@ $(document).ready(function () {
     typeSelect.on("change", applyFilters);
     statusSelect.on("change", applyFilters);
 
-    applyFilters(); // Carga inicial
+    applyFilters();
   }
 
   // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE DETALLES ---
@@ -230,8 +217,28 @@ $(document).ready(function () {
 
     document.title = `Ver ${anime.title} - All-anime`;
 
-    // Poblar Hero
+    // --- LÓGICA PARA ENCONTRAR EL ÚLTIMO EPISODIO ---
+    let latestEpisodeIndex = 0;
+    if (anime.episodes && anime.episodes.length > 0) {
+      // Ordenar todos los episodios para encontrar el más reciente
+      const sortedEpisodes = [...anime.episodes].sort((a, b) => {
+        if (a.season !== b.season) {
+          return b.season - a.season;
+        }
+        return b.number - a.number;
+      });
+      const latestEpisode = sortedEpisodes[0];
+
+      // Encontrar el índice de este episodio DENTRO de su temporada
+      latestEpisodeIndex = anime.episodes
+        .filter((ep) => ep.season === latestEpisode.season)
+        .sort((a, b) => a.number - b.number) // Asegurarse de que esté ordenado ascendentemente como lo hará renderEpisodes
+        .findIndex((ep) => ep.number === latestEpisode.number);
+    }
+    // --- FIN DE LA LÓGICA ---
+
     container.css("background-image", `url(${anime.heroImg})`);
+    // --- MODIFICAR LA CREACIÓN DEL BOTÓN ---
     const heroContent = `
             <div class="hero-content">
                 <img src="${anime.logoImg}" alt="${anime.title} Logo" class="anime-logo">
@@ -242,15 +249,16 @@ $(document).ready(function () {
                 </div>
                 <p class="anime-description">${anime.description}</p>
                 <div class="anime-actions">
-                    <a href="#" class="action-btn play"><i class="fas fa-play"></i> Play</a>
+                    <button class="action-btn play open-player-btn" data-episode-index="${latestEpisodeIndex}"><i class="fas fa-play"></i> Play</button>
                     <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> More Info</button>
+                    <button class="action-btn gemini-btn" id="generate-synopsis-btn" data-anime-title="${anime.title}"><i class="fas fa-robot"></i> Sinopsis IA</button>
                 </div>
             </div>`;
     container.html(heroContent);
 
-    // Poblar Episodios
     const episodesContainer = $("#episodes-list-container");
     const seasonSelect = $("#season-select");
+    let currentSeasonEpisodes = [];
 
     const seasons = [...new Set(anime.episodes.map((e) => e.season))].sort(
       (a, b) => a - b
@@ -259,33 +267,90 @@ $(document).ready(function () {
       seasonSelect.append(`<option value="${s}">Temporada ${s}</option>`)
     );
 
-    function renderEpisodes(seasonNum) {
+    function renderEpisodes(seasonNum, searchTerm = "", sortOrder = "desc") {
       episodesContainer.empty();
-      anime.episodes
+      if (episodesContainer.hasClass("slick-initialized")) {
+        episodesContainer.slick("unslick");
+      }
+      const normalizedSearchTerm = searchTerm.toLowerCase().trim();
+
+      currentSeasonEpisodes = anime.episodes
         .filter((e) => e.season == seasonNum)
-        .forEach((ep) => {
-          const episodeCard = `
-                    <div class="episode-detail-card">
-                        <a href="#">
-                            <div class="episode-img-container">
-                                <img src="${ep.img}" alt="${ep.title}">
-                                <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
-                                <span class="duration-tag">${ep.duration}</span>
-                            </div>
-                            <div class="episode-card-info">
-                                <h5>${ep.number}. ${ep.title}</h5>
-                            </div>
-                        </a>
-                    </div>
-                `;
-          episodesContainer.append(episodeCard);
+        .filter((e) => {
+          if (!normalizedSearchTerm) return true;
+          const titleMatch = e.title
+            .toLowerCase()
+            .includes(normalizedSearchTerm);
+          const numberMatch = e.number
+            .toString()
+            .includes(normalizedSearchTerm);
+          return titleMatch || numberMatch;
+        })
+        .sort((a, b) => {
+          if (sortOrder === "asc") {
+            return a.number - b.number;
+          }
+          return b.number - a.number;
         });
+
+      if (currentSeasonEpisodes.length === 0) {
+        episodesContainer.html(
+          '<p class="no-results">No se encontraron episodios.</p>'
+        );
+        return;
+      }
+
+      currentSeasonEpisodes.forEach((ep, index) => {
+        const episodeCard = `
+                <div class="episode-detail-card" data-episode-index="${index}">
+                    <a href="#" class="open-player-btn" data-episode-index="${index}">
+                        <div class="episode-img-container">
+                            <img src="${ep.img}" alt="${ep.title}">
+                            <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
+                            <span class="duration-tag">${ep.duration}</span>
+                        </div>
+                        <div class="episode-card-info">
+                            <h5 class="episode-card-title">${ep.number}. ${ep.title}</h5>
+                            <p class="episode-card-meta">${ep.language} • ${ep.releaseDate}</p>
+                            <p class="episode-card-desc">${ep.description}</p>
+                        </div>
+                    </a>
+                </div>`;
+        episodesContainer.append(episodeCard);
+      });
     }
 
-    renderEpisodes(seasonSelect.val());
-    seasonSelect.on("change", () => renderEpisodes(seasonSelect.val()));
+    renderEpisodes(
+      seasonSelect.val(),
+      $("#episode-search").val(),
+      $("#sort-episodes").val()
+    );
 
-    // Poblar Modal
+    seasonSelect.on("change", () =>
+      renderEpisodes(
+        seasonSelect.val(),
+        $("#episode-search").val(),
+        $("#sort-episodes").val()
+      )
+    );
+    $("#episode-search").on("input", () =>
+      renderEpisodes(
+        seasonSelect.val(),
+        $("#episode-search").val(),
+        $("#sort-episodes").val()
+      )
+    );
+    $("#sort-episodes").on("change", function () {
+      renderEpisodes(
+        seasonSelect.val(),
+        $("#episode-search").val(),
+        $(this).val()
+      );
+      if ($("#carousel-view-btn").hasClass("active")) {
+        $("#carousel-view-btn").trigger("click");
+      }
+    });
+
     $("#modal-video-container").html(
       `<iframe width="560" height="315" src="${anime.trailerUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
     );
@@ -315,12 +380,173 @@ $(document).ready(function () {
     });
 
     $("#grid-view-btn").on("click", function () {
-      episodesContainer.removeClass("list").addClass("grid");
+      if (episodesContainer.hasClass("slick-initialized")) {
+        episodesContainer.slick("unslick");
+      }
+      episodesContainer.removeClass("list carousel").addClass("grid");
       $(this).addClass("active").siblings().removeClass("active");
     });
     $("#list-view-btn").on("click", function () {
-      episodesContainer.removeClass("grid").addClass("list");
+      if (episodesContainer.hasClass("slick-initialized")) {
+        episodesContainer.slick("unslick");
+      }
+      episodesContainer.removeClass("grid carousel").addClass("list");
       $(this).addClass("active").siblings().removeClass("active");
+    });
+    $("#carousel-view-btn").on("click", function () {
+      episodesContainer.removeClass("grid list").addClass("carousel");
+      $(this).addClass("active").siblings().removeClass("active");
+
+      episodesContainer.slick({
+        infinite: false,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 1400,
+            settings: {
+              slidesToShow: 3,
+            },
+          },
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              arrows: false,
+            },
+          },
+        ],
+      });
+    });
+
+    // Lógica del Reproductor de Episodios
+    let currentEpisodeIndex = 0;
+    const playerModal = $("#episode-player-modal");
+    const episodeNavContainer = $("#episode-navigation-cards");
+
+    function openPlayer(index) {
+      currentEpisodeIndex = parseInt(index);
+      const episode = currentSeasonEpisodes[currentEpisodeIndex];
+      if (!episode) return;
+
+      $("#player-anime-title").text(anime.title);
+      $("#player-episode-title").text(
+        `Episodio ${episode.number} - ${episode.title}`
+      );
+      $("#episode-iframe").attr("src", episode.videoUrl || "");
+
+      $("#prev-episode-btn").prop("disabled", currentEpisodeIndex === 0);
+      $("#next-episode-btn").prop(
+        "disabled",
+        currentEpisodeIndex >= currentSeasonEpisodes.length - 1
+      );
+
+      episodeNavContainer.empty();
+      const prevEpisode = currentSeasonEpisodes[currentEpisodeIndex - 1];
+      const nextEpisode = currentSeasonEpisodes[currentEpisodeIndex + 1];
+
+      const prevCard = `
+            <a href="#" class="nav-episode-card prev ${
+              !prevEpisode ? "disabled" : ""
+            }" data-nav-index="${currentEpisodeIndex - 1}">
+                <img src="${
+                  prevEpisode
+                    ? prevEpisode.img
+                    : "https://placehold.co/120x70/181818/181818"
+                }" alt="">
+                <div class="nav-episode-card-info">
+                    <h5><i class="fas fa-backward"></i> Anterior</h5>
+                    <p>${
+                      prevEpisode
+                        ? `Ep ${prevEpisode.number}: ${prevEpisode.title}`
+                        : "Inicio de la temporada"
+                    }</p>
+                </div>
+            </a>
+        `;
+      const nextCard = `
+             <a href="#" class="nav-episode-card next ${
+               !nextEpisode ? "disabled" : ""
+             }" data-nav-index="${currentEpisodeIndex + 1}">
+                <img src="${
+                  nextEpisode
+                    ? nextEpisode.img
+                    : "https://placehold.co/120x70/181818/181818"
+                }" alt="">
+                <div class="nav-episode-card-info">
+                    <h5>Siguiente <i class="fas fa-forward"></i></h5>
+                    <p>${
+                      nextEpisode
+                        ? `Ep ${nextEpisode.number}: ${nextEpisode.title}`
+                        : "Fin de la temporada"
+                    }</p>
+                </div>
+            </a>
+        `;
+      episodeNavContainer.append(prevCard).append(nextCard);
+
+      const disqusConfig = function () {
+        this.page.url =
+          window.location.href.split("?")[0] +
+          `?id=${anime.id}&ep=${episode.number}`;
+        this.page.identifier = `${anime.id}-ep-${episode.number}`;
+        this.page.title = `${anime.title} - Episodio ${episode.number}`;
+      };
+
+      if (window.DISQUS) {
+        DISQUS.reset({
+          reload: true,
+          config: disqusConfig,
+        });
+      } else {
+        const script = document.createElement("script");
+        $("#dsq-config-script").html(
+          `var disqus_config = ${disqusConfig.toString()};`
+        );
+        script.src = "https://all-anime-net.disqus.com/embed.js";
+        script.setAttribute("data-timestamp", +new Date());
+        (document.head || document.body).appendChild(script);
+      }
+
+      playerModal.css("display", "flex").hide().fadeIn();
+      $("body").css("overflow", "hidden");
+    }
+
+    $(document).on("click", ".open-player-btn", function (e) {
+      e.preventDefault();
+      const index = $(this).data("episode-index");
+      openPlayer(index);
+    });
+
+    $(document).on("click", ".nav-episode-card", function (e) {
+      e.preventDefault();
+      if ($(this).hasClass("disabled")) return;
+      const index = $(this).data("nav-index");
+      openPlayer(index);
+    });
+
+    $("#close-player-modal").on("click", () => {
+      playerModal.fadeOut();
+      $("#episode-iframe").attr("src", ""); // Detener video
+      $("body").css("overflow", "auto");
+    });
+
+    $("#prev-episode-btn").on("click", () => {
+      if (currentEpisodeIndex > 0) {
+        openPlayer(currentEpisodeIndex - 1);
+      }
+    });
+
+    $("#next-episode-btn").on("click", () => {
+      if (currentEpisodeIndex < currentSeasonEpisodes.length - 1) {
+        openPlayer(currentEpisodeIndex + 1);
+      }
     });
   }
 
@@ -335,9 +561,9 @@ $(document).ready(function () {
     const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     animeData.forEach((anime) => {
-      if (anime.dateAdded >= oneDayAgo) {
+      if (new Date(anime.dateAdded) >= oneDayAgo) {
         last24hList.append(createAnimeCard(anime));
-      } else if (anime.dateAdded >= oneWeekAgo) {
+      } else if (new Date(anime.dateAdded) >= oneWeekAgo) {
         lastWeekList.append(createAnimeCard(anime));
       }
     });
@@ -345,18 +571,15 @@ $(document).ready(function () {
 
   // --- EVENTOS GLOBALES Y DE NAVEGACIÓN ---
 
-  // Efecto de scroll en el encabezado
   $(window).scroll(function () {
     $("header").toggleClass("scrolled", $(this).scrollTop() > 50);
   });
 
-  // Menú de navegación móvil
   $("#menu-icon").click(function () {
     $(this).toggleClass("fa-times");
     $(".navbar").toggleClass("nav-toggle");
   });
 
-  // Lógica del carrusel de héroe (si existe)
   if ($(".hero-section").length) {
     const slides = $(".hero-slide");
     const navContainer = $(".hero-navigation");
@@ -392,7 +615,6 @@ $(document).ready(function () {
     startSlideShow();
   }
 
-  // Botón "Mostrar Más" con lógica de toggle
   $("#show-more-episodes").on("click", function () {
     const yesterdaySection = $("#yesterday-episodes");
     const button = $(this);
@@ -403,7 +625,6 @@ $(document).ready(function () {
     });
   });
 
-  // Efecto Hover en Nuevos Episodios
   $(".episodes-list")
     .on("mouseenter", ".episode-item", function () {
       const item = $(this);
@@ -448,12 +669,13 @@ $(document).ready(function () {
       );
 
       if (filteredAnime.length > 0) {
-        filteredAnime.forEach((anime) => {
+        filteredAnime.slice(0, 5).forEach((anime) => {
+          // Limitar a 5 resultados
           const resultItem = `
-                      <a href="anime-details.html?id=${anime.id}">
-                          <img src="${anime.img}" alt="${anime.title}">
-                          <span>${anime.title}</span>
-                      </a>`;
+                        <a href="anime-details.html?id=${anime.id}">
+                            <img src="${anime.img}" alt="${anime.title}">
+                            <span>${anime.title}</span>
+                        </a>`;
           searchResults.append(resultItem);
         });
         searchResults.show();
@@ -461,7 +683,6 @@ $(document).ready(function () {
     }
   });
 
-  // Ocultar buscador y resultados al hacer clic fuera
   $(document).on("click", function (e) {
     if (
       !searchContainer.is(e.target) &&
@@ -469,6 +690,45 @@ $(document).ready(function () {
     ) {
       searchContainer.removeClass("active");
       searchResults.hide();
+    }
+  });
+
+  // --- LÓGICA DE LA API DE GEMINI ---
+  async function getAiSynopsis(animeTitle) {
+    const aiSynopsisContent = $("#ai-synopsis-content");
+    const aiModal = $("#ai-synopsis-modal");
+
+    aiModal.css("display", "flex").hide().fadeIn();
+    aiSynopsisContent.html('<div class="loader"></div>');
+
+    const prompt = `Genera una sinopsis creativa y emocionante para el anime "${animeTitle}". Describe el mundo, el conflicto principal y el viaje del protagonista de una manera que atraiga a nuevos espectadores. No incluyas spoilers importantes. Formatea la respuesta en párrafos.`;
+
+    try {
+      // SIMULACIÓN DE LLAMADA A API PARA EVITAR ERRORES DE API KEY
+      setTimeout(() => {
+        const text = `En un mundo devastado por la magia, donde los reinos se alzan y caen con el poder de los cristales arcanos, emerge una figura solitaria. Para "${animeTitle}", la supervivencia es una batalla diaria en un paisaje lleno de bestias corruptas y cazadores de reliquias sin escrúpulos.\nPero cuando un encuentro predestinado le otorga una habilidad única —la capacidad de ver los hilos del destino—, su vida cambia para siempre. Ahora, no solo debe luchar por su propia vida, sino también desentrañar una conspiración que amenaza con deshacer el tejido mismo de la realidad. Su viaje lo llevará desde los suburbios olvidados hasta las cortes reales, forjando alianzas inesperadas y enfrentándose a enemigos que preferiría olvidar.`;
+        const formattedText = text
+          .split("\n")
+          .map((p) => `<p>${p}</p>`)
+          .join("");
+        aiSynopsisContent.html(formattedText);
+      }, 1500);
+    } catch (error) {
+      console.error("Error al generar sinopsis:", error);
+      aiSynopsisContent.html(
+        "<p>Lo sentimos, no se pudo generar la sinopsis en este momento. Por favor, inténtalo de nuevo más tarde.</p>"
+      );
+    }
+  }
+
+  $(document).on("click", "#generate-synopsis-btn", function () {
+    const animeTitle = $(this).data("anime-title");
+    getAiSynopsis(animeTitle);
+  });
+
+  $("#close-ai-modal, .ai-modal").on("click", function (e) {
+    if ($(e.target).is(".ai-modal, .close-modal")) {
+      $("#ai-synopsis-modal").fadeOut();
     }
   });
 

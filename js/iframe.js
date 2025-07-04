@@ -4,7 +4,7 @@ function go_to_player(url) {
     .querySelector(".BotHumano")
     .insertAdjacentHTML(
       "afterbegin",
-      '<div class="BoxHumano"><span><b>Procesando vÃ­deo</b> <p>Por favor espere unos segundos</p></span></div>'
+      '<div class="BoxHumano"><span><b>Procesando video</b> <p>Por favor espere unos segundos</p></span></div>'
     );
   var displayVideo = document.querySelector(".DisplayVideo");
   displayVideo.classList.add("DisplayVideoA");
