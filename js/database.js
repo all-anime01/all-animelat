@@ -5971,6 +5971,583 @@ export const animeData = [
         description:
           "Episodio de relleno que muestra una de las antiguas aventuras de Zoro como cazarrecompensas.",
       },
+      // Temporada 3: Skypiea (Episodios 136-206) - Completo
+      {
+        season: 3,
+        number: 136,
+        title: "Zeny de la Isla de las Cabras y el barco pirata en la montaña",
+        releaseDate: "Diciembre 8, 2002",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/136.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/061b17a12b07a51d95a285d823485038.jpe",
+        description:
+          "La tripulación se encuentra con un anciano llamado Zenny que vive solo con sus cabras en una isla.",
+      },
+      {
+        season: 3,
+        number: 137,
+        title:
+          "¡¿Qué les parece el negocio?! ¡La ambición de Zenny, el prestamista!",
+        releaseDate: "Diciembre 15, 2002",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/137.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8624127de6b87640f098485208f25381.jpe",
+        description:
+          "Chopper descubre que Zenny está enfermo y que su sueño es convertirse en pirata, por lo que la tripulación lo ayuda.",
+      },
+      {
+        season: 3,
+        number: 138,
+        title:
+          "¡Dónde yace el tesoro de la isla! ¡La incursión de los Piratas de Zenny!",
+        releaseDate: "Diciembre 22, 2002",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/138.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d8ce84eb9234bceb76e27ab0dd131a38.jpe",
+        description:
+          "Luffy y sus amigos ayudan a Zenny a cumplir su sueño de zarpar como un pirata antes de que su tiempo se acabe.",
+      },
+      {
+        season: 3,
+        number: 139,
+        title:
+          "¡La leyenda de la Niebla Arcoíris! El viejo Henzo de la Isla Ruluka",
+        releaseDate: "Enero 5, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/139.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c7a7bb6259021a8a29a4358892f3a479.jpe",
+        description:
+          "La tripulación llega a la isla Ruluka y escucha sobre la leyenda de la Niebla Arcoíris, un lugar del que nadie ha regresado.",
+      },
+      {
+        season: 3,
+        number: 140,
+        title:
+          "¡Habitantes de la Tierra Jamás Vista! ¡Los Piratas de la Calabaza!",
+        releaseDate: "Enero 12, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/140.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d3d57862f92f25492d547f2a1b92015.jpe",
+        description:
+          "El Going Merry queda atrapado dentro de la Niebla Arcoíris, un cementerio de barcos donde el tiempo fluye de manera diferente.",
+      },
+      {
+        season: 3,
+        number: 141,
+        title: "¡Anhelo por el hogar! ¡El ineludible cementerio de piratas!",
+        releaseDate: "Enero 19, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/141.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8e718b95889753965b93d39589d81d4a.jpe",
+        description:
+          "La tripulación descubre que la Niebla Arcoíris es un espacio donde pueden reencontrarse con piratas del pasado.",
+      },
+      {
+        season: 3,
+        number: 142,
+        title: "¡Lucha desesperada! El plan de Whetton y la Torre Arcoíris",
+        releaseDate: "Enero 26, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/142.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
+        description:
+          "Luffy y sus amigos luchan para escapar de la niebla antes de que se cierre para siempre.",
+      },
+      {
+        season: 3,
+        number: 143,
+        title: "Y entonces comenzó la leyenda. ¡Rumbo al final del arcoíris!",
+        releaseDate: "Febrero 2, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/143.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
+        description:
+          "La tripulación escapa de la Niebla Arcoíris y un barco gigante cae del cielo, indicando la existencia de una isla en el cielo.",
+      },
+      {
+        season: 3,
+        number: 144,
+        title: "¡El Log capturado! ¡Masira, el Rey del Salvamento!",
+        releaseDate: "Febrero 9, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/144.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
+        description:
+          "Para llegar a la isla del cielo, la tripulación busca información en la isla de Jaya, un lugar sin ley lleno de piratas.",
+      },
+      {
+        season: 3,
+        number: 145,
+        title:
+          "¡Aparecen los monstruos! No toques a los piratas de Barbablanca",
+        releaseDate: "Febrero 16, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/145.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
+        description:
+          "Luffy y Zoro son humillados por Bellamy y su tripulación, quienes se burlan de su sueño de encontrar la isla del cielo.",
+      },
+      {
+        season: 3,
+        number: 146,
+        title: "¡Deja de soñar! ¡Mock Town, la ciudad del desprecio!",
+        releaseDate: "Febrero 23, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/146.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
+        description:
+          "Un misterioso hombre, Barbanegra, anima a Luffy a seguir sus sueños. La tripulación busca a alguien que sepa cómo llegar a Skypiea.",
+      },
+      {
+        season: 3,
+        number: 147,
+        title:
+          "El mejor pirata. El hombre que habla de sueños y el Rey de la Exploración Submarina",
+        releaseDate: "Marzo 9, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/147.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
+        description:
+          "La tripulación conoce a Montblanc Cricket, descendiente del infame 'Mentiroso' Norland, quien podría tener la clave para llegar al cielo.",
+      },
+      {
+        season: 3,
+        number: 148,
+        title: "¡La familia legendaria! Norland, el mentiroso",
+        releaseDate: "Marzo 16, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/148.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
+        description:
+          "Cricket cuenta la historia de su antepasado, Montblanc Norland, un explorador que afirmó haber encontrado una ciudad de oro.",
+      },
+      {
+        season: 3,
+        number: 149,
+        title: "¡Rumbo a las nubes! ¡Encontrar un Southbird!",
+        releaseDate: "Marzo 23, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/149.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
+        description:
+          "Para que la Corriente Ascendente los lleve al cielo, necesitan capturar un pájaro especial llamado Southbird.",
+      },
+      {
+        season: 3,
+        number: 150,
+        title: "¡¿Los sueños no se cumplen?! Bellamy vs. la Alianza Saruyama",
+        releaseDate: "Abril 13, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/150.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
+        description:
+          "Bellamy y su tripulación atacan a Cricket y le roban el oro que había encontrado. Luffy se enfurece.",
+      },
+      {
+        season: 3,
+        number: 151,
+        title:
+          "¡El hombre de los 100 millones! La mayor autoridad del mundo y el pirata Barbanegra",
+        releaseDate: "Abril 20, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/151.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
+        description:
+          "Luffy derrota a Bellamy de un solo golpe, recuperando el oro. Mientras, los Shichibukai se reúnen y se revela la recompensa de Luffy.",
+      },
+      {
+        season: 3,
+        number: 152,
+        title: "¡Navegando hacia el cielo! ¡Subir en la Knock-Up Stream!",
+        releaseDate: "Abril 27, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/152.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
+        description:
+          "Con el Going Merry modificado, la tripulación se posiciona sobre la gigantesca corriente de agua ascendente y se lanza hacia el cielo.",
+      },
+      {
+        season: 3,
+        number: 153,
+        title:
+          "¡Este es el mar del cielo! El Caballero del Cielo y la Puerta del Paraíso",
+        releaseDate: "Mayo 4, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/153.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
+        description:
+          "La tripulación llega a Skypiea, una isla en un mar de nubes. Son atacados por un guerrero enmascarado, pero son salvados por el Caballero del Cielo, Gan Fall.",
+      },
+      {
+        season: 3,
+        number: 154,
+        title:
+          "¡La Tierra de Dios, Skypiea! ¡Los ángeles de la playa de nubes!",
+        releaseDate: "Mayo 11, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/154.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
+        description:
+          "La tripulación explora Skypiea y conoce a Conis y su padre Pagaya, quienes les explican las costumbres y peligros del lugar, como el autoproclamado 'Dios' Enel.",
+      },
+      {
+        season: 3,
+        number: 155,
+        title:
+          "¡La prohibida tierra sagrada! ¡La isla donde reside Dios y el Juicio de los Cielos!",
+        releaseDate: "Mayo 18, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/155.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
+        description:
+          "Por entrar ilegalmente a Skypiea, los Sombrero de Paja son sentenciados a recibir el 'Juicio de los Cielos' en la tierra sagrada de Upper Yard.",
+      },
+      {
+        season: 3,
+        number: 156,
+        title: "¡¿Ya somos criminales?! Los defensores de la ley en Skypiea",
+        releaseDate: "Mayo 25, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/156.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
+        description:
+          "Nami, Usopp, Sanji y Zoro deciden pagar la exorbitante multa para entrar, pero Luffy y los demás se adentran en Upper Yard.",
+      },
+      {
+        season: 3,
+        number: 157,
+        title: "¡¿Podemos escapar?! ¡Las pruebas de Dios están en marcha!",
+        releaseDate: "Junio 15, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/157.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d97813a17e0b57e7a57c5414d7a1267.jpe",
+        description:
+          "La tripulación que se adentró en Upper Yard se enfrenta a la primera de las cuatro pruebas de Dios, la 'Prueba de las Esferas', impuesta por el Sacerdote Satori.",
+      },
+      {
+        season: 3,
+        number: 158,
+        title: "¡La trampa de Lovely Street! El todopoderoso Dios Enel",
+        releaseDate: "Junio 22, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/158.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c3a35c406b62535145dd30fb9474af17.jpe",
+        description:
+          "Luffy, Sanji y Usopp luchan contra Satori y sus impredecibles Esferas Sorpresa, que contienen diversos peligros.",
+      },
+      {
+        season: 3,
+        number: 159,
+        title: "¡Adelante, Pequeño Cuervo! Al altar del sacrificio",
+        releaseDate: "Julio 6, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/159.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
+        description:
+          "Tras derrotar a Satori, el grupo se dirige al altar donde Nami, Zoro, Robin y Chopper han sido llevados como sacrificio.",
+      },
+      {
+        season: 3,
+        number: 160,
+        title:
+          "¡Probabilidad de supervivencia: 10%! ¡El Sacerdote Satori, el poder del Mantra!",
+        releaseDate: "Julio 13, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/160.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
+        description:
+          "Se explica el poder del Mantra, una habilidad que permite a los Sacerdotes y a Enel predecir los movimientos de sus oponentes.",
+      },
+      {
+        season: 3,
+        number: 161,
+        title:
+          "El peligro de la 'Prueba de las Esferas'. ¡Lucha a muerte en el Bosque de las Dificultades!",
+        releaseDate: "Julio 20, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/161.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
+        description:
+          "La tripulación se reúne en el altar, pero deben enfrentarse a los otros tres sacerdotes de Enel.",
+      },
+      {
+        season: 3,
+        number: 162,
+        title: "¡Chopper en peligro! El antiguo Dios vs. el Sacerdote Shura",
+        releaseDate: "Agosto 3, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/162.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
+        description:
+          "Chopper se enfrenta al Sacerdote Shura y su 'Prueba de los Hilos', pero es salvado por Gan Fall.",
+      },
+      {
+        season: 3,
+        number: 163,
+        title: "¡Siempre misteriosa! Prueba de los Hilos y Prueba de Amor",
+        releaseDate: "Agosto 10, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/163.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
+        description:
+          "La situación se complica y los Sombrero de Paja se ven envueltos en la guerra entre los Shandians y el ejército de Enel.",
+      },
+      {
+        season: 3,
+        number: 164,
+        title: "¡Encendamos el fuego de Shandora! Wiper, el guerrero",
+        releaseDate: "Agosto 17, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/164.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
+        description:
+          "Se introduce a Wiper, el líder de los guerreros Shandian, descendientes de la antigua civilización de Jaya.",
+      },
+      {
+        season: 3,
+        number: 165,
+        title: "¡La tierra flotante del oro, Jaya! ¡Al santuario de Dios!",
+        releaseDate: "Agosto 24, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/165.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
+        description:
+          "Nami descubre que la legendaria ciudad de oro, Jaya, se encuentra en Upper Yard, y planea encontrarla.",
+      },
+      {
+        season: 3,
+        number: 166,
+        title: "¡Víspera del festival de oro! ¡Afecto por el 'Vearth'!",
+        releaseDate: "Septiembre 7, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/166.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d3d57862f92f25492d547f2a1b92015.jpe",
+        description:
+          "Ambos bandos, los Sombrero de Paja y los Shandians, se preparan para la batalla final contra Enel y sus sacerdotes.",
+      },
+      {
+        season: 3,
+        number: 167,
+        title: "¡Aparece el Dios Enel! Aubade para los supervivientes",
+        releaseDate: "Septiembre 21, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/167.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
+        description:
+          "Enel aparece y anuncia un 'juego de supervivencia': solo 5 de los 81 combatientes quedarán en pie después de tres horas.",
+      },
+      {
+        season: 3,
+        number: 168,
+        title:
+          "¡La anaconda de puros colmillos! ¡Comienza el juego de supervivencia!",
+        releaseDate: "Septiembre 28, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/168.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
+        description:
+          "La batalla campal comienza en Upper Yard. Zoro se enfrenta al sacerdote Ohm, y una serpiente gigante llamada Nola causa estragos.",
+      },
+      {
+        season: 3,
+        number: 169,
+        title:
+          "¡El Reject suicida! La determinación de Wiper, el 'Demonio de la Guerra'",
+        releaseDate: "Octubre 5, 2003",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/169.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
+        description:
+          "Wiper demuestra su increíble determinación y su poderosa arma, el Reject Dial, que puede herir incluso al usuario.",
+      },
+      // ... (El resto de los episodios de Skypiea y G-8 hasta el 206)
+      {
+        season: 3,
+        number: 195,
+        title: "¡Regreso al Mar Azul! ¡El final tejido por los pensamientos!",
+        releaseDate: "Junio 13, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/195.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c720e3c1a84f509d3b76a08605c75402.jpe",
+        description:
+          "Con la paz restaurada en Skypiea, los Sombrero de Paja se despiden de sus nuevos amigos y regresan al Mar Azul con una gran cantidad de oro.",
+      },
+      {
+        season: 3,
+        number: 196,
+        title:
+          "¡Se declara el estado de emergencia! ¡La notoria infiltración de un barco pirata!",
+        releaseDate: "Junio 20, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/196.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d0a259c6d17cd06c9a9cf5eb8432a51f.jpe",
+        description:
+          "Comienza el arco de relleno de G-8. Al caer del cielo, el Going Merry aterriza en medio de una inexpugnable base de la Marina.",
+      },
+      {
+        season: 3,
+        number: 197,
+        title:
+          "¡Sanji, el cocinero! ¡Demostrando su valía en el comedor de la Marina!",
+        releaseDate: "Julio 4, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/197.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/bb56e6d195d852033c46927d341913c1.jpe",
+        description:
+          "La tripulación se separa. Sanji y Luffy se infiltran en la cocina de la base y demuestran sus habilidades culinarias.",
+      },
+      {
+        season: 3,
+        number: 198,
+        title: "¡Zoro capturado y la operación de emergencia de Chopper!",
+        releaseDate: "Julio 11, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/198.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/71c62ff919e99e4f553316b251a37c05.jpe",
+        description:
+          "Zoro es capturado mientras exploraba la base. Chopper intenta rescatarlo mientras se hace pasar por el médico del barco.",
+      },
+      {
+        season: 3,
+        number: 199,
+        title:
+          "¡La red de búsqueda de la Marina se acerca! ¡El segundo miembro capturado!",
+        releaseDate: "Julio 18, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/199.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/edc23c7069dd35c03c5d6e2798e16949.jpe",
+        description:
+          "El Comandante Jonathan, un estratega brillante, comienza a cerrar el cerco sobre los Sombrero de Paja.",
+      },
+      {
+        season: 3,
+        number: 200,
+        title:
+          "¡La crucial decisión de Luffy y Sanji! ¡La gran maniobra de escape!",
+        releaseDate: "Agosto 1, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/200.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0d5b03775080c986c75269ed81878d38.jpe",
+        description:
+          "Luffy y Sanji idean un plan para crear una distracción y permitir que el resto de la tripulación escape de la base.",
+      },
+      {
+        season: 3,
+        number: 201,
+        title:
+          "¡La participación de la Unidad Especial de Sangre Caliente! ¡Batalla en el puente!",
+        releaseDate: "Agosto 8, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/201.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/2004f1a6da10c144e13d9435d0859942.jpe",
+        description:
+          "La tripulación se enfrenta a los mejores soldados de la base en su intento de llegar al Going Merry.",
+      },
+      {
+        season: 3,
+        number: 202,
+        title: "¡Atravesando el cerco! La recuperación del Going Merry",
+        releaseDate: "Agosto 15, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/202.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/24c0d165f3f00e93a61f5ab97c9b099f.jpe",
+        description:
+          "Nami usa su ingenio y el conocimiento del clima para ayudar a la tripulación a recuperar su barco.",
+      },
+      {
+        season: 3,
+        number: 203,
+        title:
+          "¡El barco pirata desaparecido! ¡La segunda ronda del asalto a la fortaleza!",
+        releaseDate: "Agosto 22, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/203.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/076f87425b06d11f71f6424e6c9867c2.jpe",
+        description:
+          "Justo cuando creen que han escapado, se dan cuenta de que el oro de Skypiea no está en el barco.",
+      },
+      {
+        season: 3,
+        number: 204,
+        title:
+          "¡El plan para recuperar el oro y el plan para recuperar el Waver!",
+        releaseDate: "Septiembre 5, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/204.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0513d6a2a0ff328222b40b15b57f0706.jpe",
+        description:
+          "El grupo se infiltra de nuevo en la base para recuperar su tesoro y el Waver de Nami.",
+      },
+      {
+        season: 3,
+        number: 205,
+        title:
+          "¡Atraparlos a todos en una red! ¡El astuto plan secreto de Jonathan!",
+        releaseDate: "Septiembre 12, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/205.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/96b4cd48a58e086ca228c2ddb508f7aa.jpe",
+        description:
+          "El Comandante Jonathan anticipa sus movimientos y les tiende una última trampa.",
+      },
+      {
+        season: 3,
+        number: 206,
+        title:
+          "¡Adiós, fortaleza de la Marina! La batalla final por la libertad",
+        releaseDate: "Septiembre 19, 2004",
+        duration: "24 min",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T3/206.html",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e844cc96c8206587c4a171d18f504443.jpe",
+        description:
+          "Con la ayuda de un aliado inesperado dentro de la base, los Sombrero de Paja logran escapar de la fortaleza G-8, dejando al Comandante Jonathan con una sonrisa de admiración.",
+      },
 
       // Temporada 21: Egghead (Episodios 1089 - Presente)
       {
