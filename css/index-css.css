@@ -194,16 +194,18 @@ header .navbar ul li a.active {
     border-radius: 4px;
 }
 
+.search-results-dropdown .search-feedback {
+    padding: 2rem;
+    text-align: center;
+    color: var(--grey-text);
+    font-size: 1.4rem;
+}
+
 #menu-icon {
     display: none;
     font-size: 2.5rem;
     color: var(--light-text);
     cursor: pointer;
-}
-
-.search-container-mobile {
-    display: none;
-    /* Oculto en desktop */
 }
 
 /* --- Sección de Héroe (Carrusel) --- */
@@ -852,12 +854,6 @@ header .navbar ul li a.active {
     font-weight: 700;
 }
 
-.age-rating-tag {
-    border: 1px solid var(--grey-text);
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-}
-
 .anime-description {
     font-size: 1.6rem;
     line-height: 1.7;
@@ -908,7 +904,6 @@ header .navbar ul li a.active {
 
 .action-btn.gemini-btn:hover {
     background-color: #3367d6;
-    /* Un azul un poco más oscuro */
 }
 
 /* --- Estilos de la Sección de Episodios en Detalles --- */
@@ -1037,28 +1032,7 @@ header .navbar ul li a.active {
     padding: 0 1rem;
 }
 
-.episodes-container.carousel .slick-arrow {
-    background-color: rgba(32, 32, 32, 0.8) !important;
-    border-radius: 50%;
-    width: 50px !important;
-    height: 50px !important;
-    z-index: 20;
-}
-
-.episodes-container.carousel .slick-arrow:before {
-    font-size: 25px !important;
-    color: var(--light-text) !important;
-}
-
-.episodes-container.carousel .slick-prev {
-    left: -60px !important;
-}
-
-.episodes-container.carousel .slick-next {
-    right: -60px !important;
-}
-
-/* --- NUEVO ESTILO DE TARJETA DE EPISODIO --- */
+/* --- Estilo de Tarjeta de Episodio --- */
 .episode-detail-card {
     background-color: var(--dark-bg);
     border-radius: 8px;
@@ -1193,6 +1167,7 @@ header .navbar ul li a.active {
     max-width: 900px;
     position: relative;
     overflow: hidden;
+    padding: 3rem;
 }
 
 .close-modal {
@@ -1209,7 +1184,6 @@ header .navbar ul li a.active {
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
-    /* 16:9 */
     height: 0;
     background-color: #000;
 }
@@ -1232,11 +1206,6 @@ header .navbar ul li a.active {
     margin-bottom: 1.5rem;
 }
 
-.modal-info .anime-meta-tags {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-}
-
 .modal-info p {
     font-size: 1.5rem;
     line-height: 1.6;
@@ -1251,64 +1220,67 @@ header .navbar ul li a.active {
     font-size: 1.4rem;
 }
 
-.modal-details-grid div {
-    color: var(--light-text);
-}
-
-.modal-details-grid div span {
-    color: var(--grey-text);
-    display: block;
-    margin-bottom: 0.2rem;
-}
-
 /* --- Modal del Reproductor --- */
 .episode-player-modal {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(16, 16, 16, 0.95);
-    /* Fondo semitransparente */
-    backdrop-filter: blur(10px);
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dark-bg);
     z-index: 3000;
     flex-direction: column;
-    overflow-y: auto;
-    /* Permite scroll en el modal */
-    padding: 2rem;
-    /* Espaciado para que no pegue a los bordes */
 }
 
-/* NUEVO CONTENEDOR PARA CENTRAR Y LIMITAR ANCHO */
-.player-content-wrapper {
-    width: 100%;
-    max-width: 1200px;
-    /* Ancho máximo del contenido */
-    margin: auto;
-    /* Centrar horizontalmente */
-    background-color: var(--dark-bg);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.player-header {
+.player-main-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2.5rem;
-    background-color: var(--light-bg);
-    /* Un poco más claro */
-    flex-shrink: 0;
-    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    height: 100%;
 }
 
-.player-logo img {
+.player-video-section {
+    flex: 0 0 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-video-section .player-header {
+    padding: 1rem 2rem;
+    background-color: #000;
+    flex-shrink: 0;
+}
+
+.player-header .player-logo img {
     height: 35px;
 }
 
+#episode-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    flex-grow: 1;
+}
+
+.player-details-section {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.player-details-section .player-header {
+    padding: 1.45rem 2.5rem;
+    background-color: var(--light-bg);
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+}
+
 .close-player {
-    font-size: 3.5rem;
+    font-size: 3rem;
     background: none;
     color: var(--grey-text);
     cursor: pointer;
@@ -1319,89 +1291,41 @@ header .navbar ul li a.active {
     color: var(--light-text);
 }
 
-
-.player-body {
+.details-content-wrapper {
     padding: 2.5rem;
 }
 
-.video-main-container {
-    width: 100%;
-    background-color: #000;
-    flex-shrink: 0;
-    border-radius: 8px;
-    /* Bordes redondeados para el video */
-    overflow: hidden;
-    /* Asegura que el iframe respete los bordes */
-    margin-bottom: 2rem;
-}
-
-.video-main-container iframe {
-    width: 100%;
-    aspect-ratio: 16/9;
-    border: none;
-}
-
-/* Título movido debajo del video */
 .episode-title-container {
-    text-align: left;
     margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
     padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .episode-title-container h3 {
     font-size: 2.4rem;
     color: var(--light-text);
     font-family: var(--font-headings);
+    margin-bottom: 0.5rem;
 }
 
 .episode-title-container span {
     font-size: 1.6rem;
     color: var(--primary-color);
+    display: block;
+    margin-bottom: 1rem;
 }
 
-.player-controls {
-    display: flex;
-    justify-content: flex-end;
-    /* Alinea botones a la derecha */
-    gap: 1rem;
-    padding: 0;
-    margin-bottom: 3rem;
-    background: none;
-}
-
-.player-controls button {
-    background: var(--card-bg);
-    color: var(--light-text);
-    padding: 1rem 2rem;
-    border-radius: 4px;
-    cursor: pointer;
+.episode-title-container p {
     font-size: 1.4rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    border: 1px solid var(--border-color);
-    transition: all 0.3s;
+    color: var(--grey-text);
+    line-height: 1.6;
 }
 
-.player-controls button:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.player-controls button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background-color: var(--card-bg);
-}
-
-/* NUEVA SECCIÓN DE TARJETAS DE NAVEGACIÓN */
 .episode-navigation-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .nav-episode-card {
@@ -1414,11 +1338,13 @@ header .navbar ul li a.active {
     padding: 1rem;
     border: 1px solid var(--border-color);
     transition: all 0.3s;
+    color: var(--light-text);
 }
 
 .nav-episode-card:hover {
     border-color: var(--secondary-color);
     transform: translateY(-3px);
+    background-color: var(--light-bg);
 }
 
 .nav-episode-card.disabled {
@@ -1446,17 +1372,20 @@ header .navbar ul li a.active {
     font-weight: 500;
 }
 
-/* Estilos para la tarjeta 'siguiente' */
 .nav-episode-card.next {
     text-align: right;
     flex-direction: row-reverse;
 }
 
+.nav-episode-card.next .nav-episode-card-info {
+    text-align: right;
+}
+
 .comments-section {
-    padding: 2.5rem;
-    margin-top: 2rem;
-    background-color: var(--light-bg);
-    border-radius: 8px;
+    margin-top: auto;
+    /* Empuja los comentarios al final */
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-color);
 }
 
 .comments-section h4 {
@@ -1564,10 +1493,6 @@ header .navbar ul li a.active {
         border-bottom: 1px solid var(--border-color);
     }
 
-    .search-container {
-        display: none;
-    }
-
     #menu-icon {
         display: block;
     }
@@ -1589,6 +1514,15 @@ header .navbar ul li a.active {
     .anime-listing-section {
         margin-bottom: 4rem;
     }
+
+    .player-main-content {
+        flex-direction: column;
+    }
+
+    .player-details-section {
+        height: 50vh;
+        /* Darle una altura definida en mobile */
+    }
 }
 
 @media (max-width: 768px) {
@@ -1602,7 +1536,6 @@ header .navbar ul li a.active {
 
     .card-carousel {
         margin: 0 -1rem;
-        /* Fix for mobile overflow */
     }
 
     .episodes-grid {
@@ -1613,8 +1546,26 @@ header .navbar ul li a.active {
         max-width: 80%;
     }
 
-    .hero-description {
-        font-size: 1.6rem;
+    .anime-detail-hero .hero-content {
+        max-width: 100%;
+        padding: 4rem 5%;
+    }
+
+    .anime-description {
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
+
+    .anime-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .action-btn {
+        justify-content: center;
     }
 
     .slick-arrow {
@@ -1642,19 +1593,23 @@ header .navbar ul li a.active {
         width: 100%;
         flex-grow: 1;
     }
-
-    .episodes-container.carousel .slick-arrow {
-        display: none !important;
-    }
-
-    .episode-navigation-cards {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (max-width: 480px) {
     .container {
         width: 95%;
+    }
+
+    .header-right {
+        gap: 1.5rem;
+    }
+
+    .search-container.active #search-input {
+        width: 180px;
+    }
+
+    .search-results-dropdown {
+        width: 180px;
     }
 
     .hero-navigation {
@@ -1685,17 +1640,10 @@ header .navbar ul li a.active {
         display: none;
     }
 
+
+
     .filters-grid {
         grid-template-columns: 1fr;
-    }
-
-    .anime-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .action-btn {
-        justify-content: center;
     }
 
     .episodes-container.grid {

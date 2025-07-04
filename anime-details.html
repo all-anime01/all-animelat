@@ -84,51 +84,47 @@
         </div>
     </div>
 
-    <div class="ai-modal" id="ai-synopsis-modal">
+    <div class="ai-modal" id="ai-recommendations-modal">
         <div class="modal-content">
             <button class="close-modal" id="close-ai-modal">&times;</button>
-            <h3><i class="fas fa-robot"></i> Sinopsis Generada por IA</h3>
-            <div id="ai-synopsis-content">
+            <h3><i class="fas fa-robot"></i> Recomendaciones Similares (IA)</h3>
+            <div id="ai-recommendations-content">
                 <div class="loader"></div>
             </div>
         </div>
     </div>
 
     <div class="episode-player-modal" id="episode-player-modal">
-        <div class="player-content-wrapper">
-            <div class="player-header">
-                <a href="index.html" class="player-logo">
-                    <img src="https://i.imgur.com/pX4a2Jz.png" alt="All-Anime Logo">
-                </a>
-                <button class="close-player" id="close-player-modal">&times;</button>
+        <div class="player-main-content">
+            <div class="player-video-section">
+                <div class="player-header">
+                    <a href="index.html" class="player-logo">
+                        <img src="https://i.imgur.com/pX4a2Jz.png" alt="All-Anime Logo">
+                    </a>
+                </div>
+                <iframe id="episode-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
-            <div class="player-body">
-                <div class="video-main-container">
-                    <iframe id="episode-iframe" src="" frameborder="0" allow="autoplay; fullscreen"
-                        allowfullscreen></iframe>
-                </div>
 
-                <div class="episode-title-container">
-                    <h3 id="player-anime-title"></h3>
-                    <span id="player-episode-title"></span>
+            <div class="player-details-section">
+                <div class="player-header">
+                    <button class="close-player" id="close-player-modal">&times;</button>
                 </div>
-
-                <div class="player-controls">
-                    <button id="prev-episode-btn"><i class="fas fa-backward"></i> Anterior</button>
-                    <button id="next-episode-btn">Siguiente <i class="fas fa-forward"></i></button>
-                </div>
-
-                <div class="episode-navigation-cards" id="episode-navigation-cards">
-                </div>
-
-                <div class="comments-section">
-                    <h4>Comentarios</h4>
-                    <div id="disqus_thread"></div>
+                <div class="details-content-wrapper">
+                    <div class="episode-title-container">
+                        <h3 id="player-anime-title"></h3>
+                        <span id="player-episode-title"></span>
+                        <p id="player-episode-description"></p>
+                    </div>
+                    <div class="episode-navigation-cards" id="episode-navigation-cards">
+                    </div>
+                    <div class="comments-section">
+                        <h4>Comentarios</h4>
+                        <div id="disqus_thread"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <footer class="footer">
         <div class="container">
