@@ -6,9 +6,9 @@
   duration: "23m",
   description: "Comienza la segunda temporada. Jinwoo, ahora como Monarca de las Sombras, atrae la atención de poderosos gremios y figuras misteriosas. Su identidad ya no es un secreto.",
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b27889eed12a1c5c1c5765eb0d8f82dc.jpg",
-  releaseDate: "04/01/25",
+  releaseDate: "Enero 4, 2025",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/13"
+  videoUrl: "frame/Solo-Leveling/T2/13"
 },
 {
   season: 2,
@@ -17,9 +17,9 @@
   duration: "23m",
   description: "Jinwoo comienza a construir su propio gremio de sombras. Se encuentra con nuevos aliados y enemigos mientras explora los límites de sus recién adquiridos poderes de nigromante.",
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e1a8566071311d4a6720540b0d02a623.jpg",
-  releaseDate: "11/01/25",
+  releaseDate: "Enero 11, 2025",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/14"
+  videoUrl: "frame/Solo-Leveling/T2/14"
 },
 {
   season: 2,
@@ -28,9 +28,9 @@
   duration: "23m",
   description: "Una puerta roja, la más peligrosa de todas, aparece. Jinwoo y su ejército de sombras son los únicos capaces de enfrentarse a la amenaza que yace en su interior.",
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/707acde43312c043b135a8d8d12f0372.jpg",
-  releaseDate: "18/01/25",
+  releaseDate: "Enero 18, 2025",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/15"
+  videoUrl: "frame/Solo-Leveling/T2/15"
 },
 {
   season: 2,
@@ -39,9 +39,9 @@
   duration: "23m",
   description: "La incursión en la puerta roja lleva a Jinwoo a una batalla contra una tribu de elfos de hielo. Añade a su comandante, Baruka, a su ejército de sombras.",
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9b05cfa6ea5183e13a8456fed1908357.jpg",
-  releaseDate: "25/01/25",
+  releaseDate: "Enero 25, 2025",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/16"
+  videoUrl: "frame/Solo-Leveling/T2/16"
 },
 {
   season: 2,
@@ -52,7 +52,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1a46858f76a4b9cb80d60f59e69318b0.jpg",
   releaseDate: "01/02/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/17"
+  videoUrl: "frame/Solo-Leveling/T2/17"
 },
 {
   season: 2,
@@ -63,7 +63,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9ab321592ad21bb42b9c746e8057239a.jpg",
   releaseDate: "08/02/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/18"
+  videoUrl: "frame/Solo-Leveling/T2/18"
 },
 {
   season: 2,
@@ -74,7 +74,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ad0478978006763a1df8cd8b2cbf4f0d.jpg",
   releaseDate: "15/02/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/19"
+  videoUrl: "frame/Solo-Leveling/T2/19"
 },
 {
   season: 2,
@@ -85,7 +85,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/29945b927a6c4d2dc4cd23c3360e7d28.jpg",
   releaseDate: "22/02/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/20"
+  videoUrl: "frame/Solo-Leveling/T2/20"
 },
 {
   season: 2,
@@ -96,7 +96,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8be7a55bbacc671d73a2efa0531dfeba.jpg",
   releaseDate: "01/03/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/21"
+  videoUrl: "frame/Solo-Leveling/T2/21"
 },
 {
   season: 2,
@@ -107,7 +107,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d909160a8e78313e1530ed881d57831d.jpg",
   releaseDate: "08/03/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/22"
+  videoUrl: "frame/Solo-Leveling/T2/22"
 },
 {
   season: 2,
@@ -118,7 +118,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/498a19937f80f45b460db38226731b2e.jpg",
   releaseDate: "15/03/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/23"
+  videoUrl: "frame/Solo-Leveling/T2/23"
 },
 {
   season: 2,
@@ -129,7 +129,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/58a7fe907f22d3001e3afea92c7cb6a0.jpg",
   releaseDate: "22/03/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/24"
+  videoUrl: "frame/Solo-Leveling/T2/24"
 },
 {
   season: 2,
@@ -140,7 +140,7 @@
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5f581a5a1659cd92fa40fe530206b7f4.jpg",
   releaseDate: "29/03/25",
   language: "Sub | Dob",
-  videoUrl: "https://all-anime.net/ver/Solo-Leveling/T2/25"
+  videoUrl: "frame/Solo-Leveling/T2/25"
 }
 ]
 }
