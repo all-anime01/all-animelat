@@ -1,317 +1,341 @@
-const allEpisodes = {
-  2: [
-    {
-      id: 13,
-      title: "13. Tú no eres nivel E, ¿verdad?",
-      duration: "24 min",
-      description:
-        "Tras una reunión con los profesores de Jinah, le piden a Jinwoo que hable con una de sus compañeras que trabaja como cazadora. En un esfuerzo por mostrarle la dura realidad de su trabajo, Jinwoo la lleva a una incursión designada para los nuevos cazadores del gremio del Tigre Blanco.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e1a8566071311d4a6720540b0d02a623.jpg",
-      releaseDate: "Enero 4, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/13.html",
-    },
-    {
-      id: 14,
-      title: "14. Parece que tú mismo no lo sabes",
-      duration: "24 min",
-      description:
-        "Tras quedar atrapado en el interior de unaun portal rojo, Jinwoo tiene que enfrentarse a un grupo de elfos de hielo sedientos de sangre que pondrán a prueba su humanidad.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b27889eed12a1c5c1c5765eb0d8f82dc.jpg",
-      releaseDate: "Enero 11, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/14.html",
-    },
-    {
-      id: 15,
-      title: "15. Aún queda mucho camino",
-      duration: "23 min",
-      description:
-        "Tras quedar atrapado en el interior de unaun portal rojo, Jinwoo tiene que enfrentarse a un grupo de elfos de hielo sedientos de sangre que pondrán a prueba su humanidad.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/707acde43312c043b135a8d8d12f0372.jpg",
-      releaseDate: "Enero 18, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/15.html",
-    },
-    {
-      id: 16,
-      title: "16. Tengo que dejar de fingir",
-      duration: "23 min",
-      description:
-        "Sung Jinwoo realiza otro examen para recalcular su rango y los resultados sorprenden a todos los presentes, incluido un Cazador muy importante.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9b05cfa6ea5183e13a8456fed1908357.jpg",
-      releaseDate: "Enero 25, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/16.html",
-    },
-    {
-      id: 17,
-      title: "17. Estamos entrenados para esto",
-      duration: "23 min",
-      description:
-        "Jinwoo destaca tanto como minero, que el jefe del equipo le pide que vuelva al día siguiente.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=1200,height=675/catalog/crunchyroll/1a46858f76a4b9cb80d60f59e69318b0.jpg",
-      releaseDate: "Febrero 1, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/17.html",
-    },
-    {
-      id: 18,
-      title: "18. No menosprecies a los míos",
-      duration: "23 min",
-      description:
-        "Jinwoo y el segundo equipo de ataque del Gremio de Cazadores se presentan ante el jefe de la mazmorra. ¿Podrán negociar con él o deberán derrotarlo?.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9ab321592ad21bb42b9c746e8057239a.jpg",
-      releaseDate: "Febrero 8, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/18.html",
-    },
-    {
-      id: 19,
-      title: "19. El décimo Cazador de rango S",
-      duration: "23 min",
-      description:
-        "Jinwoo sale de la reevaluación como Cazador de rango S, por lo que al fin podrá terminar los preparativos para entrar al Castillo del Demonio.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ad0478978006763a1df8cd8b2cbf4f0d.jpg",
-      releaseDate: "Febrero 15, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/19.html",
-    },
-    {
-      id: 20,
-      title: "20. Mirar hacia arriba me estaba cansando",
-      duration: "23 min",
-      description:
-        "Mientras Jinwoo sigue avanzando por el Castillo del Demonio, la Asociación de Cazadores se enfrenta a la amenaza de las hormigas voladoras.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/29945b927a6c4d2dc4cd23c3360e7d28.jpg",
-      releaseDate: "Febrero 22, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/20.html",
-    },
-    {
-      id: 21,
-      title: "21. Valió la pena",
-      duration: "23 min",
-      description:
-        "Jinwoo por fin completa el Elíxir de la Vida y vuelve con su familia para ponerlo a prueba. Por otro lado, la Asociación de Cazadores se prepara para la cuarta incursión a Jeju, por lo que Go Gunhee intenta reclutar a Jinwoo.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8be7a55bbacc671d73a2efa0531dfeba.jpg",
-      releaseDate: "Marzo 1, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/21.html",
-    },
-    {
-      id: 22,
-      title: "22. Necesitamos un héroe",
-      duration: "23 min",
-      description:
-        "Los Cazadores de rango S de Corea y Japón ponen a prueba su fuerza enfrentándose entre ellos antes de la incursión a Jeju. El maestro del Gremio Desenvaine se limita a observar el combate hasta que ve de qué es capaz Jinwoo y decide ponerlo a prueba él mismo.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d909160a8e78313e1530ed881d57831d.jpg",
-      releaseDate: "Marzo 8, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/22.html",
-    },
-    {
-      id: 23,
-      title: "23. Se va a poner aún más intenso",
-      duration: "23 min",
-      description:
-        "La cuarta incursión a Jeju va según lo planeado y los cazadores de Corea se adentran en el nido de la reina. Por otro lado, los planes de los cazadores de Japón podrían verse truncados por más de algún imprevisto.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/498a19937f80f45b460db38226731b2e.jpg",
-      releaseDate: "Marzo 15, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/23.html",
-    },
-    {
-      id: 24,
-      title: "24. ¿Eres el rey de los humanos?",
-      duration: "23 min",
-      description:
-        "Jinwoo aparece en la isla de Jeju y acaba enfrentándose al rey de las hormigas.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/58a7fe907f22d3001e3afea92c7cb6a0.jpg",
-      releaseDate: "Marzo 22, 2025",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/24.html",
-    },
-    {
-      id: 25,
-      title: "25. Al siguiente objetivo",
-      duration: "23 min",
-      description:
-        "Con la amenaza de las hormigas bajo control, Jinwoo tendrá que decidir cómo procederá de aquí en adelante.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5f581a5a1659cd92fa40fe530206b7f4.jpg",
-      releaseDate: "Marzo 29, 2025",
-      episodeNumber: "Subtitulado",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T2/25.html",
-    },
-  ],
-  1: [
-    {
-      id: 1,
-      title: "1. Ya estoy acostumbrado",
-      duration: "24 min",
-      description:
-        "A Jin-Woo Sung lo conocen el cazador más débil de la humanidad, lo que lo convierte en objeto de burla de sus compañeros, aunque Ju-Hee Lee, una joven sanadora, siempre se preocupa por él y le ayuda a hacer amigos.",
-      thumbnail:
-        "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/9685e02cab2b3d22296e7c7e46d78aa8.jpe",
-      releaseDate: "Enero 6, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/1.html",
-    },
-    {
-      id: 2,
-      title: "2. Si tuviera otra oportunidad",
-      duration: "24 min",
-      description:
-        "Jin-Woo y sus compañeros están atrapados y no pueden hacer nada mientras la estatua de piedra los masacra uno a uno. Parece que hay una salida a este pérfido juego, pero ¿a qué precio?",
-      thumbnail:
-        "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/50a0eb40c919b8efea01fd4799df08ff.jpe",
-      releaseDate: "Enero 13, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/2.html",
-    },
-    {
-      id: 3,
-      title: "3. Es como un videojuego",
-      duration: "24 min",
-      description:
-        "Para su sorpresa, Jin-Woo se despierta sano y salvo en el hospital. Al principio cree que los horripilantes sucesos que ha vivido son un sueño, pero las pantallas de estado no desaparecen y no parecen ser visibles para nadie más.",
-      thumbnail:
-        "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c6adceca173ff32ae979af193a476fb2.jpe",
-      releaseDate: "Enero 20, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/3.html",
-    },
-    {
-      id: 4,
-      title: "4. Tengo que hacerme más fuerte",
-      duration: "24 min",
-      description:
-        "En un mundo donde portales misteriosos conectan con mazmorras llenas de monstruos, Sung Jin-Woo lucha por sobrevivir como el cazador más débil.",
-      thumbnail:
-        "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/78de61960488c9f16f960dae0b554eca.jpe",
-      releaseDate: "Enero 27, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/4.html",
-    },
-    {
-      id: 5,
-      title: "5. Un muy buen trato",
-      duration: "24 min",
-      description:
-        "Cuando Jinwoo sale del hospital, las enfermeras se fijan en su buen estado físico. ¿Siempre tuvo tan buen cuerpo? Poco después, un grupo de Cazadores de rango C buscan un par de compañeros para rellenar y poder entrar a una mazmorra también C, así que como le ofrecen una buena cantidad, acepta.",
-      thumbnail:
-        "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/403416c5837765866f3b19ac27932777.jpe",
-      releaseDate: "Febrero 3, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/5.html",
-    },
-    {
-      id: 6,
-      title: "6. Comienza la verdadera caza",
-      duration: "24 min",
-      description:
-        "Jinwoo cae en la trampa que su nuevo equipo temporal le tiende y tiene que sobrevivir como puede, una vez más, ante un monstruo mucho más poderoso que él. A su lado está Jinho, a quien también han abandonado.",
-      thumbnail:
-        "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/4622fd0dd6f0072211526a8ae67f0c5c.jpe",
-      releaseDate: "Febrero 10, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/6.html",
-    },
-    {
-      id: 7,
-      title: "7. Veamos hasta dónde puedo llegar",
-      duration: "24 min",
-      description:
-        "Tras el incidente en la mazmorra de rango C, Jinwoo sigue con su vida como siempre, aunque su hermana no acaba de creer la gran evolución de su hermano.",
-      thumbnail:
-        "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/018425874ef4c1b18b32c26645d6c848.jpe",
-      releaseDate: "Febrero 17, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/7.html",
-    },
-    {
-      id: 7.5,
-      title: "1. Episodio especial",
-      duration: "24 min",
-      description: "Repasamos la historia hasta el momento.",
-      thumbnail:
-        "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/693c3c2259bf67d2afd151453ff15e1d.jpe",
-      releaseDate: "Febrero 24, 2024",
-      episodeNumber: "Subtitulado",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/7.5.html",
-    },
-    {
-      id: 8,
-      title: "8. Esto es frustrante",
-      duration: "24 min",
-      description:
-        "Tras su última incursión en una mazmorra, Jinwoo se ha dado cuenta de su propia debilidad. Quiere subir de nivel lo antes posible, pero eso podrá hacerlo si consigue entrar en las mazmorras.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,width=320,height=180,fit=contain,quality=70/catalog/crunchyroll/ba4454c313d44737a3a72fc390bd2159.jpe",
-      releaseDate: "Marzo 2, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/8.html",
-    },
-    {
-      id: 9,
-      title: "9. Has estado ocultando tus habilidades",
-      duration: "24 min",
-      description:
-        "El grupo de supervivientes de la mazmorra doble entra en la mazmorra junto a los presos condenados y Kang Taeshik, el cazador encargado de supervisar a los prisioneros. Sin embargo, lo que parecía un viaje normal a una mazmorra acaba siendo un río de sangre.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,width=320,height=180,fit=contain,quality=70/catalog/crunchyroll/08ade842ca3ae544ccc5e4f6a207b529.jpe",
-      releaseDate: "Marzo 9, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/9.html",
-    },
-    {
-      id: 10,
-      title: "10. ¿Qué es esto, un pícnic?",
-      duration: "24 min",
-      description:
-        "Jinwoo y Jinho preparan un grupo repleto de figurantes para entrar ellos solos a las mazmorras y conseguir dinero, pero esto hace que Tigre Blanco se fije en las posibles capacidades de Jinwoo y sospechen de que vivió un segundo despertar.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,width=320,height=180,fit=contain,quality=70/catalog/crunchyroll/9833d2909af5311139e79b32a44d9605.jpe",
-      releaseDate: "Marzo 16, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/10.html",
-    },
-    {
-      id: 11,
-      title: "11. Un caballero defendiendo un trono vacío",
-      duration: "24 min",
-      description:
-        "Sung Jinwoo inicia la misión para cambiar de clase y se enfrenta a un enemigo formidable. Mientras, Jinho se reúne con su familia y otros cazadores visitan la isla de Jeju.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,width=320,height=180,fit=contain,quality=70/catalog/crunchyroll/66e3cabc8e0557f77c93c24178e7a5cd.jpe",
-      releaseDate: "Marzo 23, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/11.html",
-    },
-    {
-      id: 12,
-      title: "12. Surge",
-      duration: "24 min",
-      description:
-        "Mientras Jinwoo se enfrenta a sí mismo e intenta completar el cambio de clase, Choi Jong-in y los cazadores que lo acompañan descubren algo en la isla de Jeju.",
-      thumbnail:
-        "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/cda77a98de7021522ebb5f0cc9bebd7d.jpe",
-      releaseDate: "Marzo 30, 2024",
-      episodeNumber: "Sub | Dob",
-      videoUrl: "https://all-anime.net/frame/Solo-Leveling/T1/12.html",
-    },
-  ],
-};
+{
+  season: 1,
+  number: 64,
+  title: "El monte Nappe y las sombras sigilosas.",
+  duration: "24m",
+  description: "Mientras entrenan en el Monte Nappe, unas misteriosas sombras comienzan a acechar al grupo. Deben descubrir qué son y cuáles son sus intenciones.",
+  img: "/image/Pokemon-Horizons/64.jpg",
+  releaseDate: "07/09/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/64"
+},
+{
+  season: 1,
+  number: 65,
+  title: "¡Liko y Amenthio!.",
+  duration: "24m",
+  description: "Liko tiene un encuentro inesperado con Amethio de los Exploradores. Esta vez, sin una batalla inminente, tienen una conversación que podría cambiar su rivalidad.",
+  img: "/image/Pokemon-Horizons/65.jpg",
+  releaseDate: "14/09/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/65"
+},
+{
+  season: 1,
+  number: 66,
+  title: "¡Ruptura del sistema! ¡¡Crisis en la Academia Naranja!!.",
+  duration: "24m",
+  description: "Un virus informático ataca el sistema de la Academia Naranja. Dot, junto con Penny, debe usar sus habilidades de hacking para detener la crisis.",
+  img: "/image/Pokemon-Horizons/66.jpg",
+  releaseDate: "21/09/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/66"
+},
+{
+  season: 1,
+  number: 67,
+  title: "¡¡Brilla, Teracristalización!! ¡Liko VS Roy!.",
+  duration: "24m",
+  description: "Como parte de su examen final en la academia, Liko y Roy se enfrentan en una batalla Teracristal para demostrar todo lo que han aprendido.",
+  img: "/image/Pokemon-Horizons/67.jpg",
+  releaseDate: "28/09/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/67"
+},
+{
+  season: 1,
+  number: 68,
+  title: "¡Hacia un Nuevo Cielo! ¡¡El Valiente Asagi!!.",
+  duration: "24m",
+  description: "Con su entrenamiento en Paldea completo, los Tacleadas de Voltios se preparan para una nueva aventura, zarpando en el Valiente Asagi hacia un destino desconocido.",
+  img: "/image/Pokemon-Horizons/68.jpg",
+  releaseDate: "12/10/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/68"
+},
+{
+  season: 1,
+  number: 69,
+  title: "¡¿Yo soy un Pokémon y tú eres yo?!.",
+  duration: "24m",
+  description: "Un extraño fenómeno causa que Liko y Sprigatito intercambien cuerpos. Deben aprender a vivir en el cuerpo del otro mientras buscan una solución.",
+  img: "/image/Pokemon-Horizons/69.jpg",
+  releaseDate: "19/10/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/69"
+},
+{
+  season: 1,
+  number: 70,
+  title: "¡El martillo de Tinkatink no se construyó en un día!.",
+  duration: "24m",
+  description: "El grupo se encuentra de nuevo con el Tinkatink, que ahora lidera a su clan. Dot se inspira en su perseverancia y trabajo duro.",
+  img: "https://image.tmdb.org/t/p/w300/fpF9oWhAYC38yjcQ4rIvFMszJrM.jpg",
+  releaseDate: "26/10/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/70"
+},
+{
+  season: 1,
+  number: 71,
+  title: "Encuentro en el Lago Cristalino.",
+  duration: "24m",
+  description: "Terapagos guía al grupo a un lago cristalino donde se encuentran con un Pokémon legendario que parece tener una conexión con Lucius.",
+  img: "https://image.tmdb.org/t/p/w300/d1RfarxY2lxEqX8gwADZqg6fNkr.jpg",
+  releaseDate: "02/11/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/71"
+},
+{
+  season: 1,
+  number: 72,
+  title: "¡Persecución! ¡¡Encuentren a Kleavor!!.",
+  duration: "24m",
+  description: "Un Kleavor, otro de los Pokémon de Lucius, está causando estragos. Roy, inspirado por las leyendas, se propone calmar al Pokémon hacha.",
+  img: "/image/Pokemon-Horizons/72.jpg",
+  releaseDate: "09/11/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/72"
+},
+{
+  season: 1,
+  number: 73,
+  title: "Kleavor, el guerrero solitario.",
+  duration: "24m",
+  description: "Roy logra conectar con Kleavor, entendiendo su soledad y su deseo de probar su fuerza. Se gana el respeto del Pokémon y una nueva pista sobre Lucius.",
+  img: "/image/Pokemon-Horizons/73.jpg",
+  releaseDate: "16/11/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/73"
+},
+{
+  season: 1,
+  number: 74,
+  title: "Los tres Exploradores.",
+  duration: "24m",
+  description: "Se revela más sobre los administradores de los Exploradores. Coral, Sidian y Chalce muestran sus personalidades y sus poderosos Pokémon en una misión.",
+  img: "/image/Pokemon-Horizons/74.jpg",
+  releaseDate: "23/11/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/74"
+},
+{
+  season: 1,
+  number: 75,
+  title: "El futuro que se nos ha confiado, el brillo de este mundo.",
+  duration: "24m",
+  description: "Reflexionando sobre su viaje, Liko y Roy comprenden la gran responsabilidad que tienen para proteger a Terapagos y descubrir los secretos de Lucius.",
+  img: "https://image.tmdb.org/t/p/w300/qU9MzSOKQDDEfLYu1ES0wpH72EA.jpg",
+  releaseDate: "30/11/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/75"
+},
+{
+  season: 1,
+  number: 76,
+  title: "¿Sonano? ¡Sodayo!.",
+  duration: "24m",
+  description: "El grupo se encuentra con un Wobbuffet y un Wynaut que siempre parecen estar de acuerdo. Su dinámica enseña a Liko y Roy sobre la comunicación y el trabajo en equipo.",
+  img: "/image/Pokemon-Horizons/76.jpg",
+  releaseDate: "07/12/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/76"
+},
+{
+  season: 1,
+  number: 77,
+  title: "Randou regresa a su ciudad natal.",
+  duration: "24m",
+  description: "Landau, el pescador y miembro de los Tacleadas de Voltios, regresa a su hogar, donde el grupo aprende más sobre su pasado y su familia.",
+  img: "https://image.tmdb.org/t/p/w300/6W6vnq3MP4gQIWpXKnhajzFj3cU.jpg",
+  releaseDate: "14/12/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/77"
+},
+{
+  season: 1,
+  number: 78,
+  title: "¡Feroz batalla con Entei! ¡¡Rugido de Fuego!!.",
+  duration: "24m",
+  description: "El Entei de Lucius aparece, y su poder es abrumador. Roy y Crocalor deben desatar todo su poder de fuego para enfrentarse al Pokémon legendario.",
+  img: "https://image.tmdb.org/t/p/w300/gF4m1k9K8dZ7A3rkneLxSSziGyA.jpg",
+  releaseDate: "21/12/24",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/78"
+},
+{
+  season: 1,
+  number: 79,
+  title: "Más allá de la cima.",
+  duration: "24m",
+  description: "Tras la batalla con Entei, Roy se da cuenta de que todavía hay un largo camino por recorrer para alcanzar su sueño de derrotar a Rayquaza.",
+  img: "/image/Pokemon-Horizons/79.jpg",
+  releaseDate: "11/01/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/79"
+},
+{
+  season: 1,
+  number: 80,
+  title: "¡¿Pokémon asombrosos en el Área Cero?!.",
+  duration: "24m",
+  description: "El grupo finalmente se aventura en el misterioso Área Cero, donde encuentran Pokémon del pasado y del futuro, y se acercan más al secreto de Terapagos.",
+  img: "/image/Pokemon-Horizons/80.jpg",
+  releaseDate: "18/01/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/80"
+},
+{
+  season: 1,
+  number: 81,
+  title: "¡Una gran batalla! ¡El fuego que arrasa la tierra!.",
+  duration: "24m",
+  description: "En el corazón del Área Cero, los Tacleadas de Voltios se enfrentan a un poderoso Pokémon Paradoja que amenaza con desestabilizar todo el lugar.",
+  img: "/image/Pokemon-Horizons/81.jpg",
+  releaseDate: "25/01/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/81"
+},
+{
+  season: 1,
+  number: 82,
+  title: "¡Al final de un arcoíris brillante!.",
+  duration: "24m",
+  description: "Una pista sobre el último de los seis héroes de Lucius lleva al grupo a un lugar donde se dice que el final de un arcoíris toca la tierra.",
+  img: "https://image.tmdb.org/t/p/w300/lvHdjB7yEFzIFe9FSO7ixKss5U9.jpg",
+  releaseDate: "01/02/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/82"
+},
+{
+  season: 1,
+  number: 83,
+  title: "¿La verdad es revelada? ¡La determinación de Amethio!.",
+  duration: "24m",
+  description: "Amethio, siguiendo sus propias pistas, descubre una verdad impactante sobre los Exploradores y su misión, lo que lo lleva a tomar una decisión crucial.",
+  img: "https://image.tmdb.org/t/p/w300/do0cpvRMGZkJiVpPrUKcCg48knG.jpg",
+  releaseDate: "08/02/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/83"
+},
+{
+  season: 1,
+  number: 84,
+  title: "¡El lugar donde el cielo y la tierra se encuentran!.",
+  duration: "24m",
+  description: "Terapagos finalmente revela la ubicación de Rakua, el paraíso soñado por Lucius. El grupo se prepara para el tramo final de su viaje.",
+  img: "/image/Pokemon-Horizons/84.jpg",
+  releaseDate: "15/02/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/84"
+},
+{
+  season: 1,
+  number: 85,
+  title: "¡Llegamos! ¡El paraíso, Rakua!.",
+  duration: "24m",
+  description: "Los Tacleadas de Voltios llegan a Rakua, un lugar maravilloso y misterioso. Sin embargo, los Exploradores no se quedan atrás.",
+  img: "https://image.tmdb.org/t/p/w300/ukjIXhW8vOl53zGdKZUzdw5C4HL.jpg",
+  releaseDate: "22/02/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/85"
+},
+{
+  season: 1,
+  number: 86,
+  title: "¡Los Tacleada de Voltios en ascenso VS los Exploradores!.",
+  duration: "24m",
+  description: "La batalla final entre los Tacleadas de Voltios y los Exploradores por el destino de Terapagos y Rakua comienza.",
+  img: "https://image.tmdb.org/t/p/w300/vUA4oDiMKVmdQ1fQ4E0uAqhFwwZ.jpg",
+  releaseDate: "01/03/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/86"
+},
+{
+  season: 1,
+  number: 87,
+  title: "La guía del Rayquaza negro.",
+  duration: "24m",
+  description: "El Rayquaza negro reaparece, pero esta vez no como un enemigo, sino como una guía que muestra el verdadero propósito de Terapagos.",
+  img: "/image/Pokemon-Horizons/87.jpg",
+  releaseDate: "08/03/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/87"
+},
+{
+  season: 1,
+  number: 88,
+  title: "El Zygarde Blanco que sacude la tierra.",
+  duration: "24m",
+  description: "El último de los seis héroes se revela: un majestuoso Zygarde de color blanco que ha estado protegiendo el equilibrio de la tierra.",
+  img: "https://image.tmdb.org/t/p/w300/9MPNahmqX45yqtZiX2w1ufD6RPe.jpg",
+  releaseDate: "15/03/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/88"
+},
+{
+  season: 1,
+  number: 89,
+  title: "¡Más allá de la aventura!.",
+  duration: "24m",
+  description: "Con el misterio de Lucius resuelto, Liko y Roy miran hacia el futuro, listos para embarcarse en nuevas aventuras con sus amigos y Pokémon.",
+  img: "https://image.tmdb.org/t/p/w300/7F6CvGQANnr521wVIMNHN1wkUOy.jpg",
+  releaseDate: "22/03/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/89"
+},
+{
+  season: 1,
+  number: 90,
+  title: "Hacia el gran cielo, de nuevo Parte 1.",
+  duration: "24m",
+  description: "Una nueva trama comienza cuando los Tacleadas de Voltios reciben una nueva misión que los llevará a una región inexplorada.",
+  img: "https://image.tmdb.org/t/p/w300/luf4FhAZRs8GfwguAs7V41xUNiP.jpg",
+  releaseDate: "12/04/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/90"
+},
+{
+  season: 1,
+  number: 91,
+  title: "Hacia el gran cielo, de nuevo Parte 2.",
+  duration: "24m",
+  description: "La continuación de la nueva aventura. El grupo se encuentra con nuevos desafíos y un nuevo rival en su camino hacia el gran cielo.",
+  img: "https://cdn.jkdesu.com/assets/images/animes/video/image/jkvideo_65f5891fdbd7384e155cdbe37ee412e1.jpg",
+  releaseDate: "13/04/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/91"
+},
+{
+  season: 1,
+  number: 92,
+  title: "Siguiendo las señales del Rakurium.",
+  duration: "24m",
+  description: "El Rakurium, un artefacto relacionado con Rakua, comienza a emitir señales que guían al grupo hacia otro misterio antiguo.",
+  img: "https://image.tmdb.org/t/p/w300/vl99pVo5ZPuLQtTpaLYk0ytFuHh.jpg",
+  releaseDate: "19/04/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/92"
+},
+{
+  season: 1,
+  number: 93,
+  title: "¡¿Un apoyo total?! ¡¡Enfrentamiento de fans de Gurumin!!.",
+  duration: "24m",
+  description: "Dot se encuentra en medio de una competencia entre dos clubes de fans rivales de Gurumin, y debe mediar para evitar que la situación se salga de control.",
+  img: "https://image.tmdb.org/t/p/w300/r4mszAdQEM39STp5smADlbpjnQn.jpg",
+  releaseDate: "26/04/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/93"
+},
+{
+  season: 1,
+  number: 94,
+  title: "¡La señorita del Centro Pokémon!.",
+  duration: "24m",
+  description: "Mollie, la sanadora del grupo, comparte la historia de cómo decidió convertirse en la 'señorita' del Centro Pokémon a bordo del Valiente Asagi.",
+  img: "https://image.tmdb.org/t/p/w300/bd3NKwZKmoMbhweRHW1vWgXAFVS.jpg",
+  releaseDate: "03/05/25",
+  language: "Subtitulado",
+  videoUrl: "https://all-anime.net/ver/Pokemon-horizons/T1/94"
+},
