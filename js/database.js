@@ -158,7 +158,7 @@ export const animeData = [
       {
         season: 1,
         number: 11,
-        title: "11. Un caballero defendiendo un trono vacío",
+        title: "Un caballero defendiendo un trono vacío",
         duration: "24 min",
         description:
           "Sung Jinwoo inicia la misión para cambiar de clase y se enfrenta a un enemigo formidable. Mientras, Jinho se reúne con su familia y otros cazadores visitan la isla de Jeju.",
@@ -170,7 +170,7 @@ export const animeData = [
       {
         season: 1,
         number: 12,
-        title: "12. Surge",
+        title: "Surge",
         duration: "24 min",
         description:
           "Mientras Jinwoo se enfrenta a sí mismo e intenta completar el cambio de clase, Choi Jong-in y los cazadores que lo acompañan descubren algo en la isla de Jeju.",
@@ -211,6 +211,15 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
     dateAdded: new Date(), // Hoy
+    episodes: [
+      {
+        season: 1,
+        number: 24,
+        title: "¿Eres el rey de los humanos?",
+        duration: "23 min",
+        img: "https://img1.ak.crunchyroll.com/i/spire4/e7887411c401319d67554559383679631689625399_main.jpg",
+      },
+    ],
   },
   {
     id: "pokemon-viajes",

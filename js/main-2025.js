@@ -313,7 +313,8 @@ $(document).ready(function () {
                         </div>
                         <div class="episode-card-info">
                             <h5 class="episode-card-title">${ep.number}. ${ep.title}</h5>
-                             <p class="episode-card-desc">${ep.description}</p>
+                            <p class="episode-card-meta">${ep.language} • ${ep.releaseDate}</p>
+                            <p class="episode-card-desc">${ep.description}</p>
                         </div>
                     </a>
                 </div>`;
@@ -396,6 +397,9 @@ $(document).ready(function () {
       $("#player-anime-title").text(anime.title);
       $("#player-episode-title").text(
         `Episodio ${episode.number}: ${episode.title}`
+      );
+      $("#player-episode-meta").text(
+        `${episode.language} • ${episode.releaseDate}`
       );
       $("#player-episode-description").text(episode.description);
       $("#episode-iframe").attr("src", episode.videoUrl || "");

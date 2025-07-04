@@ -1315,6 +1315,12 @@ header .navbar ul li a.active {
     margin-bottom: 1rem;
 }
 
+.episode-title-container .player-episode-meta {
+    font-size: 1.4rem;
+    color: var(--grey-text);
+    margin-bottom: 1rem;
+}
+
 .episode-title-container p {
     font-size: 1.4rem;
     color: var(--grey-text);
