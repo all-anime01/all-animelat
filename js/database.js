@@ -4158,16 +4158,21 @@ export const animeData = [
     trailerUrl: "https://www.youtube.com/embed/D1MojtykOOQ?si=2feDCu92lXOq6dJr",
     description:
       "En un mundo repleto de criaturas conocidas como Kaiju, Kafka Hibino siempre quiso ser parte de las Fuerzas de Defensa. Junto a Mina Ashiro, su amiga de la infancia, prometen que ambos lograrán unirse, sin embargo, la vida los enviará por caminos muy diferentes. Kafka trabaja ahora limpiando cadáveres de Kaiju tras las batallas, y en el trabajo conoce a Ren Ichikawa.",
-    genres: ["Acción", "Ciencia Ficción"],
-    rating: 4.8,
-    seasons: 1,
-    episodesTotal: 12,
-    status: "Finalizado",
+    genres: ["Acción", "Ciencia Ficción", "Shonen"],
+    rating: 4.9,
+    ratingCount: "254K",
+    seasons: 2,
+    episodesTotal: 13,
+    status: "En emisión",
     year: 2024,
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 370)), // Calculado desde el final de la T1
+    dateAdded: new Date(), // Hoy
+    audio: "Sub | Dob",
+    creator: "Naoya Matsumoto",
+    contentWarning:
+      "+14 Sangre/Gore, Luces intermitentes, Tabaquismo, Violencia",
     episodes: [
       {
         season: 1,

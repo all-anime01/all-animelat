@@ -207,6 +207,110 @@ $(document).ready(function () {
     applyFilters();
   }
 
+  // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE PELÍCULAS ---
+  function setupPeliculasPage() {
+    const peliculasGrid = $("#peliculas-anime-grid");
+    if (!peliculasGrid.length) return;
+
+    // Reutilizar elementos de filtro de la página de explorar
+    const genreButtonsContainer = $("#genre-filter-buttons");
+    const yearSelect = $("#year-select");
+    const statusSelect = $("#status-select");
+    const exploreSearch = $("#explore-search");
+    const toggleFiltersBtn = $("#toggle-filters-btn");
+    const filtersSection = $(".filters-section");
+
+    filtersSection.hide();
+    toggleFiltersBtn.on("click", () => filtersSection.slideToggle());
+
+    // Filtrar géneros y años solo de las películas
+    const movieData = animeData.filter((a) => a.type === "Película");
+    const genres = [...new Set(movieData.flatMap((a) => a.genres))];
+    genres.forEach((g) =>
+      genreButtonsContainer.append(
+        `<button class="genre-btn" data-genre="${g}">${g}</button>`
+      )
+    );
+
+    const years = [...new Set(movieData.map((a) => a.year))].sort(
+      (a, b) => b - a
+    );
+    yearSelect.append('<option value="all">Todos los años</option>');
+    years.forEach((y) =>
+      yearSelect.append(`<option value="${y}">${y}</option>`)
+    );
+
+    function applyFilters() {
+      const searchQuery = exploreSearch.val().toLowerCase();
+      const selectedGenres = $(".genre-btn.active")
+        .map(function () {
+          return $(this).data("genre");
+        })
+        .get();
+      const selectedYear = yearSelect.val();
+      const selectedStatus = statusSelect.val();
+
+      const filteredData = movieData.filter((anime) => {
+        const matchesSearch = anime.title.toLowerCase().includes(searchQuery);
+        const matchesGenre =
+          selectedGenres.length === 0 ||
+          selectedGenres.every((g) => anime.genres.includes(g));
+        const matchesYear =
+          selectedYear === "all" || anime.year == selectedYear;
+        const matchesStatus =
+          selectedStatus === "all" || anime.status === selectedStatus;
+        return matchesSearch && matchesGenre && matchesYear && matchesStatus;
+      });
+
+      peliculasGrid.empty();
+      if (filteredData.length > 0) {
+        filteredData.forEach((anime) =>
+          peliculasGrid.append(createAnimeCard(anime))
+        );
+      } else {
+        peliculasGrid.append(
+          '<p class="no-results">No se encontraron películas con estos filtros.</p>'
+        );
+      }
+    }
+
+    exploreSearch.on("input", debounce(applyFilters, 300));
+    genreButtonsContainer.on("click", ".genre-btn", function () {
+      $(this).toggleClass("active");
+      applyFilters();
+    });
+    yearSelect.on("change", applyFilters);
+    statusSelect.on("change", applyFilters);
+
+    applyFilters();
+  }
+
+  // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE FAVORITOS ---
+  function setupFavoritesPage() {
+    const favoritesGrid = $("#favorites-anime-grid");
+    if (!favoritesGrid.length) return;
+
+    const favoriteIds =
+      JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
+
+    favoritesGrid.empty();
+
+    if (favoriteIds.length === 0) {
+      favoritesGrid.append(
+        '<p class="no-results">Aún no has añadido ningún anime a tu lista de favoritos. ¡Usa el ícono del marcador (🔖) en la página de un anime para guardarlo aquí!</p>'
+      );
+      return;
+    }
+
+    const favoriteAnimes = animeData.filter((anime) =>
+      favoriteIds.includes(anime.id)
+    );
+
+    favoriteAnimes.forEach((anime) => {
+      favoritesGrid.append(createAnimeCard(anime));
+    });
+  }
+
   // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE DETALLES ---
   function populateAnimeDetailsPage() {
     const container = $("#anime-detail-hero");
@@ -223,8 +327,6 @@ $(document).ready(function () {
 
     document.title = `Ver ${anime.title} - All-anime`;
 
-    // El botón de Play principal siempre apuntará al índice 0 de la lista renderizada,
-    // que por defecto (orden desc) será el último episodio de la última temporada.
     const LATEST_EPISODE_INDEX_IN_RENDERED_LIST = 0;
 
     container.css("background-image", `url(${anime.heroImg})`);
@@ -256,7 +358,6 @@ $(document).ready(function () {
       seasonSelect.append(`<option value="${s}">Temporada ${s}</option>`)
     );
 
-    // Seleccionar la última temporada por defecto
     const latestSeason = Math.max(...seasons);
     seasonSelect.val(latestSeason);
 
@@ -388,7 +489,6 @@ $(document).ready(function () {
 
     debouncedRender();
 
-    // --- Lógica del Reproductor de Episodios (Restaurada y corregida) ---
     const playerModal = $("#episode-player-modal");
     const episodeNavContainer = $("#episode-navigation-cards");
 
@@ -475,7 +575,6 @@ $(document).ready(function () {
       $("body").css("overflow", "auto");
     });
 
-    // --- Lógica de Favoritos ---
     const favoriteBtn = $("#favorite-btn");
 
     function getFavorites() {
@@ -509,32 +608,11 @@ $(document).ready(function () {
       }
     }
 
-    // Estado inicial del botón al cargar la página
     updateFavoriteButtonState(animeId);
 
     favoriteBtn.on("click", function (e) {
       e.preventDefault();
       toggleFavorite(animeId);
-    });
-  }
-
-  // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE CALENDARIO ---
-  function populateCalendarPage() {
-    const last24hList = $("#last-24h-list");
-    const lastWeekList = $("#last-week-list");
-    if (!last24hList.length) return;
-
-    const now = new Date();
-    const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-    const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-
-    animeData.forEach((anime) => {
-      const addedDate = new Date(anime.dateAdded);
-      if (addedDate >= oneDayAgo) {
-        last24hList.append(createAnimeCard(anime));
-      } else if (addedDate >= oneWeekAgo) {
-        lastWeekList.append(createAnimeCard(anime));
-      }
     });
   }
 
@@ -607,7 +685,6 @@ $(document).ready(function () {
       $(this).find(".episode-meta").html($(this).data("original-meta"));
     });
 
-  // --- LÓGICA DE BÚSQUEDA DEL NAVBAR (OPTIMIZADA) ---
   const searchInput = $("#search-input");
   const searchResults = $("#search-results");
 
@@ -635,7 +712,6 @@ $(document).ready(function () {
     );
 
     setTimeout(() => {
-      // Simular latencia de red
       searchResults.empty();
       if (filteredAnime.length > 0) {
         filteredAnime.slice(0, 5).forEach((anime) => {
@@ -667,6 +743,8 @@ $(document).ready(function () {
   // --- INICIALIZAR LAS PÁGINAS ---
   populateHomePage();
   setupExplorePage();
+  setupPeliculasPage();
+  setupFavoritesPage();
   populateAnimeDetailsPage();
   populateCalendarPage();
 });

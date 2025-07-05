@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Películas de Anime - All-anime</title>
+    <title>Mis Favoritos - All-anime</title>
     <link rel="shortcut icon" href="image/logo.ico">
     <link rel="stylesheet" href="css/index-css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -20,8 +20,9 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="explorar.html">Explorar</a></li>
-                <li><a class="active" href="peliculas.html">Películas</a></li>
-                <li><a href="favoritos.html" title="Mis Favoritos"><i class="fas fa-bookmark"></i></a></li>
+                <li><a href="peliculas.html">Películas</a></li>
+                <li><a class="active" href="favoritos.html" title="Mis Favoritos"><i class="fas fa-bookmark"></i></a>
+                </li>
             </ul>
         </nav>
         <div class="header-right">
@@ -37,39 +38,12 @@
     <main class="main-content container">
         <div class="page-header">
             <div class="page-header-controls">
-                <h1>Películas de Anime</h1>
-                <button id="toggle-filters-btn" class="action-btn"><i class="fas fa-filter"></i> Filtros</button>
+                <h1>Mis Favoritos</h1>
             </div>
         </div>
 
-        <section class="filters-section">
-            <div class="filter-group search-filter">
-                <input type="text" id="explore-search" placeholder="Buscar película...">
-            </div>
-            <div class="filter-group">
-                <label>Géneros</label>
-                <div class="genre-buttons" id="genre-filter-buttons">
-                </div>
-            </div>
-            <div class="filters-grid">
-                <div class="filter-group">
-                    <label for="year-select">Año</label>
-                    <select id="year-select" class="filter-select">
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="status-select">Estado</label>
-                    <select id="status-select" class="filter-select">
-                        <option value="all">Todos los estados</option>
-                        <option value="En emisión">En emisión</option>
-                        <option value="Finalizado">Finalizado</option>
-                    </select>
-                </div>
-            </div>
-        </section>
-
         <section class="anime-listing-section">
-            <div class="anime-grid" id="peliculas-anime-grid">
+            <div class="anime-grid" id="favorites-anime-grid">
             </div>
         </section>
     </main>

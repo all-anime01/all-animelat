@@ -93,6 +93,7 @@ header .navbar {
 header .navbar ul {
     list-style: none;
     display: flex;
+    align-items: center;
 }
 
 header .navbar ul li {
@@ -106,6 +107,10 @@ header .navbar ul li a {
     color: var(--light-text);
     transition: color 0.3s;
     text-transform: capitalize;
+}
+
+header .navbar ul li a i {
+    font-size: 2rem;
 }
 
 header .navbar ul li a:hover,
@@ -1089,7 +1094,10 @@ header .navbar ul li a.active {
 
 .episode-img-container img {
     width: 100%;
-    aspect-ratio: 16/9;
+    height: auto;
+    /* Dejar que la altura se ajuste */
+    max-height: 200px;
+    /* Limitar la altura máxima */
     object-fit: cover;
 }
 
@@ -1268,7 +1276,7 @@ header .navbar ul li a.active {
     margin-right: 0.5rem;
 }
 
-/* --- Modal del Reproductor (Restaurado y Funcional) --- */
+/* --- Modal del Reproductor (Nuevo Diseño) --- */
 .episode-player-modal {
     display: none;
     position: fixed;
@@ -1280,66 +1288,49 @@ header .navbar ul li a.active {
     z-index: 3000;
 }
 
-.player-main-content {
+.player-container {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
 }
 
-.player-video-section {
-    flex: 3;
-    /* Más espacio para el video */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+.player-video-wrapper {
+    width: 100%;
+    flex-shrink: 0;
     background-color: #000;
+    aspect-ratio: 16 / 9;
 }
 
 #episode-iframe {
     width: 100%;
     height: 100%;
     border: none;
-    flex-grow: 1;
 }
 
-.player-details-section {
-    flex: 2;
-    /* Menos espacio para los detalles */
-    max-width: 450px;
-    /* Ancho máximo */
-    height: 100%;
+.player-details-wrapper {
+    flex-grow: 1;
     overflow-y: auto;
-    background-color: var(--dark-bg);
     display: flex;
     flex-direction: column;
-    border-left: 1px solid var(--border-color);
 }
 
-.player-details-section .player-header {
-    padding: 1.45rem 2.5rem;
+.player-details-wrapper .player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
     background-color: var(--light-bg);
-    text-align: right;
     border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
 }
 
-.close-player {
-    font-size: 3rem;
-    background: none;
-    color: var(--grey-text);
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.close-player:hover {
-    color: var(--light-text);
+.player-header .player-logo img {
+    height: 30px;
 }
 
 .details-content-wrapper {
     padding: 2.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 .episode-title-container {
@@ -1376,7 +1367,7 @@ header .navbar ul li a.active {
 
 .episode-navigation-cards {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     gap: 1.5rem;
     margin-bottom: 3rem;
 }
@@ -1392,6 +1383,7 @@ header .navbar ul li a.active {
     border: 1px solid var(--border-color);
     transition: all 0.3s;
     color: var(--light-text);
+    flex-basis: 48%;
 }
 
 .nav-episode-card:hover {
@@ -1504,14 +1496,6 @@ header .navbar ul li a.active {
     .slick-next {
         right: -25px !important;
     }
-
-    .player-video-section {
-        flex: 2;
-    }
-
-    .player-details-section {
-        flex: 1;
-    }
 }
 
 @media (max-width: 991px) {
@@ -1581,23 +1565,9 @@ header .navbar ul li a.active {
         margin-bottom: 4rem;
     }
 
-    .player-main-content {
-        flex-direction: column;
-        overflow-y: auto;
-    }
-
-    .player-video-section {
-        flex: 0 0 auto;
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16/9;
-    }
-
-    .player-details-section {
-        flex: 1;
-        height: auto;
-        max-width: 100%;
-        border-left: none;
+    .player-video-wrapper {
+        aspect-ratio: auto;
+        height: 40vh;
     }
 }
 
@@ -1666,6 +1636,10 @@ header .navbar ul li a.active {
 
     .episode-search-wrapper input {
         width: 100%;
+    }
+
+    .episode-navigation-cards {
+        flex-direction: column;
     }
 }
 
@@ -1751,5 +1725,9 @@ header .navbar ul li a.active {
     .anime-logo {
         width: 100%;
         max-width: 280px;
+    }
+
+    .player-video-wrapper {
+        height: 30vh;
     }
 }

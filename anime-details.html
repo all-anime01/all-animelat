@@ -23,7 +23,8 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="explorar.html">Explorar</a></li>
-                <li><a href="#">Películas</a></li>
+                <li><a href="peliculas.html">Películas</a></li>
+                <li><a href="favoritos.html" title="Mis Favoritos"><i class="fas fa-bookmark"></i></a></li>
             </ul>
         </nav>
         <div class="header-right">
@@ -84,12 +85,15 @@
     </div>
 
     <div class="episode-player-modal" id="episode-player-modal">
-        <div class="player-main-content">
-            <div class="player-video-section">
+        <div class="player-container">
+            <div class="player-video-wrapper">
                 <iframe id="episode-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
-            <div class="player-details-section">
+            <div class="player-details-wrapper">
                 <div class="player-header">
+                    <a href="index.html" class="player-logo">
+                        <img src="logo-all-anime.svg" alt="All-Anime Logo">
+                    </a>
                     <button class="close-player" id="close-player-modal">×</button>
                 </div>
                 <div class="details-content-wrapper">
