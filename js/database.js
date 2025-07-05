@@ -2118,9 +2118,9 @@ export const animeData = [
   {
     id: "bleach-thousand-year-blood-war",
     title: "Bleach: Sennen Kessen-hen",
-    img: "/image/Bleach-thousand-year-blood-war/T3/p.jpg",
+    img: "image/Bleach-thousand-year-blood-war/T3/p.jpg",
     heroImg:
-      "https://pbs.twimg.com/media/GR5dmOPbwAEtCK1?format=jpg&name=large",
+      "https://m.media-amazon.com/images/S/pv-target-images/f88c64f87afab23e4b3f69a14238c5c8f922034927e8e0bcd21fa05d9c22772b.jpg",
     logoImg:
       "https://public-rf-upload.minhawebradio.net/185248/editor/27f6f8ce13d554ca42198f0d6edaf684.png",
     trailerUrl: "https://www.youtube.com/embed/53_QT4NSB48",
