@@ -16,14 +16,9 @@ $(document).ready(function () {
             <div class="anime-card">
                 <a href="anime-details.html?id=${anime.id}">
                     <div class="card-image-container">
-                        <picture>
-                            <source media="(max-width: 480px)" srcset="${
-                              anime.imgMobile || anime.img
-                            }">
-                            <img src="${
-                              anime.img
-                            }" alt="${anime.title}" loading="lazy">
-                        </picture>
+                        <img src="${
+                          anime.img
+                        }" alt="${anime.title}" loading="lazy">
                         <div class="quality-tag">${anime.quality}</div>
                         <div class="card-overlay">
                             <div class="overlay-content">
@@ -126,10 +121,10 @@ $(document).ready(function () {
     }
   }
 
-  // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE EXPLORAR ---
-  function setupExplorePage() {
-    const exploreGrid = $("#explore-anime-grid");
-    if (!exploreGrid.length) return;
+  // --- LÓGICA DE FILTROS GENÉRICA ---
+  function setupFilterPage(gridSelector, sourceData) {
+    const grid = $(gridSelector);
+    if (!grid.length) return;
 
     const genreButtonsContainer = $("#genre-filter-buttons");
     const yearSelect = $("#year-select");
@@ -139,48 +134,63 @@ $(document).ready(function () {
     const toggleFiltersBtn = $("#toggle-filters-btn");
     const filtersSection = $(".filters-section");
 
-    filtersSection.hide();
-    toggleFiltersBtn.on("click", () => filtersSection.slideToggle());
+    if (toggleFiltersBtn.length) {
+      filtersSection.hide();
+      toggleFiltersBtn.on("click", () => filtersSection.slideToggle());
+    }
 
-    const genres = [...new Set(animeData.flatMap((a) => a.genres))];
-    genres.forEach((g) =>
-      genreButtonsContainer.append(
-        `<button class="genre-btn" data-genre="${g}">${g}</button>`
-      )
-    );
+    const genres = [...new Set(sourceData.flatMap((a) => a.genres))];
+    if (genreButtonsContainer.length) {
+      genreButtonsContainer.empty();
+      genres.forEach((g) =>
+        genreButtonsContainer.append(
+          `<button class="genre-btn" data-genre="${g}">${g}</button>`
+        )
+      );
+    }
 
-    const years = [...new Set(animeData.map((a) => a.year))].sort(
+    const years = [...new Set(sourceData.map((a) => a.year))].sort(
       (a, b) => b - a
     );
-    yearSelect.append('<option value="all">Todos los años</option>');
-    years.forEach((y) =>
-      yearSelect.append(`<option value="${y}">${y}</option>`)
-    );
+    if (yearSelect.length) {
+      yearSelect.empty().append('<option value="all">Todos los años</option>');
+      years.forEach((y) =>
+        yearSelect.append(`<option value="${y}">${y}</option>`)
+      );
+    }
 
     function applyFilters() {
-      const searchQuery = exploreSearch.val().toLowerCase();
-      const selectedGenres = $(".genre-btn.active")
-        .map(function () {
-          return $(this).data("genre");
-        })
-        .get();
-      const selectedYear = yearSelect.val();
-      const selectedType = typeSelect.val();
-      const selectedStatus = statusSelect.val();
+      const searchQuery = exploreSearch.val()
+        ? exploreSearch.val().toLowerCase()
+        : "";
+      const selectedGenres = genreButtonsContainer.length
+        ? $(".genre-btn.active")
+            .map(function () {
+              return $(this).data("genre");
+            })
+            .get()
+        : [];
+      const selectedYear = yearSelect.length ? yearSelect.val() : "all";
+      const selectedType = typeSelect.length ? typeSelect.val() : "all";
+      const selectedStatus = statusSelect.length ? statusSelect.val() : "all";
 
-      const filteredData = animeData.filter((anime) => {
+      const filteredData = sourceData.filter((anime) => {
         const matchesSearch = anime.title.toLowerCase().includes(searchQuery);
         const matchesGenre =
           selectedGenres.length === 0 ||
           selectedGenres.every((g) => anime.genres.includes(g));
         const matchesYear =
-          selectedYear === "all" || anime.year == selectedYear;
+          yearSelect.length === 0 ||
+          selectedYear === "all" ||
+          anime.year == selectedYear;
         const matchesType =
-          !typeSelect ||
-          typeSelect.val() === "all" ||
+          typeSelect.length === 0 ||
+          selectedType === "all" ||
           anime.type === selectedType;
         const matchesStatus =
-          selectedStatus === "all" || anime.status === selectedStatus;
+          statusSelect.length === 0 ||
+          selectedStatus === "all" ||
+          anime.status === selectedStatus;
         return (
           matchesSearch &&
           matchesGenre &&
@@ -190,105 +200,26 @@ $(document).ready(function () {
         );
       });
 
-      exploreGrid.empty();
+      grid.empty();
       if (filteredData.length > 0) {
-        filteredData.forEach((anime) =>
-          exploreGrid.append(createAnimeCard(anime))
-        );
+        filteredData.forEach((anime) => grid.append(createAnimeCard(anime)));
       } else {
-        exploreGrid.append(
-          '<p class="no-results">No se encontraron animes con estos filtros.</p>'
+        grid.append(
+          '<p class="no-results">No se encontraron resultados con estos filtros.</p>'
         );
       }
     }
 
-    exploreSearch.on("input", debounce(applyFilters, 300));
-    genreButtonsContainer.on("click", ".genre-btn", function () {
-      $(this).toggleClass("active");
-      applyFilters();
-    });
-    yearSelect.on("change", applyFilters);
-    if (typeSelect.length) {
-      typeSelect.on("change", applyFilters);
-    }
-    statusSelect.on("change", applyFilters);
-
-    applyFilters();
-  }
-
-  // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE PELÍCULAS ---
-  function setupPeliculasPage() {
-    const peliculasGrid = $("#peliculas-anime-grid");
-    if (!peliculasGrid.length) return;
-
-    const movieData = animeData.filter((a) => a.type === "Película");
-
-    const genreButtonsContainer = $("#genre-filter-buttons");
-    const yearSelect = $("#year-select");
-    const statusSelect = $("#status-select");
-    const exploreSearch = $("#explore-search");
-    const toggleFiltersBtn = $("#toggle-filters-btn");
-    const filtersSection = $(".filters-section");
-
-    filtersSection.hide();
-    toggleFiltersBtn.on("click", () => filtersSection.slideToggle());
-
-    const genres = [...new Set(movieData.flatMap((a) => a.genres))];
-    genres.forEach((g) =>
-      genreButtonsContainer.append(
-        `<button class="genre-btn" data-genre="${g}">${g}</button>`
-      )
-    );
-
-    const years = [...new Set(movieData.map((a) => a.year))].sort(
-      (a, b) => b - a
-    );
-    yearSelect.append('<option value="all">Todos los años</option>');
-    years.forEach((y) =>
-      yearSelect.append(`<option value="${y}">${y}</option>`)
-    );
-
-    function applyFilters() {
-      const searchQuery = exploreSearch.val().toLowerCase();
-      const selectedGenres = $(".genre-btn.active")
-        .map(function () {
-          return $(this).data("genre");
-        })
-        .get();
-      const selectedYear = yearSelect.val();
-      const selectedStatus = statusSelect.val();
-
-      const filteredData = movieData.filter((anime) => {
-        const matchesSearch = anime.title.toLowerCase().includes(searchQuery);
-        const matchesGenre =
-          selectedGenres.length === 0 ||
-          selectedGenres.every((g) => anime.genres.includes(g));
-        const matchesYear =
-          selectedYear === "all" || anime.year == selectedYear;
-        const matchesStatus =
-          selectedStatus === "all" || anime.status === selectedStatus;
-        return matchesSearch && matchesGenre && matchesYear && matchesStatus;
+    if (exploreSearch.length)
+      exploreSearch.on("input", debounce(applyFilters, 300));
+    if (genreButtonsContainer.length)
+      genreButtonsContainer.on("click", ".genre-btn", function () {
+        $(this).toggleClass("active");
+        applyFilters();
       });
-
-      peliculasGrid.empty();
-      if (filteredData.length > 0) {
-        filteredData.forEach((anime) =>
-          peliculasGrid.append(createAnimeCard(anime))
-        );
-      } else {
-        peliculasGrid.append(
-          '<p class="no-results">No se encontraron películas con estos filtros.</p>'
-        );
-      }
-    }
-
-    exploreSearch.on("input", debounce(applyFilters, 300));
-    genreButtonsContainer.on("click", ".genre-btn", function () {
-      $(this).toggleClass("active");
-      applyFilters();
-    });
-    yearSelect.on("change", applyFilters);
-    statusSelect.on("change", applyFilters);
+    if (yearSelect.length) yearSelect.on("change", applyFilters);
+    if (typeSelect.length) typeSelect.on("change", applyFilters);
+    if (statusSelect.length) statusSelect.on("change", applyFilters);
 
     applyFilters();
   }
@@ -335,9 +266,27 @@ $(document).ready(function () {
 
     document.title = `Ver ${anime.title} - All-anime`;
 
+    // Inyectar CSS para la imagen de fondo adaptable
+    const styleBlock = `
+        <style id="hero-style">
+            .anime-detail-hero {
+                background-image: url('${anime.heroImg}');
+            }
+            @media (max-width: 480px) {
+                .anime-detail-hero {
+                    background-image: linear-gradient(to top, rgba(16, 16, 16, 1) 20%, transparent 80%), url('${
+                      anime.imgMobile || anime.img
+                    }');
+                    background-position: center top;
+                }
+            }
+        </style>
+    `;
+    $("#hero-style").remove();
+    $("head").append(styleBlock);
+
     const LATEST_EPISODE_INDEX_IN_RENDERED_LIST = 0;
 
-    container.css("background-image", `url(${anime.heroImg})`);
     const heroContent = `
         <div class="hero-content">
             <img src="${anime.logoImg}" alt="${anime.title} Logo" class="anime-logo">
@@ -359,15 +308,19 @@ $(document).ready(function () {
     const seasonSelect = $("#season-select");
     let currentSeasonEpisodes = [];
 
-    const seasons = [...new Set(anime.episodes.map((e) => e.season))].sort(
-      (a, b) => a - b
-    );
-    seasons.forEach((s) =>
-      seasonSelect.append(`<option value="${s}">Temporada ${s}</option>`)
-    );
-
-    const latestSeason = Math.max(...seasons);
-    seasonSelect.val(latestSeason);
+    const seasons =
+      anime.episodes && anime.episodes.length > 0
+        ? [...new Set(anime.episodes.map((e) => e.season))].sort(
+            (a, b) => a - b
+          )
+        : [];
+    if (seasons.length > 0) {
+      seasons.forEach((s) =>
+        seasonSelect.append(`<option value="${s}">Temporada ${s}</option>`)
+      );
+      const latestSeason = Math.max(...seasons);
+      seasonSelect.val(latestSeason);
+    }
 
     function renderEpisodes(seasonNum, searchTerm = "", sortOrder = "desc") {
       if (episodesContainer.hasClass("slick-initialized")) {
@@ -495,7 +448,9 @@ $(document).ready(function () {
       }
     );
 
-    debouncedRender();
+    if (seasons.length > 0) {
+      debouncedRender();
+    }
 
     const playerModal = $("#episode-player-modal");
     const episodeNavContainer = $("#episode-navigation-cards");
@@ -624,6 +579,51 @@ $(document).ready(function () {
     });
   }
 
+  // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE CALENDARIO ---
+  function populateCalendarPage() {
+    const last24hList = $("#last-24h-list");
+    const lastWeekList = $("#last-week-list");
+    if (!last24hList.length) return;
+
+    const now = new Date();
+    const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+    const last24hAnimes = [];
+    const lastWeekAnimes = [];
+
+    animeData.forEach((anime) => {
+      const addedDate = new Date(anime.dateAdded);
+      if (addedDate >= oneDayAgo) {
+        last24hAnimes.push(anime);
+      } else if (addedDate >= oneWeekAgo) {
+        lastWeekAnimes.push(anime);
+      }
+    });
+
+    last24hList.empty();
+    if (last24hAnimes.length > 0) {
+      last24hAnimes.forEach((anime) =>
+        last24hList.append(createAnimeCard(anime))
+      );
+    } else {
+      last24hList.html(
+        '<p class="no-results">No se añadieron animes en las últimas 24 horas.</p>'
+      );
+    }
+
+    lastWeekList.empty();
+    if (lastWeekAnimes.length > 0) {
+      lastWeekAnimes.forEach((anime) =>
+        lastWeekList.append(createAnimeCard(anime))
+      );
+    } else {
+      lastWeekList.html(
+        '<p class="no-results">No se añadieron animes en la última semana.</p>'
+      );
+    }
+  }
+
   // --- EVENTOS GLOBALES Y DE NAVEGACIÓN ---
   $(window).scroll(() =>
     $("header").toggleClass("scrolled", $(window).scrollTop() > 50)
@@ -748,10 +748,13 @@ $(document).ready(function () {
     }
   });
 
-  // --- INICIALIZAR LAS PÁGINAS ---
+  // --- INICIALIZACIÓN DE PÁGINAS ---
   populateHomePage();
-  setupExplorePage();
-  setupPeliculasPage();
+  setupFilterPage("#explore-anime-grid", animeData);
+  setupFilterPage(
+    "#peliculas-anime-grid",
+    animeData.filter((a) => a.type === "Película")
+  );
   setupFavoritesPage();
   populateAnimeDetailsPage();
   populateCalendarPage();

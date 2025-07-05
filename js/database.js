@@ -6,12 +6,12 @@ export const animeData = [
     id: "solo-leveling",
     title: "Solo Leveling",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/f2d6d93f5ba4a24bcb3b0d1322a645ff.jpg",
-    imgMobile:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=240,height=360/catalog/crunchyroll/f2d6d93f5ba4a24bcb3b0d1322a645ff.jpg", // Ejemplo de imagen móvil
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-LTR.png",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GDKHZEJ0K-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GDKHZEJ0K-backdrop_wide", // Ejemplo de imagen móvil
     trailerUrl: "https://www.youtube.com/embed/TceDFwPXCuI?si=Pwe8qBK_wKzIZ6a7",
     description:
       "Conocido como el cazador más débil de la humanidad, se encuentra en una lucha constante por la supervivencia. Después de una experiencia cercana a la muerte, adquiere un poder único para subir de nivel.",
@@ -348,11 +348,11 @@ export const animeData = [
     id: "pokemon-horizons",
     title: "Pokémon: Horizons",
     img: "https://a.storyblok.com/f/178900/750x1061/6ccbcbf59b/pokemonhorizons_megavoltagekv.png/m/filters:quality(95)format(webp)",
-    imgMobile:
-      "https://occ-0-8407-90.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABePE8cz2js0sY2K1jngbnt2p1aI8YsKDIY-jpTO2NOVX-W0rSsjg0c914WMg-iz8SqrNjWNV8VnWz9W5dTZUoB2e1KobWIhaCBt0.jpg?r=9f3",
     heroImg: "image/Pokemon-Horizons/b.avif",
     logoImg:
       "https://upload.wikimedia.org/wikipedia/commons/e/e8/Pok%C3%A9mon_Horizons_The_Series_Logo.png",
+    imgMobile:
+      "https://occ-0-8407-90.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABePE8cz2js0sY2K1jngbnt2p1aI8YsKDIY-jpTO2NOVX-W0rSsjg0c914WMg-iz8SqrNjWNV8VnWz9W5dTZUoB2e1KobWIhaCBt0.jpg?r=9f3",
     trailerUrl: "https://www.youtube.com/embed/_c_hMehCORQ",
     description:
       "Liko, una chica de Pardea con un misterioso colgante, y Roy, un chico de Kantou que sostiene una misteriosa bola monstruosa. ¡Comienzan sus nuevas aventuras en el vasto mundo de Pokémon!",
@@ -1594,12 +1594,12 @@ export const animeData = [
     id: "ranger-reject",
     title: "Ranger Reject (Sentai Daishikkaku)",
     img: "image/ranger-reject/p.webp",
-    imgMobile:
-      "https://pbs.twimg.com/media/E0tz4-EXIAIHpAt?format=jpg&name=4096x4096",
     heroImg:
       "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/5B4B5C84C51346E6CA9543543F7E15EA983AED4D3B67D82250B5E5CE40E535F6/scale?width=1440&aspectRatio=1.78&format=jpeg",
     logoImg:
       "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/91F7042D5FB294151FCDDA7094E94A94D0EBC84D6F0B44E7DB03A99C218AE121/scale?width=1440&aspectRatio=1.78&format=png",
+    imgMobile:
+      "https://i.pinimg.com/736x/20/b8/95/20b895d79b605fca9b3b0777be3a556a.jpg",
     description:
       "Con su antiguo escondite y sus jefes aniquilados, los Dusters supervivientes llegan a un acuerdo secreto con el equipo Ranger para participar en el enfrentamiento dominical, uno en el que siempre serán derrotados. ¡Cansado de esta farsa, el Luchador D finalmente da un paso al frente para hacer un cambio de una vez por todas!.",
     genres: ["Acción", "Aventura", "Comedia", "Fantasía"],
@@ -4192,6 +4192,8 @@ export const animeData = [
       "https://static.crunchyroll.com/fms/landscape_large/94/png/e07b68b9-58b8-4a6b-94c0-c2757e8531f1.jpg",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/53e9c240-3200-4b4e-94ed-1f357554f712.png",
+    imgMobile:
+      "https://a.storyblok.com/f/178900/1169x1653/a00948641c/kaiju-no-8-vis4.jpeg/m/filters:quality(95)format(webp)",
     trailerUrl: "https://www.youtube.com/embed/D1MojtykOOQ?si=2feDCu92lXOq6dJr",
     description:
       "En un mundo repleto de criaturas conocidas como Kaiju, Kafka Hibino siempre quiso ser parte de las Fuerzas de Defensa. Junto a Mina Ashiro, su amiga de la infancia, prometen que ambos lograrán unirse, sin embargo, la vida los enviará por caminos muy diferentes. Kafka trabaja ahora limpiando cadáveres de Kaiju tras las batallas, y en el trabajo conoce a Ren Ichikawa.",
@@ -4365,6 +4367,8 @@ export const animeData = [
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GEXH3W2EZ-backdrop_wide",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GEXH3W2EZ-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GEXH3W2EZ-backdrop_wide",
     trailerUrl: "https://www.youtube.com/embed/D1MojtykOOQ?si=2feDCu92lXOq6dJr",
     description:
       "En un mundo victoriano de vapor, barcos de guerra y horrores ocultos, Zhou Mingrui despierta como Klein Moretti. Transita entre la luz y la oscuridad, enzarzado con Iglesias en guerra. Esta es la leyenda de un potencial ilimitado... y de un peligro indescriptible.",
