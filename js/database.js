@@ -6953,7 +6953,7 @@ export const animeData = [
     },
     {
         season: 4, number: 237, title: "¡La ciudad del agua tiembla! ¡Iceburg es el objetivo!", releaseDate: "Mayo 8, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/237.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe", description: "Luffy derrota a Usopp, quien abandona la tripulación. Mientras tanto, el alcalde Iceburg es atacado por unos misteriosos enmascarados."
-    }
+    },
 
       // Temporada 21: Egghead (Episodios 1089 - Presente)
       {
