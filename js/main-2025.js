@@ -453,7 +453,6 @@ $(document).ready(function () {
 
     const playerModal = $("#episode-player-modal");
 
-    // --- Lógica de Votos ---
     function getEpisodeVotes() {
       return JSON.parse(localStorage.getItem("episodeVotes")) || {};
     }
@@ -494,11 +493,13 @@ $(document).ready(function () {
           )
         : -1;
 
-      $("#player-anime-link").attr("href", `anime-details.html?id=${anime.id}`);
-      $("#player-anime-title").text(anime.title);
+      // Poblar nueva interfaz
+      $("#player-anime-link")
+        .attr("href", `anime-details.html?id=${anime.id}`)
+        .text(anime.title);
       $("#player-episode-title").text(`E${episode.number} - ${episode.title}`);
       $("#player-episode-meta").html(
-        `<span class="quality-tag-detail">${anime.quality}</span><span>${episode.language}</span><span>Lanzado el ${episode.releaseDate}</span>`
+        `<span>${episode.language}</span> &bull; <span>Lanzado el ${episode.releaseDate}</span>`
       );
       $("#player-episode-description").text(episode.description);
       $("#episode-iframe").attr("src", episode.videoUrl || "");
@@ -633,23 +634,36 @@ $(document).ready(function () {
     }
 
     function updateFavoriteButtonState(id) {
+      const playerFavBtn = $("#player-favorite-btn");
       if (isFavorite(id)) {
-        favoriteBtn.addClass("is-favorite");
-        favoriteBtn.find("i").removeClass("far").addClass("fas");
-        favoriteBtn.attr("title", "Quitar de Favoritos");
+        favoriteBtn.add(playerFavBtn).addClass("is-favorite");
+        favoriteBtn
+          .add(playerFavBtn)
+          .find("i")
+          .removeClass("far")
+          .addClass("fas");
+        favoriteBtn.add(playerFavBtn).attr("title", "Quitar de Favoritos");
       } else {
-        favoriteBtn.removeClass("is-favorite");
-        favoriteBtn.find("i").removeClass("fas").addClass("far");
-        favoriteBtn.attr("title", "Agregar a Favoritos");
+        favoriteBtn.add(playerFavBtn).removeClass("is-favorite");
+        favoriteBtn
+          .add(playerFavBtn)
+          .find("i")
+          .removeClass("fas")
+          .addClass("far");
+        favoriteBtn.add(playerFavBtn).attr("title", "Agregar a Favoritos");
       }
     }
 
     updateFavoriteButtonState(animeId);
 
-    favoriteBtn.on("click", function (e) {
-      e.preventDefault();
-      toggleFavorite(animeId);
-    });
+    $(document).on(
+      "click",
+      "#favorite-btn, #player-favorite-btn",
+      function (e) {
+        e.preventDefault();
+        toggleFavorite(animeId);
+      }
+    );
   }
 
   // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE CALENDARIO ---
