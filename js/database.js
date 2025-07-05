@@ -2977,7 +2977,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La tensión entre Rin y Suguro aumenta a medida que descubren más sobre el pasado de la Secta Myoda y la conexión de la familia de Suguro con el Rey Impuro.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/5a092102170d37e24a87eb60c6d713c7.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0b48803ac69f06a212320d538968a335.jpg",
         releaseDate: "Enero 21, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/3.html",
@@ -2989,7 +2989,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El traidor que robó el Ojo Izquierdo se revela. Es Saburota Todo, un exorcista que busca el poder del Rey Impuro para sus propios fines.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/1a3f658a5e84122d6eb561be92d3f66c.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/884eecb5b509524e89a3add0f4a2de40.jpg",
         releaseDate: "Enero 28, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/4.html",
@@ -3001,7 +3001,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con ambos ojos robados, Todo comienza el ritual para revivir al Rey Impuro. Los exorcistas de Kioto y de la Academia deben unir fuerzas para detenerlo.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/7d14d34f036709f3e4b77f8d68d0bb51.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c2fa0d38216fc2ff1abadcb3dc0f416d.jpg",
         releaseDate: "Febrero 4, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/5.html",
@@ -3013,7 +3013,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El Rey Impuro revive y libera una miasma mortal que se extiende por Kioto. Rin, incapaz de desenvainar su espada, se siente impotente.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/7c50a0005d5193c721c5f3e9c704f58c.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/29a3e21cc23eae0fb280a0bd6636dee1.jpg",
         releaseDate: "Febrero 11, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/6.html",
@@ -3025,7 +3025,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras los exorcistas luchan para contener al Rey Impuro, Rin lucha con su miedo interior. Shura y Suguro lo confrontan para que recupere su determinación.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/96b4cd48a58e086ca228c2ddb508f7aa.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/f9542da98ba2e147a5d7e4bbbfb06ba0.jpg",
         releaseDate: "Febrero 18, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/7.html",
@@ -3037,7 +3037,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Rin finalmente supera su miedo y desenvaina la Kurikara, liberando sus llamas azules para enfrentarse al Rey Impuro.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3abf600495393d14212711107c8053f3.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ad9420c9891130fffb8c0939e24dcbe4.jpg",
         releaseDate: "Febrero 25, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/8.html",
@@ -3049,7 +3049,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con la ayuda de sus amigos, que ahora confían en él, Rin combina sus llamas con un poderoso ritual para destruir el corazón del Rey Impuro.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/5dd3df24d0840c47683ca5103c804f5e.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/bb82065652f96960562791e74b10e5fb.jpg",
         releaseDate: "Marzo 4, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/9.html",
@@ -3061,7 +3061,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La batalla ha terminado, pero las secuelas permanecen. Yukio se siente atormentado por sus propias dudas y la misteriosa mancha en su ojo.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/076f87425b06d11f71f6424e6c9867c2.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2f54a0d9686345ea0d6f74d50fd06225.jpg",
         releaseDate: "Marzo 11, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/10.html",
@@ -3073,7 +3073,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Rin y Suguro finalmente se reconcilian, reconociéndose como rivales y amigos. El grupo regresa a la Academia de la Vera Cruz, más unido que nunca.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/ed9587428f52281a8c3d91753443e49e.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/da5ccaf9168c073a12690b349b4e1aec.jpg",
         releaseDate: "Marzo 18, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/11.html",
@@ -3085,7 +3085,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con la ayuda de sus amigos, Rin se enfrenta al Rey Impuro en una batalla final para salvar Kioto. Deberá dominar sus llamas para proteger a todos.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8a44502d354564c7003b41d063717df3.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/85bd709d9b708d2d23326d7859932eff.jpg",
         releaseDate: "Marzo 25, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/12.html",
@@ -3382,7 +3382,7 @@ export const animeData = [
       },
       // Temporada 5 - The Blue Night Saga
       {
-        season: 5,
+        season: 4,
         number: 1,
         title: "Shiro y Yuri",
         duration: "23 min",
@@ -3394,7 +3394,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/1.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 2,
         title: "La verdad",
         duration: "23 min",
@@ -3406,7 +3406,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/2.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 3,
         title: "Solo",
         duration: "23 min",
@@ -3418,7 +3418,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/3.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 4,
         title: "El despertar de Satán",
         duration: "23 min",
@@ -3430,7 +3430,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/4.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 5,
         title: "Algo más importante que el cuerpo",
         duration: "23 min",
@@ -3442,7 +3442,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/5.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 6,
         title: "Si yo no existiera",
         duration: "23 min",
@@ -3454,7 +3454,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/6.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 7,
         title: "Víspera",
         duration: "23 min",
@@ -3466,7 +3466,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/7.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 8,
         title: "La Noche Azul",
         duration: "23 min",
@@ -3478,7 +3478,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/8.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 9,
         title: "Combate a muerte",
         duration: "23 min",
@@ -3490,7 +3490,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/9.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 10,
         title: "Luz",
         duration: "23 min",
@@ -3502,7 +3502,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/10.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 11,
         title: "Promesa",
         duration: "23 min",
@@ -3514,7 +3514,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/11.html",
       },
       {
-        season: 5,
+        season: 4,
         number: 12,
         title: "Gracias",
         duration: "23 min",
@@ -4288,6 +4288,66 @@ export const animeData = [
     ],
   },
   {
+    id: "Lord-of-Mysteries",
+    title: "Lord of Mysteries: Guimi Zhi Zhu: Xiaochou Pian",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/e0585c8ccca90394e03d7ee4e7b597db.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GEXH3W2EZ-backdrop_wide",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GEXH3W2EZ-title_logo-en-us",
+    trailerUrl: "https://www.youtube.com/embed/D1MojtykOOQ?si=2feDCu92lXOq6dJr",
+    description:
+      "En un mundo victoriano de vapor, barcos de guerra y horrores ocultos, Zhou Mingrui despierta como Klein Moretti. Transita entre la luz y la oscuridad, enzarzado con Iglesias en guerra. Esta es la leyenda de un potencial ilimitado... y de un peligro indescriptible.",
+    genres: ["Acción", "Fantasía", "Misterio", "Suspenso", "Drama"],
+    rating: 4.9,
+    seasons: 1,
+    episodesTotal: 3,
+    status: "En emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado"],
+    dateAdded: new Date(), // Hoy
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "El loco",
+        duration: "34 min",
+        description:
+          "Zhou Mingrui despierta en el cuerpo de Klein Moretti con recuerdos de sus últimos días antes de darse un tiro.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a30bbcef8b9b9b149d7aabd5750ffdf7.jpg",
+        releaseDate: "Junio 27, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Lord-of-mysteries/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Beyonder",
+        duration: "36 min",
+        description:
+          "Klein Moretti se une a los Halcones Nocturnos, lo que lo hace descubrir una pista sobre su cuaderno perdido.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e4046c9d54735a0be9307564b2fcf39a.jpg",
+        releaseDate: "Junio 37, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Lord-of-mysteries/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "El códice",
+        duration: "33 min",
+        description:
+          "Para recuperar el códice del clan Antigonus, los Halcones Nocturnos deberán enfrentarse a un poderoso enemigo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fd6367f33ad5e77c099f3eefae0bd00f.jpg",
+        releaseDate: "Julio 4, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Lord-of-mysteries/T1/3.html",
+      },
+    ],
+  },
+  {
     id: "one-piece",
     title: "One Piece",
     img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/757bae5a21039bac6ebace5de9affcd8.jpe",
@@ -4315,7 +4375,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 14)), // Calculado desde el último episodio emitido
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 6)), // Calculado desde el último episodio emitido
     episodes: [
       // Temporada 1: East Blue (Episodios 1-61)
       {
@@ -7825,6 +7885,400 @@ export const animeData = [
         releaseDate: "Junio 4, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/284.html",
+      },
+      {
+        season: 4,
+        number: 285,
+        title: "¡Recuperar las 5 llaves! ¡Los Sombrero de Paja vs. el CP9!",
+        duration: "24 min",
+        description:
+          "Con los planos destruidos, el único objetivo es rescatar a Robin. La tripulación se enfrenta a los miembros del CP9 para conseguir las llaves de las esposas de Kairoseki de Robin.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
+        releaseDate: "Junio 11, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/285.html",
+      },
+      {
+        season: 4,
+        number: 286,
+        title:
+          "¡El poder de las Frutas del Diablo! ¡Las transformaciones de Kaku y Jabra!",
+        duration: "24 min",
+        description:
+          "Kaku y Jabra revelan los poderes de las Frutas del Diablo que acaban de comer: Kaku se convierte en un hombre-jirafa y Jabra en un hombre-lobo.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
+        releaseDate: "Junio 18, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/286.html",
+      },
+      {
+        season: 4,
+        number: 287,
+        title:
+          "¡Aunque por ello muera, no pienso pegarte! La caballerosidad de Sanji",
+        duration: "24 min",
+        description:
+          "Sanji se enfrenta a Kalifa, pero su código de no golpear a una mujer lo pone en una desventaja mortal contra los poderes de la agente del CP9.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
+        releaseDate: "Junio 25, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/287.html",
+      },
+      {
+        season: 4,
+        number: 288,
+        title: "¡El error de Fukurou! Mi cola es el agua de la vida",
+        duration: "24 min",
+        description:
+          "Franky lucha contra Fukurou, un agente del CP9 que presume de no dejar escapar ningún secreto, pero accidentalmente revela información crucial sobre las llaves.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
+        releaseDate: "Julio 2, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/288.html",
+      },
+      {
+        season: 4,
+        number: 289,
+        title:
+          "¡Explota la nueva técnica de Zoro! ¿El nombre de la espada es Sogeking?",
+        duration: "24 min",
+        description:
+          "Zoro y Sogeking se enfrentan a Kaku y Jabra. Zoro se ve obligado a usar a Sogeking como una espada viviente en una técnica improvisada y cómica.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
+        releaseDate: "Julio 9, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/289.html",
+      },
+      {
+        season: 4,
+        number: 290,
+        title: "¡Incontrolable! La Rumble Ball prohibida de Chopper",
+        duration: "24 min",
+        description:
+          "Acorralado por Kumadori, Chopper toma una decisión drástica y consume tres Rumble Balls, transformándose en una criatura gigante y fuera de control: el Monster Point.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
+        releaseDate: "Julio 16, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/290.html",
+      },
+      {
+        season: 4,
+        number: 291,
+        title:
+          "¡El regreso del jefe Luffy! Un sueño, una realidad o una lotería",
+        duration: "24 min",
+        description:
+          "Un especial de época feudal donde Luffy es un jefe de policía que debe resolver un caso relacionado con una misteriosa chica y boletos de lotería.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
+        releaseDate: "Julio 23, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/291.html",
+      },
+      {
+        season: 4,
+        number: 292,
+        title:
+          "¡La gran carrera de mochis en el castillo! La conspiración de la nariz roja",
+        duration: "24 min",
+        description:
+          "Continuación del especial de época. Luffy y la banda participan en una caótica carrera para entregar mochis, mientras Buggy planea robar el premio.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
+        releaseDate: "Julio 30, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/292.html",
+      },
+      {
+        season: 4,
+        number: 293,
+        title:
+          "¡Kalifa, la maestra de las burbujas! Nami se adentra en una trampa de jabón",
+        duration: "24 min",
+        description:
+          "Nami llega para salvar a Sanji y se enfrenta a Kalifa, quien ha comido la fruta Awa Awa, que le permite limpiar el poder de sus oponentes.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
+        releaseDate: "Agosto 6, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/293.html",
+      },
+      {
+        season: 4,
+        number: 294,
+        title: "¡Las resonantes malas noticias! ¡La Buster Call es invocada!",
+        duration: "24 min",
+        description:
+          "Spandam, en un acto de pánico, presiona accidentalmente el Den Den Mushi dorado, invocando una Buster Call sobre Enies Lobby.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
+        releaseDate: "Agosto 13, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/294.html",
+      },
+      {
+        season: 4,
+        number: 295,
+        title: "¡¿Cinco Namis?! ¡El contraataque es con un espejismo!",
+        duration: "24 min",
+        description:
+          "Nami finalmente domina su Clima-Tact perfeccionado y utiliza la técnica 'Mirage Tempo' para confundir y derrotar a Kalifa.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
+        releaseDate: "Agosto 20, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/295.html",
+      },
+      {
+        season: 4,
+        number: 296,
+        title: "¡La decisión de Nami! ¡Atacar al incontrolable Chopper!",
+        duration: "24 min",
+        description:
+          "Con Chopper fuera de control en su forma Monster Point, Nami debe tomar una difícil decisión para detenerlo sin hacerle daño.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
+        releaseDate: "Agosto 27, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/296.html",
+      },
+      {
+        season: 4,
+        number: 297,
+        title: "¡¿Aparece el cazador Sanji?! Una elegía para el lobo mentiroso",
+        duration: "24 min",
+        description:
+          "Sanji se enfrenta a Jabra, cuya fruta Zoan de lobo y su dominio del Tekkai Kenpo lo convierten en un oponente formidable y tramposo.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
+        releaseDate: "Septiembre 3, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/297.html",
+      },
+      {
+        season: 4,
+        number: 298,
+        title:
+          "¡La patada abrasadora! El juego de piernas de Sanji a toda potencia",
+        duration: "24 min",
+        description:
+          "Sanji desata su nueva y poderosa técnica, 'Diable Jambe', sobrecalentando su pierna para asestar una patada final y ardiente a Jabra.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
+        releaseDate: "Septiembre 10, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/298.html",
+      },
+      {
+        season: 4,
+        number: 299,
+        title:
+          "¡El fiero ataque de las espadas desenvainadas! ¡Zoro vs. Kaku, el poderoso duelo de espadachines!",
+        duration: "24 min",
+        description:
+          "Zoro lucha contra Kaku, cuya forma de jirafa y su Rankyaku le otorgan un estilo de lucha impredecible con cuatro espadas.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
+        releaseDate: "Septiembre 17, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/299.html",
+      },
+      {
+        season: 4,
+        number: 300,
+        title:
+          "¡Zoro, el dios feroz! ¡La encarnación de Asura revelada por su alma!",
+        duration: "24 min",
+        description:
+          "Llevado al límite, Zoro manifiesta una nueva y demoníaca técnica, el 'Kyuutoryu: Asura', que le permite derrotar el Tekkai más fuerte de Kaku.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
+        releaseDate: "Septiembre 24, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/300.html",
+      },
+      {
+        season: 4,
+        number: 301,
+        title:
+          "¡Spandam se sorprende! El héroe que permanece en la Torre de la Justicia",
+        duration: "24 min",
+        description:
+          "Luffy alcanza a Lucci, Spandam y Robin justo antes de que crucen la Puerta de la Justicia, declarando que nadie se irá a ninguna parte.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
+        releaseDate: "Octubre 1, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/301.html",
+      },
+      {
+        season: 4,
+        number: 302,
+        title:
+          "¡Robin liberada! ¡Luffy vs. Lucci, la cumbre de la batalla decisiva!",
+        duration: "24 min",
+        description:
+          "Franky logra liberar a Robin. Con su amiga a salvo, Luffy se prepara para su batalla final y sin restricciones contra Rob Lucci.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
+        releaseDate: "Octubre 8, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/302.html",
+      },
+      {
+        season: 4,
+        number: 303,
+        title:
+          "¡¿El criminal es el jefe Luffy?! La persecución del gran cerezo en flor desaparecido",
+        duration: "24 min",
+        description:
+          "Especial de época. Luffy y la banda deben encontrar el gran cerezo que ha sido robado antes del festival anual.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
+        releaseDate: "Octubre 15, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/303.html",
+      },
+      {
+        season: 4,
+        number: 304,
+        title:
+          "¡Si no gano, no puedo proteger a nadie! El Gear Third se activa",
+        duration: "24 min",
+        description:
+          "Luchando contra el poder abrumador de Lucci, Luffy revela otra nueva técnica: el Gear Third, que le permite gigantificar sus huesos.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
+        releaseDate: "Octubre 22, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/304.html",
+      },
+      {
+        season: 4,
+        number: 305,
+        title: "¡El aterrador pasado! La justicia desde la sombra y Rob Lucci",
+        duration: "24 min",
+        description:
+          "Se revela el pasado de Rob Lucci, mostrando su retorcido sentido de la 'Justicia Oscura' desde que era un niño asesino para el Gobierno.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
+        releaseDate: "Octubre 29, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/305.html",
+      },
+      {
+        season: 4,
+        number: 306,
+        title:
+          "¡¿Una sirena espejismo?! A medida que la conciencia se desvanece",
+        duration: "24 min",
+        description:
+          "La Buster Call comienza a destruir Enies Lobby. Los Sombrero de Paja y sus aliados deben encontrar una manera de escapar de la isla.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
+        releaseDate: "Noviembre 5, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/306.html",
+      },
+      {
+        season: 4,
+        number: 307,
+        title:
+          "¡La isla que se hunde bajo el fuego! El grito de lamento de Franky",
+        duration: "24 min",
+        description:
+          "Franky llora al ver Enies Lobby arder, recordándole la tragedia de su maestro Tom.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
+        releaseDate: "Noviembre 12, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/307.html",
+      },
+      {
+        season: 4,
+        number: 308,
+        title:
+          "¡Esperar a Luffy! ¡Lucha a muerte en el Puente de la Vacilación!",
+        duration: "24 min",
+        description:
+          "La tripulación se reúne en el Puente de la Vacilación, luchando contra los marines mientras esperan que Luffy derrote a Lucci y puedan escapar.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
+        releaseDate: "Noviembre 19, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/308.html",
+      },
+      {
+        season: 4,
+        number: 309,
+        title:
+          "¡Los sentimientos mostrados con los puños! El Gatling de Luffy a máxima potencia",
+        duration: "24 min",
+        description:
+          "Luffy, al límite de sus fuerzas, se niega a caer y desata un último y desesperado ataque, el Gomu Gomu no Jet Gatling, contra el Rokougan más fuerte de Lucci.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
+        releaseDate: "Noviembre 26, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/309.html",
+      },
+      {
+        season: 4,
+        number: 310,
+        title:
+          "¡Un amigo viene del mar! El lazo más fuerte de los Sombrero de Paja",
+        duration: "24 min",
+        description:
+          "Luffy derrota a Lucci pero queda inmovilizado. Justo cuando todo parece perdido, el Going Merry aparece milagrosamente para rescatarlos.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
+        releaseDate: "Diciembre 3, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T5/310.html",
+      },
+      {
+        season: 4,
+        number: 311,
+        title:
+          "¡La gran huida de toda la banda! El camino a la victoria es para los piratas",
+        duration: "24 min",
+        description:
+          "Gracias a la milagrosa aparición del Going Merry, la tripulación completa logra escapar de la Buster Call y de la destrucción de Enies Lobby.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
+        releaseDate: "Diciembre 10, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T6/311.html",
+      },
+      {
+        season: 4,
+        number: 312,
+        title: "¡Gracias, Merry! La nieve cae sobre el mar de las despedidas",
+        duration: "24 min",
+        description:
+          "El Going Merry sufre daños irreparables y se parte por la mitad. En una emotiva y desgarradora ceremonia, la tripulación le da a su querido barco un funeral vikingo.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
+        releaseDate: "Diciembre 17, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T6/312.html",
+      },
+      {
+        season: 4,
+        number: 313,
+        title:
+          "¡La paz ha sido perturbada! El vicealmirante de la Marina con el Puño del Amor",
+        duration: "24 min",
+        description:
+          "La tripulación regresa a Water 7 para recuperarse. Allí son sorprendidos por la visita del Vicealmirante Garp, quien revela ser el abuelo de Luffy.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
+        releaseDate: "Diciembre 24, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T6/313.html",
+      },
+      {
+        season: 4,
+        number: 314,
+        title:
+          "¡El linaje familiar más fuerte! ¡Se revela la identidad del padre de Luffy!",
+        duration: "24 min",
+        description:
+          "Garp revela no solo su parentesco, sino también la identidad del padre de Luffy: Monkey D. Dragon, el líder del Ejército Revolucionario y el hombre más buscado del mundo.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
+        releaseDate: "Enero 7, 2007",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T6/314.html",
+      },
+      {
+        season: 4,
+        number: 315,
+        title:
+          "Su nombre es 'Nuevo Mundo'. La zona más lejana de la Grand Line",
+        duration: "24 min",
+        description:
+          "Koby y Helmeppo, ahora más fuertes gracias al entrenamiento de Garp, reafirman su sueño. Mientras, Aokiji se encuentra con Robin y le habla sobre su futuro y el significado de Ohara.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
+        releaseDate: "Enero 14, 2007",
+        language: "Sub | Dob",
+        videoUrl: "frame/One-Piece/T6/315.html",
       },
 
       // Temporada 21: Egghead (Episodios 1089 - Presente)

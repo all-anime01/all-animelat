@@ -47,6 +47,7 @@ body {
 img {
     max-width: 100%;
     display: block;
+    height: auto;
 }
 
 /* --- Estilos del Encabezado --- */
@@ -73,6 +74,7 @@ header.scrolled {
 
 header .logo {
     margin-right: 3rem;
+    flex-shrink: 0;
 }
 
 header .logo img {
@@ -114,42 +116,54 @@ header .navbar ul li a.active {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
-/* --- Estilos de Buscador (Desktop) --- */
+/* --- Estilos de Buscador --- */
 .search-container {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
 .search-container .search-icon {
-    font-size: 2rem;
-    color: var(--grey-text);
+    font-size: 1.8rem;
+    color: var(--light-text);
+    /* Icono blanco por defecto */
+    background-color: transparent;
     cursor: pointer;
     position: absolute;
-    right: 1.5rem;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
-    transition: color 0.3s ease;
-    z-index: 1;
+    z-index: 2;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
 }
 
+.search-container .search-icon:hover {
+    color: var(--dark-bg);
+    background-color: var(--light-text);
+}
+
+
 .search-container #search-input {
-    background: transparent;
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 25px;
-    padding: 1rem 4.5rem 1rem 2rem;
+    padding: 1rem 5rem 1rem 2rem;
     color: var(--light-text);
     width: 40px;
+    /* Inicia colapsado */
     opacity: 0;
     cursor: pointer;
     transition: all 0.4s ease;
 }
 
 .search-container.active #search-input {
-    background: var(--card-bg);
     width: 250px;
     opacity: 1;
     cursor: text;
@@ -159,17 +173,24 @@ header .navbar ul li a.active {
     color: var(--secondary-color);
 }
 
+.search-container.active .search-icon:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-bg);
+}
+
 .search-results-dropdown {
     position: absolute;
     top: calc(100% + 10px);
-    left: 0;
+    right: 0;
+    /* Alineado a la derecha */
     display: none;
-    width: 250px;
+    width: 280px;
+    /* Ancho un poco mayor */
     background-color: var(--card-bg);
     border-radius: 8px;
     max-height: 400px;
     overflow-y: auto;
-    z-index: 1001;
+    z-index: 1;
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
@@ -192,6 +213,7 @@ header .navbar ul li a.active {
     object-fit: cover;
     margin-right: 1rem;
     border-radius: 4px;
+    flex-shrink: 0;
 }
 
 .search-results-dropdown .search-feedback {
@@ -206,6 +228,7 @@ header .navbar ul li a.active {
     font-size: 2.5rem;
     color: var(--light-text);
     cursor: pointer;
+    z-index: 3;
 }
 
 /* --- Sección de Héroe (Carrusel) --- */
@@ -335,6 +358,7 @@ header .navbar ul li a.active {
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .section-title {
@@ -692,6 +716,8 @@ header .navbar ul li a.active {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 4rem;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .page-header h1 {
@@ -800,6 +826,7 @@ header .navbar ul li a.active {
 /* --- Estilos de Página de Detalles de Anime --- */
 .anime-detail-hero {
     height: 90vh;
+    min-height: 600px;
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -826,6 +853,7 @@ header .navbar ul li a.active {
 
 .anime-logo {
     max-width: 500px;
+    height: auto;
     margin-bottom: 2rem;
 }
 
@@ -859,6 +887,10 @@ header .navbar ul li a.active {
     line-height: 1.7;
     margin-bottom: 3rem;
     max-width: 90%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .anime-actions {
@@ -1244,6 +1276,7 @@ header .navbar ul li a.active {
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #000;
 }
 
 .player-video-section .player-header {
@@ -1318,7 +1351,7 @@ header .navbar ul li a.active {
 .episode-title-container .player-episode-meta {
     font-size: 1.4rem;
     color: var(--grey-text);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .episode-title-container p {
@@ -1458,6 +1491,11 @@ header .navbar ul li a.active {
     .slick-next {
         right: -25px !important;
     }
+
+    .player-video-section {
+        flex: 0 0 60%;
+        /* Dar más espacio al video en pantallas medianas */
+    }
 }
 
 @media (max-width: 991px) {
@@ -1470,14 +1508,18 @@ header .navbar ul li a.active {
     }
 
     header .navbar {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: -100%;
-        width: 100%;
+        width: 80%;
+        max-width: 350px;
+        height: 100vh;
         background: var(--dark-bg);
         transition: left 0.3s ease;
-        padding: 1rem 0;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        padding: 8rem 2rem 2rem 2rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
     }
 
     header .navbar.nav-toggle {
@@ -1495,7 +1537,8 @@ header .navbar ul li a.active {
 
     header .navbar ul li a {
         display: block;
-        padding: 2rem;
+        padding: 1.5rem;
+        font-size: 1.8rem;
         border-bottom: 1px solid var(--border-color);
     }
 
@@ -1505,6 +1548,7 @@ header .navbar ul li a.active {
 
     .hero-section {
         height: 80vh;
+        min-height: 500px;
     }
 
     .hero-content {
@@ -1523,11 +1567,19 @@ header .navbar ul li a.active {
 
     .player-main-content {
         flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .player-video-section {
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
     }
 
     .player-details-section {
-        height: 50vh;
-        /* Darle una altura definida en mobile */
+        flex: 1;
+        height: auto;
     }
 }
 
@@ -1538,6 +1590,7 @@ header .navbar ul li a.active {
 
     .anime-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1.5rem;
     }
 
     .card-carousel {
@@ -1549,20 +1602,13 @@ header .navbar ul li a.active {
     }
 
     .hero-logo {
-        max-width: 80%;
+        max-width: 250px;
+        max-height: 100px;
     }
 
     .anime-detail-hero .hero-content {
         max-width: 100%;
         padding: 4rem 5%;
-    }
-
-    .anime-description {
-        -webkit-line-clamp: 3;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
     }
 
     .anime-actions {
@@ -1584,6 +1630,7 @@ header .navbar ul li a.active {
 
     .anime-detail-hero {
         height: 70vh;
+        min-height: 450px;
     }
 
     .section-header-episodes {
@@ -1595,13 +1642,20 @@ header .navbar ul li a.active {
         justify-content: space-between;
     }
 
+    .episode-search-wrapper {
+        flex-grow: 1;
+    }
+
     .episode-search-wrapper input {
         width: 100%;
-        flex-grow: 1;
     }
 }
 
 @media (max-width: 480px) {
+    html {
+        font-size: 50%;
+    }
+
     .container {
         width: 95%;
     }
@@ -1646,8 +1700,6 @@ header .navbar ul li a.active {
         display: none;
     }
 
-
-
     .filters-grid {
         grid-template-columns: 1fr;
     }
@@ -1663,5 +1715,18 @@ header .navbar ul li a.active {
     .view-controls {
         flex-grow: 1;
         justify-content: space-around;
+    }
+
+    .nav-episode-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-episode-card.next {
+        flex-direction: column;
+    }
+
+    .nav-episode-card.next .nav-episode-card-info {
+        text-align: center;
     }
 }
