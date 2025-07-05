@@ -226,7 +226,7 @@ $(document).ready(function () {
     let latestEpisodeIndex = 0;
     if (anime.episodes && anime.episodes.length > 0) {
       const sortedEpisodes = [...anime.episodes].sort((a, b) =>
-        a.season !== b.season ? b.season - a.season : b.number - a.number
+        a.season !== b.season ? b.season - a.season : b.number - b.number
       );
       const latestEpisode = sortedEpisodes[0];
       const episodesInSeason = anime.episodes
@@ -343,9 +343,18 @@ $(document).ready(function () {
     $("#modal-video-container").html(
       `<iframe width="560" height="315" src="${anime.trailerUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
     );
-    $("#modal-info-content").html(
-      `<h3>${anime.title}</h3><p>${anime.description}</p>`
-    );
+    $("#modal-info-content").html(`
+        <h3>${anime.title}</h3>
+        <p>${anime.description}</p>
+        <div class="modal-details-grid">
+            <div><strong>Géneros:</strong> ${anime.genres.join(", ")}</div>
+            <div><strong>Audio:</strong> ${anime.audio}</div>
+            <div><strong>Año:</strong> ${anime.year}</div>
+            <div><strong>Estado:</strong> ${anime.status}</div>
+            <div><strong>Creador:</strong> ${anime.creator}</div>
+            <div><strong>Clasificación:</strong> ${anime.contentWarning}</div>
+        </div>
+    `);
 
     $("#open-trailer-modal").on("click", () =>
       $("#trailer-modal").css("display", "flex").hide().fadeIn()
@@ -385,15 +394,38 @@ $(document).ready(function () {
     debouncedRender(); // Initial render
 
     // --- Lógica del Reproductor de Episodios ---
-    let currentEpisodeIndex = 0;
     const playerModal = $("#episode-player-modal");
     const episodeNavContainer = $("#episode-navigation-cards");
 
-    function openPlayer(index) {
-      currentEpisodeIndex = parseInt(index);
-      const episode = currentSeasonEpisodes[currentEpisodeIndex];
+    function openPlayer(displayIndex) {
+      const episode = currentSeasonEpisodes[parseInt(displayIndex)];
       if (!episode) return;
 
+      // Create a stable, ascending list for navigation logic regardless of display sort order
+      const seasonNavList = anime.episodes
+        .filter((e) => e.season === episode.season)
+        .sort((a, b) => a.number - b.number);
+
+      const trueNavIndex = seasonNavList.findIndex(
+        (e) => e.number === episode.number
+      );
+
+      const prevEpisode = seasonNavList[trueNavIndex - 1];
+      const nextEpisode = seasonNavList[trueNavIndex + 1];
+
+      // Find the display index in the *currently displayed* list for the nav buttons
+      const prevEpisodeDisplayIndex = prevEpisode
+        ? currentSeasonEpisodes.findIndex(
+            (e) => e.number === prevEpisode.number
+          )
+        : -1;
+      const nextEpisodeDisplayIndex = nextEpisode
+        ? currentSeasonEpisodes.findIndex(
+            (e) => e.number === nextEpisode.number
+          )
+        : -1;
+
+      // Update player content
       $("#player-anime-title").text(anime.title);
       $("#player-episode-title").text(
         `Episodio ${episode.number}: ${episode.title}`
@@ -404,14 +436,12 @@ $(document).ready(function () {
       $("#player-episode-description").text(episode.description);
       $("#episode-iframe").attr("src", episode.videoUrl || "");
 
+      // Update navigation buttons
       episodeNavContainer.empty();
-      const prevEpisode = currentSeasonEpisodes[currentEpisodeIndex - 1];
-      const nextEpisode = currentSeasonEpisodes[currentEpisodeIndex + 1];
-
       const prevCard = `
             <a href="#" class="nav-episode-card prev ${
               !prevEpisode ? "disabled" : ""
-            }" data-nav-index="${currentEpisodeIndex - 1}">
+            }" data-nav-index="${prevEpisodeDisplayIndex}">
                 <img src="${
                   prevEpisode
                     ? prevEpisode.img
@@ -429,7 +459,7 @@ $(document).ready(function () {
       const nextCard = `
              <a href="#" class="nav-episode-card next ${
                !nextEpisode ? "disabled" : ""
-             }" data-nav-index="${currentEpisodeIndex + 1}">
+             }" data-nav-index="${nextEpisodeDisplayIndex}">
                 <div class="nav-episode-card-info">
                     <h5>Siguiente <i class="fas fa-forward"></i></h5>
                     <p>${
@@ -446,6 +476,7 @@ $(document).ready(function () {
             </a>`;
       episodeNavContainer.append(prevCard).append(nextCard);
 
+      // Update Disqus
       const disqusConfig = function () {
         this.page.url =
           window.location.href.split("?")[0] +
@@ -470,15 +501,18 @@ $(document).ready(function () {
       $("body").css("overflow", "hidden");
     }
 
-    $(document).on("click", ".open-player-btn", (e) => {
+    $(document).on("click", ".open-player-btn", function (e) {
       e.preventDefault();
-      openPlayer($(e.currentTarget).data("episode-index"));
+      openPlayer($(this).data("episode-index"));
     });
 
-    $(document).on("click", ".nav-episode-card", (e) => {
+    $(document).on("click", ".nav-episode-card", function (e) {
       e.preventDefault();
-      if ($(e.currentTarget).hasClass("disabled")) return;
-      openPlayer($(e.currentTarget).data("nav-index"));
+      if ($(this).hasClass("disabled")) return;
+      const navIndex = $(this).data("nav-index");
+      if (navIndex !== -1) {
+        openPlayer(navIndex);
+      }
     });
 
     $("#close-player-modal").on("click", () => {

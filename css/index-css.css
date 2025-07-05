@@ -1229,7 +1229,7 @@ header .navbar ul li a.active {
 }
 
 .modal-info {
-    padding: 3rem;
+    padding-top: 3rem;
 }
 
 .modal-info h3 {
@@ -1250,6 +1250,18 @@ header .navbar ul li a.active {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     font-size: 1.4rem;
+    color: var(--grey-text);
+}
+
+.modal-details-grid div {
+    background-color: var(--light-bg);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.modal-details-grid strong {
+    color: var(--light-text);
+    margin-right: 0.5rem;
 }
 
 /* --- Modal del Reproductor --- */
