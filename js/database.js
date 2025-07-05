@@ -6861,6 +6861,99 @@ export const animeData = [
         description:
           "Con la ayuda de un aliado inesperado dentro de la base, los Sombrero de Paja logran escapar de la fortaleza G-8, dejando al Comandante Jonathan con una sonrisa de admiración.",
       },
+      {
+        season: 4, number: 207, title: "¡Gran aventura en Long Ring Long Land!", releaseDate: "Octubre 3, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/207.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0d5b03775080c986c75269ed81878d38.jpe", description: "La tripulación aterriza en una extraña isla donde todos los animales y plantas son largos. Allí se encuentran con los Piratas de Foxy."
+    },
+    {
+        season: 4, number: 208, title: "¡Los Piratas de Foxy y el Davy Back!", releaseDate: "Octubre 10, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/208.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/2004f1a6da10c144e13d9435d0859942.jpe", description: "Luffy acepta ingenuamente el desafío de Foxy a un 'Davy Back Fight', un juego pirata donde la tripulación ganadora puede robar miembros de la perdedora."
+    },
+    {
+        season: 4, number: 209, title: "¡La primera ronda! La Donut Race", releaseDate: "Octubre 17, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/209.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/24c0d165f3f00e93a61f5ab97c9b099f.jpe", description: "La primera ronda del Davy Back Fight comienza: una carrera de botes alrededor de la isla. Nami, Usopp y Robin compiten, pero Foxy usa sus trampas y poderes."
+    },
+    {
+        season: 4, number: 210, title: "¡Foxy, el Zorro Plateado! Una violenta interferencia", releaseDate: "Octubre 24, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/210.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/076f87425b06d11f71f6424e6c9867c2.jpe", description: "Foxy usa su fruta Noro Noro para ralentizar a sus oponentes, poniendo al equipo de los Sombrero de Paja en una gran desventaja."
+    },
+    {
+        season: 4, number: 211, title: "¡Segunda ronda! ¡El Groggy Ring!", releaseDate: "Octubre 31, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/211.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0513d6a2a0ff328222b40b15b57f0706.jpe", description: "Tras perder la primera ronda y a Chopper, Zoro y Sanji deben formar equipo para el Groggy Ring, un juego similar al balón prisionero con una pelota humana."
+    },
+    {
+        season: 4, number: 212, title: "¡Tarjetas rojas consecutivas! El Groggy Ring", releaseDate: "Noviembre 7, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/212.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/96b4cd48a58e086ca228c2ddb508f7aa.jpe", description: "La nula cooperación entre Zoro y Sanji los pone en aprietos contra los Groggy Monsters, que juegan sucio con la ayuda de un árbitro corrupto."
+    },
+    {
+        season: 4, number: 213, title: "¡Tercera ronda! ¡La vuelta a la pista en el Roller Race!", releaseDate: "Noviembre 14, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/213.html", img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/33b00669-e58f-4ac6-8a7e-1281898867a6.webp?A=213", description: "Luffy recupera a Chopper. La tercera ronda es una carrera de patines, pero Foxy decide cambiarla por un combate uno a uno."
+    },
+    {
+        season: 4, number: 214, title: "¡El clímax de la carrera explosiva! ¡Adentrándose en la ronda final!", releaseDate: "Noviembre 21, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/214.html", img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/4eb1082c-deae-4091-a67b-2325c796b44a.webp?A=214", description: "El combate final del Davy Back Fight: Luffy vs. Foxy, en el barco de este último, lleno de trampas."
+    },
+    {
+        season: 4, number: 215, title: "¡El veloz servicio! ¡La Dodgeball pirata!", releaseDate: "Noviembre 28, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/215.html", img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/c0989f67-8ccb-426b-807d-2b4a36f784e5.webp?A=215", description: "Un episodio de relleno que muestra un juego adicional del Davy Back Fight."
+    },
+    {
+        season: 4, number: 216, title: "¡Batalla decisiva en el acantilado! ¡Daruma-san ga koronda!", releaseDate: "Diciembre 5, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/216.html", img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/3c3f9166-4191-4cf6-8a50-681b6196ff31.webp?A=216", description: "Otro juego de relleno donde la tripulación compite en una versión peligrosa de 'luz roja, luz verde'."
+    },
+    {
+        season: 4, number: 217, title: "¡Confrontación de capitanes! ¡La ronda final: Combat!", releaseDate: "Diciembre 12, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/217.html", img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/850029b3-ac38-4f81-a759-45920ac3998b.webp?A=217", description: "Comienza la batalla final. Luffy debe derrotar a Foxy en un combate de boxeo en el barco del Zorro Plateado."
+    },
+    {
+        season: 4, number: 218, title: "¡El rayo Noro Noro vs. el invulnerable Luffy!", releaseDate: "Diciembre 19, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/218.html", img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/9b908759-5f25-46aa-af74-b52e259e0a29.webp?A=218", description: "Luffy lucha por adaptarse a los poderes ralentizadores de Foxy y a las numerosas trampas del barco."
+    },
+    {
+        season: 4, number: 219, title: "¡La heroica y feroz batalla! El final decisivo", releaseDate: "Diciembre 26, 2004", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/219.html", img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/075421f1-2856-4c4d-a2d9-138383a15c32.webp?A=219", description: "Usando su ingenio, Luffy encuentra una manera de contrarrestar el rayo Noro Noro y derrota a Foxy, ganando el Davy Back Fight y recuperando a toda su tripulación."
+    },
+    {
+        season: 4, number: 220, title: "¡¿Perdiste la memoria?! ¡Te la quitaron! ¿Quiénes sois?", releaseDate: "Enero 9, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/220.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f33e728e8331393f9252033c4608c02.jpe", description: "Comienza un arco de relleno. La tripulación se despierta un día sin recordar quiénes son ni por qué están juntos, a excepción de Robin."
+    },
+    {
+        season: 4, number: 221, title: "¡El misterioso muchacho del silbato y la suposición de Robin!", releaseDate: "Enero 16, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/221.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d97813a17e0b57e7a57c5414d7a1267.jpe", description: "Robin investiga y descubre que un misterioso caballito de mar con poderes hipnóticos es el responsable de borrar los recuerdos de la tripulación."
+    },
+    {
+        season: 4, number: 222, title: "¡Recuperemos los recuerdos! ¡Los piratas desembarcan!", releaseDate: "Enero 23, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/222.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c3a35c406b62535145dd30fb9474af17.jpe", description: "Para recuperar sus recuerdos, la tripulación debe ir a la isla donde vive el ladrón de memorias."
+    },
+    {
+        season: 4, number: 223, title: "¡Zoro enseña los colmillos! ¡La lucha de una bestia salvaje!", releaseDate: "Enero 30, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/223.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe", description: "Incluso sin recuerdos, los instintos de lucha de Zoro permanecen intactos mientras se enfrenta a los peligros de la isla."
+    },
+    {
+        season: 4, number: 224, title: "¡El contraataque final del ladrón de recuerdos!", releaseDate: "Febrero 6, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/224.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe", description: "La tripulación derrota al ladrón y recupera sus recuerdos, fortaleciendo aún más sus lazos."
+    },
+    {
+        season: 4, number: 225, title: "¡El hombre de un orgullo increíble! ¡Foxy, el Zorro Plateado!", releaseDate: "Febrero 13, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/225.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe", description: "Los Piratas de Foxy regresan buscando venganza, pero son interrumpidos por la llegada de un Almirante de la Marina."
+    },
+    {
+        season: 4, number: 226, title: "¡Un poder cercano al invencible! ¡Un hombre muy peligroso!", releaseDate: "Febrero 20, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/226.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe", description: "La tripulación se encuentra por primera vez con el Almirante Aokiji, cuyo poder helado de la fruta Hie Hie es abrumador."
+    },
+    {
+        season: 4, number: 227, title: "¡Almirante de la Sede de la Marina, Aokiji! ¡La amenaza del mayor poder!", releaseDate: "Febrero 27, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/227.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe", description: "Aokiji revela su conexión con el abuelo de Luffy. Advierte a Robin sobre su pasado y demuestra su poder congelando el mar."
+    },
+    {
+        season: 4, number: 228, title: "¡Goma vs. hielo! ¡Luffy vs. Aokiji!", releaseDate: "Marzo 6, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/228.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe", description: "Para salvar a Robin, Luffy desafía a Aokiji a un duelo uno a uno, pero es derrotado y congelado por completo. Aokiji decide perdonarles la vida."
+    },
+    {
+        season: 4, number: 229, title: "El veloz Umi Ressha. La Capital de Agua, Water 7", releaseDate: "Marzo 13, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/229.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe", description: "La tripulación llega a Water 7, una metrópolis acuática famosa por sus carpinteros, con la esperanza de reparar el dañado Going Merry."
+    },
+    {
+        season: 4, number: 230, title: "¡Aventura en la Ciudad del Agua! Rumbo al gran astillero", releaseDate: "Marzo 20, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/230.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe", description: "La tripulación va a cambiar el oro de Skypiea por dinero, pero son engañados y robados por la Franky Family."
+    },
+    {
+        season: 4, number: 231, title: "¡La Franky Family e Iceburg-san!", releaseDate: "Marzo 27, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/231.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe", description: "Usopp es brutalmente golpeado al intentar recuperar el dinero. Mientras, Nami, Luffy y Chopper conocen a Iceburg, el alcalde y presidente de la Galley-La Company."
+    },
+    {
+        season: 4, number: 232, title: "¡Galley-La Company! El magnífico Muelle 1", releaseDate: "Abril 3, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/232.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe", description: "Los carpinteros de la Galley-La inspeccionan el Going Merry y le dan a Luffy una noticia devastadora: el barco está demasiado dañado y no puede ser reparado."
+    },
+    {
+        season: 4, number: 233, title: "El secuestro del pirata. El barco pirata que espera su final", releaseDate: "Abril 10, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/233.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe", description: "Luffy, Sanji, Zoro y Chopper, enfurecidos por lo que le hicieron a Usopp, encuentran la base de la Franky Family y la destruyen por completo."
+    },
+    {
+        season: 4, number: 234, title: "¡Rescatar a un nakama! El asalto a la Franky House", releaseDate: "Abril 17, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/234.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe", description: "La destrucción de la Franky House desata la ira de su líder, Franky, quien busca a los Sombrero de Paja para vengarse."
+    },
+    {
+        season: 4, number: 235, title: "¡Gran pelea bajo la luna! La bandera pirata que ondea con tristeza", releaseDate: "Abril 24, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/235.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe", description: "Luffy le comunica a Usopp la decisión de cambiar de barco. Usopp, cuyo apego al Merry es inmenso, se opone y desafía a Luffy a un duelo por la posesión del barco."
+    },
+    {
+        season: 4, number: 236, title: "¡Luffy vs. Usopp! El espíritu del enfrentamiento entre hombres", releaseDate: "Mayo 1, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/236.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe", description: "El emotivo y doloroso duelo entre Luffy y Usopp comienza. Usopp, conociendo las debilidades de Luffy, utiliza todo su ingenio para luchar contra su capitán."
+    },
+    {
+        season: 4, number: 237, title: "¡La ciudad del agua tiembla! ¡Iceburg es el objetivo!", releaseDate: "Mayo 8, 2005", duration: "24 min", language: "Sub | Dob", videoUrl: "frame/One-Piece/T4/237.html", img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe", description: "Luffy derrota a Usopp, quien abandona la tripulación. Mientras tanto, el alcalde Iceburg es atacado por unos misteriosos enmascarados."
+    }
 
       // Temporada 21: Egghead (Episodios 1089 - Presente)
       {
