@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>all-anime — Disfruta del anime más popular en HD</title>
+    <title>All-anime — Disfruta del anime más popular en HD</title>
 
+    <link rel="shortcut icon" href="/image/logo.ico">
     <link rel="stylesheet" href="css/index-css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -29,8 +30,8 @@
         </nav>
         <div class="header-right">
             <div class="search-container">
-                <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
                 <input type="text" placeholder="Buscar..." id="search-input">
+                <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
                 <div id="search-results" class="search-results-dropdown"></div>
             </div>
             <div id="menu-icon" class="fas fa-bars"></div>
@@ -80,11 +81,9 @@
     </section>
 
     <main class="main-content container">
-
         <section class="card-carousel-section">
             <h2 class="section-title"><i class="material-icons">thumb_up</i> Nuestras Recomendaciones</h2>
-            <div class="card-carousel" id="recommendations-carousel">
-            </div>
+            <div class="card-carousel" id="recommendations-carousel"></div>
         </section>
 
         <section class="new-episodes-section">
@@ -96,13 +95,11 @@
             <div class="episodes-grid">
                 <div class="episodes-day-group">
                     <h3 class="day-title">Hoy</h3>
-                    <ul class="episodes-list" id="episodes-hoy">
-                    </ul>
+                    <ul class="episodes-list" id="episodes-hoy"></ul>
                 </div>
                 <div class="episodes-day-group" id="yesterday-episodes">
                     <h3 class="day-title">Ayer</h3>
-                    <ul class="episodes-list" id="episodes-ayer">
-                    </ul>
+                    <ul class="episodes-list" id="episodes-ayer"></ul>
                 </div>
             </div>
             <div class="show-more-button-container">
@@ -112,15 +109,13 @@
 
         <section class="card-carousel-section">
             <h2 class="section-title"><i class="material-icons">mic</i> Doblajes de la Temporada</h2>
-            <div class="card-carousel" id="dubs-carousel">
-            </div>
+            <div class="card-carousel" id="dubs-carousel"></div>
         </section>
 
         <section class="anime-listing-section">
             <h2 class="section-title"><i class="material-icons" style="color: var(--secondary-color);">stars</i> Animes
                 Agregados</h2>
-            <div class="anime-grid" id="added-animes-grid">
-            </div>
+            <div class="anime-grid" id="added-animes-grid"></div>
         </section>
     </main>
 

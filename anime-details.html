@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Anime Online - all-anime</title>
+    <title>Ver Anime - All-anime</title>
+    <link rel="shortcut icon" href="/image/logo.ico">
     <link rel="stylesheet" href="css/index-css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -27,8 +28,8 @@
         </nav>
         <div class="header-right">
             <div class="search-container">
-                <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
                 <input type="text" placeholder="Buscar..." id="search-input">
+                <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
                 <div id="search-results" class="search-results-dropdown"></div>
             </div>
             <div id="menu-icon" class="fas fa-bars"></div>
@@ -36,6 +37,8 @@
     </header>
 
     <section class="anime-detail-hero" id="anime-detail-hero">
+        <div class="anime-detail-page-hero" id="anime-detail-page-hero">
+        </div>
     </section>
 
     <main class="main-content container">
@@ -44,8 +47,7 @@
                 <div class="header-left">
                     <h2 class="section-title">Episodios</h2>
                     <div class="custom-select-wrapper">
-                        <select id="season-select">
-                        </select>
+                        <select id="season-select"></select>
                     </div>
                 </div>
                 <div class="header-right-episodes">
@@ -69,28 +71,15 @@
                     </div>
                 </div>
             </div>
-            <div class="episodes-container grid" id="episodes-list-container">
-            </div>
+            <div class="episodes-container grid" id="episodes-list-container"></div>
         </section>
     </main>
 
     <div class="trailer-modal" id="trailer-modal">
         <div class="modal-content">
-            <button class="close-modal" id="close-trailer-modal">&times;</button>
-            <div class="video-container" id="modal-video-container">
-            </div>
-            <div class="modal-info" id="modal-info-content">
-            </div>
-        </div>
-    </div>
-
-    <div class="ai-modal" id="ai-recommendations-modal">
-        <div class="modal-content">
-            <button class="close-modal" id="close-ai-modal">&times;</button>
-            <h3><i class="fas fa-robot"></i> Recomendaciones Similares (IA)</h3>
-            <div id="ai-recommendations-content">
-                <div class="loader"></div>
-            </div>
+            <button class="close-modal" id="close-trailer-modal">×</button>
+            <div class="video-container" id="modal-video-container"></div>
+            <div class="modal-info" id="modal-info-content"></div>
         </div>
     </div>
 
@@ -104,10 +93,9 @@
                 </div>
                 <iframe id="episode-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
-
             <div class="player-details-section">
                 <div class="player-header">
-                    <button class="close-player" id="close-player-modal">&times;</button>
+                    <button class="close-player" id="close-player-modal">×</button>
                 </div>
                 <div class="details-content-wrapper">
                     <div class="episode-title-container">
@@ -116,8 +104,7 @@
                         <p class="player-episode-meta" id="player-episode-meta"></p>
                         <p id="player-episode-description"></p>
                     </div>
-                    <div class="episode-navigation-cards" id="episode-navigation-cards">
-                    </div>
+                    <div class="episode-navigation-cards" id="episode-navigation-cards"></div>
                     <div class="comments-section">
                         <h4>Comentarios</h4>
                         <div id="disqus_thread"></div>
@@ -141,9 +128,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="module" src="js/main-2025.js"></script>
-    <script id="dsq-config-script" async>
-        // Script de configuración de Disqus (se llenará con JS)
-    </script>
+    <script id="dsq-config-script" async></script>
 </body>
 
 </html>

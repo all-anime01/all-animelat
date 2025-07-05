@@ -15,6 +15,7 @@ export const animeData = [
       "Conocido como el cazador más débil de la humanidad, se encuentra en una lucha constante por la supervivencia. Después de una experiencia cercana a la muerte, adquiere un poder único para subir de nivel.",
     genres: ["Acción", "Aventura", "Fantasía"],
     rating: 4.9,
+    ratingCount: "429.5K",
     seasons: 2,
     episodesTotal: 25,
     status: "Finalizado",
@@ -23,6 +24,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 122)), // Hace 122 dias
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
     episodes: [
       {
         season: 1,
@@ -359,6 +363,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 8)), // Hace 8 dias
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
     episodes: [
       {
         season: 1,
@@ -1564,6 +1571,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // Ayer
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
   },
   {
     id: "ranger-reject",
@@ -1581,6 +1591,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["agregado", "recomendado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 22)), // Hace 22 dias
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
   },
   {
     id: "dr-stone",
@@ -1598,6 +1611,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // Ayer
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
   },
   {
     id: "demon-slayer",
@@ -1615,6 +1631,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 5)), // Hace 5 dias
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
   },
   {
     id: "spy-x-family",
@@ -1632,6 +1651,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
     dateAdded: new Date(), // Hoy
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
   },
   {
     id: "blue-lock",
@@ -1654,6 +1676,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 461)), // Calculado desde el final de la T1
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
     episodes: [
       // Temporada 1
       {
@@ -2136,6 +2161,9 @@ export const animeData = [
     quality: "1080p",
     tags: ["recomendado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 279)), // Calculado desde el final de la Parte 2
+    audio: "Sub | Dob",
+    creator: "Chugong",
+    contentWarning: "+16 Violencia, Gore",
     episodes: [
       // Temporada 1 - The Blood Warfare
       {
