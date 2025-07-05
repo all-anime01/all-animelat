@@ -6,6 +6,8 @@ export const animeData = [
     id: "solo-leveling",
     title: "Solo Leveling",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/f2d6d93f5ba4a24bcb3b0d1322a645ff.jpg",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=240,height=360/catalog/crunchyroll/f2d6d93f5ba4a24bcb3b0d1322a645ff.jpg", // Ejemplo de imagen móvil
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Solo%20Leveling/SEASON%202/ULTRA-WIDE/SoloLeveling-S2-KV1-UW-LTR.png",
     logoImg:
@@ -23,7 +25,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 122)), // Hace 122 dias
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 98)),
     audio: "Sub | Dob",
     creator: "Chugong",
     contentWarning: "+16 Violencia, Gore",
@@ -345,16 +347,18 @@ export const animeData = [
   {
     id: "pokemon-horizons",
     title: "Pokémon: Horizons",
-    img: "https://cdn.jkdesu.com/assets/images/animes/image/pokemon-shinsaku-anime.jpg",
-    heroImg:
-      "https://occ-0-1472-3933.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZkn668wtTIk2Wj95lXRnBdbtWHwlbHANeTm90WzC9sODu264-K_UlZ48VH57ZWCtksRr8vryMNLFYm7I9nlRB2Cqbl2qo-dpJmq.jpg?r=f75",
+    img: "https://a.storyblok.com/f/178900/750x1061/6ccbcbf59b/pokemonhorizons_megavoltagekv.png/m/filters:quality(95)format(webp)",
+    imgMobile:
+      "https://occ-0-8407-90.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABePE8cz2js0sY2K1jngbnt2p1aI8YsKDIY-jpTO2NOVX-W0rSsjg0c914WMg-iz8SqrNjWNV8VnWz9W5dTZUoB2e1KobWIhaCBt0.jpg?r=9f3",
+    heroImg: "image/Pokemon-Horizons/b.avif",
     logoImg:
       "https://upload.wikimedia.org/wikipedia/commons/e/e8/Pok%C3%A9mon_Horizons_The_Series_Logo.png",
     trailerUrl: "https://www.youtube.com/embed/_c_hMehCORQ",
     description:
-      "Pocket Mosnters, Pokemon para abreviar. Las extrañas y misteriosas criaturas de este planeta se pueden ver en todas partes: en el cielo, en el mar, en el bosque y en la ciudad. Liko, una chica de Pardea con un misterioso colgante, y Roy, un chico de Kantou que sostiene una misteriosa bola monstruosa. Ambientada en el vasto mundo de Pokemon. ¡Comienzan las nuevas aventuras de Liko y Roy! ¿Qué encuentros les esperan y qué destino les aguarda? Esta es una historia sobre “encontrar” algo importante a través de la aventura.",
+      "Liko, una chica de Pardea con un misterioso colgante, y Roy, un chico de Kantou que sostiene una misteriosa bola monstruosa. ¡Comienzan sus nuevas aventuras en el vasto mundo de Pokémon!",
     genres: ["Acción", "Comedia", "Aventura", "Fantasía", "Infantil"],
     rating: 4.7,
+    ratingCount: "112.1K",
     seasons: 1,
     episodesTotal: 99,
     status: "En Emisión",
@@ -362,10 +366,10 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 8)), // Hace 8 dias
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 8)),
     audio: "Sub | Dob",
-    creator: "Chugong",
-    contentWarning: "+16 Violencia, Gore",
+    creator: "Satoshi Tajiri",
+    contentWarning: "+7 Para todos los públicos",
     episodes: [
       {
         season: 1,
@@ -1558,31 +1562,49 @@ export const animeData = [
   {
     id: "pokemon-viajes",
     title: "Pokémon: Viajes",
-    img: "frame/Solo-Leveling/T1/1.html.jpg",
+    img: "https://occ-0-4440-116.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABTXJf2YQWYD-U57zGsBnbBsppoO_-0SQmHbxnjrAI4SLJQc2wqEf7S5zn8pEi7iVEcBFIo5zWt_8xE9R2fASdX0ciFn-ofIc-7ND.webp?r=84e",
+    imgMobile:
+      "https://pbs.twimg.com/media/E0tz4-EXIAIHpAt?format=jpg&name=4096x4096",
+    heroImg:
+      "https://occ-0-1472-3933.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABSQv3mJGmHMyMyuwz-XfcDSyMU3IbHDTbFz-8TXJbAIxpP8DjlXzghDG237wrsMyZfz5COrrl4Z5qb2O6OkHQz304j9ovaIh7OnP.jpg?r=297",
+    logoImg:
+      "https://occ-0-1472-3933.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABXAndeTKyxS8BRJDJl9iwGHtNXi67ADiDTWRpwuxb6sHb2u87DaO3IuiN95cKslNn4AtoLL6EEtDJUP9mGY8nMf0ZvPBXUhlyiB8MePyfndjMjghufo4J2kPgO-ke2VIE-nymJ1GOveRi5Fsh-AM4TSG_i0D3U53wkrrdT_-PuKLAPcFaEs_Sg.png?r=af2",
+    trailerUrl: "https://www.youtube.com/embed/g1OmJiFbmcY?si=rd8H0JA9yhcT0VwN",
     description:
-      "La historia final protagonizada por Satoshi y Pikachu para concluir Pokémon (2019). Aquí comienza la cuenta regresiva para despedirnos de Satoshi y Pikachu como protagonistas.",
-    genres: ["Aventura"],
-    rating: 4.8,
-    seasons: 25,
-    episodes: 1223,
+      "Liko, una chica de Pardea con un misterioso colgante, y Roy, un chico de Kantou que sostiene una misteriosa bola monstruosa. ¡Comienzan sus nuevas aventuras en el vasto mundo de Pokémon!",
+    genres: ["Acción", "Comedia", "Aventura", "Fantasía", "Infantil"],
+    rating: 4.6,
+    ratingCount: "4.7K",
+    seasons: 1,
+    episodesTotal: 1200,
     status: "Finalizado",
-    year: 2019,
+    year: 2023,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // Ayer
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 8)),
     audio: "Sub | Dob",
-    creator: "Chugong",
-    contentWarning: "+16 Violencia, Gore",
+    creator: "Satoshi Tajiri",
+    contentWarning: "+7 Para todos los públicos",
+    episodes: [
+      // ... episodios
+    ],
   },
   {
     id: "ranger-reject",
     title: "Ranger Reject (Sentai Daishikkaku)",
     img: "image/ranger-reject/p.webp",
+    imgMobile:
+      "https://pbs.twimg.com/media/E0tz4-EXIAIHpAt?format=jpg&name=4096x4096",
+    heroImg:
+      "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/5B4B5C84C51346E6CA9543543F7E15EA983AED4D3B67D82250B5E5CE40E535F6/scale?width=1440&aspectRatio=1.78&format=jpeg",
+    logoImg:
+      "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/91F7042D5FB294151FCDDA7094E94A94D0EBC84D6F0B44E7DB03A99C218AE121/scale?width=1440&aspectRatio=1.78&format=png",
     description:
       "Con su antiguo escondite y sus jefes aniquilados, los Dusters supervivientes llegan a un acuerdo secreto con el equipo Ranger para participar en el enfrentamiento dominical, uno en el que siempre serán derrotados. ¡Cansado de esta farsa, el Luchador D finalmente da un paso al frente para hacer un cambio de una vez por todas!.",
     genres: ["Acción", "Aventura", "Comedia", "Fantasía"],
     rating: 4.9,
+    ratingCount: "4.7K",
     seasons: 2,
     episodes: 19,
     status: "En emisión",
@@ -1590,15 +1612,24 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado", "recomendado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 22)), // Hace 22 dias
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 6)), // Hace 6 dias
     audio: "Sub | Dob",
     creator: "Chugong",
     contentWarning: "+16 Violencia, Gore",
+    episodes: [
+      // ... episodios
+    ],
   },
   {
     id: "dr-stone",
     title: "Dr. STONE",
     img: "https://a.storyblok.com/f/178900/960x1357/d42021c586/dr-stone-science-future-kv.jpeg/m/filters:quality(95)format(webp)",
+    imgMobile:
+      "https://a.storyblok.com/f/178900/960x1357/d42021c586/dr-stone-science-future-kv.jpeg/m/filters:quality(95)format(webp)",
+    heroImg:
+      "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/5B4B5C84C51346E6CA9543543F7E15EA983AED4D3B67D82250B5E5CE40E535F6/scale?width=1440&aspectRatio=1.78&format=jpeg",
+    logoImg:
+      "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/91F7042D5FB294151FCDDA7094E94A94D0EBC84D6F0B44E7DB03A99C218AE121/scale?width=1440&aspectRatio=1.78&format=png",
     description:
       "Un día fatídico, toda la humanidad quedó petrificada por un destello de luz cegadora. Después de varios milenios, el estudiante Taiju despierta y se encuentra perdido en un mundo de estatuas.",
     genres: ["Aventura", "Ciencia Ficción", "Comedia"],
@@ -1612,13 +1643,15 @@ export const animeData = [
     tags: ["recomendado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // Ayer
     audio: "Sub | Dob",
-    creator: "Chugong",
-    contentWarning: "+16 Violencia, Gore",
+    creator: "Riichiro Inagaki",
+    contentWarning: "+13",
   },
   {
     id: "demon-slayer",
     title: "Demon Slayer",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/f356e33a59518a1a361e6123485c2d43.jpe",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=240,height=360/catalog/crunchyroll/f356e33a59518a1a361e6123485c2d43.jpe",
     description:
       "Tanjiro Kamado, un joven de buen corazón, encuentra a su familia masacrada por un demonio. Para empeorar las cosas, su hermana menor, Nezuko, ha sido transformada en un demonio.",
     genres: ["Acción", "Fantasía", "Histórico"],
@@ -1630,15 +1663,18 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 5)), // Hace 5 dias
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 5)),
     audio: "Sub | Dob",
-    creator: "Chugong",
+    creator: "Koyoharu Gotouge",
     contentWarning: "+16 Violencia, Gore",
+    episodes: [],
   },
   {
     id: "spy-x-family",
     title: "SPY x FAMILY",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/6b53c5c9676c86f45c81f33775928d3c.jpe",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=240,height=360/catalog/crunchyroll/6b53c5c9676c86f45c81f33775928d3c.jpe",
     description:
       "El maestro espía 'Twilight' debe formar una familia falsa para llevar a cabo una misión. Lo que no sabe es que la 'esposa' que elige es una asesina y la 'hija' es una telépata.",
     genres: ["Acción", "Comedia", "Slice of Life"],
@@ -1652,8 +1688,9 @@ export const animeData = [
     tags: ["recomendado", "agregado", "doblaje"],
     dateAdded: new Date(), // Hoy
     audio: "Sub | Dob",
-    creator: "Chugong",
-    contentWarning: "+16 Violencia, Gore",
+    creator: "Tatsuya Endo",
+    contentWarning: "+13",
+    episodes: [],
   },
   {
     id: "blue-lock",
@@ -8402,6 +8439,30 @@ export const animeData = [
         videoUrl: "frame/One-Piece/T21/1123.html",
       },
     ],
+  },
+  {
+    id: "your-name",
+    title: "Your Name (Kimi no Na wa)",
+    img: "https://static.posters.cz/image/750/posters/your-name-kimi-no-na-wa-stairs-i50849.jpg",
+    imgMobile:
+      "https://static.posters.cz/image/350/posters/your-name-kimi-no-na-wa-stairs-i50849.jpg",
+    description:
+      "Dos adolescentes comparten una conexión profunda y mágica al descubrir que intercambian cuerpos. Las cosas se complican cuando deciden conocerse en persona.",
+    genres: ["Drama", "Romance", "Sobrenatural"],
+    rating: 4.9,
+    ratingCount: "550K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "Finalizado",
+    year: 2016,
+    type: "Película",
+    quality: "1080p",
+    tags: ["agregado", "doblaje", "recomendado"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 10)),
+    audio: "Sub | Dob",
+    creator: "Makoto Shinkai",
+    contentWarning: "+13",
+    episodes: [],
   },
 ];
 

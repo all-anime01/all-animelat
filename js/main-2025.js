@@ -16,9 +16,14 @@ $(document).ready(function () {
             <div class="anime-card">
                 <a href="anime-details.html?id=${anime.id}">
                     <div class="card-image-container">
-                        <img src="${
-                          anime.img
-                        }" alt="${anime.title}" loading="lazy">
+                        <picture>
+                            <source media="(max-width: 480px)" srcset="${
+                              anime.imgMobile || anime.img
+                            }">
+                            <img src="${
+                              anime.img
+                            }" alt="${anime.title}" loading="lazy">
+                        </picture>
                         <div class="quality-tag">${anime.quality}</div>
                         <div class="card-overlay">
                             <div class="overlay-content">
@@ -171,7 +176,9 @@ $(document).ready(function () {
         const matchesYear =
           selectedYear === "all" || anime.year == selectedYear;
         const matchesType =
-          selectedType === "all" || anime.type === selectedType;
+          !typeSelect ||
+          typeSelect.val() === "all" ||
+          anime.type === selectedType;
         const matchesStatus =
           selectedStatus === "all" || anime.status === selectedStatus;
         return (
@@ -201,7 +208,9 @@ $(document).ready(function () {
       applyFilters();
     });
     yearSelect.on("change", applyFilters);
-    typeSelect.on("change", applyFilters);
+    if (typeSelect.length) {
+      typeSelect.on("change", applyFilters);
+    }
     statusSelect.on("change", applyFilters);
 
     applyFilters();
@@ -212,7 +221,8 @@ $(document).ready(function () {
     const peliculasGrid = $("#peliculas-anime-grid");
     if (!peliculasGrid.length) return;
 
-    // Reutilizar elementos de filtro de la página de explorar
+    const movieData = animeData.filter((a) => a.type === "Película");
+
     const genreButtonsContainer = $("#genre-filter-buttons");
     const yearSelect = $("#year-select");
     const statusSelect = $("#status-select");
@@ -223,8 +233,6 @@ $(document).ready(function () {
     filtersSection.hide();
     toggleFiltersBtn.on("click", () => filtersSection.slideToggle());
 
-    // Filtrar géneros y años solo de las películas
-    const movieData = animeData.filter((a) => a.type === "Película");
     const genres = [...new Set(movieData.flatMap((a) => a.genres))];
     genres.forEach((g) =>
       genreButtonsContainer.append(
@@ -296,8 +304,8 @@ $(document).ready(function () {
     favoritesGrid.empty();
 
     if (favoriteIds.length === 0) {
-      favoritesGrid.append(
-        '<p class="no-results">Aún no has añadido ningún anime a tu lista de favoritos. ¡Usa el ícono del marcador (🔖) en la página de un anime para guardarlo aquí!</p>'
+      favoritesGrid.html(
+        '<p class="no-results" style="padding: 5rem 2rem;">Aún no has añadido ningún anime a tu lista de favoritos. <br><br> Usa el ícono del marcador ( <i class="fas fa-bookmark"></i> ) en la página de un anime para guardarlo aquí.</p>'
       );
       return;
     }

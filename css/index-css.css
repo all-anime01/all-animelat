@@ -107,6 +107,8 @@ header .navbar ul li a {
     color: var(--light-text);
     transition: color 0.3s;
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
 }
 
 header .navbar ul li a i {
@@ -578,15 +580,20 @@ header .navbar ul li a.active {
     border-color: var(--light-text);
 }
 
+.card-image-container picture,
+.card-image-container picture img {
+    display: block;
+    width: 100%;
+}
 
-.anime-card .card-image-container img {
+.anime-card .card-image-container picture img {
     width: 100%;
     aspect-ratio: 2 / 3;
     object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.anime-card:hover img {
+.anime-card:hover .card-image-container picture img {
     transform: scale(1.1);
 }
 
@@ -707,7 +714,7 @@ header .navbar ul li a.active {
     color: var(--grey-text);
 }
 
-/* --- Estilos de Página Explorar y Calendario --- */
+/* --- Estilos de Páginas Genéricas (Explorar, Películas, Favoritos) --- */
 .page-header {
     padding: 15rem 0 5rem 0;
 }
@@ -1080,25 +1087,30 @@ header .navbar ul li a.active {
     transition: transform 0.3s ease;
 }
 
+.episode-detail-card a {
+    color: var(--light-text);
+    display: block;
+}
+
 .episode-detail-card:hover {
     transform: translateY(-5px);
 }
 
-.episode-detail-card a {
-    color: var(--light-text);
-}
-
 .episode-img-container {
     position: relative;
+    overflow: hidden;
 }
 
 .episode-img-container img {
     width: 100%;
     height: auto;
-    /* Dejar que la altura se ajuste */
-    max-height: 200px;
-    /* Limitar la altura máxima */
+    aspect-ratio: 16/9;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.episode-detail-card a:hover .episode-img-container img {
+    transform: scale(1.1);
 }
 
 .play-icon-overlay {
@@ -1115,9 +1127,10 @@ header .navbar ul li a.active {
     color: white;
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
-.episode-detail-card:hover .play-icon-overlay {
+.episode-detail-card a:hover .play-icon-overlay {
     opacity: 1;
 }
 
@@ -1159,14 +1172,8 @@ header .navbar ul li a.active {
     text-overflow: ellipsis;
 }
 
-.episodes-container.list .episode-detail-card {
-    display: flex;
-    background: none;
-}
-
 .episodes-container.list .episode-detail-card a {
     display: flex;
-    width: 100%;
     gap: 1.5rem;
     padding: 1rem;
     border-radius: 4px;
@@ -1276,7 +1283,7 @@ header .navbar ul li a.active {
     margin-right: 0.5rem;
 }
 
-/* --- Modal del Reproductor (Nuevo Diseño) --- */
+/* --- Modal del Reproductor (Diseño Mejorado) --- */
 .episode-player-modal {
     display: none;
     position: fixed;
@@ -1297,6 +1304,9 @@ header .navbar ul li a.active {
 
 .player-video-wrapper {
     width: 100%;
+    height: auto;
+    max-height: 75vh;
+    /* Límite para el video */
     flex-shrink: 0;
     background-color: #000;
     aspect-ratio: 16 / 9;
@@ -1327,6 +1337,18 @@ header .navbar ul li a.active {
 
 .player-header .player-logo img {
     height: 30px;
+}
+
+.close-player {
+    font-size: 3rem;
+    background: none;
+    color: var(--grey-text);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-player:hover {
+    color: var(--light-text);
 }
 
 .details-content-wrapper {
@@ -1529,10 +1551,12 @@ header .navbar ul li a.active {
     header .navbar ul {
         flex-direction: column;
         width: 100%;
+        align-items: flex-start;
     }
 
     header .navbar ul li {
         margin: 0;
+        width: 100%;
     }
 
     header .navbar ul li a {
@@ -1566,8 +1590,7 @@ header .navbar ul li a.active {
     }
 
     .player-video-wrapper {
-        aspect-ratio: auto;
-        height: 40vh;
+        height: auto;
     }
 }
 
@@ -1725,9 +1748,5 @@ header .navbar ul li a.active {
     .anime-logo {
         width: 100%;
         max-width: 280px;
-    }
-
-    .player-video-wrapper {
-        height: 30vh;
     }
 }
