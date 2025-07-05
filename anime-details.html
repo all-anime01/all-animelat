@@ -38,8 +38,6 @@
     </header>
 
     <section class="anime-detail-hero" id="anime-detail-hero">
-        <div class="anime-detail-page-hero" id="anime-detail-page-hero">
-        </div>
     </section>
 
     <main class="main-content container">
@@ -85,28 +83,29 @@
     </div>
 
     <div class="episode-player-modal" id="episode-player-modal">
+        <button class="close-player" id="close-player-modal" title="Cerrar">×</button>
         <div class="player-container">
-            <div class="player-video-wrapper">
-                <iframe id="episode-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            </div>
-            <div class="player-details-wrapper">
-                <div class="player-header">
-                    <a href="index.html" class="player-logo">
-                        <img src="logo-all-anime.svg" alt="All-Anime Logo">
-                    </a>
-                    <button class="close-player" id="close-player-modal">×</button>
-                </div>
-                <div class="details-content-wrapper">
-                    <div class="episode-title-container">
+            <iframe id="episode-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            <div class="player-controls-bar">
+                <div class="player-info-left">
+                    <a href="#" id="player-anime-link">
                         <h3 id="player-anime-title"></h3>
-                        <span id="player-episode-title"></span>
-                        <p class="player-episode-meta" id="player-episode-meta"></p>
-                        <p id="player-episode-description"></p>
+                    </a>
+                    <h4 id="player-episode-title"></h4>
+                    <div class="player-meta-tags" id="player-episode-meta"></div>
+                    <div class="episode-actions" id="player-episode-actions">
                     </div>
-                    <div class="episode-navigation-cards" id="episode-navigation-cards"></div>
-                    <div class="comments-section">
-                        <h4>Comentarios</h4>
-                        <div id="disqus_thread"></div>
+                    <p id="player-episode-description"></p>
+                </div>
+                <div class="player-info-right">
+                    <button class="player-action-btn" id="player-favorite-btn" title="Añadir a Favoritos">
+                        <i class="far fa-bookmark"></i>
+                    </button>
+                    <div class="player-nav-previews">
+                        <div id="player-next-episode-preview">
+                        </div>
+                        <div id="player-prev-episode-preview">
+                        </div>
                     </div>
                 </div>
             </div>

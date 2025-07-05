@@ -453,7 +453,6 @@ $(document).ready(function () {
     }
 
     const playerModal = $("#episode-player-modal");
-    const episodeNavContainer = $("#episode-navigation-cards");
 
     function openPlayer(displayIndex) {
       const episode = currentSeasonEpisodes[parseInt(displayIndex)];
@@ -480,40 +479,50 @@ $(document).ready(function () {
           )
         : -1;
 
+      $("#player-anime-link").attr("href", `anime-details.html?id=${anime.id}`);
       $("#player-anime-title").text(anime.title);
-      $("#player-episode-title").text(
-        `Episodio ${episode.number}: ${episode.title}`
+      $("#player-episode-title").text(`E${episode.number} - ${episode.title}`);
+      $("#player-episode-meta").html(
+        `<span class="quality-tag-detail">${anime.quality}</span><span>${episode.language}</span><span>Lanzado el ${episode.releaseDate}</span>`
       );
-      $("#player-episode-meta").text(
-        `${episode.language} • ${episode.releaseDate}`
-      );
+      $("#player-episode-actions").html(`
+          <button class="player-action-btn"><i class="fas fa-thumbs-up"></i> ${Math.floor(
+            Math.random() * 500
+          )}</button>
+          <button class="player-action-btn"><i class="fas fa-thumbs-down"></i> ${Math.floor(
+            Math.random() * 20
+          )}</button>
+      `);
       $("#player-episode-description").text(episode.description);
       $("#episode-iframe").attr("src", episode.videoUrl || "");
 
-      episodeNavContainer.empty();
-      const prevCard = `<a href="#" class="nav-episode-card prev ${
-        !prevEpisode ? "disabled" : ""
-      }" data-nav-index="${prevEpisodeDisplayIndex}"><img src="${
-        prevEpisode
-          ? prevEpisode.img
-          : "https://placehold.co/120x70/181818/181818"
-      }" alt=""><div class="nav-episode-card-info"><h5><i class="fas fa-backward"></i> Anterior</h5><p>${
-        prevEpisode
-          ? `Ep ${prevEpisode.number}: ${prevEpisode.title}`
-          : "Inicio de temporada"
-      }</p></div></a>`;
-      const nextCard = `<a href="#" class="nav-episode-card next ${
-        !nextEpisode ? "disabled" : ""
-      }" data-nav-index="${nextEpisodeDisplayIndex}"><div class="nav-episode-card-info"><h5>Siguiente <i class="fas fa-forward"></i></h5><p>${
-        nextEpisode
-          ? `Ep ${nextEpisode.number}: ${nextEpisode.title}`
-          : "Fin de temporada"
-      }</p></div><img src="${
-        nextEpisode
-          ? nextEpisode.img
-          : "https://placehold.co/120x70/181818/181818"
-      }" alt=""></a>`;
-      episodeNavContainer.append(prevCard).append(nextCard);
+      const prevPreviewContainer = $("#player-prev-episode-preview");
+      prevPreviewContainer.empty();
+      if (prevEpisode) {
+        prevPreviewContainer.html(`
+              <h5 class="player-nav-title">EPISODIO ANTERIOR</h5>
+              <a href="#" class="player-nav-card open-player-btn" data-episode-index="${prevEpisodeDisplayIndex}">
+                  <img src="${prevEpisode.img}" alt="">
+                  <div class="player-nav-info">
+                      <p>E${prevEpisode.number} - ${prevEpisode.title}</p>
+                      <span>${prevEpisode.language}</span>
+                  </div>
+              </a>`);
+      }
+
+      const nextPreviewContainer = $("#player-next-episode-preview");
+      nextPreviewContainer.empty();
+      if (nextEpisode) {
+        nextPreviewContainer.html(`
+              <h5 class="player-nav-title">SIGUIENTE EPISODIO</h5>
+              <a href="#" class="player-nav-card open-player-btn" data-episode-index="${nextEpisodeDisplayIndex}">
+                  <img src="${nextEpisode.img}" alt="">
+                  <div class="player-nav-info">
+                      <p>E${nextEpisode.number} - ${nextEpisode.title}</p>
+                      <span>${nextEpisode.language}</span>
+                  </div>
+              </a>`);
+      }
 
       playerModal.css("display", "flex").hide().fadeIn();
       $("body").css("overflow", "hidden");
@@ -521,19 +530,10 @@ $(document).ready(function () {
 
     $(document).on("click", ".open-player-btn", function (e) {
       e.preventDefault();
-      openPlayer($(this).data("episode-index"));
+      openPlayer($(e.currentTarget).data("episode-index"));
     });
 
-    $(document).on("click", ".nav-episode-card", function (e) {
-      e.preventDefault();
-      if ($(this).hasClass("disabled")) return;
-      const navIndex = $(this).data("nav-index");
-      if (navIndex !== -1) {
-        openPlayer(navIndex);
-      }
-    });
-
-    $("#close-player-modal").on("click", () => {
+    playerModal.on("click", "#close-player-modal", () => {
       playerModal.fadeOut(() => $("#episode-iframe").attr("src", ""));
       $("body").css("overflow", "auto");
     });
