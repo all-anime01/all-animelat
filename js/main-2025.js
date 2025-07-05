@@ -266,7 +266,6 @@ $(document).ready(function () {
 
     document.title = `Ver ${anime.title} - All-anime`;
 
-    // Inyectar CSS para la imagen de fondo adaptable
     const styleBlock = `
         <style id="hero-style">
             .anime-detail-hero {
@@ -454,9 +453,25 @@ $(document).ready(function () {
 
     const playerModal = $("#episode-player-modal");
 
+    // --- Lógica de Votos ---
+    function getEpisodeVotes() {
+      return JSON.parse(localStorage.getItem("episodeVotes")) || {};
+    }
+    function saveEpisodeVotes(votes) {
+      localStorage.setItem("episodeVotes", JSON.stringify(votes));
+    }
+    function getUserEpisodeVote() {
+      return JSON.parse(localStorage.getItem("userEpisodeVotes")) || {};
+    }
+    function saveUserEpisodeVote(userVotes) {
+      localStorage.setItem("userEpisodeVotes", JSON.stringify(userVotes));
+    }
+
     function openPlayer(displayIndex) {
       const episode = currentSeasonEpisodes[parseInt(displayIndex)];
       if (!episode) return;
+
+      const episodeId = `${anime.id}-s${episode.season}-ep${episode.number}`;
 
       const seasonNavList = anime.episodes
         .filter((e) => e.season === episode.season)
@@ -485,14 +500,6 @@ $(document).ready(function () {
       $("#player-episode-meta").html(
         `<span class="quality-tag-detail">${anime.quality}</span><span>${episode.language}</span><span>Lanzado el ${episode.releaseDate}</span>`
       );
-      $("#player-episode-actions").html(`
-          <button class="player-action-btn"><i class="fas fa-thumbs-up"></i> ${Math.floor(
-            Math.random() * 500
-          )}</button>
-          <button class="player-action-btn"><i class="fas fa-thumbs-down"></i> ${Math.floor(
-            Math.random() * 20
-          )}</button>
-      `);
       $("#player-episode-description").text(episode.description);
       $("#episode-iframe").attr("src", episode.videoUrl || "");
 
@@ -502,7 +509,10 @@ $(document).ready(function () {
         prevPreviewContainer.html(`
               <h5 class="player-nav-title">EPISODIO ANTERIOR</h5>
               <a href="#" class="player-nav-card open-player-btn" data-episode-index="${prevEpisodeDisplayIndex}">
-                  <img src="${prevEpisode.img}" alt="">
+                  <div class="player-nav-img-wrapper">
+                    <img src="${prevEpisode.img}" alt="">
+                    <div class="player-nav-play-icon"><i class="fas fa-play"></i></div>
+                  </div>
                   <div class="player-nav-info">
                       <p>E${prevEpisode.number} - ${prevEpisode.title}</p>
                       <span>${prevEpisode.language}</span>
@@ -516,7 +526,10 @@ $(document).ready(function () {
         nextPreviewContainer.html(`
               <h5 class="player-nav-title">SIGUIENTE EPISODIO</h5>
               <a href="#" class="player-nav-card open-player-btn" data-episode-index="${nextEpisodeDisplayIndex}">
-                  <img src="${nextEpisode.img}" alt="">
+                  <div class="player-nav-img-wrapper">
+                    <img src="${nextEpisode.img}" alt="">
+                    <div class="player-nav-play-icon"><i class="fas fa-play"></i></div>
+                  </div>
                   <div class="player-nav-info">
                       <p>E${nextEpisode.number} - ${nextEpisode.title}</p>
                       <span>${nextEpisode.language}</span>
@@ -524,16 +537,76 @@ $(document).ready(function () {
               </a>`);
       }
 
+      updateVoteUI(episodeId);
+
       playerModal.css("display", "flex").hide().fadeIn();
       $("body").css("overflow", "hidden");
     }
 
-    $(document).on("click", ".open-player-btn", function (e) {
-      e.preventDefault();
-      openPlayer($(e.currentTarget).data("episode-index"));
+    function updateVoteUI(episodeId) {
+      let allVotes = getEpisodeVotes();
+      if (!allVotes[episodeId]) {
+        allVotes[episodeId] = {
+          likes: Math.floor(Math.random() * 500) + 10,
+          dislikes: Math.floor(Math.random() * 20) + 1,
+        };
+        saveEpisodeVotes(allVotes);
+      }
+      const votes = allVotes[episodeId];
+      const userVotes = getUserEpisodeVote();
+      const userVote = userVotes[episodeId];
+
+      const actionsHtml = `
+            <button class="player-action-btn like-btn ${
+              userVote === "like" ? "active" : ""
+            }" data-episode-id="${episodeId}">
+                <i class="fas fa-thumbs-up"></i> <span class="like-count">${
+                  votes.likes
+                }</span>
+            </button>
+            <button class="player-action-btn dislike-btn ${
+              userVote === "dislike" ? "active" : ""
+            }" data-episode-id="${episodeId}">
+                <i class="fas fa-thumbs-down"></i> <span class="dislike-count">${
+                  votes.dislikes
+                }</span>
+            </button>
+        `;
+      $("#player-episode-actions").html(actionsHtml);
+    }
+
+    playerModal.on("click", ".like-btn, .dislike-btn", function () {
+      const episodeId = $(this).data("episode-id");
+      const isLikeBtn = $(this).hasClass("like-btn");
+
+      let allVotes = getEpisodeVotes();
+      let userVotes = getUserEpisodeVote();
+
+      const currentVote = userVotes[episodeId];
+      const voteToApply = isLikeBtn ? "like" : "dislike";
+
+      if (currentVote === voteToApply) {
+        userVotes[episodeId] = null;
+        allVotes[episodeId][voteToApply === "like" ? "likes" : "dislikes"]--;
+      } else {
+        if (currentVote) {
+          allVotes[episodeId][currentVote === "like" ? "likes" : "dislikes"]--;
+        }
+        allVotes[episodeId][voteToApply === "like" ? "likes" : "dislikes"]++;
+        userVotes[episodeId] = voteToApply;
+      }
+
+      saveEpisodeVotes(allVotes);
+      saveUserEpisodeVote(userVotes);
+      updateVoteUI(episodeId);
     });
 
-    playerModal.on("click", "#close-player-modal", () => {
+    $(document).on("click", ".open-player-btn", function (e) {
+      e.preventDefault();
+      openPlayer($(this).data("episode-index"));
+    });
+
+    $("#close-player-modal").on("click", () => {
       playerModal.fadeOut(() => $("#episode-iframe").attr("src", ""));
       $("body").css("overflow", "auto");
     });

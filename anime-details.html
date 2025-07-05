@@ -83,29 +83,24 @@
     </div>
 
     <div class="episode-player-modal" id="episode-player-modal">
-        <button class="close-player" id="close-player-modal" title="Cerrar">×</button>
-        <div class="player-container">
+        <div class="player-video-container">
             <iframe id="episode-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            <div class="player-controls-bar">
-                <div class="player-info-left">
-                    <a href="#" id="player-anime-link">
-                        <h3 id="player-anime-title"></h3>
-                    </a>
-                    <h4 id="player-episode-title"></h4>
-                    <div class="player-meta-tags" id="player-episode-meta"></div>
-                    <div class="episode-actions" id="player-episode-actions">
-                    </div>
-                    <p id="player-episode-description"></p>
+        </div>
+        <div class="player-details-container">
+            <button class="close-player" id="close-player-modal" title="Cerrar">×</button>
+            <div class="player-details-content">
+                <a href="#" id="player-anime-link">
+                    <h3 id="player-anime-title"></h3>
+                </a>
+                <h4 id="player-episode-title"></h4>
+                <div class="player-meta-tags" id="player-episode-meta"></div>
+                <div class="episode-actions" id="player-episode-actions">
                 </div>
-                <div class="player-info-right">
-                    <button class="player-action-btn" id="player-favorite-btn" title="Añadir a Favoritos">
-                        <i class="far fa-bookmark"></i>
-                    </button>
-                    <div class="player-nav-previews">
-                        <div id="player-next-episode-preview">
-                        </div>
-                        <div id="player-prev-episode-preview">
-                        </div>
+                <p id="player-episode-description"></p>
+                <div class="player-nav-previews">
+                    <div id="player-prev-episode-preview">
+                    </div>
+                    <div id="player-next-episode-preview">
                     </div>
                 </div>
             </div>
@@ -127,7 +122,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="module" src="js/main-2025.js"></script>
-    <script id="dsq-config-script" async></script>
 </body>
 
 </html>
