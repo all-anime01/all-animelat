@@ -127,7 +127,6 @@ header .navbar ul li a.active {
 .search-container .search-icon {
     font-size: 1.8rem;
     color: var(--light-text);
-    /* Icono blanco por defecto */
     background-color: transparent;
     cursor: pointer;
     position: absolute;
@@ -157,7 +156,6 @@ header .navbar ul li a.active {
     padding: 1rem 5rem 1rem 2rem;
     color: var(--light-text);
     width: 40px;
-    /* Inicia colapsado */
     opacity: 0;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -182,10 +180,8 @@ header .navbar ul li a.active {
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
-    /* Alineado a la derecha */
     display: none;
     width: 280px;
-    /* Ancho un poco mayor */
     background-color: var(--card-bg);
     border-radius: 8px;
     max-height: 400px;
@@ -741,7 +737,6 @@ header .navbar ul li a.active {
     border-radius: 8px;
     margin-bottom: 4rem;
     display: none;
-    /* Oculto por defecto */
     flex-direction: column;
     gap: 2.5rem;
 }
@@ -852,7 +847,8 @@ header .navbar ul li a.active {
 }
 
 .anime-logo {
-    max-width: 500px;
+    max-width: 70%;
+    width: 500px;
     height: auto;
     margin-bottom: 2rem;
 }
@@ -929,14 +925,21 @@ header .navbar ul li a.active {
     background-color: rgba(128, 128, 128, 0.6);
 }
 
-.action-btn.gemini-btn {
-    background-color: var(--gemini-blue);
+.action-btn.favorite-btn {
+    background-color: rgba(128, 128, 128, 0.4);
     color: var(--light-text);
+    padding: 1.2rem 1.5rem;
 }
 
-.action-btn.gemini-btn:hover {
-    background-color: #3367d6;
+.action-btn.favorite-btn:hover {
+    background-color: rgba(128, 128, 128, 0.6);
 }
+
+.action-btn.favorite-btn.is-favorite {
+    background-color: var(--secondary-color);
+    color: var(--dark-text);
+}
+
 
 /* --- Estilos de la Sección de Episodios en Detalles --- */
 .episodes-section-detail {
@@ -1175,8 +1178,7 @@ header .navbar ul li a.active {
 }
 
 /* --- Modal del Tráiler y Sinopsis --- */
-.trailer-modal,
-.ai-modal {
+.trailer-modal {
     display: none;
     position: fixed;
     z-index: 2000;
@@ -1191,8 +1193,7 @@ header .navbar ul li a.active {
     padding: 2rem;
 }
 
-.trailer-modal .modal-content,
-.ai-modal .modal-content {
+.trailer-modal .modal-content {
     background-color: var(--card-bg);
     border-radius: 8px;
     width: 90%;
@@ -1257,6 +1258,9 @@ header .navbar ul li a.active {
     background-color: var(--light-bg);
     padding: 1rem;
     border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
 }
 
 .modal-details-grid strong {
@@ -1264,7 +1268,7 @@ header .navbar ul li a.active {
     margin-right: 0.5rem;
 }
 
-/* --- Modal del Reproductor --- */
+/* --- Modal del Reproductor (Restaurado y Funcional) --- */
 .episode-player-modal {
     display: none;
     position: fixed;
@@ -1274,7 +1278,6 @@ header .navbar ul li a.active {
     height: 100vh;
     background-color: var(--dark-bg);
     z-index: 3000;
-    flex-direction: column;
 }
 
 .player-main-content {
@@ -1284,21 +1287,12 @@ header .navbar ul li a.active {
 }
 
 .player-video-section {
-    flex: 0 0 50%;
+    flex: 3;
+    /* Más espacio para el video */
     height: 100%;
     display: flex;
     flex-direction: column;
     background-color: #000;
-}
-
-.player-video-section .player-header {
-    padding: 1rem 2rem;
-    background-color: #000;
-    flex-shrink: 0;
-}
-
-.player-header .player-logo img {
-    height: 35px;
 }
 
 #episode-iframe {
@@ -1309,12 +1303,16 @@ header .navbar ul li a.active {
 }
 
 .player-details-section {
-    flex: 1;
+    flex: 2;
+    /* Menos espacio para los detalles */
+    max-width: 450px;
+    /* Ancho máximo */
     height: 100%;
     overflow-y: auto;
     background-color: var(--dark-bg);
     display: flex;
     flex-direction: column;
+    border-left: 1px solid var(--border-color);
 }
 
 .player-details-section .player-header {
@@ -1322,6 +1320,7 @@ header .navbar ul li a.active {
     background-color: var(--light-bg);
     text-align: right;
     border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
 }
 
 .close-player {
@@ -1338,6 +1337,9 @@ header .navbar ul li a.active {
 
 .details-content-wrapper {
     padding: 2.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .episode-title-container {
@@ -1434,7 +1436,6 @@ header .navbar ul li a.active {
 
 .comments-section {
     margin-top: auto;
-    /* Empuja los comentarios al final */
     padding-top: 3rem;
     border-top: 1px solid var(--border-color);
 }
@@ -1505,8 +1506,11 @@ header .navbar ul li a.active {
     }
 
     .player-video-section {
-        flex: 0 0 60%;
-        /* Dar más espacio al video en pantallas medianas */
+        flex: 2;
+    }
+
+    .player-details-section {
+        flex: 1;
     }
 }
 
@@ -1592,6 +1596,8 @@ header .navbar ul li a.active {
     .player-details-section {
         flex: 1;
         height: auto;
+        max-width: 100%;
+        border-left: none;
     }
 }
 
@@ -1613,9 +1619,9 @@ header .navbar ul li a.active {
         grid-template-columns: 1fr;
     }
 
-    .hero-logo {
-        max-width: 250px;
-        max-height: 100px;
+    .anime-logo {
+        max-width: 80%;
+        width: 350px;
     }
 
     .anime-detail-hero .hero-content {
@@ -1740,5 +1746,10 @@ header .navbar ul li a.active {
 
     .nav-episode-card.next .nav-episode-card-info {
         text-align: center;
+    }
+
+    .anime-logo {
+        width: 100%;
+        max-width: 280px;
     }
 }

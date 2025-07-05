@@ -223,26 +223,14 @@ $(document).ready(function () {
 
     document.title = `Ver ${anime.title} - All-anime`;
 
-    let latestEpisodeIndex = 0;
-    if (anime.episodes && anime.episodes.length > 0) {
-      const sortedEpisodes = [...anime.episodes].sort((a, b) =>
-        a.season !== b.season ? b.season - a.season : b.number - b.number
-      );
-      const latestEpisode = sortedEpisodes[0];
-      const episodesInSeason = anime.episodes
-        .filter((ep) => ep.season === latestEpisode.season)
-        .sort((a, b) => a.number - b.number);
-      latestEpisodeIndex = episodesInSeason.findIndex(
-        (ep) => ep.number === latestEpisode.number
-      );
-    }
+    // El botón de Play principal siempre apuntará al índice 0 de la lista renderizada,
+    // que por defecto (orden desc) será el último episodio de la última temporada.
+    const LATEST_EPISODE_INDEX_IN_RENDERED_LIST = 0;
 
     container.css("background-image", `url(${anime.heroImg})`);
     const heroContent = `
         <div class="hero-content">
-            <img src="${anime.logoImg}" alt="${
-      anime.title
-    } Logo" class="anime-logo">
+            <img src="${anime.logoImg}" alt="${anime.title} Logo" class="anime-logo">
             <div class="anime-meta-tags">
                 <span>${anime.year}</span>
                 <span>${anime.seasons} Temporada(s)</span>
@@ -250,13 +238,9 @@ $(document).ready(function () {
             </div>
             <p class="anime-description">${anime.description}</p>
             <div class="anime-actions">
-                <button class="action-btn play open-player-btn" data-episode-index="${latestEpisodeIndex}"><i class="fas fa-play"></i> Play</button>
+                <button class="action-btn play open-player-btn" data-episode-index="${LATEST_EPISODE_INDEX_IN_RENDERED_LIST}"><i class="fas fa-play"></i> Play</button>
                 <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> More Info</button>
-                <button class="action-btn gemini-btn" id="generate-recommendations-btn" data-anime-title="${
-                  anime.title
-                }" data-anime-genres="${anime.genres.join(
-      ","
-    )}"><i class="fas fa-lightbulb"></i> Recomiéndame</button>
+                <button class="action-btn favorite-btn" id="favorite-btn" title="Agregar a Favoritos"><i class="far fa-bookmark"></i></button>
             </div>
         </div>`;
     container.html(heroContent);
@@ -271,6 +255,10 @@ $(document).ready(function () {
     seasons.forEach((s) =>
       seasonSelect.append(`<option value="${s}">Temporada ${s}</option>`)
     );
+
+    // Seleccionar la última temporada por defecto
+    const latestSeason = Math.max(...seasons);
+    seasonSelect.val(latestSeason);
 
     function renderEpisodes(seasonNum, searchTerm = "", sortOrder = "desc") {
       if (episodesContainer.hasClass("slick-initialized")) {
@@ -347,7 +335,15 @@ $(document).ready(function () {
         <h3>${anime.title}</h3>
         <p>${anime.description}</p>
         <div class="modal-details-grid">
-            <div><strong>Géneros:</strong> ${anime.genres.join(", ")}</div>
+            ${
+              anime.rating
+                ? `<div><strong>Rating:</strong> <i class="fas fa-star" style="color: #ffc107;"></i> ${
+                    anime.rating
+                  } ${
+                    anime.ratingCount ? `(${anime.ratingCount} votos)` : ""
+                  }</div>`
+                : ""
+            }
             <div><strong>Audio:</strong> ${anime.audio}</div>
             <div><strong>Año:</strong> ${anime.year}</div>
             <div><strong>Estado:</strong> ${anime.status}</div>
@@ -370,8 +366,7 @@ $(document).ready(function () {
       "click",
       function () {
         $(this).addClass("active").siblings().removeClass("active");
-        const view = $(this).attr("id").split("-")[0]; // grid, list, or carousel
-
+        const view = $(this).attr("id").split("-")[0];
         if (episodesContainer.hasClass("slick-initialized")) {
           episodesContainer.slick("unslick");
         }
@@ -391,9 +386,9 @@ $(document).ready(function () {
       }
     );
 
-    debouncedRender(); // Initial render
+    debouncedRender();
 
-    // --- Lógica del Reproductor de Episodios ---
+    // --- Lógica del Reproductor de Episodios (Restaurada y corregida) ---
     const playerModal = $("#episode-player-modal");
     const episodeNavContainer = $("#episode-navigation-cards");
 
@@ -401,7 +396,6 @@ $(document).ready(function () {
       const episode = currentSeasonEpisodes[parseInt(displayIndex)];
       if (!episode) return;
 
-      // Create a stable, ascending list for navigation logic regardless of display sort order
       const seasonNavList = anime.episodes
         .filter((e) => e.season === episode.season)
         .sort((a, b) => a.number - b.number);
@@ -409,11 +403,9 @@ $(document).ready(function () {
       const trueNavIndex = seasonNavList.findIndex(
         (e) => e.number === episode.number
       );
-
       const prevEpisode = seasonNavList[trueNavIndex - 1];
       const nextEpisode = seasonNavList[trueNavIndex + 1];
 
-      // Find the display index in the *currently displayed* list for the nav buttons
       const prevEpisodeDisplayIndex = prevEpisode
         ? currentSeasonEpisodes.findIndex(
             (e) => e.number === prevEpisode.number
@@ -425,7 +417,6 @@ $(document).ready(function () {
           )
         : -1;
 
-      // Update player content
       $("#player-anime-title").text(anime.title);
       $("#player-episode-title").text(
         `Episodio ${episode.number}: ${episode.title}`
@@ -436,66 +427,30 @@ $(document).ready(function () {
       $("#player-episode-description").text(episode.description);
       $("#episode-iframe").attr("src", episode.videoUrl || "");
 
-      // Update navigation buttons
       episodeNavContainer.empty();
-      const prevCard = `
-            <a href="#" class="nav-episode-card prev ${
-              !prevEpisode ? "disabled" : ""
-            }" data-nav-index="${prevEpisodeDisplayIndex}">
-                <img src="${
-                  prevEpisode
-                    ? prevEpisode.img
-                    : "https://placehold.co/120x70/181818/181818"
-                }" alt="">
-                <div class="nav-episode-card-info">
-                    <h5><i class="fas fa-backward"></i> Anterior</h5>
-                    <p>${
-                      prevEpisode
-                        ? `Ep ${prevEpisode.number}: ${prevEpisode.title}`
-                        : "Inicio de temporada"
-                    }</p>
-                </div>
-            </a>`;
-      const nextCard = `
-             <a href="#" class="nav-episode-card next ${
-               !nextEpisode ? "disabled" : ""
-             }" data-nav-index="${nextEpisodeDisplayIndex}">
-                <div class="nav-episode-card-info">
-                    <h5>Siguiente <i class="fas fa-forward"></i></h5>
-                    <p>${
-                      nextEpisode
-                        ? `Ep ${nextEpisode.number}: ${nextEpisode.title}`
-                        : "Fin de temporada"
-                    }</p>
-                </div>
-                <img src="${
-                  nextEpisode
-                    ? nextEpisode.img
-                    : "https://placehold.co/120x70/181818/181818"
-                }" alt="">
-            </a>`;
+      const prevCard = `<a href="#" class="nav-episode-card prev ${
+        !prevEpisode ? "disabled" : ""
+      }" data-nav-index="${prevEpisodeDisplayIndex}"><img src="${
+        prevEpisode
+          ? prevEpisode.img
+          : "https://placehold.co/120x70/181818/181818"
+      }" alt=""><div class="nav-episode-card-info"><h5><i class="fas fa-backward"></i> Anterior</h5><p>${
+        prevEpisode
+          ? `Ep ${prevEpisode.number}: ${prevEpisode.title}`
+          : "Inicio de temporada"
+      }</p></div></a>`;
+      const nextCard = `<a href="#" class="nav-episode-card next ${
+        !nextEpisode ? "disabled" : ""
+      }" data-nav-index="${nextEpisodeDisplayIndex}"><div class="nav-episode-card-info"><h5>Siguiente <i class="fas fa-forward"></i></h5><p>${
+        nextEpisode
+          ? `Ep ${nextEpisode.number}: ${nextEpisode.title}`
+          : "Fin de temporada"
+      }</p></div><img src="${
+        nextEpisode
+          ? nextEpisode.img
+          : "https://placehold.co/120x70/181818/181818"
+      }" alt=""></a>`;
       episodeNavContainer.append(prevCard).append(nextCard);
-
-      // Update Disqus
-      const disqusConfig = function () {
-        this.page.url =
-          window.location.href.split("?")[0] +
-          `?id=${anime.id}&ep=${episode.number}`;
-        this.page.identifier = `${anime.id}-ep-${episode.number}`;
-        this.page.title = `${anime.title} - Episodio ${episode.number}`;
-      };
-
-      if (window.DISQUS) {
-        DISQUS.reset({ reload: true, config: disqusConfig });
-      } else {
-        const script = document.createElement("script");
-        $("#dsq-config-script").html(
-          `var disqus_config = ${disqusConfig.toString()};`
-        );
-        script.src = "https://all-anime-net.disqus.com/embed.js";
-        script.setAttribute("data-timestamp", +new Date());
-        (document.head || document.body).appendChild(script);
-      }
 
       playerModal.css("display", "flex").hide().fadeIn();
       $("body").css("overflow", "hidden");
@@ -516,9 +471,50 @@ $(document).ready(function () {
     });
 
     $("#close-player-modal").on("click", () => {
-      playerModal.fadeOut();
-      $("#episode-iframe").attr("src", "");
+      playerModal.fadeOut(() => $("#episode-iframe").attr("src", ""));
       $("body").css("overflow", "auto");
+    });
+
+    // --- Lógica de Favoritos ---
+    const favoriteBtn = $("#favorite-btn");
+
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
+    }
+
+    function isFavorite(id) {
+      return getFavorites().includes(id);
+    }
+
+    function toggleFavorite(id) {
+      let favorites = getFavorites();
+      if (favorites.includes(id)) {
+        favorites = favorites.filter((favId) => favId !== id);
+      } else {
+        favorites.push(id);
+      }
+      localStorage.setItem("favoriteAnimes", JSON.stringify(favorites));
+      updateFavoriteButtonState(id);
+    }
+
+    function updateFavoriteButtonState(id) {
+      if (isFavorite(id)) {
+        favoriteBtn.addClass("is-favorite");
+        favoriteBtn.find("i").removeClass("far").addClass("fas");
+        favoriteBtn.attr("title", "Quitar de Favoritos");
+      } else {
+        favoriteBtn.removeClass("is-favorite");
+        favoriteBtn.find("i").removeClass("fas").addClass("far");
+        favoriteBtn.attr("title", "Agregar a Favoritos");
+      }
+    }
+
+    // Estado inicial del botón al cargar la página
+    updateFavoriteButtonState(animeId);
+
+    favoriteBtn.on("click", function (e) {
+      e.preventDefault();
+      toggleFavorite(animeId);
     });
   }
 
@@ -665,56 +661,6 @@ $(document).ready(function () {
     ) {
       searchContainer.removeClass("active");
       searchResults.hide();
-    }
-  });
-
-  // --- LÓGICA DE RECOMENDACIONES IA ---
-  async function getAiRecommendations(title, genres) {
-    const aiContent = $("#ai-recommendations-content");
-    const aiModal = $("#ai-recommendations-modal");
-
-    aiModal.css("display", "flex").hide().fadeIn();
-    aiContent.html('<div class="loader"></div>');
-
-    const prompt = `Basado en el anime "${title}" con géneros como "${genres}", genera una lista de 3 animes similares. Para cada recomendación, proporciona el título y una breve descripción (2-3 frases) explicando por qué a un fan de "${title}" le gustaría. Formatea la respuesta como una lista. No uses markdown de encabezado, solo negrita para los títulos.`;
-
-    try {
-      // SIMULACIÓN DE LLAMADA A API
-      setTimeout(() => {
-        const recommendationsText = `
-                <p>Si te gustó ${title}, aquí tienes otras series que podrían encantarte:</p>
-                <ul>
-                    <li>
-                        <strong>Anime Recomendado 1:</strong> Es similar en su tono oscuro y desarrollo de mundo. El protagonista también comparte un viaje de descubrimiento de poder en un entorno hostil, enfrentando dilemas morales complejos.
-                    </li>
-                    <li>
-                        <strong>Anime Recomendado 2:</strong> Comparte el género de ${
-                          genres.split(",")[0]
-                        } y tiene un sistema de poder muy bien estructurado. La animación de las batallas y la estrategia te recordarán a las mejores escenas de ${title}.
-                    </li>
-                    <li>
-                        <strong>Anime Recomendado 3:</strong> Aunque la premisa es diferente, el viaje emocional del elenco y los lazos que forman bajo presión son muy parecidos. Ofrece una mezcla perfecta de acción y desarrollo de personajes.
-                    </li>
-                </ul>`;
-        aiContent.html(recommendationsText);
-      }, 1500);
-    } catch (error) {
-      console.error("Error al generar recomendaciones:", error);
-      aiContent.html(
-        "<p>Lo sentimos, no se pudieron generar las recomendaciones. Por favor, inténtalo de nuevo.</p>"
-      );
-    }
-  }
-
-  $(document).on("click", "#generate-recommendations-btn", function () {
-    const animeTitle = $(this).data("anime-title");
-    const animeGenres = $(this).data("anime-genres");
-    getAiRecommendations(animeTitle, animeGenres);
-  });
-
-  $("#close-ai-modal, #ai-recommendations-modal").on("click", function (e) {
-    if (e.target === e.currentTarget || $(e.target).hasClass("close-modal")) {
-      $("#ai-recommendations-modal").fadeOut();
     }
   });
 
