@@ -1663,7 +1663,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Isagi Yoichi es un delantero de preparatoria que no logró llevar a su equipo a las nacionales. De pronto, recibe una invitación para unirse a un proyecto llamado Blue Lock.",
-        img: "/image/Blue-lock/1.png",
+        img: "image/Blue-lock/1.png",
         releaseDate: "Octubre 9, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/1.html",
@@ -1675,7 +1675,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La primera selección de Blue Lock comienza. El equipo Z de Isagi debe jugar contra el equipo X en un partido de todos contra todos. Pero antes, deben superar una prueba inesperada.",
-        img: "/image/Blue-lock/2.jpg",
+        img: "image/Blue-lock/2.jpg",
         releaseDate: "Octubre 16, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/2.html",
@@ -1687,7 +1687,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El equipo Z se prepara para su próximo partido contra el equipo Y. Isagi reflexiona sobre su 'arma' y busca la fórmula para marcar su propio gol.",
-        img: "/image/Blue-lock/3.png",
+        img: "image/Blue-lock/3.png",
         releaseDate: "Octubre 23, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/3.html",
@@ -1699,7 +1699,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El partido contra el equipo Y llega a su clímax. Isagi y sus compañeros deben encontrar una manera de romper la defensa rival y evitar la eliminación.",
-        img: "/image/Blue-lock/4.jpg",
+        img: "image/Blue-lock/4.jpg",
         releaseDate: "Octubre 30, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/4.html",
@@ -1711,7 +1711,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Después de su primera victoria, el Equipo Z debe enfrentarse al Equipo W, que cuenta con los hermanos Wanima y su increíble juego en equipo.",
-        img: "/image/Blue-lock/5.jpg",
+        img: "image/Blue-lock/5.jpg",
         releaseDate: "Noviembre 6, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/5.html",
@@ -1723,7 +1723,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La traición de un compañero pone al Equipo Z en una situación desesperada. Isagi debe encontrar una manera de superar la adversidad y liderar a su equipo.",
-        img: "/image/Blue-lock/6.jpg",
+        img: "image/Blue-lock/6.jpg",
         releaseDate: "Noviembre 13, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/6.html",
@@ -1735,7 +1735,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El equipo Z está eufórico tras su victoria, pero se enfrentan a su desafío más difícil hasta ahora: el equipo V, el más fuerte de su estrato.",
-        img: "/image/Blue-lock/7.jpg",
+        img: "image/Blue-lock/7.jpg",
         releaseDate: "Noviembre 20, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/7.html",
@@ -1747,7 +1747,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El partido contra el equipo V comienza. Nagi, Reo y Zantetsu, el trío de genios, demuestran su abrumadora habilidad, dejando al equipo Z sin respuestas.",
-        img: "/image/Blue-lock/8.jpg",
+        img: "image/Blue-lock/8.jpg",
         releaseDate: "Noviembre 27, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/8.html",
@@ -1759,7 +1759,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Para sobrevivir, los miembros del equipo Z deben evolucionar. Isagi y Chigiri despiertan sus 'egos' y desatan nuevas habilidades en el campo.",
-        img: "/image/Blue-lock/9.jpg",
+        img: "image/Blue-lock/9.jpg",
         releaseDate: "Diciembre 4, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/9.html",
@@ -1771,7 +1771,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Con el partido empatado, el equipo Z arriesga todo en un último ataque. Isagi debe encontrar la 'fórmula' final para marcar el gol de la victoria.",
-        img: "/image/Blue-lock/10.jpg",
+        img: "image/Blue-lock/10.jpg",
         releaseDate: "Diciembre 11, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/10.html",
@@ -1783,7 +1783,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El gol de Isagi asegura la victoria y la clasificación del Equipo Z. Sin embargo, se revela que la primera selección no ha terminado y que aún queda un traidor por eliminar.",
-        img: "/image/Blue-lock/11.jpg",
+        img: "image/Blue-lock/11.jpg",
         releaseDate: "Diciembre 18, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/11.html",
@@ -1795,7 +1795,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Los jugadores que superaron la primera selección avanzan a la segunda fase, donde las pruebas se vuelven individuales y el ego es más importante que nunca.",
-        img: "/image/Blue-lock/12.jpg",
+        img: "image/Blue-lock/12.jpg",
         releaseDate: "Diciembre 25, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/12.html",
@@ -1807,7 +1807,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Isagi se une a Bachira y Nagi para la segunda fase. Su primer desafío es un partido de 3 contra 3 contra los mejores jugadores de Blue Lock, incluido el prodigio Rin Itoshi.",
-        img: "/image/Blue-lock/13.jpg",
+        img: "image/Blue-lock/13.jpg",
         releaseDate: "Enero 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/13.html",
@@ -1819,7 +1819,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El equipo de Isagi es derrotado abrumadoramente por Rin y su equipo. Para seguir avanzando, Isagi debe entender la diferencia entre su talento y el de un verdadero genio.",
-        img: "/image/Blue-lock/14.jpg",
+        img: "image/Blue-lock/14.jpg",
         releaseDate: "Enero 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/14.html",
@@ -1831,7 +1831,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Isagi, Nagi y Barou se enfrentan a un nuevo equipo. Isagi intenta asimilar las fortalezas de sus compañeros para crear un nuevo tipo de fútbol.",
-        img: "/image/Blue-lock/15.jpg",
+        img: "image/Blue-lock/15.jpg",
         releaseDate: "Enero 22, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/15.html",
@@ -1843,7 +1843,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El egocentrismo de Barou choca con el juego en equipo. Isagi debe encontrar una manera de devorar el ego de Barou para que su equipo pueda funcionar.",
-        img: "/image/Blue-lock/16.jpg",
+        img: "image/Blue-lock/16.jpg",
         releaseDate: "Enero 29, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/16.html",
@@ -1855,7 +1855,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Isagi y su equipo se enfrentan a Chigiri, Kunigami y Reo. Es una batalla de viejos compañeros convertidos en rivales.",
-        img: "/image/Blue-lock/17.jpg",
+        img: "image/Blue-lock/17.jpg",
         releaseDate: "Febrero 5, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/17.html",
@@ -1867,7 +1867,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Barou, el 'Rey', despierta como un villano en el campo, anotando goles espectaculares. Isagi debe devorar al nuevo rey para convertirse en el protagonista.",
-        img: "/image/Blue-lock/18.jpg",
+        img: "image/Blue-lock/18.jpg",
         releaseDate: "Febrero 12, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/18.html",
@@ -1879,7 +1879,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El equipo de Isagi se prepara para la revancha contra Rin, Aryu y Tokimitsu. Bachira, que fue elegido por el equipo de Rin, ahora es su oponente.",
-        img: "/image/Blue-lock/19.jpg",
+        img: "image/Blue-lock/19.jpg",
         releaseDate: "Febrero 19, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/19.html",
@@ -1891,7 +1891,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Comienza el partido de 4 contra 4. Isagi, Nagi y Barou deben combinar sus egos evolucionados para tener una oportunidad contra el equipo de Rin.",
-        img: "/image/Blue-lock/20.jpg",
+        img: "image/Blue-lock/20.jpg",
         releaseDate: "Febrero 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/20.html",
@@ -1903,7 +1903,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Isagi se siente abrumado por el nivel de juego de Rin y Bachira. Para poder competir, debe encontrar una nueva forma de pensar y de jugar.",
-        img: "/image/Blue-lock/21.jpg",
+        img: "image/Blue-lock/21.jpg",
         releaseDate: "Marzo 5, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/21.html",
@@ -1915,7 +1915,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Isagi comienza a entender el concepto de 'suerte' en el fútbol. Escuchando la voz de su instinto, se posiciona para devorar el gol decisivo.",
-        img: "/image/Blue-lock/22.jpg",
+        img: "image/Blue-lock/22.jpg",
         releaseDate: "Marzo 12, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/22.html",
@@ -1927,7 +1927,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con el partido en su punto álgido, Isagi finalmente se pone al nivel de Rin. Es una batalla de egos donde la suerte determinará al ganador.",
-        img: "/image/Blue-lock/23.jpe",
+        img: "image/Blue-lock/23.jpe",
         releaseDate: "Marzo 19, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/23.html",
@@ -1939,7 +1939,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Finaliza la segunda selección. Los supervivientes se enfrentan a un nuevo desafío: un partido contra la selección japonesa Sub-20, con el destino de Blue Lock en juego.",
-        img: "/image/Blue-lock/24.jpe",
+        img: "image/Blue-lock/24.jpe",
         releaseDate: "Marzo 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/24.html",
@@ -2145,7 +2145,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo Kurosaki y sus amigos se enfrentan a una repentina aparición de Hollows en la ciudad de Karakura, mientras que en la Sociedad de Almas investigan la desaparición de almas.",
-        img: "/image/Bleach-thousand-year-blood-war/1.png",
+        img: "image/Bleach-thousand-year-blood-war/1.png",
         releaseDate: "Octubre 10, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/1.html",
@@ -2157,7 +2157,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo se encuentra con el misterioso Asguiaro Ebern, quien intenta robar su Bankai. Mientras tanto, el Wandenreich lanza su invasión a la Sociedad de Almas.",
-        img: "/image/Bleach-thousand-year-blood-war/2.jpg",
+        img: "image/Bleach-thousand-year-blood-war/2.jpg",
         releaseDate: "Octubre 17, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/2.html",
@@ -2169,7 +2169,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Los capitanes del Gotei 13 se enfrentan a los Sternritter del Wandenreich, descubriendo que sus enemigos tienen una habilidad inesperada que anula sus Bankai.",
-        img: "/image/Bleach-thousand-year-blood-war/3.jpg",
+        img: "image/Bleach-thousand-year-blood-war/3.jpg",
         releaseDate: "Octubre 24, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/3.html",
@@ -2181,7 +2181,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La batalla se intensifica en todo el Seireitei. Byakuya Kuchiki lucha contra Äs Nödt, cuyo poder se basa en infundir miedo, mientras otros capitanes sufren derrotas devastadoras.",
-        img: "/image/Bleach-thousand-year-blood-war/4.jpg",
+        img: "image/Bleach-thousand-year-blood-war/4.jpg",
         releaseDate: "Octubre 31, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/4.html",
@@ -2193,7 +2193,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El capitán comandante Yamamoto Genryusai entra en la batalla, desatando la furia de su Zanpakuto, Ryujin Jakka, para vengar la muerte de su teniente.",
-        img: "/image/Bleach-thousand-year-blood-war/5.jpg",
+        img: "image/Bleach-thousand-year-blood-war/5.jpg",
         releaseDate: "Noviembre 7, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/5.html",
@@ -2205,7 +2205,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Yamamoto libera su Bankai, Zanka no Tachi, revelando su verdadero y devastador poder. Se enfrenta directamente a Yhwach, el líder del Wandenreich.",
-        img: "/image/Bleach-thousand-year-blood-war/6.jpg",
+        img: "image/Bleach-thousand-year-blood-war/6.jpg",
         releaseDate: "Noviembre 14, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/6.html",
@@ -2217,7 +2217,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Tras la trágica conclusión de la batalla de Yamamoto, Ichigo finalmente llega a la Sociedad de Almas, pero se encuentra con un Yhwach triunfante.",
-        img: "/image/Bleach-thousand-year-blood-war/7.jpg",
+        img: "image/Bleach-thousand-year-blood-war/7.jpg",
         releaseDate: "Noviembre 21, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/7.html",
@@ -2229,7 +2229,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con el Seireitei en ruinas, los supervivientes intentan reagruparse. Ichigo, con su Zangetsu rota, debe buscar una nueva fuente de poder.",
-        img: "/image/Bleach-thousand-year-blood-war/8.jpg",
+        img: "image/Bleach-thousand-year-blood-war/8.jpg",
         releaseDate: "Noviembre 28, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/8.html",
@@ -2241,7 +2241,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo y Renji son llevados al Palacio del Rey de las Almas, donde se someten a un entrenamiento especial con la División Cero para reforjar sus Zanpakuto.",
-        img: "/image/Bleach-thousand-year-blood-war/9.jpg",
+        img: "image/Bleach-thousand-year-blood-war/9.jpg",
         releaseDate: "Diciembre 5, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/9.html",
@@ -2253,7 +2253,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Zaraki Kenpachi, buscando un poder mayor, se enfrenta a la primera Kenpachi, Unohana Yachiru, en una batalla a muerte para desatar su verdadero potencial.",
-        img: "/image/Bleach-thousand-year-blood-war/10.jpg",
+        img: "image/Bleach-thousand-year-blood-war/10.jpg",
         releaseDate: "Diciembre 12, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/10.html",
@@ -2265,7 +2265,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Isshin Kurosaki narra la historia de cómo conoció a Masaki, la madre de Ichigo, y la batalla que los unió contra un poderoso Hollow modificado.",
-        img: "/image/Bleach-thousand-year-blood-war/11.jpg",
+        img: "image/Bleach-thousand-year-blood-war/11.jpg",
         releaseDate: "Diciembre 19, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/11.html",
@@ -2277,7 +2277,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Se revela la verdad sobre la herencia de Ichigo y la verdadera naturaleza de su poder, conectando su lado Shinigami, Hollow y Quincy.",
-        img: "/image/Bleach-thousand-year-blood-war/12.jpg",
+        img: "image/Bleach-thousand-year-blood-war/12.jpg",
         releaseDate: "Diciembre 26, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/12.html",
@@ -2289,7 +2289,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con un nuevo entendimiento de sí mismo, Ichigo forja de nuevo su Zanpakuto, obteniendo dos espadas que representan la dualidad de sus poderes.",
-        img: "/image/Bleach-thousand-year-blood-war/13.jpg",
+        img: "image/Bleach-thousand-year-blood-war/13.jpg",
         releaseDate: "Diciembre 26, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/13.html",
@@ -2302,7 +2302,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El Wandenreich lanza su segunda invasión. Ichigo regresa a la Sociedad de Almas mientras que Uryu Ishida toma una decisión que lo pone en contra de sus amigos.",
-        img: "/image/Bleach-thousand-year-blood-war/P2/14.jpg",
+        img: "image/Bleach-thousand-year-blood-war/P2/14.jpg",
         releaseDate: "Julio 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/14.html",
@@ -2507,7 +2507,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Gerard Valkyrie, 'The Miracle', revela su verdadera y gigantesca forma, obligando a los Shinigami a unirse para enfrentar a un enemigo casi invencible.",
-        img: "/image/Bleach-thousand-year-blood-war/T3/31.jpg",
+        img: "image/Bleach-thousand-year-blood-war/T3/31.jpg",
         releaseDate: "Noviembre 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/31.html",
@@ -2664,7 +2664,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Tras la tragedia, Rin decide seguir el consejo de Mephisto Pheles y se inscribe en la Academia de la Vera Cruz para convertirse en un exorcista y derrotar a Satán.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d97813a17e0b57e7a57c5414d7a1267.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/875a39d15301fc4e6101390c8c5842af.jpg",
         releaseDate: "Abril 24, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/2.html",
@@ -2676,7 +2676,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Rin descubre que su hermano Yukio no solo es un exorcista experimentado, sino también su profesor. Comienza su dura vida como estudiante y aspirante a exorcista.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2c71b071a96a6ea041d35ecb5d2038eb.jpg",
         releaseDate: "Mayo 1, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/3.html",
@@ -2688,7 +2688,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Rin conoce a Shiemi Moriyama, una chica que no puede caminar debido a un demonio que infesta sus piernas. Rin decide ayudarla, a pesar de las advertencias de Yukio.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7ea8439a7d6d824cda1d1e7abb22abc4.jpg",
         releaseDate: "Mayo 8, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/4.html",
@@ -2700,7 +2700,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Rin conoce a sus compañeros de clase, incluido Ryuji Suguro, quien ve a Satán como su principal enemigo y choca inmediatamente con la actitud despreocupada de Rin.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/bfc24485b78ba982d5038dcd0835dc21.jpg",
         releaseDate: "Mayo 15, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/5.html",
@@ -2712,7 +2712,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Yukio le pide a Rin que prepare el almuerzo para él y sus compañeros, pero un demonio de la cocina tiene otros planes.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2eb8ccf878adf4b3229d391a6a5cacfe.jpg",
         releaseDate: "Mayo 22, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/6.html",
@@ -2724,7 +2724,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Rin, Ryuji y los demás deben aprender a trabajar en equipo durante un ejercicio de campo, pero sus personalidades conflictivas ponen la misión en peligro.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d0abd4a6bb15bf4432ac8742e97dbac2.jpg",
         releaseDate: "Mayo 29, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/7.html",
@@ -2736,7 +2736,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El abuelo de Izumo, un sacerdote, es poseído por un demonio. El grupo debe exorcizarlo sin dañar al hombre.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ebc19f45e62c8639aef11be39163940c.jpg",
         releaseDate: "Junio 5, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/8.html",
@@ -2748,7 +2748,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La identidad de Rin como hijo de Satán es revelada a sus compañeros, causando miedo y desconfianza. Rin recuerda los últimos días con Shiro.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0989c424e7d82fcac5ad0ed7e3d2c4d8.jpg",
         releaseDate: "Junio 12, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/9.html",
@@ -2756,11 +2756,11 @@ export const animeData = [
       {
         season: 1,
         number: 10,
-        title: "Cait Sith",
+        title: "Gato negro",
         duration: "24 min",
         description:
           "Rin es llevado a un interrogatorio por la Orden de la Vera Cruz. Mientras tanto, debe aprender a controlar sus llamas azules con la ayuda de Shura Kirigakure.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/05d4fe9d857efc9b4c0e9594a0541a6c.jpg",
         releaseDate: "Junio 19, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/10.html",
@@ -2772,7 +2772,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Los aspirantes a exorcistas van a un campamento de entrenamiento en la playa, pero un demonio marino gigante amenaza con arruinar su viaje.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/76cc4f34500b866dce549327a870b048.jpg",
         releaseDate: "Junio 26, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/11.html",
@@ -2780,11 +2780,11 @@ export const animeData = [
       {
         season: 1,
         number: 12,
-        title: "Un juego de鬼事",
+        title: "Un juego de atrapados",
         duration: "24 min",
         description:
           "Durante el campamento, el grupo debe realizar una prueba de supervivencia en el bosque, pero Amaimon, otro hijo de Satán, aparece para desafiar a Rin.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ef558aaa5357557ef32c9d3c8ffd56cc.jpg",
         releaseDate: "Julio 3, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/12.html",
@@ -2796,7 +2796,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La batalla contra Amaimon se descontrola y Rin pierde el control de sus llamas, forzando a sus amigos a presenciar su poder demoníaco.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0e715323934cb55a27ef555879afd5be.jpg",
         releaseDate: "Julio 10, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/13.html",
@@ -2808,7 +2808,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Tras el incidente con Amaimon, la Orden de la Vera Cruz somete a Rin a un juicio para decidir si debe ser ejecutado o si se le permite vivir.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3758234304035ceb22f5d0cf72febcf5.jpg",
         releaseDate: "Julio 17, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/14.html",
@@ -2820,7 +2820,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mephisto interviene en el juicio de Rin, proponiendo que demuestre su valía controlando sus poderes en un plazo de seis meses.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a117fab663b8bb6fa0c490612e82c54b.jpg",
         releaseDate: "Julio 24, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/15.html",
@@ -2832,7 +2832,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Comienza el entrenamiento de Rin con Shura para controlar sus llamas. Debe encender tres velas simultáneamente para pasar la prueba.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/4a8bbf23237aaaac03aeb9225ac4acdb.jpg",
         releaseDate: "Julio 31, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/16.html",
@@ -2844,7 +2844,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Un demonio ataca a Shura durante un viaje en tren, y Rin debe protegerla mientras lucha por mantener sus llamas bajo control.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/02230c253ebf3892505ff40f69b603c5.jpg",
         releaseDate: "Agosto 7, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/17.html",
@@ -2856,7 +2856,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Los aspirantes se preparan para el examen de autorización de exorcista. La prueba consiste en sobrevivir a un ataque de demonios.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/86ce6cc753f414cb2776089d25d99963.jpg",
         releaseDate: "Agosto 14, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/18.html",
@@ -2868,7 +2868,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Un día de descanso para los estudiantes antes de la próxima gran prueba, mostrando sus interacciones y vidas cotidianas.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fa6092e28469c0d42b2a2c16cf5ae61d.jpg",
         releaseDate: "Agosto 21, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/19.html",
@@ -2880,7 +2880,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La víspera del festival de la academia, un misterioso hombre enmascarado ataca a Izumo. Rin y sus amigos deben protegerla.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/95c2877e25bb326dabef52a096253d29.jpg",
         releaseDate: "Agosto 28, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/20.html",
@@ -2892,7 +2892,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El hombre enmascarado resulta ser un poderoso exorcista con una agenda oculta. La batalla revela secretos sobre la Orden de la Vera Cruz.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ae0a627787b8d510fd650f34e61754f6.jpg",
         releaseDate: "Septiembre 4, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/21.html",
@@ -2904,7 +2904,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Yukio es secuestrado y llevado a Gehenna. Rin y sus amigos deciden ir a rescatarlo, desafiando las órdenes de la Orden.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d3d57862f92f25492d547f2a1b92015.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e7a0c8e8fd21e52902b5f227fa6c4421.jpg",
         releaseDate: "Septiembre 11, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/22.html",
@@ -2916,7 +2916,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "En Gehenna, Rin se enfrenta a Satán, quien revela la verdad sobre el nacimiento de los gemelos y su plan para unir ambos mundos.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8e718b95889753965b93d39589d81d4a.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/75752d6d1338de6f88982a42931dc979.jpg",
         releaseDate: "Septiembre 18, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/23.html",
@@ -2928,7 +2928,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Satán posee el cuerpo de Yukio e intenta abrir una gigantesca Puerta de Gehenna sobre la Academia de la Vera Cruz.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/6fa8e7b432dbab1545c250d70e2b8410.jpg",
         releaseDate: "Septiembre 25, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/24.html",
@@ -2940,7 +2940,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La batalla final contra Satanás llega a su clímax. Rin y Yukio deben combinar sus fuerzas para proteger Assiah y a sus amigos de la aniquilación total.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f33e728e8331393f9252033c4608c02.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/6956c7de0983527beb94e8c66665358a.jpg",
         releaseDate: "Octubre 2, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/25.html",
@@ -2965,7 +2965,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El Ojo Izquierdo del Rey Impuro ha sido robado. Rin y los demás son enviados a Kioto para proteger el Ojo Derecho y ayudar a la familia de Suguro.",
-        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/2544e3f16279f6043bf7c37613769c27.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1d494b1bf3393b48fc99d5c467d5aadf.jpg",
         releaseDate: "Enero 14, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/2.html",
@@ -3556,7 +3556,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Yuji Itadori es un estudiante de secundaria con unas habilidades físicas extraordinarias, pero no tiene ningún interés en los deportes y prefiere apuntarse al club de ocultismo. Un día, el sello de un objeto maldito se rompe y los monstruos atacan.",
-        img: "/image/jujutsu-k/1.jpg",
+        img: "image/jujutsu-k/1.jpg",
         releaseDate: "Octubre 3, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/1.html",
@@ -3568,7 +3568,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori se despierta en un lugar desconocido y se encuentra con Satoru Gojo, profesor del Colegio Técnico de Magia Metropolitana de Tokio, quien le da una opción drástica.",
-        img: "/image/jujutsu-k/2.jpg",
+        img: "image/jujutsu-k/2.jpg",
         releaseDate: "Octubre 10, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/2.html",
@@ -3580,7 +3580,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori, Fushiguro y Gojo van a encontrarse con el tercer estudiante de primer año, Nobara Kugisaki. Tras ello, los tres estudiantes son enviados a exorcizar una maldición en un edificio abandonado.",
-        img: "/image/jujutsu-k/3.jpg",
+        img: "image/jujutsu-k/3.jpg",
         releaseDate: "Octubre 17, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/3.html",
@@ -3592,7 +3592,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Un espíritu maldito aparece en un centro de detención. Envían a Itadori, Fushiguro y Kugisaki a rescatar a los supervivientes, pero la misión resulta ser más peligrosa de lo que esperaban.",
-        img: "/image/jujutsu-k/4.jpg",
+        img: "image/jujutsu-k/4.jpg",
         releaseDate: "Octubre 24, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/4.html",
@@ -3604,7 +3604,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Para enfrentarse al espíritu maldito de categoría especial, Itadori permite que Sukuna tome el control. Aunque Sukuna lo derrota fácilmente, la situación toma un giro inesperado.",
-        img: "/image/jujutsu-k/5.jpg",
+        img: "image/jujutsu-k/5.jpg",
         releaseDate: "Octubre 31, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/5.html",
@@ -3616,7 +3616,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori continúa su entrenamiento con Gojo, centrándose en controlar su energía maldita. Mientras tanto, un grupo de espíritus malditos planea atacar a Gojo.",
-        img: "/image/jujutsu-k/6.jpg",
+        img: "image/jujutsu-k/6.jpg",
         releaseDate: "Noviembre 7, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/6.html",
@@ -3628,7 +3628,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Gojo se enfrenta a Jogo, un espíritu maldito de categoría especial. Gojo decide usar esta batalla como una lección para Itadori, mostrándole el verdadero poder de un hechicero.",
-        img: "/image/jujutsu-k/7.png",
+        img: "image/jujutsu-k/7.png",
         releaseDate: "Noviembre 14, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/7.html",
@@ -3640,7 +3640,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Llegan los estudiantes del colegio de Kioto para el evento de intercambio. Mientras se preparan, Mai Zenin y Aoi Todo confrontan a Fushiguro y Kugisaki.",
-        img: "/image/jujutsu-k/8.jpg",
+        img: "image/jujutsu-k/8.jpg",
         releaseDate: "Noviembre 21, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/8.html",
@@ -3652,7 +3652,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori y Kento Nanami investigan una serie de asesinatos en un cine, lo que los lleva a enfrentarse a Mahito, un espíritu maldito con la habilidad de deformar almas.",
-        img: "/image/jujutsu-k/9.jpg",
+        img: "image/jujutsu-k/9.jpg",
         releaseDate: "Noviembre 28, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/9.html",
@@ -3664,7 +3664,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Nanami continúa su batalla contra Mahito. Mientras tanto, Itadori se encuentra con Junpei Yoshino, un estudiante que ha sido manipulado por el mismo espíritu maldito.",
-        img: "/image/jujutsu-k/10.jpg",
+        img: "image/jujutsu-k/10.jpg",
         releaseDate: "Diciembre 5, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/10.html",
@@ -3676,7 +3676,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori intenta convencer a Junpei de unirse al Colegio de Jujutsu, pero Mahito interviene, llevando a Junpei por un camino de desesperación y venganza.",
-        img: "/image/jujutsu-k/11.jpg",
+        img: "image/jujutsu-k/11.jpg",
         releaseDate: "Diciembre 12, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/11.html",
@@ -3688,7 +3688,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Tras la trágica confrontación con Junpei, Itadori se enfrenta a Mahito en una batalla llena de ira y determinación, pero el poder de Mahito es abrumador.",
-        img: "/image/jujutsu-k/12.jpg",
+        img: "image/jujutsu-k/12.jpg",
         releaseDate: "Diciembre 19, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/12.html",
@@ -3700,7 +3700,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La batalla entre Itadori, Nanami y Mahito llega a su clímax. La vida de Nanami pende de un hilo, y Itadori debe superar sus límites para ganar.",
-        img: "/image/jujutsu-k/13.jpg",
+        img: "image/jujutsu-k/13.jpg",
         releaseDate: "Diciembre 26, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/13.html",
@@ -3713,7 +3713,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori regresa sorprendiendo a todos. Se revela que el director de Kioto quiere eliminarlo, lo que lleva a un plan secreto por parte del equipo de Tokio.",
-        img: "/image/jujutsu-k/14.jpg",
+        img: "image/jujutsu-k/14.jpg",
         releaseDate: "Enero 16, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/14.html",
@@ -3726,7 +3726,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Comienza el evento de intercambio. El equipo de Kioto pone en marcha su plan para asesinar a Itadori, pero Aoi Todo tiene otros planes.",
-        img: "/image/jujutsu-k/15.jpg",
+        img: "image/jujutsu-k/15.jpg",
         releaseDate: "Enero 23, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/15.html",
@@ -3739,7 +3739,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Las batallas individuales continúan. Kugisaki se enfrenta a Nishimiya, mientras que Panda lucha contra Mechamaru, revelando sus sorprendentes habilidades.",
-        img: "/image/jujutsu-k/16.jpg",
+        img: "image/jujutsu-k/16.jpg",
         releaseDate: "Enero 30, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/16.html",
@@ -3752,7 +3752,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Maki Zenin demuestra su destreza en combate contra su hermana Mai y Kasumi Miwa. Mientras tanto, Megumi se enfrenta a Noritoshi Kamo.",
-        img: "/image/jujutsu-k/17.jpg",
+        img: "image/jujutsu-k/17.jpg",
         releaseDate: "Febrero 6, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/17.html",
@@ -3764,7 +3764,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El evento de intercambio es interrumpido por la invasión de espíritus malditos y usuarios de maldiciones liderados por Mahito.",
-        img: "/image/jujutsu-k/18.jpg",
+        img: "image/jujutsu-k/18.jpg",
         releaseDate: "Febrero 13, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/18.html",
@@ -3776,7 +3776,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori y Todo se unen para luchar contra Hanami, un poderoso espíritu maldito. Todo le enseña a Itadori a usar el 'Destello Negro'.",
-        img: "/image/jujutsu-k/19.jpg",
+        img: "image/jujutsu-k/19.jpg",
         releaseDate: "Febrero 20, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/19.html",
@@ -3788,7 +3788,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La batalla contra Hanami se intensifica. Itadori y Todo demuestran una increíble sincronización, llevando al espíritu maldito a su límite.",
-        img: "/image/jujutsu-k/20.jpg",
+        img: "image/jujutsu-k/20.jpg",
         releaseDate: "Febrero 27, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/20.html",
@@ -3800,7 +3800,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Tras la invasión, el evento de intercambio se reanuda, pero esta vez con un partido de béisbol para decidir al ganador.",
-        img: "/image/jujutsu-k/21.jpg",
+        img: "image/jujutsu-k/21.jpg",
         releaseDate: "Marzo 6, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/21.html",
@@ -3812,7 +3812,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori, Fushiguro y Kugisaki son enviados a investigar una serie de muertes misteriosas relacionadas con el antiguo puente Yasohachi.",
-        img: "/image/jujutsu-k/22.jpg",
+        img: "image/jujutsu-k/22.jpg",
         releaseDate: "Marzo 13, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/22.html",
@@ -3824,7 +3824,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Fushiguro se enfrenta a un espíritu maldito portador de un dedo de Sukuna. La batalla lo obliga a desatar una nueva y poderosa técnica.",
-        img: "/image/jujutsu-k/23.jpg",
+        img: "image/jujutsu-k/23.jpg",
         releaseDate: "Marzo 20, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/23.html",
@@ -3836,7 +3836,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Itadori y Kugisaki se enfrentan a los hermanos Eso y Kechizu, dos de los Nueve Fetos Malditos. La batalla pone a prueba su trabajo en equipo y su determinación.",
-        img: "/image/jujutsu-k/24.jpg",
+        img: "image/jujutsu-k/24.jpg",
         releaseDate: "Marzo 27, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/24.html",
@@ -3848,7 +3848,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Un flashback a 2006 muestra a un joven Gojo Satoru y Suguru Geto, estudiantes del Colegio de Jujutsu, a quienes se les asigna la misión de proteger a Riko Amanai.",
-        img: "/image/jujutsu-k/T2/1.jpe",
+        img: "image/jujutsu-k/T2/1.jpe",
         releaseDate: "Julio 6, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/1.html",
@@ -4327,7 +4327,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/1.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4339,7 +4339,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/2.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4350,7 +4350,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/3.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4361,7 +4361,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/4.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4372,7 +4372,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/5.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4383,7 +4383,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/6.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4394,7 +4394,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/7.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4406,7 +4406,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/8.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4417,7 +4417,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/9.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4428,7 +4428,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/10.html",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
       {
@@ -4438,7 +4438,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Nadie en el pueblo cree la historia de Usopp sobre el ataque inminente de Kuro. Luffy, Zoro y Nami deciden ayudar a Usopp a proteger a Kaya y al pueblo.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Enero 26, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/11.html",
@@ -4450,7 +4450,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Luffy y su grupo preparan una emboscada para los piratas de Kuro, pero un error de cálculo los lleva a la costa equivocada.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 2, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/12.html",
@@ -4462,7 +4462,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras Luffy se enfrenta a la horda, Zoro debe luchar contra los ágiles y tramposos Hermanos Nyaban, Siam y Buchi.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 9, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/13.html",
@@ -4475,7 +4475,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Usopp y Nami intentan proteger a Kaya, quien se enfrenta valientemente a Kuro para salvar el pueblo.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 16, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/14.html",
@@ -4487,7 +4487,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Usopp, aunque superado, lucha con todas sus fuerzas contra Jango para proteger a Kaya, demostrando su valentía.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 23, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/15.html",
@@ -4499,7 +4499,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Los pequeños amigos de Usopp, la 'tripulación pirata de Usopp', luchan a su manera para detener a Jango y proteger a Kaya.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Marzo 1, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/16.html",
@@ -4511,7 +4511,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Luffy finalmente se enfrenta a Kuro, cuya velocidad y garras de acero lo convierten en un oponente formidable. La batalla por Syrup Village llega a su clímax.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Marzo 8, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/17.html",
@@ -4523,7 +4523,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La tripulación llega a la Isla de los Animales Raros, donde conocen a Gaimon, un hombre atrapado en un cofre del tesoro durante 20 años.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Marzo 15, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/18.html",
@@ -4536,7 +4536,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Un flashback revela el pasado de Zoro, su rivalidad con su amiga de la infancia Kuina y la promesa que lo impulsa a convertirse en el mejor espadachín del mundo.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Marzo 22, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/19.html",
@@ -4548,7 +4548,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Buscando un cocinero para la tripulación, Luffy y compañía llegan al Baratie, un restaurante en medio del océano, donde conocen a Sanji.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Abril 12, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/20.html",
@@ -4561,7 +4561,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Sanji muestra su compasión al alimentar a Gin, un miembro hambriento de los Piratas de Krieg. Este acto de bondad tendrá consecuencias inesperadas.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Abril 12, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/21.html",
@@ -4573,7 +4573,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Don Krieg, el infame pirata que comanda una flota de 50 barcos, llega al Baratie con la intención de apoderarse del restaurante y del barco de Luffy.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Abril 26, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/22.html",
@@ -4586,7 +4586,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Se revela el pasado de Zeff, el dueño del Baratie y mentor de Sanji. Nami aprovecha el caos para robar el Going Merry y abandonar a la tripulación.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 3, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/23.html",
@@ -4598,7 +4598,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El Shichibukai más fuerte del mundo, Dracule Mihawk, aparece y desafía a Zoro. La batalla pone a prueba el sueño de Zoro de convertirse en el mejor espadachín.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 10, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/24.html",
@@ -4611,7 +4611,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras Luffy busca a Nami, Sanji se enfrenta a Pearl, uno de los oficiales de Krieg, cuya defensa parece impenetrable.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 17, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/25.html",
@@ -4623,7 +4623,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Sanji lucha contra Gin y recuerda su pasado con Zeff. Gin se debate entre su lealtad a Krieg y su gratitud hacia Sanji.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 24, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/26.html",
@@ -4636,7 +4636,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La batalla entre Sanji y Gin llega a su emotiva conclusión. Gin debe tomar una decisión difícil.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 31, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/27.html",
@@ -4648,7 +4648,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Luffy se enfrenta a Don Krieg, quien utiliza un arsenal de armas ocultas. La batalla por el Baratie está en su punto final.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Junio 7, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/28.html",
@@ -4660,7 +4660,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Luffy logra derrotar a Krieg con un último y poderoso ataque, asegurando la seguridad del Baratie.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Junio 21, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/29.html",
@@ -4672,7 +4672,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Después de una emotiva despedida de Zeff y los cocineros, Sanji se une oficialmente a la tripulación del Sombrero de Paja.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Junio 28, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/30.html",
@@ -4684,7 +4684,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La tripulación sigue a Nami y llega a una isla dominada por el temible gyojin Arlong. Descubren la verdad detrás de la traición de Nami.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Julio 12, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/31.html",
@@ -4696,7 +4696,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Los aldeanos de Cocoyashi revelan que Nami ha estado trabajando para Arlong durante años para comprar la libertad del pueblo.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Julio 12, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/32.html",
@@ -4708,7 +4708,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Usopp se enfrenta valientemente a los piratas de Arlong para proteger a los aldeanos, mientras Luffy queda atrapado bajo el agua.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Julio 19, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/33.html",
@@ -4720,7 +4720,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Sanji y Zoro llegan para ayudar, y juntos luchan contra los oficiales de Arlong para liberar a Luffy y al pueblo.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Julio 26, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/34.html",
@@ -4732,7 +4732,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Se revela el trágico pasado de Nami y su hermana Nojiko, y el sacrificio de su madre adoptiva, Bell-mère, a manos de Arlong.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 2, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/35.html",
@@ -4744,7 +4744,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La historia continúa, mostrando cómo Nami se unió a Arlong con la promesa de liberar su pueblo si reunía 100 millones de berries.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 9, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/36.html",
@@ -4756,7 +4756,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Arlong rompe su promesa con Nami, confiscando todo su dinero. Desesperada, Nami le pide ayuda a Luffy, quien declara la guerra a Arlong.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 16, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/37.html",
@@ -4768,7 +4768,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Comienza la batalla en Arlong Park. Zoro se enfrenta al espadachín pulpo Hachan, mientras Sanji lucha contra el karateka gyojin Kuroobi.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 23, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/38.html",
@@ -4780,7 +4780,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Zoro, a pesar de sus heridas, logra derrotar a Hachan, mientras Luffy sigue atrapado bajo el agua.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 30, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/39.html",
@@ -4792,7 +4792,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Sanji demuestra su superioridad bajo el agua contra Kuroobi, y Usopp usa su ingenio para derrotar a Chew.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Septiembre 6, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/40.html",
@@ -4804,7 +4804,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Luffy es liberado y finalmente se enfrenta a Arlong dentro de Arlong Park.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Septiembre 13, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/41.html",
@@ -4817,7 +4817,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La batalla entre Luffy y Arlong se intensifica. Arlong demuestra una fuerza y brutalidad sobrehumanas, poniendo a Luffy en serios aprietos.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Septiembre 27, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/42.html",
@@ -4829,7 +4829,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Luffy destruye la habitación donde Nami fue obligada a dibujar mapas, y con un ataque devastador, derriba a Arlong y a todo Arlong Park.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Septiembre 27, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/43.html",
@@ -4842,7 +4842,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con el pueblo liberado, Nami se despide de su hermana y de los aldeanos y se une oficialmente a los Sombrero de Paja como su navegante.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Octubre 4, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/44.html",
@@ -4855,7 +4855,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Tras derrotar a Arlong, a Luffy le ponen su primera recompensa de 30 millones de berries, atrayendo la atención de la Marina y de piratas más fuertes.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Octubre 11, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/45.html",
@@ -4867,7 +4867,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Una mini-historia sigue las desventuras de Buggy después de su derrota, mientras intenta reunir a su tripulación.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Octubre 25, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/46.html",
@@ -4879,7 +4879,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Buggy finalmente se reencuentra con su tripulación y conoce a la misteriosa Alvida. Juntos, planean su venganza contra Luffy.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 1, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/47.html",
@@ -4891,7 +4891,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La tripulación llega a Loguetown, la ciudad donde nació y fue ejecutado el Rey de los Piratas, Gol D. Roger. Es su última parada antes de la Grand Line.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 8, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/48.html",
@@ -4904,7 +4904,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Zoro busca nuevas espadas y se encuentra con la espada maldita Sandai Kitetsu y la valiosa Yubashiri. Conoce a Tashigi, una marine idéntica a su amiga Kuina.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 15, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/49.html",
@@ -4916,7 +4916,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Un episodio de relleno donde Usopp se enfrenta a un famoso cazarrecompensas llamado Daddy Masterson en un duelo de francotiradores.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 22, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/50.html",
@@ -4929,7 +4929,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "En un concurso de cocina, Sanji compite contra la chef Carmen para ver quién es el mejor cocinero del East Blue.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 29, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/51.html",
@@ -4941,7 +4941,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Buggy y Alvida capturan a Luffy y lo llevan al mismo patíbulo donde fue ejecutado Roger. El Capitán de la Marina, Smoker, también aparece.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Diciembre 6, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/52.html",
@@ -4953,7 +4953,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "En medio de una tormenta, Luffy es salvado de Smoker por el misterioso Dragon. La tripulación se reúne y finalmente zarpa hacia la Grand Line.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Diciembre 13, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/53.html",
@@ -4966,7 +4966,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Comienza un arco de relleno. Los Sombrero de Paja rescatan a una niña llamada Apis, que posee una fruta del diablo que le permite hablar con los animales.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Diciembre 20, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/54.html",
@@ -4979,7 +4979,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Apis revela que está protegiendo a un Dragón Milenario y quiere llevarlo de vuelta a su hogar, la Isla Perdida.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Diciembre 27, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/55.html",
@@ -4991,7 +4991,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La tripulación es perseguida por el Comodoro Nelson y el mercenario Erik, que quieren el poder de la inmortalidad de los huesos del dragón.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Enero 17, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/56.html",
@@ -5004,7 +5004,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Siguiendo al Dragón Milenario, la tripulación llega a la Isla Perdida, el lugar de anidación de estas criaturas legendarias.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Enero 24, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/57.html",
@@ -5016,7 +5016,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras exploran la isla, Zoro se enfrenta en un duelo contra Erik y sus afiladas garras de viento.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Enero 31, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/58.html",
@@ -5029,7 +5029,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La flota del Comodoro Nelson rodea la isla, atrapando a los Sombrero de Paja y a los dragones.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 7, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/59.html",
@@ -5042,7 +5042,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Luffy ayuda al viejo dragón a reunirse con su bandada, cumpliendo una leyenda milenaria.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 14, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/60.html",
@@ -5054,7 +5054,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Tras sus aventuras en East Blue y la Isla Gunkan, los Sombrero de Paja finalmente se preparan para entrar en la Grand Line.",
-        img: "/image/One-Piece-cap/T1.jpg",
+        img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 21, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/61.html",
@@ -5068,7 +5068,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/62.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Al entrar a la Grand Line, la tripulación se encuentra con una ballena gigante que bloquea su camino y con el misterioso Crocus.",
       },
@@ -5081,7 +5081,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/63.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy lucha contra Laboon para hacerle una promesa: volverán a verse cuando se convierta en el Rey de los Piratas.",
       },
@@ -5093,7 +5093,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/64.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La tripulación llega a Whiskey Peak, un pueblo que les da una bienvenida sospechosamente calurosa, sin saber que es una base de cazarrecompensas.",
       },
@@ -5105,7 +5105,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/65.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Mientras Luffy, Usopp y Sanji festejan, Zoro descubre la verdad sobre el pueblo y se enfrenta solo a 100 agentes de la organización Baroque Works.",
       },
@@ -5117,7 +5117,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/66.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Debido a un malentendido, Luffy cree que Zoro ha atacado a la gente que les dio de comer y comienza una pelea absurda entre ambos.",
       },
@@ -5129,7 +5129,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/67.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Se revela que Miss Wednesday es en realidad Nefertari Vivi, la princesa de Alabasta. Los Sombrero de Paja aceptan llevarla a su país para detener a Crocodile.",
       },
@@ -5141,7 +5141,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/68.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Una mini-historia muestra el entrenamiento de Koby y Helmeppo en la Marina bajo la tutela del Vicealmirante Garp.",
       },
@@ -5154,7 +5154,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/69.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Koby y Helmeppo se enfrentan a Morgan Mano de Hacha, quien escapa de la custodia de la Marina.",
       },
@@ -5166,7 +5166,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/70.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La tripulación llega a Little Garden, una isla donde el tiempo se detuvo y los dinosaurios aún viven. Conocen a los gigantes Dorry y Brogy.",
       },
@@ -5178,7 +5178,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/71.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy y Usopp se inspiran en el duelo honorable que los dos gigantes han mantenido durante 100 años.",
       },
@@ -5190,7 +5190,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/72.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Los agentes de Baroque Works, Mr. 3 y Miss Goldenweek, interfieren en el duelo de los gigantes, enfureciendo a Luffy.",
       },
@@ -5202,7 +5202,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/73.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Gracias a los trucos de Mr. 3, Brogy gana el duelo, pero se da cuenta de la trampa. Luffy jura vengar el honor de los gigantes.",
       },
@@ -5214,7 +5214,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/74.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Zoro, Nami y Vivi son atrapados por la técnica de cera de Mr. 3, que amenaza con convertirlos en estatuas.",
       },
@@ -5226,7 +5226,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/75.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy es afectado por los poderes hipnóticos de Miss Goldenweek, mientras Usopp y Karoo intentan liberar a sus amigos.",
       },
@@ -5238,7 +5238,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/76.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Usopp demuestra su valía como guerrero del mar al enfrentarse a Mr. 5 y Miss Valentine para salvar a sus amigos.",
       },
@@ -5250,7 +5250,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/77.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Tras derrotar a los agentes de Baroque Works, los gigantes abren camino a la tripulación para que continúen su viaje hacia Alabasta.",
       },
@@ -5263,7 +5263,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/78.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Nami cae gravemente enferma por una picadura de insecto en Little Garden, obligando a la tripulación a buscar un médico.",
       },
@@ -5275,7 +5275,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/79.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Llegan a una isla de invierno, pero se encuentran con el tirano Wapol, antiguo rey de la Isla de Drum, quien ataca el barco.",
       },
@@ -5287,7 +5287,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/80.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy y Sanji llevan a una Nami febril a través de la nieve en busca de la única doctora de la isla, la Dra. Kureha.",
       },
@@ -5299,7 +5299,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/81.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Conocen a Dalton, el líder del pueblo, quien les habla de la Dra. Kureha y su joven asistente, un reno llamado Tony Tony Chopper.",
       },
@@ -5311,7 +5311,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/82.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Wapol regresa a la isla para reclamar su reino. Mientras tanto, Luffy debe escalar el altísimo Drum Rock para llegar al castillo donde vive Kureha.",
       },
@@ -5324,7 +5324,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/83.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy, cargando a Sanji y Nami, escala la montaña con sus propias manos en una muestra de increíble determinación.",
       },
@@ -5336,7 +5336,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/84.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La Dra. Kureha atiende a Nami. Conocemos a Chopper, un reno que comió la fruta Hito Hito y ahora puede transformarse en humano.",
       },
@@ -5348,7 +5348,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/85.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Se cuenta el trágico pasado de Chopper y su relación con su mentor, el Dr. Hiriluk, un médico charlatán con un corazón de oro.",
       },
@@ -5360,7 +5360,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/86.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Hiriluk se sacrifica para proteger a su país y a Chopper. Su sueño de hacer florecer los cerezos en la isla de nieve es heredado por Kureha y Chopper.",
       },
@@ -5373,7 +5373,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/87.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy y Chopper se unen para luchar contra Wapol y sus secuaces, quienes han llegado al castillo para reclamarlo.",
       },
@@ -5386,7 +5386,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/88.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Chopper demuestra sus habilidades de combate utilizando las distintas transformaciones que le permite su fruta y las Rumble Balls que él mismo inventó.",
       },
@@ -5399,7 +5399,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/89.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy derrota a Wapol con un espectacular ataque y defiende la bandera pirata de Hiriluk, un símbolo de convicción y sueños.",
       },
@@ -5411,7 +5411,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/90.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La Dra. Kureha cumple el sueño de Hiriluk, creando una hermosa nevada de flores de cerezo sobre la isla. Luffy invita a Chopper a unirse a su tripulación.",
       },
@@ -5423,7 +5423,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/91.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Inspirado por Luffy, Chopper acepta convertirse en el médico de los Sombrero de Paja y se despide de la Dra. Kureha y de su hogar.",
       },
@@ -5435,7 +5435,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/92.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Con Chopper a bordo, la tripulación finalmente pone rumbo a Alabasta. En el camino, se encuentran con un agente de Baroque Works, Mr. 2 Bon Kurei.",
       },
@@ -5448,7 +5448,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/93.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La tripulación llega a Alabasta y descubre que Crocodile ha manipulado el clima para provocar una guerra civil.",
       },
@@ -5460,7 +5460,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/94.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "En el desierto, Luffy se reencuentra con su hermano mayor, Portgas D. Ace, quien está persiguiendo a un traidor: Barbanegra.",
       },
@@ -5472,7 +5472,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/95.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Ace se une temporalmente a la tripulación, y su presencia revela más sobre la relación entre los dos hermanos.",
       },
@@ -5484,7 +5484,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/96.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "El grupo atraviesa el desierto y llega a la ciudad en ruinas de Erumalu, donde se encuentran con los simpáticos Kung-Fu Dugongs.",
       },
@@ -5497,7 +5497,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/97.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La travesía por el desierto de Alabasta pone a prueba la resistencia de la tripulación.",
       },
@@ -5510,7 +5510,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/98.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Un episodio de relleno donde la tripulación se encuentra con un grupo de nómadas del desierto.",
       },
@@ -5523,7 +5523,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/99.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Otro episodio de relleno centrado en un miembro del ejército rebelde liderado por Kohza.",
       },
@@ -5536,7 +5536,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/100.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Se revela el pasado de Kohza y su amistad de la infancia con la princesa Vivi, mostrando su determinación por salvar a su país.",
       },
@@ -5548,7 +5548,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/101.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno en el que Ace se enfrenta a un cazarrecompensas llamado Scorpion.",
       },
@@ -5561,7 +5561,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/102.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "El grupo se pierde en unas ruinas antiguas mientras intenta llegar a Yuba, el corazón del ejército rebelde.",
       },
@@ -5574,7 +5574,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/103.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Los principales agentes de Baroque Works, los Oficiales Agentes, se reúnen en el Spiders Cafe para recibir las órdenes finales de Crocodile.",
       },
@@ -5587,7 +5587,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/104.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Vivi se siente abrumada por la responsabilidad, y Luffy la confronta para recordarle que no está sola y que arriesgarán sus vidas por ella.",
       },
@@ -5599,7 +5599,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/105.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "El grupo llega a Rainbase, la ciudad casino controlada por Crocodile. Planean infiltrarse en su base, el Rain Dinners.",
       },
@@ -5612,7 +5612,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/106.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy, Zoro, Nami, Usopp y Smoker caen en una trampa de Kairoseki puesta por Crocodile.",
       },
@@ -5624,7 +5624,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/107.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Crocodile revela su plan maestro, la 'Operación Utopía', para destruir Alubarna, la capital, y tomar el control del reino.",
       },
@@ -5636,7 +5636,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/108.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Sanji, bajo el alias de Mr. Prince, idea un plan audaz para rescatar a sus amigos de la jaula de Crocodile.",
       },
@@ -5648,7 +5648,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/109.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Gracias al ingenio de Sanji y a la ayuda inesperada de Chopper, el grupo logra escapar de la inundada base de Crocodile.",
       },
@@ -5660,7 +5660,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/110.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy se enfrenta directamente a Crocodile para que sus amigos puedan llegar a Alubarna, pero es derrotado y abandonado a su suerte en el desierto.",
       },
@@ -5673,7 +5673,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/111.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "El resto de la tripulación corre hacia Alubarna para detener al ejército rebelde, usando a los animales del desierto para cruzar el río.",
       },
@@ -5686,7 +5686,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/112.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La guerra civil estalla en la capital. Los Sombrero de Paja se enfrentan a los Oficiales Agentes de Baroque Works para proteger la ciudad.",
       },
@@ -5698,7 +5698,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/113.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Karoo, el pato de Vivi, demuestra una increíble valentía al intentar llevar un mensaje crucial a través del campo de batalla.",
       },
@@ -5711,7 +5711,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/114.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Sanji se enfrenta a Mr. 2 Bon Kurei, cuyo poder de transformación le permite adoptar la apariencia de sus amigos.",
       },
@@ -5723,7 +5723,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/115.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La batalla entre Sanji y Mr. 2 llega a su fin, con Sanji demostrando que su fuerza y convicciones son superiores a los trucos de su oponente.",
       },
@@ -5735,7 +5735,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/116.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno que expande la batalla entre Sanji y Mr. 2.",
       },
@@ -5747,7 +5747,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/117.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Nami se enfrenta a Miss Doublefinger y estrena su nueva arma, el Clima-Tact, creado por Usopp, aunque no sabe cómo usarlo del todo.",
       },
@@ -5759,7 +5759,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/118.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Zoro se enfrenta a Mr. 1 (Daz Bonez), cuyo cuerpo es de acero. Mientras, Crocodile revela que su objetivo es encontrar el arma ancestral Plutón.",
       },
@@ -5772,7 +5772,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/119.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Al borde de la muerte, Zoro recuerda las enseñanzas de su maestro y aprende a 'escuchar el aliento' del acero, logrando cortar a Mr. 1.",
       },
@@ -5784,7 +5784,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/120.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Vivi intenta detener la guerra, y Kohza se da cuenta del engaño, pero es demasiado tarde para detener la batalla.",
       },
@@ -5796,7 +5796,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/121.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy, habiendo sobrevivido, regresa a Alubarna para un segundo asalto contra Crocodile.",
       },
@@ -5808,7 +5808,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/122.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy descubre la debilidad de Crocodile: el agua. Usando un barril de agua, logra golpearlo y comienza la verdadera batalla.",
       },
@@ -5821,7 +5821,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/123.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La batalla se traslada a la tumba real, donde Crocodile planea detonar una bomba que destruirá la ciudad.",
       },
@@ -5833,7 +5833,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/124.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Los Sombrero de Paja buscan la bomba mientras Luffy contiene a Crocodile.",
       },
@@ -5846,7 +5846,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/125.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Pell, uno de los guardianes de Alabasta, se sacrifica para llevar la bomba lejos de la ciudad y salvar a todos.",
       },
@@ -5858,7 +5858,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/126.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy, usando su propia sangre, logra golpear a Crocodile y lo derrota con un ataque final que atraviesa el suelo del desierto, provocando la lluvia.",
       },
@@ -5870,7 +5870,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/127.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Con la lluvia cayendo y Crocodile derrotado, la guerra en Alabasta finalmente termina.",
       },
@@ -5883,7 +5883,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/128.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "La tripulación celebra su victoria con un gran banquete en el palacio real mientras planean su escape de la Marina.",
       },
@@ -5895,7 +5895,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/129.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Vivi reflexiona sobre su viaje con los Sombrero de Paja. La tripulación se prepara para partir, esperando a Vivi en el punto de encuentro.",
       },
@@ -5907,7 +5907,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/130.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Nico Robin, ex agente de Baroque Works, aparece en el barco y pide unirse a la tripulación. Vivi se despide de sus amigos con un gesto silencioso que sella su amistad.",
       },
@@ -5919,7 +5919,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/131.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno donde Chopper recuerda cómo creó las Rumble Balls.",
       },
@@ -5931,7 +5931,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/132.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno centrado en Nami y su sueño de dibujar un mapa del mundo.",
       },
@@ -5943,7 +5943,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/133.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Sanji ayuda a un joven aprendiz de cocinero de la Marina a preparar un curry legendario.",
       },
@@ -5955,7 +5955,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/134.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Usopp ayuda a una niña a lanzar un gran fuego artificial en memoria de sus padres.",
       },
@@ -5967,7 +5967,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/135.html",
-        img: "/image/One-Piece-cap/T2.jpg",
+        img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno que muestra una de las antiguas aventuras de Zoro como cazarrecompensas.",
       },

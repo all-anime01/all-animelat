@@ -1,32 +1,59 @@
 function go_to_player(url) {
-  document.querySelector(".BotHumano").classList.add("BotHumanoA");
-  document
-    .querySelector(".BotHumano")
-    .insertAdjacentHTML(
-      "afterbegin",
-      '<div class="BoxHumano"><span><b>Procesando video</b> <p>Por favor espere unos segundos</p></span></div>'
-    );
+  // 1. Preparamos el overlay de carga
+  const playerDisplay = document.getElementById("PlayerDisplay");
+  let loadingOverlay = document.getElementById("loadingOverlay");
+
+  // Si el overlay no existe, lo creamos y lo añadimos al DOM una sola vez.
+  if (!loadingOverlay) {
+    loadingOverlay = document.createElement("div");
+    loadingOverlay.id = "loadingOverlay";
+    loadingOverlay.className = "loading-overlay";
+    loadingOverlay.innerHTML = `
+        <div class="spinner"></div>
+        <p>Cargando servidor...</p>
+    `;
+    // Usamos 'prepend' para que quede por encima de otros elementos si es necesario
+    if (playerDisplay) {
+      playerDisplay.prepend(loadingOverlay);
+    }
+  }
+
+  // 2. Mostramos la animación de carga
+  if (playerDisplay) {
+    playerDisplay.classList.add("is-loading");
+  }
+
   var displayVideo = document.querySelector(".DisplayVideo");
   displayVideo.classList.add("DisplayVideoA");
   displayVideo.style.zIndex = "9999";
+
+  // 3. Modificamos el 'onload' del iframe para ocultar la animación cuando el video cargue
   displayVideo.innerHTML =
     `
-  <span id="backToPlayers" onclick="listPlayer();">
-      <img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibmF2LWl0ZW0taWNvbiBiYXNlLXN2Zy0taXMtZmxpcC0tUXZDUUMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDI0IDI0IiBkYXRhLXQ9InNpZ24tb3V0LXN2ZyIgYXJpYS1sYWJlbGxlZGJ5PSJzaWduLW91dC1zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiByb2xlPSJpbWciPjx0aXRsZSBpZD0ic2lnbi1vdXQtc3ZnIj5EZXNjb25lY3RhcjwvdGl0bGU+PHBhdGggZD0iTTE1IDE1YTEgMSAwIDAgMSAxIDF2NWExIDEgMCAwIDEtMSAxSDVhMSAxIDAgMCAxLTEtMVYzYTEgMSAwIDAgMSAxLTFoMTBhMSAxIDAgMCAxIDEgMXY1YTEgMSAwIDEgMS0yIDBWNEg2djE2aDh2LTRhMSAxIDAgMCAxIDEtMXptOC45MjMtMi42MThhMSAxIDAgMCAxLS4yMTcuMzI2bC00IDMuOTk5QS45OTMuOTkzIDAgMCAxIDE5IDE3YS45OTkuOTk5IDAgMCAxLS43MDctMS43MDdMMjAuNTg2IDEzSDE1YTEgMSAwIDAgMSAwLTJoNS41ODZsLTIuMjkzLTIuMjkzYS45OTkuOTk5IDAgMSAxIDEuNDE0LTEuNDE0bDMuOTk5IDRhLjk5Mi45OTIgMCAwIDEgLjIxNyAxLjA4OXoiLz48L3N2Zz4=">
-  </span>
-  <iframe onload='document.querySelector(".BotHumano").classList.remove("BotHumanoA")' id="IFR" src="` +
+  <span id="backToPlayers" onclick="listPlayer();"></span>
+  <iframe 
+      onload="const pd = document.getElementById('PlayerDisplay'); if(pd) pd.classList.remove('is-loading');" 
+      id="IFR" 
+      src="` +
     url +
-    `" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`;
+    `" 
+      frameborder="0" 
+      allowfullscreen="true" 
+      webkitallowfullscreen="true" 
+      mozallowfullscreen="true">
+  </iframe>`;
 
+  // El código para mostrar/ocultar el botón de volver
   let idleTimer = null;
   let idleState = false;
 
-  const isMobile = navigator.userAgentData.mobile; //resolves true/false
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
   let timeShow = isMobile ? 10000 : 5000;
 
-  function showFoo(time, mobile) {
-    elem = document.getElementById("backToPlayers");
-    ifr = document.getElementById("IFR");
+  function showFoo(time) {
+    const elem = document.getElementById("backToPlayers");
+    const ifr = document.getElementById("IFR");
+    if (!elem || !ifr) return;
 
     if (idleState == true) {
       elem.className = "";
@@ -35,7 +62,6 @@ function go_to_player(url) {
     clearTimeout(idleTimer);
     idleState = false;
     idleTimer = setTimeout(function () {
-      console.log("Timeout");
       elem.className = "inactive";
       ifr.className = "nopoints";
       idleState = true;
@@ -45,31 +71,26 @@ function go_to_player(url) {
 
   showFoo(timeShow);
 
-  if (isMobile) {
-    document.addEventListener("click", (e) => {
-      clearTimeout(idleTimer);
-      showFoo(timeShow);
-    });
-  } else {
-    document.addEventListener("mousemove", (e) => {
-      showFoo(timeShow);
-    });
-  }
+  document.addEventListener("click", () => showFoo(timeShow));
+  document.addEventListener("mousemove", () => showFoo(timeShow));
 }
 
 function listPlayer() {
-  document.querySelector(".BotHumano").classList.remove("BotHumanoA");
-  var displayVideo = document.querySelector(".DisplayVideo");
-  displayVideo.classList.remove("DisplayVideoA");
-  displayVideo.style.zIndex = "1";
-  displayVideo.innerHTML = "";
+  const displayVideo = document.querySelector(".DisplayVideo");
+  const playerDisplay = document.getElementById("PlayerDisplay");
+
+  if (displayVideo) {
+    displayVideo.classList.remove("DisplayVideoA");
+    displayVideo.style.zIndex = "1";
+    displayVideo.innerHTML = "";
+  }
+  if (playerDisplay) {
+    playerDisplay.classList.remove("is-loading");
+  }
 }
 
 function CrearSuperCookie(key, value, ttl) {
   const now = new Date();
-
-  // `item` is an object which contains the original value
-  // as well as the time when it's supposed to expire
   const item = {
     value: value,
     expiry: now.getTime() + ttl * 60000,
@@ -79,19 +100,12 @@ function CrearSuperCookie(key, value, ttl) {
 
 function obtenerSuperCookie(key) {
   const itemStr = localStorage.getItem(key);
-  console.log(itemStr);
-  // if the item doesn't exist, return null
   if (!itemStr) {
     return null;
   }
   const item = JSON.parse(itemStr);
   const now = new Date();
-  console.log(now.getTime());
-  console.log(item.expiry);
-  // compare the expiry time of the item with the current time
   if (now.getTime() > item.expiry) {
-    // If the item is expired, delete the item from storage
-    // and return null
     localStorage.removeItem(key);
     return null;
   }
@@ -99,30 +113,40 @@ function obtenerSuperCookie(key) {
 }
 
 var msj = document.getElementById("msjad");
-
-if (obtenerSuperCookie("msjad") == null) {
+if (msj && obtenerSuperCookie("msjad") == null) {
   msj.style.display = "flex";
 }
 
 function hideMsj(time = 0) {
-  CrearSuperCookie("msjad", true, time * 60);
-  msj.style.display = "none";
+  if (msj) {
+    CrearSuperCookie("msjad", true, time * 60);
+    msj.style.display = "none";
+  }
 }
 
 function SelLang(who, id) {
-  document.querySelector(".FirstLoad").classList.add("FirstLoadA");
-  if (document.querySelector(".SLD_A") != null) {
-    document.querySelector(".SLD_A").classList.remove("SLD_A");
+  const firstLoad = document.querySelector(".FirstLoad");
+  if (firstLoad) firstLoad.classList.add("FirstLoadA");
+
+  const sldA = document.querySelector(".SLD_A");
+  if (sldA) {
+    sldA.classList.remove("SLD_A");
   }
   who.classList.add("SLD_A");
+
   setTimeout(function () {
-    document.querySelector(".FirstLoad").classList.remove("FirstLoadA");
-    if (document.querySelector(".REactiv") != null) {
-      document.querySelector(".REactiv").classList.remove("REactiv");
+    if (firstLoad) firstLoad.classList.remove("FirstLoadA");
+
+    const reactiv = document.querySelector(".REactiv");
+    if (reactiv) {
+      reactiv.classList.remove("REactiv");
     }
-    document.querySelector(".OD_" + id).classList.add("REactiv");
+
+    const odId = document.querySelector(".OD_" + id);
+    if (odId) odId.classList.add("REactiv");
   }, 300);
 }
+
 !(function (e, t) {
   "function" == typeof define && define.amd
     ? define(function () {
