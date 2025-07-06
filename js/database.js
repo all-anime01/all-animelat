@@ -1593,7 +1593,7 @@ export const animeData = [
   {
     id: "ranger-reject",
     title: "Ranger Reject (Sentai Daishikkaku)",
-    img: "/image/ranger-reject/p.webp",
+    img: "/all-animelat/image/ranger-reject/p.webp",
     heroImg:
       "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/5B4B5C84C51346E6CA9543543F7E15EA983AED4D3B67D82250B5E5CE40E535F6/scale?width=1440&aspectRatio=1.78&format=jpeg",
     logoImg:
