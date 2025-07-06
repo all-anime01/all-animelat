@@ -36,6 +36,82 @@ li {
     list-style-type: none;
 }
 
+/* --- ANUNCIO INICIAL --- */
+.msjad {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(13, 17, 23, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 20000;
+    display: flex;
+    /* Se mantiene flex para centrar */
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    animation: fadeInBg 0.4s ease-out;
+}
+
+@keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.msjad>div {
+    background-color: #1f2937;
+    padding: 2rem;
+    max-width: 420px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: slideInDialog 0.5s 0.2s ease-out forwards;
+}
+
+@keyframes slideInDialog {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.msjad p:first-child {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 17px;
+}
+
+.msjad .btn {
+    background: #38bdf8;
+    color: #0d1117;
+    font-weight: 700;
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.msjad .btn:hover {
+    background-color: #fff;
+    transform: scale(1.05);
+}
+
+
 /* --- Contenedor Principal y Fondo --- */
 #PlayerDisplay {
     position: absolute;
@@ -123,7 +199,7 @@ li {
     display: grid;
 }
 
-/* --- Diseño de Tarjetas y ANIMACIÓN EN CASCADA --- */
+/* --- Diseño de Tarjetas y Animación en Cascada --- */
 .ODDIV li {
     display: flex;
     align-items: center;
@@ -134,7 +210,6 @@ li {
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Estado inicial para la animación */
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInCascade 0.5s ease-out forwards;
@@ -147,7 +222,6 @@ li {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Keyframe para la animación de entrada */
 @keyframes fadeInCascade {
     to {
         opacity: 1;
@@ -155,7 +229,6 @@ li {
     }
 }
 
-/* Retraso escalonado para el efecto cascada */
 .ODDIV li:nth-child(1) {
     animation-delay: 0.1s;
 }
@@ -212,7 +285,7 @@ li {
     line-height: 1.4;
 }
 
-/* --- ANIMACIÓN DE "CARGANDO SERVIDOR" --- */
+/* --- Animación de "Cargando Servidor" --- */
 .loading-overlay {
     position: absolute;
     top: 0;
@@ -324,4 +397,23 @@ li {
 
 #IFR.nopoints {
     pointer-events: none;
+}
+
+/* --- MEJORAS RESPONSIVAS --- */
+@media screen and (max-width: 600px) {
+    .OptionsLangDisp {
+        padding: 0 10px;
+        /* Menos padding en los lados */
+    }
+
+    .OD {
+        grid-template-columns: 1fr;
+        /* Una sola columna en móviles */
+        gap: 12px;
+    }
+
+    .SelectLangDisp li {
+        width: 50px;
+        height: 50px;
+    }
 }

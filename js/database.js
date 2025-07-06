@@ -5694,8 +5694,7 @@ export const animeData = [
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GP5HJ84P7-title_logo-en-us",
     imgMobile:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/cr/landscape_large/f1f855a8-4c4f-410a-8d19-5d254b7c191a.png",
-    trailerUrl:
-      "https://www.youtube.com/embed/TceDFwPXCuI?si=Pwe8qBK_wKzIZ6a79",
+    trailerUrl: "https://www.youtube.com/embed/e39WEQGz4Nw?si=ngLPSLYYp2-J0cY5",
     description:
       "Rudo vive en los barrios bajos, donde los descendientes de criminales son repudiados. Un día, es acusado injustamente de un crimen que no cometió y es arrojado al Abismo, un lugar temido por todos. Allí, Rudo descubre la verdad sobre el mundo y despierta su habilidad para dar vida a los objetos a través de un 'Jinki', comenzando su lucha por cambiar su destino y limpiar su nombre.",
     genres: ["Acción", "Fantasía", "Shounen"],
@@ -5737,8 +5736,7 @@ export const animeData = [
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751794806/logo-nube_muo605.png",
     imgMobile:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751791201/poster_2_wkl3d3.webp",
-    trailerUrl:
-      "https://www.youtube.com/embed/TceDFwPXCuI?si=Pwe8qBK_wKzIZ6a78",
+    trailerUrl: "https://www.youtube.com/embed/IIXbiYuXpbw?si=srC9R8CyYQtuEcGq",
     description:
       "Meisuke Nueno, también conocido como Nube, es un maestro de escuela un poco torpe, pero con un gran corazón. Sin embargo, tiene un secreto: su mano izquierda es en realidad la 'Mano del Demonio', una poderosa arma que utiliza para proteger a sus estudiantes de los youkai, fantasmas y demonios que los acechan.",
     genres: ["Comedia", "Horror", "Shounen", "Sobrenatural", "Escolar"],
@@ -5751,7 +5749,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 174)), // Calculado desde el 15/06/25
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 4)), // Hace 4 días
     audio: "Subtitulado",
     creator: "Sho Makura & Takeshi Okano",
     contentWarning: "+14 Violencia, Desnudos",
@@ -5784,14 +5782,14 @@ export const animeData = [
   },
   {
     id: "hells-paradise-jigokuraku",
-    title: "Hell's Paradise (Jigokuraku)",
+    title: "Hell's Paradise: Jigokuraku",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/dc8eccaf8d0729a43d4d35549f923877.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GJ0H7Q5ZJ-backdrop_wide",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GJ0H7Q5ZJ-title_logo-en-us",
     imgMobile: "image/Hells-paradise/b.jpg",
-    trailerUrl: "https://www.youtube.com/embed/cnL4iW6d_oM",
+    trailerUrl: "https://www.youtube.com/embed/Sz6oWpSgQ5Y?si=JFTx8WamuYvWmR4V",
     description:
       "Gabimaru el Vacío, un notorio ninja de la aldea de Iwagakure, es condenado a muerte por desertarla, pero, por mucho que sus verdugos lo intenten, no 'puede' morir… hasta que llega una misteriosa enviada del shogunato.",
     genres: ["Acción", "Fantasía", "Gore", "Shounen", "Histórico"],
@@ -6811,14 +6809,14 @@ export const animeData = [
   {
     id: "mob-psycho-100",
     title: "Mob Psycho 100",
-    img: "/image/Mob-psycho-III/poster.png",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/a89cfc561f6de95d35723fd665d708fb.jpg",
     heroImg:
       "https://static.crunchyroll.com/fms/landscape_large/94/png/84684ab9-632b-4576-a723-a0e86c00a6c9.jpg",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/85/png/86d98128-e062-4fe0-8997-8418e7823765.webp",
     imgMobile:
       "https://static.crunchyroll.com/fms/landscape_large/94/png/84684ab9-632b-4576-a723-a0e86c00a6c9.jpg",
-    trailerUrl: "https://www.youtube.com/embed/TceDFwPXCuI?si=Pwe8qBK_wKzIZ6a7",
+    trailerUrl: "https://www.youtube.com/embed/70tdB-1Lwqc?si=CE_j0wN-ed6P5_BM",
     description:
       "Shigeo Kageyama, alias 'Mob', es un estudiante de secundaria que ha perfeccionado sus poderes psíquicos desde muy joven. Pero este poder tan potente se vuelve una carga. Como quiere llevar una vida normal como el resto, reprime sus poderes y emociones, pero cuando estas alcanzan el nivel 100, algo terrible le ocurre. Rodeado de falsos psíquicos, espíritus malvados y misteriosas organizaciones, ¿cómo vivirá Mob su vida? ¿Qué decisiones tomará?",
     genres: ["Acción", "Psíquicos", "Comedia", "Sobrenatural"],
@@ -6830,7 +6828,7 @@ export const animeData = [
     year: 2016,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["agregado", "doblaje"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 927)), // Calculado desde el 21/12/22
     audio: "Sub | Dob",
     creator: "ONE",
@@ -6849,7 +6847,138 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/1.html",
       },
-      // ... (Episodios 2 a 11 de la Temporada 1)
+      {
+        season: 1,
+        number: 1,
+        title: "El psíquico autoproclamado: Arataka reigen y mob.",
+        duration: "23 min",
+        description:
+          "Shigeo 'Mob' Kageyama es un estudiante con poderosas habilidades psíquicas que trabaja para el autoproclamado psíquico Arataka Reigen, exorcizando espíritus por un salario mínimo.",
+        img: "/image/Mob-Psycho-temporada-1/1.jpg",
+        releaseDate: "Julio 11, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Las dudas de la juventud ~Aparece el club de telepatía~.",
+        duration: "23 min",
+        description:
+          "Mob es invitado a unirse al Club de Telepatía para evitar que sea disuelto. Cuando se niega, intentan demostrarle que los poderes telepáticos son reales.",
+        img: "/image/Mob-Psycho-temporada-1/2.jpg",
+        releaseDate: "Julio 18, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Un invitación ~En resumen, quiero ser popular~.",
+        duration: "23 min",
+        description:
+          "Mob recibe una invitación de una chica para ir a algún lugar con ella. Reigen le dice que es una trampa de una agencia rival, pero Mob decide ir de todos modos.",
+        img: "/image/Mob-Psycho-temporada-1/3.jpg",
+        releaseDate: "Julio 25, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "Un evento exclusivo para idiotas ~Kin~.",
+        duration: "23 min",
+        description:
+          "Reigen y Mob son llamados a una escuela privada de chicas para resolver un caso. La cliente es una chica que ha estado teniendo pesadillas y dice ser amiga del fantasma de un chico.",
+        img: "/image/Mob-Psycho-temporada-1/4.jpg",
+        releaseDate: "Agosto 1, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Ochimusha ~Los poderes psíquicos y yo~.",
+        duration: "23 min",
+        description:
+          "Ritsu, el hermano menor de Mob, siempre ha envidiado los poderes psíquicos de su hermano. Ritsu, que ha estado tratando de despertar sus propios poderes, finalmente recibe una pequeña ayuda del espíritu maligno, Hoyuelo.",
+        img: "/image/Mob-Psycho-temporada-1/5.jpg",
+        releaseDate: "Agosto 8, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "Discordancia ~Volverse uno~.",
+        duration: "23 min",
+        description:
+          "Ritsu, ahora con poderes psíquicos, comienza a usarlos para sus propios fines egoístas. Mientras tanto, una misteriosa organización llamada 'Garra' comienza a hacer su movimiento.",
+        img: "/image/Mob-Psycho-temporada-1/6.jpg",
+        releaseDate: "Agosto 15, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "Exaltación ~Solo conseguí pérdidas~.",
+        duration: "23 min",
+        description:
+          "Teruki Hanazawa, el 'ura-bancho' de la Escuela Secundaria Vinagre Negro, confronta a Mob para ver quién es el psíquico superior.",
+        img: "/image/Mob-Psycho-temporada-1/7.jpg",
+        releaseDate: "Agosto 22, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "El mayor se postra ~Intenciones destructivas~.",
+        duration: "23 min",
+        description:
+          "Las emociones de Mob llegan al 100% durante su batalla con Teruki. Su inmenso poder psíquico es desatado, dejando a Teruki completamente derrotado y aterrorizado.",
+        img: "/image/Mob-Psycho-temporada-1/8.jpg",
+        releaseDate: "Agosto 29, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Garra ~La séptima división~.",
+        duration: "23 min",
+        description:
+          "Ritsu es capturado por 'Garra', una organización secreta de espers. Mob, junto con Teruki y Hoyuelo, decide infiltrarse en su base para rescatarlo.",
+        img: "/image/Mob-Psycho-temporada-1/9.jpg",
+        releaseDate: "Septiembre 5, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Gran aura maléfica ~Mente maestra~.",
+        duration: "23 min",
+        description:
+          "Mob y su equipo se enfrentan a los miembros de élite de la Séptima División de Garra, cada uno con habilidades psíquicas únicas y peligrosas.",
+        img: "/image/Mob-Psycho-temporada-1/10.jpg",
+        releaseDate: "Septiembre 12, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "El maestro ~El líder~.",
+        duration: "23 min",
+        description:
+          "Mob se enfrenta al líder de la Séptima División, Ishiguro. La batalla lleva a Mob al borde de sus límites emocionales, desatando una vez más su poder al 100%.",
+        img: "/image/Mob-Psycho-temporada-1/11.jpg",
+        releaseDate: "Septiembre 19, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/11.html",
+      },
       {
         season: 1,
         number: 12,
@@ -6876,7 +7005,150 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/1.html",
       },
-      // ... (Episodios 2 a 12 de la Temporada 2)
+      {
+        season: 2,
+        number: 1,
+        title: "Hecho pedazos.~Hay alguien mirando.",
+        duration: "23 min",
+        description:
+          "Mob sigue lidiando con su vida escolar y su trabajo. Una petición para desenmascarar a un falso psíquico en la escuela lo pone en una situación incómoda.",
+        img: "/image/Mob-psycho-II/1.jpg",
+        releaseDate: "Enero 7, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/1.html",
+      },
+      {
+        season: 2,
+        number: 2,
+        title: "Leyendas urbanas ~Encontrándose con rumores~.",
+        duration: "23 min",
+        description:
+          "Reigen y Mob investigan una serie de leyendas urbanas locales, lo que los lleva a un enfrentamiento con extraños y espeluznantes espíritus.",
+        img: "/image/Mob-psycho-II/2.jpg",
+        releaseDate: "Enero 14, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/2.html",
+      },
+      {
+        season: 2,
+        number: 3,
+        title: "Un peligro tras otro ~Degeneración~.",
+        duration: "23 min",
+        description:
+          "El grupo se adentra en un bosque embrujado para exorcizar al espíritu de un hombre rico y egoísta, pero la misión resulta ser más compleja de lo que parece.",
+        img: "/image/Mob-psycho-II/3.jpg",
+        releaseDate: "Enero 21, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/3.html",
+      },
+      {
+        season: 2,
+        number: 4,
+        title: "Interior ~Espectro~.",
+        duration: "23 min",
+        description:
+          "Para salvar a la hija del millonario, Mob debe entrar en su mente y luchar contra el poderoso demonio que la ha poseído desde adentro.",
+        img: "/image/Mob-psycho-II/4.jpg",
+        releaseDate: "Enero 28, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/4.html",
+      },
+      {
+        season: 2,
+        number: 5,
+        title: "Discordia ~Elección~.",
+        duration: "23 min",
+        description:
+          "Mob se da cuenta de que la gente empieza a depender demasiado de sus poderes. Reigen organiza una conferencia de prensa para calmar las cosas, pero todo sale mal.",
+        img: "/image/Mob-psycho-II/5.jpg",
+        releaseDate: "Febrero 4, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/5.html",
+      },
+      {
+        season: 2,
+        number: 6,
+        title: "Un día blanco solitario.",
+        duration: "23 min",
+        description:
+          "Tras una discusión, Mob y Reigen se separan. Reigen intenta seguir con su negocio sin Mob, mientras este último reflexiona sobre su propia vida y sus relaciones.",
+        img: "/image/Mob-psycho-II/6.jpg",
+        releaseDate: "Febrero 11, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/6.html",
+      },
+      {
+        season: 2,
+        number: 7,
+        title: "Fase final ~Identidad~.",
+        duration: "23 min",
+        description:
+          "Reigen, expuesto como un fraude en televisión nacional, se enfrenta al odio del público. Mob debe decidir si su maestro es una buena persona y si vale la pena salvarlo.",
+        img: "/image/Mob-psycho-II/7.jpg",
+        releaseDate: "Febrero 18, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/7.html",
+      },
+      {
+        season: 2,
+        number: 8,
+        title: "Aun así ~Avanza~.",
+        duration: "23 min",
+        description:
+          "Mob se prepara para la maratón anual de la escuela, decidido a esforzarse al máximo para impresionar a su amiga de la infancia, Tsubomi.",
+        img: "/image/Mob-psycho-II/8.jpg",
+        releaseDate: "Febrero 25, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/8.html",
+      },
+      {
+        season: 2,
+        number: 9,
+        title: "Muéstralo ~Reunión~.",
+        duration: "23 min",
+        description:
+          "La organización de espers 'Garra' regresa, esta vez con sus miembros más poderosos, los 'Ultimate 5', listos para conquistar el mundo.",
+        img: "/image/Mob-psycho-II/9.jpg",
+        releaseDate: "Marzo 4, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/9.html",
+      },
+      {
+        season: 2,
+        number: 10,
+        title: "Colisión ~Potencia~.",
+        duration: "23 min",
+        description:
+          "Los miembros de Garra atacan la ciudad. Mob, sus amigos y antiguos enemigos deben unir fuerzas para proteger a la gente.",
+        img: "/image/Mob-Psycho-II/10.jpg",
+        releaseDate: "Marzo 11, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/10.html",
+      },
+      {
+        season: 2,
+        number: 11,
+        title: "Guía ~Psíquicos perceptivos~.",
+        duration: "23 min",
+        description:
+          "Mob se enfrenta a Shimazaki, uno de los Ultimate 5, cuya habilidad para prever los movimientos lo convierte en un enemigo casi intocable.",
+        img: "/image/Mob-psycho-II/11.jpg",
+        releaseDate: "Marzo 18, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/11.html",
+      },
+      {
+        season: 2,
+        number: 12,
+        title: "Batalla del retorno de la sociedad ~Amistad~.",
+        duration: "23 min",
+        description:
+          "La batalla se traslada a la Torre Condimento, donde Mob se enfrenta a Serizawa, otro de los Ultimate 5, mientras Reigen intenta razonar con el líder de Garra.",
+        img: "/image/Mob-Psycho-II/12.jpg",
+        releaseDate: "Marzo 25, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/12.html",
+      },
       {
         season: 2,
         number: 13,
@@ -6903,7 +7175,139 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/1.html",
       },
-      // ... (Episodios 2 a 11 de la Temporada 3)
+      {
+        season: 3,
+        number: 1,
+        title: "El mañana -planes del futuro-",
+        duration: "23 min",
+        description:
+          "Con la paz restaurada, Mob debe enfrentarse a un desafío aún mayor: rellenar el formulario de orientación profesional y decidir qué quiere hacer con su vida.",
+        img: "/image/Mob-psycho-III/1.jpg",
+        releaseDate: "Octubre 5, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/1.html",
+      },
+      {
+        season: 3,
+        number: 2,
+        title:
+          "¡Llega el cazador de yokai Haruaki Amakusa!-¡El ataque de los cien yokai!",
+        duration: "23 min",
+        description:
+          "Un autoproclamado cazador de yokai contrata a Reigen y Mob para que lo ayuden a exorcizar a un poderoso espectro conocido como el 'Líder de los Cien Demonios'.",
+        img: "/image/Mob-psycho-III/2.jpg",
+        releaseDate: "Octubre 12, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/2.html",
+      },
+      {
+        season: 3,
+        number: 3,
+        title: "Ser arrogante al 100%",
+        duration: "23 min",
+        description:
+          "El culto del Árbol Divino, liderado por Hoyuelo, crece descontroladamente. Mob se preocupa por la influencia que su amigo está ejerciendo sobre la gente.",
+        img: "/image/Mob-psycho-III/3.jpg",
+        releaseDate: "Octubre 19, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/3.html",
+      },
+      {
+        season: 3,
+        number: 4,
+        title: "Árbol Divinio I -Aparece El Fundador-",
+        duration: "23 min",
+        description:
+          "Mob decide confrontar a Hoyuelo en el Árbol Divino. Descubre que su amigo busca un poder aún mayor y no se detendrá ante nada para conseguirlo.",
+        img: "/image/Mob-psycho-III/4.jpg",
+        releaseDate: "Octubre 26, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/4.html",
+      },
+      {
+        season: 3,
+        number: 5,
+        title: "Árbol Divinio II -Paz-",
+        duration: "23 min",
+        description:
+          "La batalla entre Mob y un Hoyuelo con poderes divinos comienza. La ideología de Mob sobre no usar sus poderes contra otros se pone a prueba.",
+        img: "/image/Mob-psycho-III/5.jpg",
+        releaseDate: "Noviembre 2, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/5.html",
+      },
+      {
+        season: 3,
+        number: 6,
+        title: "Árbol Divinio III -Hoyuelo-",
+        duration: "23 min",
+        description:
+          "La batalla llega a su clímax emocional. Mob debe tomar una decisión sobre el destino de su amigo, mientras su contador de estrés se acerca peligrosamente al límite.",
+        img: "/image/Mob-psycho-III/6.jpg",
+        releaseDate: "Noviembre 9, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/6.html",
+      },
+      {
+        season: 3,
+        number: 7,
+        title: "Transmitiendo 1 ~Vacaciones De Invierno~",
+        duration: "23 min",
+        description:
+          "Tras los eventos del Árbol Divino, la vida de Mob parece tranquila. Reigen, aburrido, decide iniciar una transmisión en vivo para resolver problemas sobrenaturales.",
+        img: "/image/Mob-psycho-III/7.jpg",
+        releaseDate: "Noviembre 16, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/7.html",
+      },
+      {
+        season: 3,
+        number: 8,
+        title: "Transmitiendo 2 ~Encuentro con lo desconocido~",
+        duration: "23 min",
+        description:
+          "El equipo de transmisión investiga un lugar embrujado, pero se encuentran con un fenómeno psíquico mucho más real y peligroso de lo que esperaban.",
+        img: "/image/Mob-psycho-III/8.jpg",
+        releaseDate: "Noviembre 23, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/8.html",
+      },
+      {
+        season: 3,
+        number: 9,
+        title: "Mob 1 ~Mudanza~",
+        duration: "23 min",
+        description:
+          "Mob finalmente se arma de valor para invitar a salir a Tsubomi, pero descubre que ella se mudará pronto, lo que lo llena de ansiedad.",
+        img: "/image/Mob-psycho-III/9.jpg",
+        releaseDate: "Noviembre 30, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/9.html",
+      },
+      {
+        season: 3,
+        number: 10,
+        title: "Mob 2 ~Rival~",
+        duration: "23 min",
+        description:
+          "Presionado por la inminente partida de Tsubomi, Mob decide confesársele. En su camino, se encuentra con gente que necesita su ayuda, y la presión aumenta.",
+        img: "/image/Mob-psycho-III/10.jpg",
+        releaseDate: "Diciembre 7, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Mob 3 ~Trauma~",
+        duration: "23 min",
+        description:
+          "Un accidente de tráfico provoca que el contador de Mob llegue al ???%. Su poder destructivo se desata sin control, poniendo en peligro a toda la ciudad.",
+        img: "/image/Mob-psycho-III/11.jpg",
+        releaseDate: "Diciembre 14, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/11.html",
+      },
       {
         season: 3,
         number: 12,
@@ -6915,6 +7319,486 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/12.html",
+      },
+    ],
+  },
+  {
+    id: "my-hero-academia",
+    title: "My Hero Academia",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/6e008ad5211c3998b8f3e4bc166821cd.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/cr/landscape_large/72141d3f-edf8-4dc1-83e1-f640743e747c.png",
+    logoImg:
+      "https://static.crunchyroll.com/fms/logo/098a9f59-2fcc-44ca-b49a-07f443dae1fc.png",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/cr/landscape_large/72141d3f-edf8-4dc1-83e1-f640743e747c.png",
+    trailerUrl: "https://www.youtube.com/embed/IziwkeGaBaA?si=yRAGqZWNkn12XG0W",
+    description:
+      "En un mundo en el que la mayor parte de la población nace con un Don, una habilidad extraordinaria diferente en cada cual, no tardaron en aparecer tanto villanos como héroes dispuestos a detenerlos. Con el tiempo los héroes pasaron a ser funcionarios del gobierno, estando regulados y viviendo de su trabajo, además de convertirse en objeto de admiración de muchos. Ahora, ser héroe es el sueño de la gran mayoría de niños, que esperan desde muy pequeños a que su Don se manifieste para comenzar a entrenar y soñar con convertirse en los héroes número uno.",
+    genres: ["Acción", "Aventuras", "Ciencia Ficción", "Fantasía"],
+    rating: 4.7,
+    ratingCount: "181.8K",
+    seasons: 7,
+    episodesTotal: 159,
+    status: "En emisión",
+    year: 2016,
+    type: "TV",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 361)), // Calculado desde el 12/10/24
+    audio: "Sub | Dob",
+    creator: "Kohei Horikoshi",
+    contentWarning: "+14",
+    episodes: [
+      // Temporada 1 (13 episodios)
+      {
+        season: 1,
+        number: 1,
+        title: "Midoriya Izuku: Origen",
+        duration: "24 min",
+        description:
+          "En un mundo donde la mayoría tiene superpoderes, Izuku Midoriya nace sin uno. Aún así, sueña con ser un héroe, y un encuentro casual con el legendario All Might podría cambiar su destino.",
+        img: "/image/Boku-no-hero-academia/1.jpg",
+        releaseDate: "Abril 3, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Lo que se necesita para ser un héroe",
+        duration: "24 min",
+        description:
+          "All Might revela su secreto a Midoriya. Impresionado por el heroísmo del chico, le ofrece la oportunidad de heredar su poder: el One For All.",
+        img: "/image/Boku-no-hero-academia/2.jpg",
+        releaseDate: "Abril 10, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Músculos excelentes",
+        duration: "24 min",
+        description:
+          "Para ser un recipiente digno del One For All, Midoriya se somete a un riguroso plan de entrenamiento de diez meses ideado por All Might para fortalecer su cuerpo.",
+        img: "/image/Boku-no-hero-academia/3.jpg",
+        releaseDate: "Abril 17, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "Línea de salida",
+        duration: "24 min",
+        description:
+          "Midoriya finalmente hereda el One For All y se presenta al examen de admisión de la prestigiosa Academia U.A. para Héroes, donde debe demostrar su valía.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/07044818e38a5b28a2a8848148b1111d.jpe",
+        releaseDate: "Abril 24, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Lo que puedo hacer ahora",
+        duration: "24 min",
+        description:
+          "Midoriya logra ingresar a la U.A. y conoce a sus compañeros de la Clase 1-A. Su profesor, Shota Aizawa, los somete a una prueba de Dones el primer día.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/8f77d33b43826027c9f44709d73d9d30.jpe",
+        releaseDate: "Mayo 1, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "Enfurecete, maldito nerd",
+        duration: "24 min",
+        description:
+          "La primera clase de entrenamiento de combate es supervisada por All Might. Midoriya forma equipo con Uraraka y se enfrenta a su rival de la infancia, Katsuki Bakugo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/c6a7e02919d7e35ccb76c8c9a3d4d546.jpe",
+        releaseDate: "Mayo 8, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "Deku vs. Kacchan",
+        duration: "24 min",
+        description:
+          "La batalla entre Midoriya y Bakugo se intensifica. Deku debe usar su ingenio y el poder del One For All de una manera inesperada para lograr la victoria.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/1de7c71d60061e8093c784f181cc0504.jpe",
+        releaseDate: "Mayo 15, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "La línea de salida de Bakugo",
+        duration: "24 min",
+        description:
+          "Tras la batalla, Bakugo reflexiona sobre su derrota y su propia debilidad, mientras que All Might aconseja a Midoriya sobre cómo controlar mejor su poder.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/1a2c3a51f8a84618e7d23d8c114f09d8.jpe",
+        releaseDate: "Mayo 22, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Sí, solo da lo mejor, Iida",
+        duration: "24 min",
+        description:
+          "Los medios de comunicación invaden la U.A. Mientras tanto, la Clase 1-A debe elegir a su presidente de clase, y los estudiantes se enfrentan a un simulacro de evacuación.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/9d187212b1869e83870633b118b62557.jpe",
+        releaseDate: "Mayo 29, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Encuentro con lo desconocido",
+        duration: "24 min",
+        description:
+          "La Clase 1-A se dirige a la Unidad de Simulaciones Imprevistas (U.S.J.) para un entrenamiento de rescate, pero son emboscados por la Liga de Villanos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e9552d8d0030c5bcecd0d867c12a6573.jpe",
+        releaseDate: "Junio 5, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Fin del juego",
+        duration: "24 min",
+        description:
+          "Los estudiantes son separados y deben luchar por sus vidas contra los villanos. Aizawa (Eraser Head) se enfrenta solo a la horda para proteger a sus alumnos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/99acd2fa2db8957f8fb51a7024ebdb5d.jpe",
+        releaseDate: "Junio 12, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "All Might",
+        duration: "24 min",
+        description:
+          "Midoriya, Tsuyu y Mineta se enfrentan a los villanos en la zona de inundación. Justo cuando todo parece perdido, All Might llega para cambiar el rumbo de la batalla.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e116e72ccd7fb4435aeaad5d45a4ae4a.jpe",
+        releaseDate: "Junio 19, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/12.html",
+      },
+      {
+        season: 1,
+        number: 13,
+        title: "En cada corazón",
+        duration: "24 min",
+        description:
+          "La batalla en la U.S.J. llega a su fin con la llegada de All Might. Los estudiantes reflexionan sobre su primera gran prueba como futuros héroes.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e6f1f45618423f03b4aa56b1f2479f64.jpe",
+        releaseDate: "Junio 26, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T1/13.html",
+      },
+
+      // Temporada 2 (25 episodios)
+      {
+        season: 2,
+        number: 14,
+        title: "¡Es la idea, Ochaco!",
+        duration: "24 min",
+        description:
+          "Comienza el Festival Deportivo de la U.A., un evento donde los estudiantes pueden demostrar sus habilidades al mundo. La primera prueba es una carrera de obstáculos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/3194cf61c6735eff46c80a42f25f76d4.jpe",
+        releaseDate: "Abril 1, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/1.html",
+      },
+      {
+        season: 2,
+        number: 15,
+        title: "¡Arde, Festival Deportivo!",
+        duration: "24 min",
+        description:
+          "La carrera de obstáculos se intensifica. Midoriya utiliza su ingenio para superar a sus compañeros con Dones más llamativos, como Todoroki y Bakugo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/dd48d3585da657a365e5c4db678ef04a.jpe",
+        releaseDate: "Abril 8, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/2.html",
+      },
+      {
+        season: 2,
+        number: 16,
+        title: "A su manera",
+        duration: "24 min",
+        description:
+          "La segunda ronda es una batalla de caballería. Midoriya, al haber quedado primero, se convierte en el objetivo de todos los equipos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/8d626359f516a5067254d3dfdd83b632.jpe",
+        releaseDate: "Abril 15, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/3.html",
+      },
+      {
+        season: 2,
+        number: 17,
+        title: "Estrategia, estrategia, estrategia",
+        duration: "24 min",
+        description:
+          "El equipo de Midoriya, formado por Uraraka, Tokoyami y Hatsume, debe usar una estrategia ingeniosa para defender su cinta de diez millones de puntos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/de71120f2e022067527eb5c8b27606e1.jpe",
+        releaseDate: "Abril 22, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/4.html",
+      },
+      {
+        season: 2,
+        number: 18,
+        title: "Final de la batalla de caballería",
+        duration: "24 min",
+        description:
+          "La batalla de caballería llega a su fin. Los equipos de Todoroki y Bakugo lanzan un ataque final para arrebatarle los puntos a Midoriya.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/f368f5c3629f1b9549f0a9967733221b.jpe",
+        releaseDate: "Abril 29, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/5.html",
+      },
+      {
+        season: 2,
+        number: 19,
+        title: "El chico que lo tiene todo",
+        duration: "24 min",
+        description:
+          "Comienza la ronda final: un torneo de combates uno a uno. Midoriya se enfrenta a Shinso, un estudiante cuyo Don le permite controlar la mente de los demás.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/c6a7e02919d7e35ccb76c8c9a3d4d546.jpe",
+        releaseDate: "Mayo 6, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/6.html",
+      },
+      {
+        season: 2,
+        number: 20,
+        title: "Victoria o derrota",
+        duration: "24 min",
+        description:
+          "Bajo el control mental de Shinso, Midoriya está a punto de perder, pero una visión de los antiguos portadores del One For All le ayuda a liberarse.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/1de7c71d60061e8093c784f181cc0504.jpe",
+        releaseDate: "Mayo 13, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/7.html",
+      },
+      {
+        season: 2,
+        number: 21,
+        title: "Lucha, aspirante",
+        duration: "24 min",
+        description:
+          "El siguiente combate es entre Todoroki y Sero. Todoroki, atormentado por su pasado, desata un poder de hielo abrumador y aterrador.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/1a2c3a51f8a84618e7d23d8c114f09d8.jpe",
+        releaseDate: "Mayo 20, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/8.html",
+      },
+      {
+        season: 2,
+        number: 22,
+        title: "Bakugo vs. Uraraka",
+        duration: "24 min",
+        description:
+          "Ochaco Uraraka se enfrenta al explosivo Katsuki Bakugo. A pesar de la abrumadora diferencia de poder, Uraraka demuestra una increíble determinación y estrategia.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/9d187212b1869e83870633b118b62557.jpe",
+        releaseDate: "Mayo 27, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/9.html",
+      },
+      {
+        season: 2,
+        number: 23,
+        title: "Shoto Todoroki: Origen",
+        duration: "24 min",
+        description:
+          "Llega el esperado enfrentamiento entre Midoriya y Todoroki. Se revela el trágico pasado de Todoroki y la razón por la que se niega a usar su lado de fuego.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e9552d8d0030c5bcecd0d867c12a6573.jpe",
+        releaseDate: "Junio 3, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/10.html",
+      },
+      {
+        season: 2,
+        number: 24,
+        title: "Lucha, Iida",
+        duration: "24 min",
+        description:
+          "Mientras el festival continúa, Tenya Iida recibe una llamada devastadora sobre su hermano, el héroe Ingenium, quien fue atacado por el Asesino de Héroes, Stain.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/99acd2fa2db8957f8fb51a7024ebdb5d.jpe",
+        releaseDate: "Junio 10, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/11.html",
+      },
+      {
+        season: 2,
+        number: 25,
+        title: "Todoroki vs. Bakugo",
+        duration: "24 min",
+        description:
+          "La final del Festival Deportivo enfrenta a Todoroki y Bakugo. Todoroki, aún confundido tras su combate con Midoriya, no lucha con todo su poder, enfureciendo a Bakugo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e116e72ccd7fb4435aeaad5d45a4ae4a.jpe",
+        releaseDate: "Junio 17, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/12.html",
+      },
+      {
+        season: 2,
+        number: 26,
+        title: "La elección de los nombres de héroes",
+        duration: "24 min",
+        description:
+          "Tras el festival, los estudiantes eligen sus nombres de héroe y reciben ofertas de agencias profesionales para sus pasantías.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/b533e4f63c8a923577d61245582f3a67.jpe",
+        releaseDate: "Junio 24, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T2/13.html",
+      },
+
+      // Temporada 3 (25 episodios)
+      {
+        season: 3,
+        number: 1,
+        title: "Empieza el juego",
+        duration: "24 min",
+        description:
+          "La Clase 1-A se dirige a un campamento de entrenamiento en el bosque, pero son atacados por las Wild, Wild Pussycats como parte de su primera prueba.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e9552d8d0030c5bcecd0d867c12a6573.jpe",
+        releaseDate: "Abril 7, 2018",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T3/1.html",
+      },
+      // ... (Episodios 2 a 24)
+      {
+        season: 3,
+        number: 25,
+        title: "Un nuevo curso",
+        duration: "24 min",
+        description:
+          "Comienza un nuevo semestre. Los estudiantes conocen a 'Los Tres Grandes', los alumnos más fuertes de la U.A., y se preparan para sus nuevas pasantías.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/c6a7e02919d7e35ccb76c8c9a3d4d546.jpe",
+        releaseDate: "Septiembre 29, 2018",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T3/25.html",
+      },
+
+      // Temporada 4 (25 episodios)
+      {
+        season: 4,
+        number: 1,
+        title: "La primicia de la clase 1-A de la U.A.",
+        duration: "24 min",
+        description:
+          "Un periodista independiente se infiltra en la U.A. para escribir un artículo sobre la nueva vida de los estudiantes en los dormitorios y el futuro de All Might.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/06fc92ad23598cf0baba61d9e7dcc46e.jpe",
+        releaseDate: "Octubre 12, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T4/1.html",
+      },
+      // ... (Episodios 2 a 24)
+      {
+        season: 4,
+        number: 25,
+        title: "¡Su gran comienzo!",
+        duration: "24 min",
+        description:
+          "Endeavor, como nuevo Héroe N.º 1, se enfrenta a un Nomu de alta gama en una batalla devastadora que demuestra su determinación por superar a All Might.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/96da46a9a83685d26a27e3d1ac2c6b45.jpe",
+        releaseDate: "Abril 4, 2020",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T4/25.html",
+      },
+
+      // Temporada 5 (25 episodios)
+      {
+        season: 5,
+        number: 1,
+        title: "¡Todos a la acción! Clase 1-A",
+        duration: "24 min",
+        description:
+          "La Clase 1-A participa en un entrenamiento de rescate simulado. Deku, Bakugo y Todoroki reflexionan sobre su crecimiento y los desafíos que se avecinan.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/9f5cc964b5f7db036f82e5b11a9fda35.jpe",
+        releaseDate: "Marzo 27, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T5/1.html",
+      },
+      // ... (Episodios 2 a 24)
+      {
+        season: 5,
+        number: 25,
+        title: "Los cielos despejados",
+        duration: "24 min",
+        description:
+          "El Frente de Liberación Paranormal, liderado por Tomura Shigaraki, se alza. Los héroes se preparan para la guerra total que se avecina.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/6908a8a43f80c611488c9f6927a42426.jpe",
+        releaseDate: "Septiembre 25, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T5/25.html",
+      },
+
+      // Temporada 6 (25 episodios)
+      {
+        season: 6,
+        number: 1,
+        title: "Un tranquilo comienzo",
+        duration: "23 min",
+        description:
+          "Los héroes profesionales y los estudiantes se preparan para un asalto masivo y coordinado contra el Frente de Liberación Paranormal.",
+        img: "/image/Boku-no-hero-academia-season-6/1.png",
+        releaseDate: "Octubre 1, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T6/1.html",
+      },
+      // ... (Episodios 2 a 24)
+      {
+        season: 6,
+        number: 25,
+        title: "Conectados",
+        duration: "23 min",
+        description:
+          "Después de que Deku es aceptado de nuevo en la U.A., All Might reflexiona sobre su papel y le entrega a su sucesor una verdad final.",
+        img: "/image/Boku-no-hero-academia-season-6/25.jpg",
+        releaseDate: "Marzo 25, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T6/25.html",
+      },
+
+      // Temporada 7 (21 episodios)
+      {
+        season: 7,
+        number: 1,
+        title: "¡Justo a tiempo! Llega toda una perla de Occidente",
+        duration: "23 min",
+        description:
+          "La heroína N.º 1 de Estados Unidos, Star and Stripe, llega a Japón para ayudar a All Might, enfrentándose directamente a Shigaraki/All For One.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/dea3db6993a42fdc04bb28348093f9e9.jpe",
+        releaseDate: "Mayo 4, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T7/1.html",
+      },
+      // ... (Episodios 2 a 20)
+      {
+        season: 7,
+        number: 21,
+        title: "Combate sin Dones",
+        duration: "23 min",
+        description:
+          "En la batalla final, los héroes deben encontrar una manera de luchar contra los villanos en un campo donde los Dones han sido neutralizados.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/6e3a2f0dc647baf6e2e8c1ef09e0d8e3.jpg",
+        releaseDate: "Octubre 12, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia/T7/21.html",
       },
     ],
   },
