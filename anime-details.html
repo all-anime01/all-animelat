@@ -83,26 +83,24 @@
     </div>
 
     <div class="episode-player-modal" id="episode-player-modal">
+        <button class="close-player" id="close-player-modal" title="Cerrar (Esc)">×</button>
         <div class="player-video-container">
             <iframe id="episode-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
         <div class="player-details-container">
-            <button class="close-player" id="close-player-modal" title="Cerrar">×</button>
             <div class="player-details-content">
                 <div class="player-main-info-col">
                     <a href="#" id="player-anime-link">
                         <h3 id="player-anime-title"></h3>
                     </a>
                     <h4 id="player-episode-title"></h4>
-                    <div class="player-meta-tags" id="player-episode-meta"></div>
+                    <div class="player-meta-tags" id="player-episode-meta">
+                    </div>
                     <p id="player-episode-description"></p>
                     <div class="episode-actions" id="player-episode-actions">
                     </div>
                 </div>
                 <div class="player-nav-col">
-                    <button class="player-action-btn" id="player-favorite-btn" title="Añadir a Favoritos">
-                        <i class="far fa-bookmark"></i>
-                    </button>
                     <div class="player-nav-previews">
                         <div id="player-next-episode-preview">
                         </div>

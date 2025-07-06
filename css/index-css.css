@@ -1278,7 +1278,7 @@ header .navbar ul li a.active {
     margin-right: 0.5rem;
 }
 
-/* --- Modal del Reproductor (Diseño Corregido) --- */
+/* --- Modal del Reproductor (Nuevo Diseño) --- */
 .episode-player-modal {
     display: none;
     position: fixed;
@@ -1286,7 +1286,7 @@ header .navbar ul li a.active {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--dark-bg);
+    background-color: #000;
     z-index: 3000;
     flex-direction: column;
 }
@@ -1294,7 +1294,9 @@ header .navbar ul li a.active {
 .player-video-container {
     width: 100%;
     height: 56.25vh;
+    /* 16:9 aspect ratio */
     max-height: 75vh;
+    /* Límite para que no ocupe toda la pantalla */
     background-color: #000;
     flex-shrink: 0;
 }
@@ -1306,25 +1308,27 @@ header .navbar ul li a.active {
 }
 
 .player-details-container {
+    background-color: var(--dark-bg);
     flex-grow: 1;
     overflow-y: auto;
     position: relative;
 }
 
 .close-player {
-    position: absolute;
-    top: 1.5rem;
-    right: 2.5rem;
+    position: fixed;
+    top: 2rem;
+    right: 3rem;
     font-size: 3.5rem;
     background: none;
-    color: var(--grey-text);
+    color: #fff;
     cursor: pointer;
     transition: color 0.3s;
-    z-index: 10;
+    z-index: 3001;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 .close-player:hover {
-    color: #fff;
+    color: var(--primary-color);
 }
 
 .player-details-content {
@@ -1332,6 +1336,8 @@ header .navbar ul li a.active {
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     gap: 4rem;
     padding: 2.5rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .player-main-info-col h3 {
@@ -1354,22 +1360,17 @@ header .navbar ul li a.active {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1.5rem;
+    align-items: center;
     margin-bottom: 1.5rem;
-}
-
-.player-main-info-col p {
-    font-size: 1.4rem;
-    color: var(--grey-text);
-    line-height: 1.6;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
 }
 
 .episode-actions {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
 }
 
 .player-action-btn {
@@ -1397,19 +1398,20 @@ header .navbar ul li a.active {
     color: var(--primary-color);
 }
 
+.player-action-btn.favorite-btn-player.is-favorite {
+    color: var(--secondary-color);
+}
+
+.player-main-info-col p {
+    font-size: 1.4rem;
+    color: var(--grey-text);
+    line-height: 1.6;
+}
 
 .player-nav-col {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-}
-
-#player-favorite-btn {
-    font-size: 2.4rem;
-    background: none;
-    color: #fff;
-    align-self: flex-end;
-    padding: 0.5rem;
 }
 
 .player-nav-previews {
@@ -1431,6 +1433,7 @@ h5.player-nav-title {
     gap: 1rem;
     color: #fff;
     align-items: center;
+    border-radius: 4px;
     transition: background-color 0.3s;
 }
 
@@ -1683,10 +1686,6 @@ h5.player-nav-title {
 
     .episode-search-wrapper input {
         width: 100%;
-    }
-
-    .player-video-container {
-        height: 45vh;
     }
 }
 

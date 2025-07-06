@@ -71,6 +71,24 @@ $(document).ready(function () {
         `;
   }
 
+  function createFavoriteEpisodeCard(episode, anime) {
+    return `
+            <div class="episode-detail-card" data-anime-id="${anime.id}" data-episode-number="${episode.number}">
+                <a href="anime-details.html?id=${anime.id}">
+                    <div class="episode-img-container">
+                        <img src="${episode.img}" alt="${episode.title}" loading="lazy">
+                        <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
+                        <span class="duration-tag">${episode.duration}</span>
+                    </div>
+                    <div class="episode-card-info">
+                        <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${anime.title}</p>
+                        <h5 class="episode-card-title">${episode.number}. ${episode.title}</h5>
+                        <p class="episode-card-meta">${episode.language} • ${episode.releaseDate}</p>
+                    </div>
+                </a>
+            </div>`;
+  }
+
   function populateHomePage() {
     const recommendationsCarousel = $("#recommendations-carousel");
     const dubsCarousel = $("#dubs-carousel");
@@ -227,27 +245,53 @@ $(document).ready(function () {
   // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE FAVORITOS ---
   function setupFavoritesPage() {
     const favoritesGrid = $("#favorites-anime-grid");
+    const favoriteEpisodesGrid = $("#favorites-episodes-grid");
     if (!favoritesGrid.length) return;
 
+    // Cargar Animes Favoritos
     const favoriteIds =
       JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
-
     favoritesGrid.empty();
-
     if (favoriteIds.length === 0) {
       favoritesGrid.html(
-        '<p class="no-results" style="padding: 5rem 2rem;">Aún no has añadido ningún anime a tu lista de favoritos. <br><br> Usa el ícono del marcador ( <i class="fas fa-bookmark"></i> ) en la página de un anime para guardarlo aquí.</p>'
+        '<p class="no-results" style="padding: 2rem;">No has guardado ningún anime.</p>'
       );
-      return;
+    } else {
+      const favoriteAnimes = animeData.filter((anime) =>
+        favoriteIds.includes(anime.id)
+      );
+      favoriteAnimes.forEach((anime) =>
+        favoritesGrid.append(createAnimeCard(anime))
+      );
     }
 
-    const favoriteAnimes = animeData.filter((anime) =>
-      favoriteIds.includes(anime.id)
-    );
+    // Cargar Episodios Favoritos
+    const favoriteEpisodeIds =
+      JSON.parse(localStorage.getItem("favoriteEpisodes")) || [];
+    favoriteEpisodesGrid.empty();
+    if (favoriteEpisodeIds.length === 0) {
+      favoriteEpisodesGrid.html(
+        '<p class="no-results" style="padding: 2rem;">No has guardado ningún episodio.</p>'
+      );
+    } else {
+      favoriteEpisodeIds.forEach((episodeId) => {
+        const [animeId, seasonStr, episodeStr] = episodeId.split("-");
+        const seasonNum = parseInt(seasonStr.replace("s", ""));
+        const episodeNum = parseFloat(episodeStr.replace("ep", ""));
 
-    favoriteAnimes.forEach((anime) => {
-      favoritesGrid.append(createAnimeCard(anime));
-    });
+        const anime = animeData.find((a) => a.id === animeId);
+        if (anime && anime.episodes) {
+          const episode = anime.episodes.find(
+            (ep) => ep.season === seasonNum && ep.number === episodeNum
+          );
+          if (episode) {
+            favoriteEpisodesGrid.append(
+              createFavoriteEpisodeCard(episode, anime)
+            );
+          }
+        }
+      });
+    }
   }
 
   // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE DETALLES ---
@@ -298,7 +342,7 @@ $(document).ready(function () {
             <div class="anime-actions">
                 <button class="action-btn play open-player-btn" data-episode-index="${LATEST_EPISODE_INDEX_IN_RENDERED_LIST}"><i class="fas fa-play"></i> Play</button>
                 <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> More Info</button>
-                <button class="action-btn favorite-btn" id="favorite-btn" title="Agregar a Favoritos"><i class="far fa-bookmark"></i></button>
+                <button class="action-btn favorite-btn" id="favorite-anime-btn" title="Agregar Anime a Favoritos"><i class="far fa-bookmark"></i></button>
             </div>
         </div>`;
     container.html(heroContent);
@@ -453,6 +497,7 @@ $(document).ready(function () {
 
     const playerModal = $("#episode-player-modal");
 
+    // --- Lógica de Votos ---
     function getEpisodeVotes() {
       return JSON.parse(localStorage.getItem("episodeVotes")) || {};
     }
@@ -464,6 +509,42 @@ $(document).ready(function () {
     }
     function saveUserEpisodeVote(userVotes) {
       localStorage.setItem("userEpisodeVotes", JSON.stringify(userVotes));
+    }
+
+    // --- Lógica de Favoritos de Episodios ---
+    function getFavoriteEpisodes() {
+      return JSON.parse(localStorage.getItem("favoriteEpisodes")) || [];
+    }
+    function isEpisodeFavorite(episodeId) {
+      return getFavoriteEpisodes().includes(episodeId);
+    }
+    function toggleEpisodeFavorite(episodeId) {
+      let favorites = getFavoriteEpisodes();
+      if (favorites.includes(episodeId)) {
+        favorites = favorites.filter((id) => id !== episodeId);
+      } else {
+        favorites.push(episodeId);
+      }
+      localStorage.setItem("favoriteEpisodes", JSON.stringify(favorites));
+      updateEpisodeFavoriteButtonState(episodeId);
+    }
+    function updateEpisodeFavoriteButtonState(episodeId) {
+      const favBtn = $("#player-favorite-btn");
+      if (isEpisodeFavorite(episodeId)) {
+        favBtn
+          .addClass("is-favorite")
+          .attr("title", "Quitar de Favoritos")
+          .find("i")
+          .removeClass("far")
+          .addClass("fas");
+      } else {
+        favBtn
+          .removeClass("is-favorite")
+          .attr("title", "Agregar a Favoritos")
+          .find("i")
+          .removeClass("fas")
+          .addClass("far");
+      }
     }
 
     function openPlayer(displayIndex) {
@@ -493,14 +574,20 @@ $(document).ready(function () {
           )
         : -1;
 
-      // Poblar nueva interfaz
       $("#player-anime-link")
         .attr("href", `anime-details.html?id=${anime.id}`)
         .text(anime.title);
       $("#player-episode-title").text(`E${episode.number} - ${episode.title}`);
-      $("#player-episode-meta").html(
-        `<span>${episode.language}</span> &bull; <span>Lanzado el ${episode.releaseDate}</span>`
-      );
+
+      const metaHtml = `
+          <span>${episode.language}</span> &bull; <span>Lanzado el ${episode.releaseDate}</span>
+          <button class="player-action-btn favorite-btn-player" id="player-favorite-btn" data-episode-id="${episodeId}">
+              <i class="far fa-bookmark"></i>
+          </button>
+      `;
+      $("#player-episode-meta").html(metaHtml);
+      updateEpisodeFavoriteButtonState(episodeId);
+
       $("#player-episode-description").text(episode.description);
       $("#episode-iframe").attr("src", episode.videoUrl || "");
 
@@ -546,11 +633,12 @@ $(document).ready(function () {
 
     function updateVoteUI(episodeId) {
       let allVotes = getEpisodeVotes();
+      // Inicializar con datos base si no existe en localStorage
       if (!allVotes[episodeId]) {
-        allVotes[episodeId] = {
-          likes: Math.floor(Math.random() * 500) + 10,
-          dislikes: Math.floor(Math.random() * 20) + 1,
-        };
+        const epData = anime.episodes.find(
+          (e) => `${anime.id}-s${e.season}-ep${e.number}` === episodeId
+        );
+        allVotes[episodeId] = epData?.votes || { likes: 0, dislikes: 0 };
         saveEpisodeVotes(allVotes);
       }
       const votes = allVotes[episodeId];
@@ -612,58 +700,62 @@ $(document).ready(function () {
       $("body").css("overflow", "auto");
     });
 
-    const favoriteBtn = $("#favorite-btn");
+    // Favoritos de Anime (el botón principal)
+    const favoriteAnimeBtn = $("#favorite-anime-btn");
 
-    function getFavorites() {
+    function getAnimeFavorites() {
       return JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
     }
-
-    function isFavorite(id) {
-      return getFavorites().includes(id);
+    function isAnimeFavorite(id) {
+      return getAnimeFavorites().includes(id);
     }
-
-    function toggleFavorite(id) {
-      let favorites = getFavorites();
+    function toggleAnimeFavorite(id) {
+      let favorites = getAnimeFavorites();
       if (favorites.includes(id)) {
         favorites = favorites.filter((favId) => favId !== id);
       } else {
         favorites.push(id);
       }
       localStorage.setItem("favoriteAnimes", JSON.stringify(favorites));
-      updateFavoriteButtonState(id);
+      updateAnimeFavoriteButtonState(id);
     }
-
-    function updateFavoriteButtonState(id) {
-      const playerFavBtn = $("#player-favorite-btn");
-      if (isFavorite(id)) {
-        favoriteBtn.add(playerFavBtn).addClass("is-favorite");
-        favoriteBtn
-          .add(playerFavBtn)
+    function updateAnimeFavoriteButtonState(id) {
+      if (isAnimeFavorite(id)) {
+        favoriteAnimeBtn
+          .addClass("is-favorite")
+          .attr("title", "Quitar de Favoritos")
           .find("i")
           .removeClass("far")
           .addClass("fas");
-        favoriteBtn.add(playerFavBtn).attr("title", "Quitar de Favoritos");
       } else {
-        favoriteBtn.add(playerFavBtn).removeClass("is-favorite");
-        favoriteBtn
-          .add(playerFavBtn)
+        favoriteAnimeBtn
+          .removeClass("is-favorite")
+          .attr("title", "Agregar Anime a Favoritos")
           .find("i")
           .removeClass("fas")
           .addClass("far");
-        favoriteBtn.add(playerFavBtn).attr("title", "Agregar a Favoritos");
       }
     }
+    updateAnimeFavoriteButtonState(animeId);
+    favoriteAnimeBtn.on("click", function (e) {
+      e.preventDefault();
+      toggleAnimeFavorite(animeId);
+    });
 
-    updateFavoriteButtonState(animeId);
+    // Event handler para favoritos de episodios
+    playerModal.on("click", "#player-favorite-btn", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const episodeId = $(this).data("episode-id");
+      toggleEpisodeFavorite(episodeId);
+    });
 
-    $(document).on(
-      "click",
-      "#favorite-btn, #player-favorite-btn",
-      function (e) {
-        e.preventDefault();
-        toggleFavorite(animeId);
+    // Event listener para la tecla ESC
+    $(document).on("keyup", function (e) {
+      if (e.key === "Escape" && playerModal.is(":visible")) {
+        $("#close-player-modal").click();
       }
-    );
+    });
   }
 
   // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE CALENDARIO ---
