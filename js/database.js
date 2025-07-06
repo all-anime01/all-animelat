@@ -5685,6 +5685,104 @@ export const animeData = [
     ],
   },
   {
+    id: "gachiakuta",
+    title: "Gachiakuta",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/9cb0a0ec4fa0f33a27cb368e37bb4072.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GP5HJ84P7-backdrop_wide",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GP5HJ84P7-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/cr/landscape_large/f1f855a8-4c4f-410a-8d19-5d254b7c191a.png",
+    trailerUrl:
+      "https://www.youtube.com/embed/TceDFwPXCuI?si=Pwe8qBK_wKzIZ6a79",
+    description:
+      "Rudo vive en los barrios bajos, donde los descendientes de criminales son repudiados. Un día, es acusado injustamente de un crimen que no cometió y es arrojado al Abismo, un lugar temido por todos. Allí, Rudo descubre la verdad sobre el mundo y despierta su habilidad para dar vida a los objetos a través de un 'Jinki', comenzando su lucha por cambiar su destino y limpiar su nombre.",
+    genres: ["Acción", "Fantasía", "Shounen"],
+    rating: 4.9,
+    ratingCount: "1.8K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "En emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(), // Hoy
+    audio: "Sub | Dob",
+    creator: "Kei Urana",
+    contentWarning: "+16 Violencia",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "La Esfera",
+        duration: "23 min",
+        description:
+          "Ludo saquea la basura de los ricos y vive en paz con su padre adoptivo. Pero un día vuelve a casa y...",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b6e02f8de41485c31a2c4a1142742d75.jpg",
+        releaseDate: "Julio 6, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Gachiakuta/T1/1.html",
+      },
+    ],
+  },
+  {
+    id: "jigoku-sensei-nube-remake-2025",
+    title: "Hell Teacher Nube: Jigoku Sensei Nube (2025)",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751790457/poster_t6dmld.webp",
+    heroImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751794710/Esta-es-la-fecha-de-estreno-del-remake-del-anime-Hell-Teacher-Jigoku-Sensei-Nube-_xxorap.webp",
+    logoImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751794806/logo-nube_muo605.png",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751791201/poster_2_wkl3d3.webp",
+    trailerUrl:
+      "https://www.youtube.com/embed/TceDFwPXCuI?si=Pwe8qBK_wKzIZ6a78",
+    description:
+      "Meisuke Nueno, también conocido como Nube, es un maestro de escuela un poco torpe, pero con un gran corazón. Sin embargo, tiene un secreto: su mano izquierda es en realidad la 'Mano del Demonio', una poderosa arma que utiliza para proteger a sus estudiantes de los youkai, fantasmas y demonios que los acechan.",
+    genres: ["Comedia", "Horror", "Shounen", "Sobrenatural", "Escolar"],
+    rating: 4.8,
+    ratingCount: "5.3K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "En emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 174)), // Calculado desde el 15/06/25
+    audio: "Subtitulado",
+    creator: "Sho Makura & Takeshi Okano",
+    contentWarning: "+14 Violencia, Desnudos",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "El aterrador nuevo maestro y su mano del demonio",
+        duration: "25 min",
+        description:
+          "Un nuevo maestro, Meisuke 'Nube' Nueno, llega a la escuela primaria Domori. Sus estudiantes pronto descubren que su torpeza esconde un oscuro y poderoso secreto.",
+        img: "https://image.tmdb.org/t/p/w300/y6cILr1P39wK8b6iA4Gv3k3Ff2b.jpg",
+        releaseDate: "Julio 2, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Jigoku-Sensei-Nube-remake-2025/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "¡El terror del baño! El fantasma Hanako",
+        duration: "24 min",
+        description:
+          "Unos estudiantes desaparecen misteriosamente en los baños de la escuela. Nube debe enfrentarse a Hanako-san, uno de los fantasmas más famosos de Japón, para salvarlos.",
+        img: "https://image.tmdb.org/t/p/w300/oE8m0t6XJ3Y6l2b1q7i5j8b3h2a.jpg",
+        releaseDate: "Julio 2, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Jigoku-Sensei-Nube-remake-2025/T1/2.html",
+      },
+    ],
+  },
+  {
     id: "hells-paradise-jigokuraku",
     title: "Hell's Paradise (Jigokuraku)",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/dc8eccaf8d0729a43d4d35549f923877.jpg",
@@ -6644,7 +6742,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/6265e4a166ec9d3f8205307855f1c80e.jpg",
         releaseDate: "Julio 5, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/Kaiju-No-8/T2/EX.html",
+        videoUrl: "frame/Kaiju-No-8/T2/00.html",
       },
     ],
   },
@@ -6707,6 +6805,116 @@ export const animeData = [
         releaseDate: "Julio 4, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/3.html",
+      },
+    ],
+  },
+  {
+    id: "mob-psycho-100",
+    title: "Mob Psycho 100",
+    img: "/image/Mob-psycho-III/poster.png",
+    heroImg:
+      "https://static.crunchyroll.com/fms/landscape_large/94/png/84684ab9-632b-4576-a723-a0e86c00a6c9.jpg",
+    logoImg:
+      "https://static.crunchyroll.com/fms/logo/85/png/86d98128-e062-4fe0-8997-8418e7823765.webp",
+    imgMobile:
+      "https://static.crunchyroll.com/fms/landscape_large/94/png/84684ab9-632b-4576-a723-a0e86c00a6c9.jpg",
+    trailerUrl: "https://www.youtube.com/embed/TceDFwPXCuI?si=Pwe8qBK_wKzIZ6a7",
+    description:
+      "Shigeo Kageyama, alias 'Mob', es un estudiante de secundaria que ha perfeccionado sus poderes psíquicos desde muy joven. Pero este poder tan potente se vuelve una carga. Como quiere llevar una vida normal como el resto, reprime sus poderes y emociones, pero cuando estas alcanzan el nivel 100, algo terrible le ocurre. Rodeado de falsos psíquicos, espíritus malvados y misteriosas organizaciones, ¿cómo vivirá Mob su vida? ¿Qué decisiones tomará?",
+    genres: ["Acción", "Psíquicos", "Comedia", "Sobrenatural"],
+    rating: 4.9,
+    ratingCount: "19.9K",
+    seasons: 3,
+    episodesTotal: 37,
+    status: "Finalizado",
+    year: 2016,
+    type: "TV",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 927)), // Calculado desde el 21/12/22
+    audio: "Sub | Dob",
+    creator: "ONE",
+    contentWarning: "+14",
+    episodes: [
+      // Temporada 1
+      {
+        season: 1,
+        number: 1,
+        title: "El psíquico autoproclamado: Arataka reigen y mob.",
+        duration: "23 min",
+        description:
+          "Shigeo 'Mob' Kageyama es un estudiante con poderosas habilidades psíquicas que trabaja para el autoproclamado psíquico Arataka Reigen, exorcizando espíritus por un salario mínimo.",
+        img: "/image/Mob-Psycho-temporada-1/1.jpg",
+        releaseDate: "Julio 11, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/1.html",
+      },
+      // ... (Episodios 2 a 11 de la Temporada 1)
+      {
+        season: 1,
+        number: 12,
+        title: "Mob y Reigen ~La aparición del tsuchinoko gigante~.",
+        duration: "23 min",
+        description:
+          "Tras la intensa batalla, la vida parece volver a la normalidad. Mob y Reigen aceptan un caso aparentemente simple que involucra a un críptido legendario.",
+        img: "/image/Mob-Psycho-temporada-1/12.jpg",
+        releaseDate: "Septiembre 26, 2016",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T1/12.html",
+      },
+
+      // Temporada 2
+      {
+        season: 2,
+        number: 1,
+        title: "Hecho pedazos.~Hay alguien mirando.",
+        duration: "23 min",
+        description:
+          "Mob sigue lidiando con su vida escolar y su trabajo. Una petición para desenmascarar a un falso psíquico en la escuela lo pone en una situación incómoda.",
+        img: "/image/Mob-psycho-II/1.jpg",
+        releaseDate: "Enero 7, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/1.html",
+      },
+      // ... (Episodios 2 a 12 de la Temporada 2)
+      {
+        season: 2,
+        number: 13,
+        title: "Batalla contra el jefe ~La última luz~.",
+        duration: "23 min",
+        description:
+          "La batalla final contra Toichiro Suzuki, el líder de Garra, llega a su clímax. Mob debe usar todo su poder para detenerlo y salvar la ciudad.",
+        img: "/image/Mob-Psycho-II/13.jpg",
+        releaseDate: "Abril 1, 2019",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T2/13.html",
+      },
+
+      // Temporada 3
+      {
+        season: 3,
+        number: 1,
+        title: "El mañana -planes del futuro.",
+        duration: "23 min",
+        description:
+          "Con la paz restaurada, Mob debe enfrentarse a un desafío aún mayor: rellenar el formulario de orientación profesional y decidir qué quiere hacer con su vida.",
+        img: "/image/Mob-psycho-III/1.jpg",
+        releaseDate: "Octubre 5, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/1.html",
+      },
+      // ... (Episodios 2 a 11 de la Temporada 3)
+      {
+        season: 3,
+        number: 12,
+        title: "Mob 3 ~Confesión: A partir de ahora~.",
+        duration: "23 min",
+        description:
+          "La serie llega a su conclusión. Mob finalmente se enfrenta a sus propios sentimientos y al poder que reside en su interior para decidir su propio camino.",
+        img: "/image/Mob-psycho-III/12.jpg",
+        releaseDate: "Diciembre 21, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Mob-Psycho-100/T3/12.html",
       },
     ],
   },
@@ -11984,7 +12192,7 @@ export const animeData = [
     title: "Ragna Crimson",
     img: "https://cdn.anisabi.com/assets/anime/ragna-crimson/ragna-crimson-1696133427.jpg?t=4.0.11",
     heroImg:
-      "https://m.media-amazon.com/images/S/pv-target-images/da050815ce57d5f9379b4e25cbb8ea693e3260583f019cf8f7940012e4b1135d._SX1080_FMjpg_.jpg",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751818323/1734428577717-i_ebciag.webp",
     logoImg: "https://ragna-crimson.com/assets/images/common/logo.png",
     imgMobile:
       "https://m.media-amazon.com/images/S/pv-target-images/da050815ce57d5f9379b4e25cbb8ea693e3260583f019cf8f7940012e4b1135d._SX1080_FMjpg_.jpg",
