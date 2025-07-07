@@ -8592,7 +8592,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 6)), // Calculado desde el último episodio emitido
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // ayer
     episodes: [
       // Temporada 1: East Blue (Episodios 1-61)
       {
@@ -15654,15 +15654,181 @@ export const animeData = [
     episodes: [],
   },
   {
+    id: "kijin-gentoushou",
+    title: "Sword of the Demon Hunter: Kijin Gentoushou",
+    img: "https://a.storyblok.com/f/178900/750x1061/ac0401ebaa/sword_of_the_demon_hunter_key_visual.jpg/m/filters:quality(95)format(webp)",
+    heroImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751873977/Sword-of-the-Demon-Hunter-III_vrk1yo.jpg",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751873777/download_prr3oy.jpg",
+    logoImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751873841/21069-1748292957_egpyep.png",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751873728/p_icr6y7.webp",
+    trailerUrl: "https://www.youtube.com/embed/M3PviqtKDm8?si=kDpnCrxKeG2p7V1y",
+    description:
+      "Durante generaciones, ha existido un santuario en el pueblo montañoso de Kadono, y para cada generación, el santuario ha tenido una Itsukihime, su doncella del santuario, y la doncella ha tenido su guardián. Durante el período Edo, un joven llamado Jinta protege la ciudad y a Itsukihime. Cuando se enfrenta a un extraño demonio en el bosque cercano, este le dice que en un futuro lejano un Dios Demonio amenazará a todas las personas, en todas partes, y afirma que el ascenso al poder del Dios Demonio surge de este mismo momento y lugar, en el pueblo de Kadono. Así comienza el viaje de siglos de un hombre contaminado por demonios, que busca en el tiempo justicia por lo que ha perdido y una razón para seguir luchando.",
+    genres: ["Acción", "Fantasía", "Drama", "Sobrenatural"],
+    rating: 4.8,
+    ratingCount: "3.6K",
+    seasons: 1,
+    episodesTotal: 11,
+    status: "En Emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 21)), // Calculado desde el 16/06/25
+    audio: "Subtitulado",
+    creator: "Motoo Nakanishi",
+    contentWarning: "+16",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Fantasmas y personas.",
+        duration: "53 min",
+        description:
+          "En el período Edo, Jinta, el guardián de una sacerdotisa, se encuentra con un demonio que le habla de una futura amenaza. Este encuentro marca el comienzo de su largo y doloroso viaje.",
+        img: "https://image.tmdb.org/t/p/w300/eUF7mvnTiM5okguQlpyrcnVe87o.jpg",
+        releaseDate: "Marzo 31, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "La hija del demonio.",
+        duration: "23 min",
+        description:
+          "Jinta debe proteger a la doncella del santuario, Itsukihime, de las amenazas demoníacas que acechan en el bosque, mientras lucha con la profecía que ha recibido.",
+        img: "https://image.tmdb.org/t/p/w300/2yNtSJdpDYMQI1GjHHFGqdW7r30.jpg",
+        releaseDate: "Abril 7, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Glotonerías (parte 1).",
+        duration: "23 min",
+        description:
+          "Un nuevo y poderoso demonio con un apetito insaciable ataca el pueblo de Kadono, poniendo a prueba los límites de la fuerza de Jinta.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image/jkvideo_0649b9c483ea124dfcb821eb6b096c99.jpg",
+        releaseDate: "Abril 14, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "Glotonerías (parte 2).",
+        duration: "23 min",
+        description:
+          "La batalla contra el demonio glotón continúa. Jinta debe encontrar una debilidad en la criatura antes de que devore todo a su paso.",
+        img: "https://image.tmdb.org/t/p/w300/k7Vzqb5tTBNhncRZJOG2tIqzP32.jpg",
+        releaseDate: "Abril 21, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "El jardín de la dicha (1ª parte).",
+        duration: "23 min",
+        description:
+          "Jinta es atraído a un jardín ilusorio creado por un demonio que se alimenta de la felicidad y los buenos recuerdos de sus víctimas.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image/jkvideo_3c0d114fbad849de9f21ac8fe77a7e31.jpg",
+        releaseDate: "Abril 28, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "El jardín de la dicha (2ª parte).",
+        duration: "23 min",
+        description:
+          "Atrapado en la ilusión, Jinta debe enfrentarse a su propio pasado y encontrar la fuerza para romper el hechizo antes de que su espíritu sea consumido.",
+        img: "https://image.tmdb.org/t/p/w300/lixiRgpB9Q4tOS1UCmObRNz36Uw.jpg",
+        releaseDate: "Mayo 5, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "La noche maldita de Kudanzaka.",
+        duration: "23 min",
+        description:
+          "Una serie de desapariciones lleva a Jinta a investigar la infame cuesta de Kudanzaka, un lugar conocido por sus apariciones fantasmales.",
+        img: "https://i0.wp.com/animeytx.com/wp-content/uploads/2025/05/hj4502h45h542h5h45h.jpg?resize=454,340",
+        releaseDate: "Mayo 12, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "Bajo el cerezo nocturno (parte 1).",
+        duration: "23 min",
+        description:
+          "Jinta se enfrenta a un youkai que habita en un antiguo cerezo. La criatura es hermosa pero mortal, y su poder está en su punto máximo durante la noche.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_7a7b61e42cb64dc21f6d2dea8dce3785.jpg",
+        releaseDate: "Mayo 19, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Bajo el cerezo nocturno (parte 2).",
+        duration: "23 min",
+        description:
+          "La batalla bajo el cerezo revela una trágica historia de amor y pérdida ligada al youkai, y Jinta debe decidir entre la destrucción y la compasión.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_a4595d1f272ac933004feb4a95cb878d.jpg",
+        releaseDate: "Mayo 26, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Yotaka en la lluvia.",
+        duration: "23 min",
+        description:
+          "Durante una noche lluviosa, Jinta investiga un misterioso sonido que atrae a los viajeros a su perdición, enfrentándose a un demonio del sonido.",
+        img: "https://image.tmdb.org/t/p/w300/dSOPtIBJvI1MFDBW0A0wy28B3Rr.jpg",
+        releaseDate: "Junio 2, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Sueños ebrios de nieve persistente (Part 1).",
+        duration: "23 min",
+        description:
+          "La llegada del invierno trae consigo a un poderoso youkai de nieve. Jinta debe luchar no solo contra el demonio, sino también contra el frío extremo que debilita su cuerpo.",
+        img: "https://image.tmdb.org/t/p/w300/kzi3IzkiCXcwhZX6iA1pwWlfxmY.jpg",
+        releaseDate: "Junio 9, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/11.html",
+      },
+    ],
+  },
+  {
     id: "trigun-stampede",
     title: "Trigun Stampede",
-    img: "/image/Trigun-stampede/p.jpe",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751872576/p_oevcpn.jpg",
     heroImg:
       "https://i.redd.it/i-edited-the-trigun-stampede-poster-feel-free-to-use-as-a-v0-kkn1xnazzxda1.jpg?width=4096&format=pjpg&auto=webp&s=70e35edb194b3973dd9e27a6f0570d2867fa54f2",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/1e70f22065449404cc8498e759ed5541.jpg",
     logoImg:
       "https://preview.redd.it/i-cant-find-the-font-they-use-in-the-trigun-stampede-logo-v0-om8vfjglg68c1.png?auto=webp&s=088493403ff3aaf747106ff22f46c7ee9e0dc022",
     imgMobile:
-      "https://i.redd.it/i-edited-the-trigun-stampede-poster-feel-free-to-use-as-a-v0-kkn1xnazzxda1.jpg?width=4096&format=pjpg&auto=webp&s=70e35edb194b3973dd9e27a6f0570d2867fa54f2",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751872789/GXJHM3PK5-backdrop_wide_kegqou.avif",
     trailerUrl:
       "https://www.youtube.com/embed/xZ0aLMfvYvs?si=SDK7013UdOoP1sxj5",
     description:
@@ -15689,7 +15855,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Las periodistas Meryl Stryfe y Roberto De Niro buscan al legendario pistolero Vash la Estampida, pero el hombre que encuentran no es para nada lo que esperaban.",
-        img: "/image/Trigun-stampede/1.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e03f284972a8a54060cd4e42d8f7f998.jpg",
         releaseDate: "Enero 28, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/1.html",
@@ -15701,7 +15867,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Vash, Meryl y Roberto llegan a la ciudad de Jeneora Rock, que está en peligro por la falla de su Planta de energía. Vash debe enfrentarse a los sobrinos de un antiguo enemigo.",
-        img: "/image/Trigun-stampede/2.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0dce39b0d1fb1f9f7984ad8ad97d3db7.jpg",
         releaseDate: "Febrero 4, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/2.html",
@@ -15713,7 +15879,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Para salvar Jeneora Rock, Vash debe usar su arma oculta, el Angel Arm, pero hacerlo atrae la atención de su hermano gemelo, Knives.",
-        img: "/image/Trigun-stampede/3.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/11e1e0b3b303e68f75bba834dbc38efc.jpg",
         releaseDate: "Febrero 11, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/3.html",
@@ -15725,7 +15891,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El grupo se encuentra con un misterioso predicador itinerante llamado Nicholas D. Wolfwood, quien parece tener sus propios y oscuros secretos.",
-        img: "/image/Trigun-stampede/4.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/63da98e97242aede48151d63f3cf1460.jpg",
         releaseDate: "Febrero 18, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/4.html",
@@ -15737,7 +15903,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Un flashback revela el origen de Vash y Knives, dos 'Plantas' humanoides criadas en una nave colonial, y la tragedia que los separó.",
-        img: "/image/Trigun-stampede/5.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5b481d297296e70d1ae753320341169a.jpg",
         releaseDate: "Febrero 25, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/5.html",
@@ -15749,7 +15915,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La historia continúa, mostrando cómo los hermanos fueron encontrados por los humanos y cómo sus diferentes visiones del mundo comenzaron a chocar.",
-        img: "/image/Trigun-stampede/6.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/952bc57db08e4e3d11850fa6ad912b8b.jpg",
         releaseDate: "Marzo 4, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/6.html",
@@ -15761,7 +15927,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El pasado de Nicholas D. Wolfwood es explorado, revelando su dura infancia en un orfanato y su entrenamiento como un asesino del Ojo de Michael.",
-        img: "/image/Trigun-stampede/7.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/be1275470f4fbc5a147083fd4d3653c3.jpg",
         releaseDate: "Marzo 11, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/7.html",
@@ -15773,7 +15939,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Vash y Wolfwood se enfrentan a Legato Bluesummers, uno de los seguidores más devotos de Knives, cuya habilidad para controlar a otros es aterradora.",
-        img: "/image/Trigun-stampede/8.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3bc845af1ca05ebc84c10fec8cf522bb.jpg",
         releaseDate: "Marzo 18, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/8.html",
@@ -15785,7 +15951,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Knives pone en marcha su plan para destruir a la humanidad, absorbiendo el poder de las Plantas de varias ciudades para aumentar su propia fuerza.",
-        img: "/image/Trigun-stampede/9.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/bec07bdca03698552955827d54eb38bf.jpg",
         releaseDate: "Marzo 25, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/9.html",
@@ -15797,7 +15963,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Vash, Meryl y Wolfwood deben proteger la última ciudad, July, del ataque de Knives. La batalla pondrá a prueba la filosofía de Vash de no matar.",
-        img: "/image/Trigun-stampede/10.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/577b075e905caba97ff5c4e1f711a321.jpg",
         releaseDate: "Abril 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/10.html",
@@ -15809,7 +15975,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La batalla final entre los hermanos Vash y Knives comienza. Es un choque de ideologías y poder que decidirá el destino del planeta Noman's Land.",
-        img: "/image/Trigun-stampede/11.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0138c46ef3bba408695245e8c6a30b3e.jpg",
         releaseDate: "Abril 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/11.html",
@@ -15821,7 +15987,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El enfrentamiento llega a su conclusión. Vash debe tomar una decisión final sobre su hermano y su propio lugar en el mundo, marcando el inicio de una nueva leyenda.",
-        img: "/image/Trigun-stampede/12.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d9ae1db235c924ba238e0f1abe329167.jpg",
         releaseDate: "Abril 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/12.html",
