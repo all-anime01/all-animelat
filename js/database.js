@@ -6137,7 +6137,7 @@ export const animeData = [
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/9cb0a0ec4fa0f33a27cb368e37bb4072.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GP5HJ84P7-backdrop_wide",
-    hovImg:
+    fonImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/d39c5c22fecfcc2cb3ae56092d5b5545.jpg",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GP5HJ84P7-title_logo-en-us",
@@ -6156,7 +6156,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(), // Hoy
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // Hace 1 días
     audio: "Sub | Dob",
     creator: "Kei Urana",
     contentWarning: "+16 Violencia",
@@ -6182,6 +6182,8 @@ export const animeData = [
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751790457/poster_t6dmld.webp",
     heroImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751794710/Esta-es-la-fecha-de-estreno-del-remake-del-anime-Hell-Teacher-Jigoku-Sensei-Nube-_xxorap.webp",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751790457/img_para_fondo_de_iframe_fspiag.png",
     logoImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751794806/logo-nube_muo605.png",
     imgMobile:
@@ -6199,7 +6201,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 4)), // Hace 4 días
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 5)), // Hace 5 días
     audio: "Subtitulado",
     creator: "Sho Makura & Takeshi Okano",
     contentWarning: "+14 Violencia, Desnudos",
@@ -8409,11 +8411,165 @@ export const animeData = [
     ],
   },
   {
+    id: "my-hero-academia-vigilantes",
+    title: "My Hero Academia: Vigilantes",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/aaddcbe723d430e97bed8c1b133de38f.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G79H23ZQ3-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=320,height=180/catalog/crunchyroll/512eac9b260bf9506f99f5460d061423.jpg",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G79H23ZQ3-title_logo-en-us",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751871516/MV5BNzc2Njc1OTItOGZjNi00MWFjLWJiZjAtOGZiYjg5NDU3OWIxXkEyXkFqcGc_._V1__nmm9hx.jpg",
+    trailerUrl: "https://www.youtube.com/embed/9zdRwFdPqxE?si=cMOOn9fO-xDhY7e2",
+    description:
+      "Koichi Haimawari es un estudiante aburrido que aspiraba a ser un héroe pero abandonó su sueño. Aunque el 80% de la población mundial tenga poderes sobrehumanos llamados Dones, pocos son elegidos para convertirse en héroes y proteger a las personas. ¡Todo cambia para Koichi cuando él y Pop☆Step son salvados por el vigilante Knuckleduster y son reclutados para convertirse en vigilantes!.",
+    genres: ["Acción", "Aventura", "Fantasía"],
+    rating: 4.5,
+    ratingCount: "21.2K",
+    seasons: 1,
+    episodesTotal: 13,
+    status: "En Emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 21)), // Calculado desde el 16/06/25
+    audio: "Sub | Dob",
+    creator: "Hideyuki Furuhashi & Betten Court",
+    contentWarning: "+14",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Aquí me tienen.",
+        duration: "23 min",
+        description:
+          "Koichi Haimawari, un joven que no pudo convertirse en un héroe oficial, comienza a usar su Don para hacer buenas obras. Un encuentro con el veterano vigilante Knuckleduster cambia su vida.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1d36394abeda94a298500aca8243b8d8.jpg",
+        releaseDate: "Abril 7, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Despegue.",
+        duration: "23 min",
+        description:
+          "Koichi, ahora conocido como 'The Crawler', comienza su entrenamiento no oficial como vigilante bajo la tutela de Knuckleduster, aprendiendo a patrullar las calles y a enfrentarse a pequeños criminales.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ae1744de68a8c567f4c1c3fd8bc47a8e.jpg",
+        releaseDate: "Abril 14, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Abejas.",
+        duration: "23 min",
+        description:
+          "El equipo de vigilantes se enfrenta a un nuevo villano cuya droga, 'Trigger', potencia los Dones de la gente común hasta niveles peligrosos y destructivos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/60fdb0a3981bdb01fbf14493bae5f506.jpg",
+        releaseDate: "Abril 21, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "El mejor corredor.",
+        duration: "23 min",
+        description:
+          "Koichi conoce a un héroe profesional, Ingenium (el hermano mayor de Iida), durante una persecución. Este encuentro lo hace cuestionar la delgada línea entre ser un héroe y un vigilante.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5a64fa11b978dc838a5df3eda7dfcf60.jpg",
+        releaseDate: "Abril 28, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Condena.",
+        duration: "23 min",
+        description:
+          "El equipo investiga el origen de la droga Trigger y se topa con una conspiración que involucra a villanos de alto nivel, atrayendo la atención no deseada de los héroes profesionales.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/15823099d5b012ff01725b3ff2b8f61d.jpg",
+        releaseDate: "Mayo 5, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "Una línea.",
+        duration: "23 min",
+        description:
+          "Aparece el Asesino de Héroes, Stain, en la ciudad. Los vigilantes tienen su primer encuentro con su letal ideología, viendo de cerca el lado más oscuro de la sociedad de héroes.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/891ff7c96d53a5387536ae594483b99d.jpg",
+        releaseDate: "Mayo 12, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "Verdad.",
+        duration: "23 min",
+        description:
+          "Un joven Eraser Head (Aizawa) aparece en un flashback, mostrando sus días como estudiante de la U.A. y su amistad con Present Mic y Oboro Shirakumo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8f14b6b0c4361c92ba2e2596020c1118.jpg",
+        releaseDate: "Mayo 19, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "Un grande.",
+        duration: "23 min",
+        description:
+          "La historia de Aizawa continúa, revelando una tragedia que lo convirtió en el héroe sombrío y estricto que es hoy.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/11e90c55c760b2dd9c3288624455da97.jpg",
+        releaseDate: "Mayo 26, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Incursión materna.",
+        duration: "23 min",
+        description:
+          "Knuckleduster se enfrenta a un poderoso enemigo conectado con la distribución de Trigger, revelando más sobre su misterioso pasado y sus motivaciones personales.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/74ab1d1ee72c5288b9462495edf4ad01.jpg",
+        releaseDate: "Junio 2, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Se celebra un evento.",
+        duration: "23 min",
+        description:
+          "Los vigilantes deben detener un ataque terrorista durante un gran evento público, forzándolos a actuar a plena vista de los héroes profesionales.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ade7f2c61b82372d447b9fe8378d37cd.jpg",
+        releaseDate: "Junio 9, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/My-hero-academia-vigilantes/T1/10.html",
+      },
+    ],
+  },
+  {
     id: "one-piece",
     title: "One Piece",
     img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/757bae5a21039bac6ebace5de9affcd8.jpe",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/One%20Piece%20/SEASON%2021%20-%20EGGHEAD%20ISLAND/ULTRA-WIDE/OP-Egghead-KV2-UW-LTR.png",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/a249096c7812deb8c3c2c907173f3774.jpg",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/2f0f479f-e18f-4947-baa1-2cbf45cdda6d.png",
     trailerUrl: "https://www.youtube.com/embed/NEkjydqQ3LU?si=CHWCC7eA5tY3z7zJ",
@@ -8447,7 +8603,7 @@ export const animeData = [
         releaseDate: "Octubre 20, 1999",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/1.html",
+        videoUrl: "frame/One-piece/T1/1.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8460,7 +8616,7 @@ export const animeData = [
         releaseDate: "Noviembre 17, 1999",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/2.html",
+        videoUrl: "frame/One-piece/T1/2.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8472,7 +8628,7 @@ export const animeData = [
         releaseDate: "Noviembre 24, 1999",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/3.html",
+        videoUrl: "frame/One-piece/T1/3.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8484,7 +8640,7 @@ export const animeData = [
         releaseDate: "Diciembre 8, 1999",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/4.html",
+        videoUrl: "frame/One-piece/T1/4.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8496,7 +8652,7 @@ export const animeData = [
         releaseDate: "Diciembre 15, 1999",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/5.html",
+        videoUrl: "frame/One-piece/T1/5.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8508,7 +8664,7 @@ export const animeData = [
         releaseDate: "Diciembre 22, 1999",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/6.html",
+        videoUrl: "frame/One-piece/T1/6.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8520,7 +8676,7 @@ export const animeData = [
         releaseDate: "Diciembre 29, 1999",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/7.html",
+        videoUrl: "frame/One-piece/T1/7.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8533,7 +8689,7 @@ export const animeData = [
         releaseDate: "Diciembre 29, 1999",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/8.html",
+        videoUrl: "frame/One-piece/T1/8.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8545,7 +8701,7 @@ export const animeData = [
         releaseDate: "Enero 12, 2000",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/9.html",
+        videoUrl: "frame/One-piece/T1/9.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8557,7 +8713,7 @@ export const animeData = [
         releaseDate: "Enero 19, 2000",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/10.html",
+        videoUrl: "frame/One-piece/T1/10.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
@@ -8572,7 +8728,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Enero 26, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/11.html",
+        videoUrl: "frame/One-piece/T1/11.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8585,7 +8741,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 2, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/12.html",
+        videoUrl: "frame/One-piece/T1/12.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8598,7 +8754,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 9, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/13.html",
+        videoUrl: "frame/One-piece/T1/13.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8612,7 +8768,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 16, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/14.html",
+        videoUrl: "frame/One-piece/T1/14.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8625,7 +8781,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 23, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/15.html",
+        videoUrl: "frame/One-piece/T1/15.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8638,7 +8794,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Marzo 1, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/16.html",
+        videoUrl: "frame/One-piece/T1/16.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8651,7 +8807,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Marzo 8, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/17.html",
+        videoUrl: "frame/One-piece/T1/17.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8664,7 +8820,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Marzo 15, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/18.html",
+        videoUrl: "frame/One-piece/T1/18.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8678,7 +8834,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Marzo 22, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/19.html",
+        videoUrl: "frame/One-piece/T1/19.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8691,7 +8847,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Abril 12, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/20.html",
+        videoUrl: "frame/One-piece/T1/20.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8705,7 +8861,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Abril 12, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/21.html",
+        videoUrl: "frame/One-piece/T1/21.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8718,7 +8874,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Abril 26, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/22.html",
+        videoUrl: "frame/One-piece/T1/22.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8732,7 +8888,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 3, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/23.html",
+        videoUrl: "frame/One-piece/T1/23.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8745,7 +8901,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 10, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/24.html",
+        videoUrl: "frame/One-piece/T1/24.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8759,7 +8915,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 17, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/25.html",
+        videoUrl: "frame/One-piece/T1/25.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8772,7 +8928,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 24, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/26.html",
+        videoUrl: "frame/One-piece/T1/26.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8786,7 +8942,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Mayo 31, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/27.html",
+        videoUrl: "frame/One-piece/T1/27.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8799,7 +8955,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Junio 7, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/28.html",
+        videoUrl: "frame/One-piece/T1/28.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8812,7 +8968,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Junio 21, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/29.html",
+        videoUrl: "frame/One-piece/T1/29.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8825,7 +8981,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Junio 28, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/30.html",
+        videoUrl: "frame/One-piece/T1/30.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8838,7 +8994,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Julio 12, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/31.html",
+        videoUrl: "frame/One-piece/T1/31.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8851,7 +9007,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Julio 12, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/32.html",
+        videoUrl: "frame/One-piece/T1/32.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8864,7 +9020,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Julio 19, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/33.html",
+        videoUrl: "frame/One-piece/T1/33.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8877,7 +9033,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Julio 26, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/34.html",
+        videoUrl: "frame/One-piece/T1/34.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8890,7 +9046,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 2, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/35.html",
+        videoUrl: "frame/One-piece/T1/35.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8903,7 +9059,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 9, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/36.html",
+        videoUrl: "frame/One-piece/T1/36.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8916,7 +9072,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 16, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/37.html",
+        videoUrl: "frame/One-piece/T1/37.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8929,7 +9085,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 23, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/38.html",
+        videoUrl: "frame/One-piece/T1/38.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8942,7 +9098,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Agosto 30, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/39.html",
+        videoUrl: "frame/One-piece/T1/39.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8955,7 +9111,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Septiembre 6, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/40.html",
+        videoUrl: "frame/One-piece/T1/40.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8968,7 +9124,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Septiembre 13, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/41.html",
+        videoUrl: "frame/One-piece/T1/41.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8982,7 +9138,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Septiembre 27, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/42.html",
+        videoUrl: "frame/One-piece/T1/42.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -8995,7 +9151,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Septiembre 27, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/43.html",
+        videoUrl: "frame/One-piece/T1/43.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9009,7 +9165,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Octubre 4, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/44.html",
+        videoUrl: "frame/One-piece/T1/44.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9023,7 +9179,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Octubre 11, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/45.html",
+        videoUrl: "frame/One-piece/T1/45.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9036,7 +9192,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Octubre 25, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/46.html",
+        videoUrl: "frame/One-piece/T1/46.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9049,7 +9205,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 1, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/47.html",
+        videoUrl: "frame/One-piece/T1/47.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9062,7 +9218,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 8, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/48.html",
+        videoUrl: "frame/One-piece/T1/48.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9076,7 +9232,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 15, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/49.html",
+        videoUrl: "frame/One-piece/T1/49.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9089,7 +9245,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 22, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/50.html",
+        videoUrl: "frame/One-piece/T1/50.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9103,7 +9259,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Noviembre 29, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/51.html",
+        videoUrl: "frame/One-piece/T1/51.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9116,7 +9272,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Diciembre 6, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/52.html",
+        videoUrl: "frame/One-piece/T1/52.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9129,7 +9285,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Diciembre 13, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/53.html",
+        videoUrl: "frame/One-piece/T1/53.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9143,7 +9299,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Diciembre 20, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/54.html",
+        videoUrl: "frame/One-piece/T1/54.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9157,7 +9313,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Diciembre 27, 2000",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/55.html",
+        videoUrl: "frame/One-piece/T1/55.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9170,7 +9326,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Enero 17, 2001",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/56.html",
+        videoUrl: "frame/One-piece/T1/56.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9184,7 +9340,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Enero 24, 2001",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/57.html",
+        videoUrl: "frame/One-piece/T1/57.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9197,7 +9353,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Enero 31, 2001",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/58.html",
+        videoUrl: "frame/One-piece/T1/58.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9211,7 +9367,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 7, 2001",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/59.html",
+        videoUrl: "frame/One-piece/T1/59.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9225,7 +9381,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 14, 2001",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/60.html",
+        videoUrl: "frame/One-piece/T1/60.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -9238,7 +9394,7 @@ export const animeData = [
         img: "image/One-Piece-cap/T1.jpg",
         releaseDate: "Febrero 21, 2001",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T1/61.html",
+        videoUrl: "frame/One-piece/T1/61.html",
         votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 2: Alabasta (Episodios 62-135)
@@ -9249,7 +9405,7 @@ export const animeData = [
         releaseDate: "Marzo 21, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/62.html",
+        videoUrl: "frame/One-piece/T2/62.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9263,7 +9419,7 @@ export const animeData = [
         releaseDate: "Abril 15, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/63.html",
+        videoUrl: "frame/One-piece/T2/63.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9276,7 +9432,7 @@ export const animeData = [
         releaseDate: "Abril 22, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/64.html",
+        videoUrl: "frame/One-piece/T2/64.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9289,7 +9445,7 @@ export const animeData = [
         releaseDate: "Abril 29, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/65.html",
+        videoUrl: "frame/One-piece/T2/65.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9302,7 +9458,7 @@ export const animeData = [
         releaseDate: "Mayo 6, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/66.html",
+        videoUrl: "frame/One-piece/T2/66.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9315,7 +9471,7 @@ export const animeData = [
         releaseDate: "Mayo 13, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/67.html",
+        videoUrl: "frame/One-piece/T2/67.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9328,7 +9484,7 @@ export const animeData = [
         releaseDate: "Mayo 20, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/68.html",
+        videoUrl: "frame/One-piece/T2/68.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9342,7 +9498,7 @@ export const animeData = [
         releaseDate: "Mayo 27, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/69.html",
+        videoUrl: "frame/One-piece/T2/69.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9355,7 +9511,7 @@ export const animeData = [
         releaseDate: "Junio 3, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/70.html",
+        videoUrl: "frame/One-piece/T2/70.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9368,7 +9524,7 @@ export const animeData = [
         releaseDate: "Junio 17, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/71.html",
+        videoUrl: "frame/One-piece/T2/71.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9381,7 +9537,7 @@ export const animeData = [
         releaseDate: "Junio 24, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/72.html",
+        videoUrl: "frame/One-piece/T2/72.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9394,7 +9550,7 @@ export const animeData = [
         releaseDate: "Julio 15, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/73.html",
+        videoUrl: "frame/One-piece/T2/73.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9407,7 +9563,7 @@ export const animeData = [
         releaseDate: "Julio 22, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/74.html",
+        videoUrl: "frame/One-piece/T2/74.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9420,7 +9576,7 @@ export const animeData = [
         releaseDate: "Agosto 12, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/75.html",
+        videoUrl: "frame/One-piece/T2/75.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9433,7 +9589,7 @@ export const animeData = [
         releaseDate: "Agosto 19, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/76.html",
+        videoUrl: "frame/One-piece/T2/76.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9446,7 +9602,7 @@ export const animeData = [
         releaseDate: "Agosto 19, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/77.html",
+        videoUrl: "frame/One-piece/T2/77.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9460,7 +9616,7 @@ export const animeData = [
         releaseDate: "Agosto 26, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/78.html",
+        videoUrl: "frame/One-piece/T2/78.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9473,7 +9629,7 @@ export const animeData = [
         releaseDate: "Septiembre 2, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/79.html",
+        videoUrl: "frame/One-piece/T2/79.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9486,7 +9642,7 @@ export const animeData = [
         releaseDate: "Septiembre 9, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/80.html",
+        videoUrl: "frame/One-piece/T2/80.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9499,7 +9655,7 @@ export const animeData = [
         releaseDate: "Septiembre 16, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/81.html",
+        videoUrl: "frame/One-piece/T2/81.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9512,7 +9668,7 @@ export const animeData = [
         releaseDate: "Octubre 7, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/82.html",
+        videoUrl: "frame/One-piece/T2/82.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9526,7 +9682,7 @@ export const animeData = [
         releaseDate: "Octubre 7, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/83.html",
+        videoUrl: "frame/One-piece/T2/83.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9539,7 +9695,7 @@ export const animeData = [
         releaseDate: "Octubre 21, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/84.html",
+        videoUrl: "frame/One-piece/T2/84.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9552,7 +9708,7 @@ export const animeData = [
         releaseDate: "Octubre 28, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/85.html",
+        videoUrl: "frame/One-piece/T2/85.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9565,7 +9721,7 @@ export const animeData = [
         releaseDate: "Noviembre 4, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/86.html",
+        videoUrl: "frame/One-piece/T2/86.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9579,7 +9735,7 @@ export const animeData = [
         releaseDate: "Noviembre 11, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/87.html",
+        videoUrl: "frame/One-piece/T2/87.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9593,7 +9749,7 @@ export const animeData = [
         releaseDate: "Noviembre 18, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/88.html",
+        videoUrl: "frame/One-piece/T2/88.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9607,7 +9763,7 @@ export const animeData = [
         releaseDate: "Noviembre 25, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/89.html",
+        videoUrl: "frame/One-piece/T2/89.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9620,7 +9776,7 @@ export const animeData = [
         releaseDate: "Diciembre 2, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/90.html",
+        videoUrl: "frame/One-piece/T2/90.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9633,7 +9789,7 @@ export const animeData = [
         releaseDate: "Diciembre 9, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/91.html",
+        videoUrl: "frame/One-piece/T2/91.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9646,7 +9802,7 @@ export const animeData = [
         releaseDate: "Diciembre 9, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/92.html",
+        videoUrl: "frame/One-piece/T2/92.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9660,7 +9816,7 @@ export const animeData = [
         releaseDate: "Diciembre 16, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/93.html",
+        videoUrl: "frame/One-piece/T2/93.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9673,7 +9829,7 @@ export const animeData = [
         releaseDate: "Diciembre 23, 2001",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/94.html",
+        videoUrl: "frame/One-piece/T2/94.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9686,7 +9842,7 @@ export const animeData = [
         releaseDate: "Enero 6, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/95.html",
+        videoUrl: "frame/One-piece/T2/95.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9699,7 +9855,7 @@ export const animeData = [
         releaseDate: "Enero 13, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/96.html",
+        videoUrl: "frame/One-piece/T2/96.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9713,7 +9869,7 @@ export const animeData = [
         releaseDate: "Enero 20, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/97.html",
+        videoUrl: "frame/One-piece/T2/97.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9727,7 +9883,7 @@ export const animeData = [
         releaseDate: "Enero 27, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/98.html",
+        videoUrl: "frame/One-piece/T2/98.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9741,7 +9897,7 @@ export const animeData = [
         releaseDate: "Febrero 3, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/99.html",
+        videoUrl: "frame/One-piece/T2/99.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9755,7 +9911,7 @@ export const animeData = [
         releaseDate: "Febrero 10, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/100.html",
+        videoUrl: "frame/One-piece/T2/100.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9768,7 +9924,7 @@ export const animeData = [
         releaseDate: "Febrero 17, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/101.html",
+        videoUrl: "frame/One-piece/T2/101.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9782,7 +9938,7 @@ export const animeData = [
         releaseDate: "Febrero 24, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/102.html",
+        videoUrl: "frame/One-piece/T2/102.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9796,7 +9952,7 @@ export const animeData = [
         releaseDate: "Marzo 3, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/103.html",
+        videoUrl: "frame/One-piece/T2/103.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9810,7 +9966,7 @@ export const animeData = [
         releaseDate: "Marzo 10, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/104.html",
+        videoUrl: "frame/One-piece/T2/104.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9823,7 +9979,7 @@ export const animeData = [
         releaseDate: "Marzo 17, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/105.html",
+        videoUrl: "frame/One-piece/T2/105.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9837,7 +9993,7 @@ export const animeData = [
         releaseDate: "Marzo 24, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/106.html",
+        videoUrl: "frame/One-piece/T2/106.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9850,7 +10006,7 @@ export const animeData = [
         releaseDate: "Abril 14, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/107.html",
+        videoUrl: "frame/One-piece/T2/107.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9863,7 +10019,7 @@ export const animeData = [
         releaseDate: "Abril 21, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/108.html",
+        videoUrl: "frame/One-piece/T2/108.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9876,7 +10032,7 @@ export const animeData = [
         releaseDate: "Abril 28, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/109.html",
+        videoUrl: "frame/One-piece/T2/109.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9889,7 +10045,7 @@ export const animeData = [
         releaseDate: "Mayo 5, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/110.html",
+        videoUrl: "frame/One-piece/T2/110.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9903,7 +10059,7 @@ export const animeData = [
         releaseDate: "Mayo 12, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/111.html",
+        videoUrl: "frame/One-piece/T2/111.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9917,7 +10073,7 @@ export const animeData = [
         releaseDate: "Mayo 19, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/112.html",
+        videoUrl: "frame/One-piece/T2/112.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9930,7 +10086,7 @@ export const animeData = [
         releaseDate: "Junio 2, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/113.html",
+        videoUrl: "frame/One-piece/T2/113.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9944,7 +10100,7 @@ export const animeData = [
         releaseDate: "Junio 9, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/114.html",
+        videoUrl: "frame/One-piece/T2/114.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9957,7 +10113,7 @@ export const animeData = [
         releaseDate: "Junio 16, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/115.html",
+        videoUrl: "frame/One-piece/T2/115.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9970,7 +10126,7 @@ export const animeData = [
         releaseDate: "Junio 23, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/116.html",
+        videoUrl: "frame/One-piece/T2/116.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9983,7 +10139,7 @@ export const animeData = [
         releaseDate: "Junio 30, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/117.html",
+        videoUrl: "frame/One-piece/T2/117.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -9996,7 +10152,7 @@ export const animeData = [
         releaseDate: "Julio 14, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/118.html",
+        videoUrl: "frame/One-piece/T2/118.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10010,7 +10166,7 @@ export const animeData = [
         releaseDate: "Julio 21, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/119.html",
+        videoUrl: "frame/One-piece/T2/119.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10023,7 +10179,7 @@ export const animeData = [
         releaseDate: "Agosto 4, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/120.html",
+        videoUrl: "frame/One-piece/T2/120.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10036,7 +10192,7 @@ export const animeData = [
         releaseDate: "Agosto 11, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/121.html",
+        videoUrl: "frame/One-piece/T2/121.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10049,7 +10205,7 @@ export const animeData = [
         releaseDate: "Agosto 18, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/122.html",
+        videoUrl: "frame/One-piece/T2/122.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10063,7 +10219,7 @@ export const animeData = [
         releaseDate: "Agosto 25, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/123.html",
+        videoUrl: "frame/One-piece/T2/123.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10076,7 +10232,7 @@ export const animeData = [
         releaseDate: "Septiembre 1, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/124.html",
+        videoUrl: "frame/One-piece/T2/124.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10090,7 +10246,7 @@ export const animeData = [
         releaseDate: "Septiembre 8, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/125.html",
+        videoUrl: "frame/One-piece/T2/125.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10103,7 +10259,7 @@ export const animeData = [
         releaseDate: "Septiembre 15, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/126.html",
+        videoUrl: "frame/One-piece/T2/126.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10116,7 +10272,7 @@ export const animeData = [
         releaseDate: "Octubre 6, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/127.html",
+        videoUrl: "frame/One-piece/T2/127.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10130,7 +10286,7 @@ export const animeData = [
         releaseDate: "Octubre 6, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/128.html",
+        videoUrl: "frame/One-piece/T2/128.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10143,7 +10299,7 @@ export const animeData = [
         releaseDate: "Octubre 20, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/129.html",
+        videoUrl: "frame/One-piece/T2/129.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10156,7 +10312,7 @@ export const animeData = [
         releaseDate: "Octubre 27, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/130.html",
+        videoUrl: "frame/One-piece/T2/130.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10169,7 +10325,7 @@ export const animeData = [
         releaseDate: "Noviembre 3, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/131.html",
+        videoUrl: "frame/One-piece/T2/131.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10182,7 +10338,7 @@ export const animeData = [
         releaseDate: "Noviembre 10, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/132.html",
+        videoUrl: "frame/One-piece/T2/132.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10195,7 +10351,7 @@ export const animeData = [
         releaseDate: "Noviembre 17, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/133.html",
+        videoUrl: "frame/One-piece/T2/133.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10208,7 +10364,7 @@ export const animeData = [
         releaseDate: "Noviembre 24, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/134.html",
+        videoUrl: "frame/One-piece/T2/134.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10221,7 +10377,7 @@ export const animeData = [
         releaseDate: "Diciembre 1, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T2/135.html",
+        videoUrl: "frame/One-piece/T2/135.html",
         votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
@@ -10235,7 +10391,7 @@ export const animeData = [
         releaseDate: "Diciembre 8, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/136.html",
+        videoUrl: "frame/One-piece/T3/136.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/061b17a12b07a51d95a285d823485038.jpe",
         description:
@@ -10249,7 +10405,7 @@ export const animeData = [
         releaseDate: "Diciembre 15, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/137.html",
+        videoUrl: "frame/One-piece/T3/137.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8624127de6b87640f098485208f25381.jpe",
         description:
@@ -10263,7 +10419,7 @@ export const animeData = [
         releaseDate: "Diciembre 22, 2002",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/138.html",
+        videoUrl: "frame/One-piece/T3/138.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d8ce84eb9234bceb76e27ab0dd131a38.jpe",
         description:
@@ -10277,7 +10433,7 @@ export const animeData = [
         releaseDate: "Enero 5, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/139.html",
+        videoUrl: "frame/One-piece/T3/139.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c7a7bb6259021a8a29a4358892f3a479.jpe",
         description:
@@ -10291,7 +10447,7 @@ export const animeData = [
         releaseDate: "Enero 12, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/140.html",
+        videoUrl: "frame/One-piece/T3/140.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d3d57862f92f25492d547f2a1b92015.jpe",
         description:
@@ -10304,7 +10460,7 @@ export const animeData = [
         releaseDate: "Enero 19, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/141.html",
+        videoUrl: "frame/One-piece/T3/141.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8e718b95889753965b93d39589d81d4a.jpe",
         description:
@@ -10317,7 +10473,7 @@ export const animeData = [
         releaseDate: "Enero 26, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/142.html",
+        videoUrl: "frame/One-piece/T3/142.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         description:
@@ -10330,7 +10486,7 @@ export const animeData = [
         releaseDate: "Febrero 2, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/143.html",
+        videoUrl: "frame/One-piece/T3/143.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         description:
@@ -10343,7 +10499,7 @@ export const animeData = [
         releaseDate: "Febrero 9, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/144.html",
+        videoUrl: "frame/One-piece/T3/144.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         description:
@@ -10357,7 +10513,7 @@ export const animeData = [
         releaseDate: "Febrero 16, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/145.html",
+        videoUrl: "frame/One-piece/T3/145.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         description:
@@ -10370,7 +10526,7 @@ export const animeData = [
         releaseDate: "Febrero 23, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/146.html",
+        videoUrl: "frame/One-piece/T3/146.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         description:
@@ -10384,7 +10540,7 @@ export const animeData = [
         releaseDate: "Marzo 9, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/147.html",
+        videoUrl: "frame/One-piece/T3/147.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         description:
@@ -10397,7 +10553,7 @@ export const animeData = [
         releaseDate: "Marzo 16, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/148.html",
+        videoUrl: "frame/One-piece/T3/148.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
         description:
@@ -10410,7 +10566,7 @@ export const animeData = [
         releaseDate: "Marzo 23, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/149.html",
+        videoUrl: "frame/One-piece/T3/149.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
         description:
@@ -10423,7 +10579,7 @@ export const animeData = [
         releaseDate: "Abril 13, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/150.html",
+        videoUrl: "frame/One-piece/T3/150.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
         description:
@@ -10437,7 +10593,7 @@ export const animeData = [
         releaseDate: "Abril 20, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/151.html",
+        videoUrl: "frame/One-piece/T3/151.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
         description:
@@ -10450,7 +10606,7 @@ export const animeData = [
         releaseDate: "Abril 27, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/152.html",
+        videoUrl: "frame/One-piece/T3/152.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         description:
@@ -10464,7 +10620,7 @@ export const animeData = [
         releaseDate: "Mayo 4, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/153.html",
+        videoUrl: "frame/One-piece/T3/153.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         description:
@@ -10478,7 +10634,7 @@ export const animeData = [
         releaseDate: "Mayo 11, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/154.html",
+        videoUrl: "frame/One-piece/T3/154.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         description:
@@ -10492,7 +10648,7 @@ export const animeData = [
         releaseDate: "Mayo 18, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/155.html",
+        videoUrl: "frame/One-piece/T3/155.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         description:
@@ -10505,7 +10661,7 @@ export const animeData = [
         releaseDate: "Mayo 25, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/156.html",
+        videoUrl: "frame/One-piece/T3/156.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         description:
@@ -10518,7 +10674,7 @@ export const animeData = [
         releaseDate: "Junio 15, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/157.html",
+        videoUrl: "frame/One-piece/T3/157.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d97813a17e0b57e7a57c5414d7a1267.jpe",
         description:
@@ -10531,7 +10687,7 @@ export const animeData = [
         releaseDate: "Junio 22, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/158.html",
+        videoUrl: "frame/One-piece/T3/158.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c3a35c406b62535145dd30fb9474af17.jpe",
         description:
@@ -10544,7 +10700,7 @@ export const animeData = [
         releaseDate: "Julio 6, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/159.html",
+        videoUrl: "frame/One-piece/T3/159.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         description:
@@ -10558,7 +10714,7 @@ export const animeData = [
         releaseDate: "Julio 13, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/160.html",
+        videoUrl: "frame/One-piece/T3/160.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
         description:
@@ -10572,7 +10728,7 @@ export const animeData = [
         releaseDate: "Julio 20, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/161.html",
+        videoUrl: "frame/One-piece/T3/161.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         description:
@@ -10585,7 +10741,7 @@ export const animeData = [
         releaseDate: "Agosto 3, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/162.html",
+        videoUrl: "frame/One-piece/T3/162.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         description:
@@ -10598,7 +10754,7 @@ export const animeData = [
         releaseDate: "Agosto 10, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/163.html",
+        videoUrl: "frame/One-piece/T3/163.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         description:
@@ -10611,7 +10767,7 @@ export const animeData = [
         releaseDate: "Agosto 17, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/164.html",
+        videoUrl: "frame/One-piece/T3/164.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         description:
@@ -10624,7 +10780,7 @@ export const animeData = [
         releaseDate: "Agosto 24, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/165.html",
+        videoUrl: "frame/One-piece/T3/165.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         description:
@@ -10637,7 +10793,7 @@ export const animeData = [
         releaseDate: "Septiembre 7, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/166.html",
+        videoUrl: "frame/One-piece/T3/166.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d3d57862f92f25492d547f2a1b92015.jpe",
         description:
@@ -10650,7 +10806,7 @@ export const animeData = [
         releaseDate: "Septiembre 21, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/167.html",
+        videoUrl: "frame/One-piece/T3/167.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         description:
@@ -10664,7 +10820,7 @@ export const animeData = [
         releaseDate: "Septiembre 28, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/168.html",
+        videoUrl: "frame/One-piece/T3/168.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         description:
@@ -10678,7 +10834,7 @@ export const animeData = [
         releaseDate: "Octubre 5, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/169.html",
+        videoUrl: "frame/One-piece/T3/169.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         description:
@@ -10691,7 +10847,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/170.html",
+        videoUrl: "frame/One-piece/T3/170.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f33e728e8331393f9252033c4608c02.jpe",
         description:
@@ -10705,7 +10861,7 @@ export const animeData = [
         releaseDate: "Octubre 19, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/171.html",
+        videoUrl: "frame/One-piece/T3/171.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         description:
@@ -10718,7 +10874,7 @@ export const animeData = [
         releaseDate: "Octubre 26, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/172.html",
+        videoUrl: "frame/One-piece/T3/172.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         description:
@@ -10731,7 +10887,7 @@ export const animeData = [
         releaseDate: "Noviembre 2, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/173.html",
+        videoUrl: "frame/One-piece/T3/173.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
         description:
@@ -10744,7 +10900,7 @@ export const animeData = [
         releaseDate: "Noviembre 9, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/174.html",
+        videoUrl: "frame/One-piece/T3/174.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
         description:
@@ -10758,7 +10914,7 @@ export const animeData = [
         releaseDate: "Noviembre 16, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/175.html",
+        videoUrl: "frame/One-piece/T3/175.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
         description:
@@ -10772,7 +10928,7 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/176.html",
+        videoUrl: "frame/One-piece/T3/176.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         description:
@@ -10786,7 +10942,7 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/177.html",
+        videoUrl: "frame/One-piece/T3/177.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         description:
@@ -10799,7 +10955,7 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/178.html",
+        videoUrl: "frame/One-piece/T3/178.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         description:
@@ -10812,7 +10968,7 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/179.html",
+        videoUrl: "frame/One-piece/T3/179.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         description:
@@ -10826,7 +10982,7 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/180.html",
+        videoUrl: "frame/One-piece/T3/180.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
         description:
@@ -10839,7 +10995,7 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2003",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/181.html",
+        videoUrl: "frame/One-piece/T3/181.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         description:
@@ -10852,7 +11008,7 @@ export const animeData = [
         releaseDate: "Enero 11, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/182.html",
+        videoUrl: "frame/One-piece/T3/182.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         description:
@@ -10865,7 +11021,7 @@ export const animeData = [
         releaseDate: "Enero 18, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/183.html",
+        videoUrl: "frame/One-piece/T3/183.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         description:
@@ -10878,7 +11034,7 @@ export const animeData = [
         releaseDate: "Enero 25, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/184.html",
+        videoUrl: "frame/One-piece/T3/184.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         description:
@@ -10892,7 +11048,7 @@ export const animeData = [
         releaseDate: "Febrero 1, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/185.html",
+        videoUrl: "frame/One-piece/T3/185.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         description:
@@ -10906,7 +11062,7 @@ export const animeData = [
         releaseDate: "Febrero 8, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/186.html",
+        videoUrl: "frame/One-piece/T3/186.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         description:
@@ -10920,7 +11076,7 @@ export const animeData = [
         releaseDate: "Febrero 15, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/187.html",
+        videoUrl: "frame/One-piece/T3/187.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         description:
@@ -10934,7 +11090,7 @@ export const animeData = [
         releaseDate: "Febrero 22, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/188.html",
+        videoUrl: "frame/One-piece/T3/188.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         description:
@@ -10948,7 +11104,7 @@ export const animeData = [
         releaseDate: "Febrero 29, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/189.html",
+        videoUrl: "frame/One-piece/T3/189.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         description:
@@ -10962,7 +11118,7 @@ export const animeData = [
         releaseDate: "Marzo 7, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/190.html",
+        videoUrl: "frame/One-piece/T3/190.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         description:
@@ -10975,7 +11131,7 @@ export const animeData = [
         releaseDate: "Marzo 21, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/191.html",
+        videoUrl: "frame/One-piece/T3/191.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f33e728e8331393f9252033c4608c02.jpe",
         description:
@@ -10989,7 +11145,7 @@ export const animeData = [
         releaseDate: "Marzo 28, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/192.html",
+        videoUrl: "frame/One-piece/T3/192.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d97813a17e0b57e7a57c5414d7a1267.jpe",
         description:
@@ -11003,7 +11159,7 @@ export const animeData = [
         releaseDate: "Abril 4, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/193.html",
+        videoUrl: "frame/One-piece/T3/193.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/cbe57a0d3852e98c5fd6d2fb43499c98.jpe",
         description:
@@ -11016,7 +11172,7 @@ export const animeData = [
         releaseDate: "Junio 6, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/194.html",
+        videoUrl: "frame/One-piece/T3/194.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/96b4cd48a58e086ca228c2ddb508f7aa.jpe",
         description:
@@ -11030,7 +11186,7 @@ export const animeData = [
         releaseDate: "Junio 13, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/195.html",
+        videoUrl: "frame/One-piece/T3/195.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c720e3c1a84f509d3b76a08605c75402.jpe",
         description:
@@ -11044,7 +11200,7 @@ export const animeData = [
         releaseDate: "Junio 20, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/196.html",
+        videoUrl: "frame/One-piece/T3/196.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d0a259c6d17cd06c9a9cf5eb8432a51f.jpe",
         description:
@@ -11058,7 +11214,7 @@ export const animeData = [
         releaseDate: "Julio 4, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/197.html",
+        videoUrl: "frame/One-piece/T3/197.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/bb56e6d195d852033c46927d341913c1.jpe",
         description:
@@ -11071,7 +11227,7 @@ export const animeData = [
         releaseDate: "Julio 11, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/198.html",
+        videoUrl: "frame/One-piece/T3/198.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/71c62ff919e99e4f553316b251a37c05.jpe",
         description:
@@ -11085,7 +11241,7 @@ export const animeData = [
         releaseDate: "Julio 18, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/199.html",
+        videoUrl: "frame/One-piece/T3/199.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/edc23c7069dd35c03c5d6e2798e16949.jpe",
         description:
@@ -11099,7 +11255,7 @@ export const animeData = [
         releaseDate: "Agosto 1, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/200.html",
+        videoUrl: "frame/One-piece/T3/200.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0d5b03775080c986c75269ed81878d38.jpe",
         description:
@@ -11113,7 +11269,7 @@ export const animeData = [
         releaseDate: "Agosto 8, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/201.html",
+        videoUrl: "frame/One-piece/T3/201.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/2004f1a6da10c144e13d9435d0859942.jpe",
         description:
@@ -11126,7 +11282,7 @@ export const animeData = [
         releaseDate: "Agosto 15, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/202.html",
+        videoUrl: "frame/One-piece/T3/202.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/24c0d165f3f00e93a61f5ab97c9b099f.jpe",
         description:
@@ -11140,7 +11296,7 @@ export const animeData = [
         releaseDate: "Agosto 22, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/203.html",
+        videoUrl: "frame/One-piece/T3/203.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/076f87425b06d11f71f6424e6c9867c2.jpe",
         description:
@@ -11154,7 +11310,7 @@ export const animeData = [
         releaseDate: "Septiembre 5, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/204.html",
+        videoUrl: "frame/One-piece/T3/204.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0513d6a2a0ff328222b40b15b57f0706.jpe",
         description:
@@ -11168,7 +11324,7 @@ export const animeData = [
         releaseDate: "Septiembre 12, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/205.html",
+        videoUrl: "frame/One-piece/T3/205.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/96b4cd48a58e086ca228c2ddb508f7aa.jpe",
         description:
@@ -11182,7 +11338,7 @@ export const animeData = [
         releaseDate: "Septiembre 19, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T3/206.html",
+        videoUrl: "frame/One-piece/T3/206.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e844cc96c8206587c4a171d18f504443.jpe",
         description:
@@ -11196,7 +11352,7 @@ export const animeData = [
         releaseDate: "Octubre 3, 2004",
         duration: "24 min",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/207.html",
+        videoUrl: "frame/One-piece/T4/207.html",
         votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0d5b03775080c986c75269ed81878d38.jpe",
         description:
@@ -11212,7 +11368,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0d5b03775080c986c75269ed81878d38.jpe",
         releaseDate: "Octubre 3, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/207.html",
+        videoUrl: "frame/One-piece/T4/207.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11225,7 +11381,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/2004f1a6da10c144e13d9435d0859942.jpe",
         releaseDate: "Octubre 10, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/208.html",
+        videoUrl: "frame/One-piece/T4/208.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11238,7 +11394,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/24c0d165f3f00e93a61f5ab97c9b099f.jpe",
         releaseDate: "Octubre 17, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/209.html",
+        videoUrl: "frame/One-piece/T4/209.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11251,7 +11407,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/076f87425b06d11f71f6424e6c9867c2.jpe",
         releaseDate: "Octubre 24, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/210.html",
+        videoUrl: "frame/One-piece/T4/210.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11264,7 +11420,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0513d6a2a0ff328222b40b15b57f0706.jpe",
         releaseDate: "Octubre 31, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/211.html",
+        videoUrl: "frame/One-piece/T4/211.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11277,7 +11433,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/96b4cd48a58e086ca228c2ddb508f7aa.jpe",
         releaseDate: "Noviembre 7, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/212.html",
+        videoUrl: "frame/One-piece/T4/212.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11290,7 +11446,7 @@ export const animeData = [
         img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/33b00669-e58f-4ac6-8a7e-1281898867a6.webp?A=213",
         releaseDate: "Noviembre 14, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/213.html",
+        videoUrl: "frame/One-piece/T4/213.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11304,7 +11460,7 @@ export const animeData = [
         img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/4eb1082c-deae-4091-a67b-2325c796b44a.webp?A=214",
         releaseDate: "Noviembre 21, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/214.html",
+        videoUrl: "frame/One-piece/T4/214.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11317,7 +11473,7 @@ export const animeData = [
         img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/c0989f67-8ccb-426b-807d-2b4a36f784e5.webp?A=215",
         releaseDate: "Noviembre 28, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/215.html",
+        videoUrl: "frame/One-piece/T4/215.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11330,7 +11486,7 @@ export const animeData = [
         img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/3c3f9166-4191-4cf6-8a50-681b6196ff31.webp?A=216",
         releaseDate: "Diciembre 5, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/216.html",
+        videoUrl: "frame/One-piece/T4/216.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11343,7 +11499,7 @@ export const animeData = [
         img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/850029b3-ac38-4f81-a759-45920ac3998b.webp?A=217",
         releaseDate: "Diciembre 12, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/217.html",
+        videoUrl: "frame/One-piece/T4/217.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11356,7 +11512,7 @@ export const animeData = [
         img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/9b908759-5f25-46aa-af74-b52e259e0a29.webp?A=218",
         releaseDate: "Diciembre 19, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/218.html",
+        videoUrl: "frame/One-piece/T4/218.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11369,7 +11525,7 @@ export const animeData = [
         img: "https://www.netflix.com/PhoebeAnipo/Deseasoned/A2016-A2019/075421f1-2856-4c4d-a2d9-138383a15c32.webp?A=219",
         releaseDate: "Diciembre 26, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/219.html",
+        videoUrl: "frame/One-piece/T4/219.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11382,7 +11538,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f33e728e8331393f9252033c4608c02.jpe",
         releaseDate: "Enero 9, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/220.html",
+        videoUrl: "frame/One-piece/T4/220.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11395,7 +11551,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d97813a17e0b57e7a57c5414d7a1267.jpe",
         releaseDate: "Enero 16, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/221.html",
+        videoUrl: "frame/One-piece/T4/221.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11408,7 +11564,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c3a35c406b62535145dd30fb9474af17.jpe",
         releaseDate: "Enero 23, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/222.html",
+        videoUrl: "frame/One-piece/T4/222.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11421,7 +11577,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         releaseDate: "Enero 30, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/223.html",
+        videoUrl: "frame/One-piece/T4/223.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11434,7 +11590,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         releaseDate: "Febrero 6, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/224.html",
+        videoUrl: "frame/One-piece/T4/224.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11447,7 +11603,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         releaseDate: "Febrero 13, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/225.html",
+        videoUrl: "frame/One-piece/T4/225.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11460,7 +11616,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         releaseDate: "Febrero 20, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/226.html",
+        videoUrl: "frame/One-piece/T4/226.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11474,7 +11630,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         releaseDate: "Febrero 27, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/227.html",
+        videoUrl: "frame/One-piece/T4/227.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11487,7 +11643,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         releaseDate: "Marzo 6, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/228.html",
+        videoUrl: "frame/One-piece/T4/228.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11500,7 +11656,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Marzo 13, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/229.html",
+        videoUrl: "frame/One-piece/T4/229.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11513,7 +11669,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
         releaseDate: "Marzo 20, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/230.html",
+        videoUrl: "frame/One-piece/T4/230.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11526,7 +11682,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
         releaseDate: "Marzo 27, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/231.html",
+        videoUrl: "frame/One-piece/T4/231.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11539,7 +11695,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
         releaseDate: "Abril 3, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/232.html",
+        videoUrl: "frame/One-piece/T4/232.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11552,7 +11708,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
         releaseDate: "Abril 10, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/233.html",
+        videoUrl: "frame/One-piece/T4/233.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11565,7 +11721,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         releaseDate: "Abril 17, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/234.html",
+        videoUrl: "frame/One-piece/T4/234.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11579,7 +11735,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         releaseDate: "Abril 24, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/235.html",
+        videoUrl: "frame/One-piece/T4/235.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11592,7 +11748,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         releaseDate: "Mayo 1, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/236.html",
+        videoUrl: "frame/One-piece/T4/236.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11605,7 +11761,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         releaseDate: "Mayo 8, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/237.html",
+        videoUrl: "frame/One-piece/T4/237.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11618,7 +11774,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d3d57862f92f25492d547f2a1b92015.jpe",
         releaseDate: "Mayo 15, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/238.html",
+        videoUrl: "frame/One-piece/T4/238.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11632,7 +11788,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8e718b95889753965b93d39589d81d4a.jpe",
         releaseDate: "Mayo 22, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/239.html",
+        videoUrl: "frame/One-piece/T4/239.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11646,7 +11802,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         releaseDate: "Junio 5, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/240.html",
+        videoUrl: "frame/One-piece/T4/240.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11660,7 +11816,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         releaseDate: "Junio 12, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/241.html",
+        videoUrl: "frame/One-piece/T4/241.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11673,7 +11829,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         releaseDate: "Junio 19, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/242.html",
+        videoUrl: "frame/One-piece/T4/242.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11686,7 +11842,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         releaseDate: "Julio 3, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/243.html",
+        videoUrl: "frame/One-piece/T4/243.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11699,7 +11855,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
         releaseDate: "Julio 10, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/244.html",
+        videoUrl: "frame/One-piece/T4/244.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11712,7 +11868,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         releaseDate: "Julio 17, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/245.html",
+        videoUrl: "frame/One-piece/T4/245.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11726,7 +11882,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         releaseDate: "Julio 31, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/246.html",
+        videoUrl: "frame/One-piece/T4/246.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11739,7 +11895,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         releaseDate: "Agosto 7, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/247.html",
+        videoUrl: "frame/One-piece/T4/247.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11752,7 +11908,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Agosto 14, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/248.html",
+        videoUrl: "frame/One-piece/T4/248.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11765,7 +11921,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         releaseDate: "Agosto 21, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/249.html",
+        videoUrl: "frame/One-piece/T4/249.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11779,7 +11935,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         releaseDate: "Agosto 28, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/250.html",
+        videoUrl: "frame/One-piece/T4/250.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11792,7 +11948,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         releaseDate: "Septiembre 4, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/251.html",
+        videoUrl: "frame/One-piece/T4/251.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11806,7 +11962,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         releaseDate: "Septiembre 11, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/252.html",
+        videoUrl: "frame/One-piece/T4/252.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11819,7 +11975,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         releaseDate: "Septiembre 18, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/253.html",
+        videoUrl: "frame/One-piece/T4/253.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11833,7 +11989,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         releaseDate: "Septiembre 25, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/254.html",
+        videoUrl: "frame/One-piece/T4/254.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11846,7 +12002,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Octubre 2, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/255.html",
+        videoUrl: "frame/One-piece/T4/255.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11860,7 +12016,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
         releaseDate: "Octubre 9, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/256.html",
+        videoUrl: "frame/One-piece/T4/256.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11873,7 +12029,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
         releaseDate: "Octubre 16, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/257.html",
+        videoUrl: "frame/One-piece/T4/257.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11886,7 +12042,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
         releaseDate: "Octubre 23, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/258.html",
+        videoUrl: "frame/One-piece/T4/258.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11899,7 +12055,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
         releaseDate: "Octubre 30, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/259.html",
+        videoUrl: "frame/One-piece/T4/259.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11912,7 +12068,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         releaseDate: "Noviembre 6, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/260.html",
+        videoUrl: "frame/One-piece/T4/260.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11925,7 +12081,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         releaseDate: "Noviembre 13, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/261.html",
+        videoUrl: "frame/One-piece/T4/261.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11938,7 +12094,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         releaseDate: "Noviembre 20, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/262.html",
+        videoUrl: "frame/One-piece/T4/262.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11951,7 +12107,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         releaseDate: "Noviembre 27, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T4/263.html",
+        videoUrl: "frame/One-piece/T4/263.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11965,7 +12121,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
         releaseDate: "Diciembre 4, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/264.html",
+        videoUrl: "frame/One-piece/T5/264.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11978,7 +12134,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         releaseDate: "Diciembre 11, 2005",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/265.html",
+        videoUrl: "frame/One-piece/T5/265.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -11991,7 +12147,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         releaseDate: "Enero 8, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/266.html",
+        videoUrl: "frame/One-piece/T5/266.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12004,7 +12160,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         releaseDate: "Enero 15, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/267.html",
+        videoUrl: "frame/One-piece/T5/267.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12017,7 +12173,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Enero 22, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/268.html",
+        videoUrl: "frame/One-piece/T5/268.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12031,7 +12187,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         releaseDate: "Enero 29, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/269.html",
+        videoUrl: "frame/One-piece/T5/269.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12044,7 +12200,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         releaseDate: "Febrero 5, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/270.html",
+        videoUrl: "frame/One-piece/T5/270.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12057,7 +12213,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         releaseDate: "Febrero 26, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/271.html",
+        videoUrl: "frame/One-piece/T5/271.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12071,7 +12227,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         releaseDate: "Marzo 5, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/272.html",
+        videoUrl: "frame/One-piece/T5/272.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12084,7 +12240,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         releaseDate: "Marzo 12, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/273.html",
+        videoUrl: "frame/One-piece/T5/273.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12097,7 +12253,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         releaseDate: "Marzo 19, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/274.html",
+        videoUrl: "frame/One-piece/T5/274.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12110,7 +12266,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Abril 2, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/275.html",
+        videoUrl: "frame/One-piece/T5/275.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12123,7 +12279,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
         releaseDate: "Abril 9, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/276.html",
+        videoUrl: "frame/One-piece/T5/276.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12136,7 +12292,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
         releaseDate: "Abril 16, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/277.html",
+        videoUrl: "frame/One-piece/T5/277.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12149,7 +12305,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
         releaseDate: "Abril 23, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/278.html",
+        videoUrl: "frame/One-piece/T5/278.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12162,7 +12318,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
         releaseDate: "Abril 30, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/279.html",
+        videoUrl: "frame/One-piece/T5/279.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12176,7 +12332,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         releaseDate: "Mayo 7, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/280.html",
+        videoUrl: "frame/One-piece/T5/280.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12190,7 +12346,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         releaseDate: "Mayo 14, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/281.html",
+        videoUrl: "frame/One-piece/T5/281.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12203,7 +12359,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         releaseDate: "Mayo 21, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/282.html",
+        videoUrl: "frame/One-piece/T5/282.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12216,7 +12372,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         releaseDate: "Mayo 28, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/283.html",
+        videoUrl: "frame/One-piece/T5/283.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12229,7 +12385,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
         releaseDate: "Junio 4, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/284.html",
+        videoUrl: "frame/One-piece/T5/284.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12242,7 +12398,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         releaseDate: "Junio 11, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/285.html",
+        videoUrl: "frame/One-piece/T5/285.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12256,7 +12412,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         releaseDate: "Junio 18, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/286.html",
+        videoUrl: "frame/One-piece/T5/286.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12270,7 +12426,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         releaseDate: "Junio 25, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/287.html",
+        videoUrl: "frame/One-piece/T5/287.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12283,7 +12439,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Julio 2, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/288.html",
+        videoUrl: "frame/One-piece/T5/288.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12297,7 +12453,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         releaseDate: "Julio 9, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/289.html",
+        videoUrl: "frame/One-piece/T5/289.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12310,7 +12466,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         releaseDate: "Julio 16, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/290.html",
+        videoUrl: "frame/One-piece/T5/290.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12324,7 +12480,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         releaseDate: "Julio 23, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/291.html",
+        videoUrl: "frame/One-piece/T5/291.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12338,7 +12494,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         releaseDate: "Julio 30, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/292.html",
+        videoUrl: "frame/One-piece/T5/292.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12352,7 +12508,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         releaseDate: "Agosto 6, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/293.html",
+        videoUrl: "frame/One-piece/T5/293.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12365,7 +12521,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         releaseDate: "Agosto 13, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/294.html",
+        videoUrl: "frame/One-piece/T5/294.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12378,7 +12534,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Agosto 20, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/295.html",
+        videoUrl: "frame/One-piece/T5/295.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12391,7 +12547,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
         releaseDate: "Agosto 27, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/296.html",
+        videoUrl: "frame/One-piece/T5/296.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12404,7 +12560,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
         releaseDate: "Septiembre 3, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/297.html",
+        videoUrl: "frame/One-piece/T5/297.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12418,7 +12574,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
         releaseDate: "Septiembre 10, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/298.html",
+        videoUrl: "frame/One-piece/T5/298.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12432,7 +12588,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
         releaseDate: "Septiembre 17, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/299.html",
+        videoUrl: "frame/One-piece/T5/299.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12446,7 +12602,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         releaseDate: "Septiembre 24, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/300.html",
+        videoUrl: "frame/One-piece/T5/300.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12460,7 +12616,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         releaseDate: "Octubre 1, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/301.html",
+        videoUrl: "frame/One-piece/T5/301.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12474,7 +12630,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         releaseDate: "Octubre 8, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/302.html",
+        videoUrl: "frame/One-piece/T5/302.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12488,7 +12644,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         releaseDate: "Octubre 15, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/303.html",
+        videoUrl: "frame/One-piece/T5/303.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12502,7 +12658,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
         releaseDate: "Octubre 22, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/304.html",
+        videoUrl: "frame/One-piece/T5/304.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12515,7 +12671,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         releaseDate: "Octubre 29, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/305.html",
+        videoUrl: "frame/One-piece/T5/305.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12529,7 +12685,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         releaseDate: "Noviembre 5, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/306.html",
+        videoUrl: "frame/One-piece/T5/306.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12543,7 +12699,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         releaseDate: "Noviembre 12, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/307.html",
+        videoUrl: "frame/One-piece/T5/307.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12557,7 +12713,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Noviembre 19, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/308.html",
+        videoUrl: "frame/One-piece/T5/308.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12571,7 +12727,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         releaseDate: "Noviembre 26, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/309.html",
+        videoUrl: "frame/One-piece/T5/309.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12585,7 +12741,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         releaseDate: "Diciembre 3, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T5/310.html",
+        videoUrl: "frame/One-piece/T5/310.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12599,7 +12755,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         releaseDate: "Diciembre 10, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T6/311.html",
+        videoUrl: "frame/One-piece/T6/311.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12612,7 +12768,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         releaseDate: "Diciembre 17, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T6/312.html",
+        videoUrl: "frame/One-piece/T6/312.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12626,7 +12782,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         releaseDate: "Diciembre 24, 2006",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T6/313.html",
+        videoUrl: "frame/One-piece/T6/313.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12640,7 +12796,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         releaseDate: "Enero 7, 2007",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T6/314.html",
+        videoUrl: "frame/One-piece/T6/314.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12654,7 +12810,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         releaseDate: "Enero 14, 2007",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T6/315.html",
+        videoUrl: "frame/One-piece/T6/315.html",
         votes: { likes: 987, dislikes: 8 },
       },
 
@@ -12669,7 +12825,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/fb29127bc79c7497a7758ad1be904b0d.jpe",
         releaseDate: "Enero 6, 2024",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T14/1089.html",
+        videoUrl: "frame/One-piece/T14/1089.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12682,7 +12838,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/180d118637dcd333e296a93d3072639c.jpe",
         releaseDate: "Enero 13, 2024",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T14/1090.html",
+        videoUrl: "frame/One-piece/T14/1090.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12695,7 +12851,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/9dde09cc7ce8f52901d4779b707edd46.jpe",
         releaseDate: "Enero 20, 2024",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T14/1091.html",
+        videoUrl: "frame/One-piece/T14/1091.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12708,7 +12864,7 @@ export const animeData = [
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/1179795b6e7af4a8865b995fdc116696.jpe",
         releaseDate: "Enero 27, 2024",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T14/1092.html",
+        videoUrl: "frame/One-piece/T14/1092.html",
         votes: { likes: 987, dislikes: 8 },
       },
       // ... (La lista continúa con todos los episodios de Egghead hasta el más reciente)
@@ -12722,7 +12878,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/da62c29ead92aac2cd8b16b60f8e5ccb.jpg",
         releaseDate: "Julio 6, 2024",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T21/1111.html",
+        videoUrl: "frame/One-piece/T21/1111.html",
         votes: { likes: 987, dislikes: 8 },
       },
       {
@@ -12735,22 +12891,205 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/27c699aa3dd8dfe6a8c9e8f04bfa1db6.jpg",
         releaseDate: "Julio 13, 2024",
         language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T21/1112.html",
+        videoUrl: "frame/One-piece/T21/1112.html",
         votes: { likes: 987, dislikes: 8 },
       },
       // ... (Y así sucesivamente hasta el episodio 1123)
       {
         season: 21,
-        number: 1123,
-        title: "¡El mundo se agita! La decisión de los Cinco Ancianos",
+        number: "SP14",
+        title: "E-Recap Resumen especial de Egghead",
         duration: "23 min",
         description:
-          "Los eventos en el Reino de Lulusia y el regreso de Sabo provocan una gran conmoción en todo el mundo, y los Cinco Ancianos toman una decisión que cambiará la era.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=640,height=360/catalog/crunchyroll/fcb6a443c4570ab39d725dddd69d1c95.jpg",
-        releaseDate: "Septiembre 28, 2024",
-        language: "Sub | Dob",
-        videoUrl: "frame/One-Piece/T21/1123.html",
-        votes: { likes: 987, dislikes: 8 },
+          "Resumen de la historia para ponernos al día de cara al regreso del anime.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/6219d51bd4559504efc609a462eec52a.jpg",
+        releaseDate: "Abril 5, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Especial/E-14-Recap.html",
+        votes: { likes: 1223, dislikes: 47 },
+      },
+      {
+        season: 21,
+        number: 1123,
+        title: "¡Tiembla el mundo! El secuestro de los Sombrero de Paja",
+        duration: "23 min",
+        description:
+          "Luffy consigue capturar a York y se plantea si puede utilizarla para huir de Egghead.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/78569b822f4ea02100211ecffc9d8ede.jpg",
+        releaseDate: "Abril 5, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1123.html",
+        votes: { likes: 1723, dislikes: 23 },
+      },
+      {
+        season: 21,
+        number: 1124,
+        title: "¡Totalmente rodeados! La operación para huir de Egghead",
+        duration: "23 min",
+        description:
+          "Luffy y los demás idean una operación para escapar con vida de Egghead y evitar a la Marina.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/df356103c2103c15b2ba0d7233a90794.jpg",
+        releaseDate: "Abril 6, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1124.html",
+        votes: { likes: 1331, dislikes: 13 },
+      },
+      {
+        season: 21,
+        number: 1125,
+        title: "¡Choque de voluntades! Kizaru y Sentomaru",
+        duration: "23 min",
+        description:
+          "El pasado une a Kizaru y Sentomaru, pero nada de eso importa ahora que cada uno tiene una misión.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1f0cd98bc6ad17b94666fe46817ccb76.jpg",
+        releaseDate: "Abril 13, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1125.html",
+      },
+      {
+        season: 21,
+        number: 1126,
+        title: "¡Desesperación inminente! La deprimente misión de Kizaru",
+        duration: "23 min",
+        description:
+          "Kizaru sabe que debe cumplir con su misión aunque realmente le apena muchísimo matar a Vegapunk.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5e7715c35e2b1a216dbdd7d0435459a6.jpg",
+        releaseDate: "Abril 20, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1126.html",
+      },
+      {
+        season: 21,
+        number: 1127,
+        title: "¡Luffy contra Kizaru! Una dura batalla kaleidoscópica",
+        duration: "23 min",
+        description:
+          "Luffy lucha contra Kizaru para evitar un terrible desenlace, pero no es fácil vencer a un almirante.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/89df56b10b6c160acf2e484e61fcab03.jpg",
+        releaseDate: "Abril 27, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1127.html",
+      },
+      {
+        season: 21,
+        number: 1128,
+        title: "El pasado de Kuma. Es mejor estar muerto en este mundo.",
+        duration: "23 min",
+        description:
+          "Si no había problemas suficientes en Egghead, ahora llega un problema todavía mayor: san Saturn.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0b9a28ce82261b6d95d64bf9acfc20fc.jpg",
+        releaseDate: "Mayo 4, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1128.html",
+      },
+      {
+        season: 21,
+        number: "SP17",
+        title: "El chequeo del doctor Chopper. La balada de un padre y su hija",
+        duration: "23 min",
+        description:
+          "Chopper y Carrot repasan el pasado de Kuma y de Bonney para que veamos la importancia de su lazo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/40714cb28fb7afc8b85872de364283c2.jpg",
+        releaseDate: "Mayo 11, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Especial/17.html",
+      },
+      {
+        season: 21,
+        number: 1129,
+        title: "El pasado de Kuma. Es mejor estar muerto en este mundo.",
+        duration: "23 min",
+        description:
+          "Mientras Bonney está en las garras de Saturn, veremos el pasado de Kuma desde su nacimiento.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2a3b6e63ca56c48313f7edbcd1d0664d.jpg",
+        releaseDate: "Mayo 18, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1129.html",
+      },
+      {
+        season: 21,
+        number: 1130,
+        title: "¡Una historia borrada! La desesperanza de God Valley",
+        duration: "23 min",
+        description:
+          "Kuma, junto a Ginny e Ivankov, se arriesgarán para salir con vida de God Valley.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/828c762917f57eb6b3b73a174e57c70b.jpg",
+        releaseDate: "Mayo 25, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1130.html",
+      },
+      {
+        season: 21,
+        number: 1131,
+        title: "Un momento fugaz de felicidad. Kumachi y Ginny.",
+        duration: "23 min",
+        description:
+          "Kuma y Ginny tienen unas vidas tranquilas, pero el nuevo rey de Sorbet lo arruinará todo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2a0c3691930a4c4d1ae57f2709afb17d.jpg",
+        releaseDate: "Junio 1, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1131.html",
+      },
+      {
+        season: 21,
+        number: 1132,
+        title: "La promesa con Ginny. Kuma se vuelve padre.",
+        duration: "23 min",
+        description:
+          "Luego de un par de años, Kuma descubre que Ginny tuvo una hija y decide que la criará él a como dé lugar.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/98f0424e987a12c9b2409d779c49ea70.jpg",
+        releaseDate: "Junio 8, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1132.html",
+      },
+      {
+        season: 21,
+        number: 1133,
+        title: "Para salvar a Bonney. Kuma, el pacifista tímido.",
+        duration: "23 min",
+        description:
+          "Kuma busca de un modo de salvar a Bonney y llega a sus oídos la existencia de Vegapunk.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2ff1dcb02b2109af743af6c04f388c58.jpg",
+        releaseDate: "Junio 15, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1133.html",
+      },
+      {
+        season: 21,
+        number: "SP18",
+        title:
+          "El chequeo del doctor Chopper. Buenos amigos en una encrucijada.",
+        duration: "23 min",
+        description:
+          "Chopper repasa con Carrot las historias de Kizaru, Sentomaru y Vegapunk.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/05d13d78100816767dfb0d27435f7581.jpg",
+        releaseDate: "Junio 22, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Especial/18.html",
+      },
+      {
+        season: 21,
+        number: 1134,
+        title: "Un destino cruel. La decisión de Kuma como padre.",
+        duration: "23 min",
+        description:
+          "El Gobierno Mundial descubre el plan de Vegapunk y le impone tres condiciones muy crueles.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/771df1de43d270e4375257cdd7ec3bf6.jpg",
+        releaseDate: "Junio 29, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1134.html",
+      },
+      {
+        season: 21,
+        number: 1135,
+        title: "¡Al mar donde está mi padre! El futuro que elige Bonney",
+        duration: "23 min",
+        description:
+          "Bonney sigue esperando una carta de Kuma que nunca llega, hasta que se recupera y se hace a la mar.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/95796c6befdcf073f89cfce34bb64525.jpg",
+        releaseDate: "Julio 6, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1135.html",
       },
     ],
   },
@@ -15315,6 +15654,841 @@ export const animeData = [
     episodes: [],
   },
   {
+    id: "trigun-stampede",
+    title: "Trigun Stampede",
+    img: "/image/Trigun-stampede/p.jpe",
+    heroImg:
+      "https://i.redd.it/i-edited-the-trigun-stampede-poster-feel-free-to-use-as-a-v0-kkn1xnazzxda1.jpg?width=4096&format=pjpg&auto=webp&s=70e35edb194b3973dd9e27a6f0570d2867fa54f2",
+    logoImg:
+      "https://preview.redd.it/i-cant-find-the-font-they-use-in-the-trigun-stampede-logo-v0-om8vfjglg68c1.png?auto=webp&s=088493403ff3aaf747106ff22f46c7ee9e0dc022",
+    imgMobile:
+      "https://i.redd.it/i-edited-the-trigun-stampede-poster-feel-free-to-use-as-a-v0-kkn1xnazzxda1.jpg?width=4096&format=pjpg&auto=webp&s=70e35edb194b3973dd9e27a6f0570d2867fa54f2",
+    trailerUrl:
+      "https://www.youtube.com/embed/xZ0aLMfvYvs?si=SDK7013UdOoP1sxj5",
+    description:
+      "Una joven periodista parte junto a un compañero veterano a un encargo de su editorial: encontrar a Vash Estampida, el Huracán Humano. ¿De verdad existe alguien así, que lleva el caos y el desastre allá por dónde pasa?.",
+    genres: ["Acción", "Aventura", "Ciencia Ficción"],
+    rating: 4.5,
+    ratingCount: "28.2K",
+    seasons: 1,
+    episodesTotal: 12,
+    status: "Finalizado",
+    year: 2023,
+    type: "TV",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 840)), // Calculado desde el 15/04/23
+    audio: "Sub | Dob",
+    creator: "Yasuhiro Nightow",
+    contentWarning: "+14 Violencia, Lenguaje",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Tierra de nadie.",
+        duration: "23 min",
+        description:
+          "Las periodistas Meryl Stryfe y Roberto De Niro buscan al legendario pistolero Vash la Estampida, pero el hombre que encuentran no es para nada lo que esperaban.",
+        img: "/image/Trigun-stampede/1.jpg",
+        releaseDate: "Enero 28, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Hombre a la fuga.",
+        duration: "23 min",
+        description:
+          "Vash, Meryl y Roberto llegan a la ciudad de Jeneora Rock, que está en peligro por la falla de su Planta de energía. Vash debe enfrentarse a los sobrinos de un antiguo enemigo.",
+        img: "/image/Trigun-stampede/2.jpg",
+        releaseDate: "Febrero 4, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Potente luz, ilumina la oscuridad.",
+        duration: "23 min",
+        description:
+          "Para salvar Jeneora Rock, Vash debe usar su arma oculta, el Angel Arm, pero hacerlo atrae la atención de su hermano gemelo, Knives.",
+        img: "/image/Trigun-stampede/3.jpg",
+        releaseDate: "Febrero 11, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "HUNGRY!.",
+        duration: "23 min",
+        description:
+          "El grupo se encuentra con un misterioso predicador itinerante llamado Nicholas D. Wolfwood, quien parece tener sus propios y oscuros secretos.",
+        img: "/image/Trigun-stampede/4.jpg",
+        releaseDate: "Febrero 18, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Hijo de la bendición.",
+        duration: "23 min",
+        description:
+          "Un flashback revela el origen de Vash y Knives, dos 'Plantas' humanoides criadas en una nave colonial, y la tragedia que los separó.",
+        img: "/image/Trigun-stampede/5.jpg",
+        releaseDate: "Febrero 25, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "Érase una vez en la tierra de la esperanza.",
+        duration: "23 min",
+        description:
+          "La historia continúa, mostrando cómo los hermanos fueron encontrados por los humanos y cómo sus diferentes visiones del mundo comenzaron a chocar.",
+        img: "/image/Trigun-stampede/6.jpg",
+        releaseDate: "Marzo 4, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "Wolfwood.",
+        duration: "23 min",
+        description:
+          "El pasado de Nicholas D. Wolfwood es explorado, revelando su dura infancia en un orfanato y su entrenamiento como un asesino del Ojo de Michael.",
+        img: "/image/Trigun-stampede/7.jpg",
+        releaseDate: "Marzo 11, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "Hogar.",
+        duration: "23 min",
+        description:
+          "Vash y Wolfwood se enfrentan a Legato Bluesummers, uno de los seguidores más devotos de Knives, cuya habilidad para controlar a otros es aterradora.",
+        img: "/image/Trigun-stampede/8.jpg",
+        releaseDate: "Marzo 18, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Millions Knives.",
+        duration: "23 min",
+        description:
+          "Knives pone en marcha su plan para destruir a la humanidad, absorbiendo el poder de las Plantas de varias ciudades para aumentar su propia fuerza.",
+        img: "/image/Trigun-stampede/9.jpg",
+        releaseDate: "Marzo 25, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Humanidad.",
+        duration: "23 min",
+        description:
+          "Vash, Meryl y Wolfwood deben proteger la última ciudad, July, del ataque de Knives. La batalla pondrá a prueba la filosofía de Vash de no matar.",
+        img: "/image/Trigun-stampede/10.jpe",
+        releaseDate: "Abril 1, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Hacia un nuevo mundo.",
+        duration: "23 min",
+        description:
+          "La batalla final entre los hermanos Vash y Knives comienza. Es un choque de ideologías y poder que decidirá el destino del planeta Noman's Land.",
+        img: "/image/Trigun-stampede/11.jpe",
+        releaseDate: "Abril 8, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "Mediodía en Julio.",
+        duration: "23 min",
+        description:
+          "El enfrentamiento llega a su conclusión. Vash debe tomar una decisión final sobre su hermano y su propio lugar en el mundo, marcando el inicio de una nueva leyenda.",
+        img: "/image/Trigun-stampede/12.jpe",
+        releaseDate: "Abril 15, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T1/12.html",
+      },
+    ],
+  },
+  {
+    id: "undead-unluck",
+    title: "Undead Unluck",
+    img: "https://cdn.jkdesu.com/assets/images/animes/image/undead-unluck.jpg",
+    heroImg:
+      "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/2C516AF3ED2BE15BB2381B28F2AEB4F54E7F7F953B6AB48BBEB59AC5B7F4ED50/scale?width=1440&aspectRatio=1.78&format=jpeg",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751871710/poster-h_yikt03.jpg",
+    logoImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751871738/l_yttceu.webp",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751871990/yCJ3svFnUbPQUj5gBenM9S2LJtM_nahhma.jpg",
+    trailerUrl: "https://www.youtube.com/embed/DbfNYwYRKn4?si=k6PzMT9yVMG_fBUT",
+    description:
+      "Cuenta la historia de Fuuko Izumo quien después de leer la conclusión de su manga favorito, decide quitarse la vida. Debido a una condición especial que tiene, la gente que la toca sufre desgracias extremas, lo que la ha llevado a perder a sus padres y alejar a sus amigos. En un momento de desesperación, Fuuko es empujada desde un puente hacia las vías del tren, pero un extraño hombre llamado Andy la salva. Andy resulta ser inmortal y también desea la muerte, y Fuuko se une a él para ayudarse mutuamente a encontrar la paz. Sin embargo, una organización siniestra comienza a seguirlos, buscando aprovechar sus habilidades especiales.",
+    genres: ["Acción", "Comedia", "Shounen", "Sobrenatural"],
+    rating: 4.9,
+    ratingCount: "7.5K",
+    seasons: 1,
+    episodesTotal: 24,
+    status: "Finalizado",
+    year: 2023,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 473)), // Calculado desde el 22/03/24
+    audio: "Sub | Dob",
+    creator: "Yoshifumi Tozuka",
+    contentWarning: "+16 Violencia, Desnudos",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Inmortalidad y mala suerte",
+        duration: "24 min",
+        description:
+          "Fuuko Izumo, una chica con la habilidad de causar desgracias a quien la toca, conoce a Andy, un hombre inmortal que busca la muerte perfecta. Juntos, comienzan una extraña asociación.",
+        img: "https://image.tmdb.org/t/p/w300/mm24ssp8ngEmNAc2lNDK1LVQqp1.jpg",
+        releaseDate: "Octubre 6, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Reunión",
+        duration: "24 min",
+        description:
+          "Andy y Fuuko son perseguidos por la Unión, una organización que caza a personas con habilidades especiales como ellos, conocidos como 'Negadores'.",
+        img: "https://image.tmdb.org/t/p/w300/volxC7yHHs7T1F1yMTZ8zSo2aQs.jpg",
+        releaseDate: "Octubre 13, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Cómo utilizar mi mala suerte",
+        duration: "24 min",
+        description:
+          "Para unirse a la Unión y evitar ser eliminados, Andy y Fuuko deben demostrar su valía. Andy enseña a Fuuko a controlar su poder de 'Unluck' como un arma.",
+        img: "https://image.tmdb.org/t/p/w300/wRMaGj8hMjsM0a8AoiNqhgBYBaP.jpg",
+        releaseDate: "Octubre 20, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "¿Amas el cambio en mí?",
+        duration: "24 min",
+        description:
+          "El dúo se enfrenta a su primera misión para la Unión: capturar a otro Negador. Su objetivo es un hombre cuya habilidad está ligada a los cambios.",
+        img: "https://image.tmdb.org/t/p/w300/rLC4iKV2CsAz7lrppi0uVHuk4JP.jpg",
+        releaseDate: "Octubre 27, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Unidos negamos",
+        duration: "24 min",
+        description:
+          "Andy y Fuuko conocen a otros miembros de la Unión, un grupo de Negadores con poderes y personalidades muy peculiares. Juntos forman una alianza inestable.",
+        img: "https://image.tmdb.org/t/p/w300/je2iTH3xUvrAkzQ1nqInK2x1hJi.jpg",
+        releaseDate: "Noviembre 4, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "Spoil",
+        duration: "24 min",
+        description:
+          "La siguiente misión es detener a 'Spoil', un UMA (Bestia Mágica No Identificada) que provoca la putrefacción de todo lo que toca, amenazando con destruir una ciudad entera.",
+        img: "https://image.tmdb.org/t/p/w300/pj0C04RVtbsmKEN6dLKML9FYP5K.jpg",
+        releaseDate: "Noviembre 10, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "Sueño",
+        duration: "24 min",
+        description:
+          "Para encontrar el núcleo de Spoil, el equipo debe entrar en un mundo onírico. Allí, se enfrentan a sus propios recuerdos y traumas.",
+        img: "https://image.tmdb.org/t/p/w300/mlr93l4OzQEwtGPnKcXCCBzxBEc.jpg",
+        releaseDate: "Noviembre 18, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "Victhor",
+        duration: "24 min",
+        description:
+          "Una personalidad del pasado de Andy, 'Victhor', emerge. Es más poderoso y despiadado, y representa una amenaza tanto para sus enemigos como para sus aliados.",
+        img: "https://image.tmdb.org/t/p/w300/aSa3aIIKbvJ3RQygCIgvPOd7JxG.jpg",
+        releaseDate: "Noviembre 25, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Regreso",
+        duration: "24 min",
+        description:
+          "Fuuko debe encontrar una manera de traer de vuelta al Andy que conoce, luchando contra Victhor en una batalla que definirá el futuro de su compañero.",
+        img: "https://image.tmdb.org/t/p/w300/gcMBQXrUxdeseWW33Ox5fciA5yg.jpg",
+        releaseDate: "Diciembre 1, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Result",
+        duration: "24 min",
+        description:
+          "Con Spoil derrotado, el equipo regresa a la base de la Unión. Reciben sus recompensas, pero también un nuevo y más peligroso conjunto de misiones.",
+        img: "https://image.tmdb.org/t/p/w300/4EcEWknt4Sly1wE70z4z7oWIGo1.jpg",
+        releaseDate: "Diciembre 8, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Rio de Janeiro",
+        duration: "24 min",
+        description:
+          "Una nueva misión lleva a Andy y Fuuko a Brasil, donde deben participar en una subasta clandestina para recuperar un artefacto robado por la organización 'Under'.",
+        img: "https://image.tmdb.org/t/p/w300/cU76hV4jhncVUDLeWAU2uWppTKv.jpg",
+        releaseDate: "Diciembre 15, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "Activación",
+        duration: "24 min",
+        description:
+          "La subasta se convierte en un campo de batalla cuando Under ataca. Se revela que el artefacto es un arma poderosa que puede cambiar el curso de la guerra.",
+        img: "https://image.tmdb.org/t/p/w300/xycvQnjIcBm1afkUaUCCfLC29w4.jpg",
+        releaseDate: "Diciembre 22, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/12.html",
+      },
+      {
+        season: 1,
+        number: 13,
+        title: "Tatiana",
+        duration: "24 min",
+        description:
+          "Tatiana, una joven miembro de la Unión con el poder de 'Untouchable', desata su habilidad para proteger a sus amigos, revelando la verdadera escala de su poder.",
+        img: "https://image.tmdb.org/t/p/w300/7lgpvnCsj9s90nQ6qF6pP7N2rql.jpg",
+        releaseDate: "Enero 4, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/13.html",
+      },
+      {
+        season: 1,
+        number: 14,
+        title: "Bala carmesí",
+        duration: "24 min",
+        description:
+          "Andy utiliza una de sus técnicas más mortales, la 'Bala Carmesí', para enfrentarse a los miembros de élite de Under.",
+        img: "https://image.tmdb.org/t/p/w300/k2IXZ2IAE64ttGV2TpcDI90SH9w.jpg",
+        releaseDate: "Enero 12, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/14.html",
+      },
+      {
+        season: 1,
+        number: 15,
+        title: "Under",
+        duration: "24 min",
+        description:
+          "Se revelan las verdaderas motivaciones de Under y su líder, Billy, un antiguo miembro de la Unión que ahora busca destruir el mundo.",
+        img: "https://image.tmdb.org/t/p/w300/70LNG4qZssMWMjk6s3QY4EV95m5.jpg",
+        releaseDate: "Enero 19, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/15.html",
+      },
+      {
+        season: 1,
+        number: 16,
+        title: "Revolución",
+        duration: "24 min",
+        description:
+          "La batalla entre la Unión y Under comienza en serio, una guerra entre Negadores con diferentes visiones sobre el futuro del mundo.",
+        img: "https://image.tmdb.org/t/p/w300/avKffjcgDKM7SeSCSxYj90ngFGu.jpg",
+        releaseDate: "Enero 26, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/16.html",
+      },
+      {
+        season: 1,
+        number: 17,
+        title: "OUTSMART",
+        duration: "24 min",
+        description:
+          "Fuuko debe usar su poder de una manera ingeniosa y estratégica para superar a un enemigo de Under que parece anticipar todos sus movimientos.",
+        img: "https://image.tmdb.org/t/p/w300/s8dIKhvnZgYj3sWlNcYGyBevYcZ.jpg",
+        releaseDate: "Febrero 2, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/17.html",
+      },
+      {
+        season: 1,
+        number: 18,
+        title: "Llanto a la luna",
+        duration: "24 min",
+        description:
+          "Un flashback revela el trágico pasado de uno de los miembros de la Unión, y la razón por la que luchan con tanta determinación.",
+        img: "https://image.tmdb.org/t/p/w300/89yjneMUGBIzZZB5nncrUUT0IOn.jpg",
+        releaseDate: "Febrero 9, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/18.html",
+      },
+      {
+        season: 1,
+        number: 19,
+        title: "Antedo + Anrakku",
+        duration: "24 min",
+        description:
+          "Andy (Undead) y Fuuko (Unluck) combinan sus poderes de una nueva forma, creando un combo devastador que sorprende a sus enemigos.",
+        img: "https://image.tmdb.org/t/p/w300/unqdQDF1dtc0QQGKsmsUHQ7L7UG.jpg",
+        releaseDate: "Febrero 16, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/19.html",
+      },
+      {
+        season: 1,
+        number: 20,
+        title: "Nube durante la estación lluviosa",
+        duration: "24 min",
+        description:
+          "El equipo debe enfrentarse a 'Autumn', un UMA que puede materializar cualquier cosa que desee, pero cuyo poder es más fuerte durante la temporada de lluvias.",
+        img: "https://image.tmdb.org/t/p/w300/bUCHrWzHK1tK3FVqsJKnSWtrPlI.jpg",
+        releaseDate: "Febrero 23, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/20.html",
+      },
+      {
+        season: 1,
+        number: 21,
+        title: "MEMENTO Mori",
+        duration: "24 min",
+        description:
+          "La batalla contra Autumn revela una conexión sorprendente con el pasado de Andy, obligándolo a enfrentar recuerdos que había enterrado.",
+        img: "https://image.tmdb.org/t/p/w300/zcZj81kpVAWCbBL4mKCdz5YhaHv.jpg",
+        releaseDate: "Marzo 1, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/21.html",
+      },
+      {
+        season: 1,
+        number: 22,
+        title: "Perfil",
+        duration: "24 min",
+        description:
+          "Fuuko, queriendo entender más a Andy, usa sus habilidades para explorar su pasado y descubre la verdad sobre su inmortalidad y la identidad de Victhor.",
+        img: "https://image.tmdb.org/t/p/w300/dWd6kRdmGfn6QYOZVK9CMAcsrs6.jpg",
+        releaseDate: "Marzo 8, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/22.html",
+      },
+      {
+        season: 1,
+        number: 23,
+        title: "Historias que no conozco",
+        duration: "24 min",
+        description:
+          "Con la derrota de Autumn, el equipo obtiene un nuevo artefacto que les revela una parte de la historia del mundo y la verdad sobre Dios y las reglas que lo rigen.",
+        img: "https://image.tmdb.org/t/p/w300/eQAepkmfRiZD4zF4dJGY7r55WyU.jpg",
+        releaseDate: "Marzo 15, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/23.html",
+      },
+      {
+        season: 1,
+        number: 24,
+        title: "Para ti, de mí",
+        duration: "24 min",
+        description:
+          "Fuuko, ahora con una nueva comprensión del mundo y de Andy, le hace una promesa. Su aventura juntos entra en una nueva y emocionante fase.",
+        img: "https://image.tmdb.org/t/p/w300/cTweX3K6Adm98sXI6lLhFKKfcRh.jpg",
+        releaseDate: "Marzo 22, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Undead-unluck/T1/24.html",
+      },
+    ],
+  },
+  {
+    id: "viral-hit",
+    title: "Viral Hit",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=480,height=720,quality=85/catalog/crunchyroll/a0ad4900ae610de44eb49dfc0881cc6a.jpe",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1350/cr/landscape_large/019bc801-4ef2-4ca4-a17e-eaf2fdae82fc.png",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/397409971ee95b61bcaaa65b598280e7.jpg",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/cr/logo/b4475c99-eb1e-4afb-8bad-db6528e1c1a1.png",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751872280/GJ0H7QGME-backdrop_wide_rklixi.avif",
+    trailerUrl: "https://www.youtube.com/embed/rlRNNa-ov-w?si=f0mbfZ0pAIfkRJV1",
+    description:
+      "El flaco estudiante de secundaria Hobin Yoo es probablemente el último chico que esperarías protagonizar un canal de NewTube que gira en torno a la pelea. Pero después de seguir algunos consejos de un misterioso canal de NewTube, Hobin pronto noquea a tipos más fuertes que él y recauda más dinero del que jamás hubiera soñado. ¿Podrá Hobin seguir así o eventualmente encontrará su rival?.",
+    genres: ["Acción"],
+    rating: 4.7,
+    ratingCount: "20K",
+    seasons: 1,
+    episodesTotal: 12,
+    status: "Finalizado",
+    year: 2024,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 375)), // Calculado desde el 26/06/24
+    audio: "Subtitulado",
+    creator: "Taejun Pak",
+    contentWarning: "+16 Violencia, Lenguaje",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Primer post.",
+        duration: "22 min",
+        description:
+          "Hobin Yoo, un estudiante marginado y acosado, descubre un misterioso canal de NewTube que enseña a pelear. Su vida da un giro inesperado tras una pelea accidental que se vuelve viral.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/b8bf242593f0f0fa1abee4f1d1aed7f8.jpe",
+        releaseDate: "Abril 10, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Tengo que ser más fuerte.",
+        duration: "22 min",
+        description:
+          "Inspirado por el dinero y la atención, Hobin decide tomar en serio su canal de peleas. Su primer objetivo es aprender a recibir un golpe sin caer.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/00ed0487b23ad76461754b33afcbce34.jpe",
+        releaseDate: "Abril 17, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "La cita.",
+        duration: "22 min",
+        description:
+          "Para su próximo video, Hobin planea una transmisión en vivo durante una cita con su compañera de clase, Bomi. Sin embargo, un matón local interrumpe sus planes.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/0303663930ae44bb70301b64f87f8b3a.jpe",
+        releaseDate: "Abril 24, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "Humillación.",
+        duration: "22 min",
+        description:
+          "Hobin es humillado públicamente, lo que lo lleva a un punto de quiebre. Ahora, más decidido que nunca, busca una nueva técnica del canal misterioso para vengarse.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/f7d35064dc83114678bde2c1edaa7bef.jpe",
+        releaseDate: "Mayo 1, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Amigos.",
+        duration: "22 min",
+        description:
+          "Hobin se une a Woo Ji-hyeok, su camarógrafo y amigo. Juntos, planean mejorar la calidad de su canal 'Viral Hit' para atraer a más suscriptores.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/da07ec22c74bb9d1becdd86c7fa48d0e.jpe",
+        releaseDate: "Mayo 8, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "El Diablo.",
+        duration: "22 min",
+        description:
+          "Para su próximo video, Hobin decide enfrentarse a 'Pakgo', un luchador callejero conocido por su estilo de pelea brutal y sádico, apodado 'El Diablo'.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/6d05bdc1f0a8b02677a4fac672414dce.jpe",
+        releaseDate: "Mayo 15, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "Entrenamiento especial.",
+        duration: "22 min",
+        description:
+          "Hobin se somete a un entrenamiento riguroso para aprender Taekwondo y tener una oportunidad contra Pakgo. La pelea pondrá a prueba todo lo que ha aprendido.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/4f4df1eb1b71fe6934bccb937bfd3a35.jpe",
+        releaseDate: "Mayo 22, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "Una pelea de verdad.",
+        duration: "22 min",
+        description:
+          "La batalla contra Pakgo comienza. Hobin debe combinar las técnicas que aprendió con su propio ingenio para sobrevivir a una pelea real y sin reglas.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d9cf60cd35a72f64281433f5d4c747ce.jpe",
+        releaseDate: "Mayo 29, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Compañeros.",
+        duration: "22 min",
+        description:
+          "Tras su victoria, Hobin se gana el respeto de otros luchadores. Recibe una oferta para unirse a una compañía de NewTube más grande, pero esto crea un conflicto con su amigo Ji-hyeok.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fe74c9cb217311cfc33a1249348c4180.jpe",
+        releaseDate: "Junio 5, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Un nuevo contrincante.",
+        duration: "22 min",
+        description:
+          "Un nuevo y misterioso canal aparece, desafiando directamente a Hobin. Su oponente es un luchador profesional que amenaza con exponer la verdad detrás de sus 'secretos'.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2646d866fab32e83e1253908f6d16049.jpe",
+        releaseDate: "Junio 12, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Un nudo en el pecho.",
+        duration: "22 min",
+        description:
+          "La popularidad de Hobin lo pone en la mira de un peligroso sindicato criminal que controla a los streamers de peleas. Ahora, las peleas ya no son por dinero, sino por supervivencia.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8dda744390d13ed956d03e3b6fa5337e.jpe",
+        releaseDate: "Junio 19, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "Felicidad.",
+        duration: "22 min",
+        description:
+          "Hobin debe enfrentarse al líder del sindicato en una batalla final para proteger a sus amigos y el pequeño mundo de felicidad que ha logrado construir.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/698eb57a0b398c2101ad54c82be1afb4.jpe",
+        releaseDate: "Junio 26, 2024",
+        language: "Subtitulado",
+        videoUrl: "frame/Viral-Hit/T1/12.html",
+      },
+    ],
+  },
+  {
+    id: "yaiba-samurai-legend",
+    title: "YAIBA: Samurai Legend",
+    img: "https://a.storyblok.com/f/178900/905x1280/c980117c57/yaiba-samurai-legend-main-visual.jpg/m/filters:quality(95)format(webp)",
+    heroImg:
+      "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABQBIw4o2OzZdi2UKWYl7_vcEWbQmgokm6NQanpKd2XI7S_wCN1mV8vsL5cY8p2S23N0iwcO7DKgqgeSzotD_zBMtLGuTxkUxe6l8.jpg?r=7c8",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751869704/8f7b2a942e0a83fbe800a12ab50b10990546d7f3c082a4a551ee437ccbc0de3f_ddxrba.jpg",
+    logoImg:
+      "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABW4-8Khd-4xI4GcJJazdd_hQ1df1J5xRmiI8WW3ui-YNwZl8mQYTmWr1BGNvHAhvcnj4NVoUWVZbWpiOdXwWP_3Bq4sn8Lt8tpY.webp?r=9cd",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751870048/Yaiba_Blogsplash_1200x630_nwqda8.jpg",
+    trailerUrl: "https://www.youtube.com/embed/vanJ-gn2dQc?si=EkMWbYYtI-rK5Qf1",
+    description:
+      "El viaje de Yaiba para convertirse en un verdadero samurái lo lleva desde su hogar en el bosque hasta una ajetreada ciudad llena de rivales, amistades y poderes ancestrales.",
+    genres: ["Acción", "Shounen"],
+    rating: 4.8,
+    ratingCount: "13.7K",
+    seasons: 1,
+    episodesTotal: 14,
+    status: "En Emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 2)), // Hace 2 días
+    audio: "Subtitulado",
+    creator: "Gosho Aoyama",
+    contentWarning: "+13",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Conozcan a Yaiba.",
+        duration: "23 min",
+        description:
+          "Yaiba Kurogane, un joven samurái criado en la selva, llega a la ciudad por primera vez y se encuentra con la familia Mine, desafiando a su rival, Takeshi Onimaru.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABVkUKNZLdAr-nJ317Rg1a83dGCwyNi7p5v092WVVT03KrIpw2B9sG3o9w39oGPRP9GINQFy5br81Vv9fqn9_9_yLME1_MMvTovRKuGl6g3qtKftA_zdggto_.webp?r=9f7",
+        releaseDate: "Abril 5, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Fujinken renacido.",
+        duration: "23 min",
+        description:
+          "Onimaru es poseído por la espada del Dios del Viento, Fujinken, convirtiéndose en un demonio. Yaiba debe encontrar la espada legendaria Raijinken para poder hacerle frente.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABTbvfzXabgWa9saSomc6c7BogMUGh52omM0hZ2rOOZlphURXDGJm-RvWxaM8fqQLMuDYYMM_MZORCqRMj0NYVtiDoQ-DUnHQjtxfTnGrGbaLRfKCneEBR7DP.webp?r=2f0",
+        releaseDate: "Abril 12, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Otro maken.",
+        duration: "23 min",
+        description:
+          "La búsqueda de la Raijinken lleva a Yaiba al monte Fuji, donde debe superar las pruebas de los legendarios Musashi y Kojiro para ser digno de la espada.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABRVqX3derQNBlCCnxASURUF4eSa9u_RsuhfqtBwpleDK2RcsDWcUWK2h7bCHwaWsEXPe4iViUJctXwDLbo5lWYNzbofYJw8VfU6UH-HXctq7XRLs4lRFKkCs.webp?r=127",
+        releaseDate: "Abril 19, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "El Ataque de los Ocho Ogros.",
+        duration: "23 min",
+        description:
+          "Con la Raijinken en su poder, Yaiba debe aprender a controlar sus poderes de trueno. Mientras, Onimaru envía a sus ocho generales demonio para atacar la ciudad.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABfFrMMQ7ybghbIxK7fg5rAJOFug9LefMR0vGG9hnfR8uj2w6fzeBerBhYWDUqWBHlPe80TTp8Ex8AlsGueoY6czj9gOi7nlWuMW79QSAeufZlIxXfSjPAiw4.webp?r=0aa",
+        releaseDate: "Abril 26, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Diversión en las Termas.",
+        duration: "23 min",
+        description:
+          "Yaiba y sus amigos se enfrentan al general demonio con forma de babosa en unas aguas termales, donde el vapor y el agua complican la batalla.",
+        img: "https://occ-0-4440-116.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABf6o6D88oseVTa4dwBj3Imrc7Jyc7pP8NncJengq3q3Gw_f81QHB9mW5jAGwxkYQ1_IQ2XANjGN6ogjXrmHK_vlC5fg93p88aGDAm1bFeyHazIpvGmpAKTrP.webp?r=c09",
+        releaseDate: "Mayo 3, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "El Inesperado Señor Murciélago.",
+        duration: "23 min",
+        description:
+          "El siguiente oponente es el Hombre Murciélago, un general demonio vampírico que puede controlar las sombras y absorber la energía de sus víctimas.",
+        img: "https://occ-0-1472-3933.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABT9tlAQ7DXsizvQkE_ff5TVBAUUNk0VCUUXG2qlPMX6vboUnvVVcGoJ8UPeSxSeVBLniIivpduC9VXNlCbEUqee5FHWuWuwbHys8fatgFmmRg6BsVbNGKT30.webp?r=923",
+        releaseDate: "Mayo 10, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "Kojiro Resucitado.",
+        duration: "23 min",
+        description:
+          "Onimaru resucita al legendario espadachín Sasaki Kojiro para que luche contra Yaiba. Kojiro, con su espada que se alarga, es un rival formidable.",
+        img: "https://occ-0-4440-116.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABYYRoHwb-t3rPpHuIk9Uq00wHvW47wITok_4a1jJ40mI100yXEXnmDwH6YkkVyjDxtsIKGtANTzhzIvWzLiGDZCwtvLWxRJr1YfcBOU9PSyJrPH2MEAm5lzk.webp?r=d3b",
+        releaseDate: "Mayo 17, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "El Duelo en la Isla Ganryu.",
+        duration: "23 min",
+        description:
+          "La batalla entre Yaiba y el resucitado Kojiro tiene lugar en la histórica isla de Ganryu, recreando el famoso duelo del pasado.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABaYHINr7eUMsJJW9H6V_-cGrYghgYqn4W1O5vNiAnJgg2lHI_jkLANmqOHfSZF_5Gc006zg_WnEMcpoSCgISuMjvPhRxJ6zT0kjMU5496Rl_cJNkVzlvlXK0.webp?r=d06",
+        releaseDate: "Mayo 24, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "El origen del Corte Relámpago.",
+        duration: "23 min",
+        description:
+          "Para derrotar a Kojiro, Yaiba debe dominar la técnica definitiva de la Raijinken: el Corte Relámpago, un ataque que combina la velocidad y el poder del trueno.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABVzp8HWIXRKwOrGUQgcNf_OAnzXz7aRS6VEPGTO83nOtnL1uDHWwskMsIXhVZifhMs8nQo2CczXx9QAbFiaj-FKgzRBthPGEZuqbwa0EDaIrgzo2S6ZA2mtv.webp?r=3c0",
+        releaseDate: "Mayo 31, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Los Reyes Demonios de Onimaru.",
+        duration: "23 min",
+        description:
+          "Con sus generales derrotados, Onimaru convoca a sus guerreros más poderosos, los Cuatro Reyes Demonios, para que se enfrenten a Yaiba.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABXtnV3AoTZkfzzF8nUNBJbZfNgMrd0LlQi2mkuneA80ZkEx8aA8rmMNNITCHH02boVPTQ3F-igp2Kq97ffhGoFD67uXXfELJyVucEk_2wcgWkISKT2oa6llu.webp?r=666",
+        releaseDate: "Junio 7, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Raijinken vs. Fujinken.",
+        duration: "23 min",
+        description:
+          "La batalla final. Yaiba, habiendo dominado sus poderes, se enfrenta a Onimaru en un duelo que decidirá el destino del mundo.",
+        img: "https://image.tmdb.org/t/p/w300/giNqufvsOT69BqKh1TzW4a6VeXc.jpg",
+        releaseDate: "Junio 14, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/11.html",
+      },
+    ],
+  },
+  {
     id: "your-name",
     title: "Your Name (Kimi no Na wa)",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/c9947dfac4b57728c3c7eb81ed77ac09.jpg",
@@ -15369,22 +16543,6 @@ export const newEpisodes = [
     url: "#",
     day: "hoy",
     episodeNum: 1,
-  },
-  {
-    title: "Classic Stars",
-    meta: "Episodio 13",
-    time: "12:15",
-    img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/240x360/catalog/crunchyroll/d719910d5538e1b343a4155b1784d1a0.jpe",
-    url: "#",
-    day: "hoy",
-  },
-  {
-    title: "Dr. STONE",
-    meta: "Episodio 12 • Sub | Dob",
-    time: "15:00",
-    img: "https://a.storyblok.com/f/178900/960x1357/d42021c586/dr-stone-science-future-kv.jpeg/m/filters:quality(95)format(webp)",
-    url: "#",
-    day: "ayer",
   },
   {
     title: "Jujutsu Kaisen",

@@ -52,7 +52,7 @@ $(document).ready(function () {
   function createDynamicEpisodeItem(episode, anime) {
     const originalMeta = `Episodio ${episode.number} • ${episode.language}`;
     // *** AQUÍ ESTÁ EL CAMBIO ***
-    const initialImage = anime.horImg; // La imagen inicial ahora es el póster del anime.
+    const initialImage = anime.fonImg; // La imagen inicial ahora es el póster del anime.
     const hoverImage = episode.img; // La imagen al pasar el cursor es la miniatura del episodio.
 
     return `
