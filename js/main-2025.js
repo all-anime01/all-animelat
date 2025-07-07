@@ -51,25 +51,27 @@ $(document).ready(function () {
 
   function createDynamicEpisodeItem(episode, anime) {
     const originalMeta = `Episodio ${episode.number} • ${episode.language}`;
-    // Usamos el póster del anime como imagen de hover
-    const hoverImg = anime.img;
+    // *** AQUÍ ESTÁ EL CAMBIO ***
+    const initialImage = anime.horImg; // La imagen inicial ahora es el póster del anime.
+    const hoverImage = episode.img; // La imagen al pasar el cursor es la miniatura del episodio.
+
     return `
-        <li class="episode-item"
-            data-original-img="${episode.img}"
-            data-hover-img="${hoverImg}" 
-            data-original-meta="${originalMeta}"
-            data-episode-num="${episode.number}">
-            <a href="anime-details.html?id=${anime.id}">
-                <div class="episode-thumbnail">
-                    <img src="${episode.img}" alt="${anime.title} Cover" loading="lazy">
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="episode-details">
-                    <p class="episode-title">${anime.title}</p>
-                    <p class="episode-meta">${originalMeta}</p>
-                </div>
-            </a>
-        </li>`;
+      <li class="episode-item"
+          data-original-img="${initialImage}"
+          data-hover-img="${hoverImage}" 
+          data-original-meta="${originalMeta}"
+          data-episode-num="${episode.number}">
+          <a href="anime-details.html?id=${anime.id}">
+              <div class="episode-thumbnail">
+                  <img src="${initialImage}" alt="${anime.title} Cover" loading="lazy">
+                  <div class="play-icon"><i class="fas fa-play"></i></div>
+              </div>
+              <div class="episode-details">
+                  <p class="episode-title">${anime.title}</p>
+                  <p class="episode-meta">${originalMeta}</p>
+              </div>
+          </a>
+      </li>`;
   }
 
   function createFavoriteEpisodeCard(episode, anime) {
@@ -514,7 +516,7 @@ $(document).ready(function () {
     $("#open-trailer-modal").on("click", () =>
       $("#trailer-modal").css("display", "flex").hide().fadeIn()
     );
-    $("#close-trailer-modal, #trailer-modal").on(
+    $("#close-trailer-modal, .trailer-modal").on(
       "click",
       (e) =>
         (e.target === e.currentTarget || $(e.target).hasClass("close-modal")) &&
@@ -581,8 +583,9 @@ $(document).ready(function () {
     }
     function toggleEpisodeFavorite(episodeId) {
       let favorites = getFavoriteEpisodes();
-      if (favorites.includes(episodeId)) {
-        favorites = favorites.filter((id) => id !== episodeId);
+      const index = favorites.indexOf(episodeId);
+      if (index > -1) {
+        favorites.splice(index, 1);
       } else {
         favorites.push(episodeId);
       }
