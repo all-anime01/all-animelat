@@ -1,4 +1,4 @@
-import { animeData, newEpisodes } from "./database.js";
+import { animeData } from "./database.js";
 
 $(document).ready(function () {
   // --- FUNCIONES AUXILIARES ---
@@ -51,10 +51,12 @@ $(document).ready(function () {
 
   function createDynamicEpisodeItem(episode, anime) {
     const originalMeta = `Episodio ${episode.number} • ${episode.language}`;
+    // Usamos el póster del anime como imagen de hover
+    const hoverImg = anime.img;
     return `
         <li class="episode-item"
             data-original-img="${episode.img}"
-            data-hover-img="${episode.img}" 
+            data-hover-img="${hoverImg}" 
             data-original-meta="${originalMeta}"
             data-episode-num="${episode.number}">
             <a href="anime-details.html?id=${anime.id}">
@@ -512,7 +514,7 @@ $(document).ready(function () {
     $("#open-trailer-modal").on("click", () =>
       $("#trailer-modal").css("display", "flex").hide().fadeIn()
     );
-    $("#close-trailer-modal, .trailer-modal").on(
+    $("#close-trailer-modal, #trailer-modal").on(
       "click",
       (e) =>
         (e.target === e.currentTarget || $(e.target).hasClass("close-modal")) &&
@@ -739,16 +741,13 @@ $(document).ready(function () {
       const currentVote = userVotes[episodeId];
       let voteData = allVotes[episodeId];
 
-      // Si el usuario ya había votado por lo mismo, anula su voto.
       if (currentVote === voteToApply) {
         voteData[voteToApply === "like" ? "likes" : "dislikes"]--;
-        userVotes[episodeId] = null; // Anular
+        userVotes[episodeId] = null;
       } else {
-        // Si había un voto previo diferente, lo anula primero.
         if (currentVote) {
           voteData[currentVote === "like" ? "likes" : "dislikes"]--;
         }
-        // Aplica el nuevo voto
         voteData[voteToApply === "like" ? "likes" : "dislikes"]++;
         userVotes[episodeId] = voteToApply;
       }
@@ -819,8 +818,13 @@ $(document).ready(function () {
     });
 
     $(document).on("keyup", function (e) {
-      if (e.key === "Escape" && playerModal.is(":visible")) {
-        $("#close-player-modal").click();
+      if (e.key === "Escape") {
+        if (playerModal.is(":visible")) {
+          $("#close-player-modal").click();
+        }
+        if ($("#trailer-modal").is(":visible")) {
+          $("#close-trailer-modal").click();
+        }
       }
     });
   }
