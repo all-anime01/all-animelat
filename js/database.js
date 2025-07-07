@@ -7103,7 +7103,9 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kafka Hibino es un hombre que, tras renunciar a su sueño, trabaja como limpiador de cadáveres de kaijus. La llegada de un nuevo compañero hará que las cosas cambien en su vida, pero un incidente inesperado lo transformará para siempre.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/39a7d1b7fd412685e1d409f77e42f404.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/c2257c075677c3bfe0d66b46411529fb.jpg",
+        hoverImg:
+          "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/39a7d1b7fd412685e1d409f77e42f404.jpe",
         releaseDate: "Abril 13, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/1.html",
@@ -12754,7 +12756,8 @@ export const animeData = [
     id: "pokemon-horizons",
     title: "Pokémon: Horizons",
     img: "https://a.storyblok.com/f/178900/750x1061/6ccbcbf59b/pokemonhorizons_megavoltagekv.png/m/filters:quality(95)format(webp)",
-    heroImg: "image/Pokemon-Horizons/b.avif",
+    heroImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751857668/pokemon-horizons-mega-voltage-teaser-image_fpzjhq.avif",
     logoImg:
       "https://upload.wikimedia.org/wikipedia/commons/e/e8/Pok%C3%A9mon_Horizons_The_Series_Logo.png",
     imgMobile:
@@ -13293,6 +13296,9 @@ export const animeData = [
           "Liko se preocupa por el comportamiento distante de Sprigatito. Teme que su compañero quiera dejarla, y debe enfrentar sus inseguridades para fortalecer su vínculo.",
         img: "https://image.tmdb.org/t/p/w300/9f9fU2Bw6gGYaa2TMUWnDwPrrjv.jpg",
         releaseDate: "17/02/24",
+        language: "Sub | Dob",
+        videoUrl: "frame/Pokemon-horizons/T1/40.html",
+        votes: { likes: 987, dislikes: 8 },
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/40.html",
         votes: { likes: 987, dislikes: 8 },
@@ -13994,7 +14000,7 @@ export const animeData = [
         releaseDate: "03/05/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/94.html",
-        votes: { likes: 987, dislikes: 8 },
+        votes: { likes: 587, dislikes: 9 },
       },
       {
         season: 1,
@@ -14007,7 +14013,7 @@ export const animeData = [
         releaseDate: "10/05/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/95.html",
-        votes: { likes: 987, dislikes: 8 },
+        votes: { likes: 907, dislikes: 4 },
       },
       {
         season: 1,
@@ -14043,7 +14049,7 @@ export const animeData = [
         description:
           "Liko, Roy y Friede llegan a Pueblo Cercle en la región de Paldea.",
         img: "https://image.tmdb.org/t/p/w300/vwCpEvwV4jGhjnWbdxKeYp2mbXV.jpg",
-        releaseDate: "2025-06-07", // Fecha corregida a YYYY-MM-DD
+        releaseDate: "Junio 7, 2025", // Fecha corregida a YYYY-MM-DD
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/98.html",
         votes: { likes: 349, dislikes: 6 },
@@ -14059,7 +14065,7 @@ export const animeData = [
         releaseDate: "14/06/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/99.html",
-        votes: { likes: 987, dislikes: 8 },
+        votes: { likes: 1087, dislikes: 8 },
       },
     ],
   },
