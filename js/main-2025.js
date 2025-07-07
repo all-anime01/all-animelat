@@ -49,31 +49,30 @@ $(document).ready(function () {
         `;
   }
 
-  function createEpisodeItem(episode) {
+  function createDynamicEpisodeItem(episode, anime) {
+    const originalMeta = `Episodio ${episode.number} • ${episode.language}`;
     return `
-            <li class="episode-item" 
-                data-original-img="${episode.img}" 
-                data-hover-img="${episode.hoverImg}"
-                data-original-meta="${episode.meta}"
-                data-episode-num="${episode.episodeNum}">
-                <a href="${episode.url}">
-                    <div class="episode-thumbnail">
-                        <img src="${episode.img}" alt="Anime Cover" loading="lazy">
-                        <div class="play-icon"><i class="fas fa-play"></i></div>
-                    </div>
-                    <div class="episode-details">
-                        <p class="episode-title">${episode.title}</p>
-                        <p class="episode-meta">${episode.meta}</p>
-                    </div>
-                    <p class="episode-time">${episode.time}</p>
-                </a>
-            </li>
-        `;
+        <li class="episode-item"
+            data-original-img="${episode.img}"
+            data-hover-img="${episode.img}" 
+            data-original-meta="${originalMeta}"
+            data-episode-num="${episode.number}">
+            <a href="anime-details.html?id=${anime.id}">
+                <div class="episode-thumbnail">
+                    <img src="${episode.img}" alt="${anime.title} Cover" loading="lazy">
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="episode-details">
+                    <p class="episode-title">${anime.title}</p>
+                    <p class="episode-meta">${originalMeta}</p>
+                </div>
+            </a>
+        </li>`;
   }
 
   function createFavoriteEpisodeCard(episode, anime) {
     return `
-            <div class="episode-detail-card" data-anime-id="${anime.id}" data-episode-number="${episode.number}">
+            <div class="episode-detail-card">
                 <a href="anime-details.html?id=${anime.id}">
                     <div class="episode-img-container">
                         <img src="${episode.img}" alt="${episode.title}" loading="lazy">
@@ -113,15 +112,68 @@ $(document).ready(function () {
         .filter((a) => a.tags.includes("agregado"))
         .forEach((anime) => addedGrid.append(createAnimeCard(anime)));
     }
-    if (episodesListHoy.length) {
-      newEpisodes
-        .filter((ep) => ep.day === "hoy")
-        .forEach((ep) => episodesListHoy.append(createEpisodeItem(ep)));
-    }
-    if (episodesListAyer.length) {
-      newEpisodes
-        .filter((ep) => ep.day === "ayer")
-        .forEach((ep) => episodesListAyer.append(createEpisodeItem(ep)));
+
+    if (episodesListHoy.length || episodesListAyer.length) {
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+
+      const isSameDay = (d1, d2) => {
+        return (
+          d1.getFullYear() === d2.getFullYear() &&
+          d1.getMonth() === d2.getMonth() &&
+          d1.getDate() === d2.getDate()
+        );
+      };
+
+      let todayEpisodes = [];
+      let yesterdayEpisodes = [];
+
+      animeData.forEach((anime) => {
+        if (anime.episodes) {
+          anime.episodes.forEach((episode) => {
+            const releaseDate = new Date(episode.releaseDate);
+            if (!isNaN(releaseDate)) {
+              if (isSameDay(releaseDate, today)) {
+                todayEpisodes.push({ anime, episode });
+              } else if (isSameDay(releaseDate, yesterday)) {
+                yesterdayEpisodes.push({ anime, episode });
+              }
+            }
+          });
+        }
+      });
+
+      episodesListHoy.empty();
+      if (todayEpisodes.length > 0) {
+        todayEpisodes
+          .sort((a, b) => b.episode.number - a.episode.number)
+          .forEach((item) =>
+            episodesListHoy.append(
+              createDynamicEpisodeItem(item.episode, item.anime)
+            )
+          );
+      } else {
+        episodesListHoy.html(
+          '<p class="no-results" style="padding: 2rem 0;">No hay nuevos episodios hoy.</p>'
+        );
+      }
+
+      episodesListAyer.empty();
+      if (yesterdayEpisodes.length > 0) {
+        yesterdayEpisodes
+          .sort((a, b) => b.episode.number - a.episode.number)
+          .forEach((item) =>
+            episodesListAyer.append(
+              createDynamicEpisodeItem(item.episode, item.anime)
+            )
+          );
+        $("#yesterday-episodes-container").show();
+        $("#show-more-episodes").show();
+      } else {
+        $("#yesterday-episodes-container").hide();
+        $("#show-more-episodes").hide();
+      }
     }
 
     if (recommendationsCarousel.length || dubsCarousel.length) {
@@ -513,7 +565,14 @@ $(document).ready(function () {
 
     // --- Lógica de Favoritos de Episodios ---
     function getFavoriteEpisodes() {
-      return JSON.parse(localStorage.getItem("favoriteEpisodes")) || [];
+      try {
+        const favorites = localStorage.getItem("favoriteEpisodes");
+        return Array.isArray(JSON.parse(favorites))
+          ? JSON.parse(favorites)
+          : [];
+      } catch (e) {
+        return [];
+      }
     }
     function isEpisodeFavorite(episodeId) {
       return getFavoriteEpisodes().includes(episodeId);
@@ -581,7 +640,7 @@ $(document).ready(function () {
 
       const metaHtml = `
           <span>${episode.language}</span> &bull; <span>Lanzado el ${episode.releaseDate}</span>
-          <button class="player-action-btn favorite-btn-player" id="player-favorite-btn" data-episode-id="${episodeId}">
+          <button class="player-action-btn favorite-btn-player" id="player-favorite-btn" data-episode-id="${episodeId}" title="Agregar a Favoritos">
               <i class="far fa-bookmark"></i>
           </button>
       `;
@@ -633,58 +692,68 @@ $(document).ready(function () {
 
     function updateVoteUI(episodeId) {
       let allVotes = getEpisodeVotes();
-      // Inicializar con datos base si no existe en localStorage
+      // Inicializar con datos base de la DB si no existe en localStorage
       if (!allVotes[episodeId]) {
         const epData = anime.episodes.find(
           (e) => `${anime.id}-s${e.season}-ep${e.number}` === episodeId
         );
-        allVotes[episodeId] = epData?.votes || { likes: 0, dislikes: 0 };
+        allVotes[episodeId] = {
+          ...(epData?.votes || { likes: 0, dislikes: 0 }),
+        };
         saveEpisodeVotes(allVotes);
       }
+
       const votes = allVotes[episodeId];
-      const userVotes = getUserEpisodeVote();
-      const userVote = userVotes[episodeId];
 
       const actionsHtml = `
-            <button class="player-action-btn like-btn ${
-              userVote === "like" ? "active" : ""
-            }" data-episode-id="${episodeId}">
-                <i class="fas fa-thumbs-up"></i> <span class="like-count">${
-                  votes.likes
-                }</span>
+            <button class="player-action-btn like-btn" data-episode-id="${episodeId}">
+                <i class="fas fa-thumbs-up"></i> <span class="like-count">${votes.likes}</span>
             </button>
-            <button class="player-action-btn dislike-btn ${
-              userVote === "dislike" ? "active" : ""
-            }" data-episode-id="${episodeId}">
-                <i class="fas fa-thumbs-down"></i> <span class="dislike-count">${
-                  votes.dislikes
-                }</span>
+            <button class="player-action-btn dislike-btn" data-episode-id="${episodeId}">
+                <i class="fas fa-thumbs-down"></i> <span class="dislike-count">${votes.dislikes}</span>
             </button>
         `;
       $("#player-episode-actions").html(actionsHtml);
+
+      // Actualizar estado visual del botón
+      const userVotes = getUserEpisodeVote();
+      const userVote = userVotes[episodeId];
+      $("#player-episode-actions .like-btn").toggleClass(
+        "active",
+        userVote === "like"
+      );
+      $("#player-episode-actions .dislike-btn").toggleClass(
+        "active",
+        userVote === "dislike"
+      );
     }
 
-    playerModal.on("click", ".like-btn, .dislike-btn", function () {
+    playerModal.on("click", ".like-btn, .dislike-btn", function (e) {
+      e.stopPropagation();
       const episodeId = $(this).data("episode-id");
-      const isLikeBtn = $(this).hasClass("like-btn");
+      const voteToApply = $(this).hasClass("like-btn") ? "like" : "dislike";
 
       let allVotes = getEpisodeVotes();
       let userVotes = getUserEpisodeVote();
 
       const currentVote = userVotes[episodeId];
-      const voteToApply = isLikeBtn ? "like" : "dislike";
+      let voteData = allVotes[episodeId];
 
+      // Si el usuario ya había votado por lo mismo, anula su voto.
       if (currentVote === voteToApply) {
-        userVotes[episodeId] = null;
-        allVotes[episodeId][voteToApply === "like" ? "likes" : "dislikes"]--;
+        voteData[voteToApply === "like" ? "likes" : "dislikes"]--;
+        userVotes[episodeId] = null; // Anular
       } else {
+        // Si había un voto previo diferente, lo anula primero.
         if (currentVote) {
-          allVotes[episodeId][currentVote === "like" ? "likes" : "dislikes"]--;
+          voteData[currentVote === "like" ? "likes" : "dislikes"]--;
         }
-        allVotes[episodeId][voteToApply === "like" ? "likes" : "dislikes"]++;
+        // Aplica el nuevo voto
+        voteData[voteToApply === "like" ? "likes" : "dislikes"]++;
         userVotes[episodeId] = voteToApply;
       }
 
+      allVotes[episodeId] = voteData;
       saveEpisodeVotes(allVotes);
       saveUserEpisodeVote(userVotes);
       updateVoteUI(episodeId);
@@ -742,7 +811,6 @@ $(document).ready(function () {
       toggleAnimeFavorite(animeId);
     });
 
-    // Event handler para favoritos de episodios
     playerModal.on("click", "#player-favorite-btn", function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -750,7 +818,6 @@ $(document).ready(function () {
       toggleEpisodeFavorite(episodeId);
     });
 
-    // Event listener para la tecla ESC
     $(document).on("keyup", function (e) {
       if (e.key === "Escape" && playerModal.is(":visible")) {
         $("#close-player-modal").click();
@@ -844,7 +911,7 @@ $(document).ready(function () {
   }
 
   $("#show-more-episodes").on("click", function () {
-    const yesterdaySection = $("#yesterday-episodes");
+    const yesterdaySection = $("#yesterday-episodes-container");
     yesterdaySection.slideToggle(400, () =>
       $(this).text(
         yesterdaySection.is(":visible") ? "Mostrar Menos" : "Mostrar Más"
@@ -853,23 +920,24 @@ $(document).ready(function () {
   });
 
   $(".episodes-list")
-    .on("mouseenter", ".episode-item", function () {
-      $(this)
-        .find(".episode-thumbnail img")
-        .attr("src", $(this).data("hover-img"));
-      $(this)
+    .on("mouseenter", ".episode-item a", function () {
+      const item = $(this).closest(".episode-item");
+      const hoverImg = item.data("hover-img");
+      if (hoverImg) {
+        item.find(".episode-thumbnail img").attr("src", hoverImg);
+      }
+      item
         .find(".episode-meta")
         .html(
-          `<i class="fas fa-play"></i> Reproducir E${$(this).data(
-            "episode-num"
-          )}`
+          `<i class="fas fa-play"></i> Reproducir E${item.data("episode-num")}`
         );
     })
-    .on("mouseleave", ".episode-item", function () {
-      $(this)
+    .on("mouseleave", ".episode-item a", function () {
+      const item = $(this).closest(".episode-item");
+      item
         .find(".episode-thumbnail img")
-        .attr("src", $(this).data("original-img"));
-      $(this).find(".episode-meta").html($(this).data("original-meta"));
+        .attr("src", item.data("original-img"));
+      item.find(".episode-meta").html(item.data("original-meta"));
     });
 
   const searchInput = $("#search-input");

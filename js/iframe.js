@@ -21,7 +21,7 @@ function go_to_player(url) {
   }
 
   // Lógica para asegurar 3 segundos de carga
-  const timerPromise = new Promise((resolve) => setTimeout(resolve, 5000));
+  const timerPromise = new Promise((resolve) => setTimeout(resolve, 3000));
   const iframeLoadPromise = new Promise((resolve) => {
     displayVideo.innerHTML = `
       <span id="backToPlayers" onclick="listPlayer();"></span>
@@ -124,7 +124,7 @@ if (msj && obtenerSuperCookie("msjad") == null) {
 
 function hideMsj(time = 0) {
   if (msj) {
-    CrearSuperCookie("msjad", true, time * 20);
+    CrearSuperCookie("msjad", true, time * 60);
     msj.style.display = "none";
   }
 }

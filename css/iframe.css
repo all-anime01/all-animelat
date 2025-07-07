@@ -14,8 +14,10 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #38bdf8;
+    background-color: rgb(7, 247, 59);
 }
+
+/* CAMBIO DE COLOR */
 
 body {
     background-color: #0d1117;
@@ -36,7 +38,7 @@ li {
     list-style-type: none;
 }
 
-/* --- ANUNCIO INICIAL --- */
+/* --- Anuncio Inicial --- */
 .msjad {
     position: absolute;
     top: 0;
@@ -47,7 +49,6 @@ li {
     backdrop-filter: blur(8px);
     z-index: 20000;
     display: flex;
-    /* Se mantiene flex para centrar */
     justify-content: center;
     align-items: center;
     padding: 1rem;
@@ -96,7 +97,8 @@ li {
 }
 
 .msjad .btn {
-    background: #38bdf8;
+    background: rgb(7, 247, 59);
+    /* CAMBIO DE COLOR */
     color: #0d1117;
     font-weight: 700;
     padding: 12px 30px;
@@ -110,7 +112,6 @@ li {
     background-color: #fff;
     transform: scale(1.05);
 }
-
 
 /* --- Contenedor Principal y Fondo --- */
 #PlayerDisplay {
@@ -164,9 +165,11 @@ li {
 
 .SelectLangDisp .SLD_A {
     opacity: 1;
-    border-color: #38bdf8;
+    border-color: rgb(7, 247, 59);
+    /* CAMBIO DE COLOR */
     transform: scale(1.08);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+    box-shadow: 0 0 15px rgba(7, 247, 59, 0.5);
+    /* CAMBIO DE COLOR */
 }
 
 .SelectLangDisp li img {
@@ -180,12 +183,14 @@ li {
 /* --- Contenedor de Opciones de Servidor --- */
 .OptionsLangDisp {
     overflow-y: auto;
-    height: calc(100% - 100px);
     position: absolute;
     width: 100%;
-    top: 100px;
-    padding: 0 20px;
     z-index: 10;
+    padding: 0 20px;
+    top: 120px;
+    /* CAMBIO DE POSICIÓN */
+    height: calc(100% - 120px);
+    /* CAMBIO DE POSICIÓN */
 }
 
 .OD {
@@ -217,7 +222,8 @@ li {
 
 .ODDIV li:hover {
     transform: translateY(-4px) !important;
-    border-color: #38bdf8;
+    border-color: rgb(7, 247, 59);
+    /* CAMBIO DE COLOR */
     background-color: #2c3a4f;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
@@ -312,7 +318,8 @@ li {
     width: 60px;
     height: 60px;
     border: 5px solid rgba(255, 255, 255, 0.2);
-    border-top-color: #38bdf8;
+    border-top-color: rgb(7, 247, 59);
+    /* CAMBIO DE COLOR */
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -381,11 +388,12 @@ li {
 }
 
 #backToPlayers:hover {
-    background-color: #38bdf8;
+    background-color: rgb(7, 247, 59);
     border-color: #fff;
     transform: scale(1.1);
 }
 
+/* CAMBIO DE COLOR */
 #backToPlayers img {
     display: none;
 }
@@ -399,16 +407,17 @@ li {
     pointer-events: none;
 }
 
-/* --- MEJORAS RESPONSIVAS --- */
+/* --- Mejoras Responsivas --- */
 @media screen and (max-width: 600px) {
     .OptionsLangDisp {
         padding: 0 10px;
-        /* Menos padding en los lados */
+        top: 100px;
+        /* Devolvemos el espacio en móvil para no desperdiciar pantalla */
+        height: calc(100% - 100px);
     }
 
     .OD {
         grid-template-columns: 1fr;
-        /* Una sola columna en móviles */
         gap: 12px;
     }
 

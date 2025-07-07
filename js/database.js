@@ -39,6 +39,7 @@ export const animeData = [
         releaseDate: "Octubre 9, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -51,6 +52,7 @@ export const animeData = [
         releaseDate: "Octubre 16, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -63,6 +65,7 @@ export const animeData = [
         releaseDate: "Octubre 23, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -75,6 +78,7 @@ export const animeData = [
         releaseDate: "Octubre 30, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -87,6 +91,7 @@ export const animeData = [
         releaseDate: "Noviembre 6, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -99,6 +104,7 @@ export const animeData = [
         releaseDate: "Noviembre 13, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -111,6 +117,7 @@ export const animeData = [
         releaseDate: "Noviembre 20, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -123,6 +130,7 @@ export const animeData = [
         releaseDate: "Noviembre 27, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -135,6 +143,7 @@ export const animeData = [
         releaseDate: "Diciembre 4, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -147,6 +156,7 @@ export const animeData = [
         releaseDate: "Diciembre 11, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -159,6 +169,7 @@ export const animeData = [
         releaseDate: "Diciembre 18, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -171,6 +182,7 @@ export const animeData = [
         releaseDate: "Diciembre 25, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -183,6 +195,7 @@ export const animeData = [
         releaseDate: "Enero 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -195,6 +208,7 @@ export const animeData = [
         releaseDate: "Enero 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -207,6 +221,7 @@ export const animeData = [
         releaseDate: "Enero 22, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -219,6 +234,7 @@ export const animeData = [
         releaseDate: "Enero 29, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -231,6 +247,7 @@ export const animeData = [
         releaseDate: "Febrero 5, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -243,6 +260,7 @@ export const animeData = [
         releaseDate: "Febrero 12, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -255,6 +273,7 @@ export const animeData = [
         releaseDate: "Febrero 19, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -267,6 +286,7 @@ export const animeData = [
         releaseDate: "Febrero 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -279,6 +299,7 @@ export const animeData = [
         releaseDate: "Marzo 5, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -291,6 +312,7 @@ export const animeData = [
         releaseDate: "Marzo 12, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -303,6 +325,7 @@ export const animeData = [
         releaseDate: "Marzo 19, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -315,6 +338,7 @@ export const animeData = [
         releaseDate: "Marzo 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 2
       {
@@ -328,6 +352,7 @@ export const animeData = [
         releaseDate: "Octubre 5, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -340,6 +365,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/26.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -352,6 +378,7 @@ export const animeData = [
         releaseDate: "Octubre 19, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/27.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -364,6 +391,7 @@ export const animeData = [
         releaseDate: "Octubre 26, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/28.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -376,6 +404,7 @@ export const animeData = [
         releaseDate: "Noviembre 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/29.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -388,6 +417,7 @@ export const animeData = [
         releaseDate: "Noviembre 9, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/30.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -400,6 +430,7 @@ export const animeData = [
         releaseDate: "Noviembre 16, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/31.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -412,6 +443,7 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/32.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -424,6 +456,7 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/33.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -436,6 +469,7 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/34.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -448,6 +482,7 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/35.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -460,6 +495,7 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/36.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -472,6 +508,7 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/37.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -484,6 +521,7 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Lock/T2/38.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -524,6 +562,7 @@ export const animeData = [
         releaseDate: "Octubre 10, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -536,6 +575,7 @@ export const animeData = [
         releaseDate: "Octubre 17, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -548,6 +588,7 @@ export const animeData = [
         releaseDate: "Octubre 24, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -560,6 +601,7 @@ export const animeData = [
         releaseDate: "Octubre 31, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -572,6 +614,7 @@ export const animeData = [
         releaseDate: "Noviembre 7, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -584,6 +627,7 @@ export const animeData = [
         releaseDate: "Noviembre 14, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -596,6 +640,7 @@ export const animeData = [
         releaseDate: "Noviembre 21, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -608,6 +653,7 @@ export const animeData = [
         releaseDate: "Noviembre 28, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -620,6 +666,7 @@ export const animeData = [
         releaseDate: "Diciembre 5, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -632,6 +679,7 @@ export const animeData = [
         releaseDate: "Diciembre 12, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -644,6 +692,7 @@ export const animeData = [
         releaseDate: "Diciembre 19, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -656,6 +705,7 @@ export const animeData = [
         releaseDate: "Diciembre 26, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -668,6 +718,7 @@ export const animeData = [
         releaseDate: "Diciembre 26, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 2 - The Separation
       {
@@ -681,6 +732,7 @@ export const animeData = [
         releaseDate: "Julio 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -693,6 +745,7 @@ export const animeData = [
         releaseDate: "Julio 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -705,6 +758,7 @@ export const animeData = [
         releaseDate: "Julio 22, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -717,6 +771,7 @@ export const animeData = [
         releaseDate: "Julio 29, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -729,6 +784,7 @@ export const animeData = [
         releaseDate: "Agosto 5, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -741,6 +797,7 @@ export const animeData = [
         releaseDate: "Agosto 12, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -753,6 +810,7 @@ export const animeData = [
         releaseDate: "Agosto 19, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -765,6 +823,7 @@ export const animeData = [
         releaseDate: "Agosto 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -777,6 +836,7 @@ export const animeData = [
         releaseDate: "Septiembre 9, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -789,6 +849,7 @@ export const animeData = [
         releaseDate: "Septiembre 16, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -801,6 +862,7 @@ export const animeData = [
         releaseDate: "Septiembre 23, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -813,6 +875,7 @@ export const animeData = [
         releaseDate: "Septiembre 30, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -825,6 +888,7 @@ export const animeData = [
         releaseDate: "Septiembre 30, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/26.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 3 - The Conflict
       {
@@ -838,6 +902,7 @@ export const animeData = [
         releaseDate: "Octubre 5, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/27.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -850,6 +915,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/28.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -862,6 +928,7 @@ export const animeData = [
         releaseDate: "Octubre 19, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/29.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -874,6 +941,7 @@ export const animeData = [
         releaseDate: "Octubre 26, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/30.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -886,6 +954,7 @@ export const animeData = [
         releaseDate: "Noviembre 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/31.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -898,6 +967,7 @@ export const animeData = [
         releaseDate: "Noviembre 9, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/32.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -910,6 +980,7 @@ export const animeData = [
         releaseDate: "Noviembre 16, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/33.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -922,6 +993,7 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/34.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -934,6 +1006,7 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/35.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -946,6 +1019,7 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/36.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -958,6 +1032,7 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/37.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -970,6 +1045,7 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/38.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -982,6 +1058,7 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/39.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -994,6 +1071,7 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/40.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -1031,6 +1109,7 @@ export const animeData = [
         releaseDate: "Abril 17, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1043,6 +1122,7 @@ export const animeData = [
         releaseDate: "Abril 24, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1055,6 +1135,7 @@ export const animeData = [
         releaseDate: "Mayo 1, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1067,6 +1148,7 @@ export const animeData = [
         releaseDate: "Mayo 8, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1079,6 +1161,7 @@ export const animeData = [
         releaseDate: "Mayo 15, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1091,6 +1174,7 @@ export const animeData = [
         releaseDate: "Mayo 22, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1103,6 +1187,7 @@ export const animeData = [
         releaseDate: "Mayo 29, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1115,6 +1200,7 @@ export const animeData = [
         releaseDate: "Junio 5, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1127,6 +1213,7 @@ export const animeData = [
         releaseDate: "Junio 12, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1139,6 +1226,7 @@ export const animeData = [
         releaseDate: "Junio 19, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1151,6 +1239,7 @@ export const animeData = [
         releaseDate: "Junio 26, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1163,6 +1252,7 @@ export const animeData = [
         releaseDate: "Julio 3, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1175,6 +1265,7 @@ export const animeData = [
         releaseDate: "Julio 10, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1187,6 +1278,7 @@ export const animeData = [
         releaseDate: "Julio 17, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1199,6 +1291,7 @@ export const animeData = [
         releaseDate: "Julio 24, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1211,6 +1304,7 @@ export const animeData = [
         releaseDate: "Julio 31, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1223,6 +1317,7 @@ export const animeData = [
         releaseDate: "Agosto 7, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1235,6 +1330,7 @@ export const animeData = [
         releaseDate: "Agosto 14, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1247,6 +1343,7 @@ export const animeData = [
         releaseDate: "Agosto 21, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1259,6 +1356,7 @@ export const animeData = [
         releaseDate: "Agosto 28, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1271,6 +1369,7 @@ export const animeData = [
         releaseDate: "Septiembre 4, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1283,6 +1382,7 @@ export const animeData = [
         releaseDate: "Septiembre 11, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1295,6 +1395,7 @@ export const animeData = [
         releaseDate: "Septiembre 18, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1307,6 +1408,7 @@ export const animeData = [
         releaseDate: "Septiembre 25, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1319,6 +1421,7 @@ export const animeData = [
         releaseDate: "Octubre 2, 2011",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T1/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 2 - Kyoto Saga
       {
@@ -1332,6 +1435,7 @@ export const animeData = [
         releaseDate: "Enero 7, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1344,6 +1448,7 @@ export const animeData = [
         releaseDate: "Enero 14, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1356,6 +1461,7 @@ export const animeData = [
         releaseDate: "Enero 21, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1368,6 +1474,7 @@ export const animeData = [
         releaseDate: "Enero 28, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1380,6 +1487,7 @@ export const animeData = [
         releaseDate: "Febrero 4, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1392,6 +1500,7 @@ export const animeData = [
         releaseDate: "Febrero 11, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1404,6 +1513,7 @@ export const animeData = [
         releaseDate: "Febrero 18, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1416,6 +1526,7 @@ export const animeData = [
         releaseDate: "Febrero 25, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1428,6 +1539,7 @@ export const animeData = [
         releaseDate: "Marzo 4, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1440,6 +1552,7 @@ export const animeData = [
         releaseDate: "Marzo 11, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1452,6 +1565,7 @@ export const animeData = [
         releaseDate: "Marzo 18, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -1464,6 +1578,7 @@ export const animeData = [
         releaseDate: "Marzo 25, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T2/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 3 - Shimane Illuminati Saga
       {
@@ -1477,6 +1592,7 @@ export const animeData = [
         releaseDate: "Enero 6, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1489,6 +1605,7 @@ export const animeData = [
         releaseDate: "Enero 13, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1501,6 +1618,7 @@ export const animeData = [
         releaseDate: "Enero 20, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1513,6 +1631,7 @@ export const animeData = [
         releaseDate: "Enero 27, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1525,6 +1644,7 @@ export const animeData = [
         releaseDate: "Febrero 3, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1537,6 +1657,7 @@ export const animeData = [
         releaseDate: "Febrero 10, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1549,6 +1670,7 @@ export const animeData = [
         releaseDate: "Febrero 17, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1561,6 +1683,7 @@ export const animeData = [
         releaseDate: "Febrero 24, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1573,6 +1696,7 @@ export const animeData = [
         releaseDate: "Marzo 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1585,6 +1709,7 @@ export const animeData = [
         releaseDate: "Marzo 9, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1597,6 +1722,7 @@ export const animeData = [
         releaseDate: "Marzo 16, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -1609,6 +1735,7 @@ export const animeData = [
         releaseDate: "Marzo 23, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T3/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 4 - Beyond the Snow Saga
       {
@@ -1622,6 +1749,7 @@ export const animeData = [
         releaseDate: "Octubre 5, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1634,6 +1762,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1646,6 +1775,7 @@ export const animeData = [
         releaseDate: "Octubre 19, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1658,6 +1788,7 @@ export const animeData = [
         releaseDate: "Octubre 26, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1670,6 +1801,7 @@ export const animeData = [
         releaseDate: "Noviembre 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1682,6 +1814,7 @@ export const animeData = [
         releaseDate: "Noviembre 9, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1694,6 +1827,7 @@ export const animeData = [
         releaseDate: "Noviembre 16, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1706,6 +1840,7 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1718,6 +1853,7 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1730,6 +1866,7 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1742,6 +1879,7 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1754,6 +1892,7 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T4/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 5 - The Blue Night Saga
       {
@@ -1767,6 +1906,7 @@ export const animeData = [
         releaseDate: "Enero 4, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1779,6 +1919,7 @@ export const animeData = [
         releaseDate: "Enero 11, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1791,6 +1932,7 @@ export const animeData = [
         releaseDate: "Enero 18, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1803,6 +1945,7 @@ export const animeData = [
         releaseDate: "Enero 25, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1815,6 +1958,7 @@ export const animeData = [
         releaseDate: "Febrero 1, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1827,6 +1971,7 @@ export const animeData = [
         releaseDate: "Febrero 8, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1839,6 +1984,7 @@ export const animeData = [
         releaseDate: "Febrero 15, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1851,6 +1997,7 @@ export const animeData = [
         releaseDate: "Febrero 22, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1863,6 +2010,7 @@ export const animeData = [
         releaseDate: "Marzo 1, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1875,6 +2023,7 @@ export const animeData = [
         releaseDate: "Marzo 8, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1887,6 +2036,7 @@ export const animeData = [
         releaseDate: "Marzo 15, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -1899,6 +2049,7 @@ export const animeData = [
         releaseDate: "Marzo 22, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Blue-Exorcist/T5/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -1942,6 +2093,7 @@ export const animeData = [
         releaseDate: "Abril 2, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1954,6 +2106,7 @@ export const animeData = [
         releaseDate: "Abril 9, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1966,6 +2119,7 @@ export const animeData = [
         releaseDate: "Abril 16, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1978,6 +2132,7 @@ export const animeData = [
         releaseDate: "Abril 23, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -1990,6 +2145,7 @@ export const animeData = [
         releaseDate: "Abril 30, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2002,6 +2158,7 @@ export const animeData = [
         releaseDate: "Mayo 7, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2014,6 +2171,7 @@ export const animeData = [
         releaseDate: "Mayo 14, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2026,6 +2184,7 @@ export const animeData = [
         releaseDate: "Mayo 21, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2038,6 +2197,7 @@ export const animeData = [
         releaseDate: "Mayo 28, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2050,6 +2210,7 @@ export const animeData = [
         releaseDate: "Junio 4, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2062,6 +2223,7 @@ export const animeData = [
         releaseDate: "Junio 11, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2074,6 +2236,7 @@ export const animeData = [
         releaseDate: "Junio 18, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2086,6 +2249,7 @@ export const animeData = [
         releaseDate: "Junio 25, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2098,6 +2262,7 @@ export const animeData = [
         releaseDate: "Julio 2, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2110,6 +2275,7 @@ export const animeData = [
         releaseDate: "Julio 9, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2122,6 +2288,7 @@ export const animeData = [
         releaseDate: "Julio 16, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2134,6 +2301,7 @@ export const animeData = [
         releaseDate: "Julio 23, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2146,6 +2314,7 @@ export const animeData = [
         releaseDate: "Julio 30, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2158,6 +2327,7 @@ export const animeData = [
         releaseDate: "Agosto 6, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2170,6 +2340,7 @@ export const animeData = [
         releaseDate: "Agosto 13, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2182,6 +2353,7 @@ export const animeData = [
         releaseDate: "Agosto 20, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2194,6 +2366,7 @@ export const animeData = [
         releaseDate: "Agosto 27, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2206,6 +2379,7 @@ export const animeData = [
         releaseDate: "Septiembre 3, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2218,6 +2392,7 @@ export const animeData = [
         releaseDate: "Septiembre 10, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2230,6 +2405,7 @@ export const animeData = [
         releaseDate: "Septiembre 17, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2242,6 +2418,7 @@ export const animeData = [
         releaseDate: "Septiembre 24, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/26.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2254,6 +2431,7 @@ export const animeData = [
         releaseDate: "Octubre 1, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/27.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2266,6 +2444,7 @@ export const animeData = [
         releaseDate: "Octubre 8, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/28.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2278,6 +2457,7 @@ export const animeData = [
         releaseDate: "Octubre 15, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/29.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2290,6 +2470,7 @@ export const animeData = [
         releaseDate: "Octubre 22, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/30.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2302,6 +2483,7 @@ export const animeData = [
         releaseDate: "Octubre 29, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/31.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2314,6 +2496,7 @@ export const animeData = [
         releaseDate: "Noviembre 5, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/32.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2326,6 +2509,7 @@ export const animeData = [
         releaseDate: "Noviembre 12, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/33.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2338,6 +2522,7 @@ export const animeData = [
         releaseDate: "Noviembre 19, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/34.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2350,6 +2535,7 @@ export const animeData = [
         releaseDate: "Noviembre 26, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/35.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2362,6 +2548,7 @@ export const animeData = [
         releaseDate: "Diciembre 3, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/36.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2374,6 +2561,7 @@ export const animeData = [
         releaseDate: "Diciembre 10, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/37.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2386,6 +2574,7 @@ export const animeData = [
         releaseDate: "Diciembre 17, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/38.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2398,6 +2587,7 @@ export const animeData = [
         releaseDate: "Diciembre 24, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/39.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2410,6 +2600,7 @@ export const animeData = [
         releaseDate: "Enero 7, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/40.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2422,6 +2613,7 @@ export const animeData = [
         releaseDate: "Enero 14, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/41.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2434,6 +2626,7 @@ export const animeData = [
         releaseDate: "Enero 21, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/42.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2446,6 +2639,7 @@ export const animeData = [
         releaseDate: "Enero 28, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/43.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2458,6 +2652,7 @@ export const animeData = [
         releaseDate: "Febrero 4, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/44.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2470,6 +2665,7 @@ export const animeData = [
         releaseDate: "Febrero 11, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/45.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2482,6 +2678,7 @@ export const animeData = [
         releaseDate: "Febrero 18, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/46.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2494,6 +2691,7 @@ export const animeData = [
         releaseDate: "Febrero 25, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/47.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2506,6 +2704,7 @@ export const animeData = [
         releaseDate: "Marzo 4, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/48.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2518,6 +2717,7 @@ export const animeData = [
         releaseDate: "Marzo 11, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/49.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2530,6 +2730,7 @@ export const animeData = [
         releaseDate: "Marzo 18, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/50.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2542,6 +2743,7 @@ export const animeData = [
         releaseDate: "Marzo 25, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/51.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -2554,6 +2756,7 @@ export const animeData = [
         releaseDate: "Abril 1, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T1/52.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 2 (Junior Youth Arc - 39 Episodios)
       {
@@ -2567,6 +2770,7 @@ export const animeData = [
         releaseDate: "Octubre 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2579,6 +2783,7 @@ export const animeData = [
         releaseDate: "Octubre 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2591,6 +2796,7 @@ export const animeData = [
         releaseDate: "Octubre 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2603,6 +2809,7 @@ export const animeData = [
         releaseDate: "Octubre 22, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2615,6 +2822,7 @@ export const animeData = [
         releaseDate: "Octubre 29, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2627,6 +2835,7 @@ export const animeData = [
         releaseDate: "Noviembre 5, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2639,6 +2848,7 @@ export const animeData = [
         releaseDate: "Noviembre 12, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2651,6 +2861,7 @@ export const animeData = [
         releaseDate: "Noviembre 19, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2663,6 +2874,7 @@ export const animeData = [
         releaseDate: "Noviembre 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2675,6 +2887,7 @@ export const animeData = [
         releaseDate: "Diciembre 3, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2687,6 +2900,7 @@ export const animeData = [
         releaseDate: "Diciembre 10, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2699,6 +2913,7 @@ export const animeData = [
         releaseDate: "Diciembre 17, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2711,6 +2926,7 @@ export const animeData = [
         releaseDate: "Diciembre 24, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2723,6 +2939,7 @@ export const animeData = [
         releaseDate: "Enero 7, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2735,6 +2952,7 @@ export const animeData = [
         releaseDate: "Enero 14, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2747,6 +2965,7 @@ export const animeData = [
         releaseDate: "Enero 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2759,6 +2978,7 @@ export const animeData = [
         releaseDate: "Enero 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2771,6 +2991,7 @@ export const animeData = [
         releaseDate: "Febrero 4, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2783,6 +3004,7 @@ export const animeData = [
         releaseDate: "Febrero 11, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2795,6 +3017,7 @@ export const animeData = [
         releaseDate: "Febrero 18, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2807,6 +3030,7 @@ export const animeData = [
         releaseDate: "Febrero 25, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2819,6 +3043,7 @@ export const animeData = [
         releaseDate: "Marzo 3, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2831,6 +3056,7 @@ export const animeData = [
         releaseDate: "Marzo 10, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2843,6 +3069,7 @@ export const animeData = [
         releaseDate: "Marzo 17, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2855,6 +3082,7 @@ export const animeData = [
         releaseDate: "Marzo 24, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2867,6 +3095,7 @@ export const animeData = [
         releaseDate: "Marzo 31, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/26.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2879,6 +3108,7 @@ export const animeData = [
         releaseDate: "Abril 7, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/27.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2891,6 +3121,7 @@ export const animeData = [
         releaseDate: "Abril 14, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/28.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2903,6 +3134,7 @@ export const animeData = [
         releaseDate: "Abril 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/29.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2915,6 +3147,7 @@ export const animeData = [
         releaseDate: "Abril 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/30.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2927,6 +3160,7 @@ export const animeData = [
         releaseDate: "Mayo 5, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/31.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2939,6 +3173,7 @@ export const animeData = [
         releaseDate: "Mayo 12, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/32.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2951,6 +3186,7 @@ export const animeData = [
         releaseDate: "Mayo 19, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/33.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2963,6 +3199,7 @@ export const animeData = [
         releaseDate: "Mayo 26, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/34.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2975,6 +3212,7 @@ export const animeData = [
         releaseDate: "Junio 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/35.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2987,6 +3225,7 @@ export const animeData = [
         releaseDate: "Junio 9, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/36.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -2999,6 +3238,7 @@ export const animeData = [
         releaseDate: "Junio 16, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/37.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -3011,6 +3251,7 @@ export const animeData = [
         releaseDate: "Junio 23, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/38.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -3023,6 +3264,7 @@ export const animeData = [
         releaseDate: "Junio 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Captain-Tsubasa/T2/39.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -3065,6 +3307,7 @@ export const animeData = [
         releaseDate: "Octubre 11, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3077,6 +3320,7 @@ export const animeData = [
         releaseDate: "Octubre 18, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3089,6 +3333,7 @@ export const animeData = [
         releaseDate: "Octubre 25, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3101,6 +3346,7 @@ export const animeData = [
         releaseDate: "Noviembre 1, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3113,6 +3359,7 @@ export const animeData = [
         releaseDate: "Noviembre 8, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3125,6 +3372,7 @@ export const animeData = [
         releaseDate: "Noviembre 15, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3137,6 +3385,7 @@ export const animeData = [
         releaseDate: "Noviembre 22, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3149,6 +3398,7 @@ export const animeData = [
         releaseDate: "Noviembre 29, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3161,6 +3411,7 @@ export const animeData = [
         releaseDate: "Diciembre 6, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3173,6 +3424,7 @@ export const animeData = [
         releaseDate: "Diciembre 13, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3185,6 +3437,7 @@ export const animeData = [
         releaseDate: "Diciembre 20, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3197,6 +3450,7 @@ export const animeData = [
         releaseDate: "Diciembre 27, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Chainsaw-man/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -3239,6 +3493,7 @@ export const animeData = [
         releaseDate: "Octubre 3, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3251,6 +3506,7 @@ export const animeData = [
         releaseDate: "Octubre 10, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3263,6 +3519,7 @@ export const animeData = [
         releaseDate: "Octubre 17, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3275,6 +3532,7 @@ export const animeData = [
         releaseDate: "Octubre 24, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3287,6 +3545,7 @@ export const animeData = [
         releaseDate: "Octubre 31, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3299,6 +3558,7 @@ export const animeData = [
         releaseDate: "Noviembre 7, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3311,6 +3571,7 @@ export const animeData = [
         releaseDate: "Noviembre 14, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3323,6 +3584,7 @@ export const animeData = [
         releaseDate: "Noviembre 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3335,6 +3597,7 @@ export const animeData = [
         releaseDate: "Noviembre 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3347,6 +3610,7 @@ export const animeData = [
         releaseDate: "Diciembre 5, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3359,6 +3623,7 @@ export const animeData = [
         releaseDate: "Diciembre 12, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3371,6 +3636,7 @@ export const animeData = [
         releaseDate: "Diciembre 19, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -3383,6 +3649,7 @@ export const animeData = [
         releaseDate: "Julio 3, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T2/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -3425,6 +3692,7 @@ export const animeData = [
         releaseDate: "Octubre 11, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3437,6 +3705,7 @@ export const animeData = [
         releaseDate: "Octubre 18, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3449,6 +3718,7 @@ export const animeData = [
         releaseDate: "Octubre 25, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3461,6 +3731,7 @@ export const animeData = [
         releaseDate: "Noviembre 1, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3473,6 +3744,7 @@ export const animeData = [
         releaseDate: "Noviembre 8, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3485,6 +3757,7 @@ export const animeData = [
         releaseDate: "Noviembre 15, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3497,6 +3770,7 @@ export const animeData = [
         releaseDate: "Noviembre 22, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3509,6 +3783,7 @@ export const animeData = [
         releaseDate: "Noviembre 29, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3521,6 +3796,7 @@ export const animeData = [
         releaseDate: "Diciembre 6, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3533,6 +3809,7 @@ export const animeData = [
         releaseDate: "Diciembre 13, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3545,6 +3822,7 @@ export const animeData = [
         releaseDate: "Diciembre 20, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3557,6 +3835,7 @@ export const animeData = [
         releaseDate: "Diciembre 27, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3569,6 +3848,7 @@ export const animeData = [
         releaseDate: "Enero 10, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3581,6 +3861,7 @@ export const animeData = [
         releaseDate: "Enero 17, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3593,6 +3874,7 @@ export const animeData = [
         releaseDate: "Enero 24, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3605,6 +3887,7 @@ export const animeData = [
         releaseDate: "Enero 31, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3617,6 +3900,7 @@ export const animeData = [
         releaseDate: "Febrero 7, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3629,6 +3913,7 @@ export const animeData = [
         releaseDate: "Febrero 14, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3641,6 +3926,7 @@ export const animeData = [
         releaseDate: "Febrero 21, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3653,6 +3939,7 @@ export const animeData = [
         releaseDate: "Febrero 28, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dragon-Ball-Daima/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -3696,6 +3983,7 @@ export const animeData = [
         releaseDate: "Julio 5, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3708,6 +3996,7 @@ export const animeData = [
         releaseDate: "Julio 12, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3720,6 +4009,7 @@ export const animeData = [
         releaseDate: "Julio 19, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3732,6 +4022,7 @@ export const animeData = [
         releaseDate: "Julio 26, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3744,6 +4035,7 @@ export const animeData = [
         releaseDate: "Agosto 2, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3756,6 +4048,7 @@ export const animeData = [
         releaseDate: "Agosto 9, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3768,6 +4061,7 @@ export const animeData = [
         releaseDate: "Agosto 16, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3780,6 +4074,7 @@ export const animeData = [
         releaseDate: "Agosto 23, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3792,6 +4087,7 @@ export const animeData = [
         releaseDate: "Agosto 30, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3804,6 +4100,7 @@ export const animeData = [
         releaseDate: "Septiembre 6, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3816,6 +4113,7 @@ export const animeData = [
         releaseDate: "Septiembre 13, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3828,6 +4126,7 @@ export const animeData = [
         releaseDate: "Septiembre 20, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3840,6 +4139,7 @@ export const animeData = [
         releaseDate: "Septiembre 27, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3852,6 +4152,7 @@ export const animeData = [
         releaseDate: "Octubre 4, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3864,6 +4165,7 @@ export const animeData = [
         releaseDate: "Octubre 11, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3876,6 +4178,7 @@ export const animeData = [
         releaseDate: "Octubre 18, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3888,6 +4191,7 @@ export const animeData = [
         releaseDate: "Octubre 25, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3900,6 +4204,7 @@ export const animeData = [
         releaseDate: "Noviembre 1, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3912,6 +4217,7 @@ export const animeData = [
         releaseDate: "Noviembre 8, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3924,6 +4230,7 @@ export const animeData = [
         releaseDate: "Noviembre 15, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3936,6 +4243,7 @@ export const animeData = [
         releaseDate: "Noviembre 22, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3948,6 +4256,7 @@ export const animeData = [
         releaseDate: "Noviembre 29, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3960,6 +4269,7 @@ export const animeData = [
         releaseDate: "Diciembre 6, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -3972,6 +4282,7 @@ export const animeData = [
         releaseDate: "Diciembre 13, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 2: Stone Wars
@@ -3986,6 +4297,7 @@ export const animeData = [
         releaseDate: "Enero 14, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -3998,6 +4310,7 @@ export const animeData = [
         releaseDate: "Enero 14, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4010,6 +4323,7 @@ export const animeData = [
         releaseDate: "Enero 21, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4022,6 +4336,7 @@ export const animeData = [
         releaseDate: "Enero 28, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4034,6 +4349,7 @@ export const animeData = [
         releaseDate: "Febrero 4, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4046,6 +4362,7 @@ export const animeData = [
         releaseDate: "Febrero 11, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4058,6 +4375,7 @@ export const animeData = [
         releaseDate: "Febrero 18, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4070,6 +4388,7 @@ export const animeData = [
         releaseDate: "Febrero 25, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4082,6 +4401,7 @@ export const animeData = [
         releaseDate: "Marzo 4, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4094,6 +4414,7 @@ export const animeData = [
         releaseDate: "Marzo 11, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4106,6 +4427,7 @@ export const animeData = [
         releaseDate: "Marzo 18, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4118,6 +4440,7 @@ export const animeData = [
         releaseDate: "Marzo 25, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T2/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 3: Ryusui (Especial)
@@ -4132,6 +4455,7 @@ export const animeData = [
         releaseDate: "Julio 10, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/Especial-Ryusui/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 4: New World
@@ -4146,6 +4470,7 @@ export const animeData = [
         releaseDate: "Abril 6, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4158,6 +4483,7 @@ export const animeData = [
         releaseDate: "Abril 13, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4170,6 +4496,7 @@ export const animeData = [
         releaseDate: "Abril 20, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4182,6 +4509,7 @@ export const animeData = [
         releaseDate: "Abril 27, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4194,6 +4522,7 @@ export const animeData = [
         releaseDate: "Mayo 4, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4206,6 +4535,7 @@ export const animeData = [
         releaseDate: "Mayo 11, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4218,6 +4548,7 @@ export const animeData = [
         releaseDate: "Mayo 18, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4230,6 +4561,7 @@ export const animeData = [
         releaseDate: "Mayo 25, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4242,6 +4574,7 @@ export const animeData = [
         releaseDate: "Junio 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4254,6 +4587,7 @@ export const animeData = [
         releaseDate: "Junio 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4266,6 +4600,7 @@ export const animeData = [
         releaseDate: "Junio 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4278,6 +4613,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4290,6 +4626,7 @@ export const animeData = [
         releaseDate: "Octubre 19, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4302,6 +4639,7 @@ export const animeData = [
         releaseDate: "Octubre 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4314,6 +4652,7 @@ export const animeData = [
         releaseDate: "Noviembre 2, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4326,6 +4665,7 @@ export const animeData = [
         releaseDate: "Noviembre 9, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4338,6 +4678,7 @@ export const animeData = [
         releaseDate: "Noviembre 16, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4350,6 +4691,7 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4362,6 +4704,7 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4374,6 +4717,7 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4386,6 +4730,7 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -4398,6 +4743,7 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T3/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 5: Science Future
@@ -4412,6 +4758,7 @@ export const animeData = [
         releaseDate: "Enero 9, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4424,6 +4771,7 @@ export const animeData = [
         releaseDate: "Enero 16, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4436,6 +4784,7 @@ export const animeData = [
         releaseDate: "Enero 23, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4448,6 +4797,7 @@ export const animeData = [
         releaseDate: "Enero 30, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4460,6 +4810,7 @@ export const animeData = [
         releaseDate: "Febrero 6, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4472,6 +4823,7 @@ export const animeData = [
         releaseDate: "Febrero 13, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4484,6 +4836,7 @@ export const animeData = [
         releaseDate: "Febrero 20, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4496,6 +4849,7 @@ export const animeData = [
         releaseDate: "Febrero 27, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4508,6 +4862,7 @@ export const animeData = [
         releaseDate: "Marzo 6, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4520,6 +4875,7 @@ export const animeData = [
         releaseDate: "Marzo 13, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4532,6 +4888,7 @@ export const animeData = [
         releaseDate: "Marzo 20, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -4544,6 +4901,7 @@ export const animeData = [
         releaseDate: "Marzo 27, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -4587,6 +4945,7 @@ export const animeData = [
         releaseDate: "Abril 6, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4599,6 +4958,7 @@ export const animeData = [
         releaseDate: "Abril 13, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4611,6 +4971,7 @@ export const animeData = [
         releaseDate: "Abril 20, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4623,6 +4984,7 @@ export const animeData = [
         releaseDate: "Abril 27, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4635,6 +4997,7 @@ export const animeData = [
         releaseDate: "Mayo 4, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4647,6 +5010,7 @@ export const animeData = [
         releaseDate: "Mayo 11, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4659,6 +5023,7 @@ export const animeData = [
         releaseDate: "Mayo 18, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4671,6 +5036,7 @@ export const animeData = [
         releaseDate: "Mayo 25, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4683,6 +5049,7 @@ export const animeData = [
         releaseDate: "Junio 1, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4695,6 +5062,7 @@ export const animeData = [
         releaseDate: "Junio 8, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4707,6 +5075,7 @@ export const animeData = [
         releaseDate: "Junio 15, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4719,6 +5088,7 @@ export const animeData = [
         releaseDate: "Junio 22, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4731,6 +5101,7 @@ export const animeData = [
         releaseDate: "Junio 29, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4743,6 +5114,7 @@ export const animeData = [
         releaseDate: "Julio 6, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4755,6 +5127,7 @@ export const animeData = [
         releaseDate: "Julio 13, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4767,6 +5140,7 @@ export const animeData = [
         releaseDate: "Julio 20, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4779,6 +5153,7 @@ export const animeData = [
         releaseDate: "Julio 27, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4791,6 +5166,7 @@ export const animeData = [
         releaseDate: "Agosto 3, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4803,6 +5179,7 @@ export const animeData = [
         releaseDate: "Agosto 10, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4815,6 +5192,7 @@ export const animeData = [
         releaseDate: "Agosto 17, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4827,6 +5205,7 @@ export const animeData = [
         releaseDate: "Agosto 24, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4839,6 +5218,7 @@ export const animeData = [
         releaseDate: "Agosto 31, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4851,6 +5231,7 @@ export const animeData = [
         releaseDate: "Septiembre 7, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4863,6 +5244,7 @@ export const animeData = [
         releaseDate: "Septiembre 21, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4875,6 +5257,7 @@ export const animeData = [
         releaseDate: "Septiembre 28, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -4887,6 +5270,7 @@ export const animeData = [
         releaseDate: "Septiembre 28, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T1/26.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 2: Arco del Tren del Infinito
@@ -4901,6 +5285,7 @@ export const animeData = [
         releaseDate: "Octubre 10, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4913,6 +5298,7 @@ export const animeData = [
         releaseDate: "Octubre 17, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4925,6 +5311,7 @@ export const animeData = [
         releaseDate: "Octubre 24, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4937,6 +5324,7 @@ export const animeData = [
         releaseDate: "Noviembre 7, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4949,6 +5337,7 @@ export const animeData = [
         releaseDate: "Noviembre 14, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4961,6 +5350,7 @@ export const animeData = [
         releaseDate: "Noviembre 21, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4973,6 +5363,7 @@ export const animeData = [
         releaseDate: "Noviembre 28, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 2: Arco del Distrito Rojo
@@ -4987,6 +5378,7 @@ export const animeData = [
         releaseDate: "Diciembre 5, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -4999,6 +5391,7 @@ export const animeData = [
         releaseDate: "Diciembre 5, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5011,6 +5404,7 @@ export const animeData = [
         releaseDate: "Diciembre 12, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5023,6 +5417,7 @@ export const animeData = [
         releaseDate: "Diciembre 19, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5035,6 +5430,7 @@ export const animeData = [
         releaseDate: "Diciembre 26, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5047,6 +5443,7 @@ export const animeData = [
         releaseDate: "Enero 2, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5059,6 +5456,7 @@ export const animeData = [
         releaseDate: "Enero 9, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5071,6 +5469,7 @@ export const animeData = [
         releaseDate: "Enero 16, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5083,6 +5482,7 @@ export const animeData = [
         releaseDate: "Enero 23, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5095,6 +5495,7 @@ export const animeData = [
         releaseDate: "Enero 30, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5107,6 +5508,7 @@ export const animeData = [
         releaseDate: "Febrero 6, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -5119,6 +5521,7 @@ export const animeData = [
         releaseDate: "Febrero 13, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 3: Arco de la Aldea de los Herreros
@@ -5133,6 +5536,7 @@ export const animeData = [
         releaseDate: "Abril 9, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5145,6 +5549,7 @@ export const animeData = [
         releaseDate: "Abril 16, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5157,6 +5562,7 @@ export const animeData = [
         releaseDate: "Abril 23, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5169,6 +5575,7 @@ export const animeData = [
         releaseDate: "Abril 30, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5181,6 +5588,7 @@ export const animeData = [
         releaseDate: "Mayo 7, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5193,6 +5601,7 @@ export const animeData = [
         releaseDate: "Mayo 14, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5205,6 +5614,7 @@ export const animeData = [
         releaseDate: "Mayo 21, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5217,6 +5627,7 @@ export const animeData = [
         releaseDate: "Mayo 28, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5229,6 +5640,7 @@ export const animeData = [
         releaseDate: "Junio 4, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5241,6 +5653,7 @@ export const animeData = [
         releaseDate: "Junio 11, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -5253,6 +5666,7 @@ export const animeData = [
         releaseDate: "Junio 18, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T3/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 4: Arco del Entrenamiento de los Pilares
@@ -5267,6 +5681,7 @@ export const animeData = [
         releaseDate: "Mayo 12, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -5279,6 +5694,7 @@ export const animeData = [
         releaseDate: "Mayo 19, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -5291,6 +5707,7 @@ export const animeData = [
         releaseDate: "Mayo 26, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -5303,6 +5720,7 @@ export const animeData = [
         releaseDate: "Junio 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -5315,6 +5733,7 @@ export const animeData = [
         releaseDate: "Junio 9, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -5327,6 +5746,7 @@ export const animeData = [
         releaseDate: "Junio 16, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -5339,6 +5759,7 @@ export const animeData = [
         releaseDate: "Junio 23, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -5351,6 +5772,7 @@ export const animeData = [
         releaseDate: "Junio 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -5393,6 +5815,7 @@ export const animeData = [
         releaseDate: "Julio 7, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5405,6 +5828,7 @@ export const animeData = [
         releaseDate: "Julio 14, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5417,6 +5841,7 @@ export const animeData = [
         releaseDate: "Julio 21, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5429,6 +5854,7 @@ export const animeData = [
         releaseDate: "Julio 28, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5441,6 +5867,7 @@ export const animeData = [
         releaseDate: "Agosto 4, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5453,6 +5880,7 @@ export const animeData = [
         releaseDate: "Agosto 11, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5465,6 +5893,7 @@ export const animeData = [
         releaseDate: "Agosto 18, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5477,6 +5906,7 @@ export const animeData = [
         releaseDate: "Agosto 25, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5489,6 +5919,7 @@ export const animeData = [
         releaseDate: "Septiembre 1, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5501,6 +5932,7 @@ export const animeData = [
         releaseDate: "Septiembre 8, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5513,6 +5945,7 @@ export const animeData = [
         releaseDate: "Septiembre 15, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5525,6 +5958,7 @@ export const animeData = [
         releaseDate: "Septiembre 22, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5537,6 +5971,7 @@ export const animeData = [
         releaseDate: "Octubre 6, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5549,6 +5984,7 @@ export const animeData = [
         releaseDate: "Octubre 13, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5561,6 +5997,7 @@ export const animeData = [
         releaseDate: "Octubre 20, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5573,6 +6010,7 @@ export const animeData = [
         releaseDate: "Octubre 27, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5585,6 +6023,7 @@ export const animeData = [
         releaseDate: "Noviembre 3, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5597,6 +6036,7 @@ export const animeData = [
         releaseDate: "Noviembre 10, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5609,6 +6049,7 @@ export const animeData = [
         releaseDate: "Noviembre 17, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5621,6 +6062,7 @@ export const animeData = [
         releaseDate: "Noviembre 24, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5633,6 +6075,7 @@ export const animeData = [
         releaseDate: "Diciembre 1, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5645,6 +6088,7 @@ export const animeData = [
         releaseDate: "Diciembre 8, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5657,6 +6101,7 @@ export const animeData = [
         releaseDate: "Diciembre 15, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5669,6 +6114,7 @@ export const animeData = [
         releaseDate: "Diciembre 22, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5681,6 +6127,7 @@ export const animeData = [
         releaseDate: "Enero 5, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -5693,7 +6140,7 @@ export const animeData = [
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GP5HJ84P7-title_logo-en-us",
     imgMobile:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/cr/landscape_large/f1f855a8-4c4f-410a-8d19-5d254b7c191a.png",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751832135/GP5HJ84P7-backdrop_wide_mfgf1g.avif",
     trailerUrl: "https://www.youtube.com/embed/e39WEQGz4Nw?si=ngLPSLYYp2-J0cY5",
     description:
       "Rudo vive en los barrios bajos, donde los descendientes de criminales son repudiados. Un día, es acusado injustamente de un crimen que no cometió y es arrojado al Abismo, un lugar temido por todos. Allí, Rudo descubre la verdad sobre el mundo y despierta su habilidad para dar vida a los objetos a través de un 'Jinki', comenzando su lucha por cambiar su destino y limpiar su nombre.",
@@ -5723,6 +6170,7 @@ export const animeData = [
         releaseDate: "Julio 6, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -5764,7 +6212,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/y6cILr1P39wK8b6iA4Gv3k3Ff2b.jpg",
         releaseDate: "Julio 2, 2025",
         language: "Subtitulado",
-        videoUrl: "frame/Jigoku-Sensei-Nube-remake-2025/T1/1.html",
+        videoUrl: "frame/Hell-teacher-nube/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5776,7 +6225,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/oE8m0t6XJ3Y6l2b1q7i5j8b3h2a.jpg",
         releaseDate: "Julio 2, 2025",
         language: "Subtitulado",
-        videoUrl: "frame/Jigoku-Sensei-Nube-remake-2025/T1/2.html",
+        videoUrl: "frame/Hell-teacher-nube/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -5818,6 +6268,7 @@ export const animeData = [
         releaseDate: "Abril 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5830,6 +6281,7 @@ export const animeData = [
         releaseDate: "Abril 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5842,6 +6294,7 @@ export const animeData = [
         releaseDate: "Abril 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5854,6 +6307,7 @@ export const animeData = [
         releaseDate: "Abril 22, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5866,6 +6320,7 @@ export const animeData = [
         releaseDate: "Abril 29, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5878,6 +6333,7 @@ export const animeData = [
         releaseDate: "Mayo 6, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5890,6 +6346,7 @@ export const animeData = [
         releaseDate: "Mayo 13, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5902,6 +6359,7 @@ export const animeData = [
         releaseDate: "Mayo 20, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5914,6 +6372,7 @@ export const animeData = [
         releaseDate: "Junio 3, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5926,6 +6385,7 @@ export const animeData = [
         releaseDate: "Junio 10, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5938,6 +6398,7 @@ export const animeData = [
         releaseDate: "Junio 17, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5950,6 +6411,7 @@ export const animeData = [
         releaseDate: "Junio 24, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -5962,6 +6424,7 @@ export const animeData = [
         releaseDate: "Julio 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -5998,6 +6461,7 @@ export const animeData = [
         releaseDate: "Octubre 3, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6010,6 +6474,7 @@ export const animeData = [
         releaseDate: "Octubre 10, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6022,6 +6487,7 @@ export const animeData = [
         releaseDate: "Octubre 17, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6034,6 +6500,7 @@ export const animeData = [
         releaseDate: "Octubre 24, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6046,6 +6513,7 @@ export const animeData = [
         releaseDate: "Octubre 31, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6058,6 +6526,7 @@ export const animeData = [
         releaseDate: "Noviembre 7, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6070,6 +6539,7 @@ export const animeData = [
         releaseDate: "Noviembre 14, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6082,6 +6552,7 @@ export const animeData = [
         releaseDate: "Noviembre 21, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6094,6 +6565,7 @@ export const animeData = [
         releaseDate: "Noviembre 28, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6106,6 +6578,7 @@ export const animeData = [
         releaseDate: "Diciembre 5, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6118,6 +6591,7 @@ export const animeData = [
         releaseDate: "Diciembre 12, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6130,6 +6604,7 @@ export const animeData = [
         releaseDate: "Diciembre 19, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6142,6 +6617,7 @@ export const animeData = [
         releaseDate: "Diciembre 26, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6155,6 +6631,7 @@ export const animeData = [
         releaseDate: "Enero 16, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6168,6 +6645,7 @@ export const animeData = [
         releaseDate: "Enero 23, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6181,6 +6659,7 @@ export const animeData = [
         releaseDate: "Enero 30, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6194,6 +6673,7 @@ export const animeData = [
         releaseDate: "Febrero 6, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6206,6 +6686,7 @@ export const animeData = [
         releaseDate: "Febrero 13, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6218,6 +6699,7 @@ export const animeData = [
         releaseDate: "Febrero 20, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6230,6 +6712,7 @@ export const animeData = [
         releaseDate: "Febrero 27, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6242,6 +6725,7 @@ export const animeData = [
         releaseDate: "Marzo 6, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6254,6 +6738,7 @@ export const animeData = [
         releaseDate: "Marzo 13, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6266,6 +6751,7 @@ export const animeData = [
         releaseDate: "Marzo 20, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6278,6 +6764,7 @@ export const animeData = [
         releaseDate: "Marzo 27, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6290,6 +6777,7 @@ export const animeData = [
         releaseDate: "Julio 6, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6302,6 +6790,7 @@ export const animeData = [
         releaseDate: "Julio 13, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6314,6 +6803,7 @@ export const animeData = [
         releaseDate: "Julio 20, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6326,6 +6816,7 @@ export const animeData = [
         releaseDate: "Julio 27, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6338,6 +6829,7 @@ export const animeData = [
         releaseDate: "Agosto 3, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6350,6 +6842,7 @@ export const animeData = [
         releaseDate: "Agosto 31, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6362,6 +6855,7 @@ export const animeData = [
         releaseDate: "Septiembre 7, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6374,6 +6868,7 @@ export const animeData = [
         releaseDate: "Septiembre 14, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6386,6 +6881,7 @@ export const animeData = [
         releaseDate: "Septiembre 21, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6398,6 +6894,7 @@ export const animeData = [
         releaseDate: "Septiembre 28, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6410,6 +6907,7 @@ export const animeData = [
         releaseDate: "Octubre 5, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6422,6 +6920,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6434,6 +6933,7 @@ export const animeData = [
         releaseDate: "Octubre 19, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6446,6 +6946,7 @@ export const animeData = [
         releaseDate: "Octubre 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6458,6 +6959,7 @@ export const animeData = [
         releaseDate: "Noviembre 2, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6470,6 +6972,7 @@ export const animeData = [
         releaseDate: "Noviembre 9, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6482,6 +6985,7 @@ export const animeData = [
         releaseDate: "Noviembre 16, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6494,6 +6998,7 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6506,6 +7011,7 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6518,6 +7024,7 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6530,6 +7037,7 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6542,6 +7050,7 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6554,6 +7063,7 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -6580,7 +7090,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(), // Hoy
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // ayer
     audio: "Sub | Dob",
     creator: "Naoya Matsumoto",
     contentWarning:
@@ -6597,6 +7107,7 @@ export const animeData = [
         releaseDate: "Abril 13, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6609,6 +7120,7 @@ export const animeData = [
         releaseDate: "Abril 20, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6621,6 +7133,7 @@ export const animeData = [
         releaseDate: "Abril 27, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/3.html",
+        votes: { likes: 387, dislikes: 5 },
       },
       {
         season: 1,
@@ -6633,6 +7146,7 @@ export const animeData = [
         releaseDate: "Mayo 4, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6645,6 +7159,7 @@ export const animeData = [
         releaseDate: "Mayo 11, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6657,6 +7172,7 @@ export const animeData = [
         releaseDate: "Mayo 18, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6669,6 +7185,7 @@ export const animeData = [
         releaseDate: "Mayo 25, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6681,6 +7198,7 @@ export const animeData = [
         releaseDate: "Junio 1, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6693,6 +7211,7 @@ export const animeData = [
         releaseDate: "Junio 8, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6705,6 +7224,7 @@ export const animeData = [
         releaseDate: "Junio 15, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6717,6 +7237,7 @@ export const animeData = [
         releaseDate: "Junio 22, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6729,6 +7250,7 @@ export const animeData = [
         releaseDate: "Junio 29, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -6741,6 +7263,7 @@ export const animeData = [
         releaseDate: "Julio 5, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T2/00.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -6779,6 +7302,7 @@ export const animeData = [
         releaseDate: "Junio 27, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6791,6 +7315,7 @@ export const animeData = [
         releaseDate: "Junio 37, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6803,6 +7328,7 @@ export const animeData = [
         releaseDate: "Julio 4, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -6815,7 +7341,7 @@ export const animeData = [
     logoImg:
       "https://static.crunchyroll.com/fms/logo/85/png/86d98128-e062-4fe0-8997-8418e7823765.webp",
     imgMobile:
-      "https://static.crunchyroll.com/fms/landscape_large/94/png/84684ab9-632b-4576-a723-a0e86c00a6c9.jpg",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751832281/filters_quality_95_format_webp_moeail.webp",
     trailerUrl: "https://www.youtube.com/embed/70tdB-1Lwqc?si=CE_j0wN-ed6P5_BM",
     description:
       "Shigeo Kageyama, alias 'Mob', es un estudiante de secundaria que ha perfeccionado sus poderes psíquicos desde muy joven. Pero este poder tan potente se vuelve una carga. Como quiere llevar una vida normal como el resto, reprime sus poderes y emociones, pero cuando estas alcanzan el nivel 100, algo terrible le ocurre. Rodeado de falsos psíquicos, espíritus malvados y misteriosas organizaciones, ¿cómo vivirá Mob su vida? ¿Qué decisiones tomará?",
@@ -6846,6 +7372,7 @@ export const animeData = [
         releaseDate: "Julio 11, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6858,6 +7385,7 @@ export const animeData = [
         releaseDate: "Julio 11, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6870,6 +7398,7 @@ export const animeData = [
         releaseDate: "Julio 18, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6882,6 +7411,7 @@ export const animeData = [
         releaseDate: "Julio 25, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6894,6 +7424,7 @@ export const animeData = [
         releaseDate: "Agosto 1, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6906,6 +7437,7 @@ export const animeData = [
         releaseDate: "Agosto 8, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6918,6 +7450,7 @@ export const animeData = [
         releaseDate: "Agosto 15, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6930,6 +7463,7 @@ export const animeData = [
         releaseDate: "Agosto 22, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6942,6 +7476,7 @@ export const animeData = [
         releaseDate: "Agosto 29, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6954,6 +7489,7 @@ export const animeData = [
         releaseDate: "Septiembre 5, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6966,6 +7502,7 @@ export const animeData = [
         releaseDate: "Septiembre 12, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6978,6 +7515,7 @@ export const animeData = [
         releaseDate: "Septiembre 19, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6990,6 +7528,7 @@ export const animeData = [
         releaseDate: "Septiembre 26, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 2
@@ -7004,6 +7543,7 @@ export const animeData = [
         releaseDate: "Enero 7, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7016,6 +7556,7 @@ export const animeData = [
         releaseDate: "Enero 7, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7028,6 +7569,7 @@ export const animeData = [
         releaseDate: "Enero 14, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7040,6 +7582,7 @@ export const animeData = [
         releaseDate: "Enero 21, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7052,6 +7595,7 @@ export const animeData = [
         releaseDate: "Enero 28, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7064,6 +7608,7 @@ export const animeData = [
         releaseDate: "Febrero 4, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7076,6 +7621,7 @@ export const animeData = [
         releaseDate: "Febrero 11, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7088,6 +7634,7 @@ export const animeData = [
         releaseDate: "Febrero 18, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7100,6 +7647,7 @@ export const animeData = [
         releaseDate: "Febrero 25, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7112,6 +7660,7 @@ export const animeData = [
         releaseDate: "Marzo 4, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7124,6 +7673,7 @@ export const animeData = [
         releaseDate: "Marzo 11, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7136,6 +7686,7 @@ export const animeData = [
         releaseDate: "Marzo 18, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7148,6 +7699,7 @@ export const animeData = [
         releaseDate: "Marzo 25, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7160,6 +7712,7 @@ export const animeData = [
         releaseDate: "Abril 1, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T2/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 3
@@ -7174,6 +7727,7 @@ export const animeData = [
         releaseDate: "Octubre 5, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7186,6 +7740,7 @@ export const animeData = [
         releaseDate: "Octubre 5, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7199,6 +7754,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7211,6 +7767,7 @@ export const animeData = [
         releaseDate: "Octubre 19, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7223,6 +7780,7 @@ export const animeData = [
         releaseDate: "Octubre 26, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7235,6 +7793,7 @@ export const animeData = [
         releaseDate: "Noviembre 2, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7247,6 +7806,7 @@ export const animeData = [
         releaseDate: "Noviembre 9, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7259,6 +7819,7 @@ export const animeData = [
         releaseDate: "Noviembre 16, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7271,6 +7832,7 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7283,6 +7845,7 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7295,6 +7858,7 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7307,6 +7871,7 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 3,
@@ -7319,6 +7884,7 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Mob-Psycho-100/T3/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -7362,6 +7928,7 @@ export const animeData = [
         releaseDate: "Abril 3, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7374,6 +7941,7 @@ export const animeData = [
         releaseDate: "Abril 10, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7386,6 +7954,7 @@ export const animeData = [
         releaseDate: "Abril 17, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7398,6 +7967,7 @@ export const animeData = [
         releaseDate: "Abril 24, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7410,6 +7980,7 @@ export const animeData = [
         releaseDate: "Mayo 1, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7422,6 +7993,7 @@ export const animeData = [
         releaseDate: "Mayo 8, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7434,6 +8006,7 @@ export const animeData = [
         releaseDate: "Mayo 15, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7446,6 +8019,7 @@ export const animeData = [
         releaseDate: "Mayo 22, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7458,6 +8032,7 @@ export const animeData = [
         releaseDate: "Mayo 29, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7470,6 +8045,7 @@ export const animeData = [
         releaseDate: "Junio 5, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7482,6 +8058,7 @@ export const animeData = [
         releaseDate: "Junio 12, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7494,6 +8071,7 @@ export const animeData = [
         releaseDate: "Junio 19, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7506,6 +8084,7 @@ export const animeData = [
         releaseDate: "Junio 26, 2016",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 2 (25 episodios)
@@ -7520,6 +8099,7 @@ export const animeData = [
         releaseDate: "Abril 1, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7532,6 +8112,7 @@ export const animeData = [
         releaseDate: "Abril 8, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7544,6 +8125,7 @@ export const animeData = [
         releaseDate: "Abril 15, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7556,6 +8138,7 @@ export const animeData = [
         releaseDate: "Abril 22, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7568,6 +8151,7 @@ export const animeData = [
         releaseDate: "Abril 29, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7580,6 +8164,7 @@ export const animeData = [
         releaseDate: "Mayo 6, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7592,6 +8177,7 @@ export const animeData = [
         releaseDate: "Mayo 13, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7604,6 +8190,7 @@ export const animeData = [
         releaseDate: "Mayo 20, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7616,6 +8203,7 @@ export const animeData = [
         releaseDate: "Mayo 27, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7628,6 +8216,7 @@ export const animeData = [
         releaseDate: "Junio 3, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7640,6 +8229,7 @@ export const animeData = [
         releaseDate: "Junio 10, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7652,6 +8242,7 @@ export const animeData = [
         releaseDate: "Junio 17, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -7664,6 +8255,7 @@ export const animeData = [
         releaseDate: "Junio 24, 2017",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T2/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 3 (25 episodios)
@@ -7678,6 +8270,7 @@ export const animeData = [
         releaseDate: "Abril 7, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T3/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // ... (Episodios 2 a 24)
       {
@@ -7691,6 +8284,7 @@ export const animeData = [
         releaseDate: "Septiembre 29, 2018",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T3/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 4 (25 episodios)
@@ -7705,6 +8299,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2019",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T4/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // ... (Episodios 2 a 24)
       {
@@ -7718,6 +8313,7 @@ export const animeData = [
         releaseDate: "Abril 4, 2020",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T4/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 5 (25 episodios)
@@ -7732,6 +8328,7 @@ export const animeData = [
         releaseDate: "Marzo 27, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T5/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // ... (Episodios 2 a 24)
       {
@@ -7745,6 +8342,7 @@ export const animeData = [
         releaseDate: "Septiembre 25, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T5/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 6 (25 episodios)
@@ -7759,6 +8357,7 @@ export const animeData = [
         releaseDate: "Octubre 1, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T6/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // ... (Episodios 2 a 24)
       {
@@ -7772,6 +8371,7 @@ export const animeData = [
         releaseDate: "Marzo 25, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T6/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 7 (21 episodios)
@@ -7786,6 +8386,7 @@ export const animeData = [
         releaseDate: "Mayo 4, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T7/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // ... (Episodios 2 a 20)
       {
@@ -7799,6 +8400,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia/T7/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -7842,6 +8444,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7854,6 +8457,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7865,6 +8469,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7876,6 +8481,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7887,6 +8493,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7898,6 +8505,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7909,6 +8517,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7921,6 +8530,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7932,6 +8542,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7943,6 +8554,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T1.jpg",
         description: "",
       },
@@ -7957,6 +8569,7 @@ export const animeData = [
         releaseDate: "Enero 26, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7969,6 +8582,7 @@ export const animeData = [
         releaseDate: "Febrero 2, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7981,6 +8595,7 @@ export const animeData = [
         releaseDate: "Febrero 9, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -7994,6 +8609,7 @@ export const animeData = [
         releaseDate: "Febrero 16, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8006,6 +8622,7 @@ export const animeData = [
         releaseDate: "Febrero 23, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8018,6 +8635,7 @@ export const animeData = [
         releaseDate: "Marzo 1, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8030,6 +8648,7 @@ export const animeData = [
         releaseDate: "Marzo 8, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8042,6 +8661,7 @@ export const animeData = [
         releaseDate: "Marzo 15, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8055,6 +8675,7 @@ export const animeData = [
         releaseDate: "Marzo 22, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8067,6 +8688,7 @@ export const animeData = [
         releaseDate: "Abril 12, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8080,6 +8702,7 @@ export const animeData = [
         releaseDate: "Abril 12, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8092,6 +8715,7 @@ export const animeData = [
         releaseDate: "Abril 26, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8105,6 +8729,7 @@ export const animeData = [
         releaseDate: "Mayo 3, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8117,6 +8742,7 @@ export const animeData = [
         releaseDate: "Mayo 10, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8130,6 +8756,7 @@ export const animeData = [
         releaseDate: "Mayo 17, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8142,6 +8769,7 @@ export const animeData = [
         releaseDate: "Mayo 24, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/26.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8155,6 +8783,7 @@ export const animeData = [
         releaseDate: "Mayo 31, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/27.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8167,6 +8796,7 @@ export const animeData = [
         releaseDate: "Junio 7, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/28.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8179,6 +8809,7 @@ export const animeData = [
         releaseDate: "Junio 21, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/29.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8191,6 +8822,7 @@ export const animeData = [
         releaseDate: "Junio 28, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/30.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8203,6 +8835,7 @@ export const animeData = [
         releaseDate: "Julio 12, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/31.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8215,6 +8848,7 @@ export const animeData = [
         releaseDate: "Julio 12, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/32.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8227,6 +8861,7 @@ export const animeData = [
         releaseDate: "Julio 19, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/33.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8239,6 +8874,7 @@ export const animeData = [
         releaseDate: "Julio 26, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/34.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8251,6 +8887,7 @@ export const animeData = [
         releaseDate: "Agosto 2, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/35.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8263,6 +8900,7 @@ export const animeData = [
         releaseDate: "Agosto 9, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/36.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8275,6 +8913,7 @@ export const animeData = [
         releaseDate: "Agosto 16, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/37.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8287,6 +8926,7 @@ export const animeData = [
         releaseDate: "Agosto 23, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/38.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8299,6 +8939,7 @@ export const animeData = [
         releaseDate: "Agosto 30, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/39.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8311,6 +8952,7 @@ export const animeData = [
         releaseDate: "Septiembre 6, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/40.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8323,6 +8965,7 @@ export const animeData = [
         releaseDate: "Septiembre 13, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/41.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8336,6 +8979,7 @@ export const animeData = [
         releaseDate: "Septiembre 27, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/42.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8348,6 +8992,7 @@ export const animeData = [
         releaseDate: "Septiembre 27, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/43.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8361,6 +9006,7 @@ export const animeData = [
         releaseDate: "Octubre 4, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/44.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8374,6 +9020,7 @@ export const animeData = [
         releaseDate: "Octubre 11, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/45.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8386,6 +9033,7 @@ export const animeData = [
         releaseDate: "Octubre 25, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/46.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8398,6 +9046,7 @@ export const animeData = [
         releaseDate: "Noviembre 1, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/47.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8410,6 +9059,7 @@ export const animeData = [
         releaseDate: "Noviembre 8, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/48.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8423,6 +9073,7 @@ export const animeData = [
         releaseDate: "Noviembre 15, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/49.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8435,6 +9086,7 @@ export const animeData = [
         releaseDate: "Noviembre 22, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/50.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8448,6 +9100,7 @@ export const animeData = [
         releaseDate: "Noviembre 29, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/51.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8460,6 +9113,7 @@ export const animeData = [
         releaseDate: "Diciembre 6, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/52.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8472,6 +9126,7 @@ export const animeData = [
         releaseDate: "Diciembre 13, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/53.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8485,6 +9140,7 @@ export const animeData = [
         releaseDate: "Diciembre 20, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/54.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8498,6 +9154,7 @@ export const animeData = [
         releaseDate: "Diciembre 27, 2000",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/55.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8510,6 +9167,7 @@ export const animeData = [
         releaseDate: "Enero 17, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/56.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8523,6 +9181,7 @@ export const animeData = [
         releaseDate: "Enero 24, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/57.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8535,6 +9194,7 @@ export const animeData = [
         releaseDate: "Enero 31, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/58.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8548,6 +9208,7 @@ export const animeData = [
         releaseDate: "Febrero 7, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/59.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8561,6 +9222,7 @@ export const animeData = [
         releaseDate: "Febrero 14, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/60.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -8573,6 +9235,7 @@ export const animeData = [
         releaseDate: "Febrero 21, 2001",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T1/61.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 2: Alabasta (Episodios 62-135)
       {
@@ -8583,6 +9246,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/62.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Al entrar a la Grand Line, la tripulación se encuentra con una ballena gigante que bloquea su camino y con el misterioso Crocus.",
@@ -8596,6 +9260,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/63.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy lucha contra Laboon para hacerle una promesa: volverán a verse cuando se convierta en el Rey de los Piratas.",
@@ -8608,6 +9273,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/64.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La tripulación llega a Whiskey Peak, un pueblo que les da una bienvenida sospechosamente calurosa, sin saber que es una base de cazarrecompensas.",
@@ -8620,6 +9286,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/65.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Mientras Luffy, Usopp y Sanji festejan, Zoro descubre la verdad sobre el pueblo y se enfrenta solo a 100 agentes de la organización Baroque Works.",
@@ -8632,6 +9299,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/66.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Debido a un malentendido, Luffy cree que Zoro ha atacado a la gente que les dio de comer y comienza una pelea absurda entre ambos.",
@@ -8644,6 +9312,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/67.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Se revela que Miss Wednesday es en realidad Nefertari Vivi, la princesa de Alabasta. Los Sombrero de Paja aceptan llevarla a su país para detener a Crocodile.",
@@ -8656,6 +9325,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/68.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Una mini-historia muestra el entrenamiento de Koby y Helmeppo en la Marina bajo la tutela del Vicealmirante Garp.",
@@ -8669,6 +9339,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/69.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Koby y Helmeppo se enfrentan a Morgan Mano de Hacha, quien escapa de la custodia de la Marina.",
@@ -8681,6 +9352,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/70.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La tripulación llega a Little Garden, una isla donde el tiempo se detuvo y los dinosaurios aún viven. Conocen a los gigantes Dorry y Brogy.",
@@ -8693,6 +9365,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/71.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy y Usopp se inspiran en el duelo honorable que los dos gigantes han mantenido durante 100 años.",
@@ -8705,6 +9378,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/72.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Los agentes de Baroque Works, Mr. 3 y Miss Goldenweek, interfieren en el duelo de los gigantes, enfureciendo a Luffy.",
@@ -8717,6 +9391,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/73.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Gracias a los trucos de Mr. 3, Brogy gana el duelo, pero se da cuenta de la trampa. Luffy jura vengar el honor de los gigantes.",
@@ -8729,6 +9404,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/74.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Zoro, Nami y Vivi son atrapados por la técnica de cera de Mr. 3, que amenaza con convertirlos en estatuas.",
@@ -8741,6 +9417,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/75.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy es afectado por los poderes hipnóticos de Miss Goldenweek, mientras Usopp y Karoo intentan liberar a sus amigos.",
@@ -8753,6 +9430,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/76.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Usopp demuestra su valía como guerrero del mar al enfrentarse a Mr. 5 y Miss Valentine para salvar a sus amigos.",
@@ -8765,6 +9443,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/77.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Tras derrotar a los agentes de Baroque Works, los gigantes abren camino a la tripulación para que continúen su viaje hacia Alabasta.",
@@ -8778,6 +9457,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/78.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Nami cae gravemente enferma por una picadura de insecto en Little Garden, obligando a la tripulación a buscar un médico.",
@@ -8790,6 +9470,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/79.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Llegan a una isla de invierno, pero se encuentran con el tirano Wapol, antiguo rey de la Isla de Drum, quien ataca el barco.",
@@ -8802,6 +9483,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/80.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy y Sanji llevan a una Nami febril a través de la nieve en busca de la única doctora de la isla, la Dra. Kureha.",
@@ -8814,6 +9496,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/81.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Conocen a Dalton, el líder del pueblo, quien les habla de la Dra. Kureha y su joven asistente, un reno llamado Tony Tony Chopper.",
@@ -8826,6 +9509,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/82.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Wapol regresa a la isla para reclamar su reino. Mientras tanto, Luffy debe escalar el altísimo Drum Rock para llegar al castillo donde vive Kureha.",
@@ -8839,6 +9523,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/83.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy, cargando a Sanji y Nami, escala la montaña con sus propias manos en una muestra de increíble determinación.",
@@ -8851,6 +9536,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/84.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La Dra. Kureha atiende a Nami. Conocemos a Chopper, un reno que comió la fruta Hito Hito y ahora puede transformarse en humano.",
@@ -8863,6 +9549,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/85.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Se cuenta el trágico pasado de Chopper y su relación con su mentor, el Dr. Hiriluk, un médico charlatán con un corazón de oro.",
@@ -8875,6 +9562,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/86.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Hiriluk se sacrifica para proteger a su país y a Chopper. Su sueño de hacer florecer los cerezos en la isla de nieve es heredado por Kureha y Chopper.",
@@ -8888,6 +9576,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/87.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy y Chopper se unen para luchar contra Wapol y sus secuaces, quienes han llegado al castillo para reclamarlo.",
@@ -8901,6 +9590,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/88.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Chopper demuestra sus habilidades de combate utilizando las distintas transformaciones que le permite su fruta y las Rumble Balls que él mismo inventó.",
@@ -8914,6 +9604,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/89.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy derrota a Wapol con un espectacular ataque y defiende la bandera pirata de Hiriluk, un símbolo de convicción y sueños.",
@@ -8926,6 +9617,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/90.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La Dra. Kureha cumple el sueño de Hiriluk, creando una hermosa nevada de flores de cerezo sobre la isla. Luffy invita a Chopper a unirse a su tripulación.",
@@ -8938,6 +9630,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/91.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Inspirado por Luffy, Chopper acepta convertirse en el médico de los Sombrero de Paja y se despide de la Dra. Kureha y de su hogar.",
@@ -8950,6 +9643,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/92.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Con Chopper a bordo, la tripulación finalmente pone rumbo a Alabasta. En el camino, se encuentran con un agente de Baroque Works, Mr. 2 Bon Kurei.",
@@ -8963,6 +9657,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/93.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La tripulación llega a Alabasta y descubre que Crocodile ha manipulado el clima para provocar una guerra civil.",
@@ -8975,6 +9670,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/94.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "En el desierto, Luffy se reencuentra con su hermano mayor, Portgas D. Ace, quien está persiguiendo a un traidor: Barbanegra.",
@@ -8987,6 +9683,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/95.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Ace se une temporalmente a la tripulación, y su presencia revela más sobre la relación entre los dos hermanos.",
@@ -8999,6 +9696,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/96.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "El grupo atraviesa el desierto y llega a la ciudad en ruinas de Erumalu, donde se encuentran con los simpáticos Kung-Fu Dugongs.",
@@ -9012,6 +9710,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/97.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La travesía por el desierto de Alabasta pone a prueba la resistencia de la tripulación.",
@@ -9025,6 +9724,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/98.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Un episodio de relleno donde la tripulación se encuentra con un grupo de nómadas del desierto.",
@@ -9038,6 +9738,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/99.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Otro episodio de relleno centrado en un miembro del ejército rebelde liderado por Kohza.",
@@ -9051,6 +9752,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/100.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Se revela el pasado de Kohza y su amistad de la infancia con la princesa Vivi, mostrando su determinación por salvar a su país.",
@@ -9063,6 +9765,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/101.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno en el que Ace se enfrenta a un cazarrecompensas llamado Scorpion.",
@@ -9076,6 +9779,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/102.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "El grupo se pierde en unas ruinas antiguas mientras intenta llegar a Yuba, el corazón del ejército rebelde.",
@@ -9089,6 +9793,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/103.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Los principales agentes de Baroque Works, los Oficiales Agentes, se reúnen en el Spiders Cafe para recibir las órdenes finales de Crocodile.",
@@ -9102,6 +9807,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/104.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Vivi se siente abrumada por la responsabilidad, y Luffy la confronta para recordarle que no está sola y que arriesgarán sus vidas por ella.",
@@ -9114,6 +9820,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/105.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "El grupo llega a Rainbase, la ciudad casino controlada por Crocodile. Planean infiltrarse en su base, el Rain Dinners.",
@@ -9127,6 +9834,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/106.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy, Zoro, Nami, Usopp y Smoker caen en una trampa de Kairoseki puesta por Crocodile.",
@@ -9139,6 +9847,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/107.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Crocodile revela su plan maestro, la 'Operación Utopía', para destruir Alubarna, la capital, y tomar el control del reino.",
@@ -9151,6 +9860,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/108.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Sanji, bajo el alias de Mr. Prince, idea un plan audaz para rescatar a sus amigos de la jaula de Crocodile.",
@@ -9163,6 +9873,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/109.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Gracias al ingenio de Sanji y a la ayuda inesperada de Chopper, el grupo logra escapar de la inundada base de Crocodile.",
@@ -9175,6 +9886,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/110.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy se enfrenta directamente a Crocodile para que sus amigos puedan llegar a Alubarna, pero es derrotado y abandonado a su suerte en el desierto.",
@@ -9188,6 +9900,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/111.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "El resto de la tripulación corre hacia Alubarna para detener al ejército rebelde, usando a los animales del desierto para cruzar el río.",
@@ -9201,6 +9914,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/112.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La guerra civil estalla en la capital. Los Sombrero de Paja se enfrentan a los Oficiales Agentes de Baroque Works para proteger la ciudad.",
@@ -9213,6 +9927,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/113.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Karoo, el pato de Vivi, demuestra una increíble valentía al intentar llevar un mensaje crucial a través del campo de batalla.",
@@ -9226,6 +9941,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/114.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Sanji se enfrenta a Mr. 2 Bon Kurei, cuyo poder de transformación le permite adoptar la apariencia de sus amigos.",
@@ -9238,6 +9954,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/115.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La batalla entre Sanji y Mr. 2 llega a su fin, con Sanji demostrando que su fuerza y convicciones son superiores a los trucos de su oponente.",
@@ -9250,6 +9967,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/116.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno que expande la batalla entre Sanji y Mr. 2.",
@@ -9262,6 +9980,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/117.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Nami se enfrenta a Miss Doublefinger y estrena su nueva arma, el Clima-Tact, creado por Usopp, aunque no sabe cómo usarlo del todo.",
@@ -9274,6 +9993,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/118.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Zoro se enfrenta a Mr. 1 (Daz Bonez), cuyo cuerpo es de acero. Mientras, Crocodile revela que su objetivo es encontrar el arma ancestral Plutón.",
@@ -9287,6 +10007,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/119.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Al borde de la muerte, Zoro recuerda las enseñanzas de su maestro y aprende a 'escuchar el aliento' del acero, logrando cortar a Mr. 1.",
@@ -9299,6 +10020,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/120.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Vivi intenta detener la guerra, y Kohza se da cuenta del engaño, pero es demasiado tarde para detener la batalla.",
@@ -9311,6 +10033,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/121.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy, habiendo sobrevivido, regresa a Alubarna para un segundo asalto contra Crocodile.",
@@ -9323,6 +10046,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/122.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy descubre la debilidad de Crocodile: el agua. Usando un barril de agua, logra golpearlo y comienza la verdadera batalla.",
@@ -9336,6 +10060,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/123.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La batalla se traslada a la tumba real, donde Crocodile planea detonar una bomba que destruirá la ciudad.",
@@ -9348,6 +10073,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/124.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Los Sombrero de Paja buscan la bomba mientras Luffy contiene a Crocodile.",
@@ -9361,6 +10087,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/125.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Pell, uno de los guardianes de Alabasta, se sacrifica para llevar la bomba lejos de la ciudad y salvar a todos.",
@@ -9373,6 +10100,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/126.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Luffy, usando su propia sangre, logra golpear a Crocodile y lo derrota con un ataque final que atraviesa el suelo del desierto, provocando la lluvia.",
@@ -9385,6 +10113,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/127.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Con la lluvia cayendo y Crocodile derrotado, la guerra en Alabasta finalmente termina.",
@@ -9398,6 +10127,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/128.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "La tripulación celebra su victoria con un gran banquete en el palacio real mientras planean su escape de la Marina.",
@@ -9410,6 +10140,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/129.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Vivi reflexiona sobre su viaje con los Sombrero de Paja. La tripulación se prepara para partir, esperando a Vivi en el punto de encuentro.",
@@ -9422,6 +10153,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/130.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Nico Robin, ex agente de Baroque Works, aparece en el barco y pide unirse a la tripulación. Vivi se despide de sus amigos con un gesto silencioso que sella su amistad.",
@@ -9434,6 +10166,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/131.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno donde Chopper recuerda cómo creó las Rumble Balls.",
@@ -9446,6 +10179,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/132.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno centrado en Nami y su sueño de dibujar un mapa del mundo.",
@@ -9458,6 +10192,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/133.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Sanji ayuda a un joven aprendiz de cocinero de la Marina a preparar un curry legendario.",
@@ -9470,6 +10205,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/134.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Usopp ayuda a una niña a lanzar un gran fuego artificial en memoria de sus padres.",
@@ -9482,6 +10218,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T2/135.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "image/One-Piece-cap/T2.jpg",
         description:
           "Episodio de relleno que muestra una de las antiguas aventuras de Zoro como cazarrecompensas.",
@@ -9495,6 +10232,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/136.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/061b17a12b07a51d95a285d823485038.jpe",
         description:
           "La tripulación se encuentra con un anciano llamado Zenny que vive solo con sus cabras en una isla.",
@@ -9508,6 +10246,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/137.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8624127de6b87640f098485208f25381.jpe",
         description:
           "Chopper descubre que Zenny está enfermo y que su sueño es convertirse en pirata, por lo que la tripulación lo ayuda.",
@@ -9521,6 +10260,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/138.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d8ce84eb9234bceb76e27ab0dd131a38.jpe",
         description:
           "Luffy y sus amigos ayudan a Zenny a cumplir su sueño de zarpar como un pirata antes de que su tiempo se acabe.",
@@ -9534,6 +10274,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/139.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c7a7bb6259021a8a29a4358892f3a479.jpe",
         description:
           "La tripulación llega a la isla Ruluka y escucha sobre la leyenda de la Niebla Arcoíris, un lugar del que nadie ha regresado.",
@@ -9547,6 +10288,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/140.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d3d57862f92f25492d547f2a1b92015.jpe",
         description:
           "El Going Merry queda atrapado dentro de la Niebla Arcoíris, un cementerio de barcos donde el tiempo fluye de manera diferente.",
@@ -9559,6 +10301,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/141.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8e718b95889753965b93d39589d81d4a.jpe",
         description:
           "La tripulación descubre que la Niebla Arcoíris es un espacio donde pueden reencontrarse con piratas del pasado.",
@@ -9571,6 +10314,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/142.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         description:
           "Luffy y sus amigos luchan para escapar de la niebla antes de que se cierre para siempre.",
@@ -9583,6 +10327,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/143.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         description:
           "La tripulación escapa de la Niebla Arcoíris y un barco gigante cae del cielo, indicando la existencia de una isla en el cielo.",
@@ -9595,6 +10340,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/144.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         description:
           "Para llegar a la isla del cielo, la tripulación busca información en la isla de Jaya, un lugar sin ley lleno de piratas.",
@@ -9608,6 +10354,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/145.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         description:
           "Luffy y Zoro son humillados por Bellamy y su tripulación, quienes se burlan de su sueño de encontrar la isla del cielo.",
@@ -9620,6 +10367,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/146.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         description:
           "Un misterioso hombre, Barbanegra, anima a Luffy a seguir sus sueños. La tripulación busca a alguien que sepa cómo llegar a Skypiea.",
@@ -9633,6 +10381,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/147.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         description:
           "La tripulación conoce a Montblanc Cricket, descendiente del infame 'Mentiroso' Norland, quien podría tener la clave para llegar al cielo.",
@@ -9645,6 +10394,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/148.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
         description:
           "Cricket cuenta la historia de su antepasado, Montblanc Norland, un explorador que afirmó haber encontrado una ciudad de oro.",
@@ -9657,6 +10407,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/149.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
         description:
           "Para que la Corriente Ascendente los lleve al cielo, necesitan capturar un pájaro especial llamado Southbird.",
@@ -9669,6 +10420,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/150.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
         description:
           "Bellamy y su tripulación atacan a Cricket y le roban el oro que había encontrado. Luffy se enfurece.",
@@ -9682,6 +10434,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/151.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
         description:
           "Luffy derrota a Bellamy de un solo golpe, recuperando el oro. Mientras, los Shichibukai se reúnen y se revela la recompensa de Luffy.",
@@ -9694,6 +10447,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/152.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         description:
           "Con el Going Merry modificado, la tripulación se posiciona sobre la gigantesca corriente de agua ascendente y se lanza hacia el cielo.",
@@ -9707,6 +10461,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/153.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         description:
           "La tripulación llega a Skypiea, una isla en un mar de nubes. Son atacados por un guerrero enmascarado, pero son salvados por el Caballero del Cielo, Gan Fall.",
@@ -9720,6 +10475,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/154.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         description:
           "La tripulación explora Skypiea y conoce a Conis y su padre Pagaya, quienes les explican las costumbres y peligros del lugar, como el autoproclamado 'Dios' Enel.",
@@ -9733,6 +10489,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/155.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         description:
           "Por entrar ilegalmente a Skypiea, los Sombrero de Paja son sentenciados a recibir el 'Juicio de los Cielos' en la tierra sagrada de Upper Yard.",
@@ -9745,6 +10502,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/156.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         description:
           "Nami, Usopp, Sanji y Zoro deciden pagar la exorbitante multa para entrar, pero Luffy y los demás se adentran en Upper Yard.",
@@ -9757,6 +10515,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/157.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d97813a17e0b57e7a57c5414d7a1267.jpe",
         description:
           "La tripulación que se adentró en Upper Yard se enfrenta a la primera de las cuatro pruebas de Dios, la 'Prueba de las Esferas', impuesta por el Sacerdote Satori.",
@@ -9769,6 +10528,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/158.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c3a35c406b62535145dd30fb9474af17.jpe",
         description:
           "Luffy, Sanji y Usopp luchan contra Satori y sus impredecibles Esferas Sorpresa, que contienen diversos peligros.",
@@ -9781,6 +10541,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/159.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         description:
           "Tras derrotar a Satori, el grupo se dirige al altar donde Nami, Zoro, Robin y Chopper han sido llevados como sacrificio.",
@@ -9794,6 +10555,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/160.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
         description:
           "Se explica el poder del Mantra, una habilidad que permite a los Sacerdotes y a Enel predecir los movimientos de sus oponentes.",
@@ -9807,6 +10569,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/161.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         description:
           "La tripulación se reúne en el altar, pero deben enfrentarse a los otros tres sacerdotes de Enel.",
@@ -9819,6 +10582,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/162.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         description:
           "Chopper se enfrenta al Sacerdote Shura y su 'Prueba de los Hilos', pero es salvado por Gan Fall.",
@@ -9831,6 +10595,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/163.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         description:
           "La situación se complica y los Sombrero de Paja se ven envueltos en la guerra entre los Shandians y el ejército de Enel.",
@@ -9843,6 +10608,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/164.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         description:
           "Se introduce a Wiper, el líder de los guerreros Shandian, descendientes de la antigua civilización de Jaya.",
@@ -9855,6 +10621,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/165.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         description:
           "Nami descubre que la legendaria ciudad de oro, Jaya, se encuentra en Upper Yard, y planea encontrarla.",
@@ -9867,6 +10634,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/166.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d3d57862f92f25492d547f2a1b92015.jpe",
         description:
           "Ambos bandos, los Sombrero de Paja y los Shandians, se preparan para la batalla final contra Enel y sus sacerdotes.",
@@ -9879,6 +10647,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/167.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         description:
           "Enel aparece y anuncia un 'juego de supervivencia': solo 5 de los 81 combatientes quedarán en pie después de tres horas.",
@@ -9892,6 +10661,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/168.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         description:
           "La batalla campal comienza en Upper Yard. Zoro se enfrenta al sacerdote Ohm, y una serpiente gigante llamada Nola causa estragos.",
@@ -9905,6 +10675,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/169.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         description:
           "Wiper demuestra su increíble determinación y su poderosa arma, el Reject Dial, que puede herir incluso al usuario.",
@@ -9917,6 +10688,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/170.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f33e728e8331393f9252033c4608c02.jpe",
         description:
           "Zoro se enfrenta al shandian Braham, quien usa pistolas y Milky Dials en sus zapatos para moverse por el aire.",
@@ -9930,6 +10702,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/171.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         description:
           "Luffy y Wiper tienen su primer enfrentamiento. El poder del Burn Bazooka de Wiper choca con la goma de Luffy.",
@@ -9942,6 +10715,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/172.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         description:
           "Chopper cae en la 'Prueba del Pantano' y debe enfrentarse al despistado pero peligroso Sacerdote Gedatsu.",
@@ -9954,6 +10728,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/173.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
         description:
           "Se revela el terrorífico poder de la fruta Goro Goro de Enel, una Logia de rayo que lo hace virtualmente invencible y le permite escuchar todo Skypiea.",
@@ -9966,6 +10741,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/174.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
         description:
           "Luffy, Nami, Sanji y Usopp son engullidos por la serpiente gigante Nola y llegan a las ruinas de la antigua ciudad de oro, Shandora.",
@@ -9979,6 +10755,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/175.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
         description:
           "El Sacerdote Ohm y su 'Prueba del Hierro' aparecen. Chopper se enfrenta a él para proteger al herido Gan Fall.",
@@ -9992,6 +10769,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/176.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a8b9a25b16f1943c224b172a39626f63.jpe",
         description:
           "Zoro, Wiper y Gan Fall luchan contra Ohm mientras Luffy intenta escapar del interior de la serpiente Nola.",
@@ -10005,6 +10783,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/177.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/17e299388bf3322d7d6f51c110996fc1.jpe",
         description:
           "La batalla de Zoro contra Ohm y sus trampas de hierro llega a su punto culminante.",
@@ -10017,6 +10796,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/178.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
         description:
           "Zoro desata un nuevo y poderoso ataque a distancia, el 'Cañón de 108 Libras', para derrotar a Ohm.",
@@ -10029,6 +10809,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/179.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
         description:
           "Con los cuatro sacerdotes derrotados, Enel elimina al resto de los combatientes, dejando solo a cinco supervivientes para enfrentarlo a él.",
@@ -10042,6 +10823,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/180.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
         description:
           "Enel revela su plan: usar el arca Maxim para destruir Skypiea y dirigirse a la 'Tierra Infinita', la luna.",
@@ -10054,6 +10836,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/181.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
         description:
           "Wiper, Zoro y Gan Fall intentan detener a Enel, pero su poder de rayo es demasiado para ellos.",
@@ -10066,6 +10849,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/182.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
         description:
           "Luffy finalmente sale de la serpiente y se enfrenta a Enel. Para sorpresa de todos, los ataques eléctricos de Enel no tienen efecto en el cuerpo de goma de Luffy.",
@@ -10078,6 +10862,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/183.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
         description:
           "A pesar de la inmunidad de Luffy, Enel usa su poder para mover el arca y se escapa, dejando a Luffy atrás.",
@@ -10090,6 +10875,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/184.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
         description:
           "Nami y Usopp usan el Waver para llegar al arca Maxim. Nami intenta robar el tesoro mientras lucha por ayudar a Luffy.",
@@ -10103,6 +10889,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/185.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
         description:
           "Sanji y Usopp se recuperan y se infiltran en el arca Maxim para sabotearla y rescatar a Nami.",
@@ -10116,6 +10903,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/186.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
         description:
           "Enel comienza a destruir Skypiea con su ataque 'Raigo'. La única esperanza es hacer sonar la Campana de Oro.",
@@ -10129,6 +10917,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/187.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
         description:
           "Se revela la historia completa de la amistad entre el guerrero shandian Calgara y el explorador Montblanc Norland.",
@@ -10142,6 +10931,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/188.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
         description:
           "Norland fue ejecutado como mentiroso porque la mitad de Jaya fue lanzada al cielo. Wiper se da cuenta de que la historia era real.",
@@ -10155,6 +10945,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/189.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
         description:
           "Con la ayuda de Wiper, Luffy intenta derribar el Giant Jack para poder alcanzar a Enel y hacer sonar la campana.",
@@ -10168,6 +10959,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/190.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
         description:
           "Enel crea una esfera de rayos masiva para aniquilar Skypiea por completo. Nami usa el Waver para darle a Luffy un último impulso.",
@@ -10180,6 +10972,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/191.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0f33e728e8331393f9252033c4608c02.jpe",
         description:
           "Wiper y Zoro trabajan juntos para derribar el tallo de frijol gigante, creando un camino para que Luffy llegue al arca.",
@@ -10193,6 +10986,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/192.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/3d97813a17e0b57e7a57c5414d7a1267.jpe",
         description:
           "Luffy, con una gigantesca bola de oro en su puño, choca contra el Raigo de Enel y finalmente hace sonar la Campana de Oro.",
@@ -10206,6 +11000,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/193.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/cbe57a0d3852e98c5fd6d2fb43499c98.jpe",
         description:
           "El sonido de la campana llega al Mar Azul, demostrando a Cricket que la ciudad de oro era real. Shandians y Skypieans celebran juntos la paz.",
@@ -10218,6 +11013,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/194.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/96b4cd48a58e086ca228c2ddb508f7aa.jpe",
         description:
           "Robin encuentra el Poneglyph de Shandora, que revela la ubicación de un arma ancestral y la verdadera historia de la ciudad.",
@@ -10231,6 +11027,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/195.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c720e3c1a84f509d3b76a08605c75402.jpe",
         description:
           "Con la paz restaurada en Skypiea, los Sombrero de Paja se despiden de sus nuevos amigos y regresan al Mar Azul con una gran cantidad de oro.",
@@ -10244,6 +11041,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/196.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/d0a259c6d17cd06c9a9cf5eb8432a51f.jpe",
         description:
           "Comienza el arco de relleno de G-8. Al caer del cielo, el Going Merry aterriza en medio de una inexpugnable base de la Marina.",
@@ -10257,6 +11055,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/197.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/bb56e6d195d852033c46927d341913c1.jpe",
         description:
           "La tripulación se separa. Sanji y Luffy se infiltran en la cocina de la base y demuestran sus habilidades culinarias.",
@@ -10269,6 +11068,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/198.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/71c62ff919e99e4f553316b251a37c05.jpe",
         description:
           "Zoro es capturado mientras exploraba la base. Chopper intenta rescatarlo mientras se hace pasar por el médico del barco.",
@@ -10282,6 +11082,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/199.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/edc23c7069dd35c03c5d6e2798e16949.jpe",
         description:
           "El Comandante Jonathan, un estratega brillante, comienza a cerrar el cerco sobre los Sombrero de Paja.",
@@ -10295,6 +11096,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/200.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0d5b03775080c986c75269ed81878d38.jpe",
         description:
           "Luffy y Sanji idean un plan para crear una distracción y permitir que el resto de la tripulación escape de la base.",
@@ -10308,6 +11110,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/201.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/2004f1a6da10c144e13d9435d0859942.jpe",
         description:
           "La tripulación se enfrenta a los mejores soldados de la base en su intento de llegar al Going Merry.",
@@ -10320,6 +11123,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/202.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/24c0d165f3f00e93a61f5ab97c9b099f.jpe",
         description:
           "Nami usa su ingenio y el conocimiento del clima para ayudar a la tripulación a recuperar su barco.",
@@ -10333,6 +11137,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/203.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/076f87425b06d11f71f6424e6c9867c2.jpe",
         description:
           "Justo cuando creen que han escapado, se dan cuenta de que el oro de Skypiea no está en el barco.",
@@ -10346,6 +11151,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/204.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0513d6a2a0ff328222b40b15b57f0706.jpe",
         description:
           "El grupo se infiltra de nuevo en la base para recuperar su tesoro y el Waver de Nami.",
@@ -10359,6 +11165,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/205.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/96b4cd48a58e086ca228c2ddb508f7aa.jpe",
         description:
           "El Comandante Jonathan anticipa sus movimientos y les tiende una última trampa.",
@@ -10372,6 +11179,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T3/206.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e844cc96c8206587c4a171d18f504443.jpe",
         description:
           "Con la ayuda de un aliado inesperado dentro de la base, los Sombrero de Paja logran escapar de la fortaleza G-8, dejando al Comandante Jonathan con una sonrisa de admiración.",
@@ -10385,6 +11193,7 @@ export const animeData = [
         duration: "24 min",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/207.html",
+        votes: { likes: 987, dislikes: 8 },
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/0d5b03775080c986c75269ed81878d38.jpe",
         description:
           "La tripulación aterriza en una extraña isla donde todos los animales y plantas son largos. Allí se encuentran con los Piratas de Foxy.",
@@ -10400,6 +11209,7 @@ export const animeData = [
         releaseDate: "Octubre 3, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/207.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10412,6 +11222,7 @@ export const animeData = [
         releaseDate: "Octubre 10, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/208.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10424,6 +11235,7 @@ export const animeData = [
         releaseDate: "Octubre 17, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/209.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10436,6 +11248,7 @@ export const animeData = [
         releaseDate: "Octubre 24, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/210.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10448,6 +11261,7 @@ export const animeData = [
         releaseDate: "Octubre 31, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/211.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10460,6 +11274,7 @@ export const animeData = [
         releaseDate: "Noviembre 7, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/212.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10472,6 +11287,7 @@ export const animeData = [
         releaseDate: "Noviembre 14, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/213.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10485,6 +11301,7 @@ export const animeData = [
         releaseDate: "Noviembre 21, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/214.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10497,6 +11314,7 @@ export const animeData = [
         releaseDate: "Noviembre 28, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/215.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10509,6 +11327,7 @@ export const animeData = [
         releaseDate: "Diciembre 5, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/216.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10521,6 +11340,7 @@ export const animeData = [
         releaseDate: "Diciembre 12, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/217.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10533,6 +11353,7 @@ export const animeData = [
         releaseDate: "Diciembre 19, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/218.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10545,6 +11366,7 @@ export const animeData = [
         releaseDate: "Diciembre 26, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/219.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10557,6 +11379,7 @@ export const animeData = [
         releaseDate: "Enero 9, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/220.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10569,6 +11392,7 @@ export const animeData = [
         releaseDate: "Enero 16, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/221.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10581,6 +11405,7 @@ export const animeData = [
         releaseDate: "Enero 23, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/222.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10593,6 +11418,7 @@ export const animeData = [
         releaseDate: "Enero 30, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/223.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10605,6 +11431,7 @@ export const animeData = [
         releaseDate: "Febrero 6, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/224.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10617,6 +11444,7 @@ export const animeData = [
         releaseDate: "Febrero 13, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/225.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10629,6 +11457,7 @@ export const animeData = [
         releaseDate: "Febrero 20, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/226.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10642,6 +11471,7 @@ export const animeData = [
         releaseDate: "Febrero 27, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/227.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10654,6 +11484,7 @@ export const animeData = [
         releaseDate: "Marzo 6, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/228.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10666,6 +11497,7 @@ export const animeData = [
         releaseDate: "Marzo 13, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/229.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10678,6 +11510,7 @@ export const animeData = [
         releaseDate: "Marzo 20, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/230.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10690,6 +11523,7 @@ export const animeData = [
         releaseDate: "Marzo 27, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/231.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10702,6 +11536,7 @@ export const animeData = [
         releaseDate: "Abril 3, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/232.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10714,6 +11549,7 @@ export const animeData = [
         releaseDate: "Abril 10, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/233.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10726,6 +11562,7 @@ export const animeData = [
         releaseDate: "Abril 17, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/234.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10739,6 +11576,7 @@ export const animeData = [
         releaseDate: "Abril 24, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/235.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10751,6 +11589,7 @@ export const animeData = [
         releaseDate: "Mayo 1, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/236.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10763,6 +11602,7 @@ export const animeData = [
         releaseDate: "Mayo 8, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/237.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10775,6 +11615,7 @@ export const animeData = [
         releaseDate: "Mayo 15, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/238.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10788,6 +11629,7 @@ export const animeData = [
         releaseDate: "Mayo 22, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/239.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10801,6 +11643,7 @@ export const animeData = [
         releaseDate: "Junio 5, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/240.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10814,6 +11657,7 @@ export const animeData = [
         releaseDate: "Junio 12, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/241.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10826,6 +11670,7 @@ export const animeData = [
         releaseDate: "Junio 19, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/242.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10838,6 +11683,7 @@ export const animeData = [
         releaseDate: "Julio 3, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/243.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10850,6 +11696,7 @@ export const animeData = [
         releaseDate: "Julio 10, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/244.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10862,6 +11709,7 @@ export const animeData = [
         releaseDate: "Julio 17, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/245.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10875,6 +11723,7 @@ export const animeData = [
         releaseDate: "Julio 31, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/246.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10887,6 +11736,7 @@ export const animeData = [
         releaseDate: "Agosto 7, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/247.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10899,6 +11749,7 @@ export const animeData = [
         releaseDate: "Agosto 14, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/248.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10911,6 +11762,7 @@ export const animeData = [
         releaseDate: "Agosto 21, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/249.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10924,6 +11776,7 @@ export const animeData = [
         releaseDate: "Agosto 28, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/250.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10936,6 +11789,7 @@ export const animeData = [
         releaseDate: "Septiembre 4, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/251.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10949,6 +11803,7 @@ export const animeData = [
         releaseDate: "Septiembre 11, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/252.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10961,6 +11816,7 @@ export const animeData = [
         releaseDate: "Septiembre 18, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/253.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10974,6 +11830,7 @@ export const animeData = [
         releaseDate: "Septiembre 25, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/254.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10986,6 +11843,7 @@ export const animeData = [
         releaseDate: "Octubre 2, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/255.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -10999,6 +11857,7 @@ export const animeData = [
         releaseDate: "Octubre 9, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/256.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11011,6 +11870,7 @@ export const animeData = [
         releaseDate: "Octubre 16, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/257.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11023,6 +11883,7 @@ export const animeData = [
         releaseDate: "Octubre 23, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/258.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11035,6 +11896,7 @@ export const animeData = [
         releaseDate: "Octubre 30, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/259.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11047,6 +11909,7 @@ export const animeData = [
         releaseDate: "Noviembre 6, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/260.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11059,6 +11922,7 @@ export const animeData = [
         releaseDate: "Noviembre 13, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/261.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11071,6 +11935,7 @@ export const animeData = [
         releaseDate: "Noviembre 20, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/262.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11083,6 +11948,7 @@ export const animeData = [
         releaseDate: "Noviembre 27, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T4/263.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11096,6 +11962,7 @@ export const animeData = [
         releaseDate: "Diciembre 4, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/264.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11108,6 +11975,7 @@ export const animeData = [
         releaseDate: "Diciembre 11, 2005",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/265.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11120,6 +11988,7 @@ export const animeData = [
         releaseDate: "Enero 8, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/266.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11132,6 +12001,7 @@ export const animeData = [
         releaseDate: "Enero 15, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/267.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11144,6 +12014,7 @@ export const animeData = [
         releaseDate: "Enero 22, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/268.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11157,6 +12028,7 @@ export const animeData = [
         releaseDate: "Enero 29, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/269.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11169,6 +12041,7 @@ export const animeData = [
         releaseDate: "Febrero 5, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/270.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11181,6 +12054,7 @@ export const animeData = [
         releaseDate: "Febrero 26, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/271.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11194,6 +12068,7 @@ export const animeData = [
         releaseDate: "Marzo 5, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/272.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11206,6 +12081,7 @@ export const animeData = [
         releaseDate: "Marzo 12, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/273.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11218,6 +12094,7 @@ export const animeData = [
         releaseDate: "Marzo 19, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/274.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11230,6 +12107,7 @@ export const animeData = [
         releaseDate: "Abril 2, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/275.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11242,6 +12120,7 @@ export const animeData = [
         releaseDate: "Abril 9, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/276.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11254,6 +12133,7 @@ export const animeData = [
         releaseDate: "Abril 16, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/277.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11266,6 +12146,7 @@ export const animeData = [
         releaseDate: "Abril 23, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/278.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11278,6 +12159,7 @@ export const animeData = [
         releaseDate: "Abril 30, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/279.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11291,6 +12173,7 @@ export const animeData = [
         releaseDate: "Mayo 7, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/280.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11304,6 +12187,7 @@ export const animeData = [
         releaseDate: "Mayo 14, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/281.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11316,6 +12200,7 @@ export const animeData = [
         releaseDate: "Mayo 21, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/282.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11328,6 +12213,7 @@ export const animeData = [
         releaseDate: "Mayo 28, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/283.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11340,6 +12226,7 @@ export const animeData = [
         releaseDate: "Junio 4, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/284.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11352,6 +12239,7 @@ export const animeData = [
         releaseDate: "Junio 11, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/285.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11365,6 +12253,7 @@ export const animeData = [
         releaseDate: "Junio 18, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/286.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11378,6 +12267,7 @@ export const animeData = [
         releaseDate: "Junio 25, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/287.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11390,6 +12280,7 @@ export const animeData = [
         releaseDate: "Julio 2, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/288.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11403,6 +12294,7 @@ export const animeData = [
         releaseDate: "Julio 9, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/289.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11415,6 +12307,7 @@ export const animeData = [
         releaseDate: "Julio 16, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/290.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11428,6 +12321,7 @@ export const animeData = [
         releaseDate: "Julio 23, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/291.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11441,6 +12335,7 @@ export const animeData = [
         releaseDate: "Julio 30, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/292.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11454,6 +12349,7 @@ export const animeData = [
         releaseDate: "Agosto 6, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/293.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11466,6 +12362,7 @@ export const animeData = [
         releaseDate: "Agosto 13, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/294.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11478,6 +12375,7 @@ export const animeData = [
         releaseDate: "Agosto 20, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/295.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11490,6 +12388,7 @@ export const animeData = [
         releaseDate: "Agosto 27, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/296.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11502,6 +12401,7 @@ export const animeData = [
         releaseDate: "Septiembre 3, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/297.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11515,6 +12415,7 @@ export const animeData = [
         releaseDate: "Septiembre 10, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/298.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11528,6 +12429,7 @@ export const animeData = [
         releaseDate: "Septiembre 17, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/299.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11541,6 +12443,7 @@ export const animeData = [
         releaseDate: "Septiembre 24, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/300.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11554,6 +12457,7 @@ export const animeData = [
         releaseDate: "Octubre 1, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/301.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11567,6 +12471,7 @@ export const animeData = [
         releaseDate: "Octubre 8, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/302.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11580,6 +12485,7 @@ export const animeData = [
         releaseDate: "Octubre 15, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/303.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11593,6 +12499,7 @@ export const animeData = [
         releaseDate: "Octubre 22, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/304.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11605,6 +12512,7 @@ export const animeData = [
         releaseDate: "Octubre 29, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/305.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11618,6 +12526,7 @@ export const animeData = [
         releaseDate: "Noviembre 5, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/306.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11631,6 +12540,7 @@ export const animeData = [
         releaseDate: "Noviembre 12, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/307.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11644,6 +12554,7 @@ export const animeData = [
         releaseDate: "Noviembre 19, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/308.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11657,6 +12568,7 @@ export const animeData = [
         releaseDate: "Noviembre 26, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/309.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11670,6 +12582,7 @@ export const animeData = [
         releaseDate: "Diciembre 3, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T5/310.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11683,6 +12596,7 @@ export const animeData = [
         releaseDate: "Diciembre 10, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T6/311.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11695,6 +12609,7 @@ export const animeData = [
         releaseDate: "Diciembre 17, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T6/312.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11708,6 +12623,7 @@ export const animeData = [
         releaseDate: "Diciembre 24, 2006",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T6/313.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11721,6 +12637,7 @@ export const animeData = [
         releaseDate: "Enero 7, 2007",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T6/314.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -11734,6 +12651,7 @@ export const animeData = [
         releaseDate: "Enero 14, 2007",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T6/315.html",
+        votes: { likes: 987, dislikes: 8 },
       },
 
       // Temporada 21: Egghead (Episodios 1089 - Presente)
@@ -11748,6 +12666,7 @@ export const animeData = [
         releaseDate: "Enero 6, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T14/1089.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 21,
@@ -11760,6 +12679,7 @@ export const animeData = [
         releaseDate: "Enero 13, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T14/1090.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 21,
@@ -11772,6 +12692,7 @@ export const animeData = [
         releaseDate: "Enero 20, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T14/1091.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 21,
@@ -11784,6 +12705,7 @@ export const animeData = [
         releaseDate: "Enero 27, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T14/1092.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // ... (La lista continúa con todos los episodios de Egghead hasta el más reciente)
       {
@@ -11797,6 +12719,7 @@ export const animeData = [
         releaseDate: "Julio 6, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T21/1111.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 21,
@@ -11809,6 +12732,7 @@ export const animeData = [
         releaseDate: "Julio 13, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T21/1112.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // ... (Y así sucesivamente hasta el episodio 1123)
       {
@@ -11822,6 +12746,7 @@ export const animeData = [
         releaseDate: "Septiembre 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/One-Piece/T21/1123.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -11863,6 +12788,7 @@ export const animeData = [
         releaseDate: "14/04/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11875,6 +12801,7 @@ export const animeData = [
         releaseDate: "14/04/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11887,6 +12814,7 @@ export const animeData = [
         releaseDate: "21/04/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11899,6 +12827,7 @@ export const animeData = [
         releaseDate: "28/04/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11911,6 +12840,7 @@ export const animeData = [
         releaseDate: "05/05/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11923,6 +12853,7 @@ export const animeData = [
         releaseDate: "12/05/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11935,6 +12866,7 @@ export const animeData = [
         releaseDate: "19/05/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11947,6 +12879,7 @@ export const animeData = [
         releaseDate: "26/05/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11959,6 +12892,7 @@ export const animeData = [
         releaseDate: "02/06/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11971,6 +12905,7 @@ export const animeData = [
         releaseDate: "09/06/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11983,6 +12918,7 @@ export const animeData = [
         releaseDate: "16/06/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -11995,6 +12931,7 @@ export const animeData = [
         releaseDate: "23/06/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12007,6 +12944,7 @@ export const animeData = [
         releaseDate: "14/07/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12019,6 +12957,7 @@ export const animeData = [
         releaseDate: "21/07/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12031,6 +12970,7 @@ export const animeData = [
         releaseDate: "28/07/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12043,6 +12983,7 @@ export const animeData = [
         releaseDate: "04/08/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12055,6 +12996,7 @@ export const animeData = [
         releaseDate: "11/08/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12067,6 +13009,7 @@ export const animeData = [
         releaseDate: "18/08/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12079,6 +13022,7 @@ export const animeData = [
         releaseDate: "25/08/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12091,6 +13035,7 @@ export const animeData = [
         releaseDate: "01/09/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12103,6 +13048,7 @@ export const animeData = [
         releaseDate: "08/09/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12115,6 +13061,7 @@ export const animeData = [
         releaseDate: "15/09/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12127,6 +13074,7 @@ export const animeData = [
         releaseDate: "22/09/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12139,6 +13087,7 @@ export const animeData = [
         releaseDate: "14/10/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12151,6 +13100,7 @@ export const animeData = [
         releaseDate: "20/10/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12163,6 +13113,7 @@ export const animeData = [
         releaseDate: "07/11/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/26.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12175,6 +13126,7 @@ export const animeData = [
         releaseDate: "07/11/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/27.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12187,6 +13139,7 @@ export const animeData = [
         releaseDate: "11/11/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/28.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12199,6 +13152,7 @@ export const animeData = [
         releaseDate: "18/11/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/29.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12211,6 +13165,7 @@ export const animeData = [
         releaseDate: "25/11/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/30.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12223,6 +13178,7 @@ export const animeData = [
         releaseDate: "02/12/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/31.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12235,6 +13191,7 @@ export const animeData = [
         releaseDate: "09/12/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/32.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12247,6 +13204,7 @@ export const animeData = [
         releaseDate: "16/12/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/33.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12259,6 +13217,7 @@ export const animeData = [
         releaseDate: "23/12/23",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/34.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12271,6 +13230,7 @@ export const animeData = [
         releaseDate: "13/01/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/35.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12283,6 +13243,7 @@ export const animeData = [
         releaseDate: "20/01/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/36.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12295,6 +13256,7 @@ export const animeData = [
         releaseDate: "27/01/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/37.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12307,6 +13269,7 @@ export const animeData = [
         releaseDate: "03/02/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/38.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12319,6 +13282,7 @@ export const animeData = [
         releaseDate: "10/02/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/39.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12331,6 +13295,7 @@ export const animeData = [
         releaseDate: "17/02/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/40.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12353,6 +13318,7 @@ export const animeData = [
         releaseDate: "09/03/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/42.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12365,6 +13331,7 @@ export const animeData = [
         releaseDate: "16/03/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/43.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12377,6 +13344,7 @@ export const animeData = [
         releaseDate: "23/03/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/44.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12389,6 +13357,7 @@ export const animeData = [
         releaseDate: "30/03/24",
         language: "Sub | Dob",
         videoUrl: "frame/Pokemon-horizons/T1/45.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12401,6 +13370,7 @@ export const animeData = [
         releaseDate: "13/04/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/46.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12413,6 +13383,7 @@ export const animeData = [
         releaseDate: "20/04/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/47.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12425,6 +13396,7 @@ export const animeData = [
         releaseDate: "04/05/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/48.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12437,6 +13409,7 @@ export const animeData = [
         releaseDate: "11/05/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/49.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12449,6 +13422,7 @@ export const animeData = [
         releaseDate: "18/05/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/50.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12461,6 +13435,7 @@ export const animeData = [
         releaseDate: "25/05/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/51.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12473,6 +13448,7 @@ export const animeData = [
         releaseDate: "01/06/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/52.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12485,6 +13461,7 @@ export const animeData = [
         releaseDate: "08/06/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/53.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12497,6 +13474,7 @@ export const animeData = [
         releaseDate: "15/06/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/54.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12509,6 +13487,7 @@ export const animeData = [
         releaseDate: "22/06/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/55.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12521,6 +13500,7 @@ export const animeData = [
         releaseDate: "29/06/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/56.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12533,6 +13513,7 @@ export const animeData = [
         releaseDate: "06/07/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/57.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12545,6 +13526,7 @@ export const animeData = [
         releaseDate: "13/07/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/58.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12557,6 +13539,7 @@ export const animeData = [
         releaseDate: "27/07/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/59.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12569,6 +13552,7 @@ export const animeData = [
         releaseDate: "10/08/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/60.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12581,6 +13565,7 @@ export const animeData = [
         releaseDate: "17/08/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/61.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12593,6 +13578,7 @@ export const animeData = [
         releaseDate: "24/08/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/62.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12605,6 +13591,7 @@ export const animeData = [
         releaseDate: "31/08/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/63.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12617,6 +13604,7 @@ export const animeData = [
         releaseDate: "07/09/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/64.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12629,6 +13617,7 @@ export const animeData = [
         releaseDate: "14/09/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/65.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12641,6 +13630,7 @@ export const animeData = [
         releaseDate: "21/09/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/66.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12653,6 +13643,7 @@ export const animeData = [
         releaseDate: "28/09/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/67.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12665,6 +13656,7 @@ export const animeData = [
         releaseDate: "12/10/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/68.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12677,6 +13669,7 @@ export const animeData = [
         releaseDate: "19/10/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/69.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12689,6 +13682,7 @@ export const animeData = [
         releaseDate: "26/10/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/70.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12701,6 +13695,7 @@ export const animeData = [
         releaseDate: "02/11/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/71.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12713,6 +13708,7 @@ export const animeData = [
         releaseDate: "09/11/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/72.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12725,6 +13721,7 @@ export const animeData = [
         releaseDate: "16/11/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/73.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12737,6 +13734,7 @@ export const animeData = [
         releaseDate: "23/11/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/74.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12749,6 +13747,7 @@ export const animeData = [
         releaseDate: "30/11/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/75.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12761,6 +13760,7 @@ export const animeData = [
         releaseDate: "07/12/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/76.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12773,6 +13773,7 @@ export const animeData = [
         releaseDate: "14/12/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/77.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12785,6 +13786,7 @@ export const animeData = [
         releaseDate: "21/12/24",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/78.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12797,6 +13799,7 @@ export const animeData = [
         releaseDate: "11/01/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/79.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12809,6 +13812,7 @@ export const animeData = [
         releaseDate: "18/01/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/80.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12821,6 +13825,7 @@ export const animeData = [
         releaseDate: "25/01/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/81.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12833,6 +13838,7 @@ export const animeData = [
         releaseDate: "01/02/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/82.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12845,6 +13851,7 @@ export const animeData = [
         releaseDate: "08/02/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/83.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12857,6 +13864,7 @@ export const animeData = [
         releaseDate: "15/02/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/84.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12869,6 +13877,7 @@ export const animeData = [
         releaseDate: "22/02/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/85.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12881,6 +13890,7 @@ export const animeData = [
         releaseDate: "01/03/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/86.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12893,6 +13903,7 @@ export const animeData = [
         releaseDate: "08/03/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/87.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12905,6 +13916,7 @@ export const animeData = [
         releaseDate: "15/03/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/88.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12917,6 +13929,7 @@ export const animeData = [
         releaseDate: "22/03/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/89.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12929,6 +13942,7 @@ export const animeData = [
         releaseDate: "12/04/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/90.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12941,6 +13955,7 @@ export const animeData = [
         releaseDate: "13/04/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/91.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12953,6 +13968,7 @@ export const animeData = [
         releaseDate: "19/04/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/92.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12965,6 +13981,7 @@ export const animeData = [
         releaseDate: "26/04/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/93.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12977,6 +13994,7 @@ export const animeData = [
         releaseDate: "03/05/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/94.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -12989,6 +14007,7 @@ export const animeData = [
         releaseDate: "10/05/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/95.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13001,6 +14020,7 @@ export const animeData = [
         releaseDate: "17/05/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/96.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13013,18 +14033,20 @@ export const animeData = [
         releaseDate: "31/05/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/97.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
         number: 98,
-        title: "¡Reencuentro en Pueblo Cercle!.",
+        title: "¡Reencuentro en Pueblo Cercle!",
         duration: "24m",
         description:
-          "Liko, Roy y Friede llegan a Pueblo Cercle en la región de Paldea. Allí se reencuentran con Dot, quien está investigando un misterioso fenómeno relacionado con Pokémon que no pueden usar sus habilidades.",
+          "Liko, Roy y Friede llegan a Pueblo Cercle en la región de Paldea.",
         img: "https://image.tmdb.org/t/p/w300/vwCpEvwV4jGhjnWbdxKeYp2mbXV.jpg",
-        releaseDate: "07/06/25",
+        releaseDate: "2025-06-07", // Fecha corregida a YYYY-MM-DD
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/98.html",
+        votes: { likes: 349, dislikes: 6 },
       },
       {
         season: 1,
@@ -13037,6 +14059,7 @@ export const animeData = [
         releaseDate: "14/06/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/99.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -13109,6 +14132,7 @@ export const animeData = [
         releaseDate: "Octubre 1, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13121,6 +14145,7 @@ export const animeData = [
         releaseDate: "Octubre 7, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13133,6 +14158,7 @@ export const animeData = [
         releaseDate: "Octubre 14, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13145,6 +14171,7 @@ export const animeData = [
         releaseDate: "Octubre 21, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13157,6 +14184,7 @@ export const animeData = [
         releaseDate: "Octubre 28, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13169,6 +14197,7 @@ export const animeData = [
         releaseDate: "Noviembre 4, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13181,6 +14210,7 @@ export const animeData = [
         releaseDate: "Noviembre 11, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13193,6 +14223,7 @@ export const animeData = [
         releaseDate: "Noviembre 18, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13205,6 +14236,7 @@ export const animeData = [
         releaseDate: "Noviembre 25, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13217,6 +14249,7 @@ export const animeData = [
         releaseDate: "Diciembre 2, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13229,6 +14262,7 @@ export const animeData = [
         releaseDate: "Diciembre 9, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13241,6 +14275,7 @@ export const animeData = [
         releaseDate: "Diciembre 16, 2023",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13253,6 +14288,7 @@ export const animeData = [
         releaseDate: "Enero 13, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13265,6 +14301,7 @@ export const animeData = [
         releaseDate: "Enero 20, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13277,6 +14314,7 @@ export const animeData = [
         releaseDate: "Enero 27, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13289,6 +14327,7 @@ export const animeData = [
         releaseDate: "Febrero 3, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13301,6 +14340,7 @@ export const animeData = [
         releaseDate: "Febrero 10, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13313,6 +14353,7 @@ export const animeData = [
         releaseDate: "Febrero 17, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13325,6 +14366,7 @@ export const animeData = [
         releaseDate: "Febrero 24, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13337,6 +14379,7 @@ export const animeData = [
         releaseDate: "Marzo 2, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13349,6 +14392,7 @@ export const animeData = [
         releaseDate: "Marzo 9, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13361,6 +14405,7 @@ export const animeData = [
         releaseDate: "Marzo 16, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13373,6 +14418,7 @@ export const animeData = [
         releaseDate: "Marzo 23, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13385,6 +14431,7 @@ export const animeData = [
         releaseDate: "Marzo 30, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Ragna-Crimson/T1/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -13428,6 +14475,7 @@ export const animeData = [
         releaseDate: "Abril 7, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13440,6 +14488,7 @@ export const animeData = [
         releaseDate: "Abril 14, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13452,6 +14501,7 @@ export const animeData = [
         releaseDate: "Abril 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13464,6 +14514,7 @@ export const animeData = [
         releaseDate: "Abril 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13476,6 +14527,7 @@ export const animeData = [
         releaseDate: "Mayo 12, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13488,6 +14540,7 @@ export const animeData = [
         releaseDate: "Mayo 19, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13500,6 +14553,7 @@ export const animeData = [
         releaseDate: "Mayo 26, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13512,6 +14566,7 @@ export const animeData = [
         releaseDate: "Junio 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13524,6 +14579,7 @@ export const animeData = [
         releaseDate: "Junio 9, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13536,6 +14592,7 @@ export const animeData = [
         releaseDate: "Junio 16, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13548,6 +14605,7 @@ export const animeData = [
         releaseDate: "Junio 23, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13560,6 +14618,7 @@ export const animeData = [
         releaseDate: "Junio 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T1/12.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 2
       {
@@ -13573,6 +14632,7 @@ export const animeData = [
         releaseDate: "Abril 13, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -13585,6 +14645,7 @@ export const animeData = [
         releaseDate: "Abril 20, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -13597,6 +14658,7 @@ export const animeData = [
         releaseDate: "Abril 27, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -13609,6 +14671,7 @@ export const animeData = [
         releaseDate: "Mayo 4, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -13621,6 +14684,7 @@ export const animeData = [
         releaseDate: "Mayo 11, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -13633,6 +14697,7 @@ export const animeData = [
         releaseDate: "Mayo 18, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -13645,6 +14710,7 @@ export const animeData = [
         releaseDate: "Mayo 25, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -13657,6 +14723,7 @@ export const animeData = [
         releaseDate: "Junio 1, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -13669,6 +14736,7 @@ export const animeData = [
         releaseDate: "Junio 8, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -13711,6 +14779,7 @@ export const animeData = [
         releaseDate: "Enero 11, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13723,6 +14792,7 @@ export const animeData = [
         releaseDate: "Enero 18, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13735,6 +14805,7 @@ export const animeData = [
         releaseDate: "Enero 25, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13747,6 +14818,7 @@ export const animeData = [
         releaseDate: "Febrero 1, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13759,6 +14831,7 @@ export const animeData = [
         releaseDate: "Febrero 8, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13771,6 +14844,7 @@ export const animeData = [
         releaseDate: "Febrero 15, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/6.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13783,6 +14857,7 @@ export const animeData = [
         releaseDate: "Febrero 22, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/7.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13795,6 +14870,7 @@ export const animeData = [
         releaseDate: "Marzo 1, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/8.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13807,6 +14883,7 @@ export const animeData = [
         releaseDate: "Marzo 8, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/9.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13819,6 +14896,7 @@ export const animeData = [
         releaseDate: "Marzo 15, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/10.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13831,6 +14909,7 @@ export const animeData = [
         releaseDate: "Marzo 22, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/11.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -13873,6 +14952,8 @@ export const animeData = [
         releaseDate: "Enero 6, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
+        votes: { likes: 1205, dislikes: 15 },
       },
       {
         season: 1,
@@ -13885,6 +14966,8 @@ export const animeData = [
         releaseDate: "Enero 13, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/2.html",
+        votes: { likes: 987, dislikes: 8 },
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13897,6 +14980,7 @@ export const animeData = [
         releaseDate: "Enero 20, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/3.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13909,6 +14993,7 @@ export const animeData = [
         releaseDate: "Enero 27, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/4.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13921,6 +15006,7 @@ export const animeData = [
         releaseDate: "Febrero 3, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/5.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13933,6 +15019,7 @@ export const animeData = [
         releaseDate: "Febrero 10, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13945,6 +15032,7 @@ export const animeData = [
         releaseDate: "Febrero 17, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13956,6 +15044,7 @@ export const animeData = [
         releaseDate: "Febrero 24, 2024",
         language: "Subtitulado",
         videoUrl: "frame/Solo-Leveling/T1/1.html.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13968,6 +15057,7 @@ export const animeData = [
         releaseDate: "Marzo 2, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13980,6 +15070,7 @@ export const animeData = [
         releaseDate: "Marzo 9, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -13992,6 +15083,7 @@ export const animeData = [
         releaseDate: "Marzo 16, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -14004,6 +15096,7 @@ export const animeData = [
         releaseDate: "Marzo 23, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -14016,6 +15109,7 @@ export const animeData = [
         releaseDate: "Marzo 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T1/1.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       // Temporada 2 (Arise from the Shadow) - Las fechas son especulativas basadas en el archivo
       {
@@ -14029,6 +15123,7 @@ export const animeData = [
         releaseDate: "Enero 4, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/13.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14041,6 +15136,7 @@ export const animeData = [
         releaseDate: "Enero 11, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/14.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14053,6 +15149,7 @@ export const animeData = [
         releaseDate: "Enero 18, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/15.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14065,6 +15162,7 @@ export const animeData = [
         releaseDate: "Enero 25, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/16.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14077,6 +15175,7 @@ export const animeData = [
         releaseDate: "01/02/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/17.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14089,6 +15188,7 @@ export const animeData = [
         releaseDate: "08/02/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/18.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14101,6 +15201,7 @@ export const animeData = [
         releaseDate: "15/02/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/19.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14113,6 +15214,7 @@ export const animeData = [
         releaseDate: "22/02/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/20.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14125,6 +15227,7 @@ export const animeData = [
         releaseDate: "01/03/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/21.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14137,6 +15240,7 @@ export const animeData = [
         releaseDate: "08/03/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/22.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14149,6 +15253,7 @@ export const animeData = [
         releaseDate: "15/03/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/23.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14161,6 +15266,7 @@ export const animeData = [
         releaseDate: "22/03/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/24.html",
+        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 2,
@@ -14173,6 +15279,7 @@ export const animeData = [
         releaseDate: "29/03/25",
         language: "Sub | Dob",
         videoUrl: "frame/Solo-Leveling/T2/25.html",
+        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },

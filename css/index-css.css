@@ -66,7 +66,7 @@ header {
 }
 
 header.scrolled {
-    background-color: rgb(202, 48, 48);
+    background-color: rgba(16, 16, 16, 0.9);
     backdrop-filter: blur(10px);
     padding: 1.5rem 5%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -450,13 +450,13 @@ header .navbar ul li a.active {
     list-style: none;
 }
 
-#yesterday-episodes {
+#yesterday-episodes-container {
     display: none;
 }
 
 .episode-item a {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 1.5rem;
     padding: 1rem;
@@ -916,7 +916,7 @@ header .navbar ul li a.active {
 
 .action-btn.play {
     background-color: var(--light-text);
-    color: var(--dark-text);
+    color: var(--dark-bg);
 }
 
 .action-btn.play:hover {
@@ -1286,7 +1286,7 @@ header .navbar ul li a.active {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #000;
+    background-color: var(--dark-bg);
     z-index: 3000;
     flex-direction: column;
 }
@@ -1312,46 +1312,58 @@ header .navbar ul li a.active {
     flex-grow: 1;
     overflow-y: auto;
     position: relative;
+    padding: 2.5rem 3rem;
 }
 
 .close-player {
     position: fixed;
     top: 2rem;
     right: 3rem;
-    font-size: 3.5rem;
-    background: none;
+    font-size: 2.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
     color: #fff;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.3s, background-color 0.3s;
     z-index: 3001;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 .close-player:hover {
-    color: var(--primary-color);
+    color: #fff;
+    background-color: var(--primary-color);
 }
 
 .player-details-content {
     display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr);
     gap: 4rem;
-    padding: 2.5rem 3rem;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
-.player-main-info-col h3 {
-    font-size: 1.8rem;
-    color: var(--primary-color);
-    font-weight: 500;
+#player-anime-title {
+    font-size: 2.4rem !important;
+    color: var(--secondary-color) !important;
+    font-weight: 700;
+    font-family: var(--font-headings);
     margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+#player-anime-title:hover {
+    color: #fff !important;
 }
 
 .player-main-info-col h4 {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     font-family: var(--font-headings);
     color: #fff;
     margin-bottom: 1rem;
+    font-weight: 400;
 }
 
 .player-meta-tags {
@@ -1364,13 +1376,19 @@ header .navbar ul li a.active {
     margin-bottom: 1.5rem;
 }
 
+.player-main-info-col p {
+    font-size: 1.4rem;
+    color: var(--grey-text);
+    line-height: 1.6;
+    margin-top: 1.5rem;
+}
+
 .episode-actions {
     display: flex;
     gap: 1rem;
-    margin-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
 }
 
 .player-action-btn {
@@ -1398,14 +1416,15 @@ header .navbar ul li a.active {
     color: var(--primary-color);
 }
 
-.player-action-btn.favorite-btn-player.is-favorite {
-    color: var(--secondary-color);
+.favorite-btn-player {
+    background: transparent;
+    font-size: 2.2rem;
+    padding: 0;
+    color: var(--grey-text);
 }
 
-.player-main-info-col p {
-    font-size: 1.4rem;
-    color: var(--grey-text);
-    line-height: 1.6;
+.favorite-btn-player.is-favorite {
+    color: var(--secondary-color);
 }
 
 .player-nav-col {
@@ -1426,6 +1445,7 @@ h5.player-nav-title {
     color: var(--grey-text);
     text-transform: uppercase;
     margin-bottom: 0.5rem;
+    text-align: left;
 }
 
 .player-nav-card {
@@ -1435,6 +1455,7 @@ h5.player-nav-title {
     align-items: center;
     border-radius: 4px;
     transition: background-color 0.3s;
+    padding: 0.5rem;
 }
 
 .player-nav-card:hover {
@@ -1619,6 +1640,10 @@ h5.player-nav-title {
     .player-details-content {
         grid-template-columns: 1fr;
     }
+
+    .player-nav-col {
+        margin-top: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1686,6 +1711,10 @@ h5.player-nav-title {
 
     .episode-search-wrapper input {
         width: 100%;
+    }
+
+    .player-video-container {
+        height: 45vh;
     }
 }
 
