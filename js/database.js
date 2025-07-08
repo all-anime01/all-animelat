@@ -23790,11 +23790,16 @@ export const animeData = [
   //T
   {
     id: "the-super-cube",
-    title: "The Super Cube",
-    img: "/image/The-super-cube/T1/p.jpg",
-    heroImg: "/image/The-super-cube/T1/b.webp",
-    logoImg: "/image/The-super-cube/T1/logo.png",
-    imgMobile: "/image/The-super-cube/T1/b.webp",
+    title: "The Super Cube: Chao Neng Lifang: Chaofan Pian",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751957606/The-Super-Cube_tecevv.webp",
+    heroImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751957326/b_o5gheq.webp",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751957336/h_amkifx.jpg",
+    logoImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751957321/logo_uj1vg1.png",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751957606/The-Super-Cube_tecevv.webp",
     trailerUrl: "https://www.youtube.com/embed/pp7yzzwP44c?si=LD0nAqlyNyblDt6P",
     description:
       "En un accidente, un chico corriente, Wang Xiaoxiu, obtiene un sistema espacial llamado «Cubo de Superpoderes» de una civilización cósmica de gran latitud y adquiere poderes extraordinarios. Cuando Shen Yao, la chica de la escuela que lleva mucho tiempo enamorada de Wang Xiaoxiu, le confiesa su amor, el delincuente Sun Jun, que también está enamorado de ella, se siente provocado. Wang Xiaoxiu resuelve la crisis con su ingenio y sus extraordinarios poderes, pero también trae como consecuencia más desastres. Shen Yao es llevada al mundo de los seres extraordinarios por una persona misteriosa, y Wang Xiaoxiu se embarca en un viaje para rescatarla. Luchando en el extraño universo, encuentra el significado de la equidad y la justicia en el camino de convertirse en un poder sin igual.",
