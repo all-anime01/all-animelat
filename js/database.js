@@ -11529,7 +11529,7 @@ export const animeData = [
     trailerUrl: "https://www.youtube.com/embed/qRmDi8Yw3Vc?si=flGAyLIeAlSjhidb",
     description:
       "Una nueva serie de Kinnikuman para celebrar el 40 aniversario del anime televisivo original. Adapta el arco de Perfect Origin del manga. Kinnikuman ha demostrado ser digno de ser coronado como el próximo rey del planeta Kinniku. Pero a la ceremonia llegan otros cinco Kinnikuman, todos afirmando ser el verdadero príncipe. Ahora, se está celebrando un Torneo Real para decidir el verdadero sucesor al trono, y con la ayuda de sus amigos y su conocimiento de la Técnica Definitiva, La Chispa Muscular, Kinnikuman lucha por lo que por derecho es suyo.",
-    genres: ["Acción", "Deportes", "Aventura", "Comedia", "Shounen"],
+    genres: ["Acción", "Deporte", "Aventura", "Comedia", "Shounen"],
     rating: 4.6,
     ratingCount: "1.1K",
     seasons: 2,
@@ -23472,7 +23472,7 @@ export const animeData = [
   {
     id: "sand-land-the-series",
     title: "Sand Land: The series",
-    img: "/image/Sand-Land/p.jpg",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752074198/p_xnd8rw.jpg",
     heroImg:
       "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/ED2688D9BEC2DA780894E7931FE7D9572A905D94E348010BE9C1F1528CC84074/scale?width=1440&aspectRatio=1.78&format=jpeg",
     logoImg:
@@ -23491,7 +23491,7 @@ export const animeData = [
     year: 2024,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["agregado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 434)), // Calculado desde el 01/05/24
     audio: "Sub | Dob",
     creator: "Akira Toriyama",
@@ -23636,7 +23636,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Beelzebub se enfrenta a un Mounir mejorado por el Aquanium en una batalla que decidirá el futuro de Sand Land y el mundo entero.",
-        img: "/image/Sand-Land/T1/12.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752074199/12_wwgx6n.jpg",
         releaseDate: "Abril 24, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Sand-Land/T1/12.html",
@@ -28305,6 +28305,181 @@ export const animeData = [
   },
   // U
   {
+    id: "under-ninja",
+    title: "Under Ninja",
+    img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/39201a3e092424769aac68d0b8211dce.jpe",
+    heroImg:
+      "https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/66eae514f1aab549fbd391d1739bdcbc.jpe",
+    logoImg:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Under_Ninja_Logo.png/640px-Under_Ninja_Logo.png",
+    imgMobile:
+      "https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/66eae514f1aab549fbd391d1739bdcbc.jpe",
+    trailerUrl: "https://www.youtube.com/embed/Ya5JnFNwDMA?si=QhCUoBQDycA_7E92",
+    description:
+      "En las sombras de Japón se libra una batalla encubierta. Todavía existen unos 200 000 ninjas que llevan a cabo misiones mortales como organización secreta, la Inteligencia Nacional de NINJA, o NIN por sus siglas, hasta que surge un contrincante: UNDER NINJA. Conocidos bajo las siglas UN, estos ninjas se oponen a NIN a cada paso que dan. Uno de los integrantes de UN es Kuro, un adolescente solitario enviado al frente. ¿Cuál será su destino y qué facción prevalecerá?.",
+    genres: ["Acción", "Seinen", "Comedia"],
+    rating: 3.9,
+    ratingCount: "139",
+    seasons: 1,
+    episodesTotal: 12,
+    status: "Finalizado",
+    year: 2023,
+    type: "Anime",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 564)), // Calculado desde el 21/12/23
+    audio: "Sub | Dob",
+    creator: "Kengo Hanazawa",
+    contentWarning: "+16 Violencia, Desnudos",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Lanza una piedra y le darás a un ninja.",
+        duration: "24 min",
+        description:
+          "Kuro Kumogakure, un ninja moderno y un tanto marginado, recibe su primera misión tras un largo período de inactividad: infiltrarse en una preparatoria.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/54a642ef12105133607491d176a9e777.jpe",
+        releaseDate: "Octubre 5, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Me he convertido en un ninja como soñaba.",
+        duration: "24 min",
+        description:
+          "Kuro comienza su vida encubierta, intentando adaptarse a la normalidad de la vida escolar mientras espera sus órdenes, pero su naturaleza ninja no tarda en salir a la luz.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/1351f659f860ea796b21433e342a228f.jpe",
+        releaseDate: "Octubre 12, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Pechos: tan cerca y, al mismo tiempo, tan lejos.",
+        duration: "24 min",
+        description:
+          "Kuro se encuentra con otros ninjas infiltrados y descubre que su misión podría estar conectada con un estudiante extranjero y un misterioso paquete.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/45fff22cbc390bf0f014fae094c06bc9.jpe",
+        releaseDate: "Octubre 19, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "¿Sabes lo que dice el código shinobi?.",
+        duration: "24 min",
+        description:
+          "La trama se complica cuando se revela la existencia de una facción enemiga, UN (Under Ninja), que se opone a la organización NIN a la que pertenece Kuro.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c5fa7560c8788d1dff76d39fe40f1317.jpe",
+        releaseDate: "Octubre 26, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title:
+          "Kumogakure es uno de los diez apellidos más comunes de Japón (mentiras).",
+        duration: "24 min",
+        description:
+          "Se explora el pasado de la familia Kumogakure y la razón por la que Kuro, a pesar de su linaje, es considerado un ninja de bajo rango.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/fa8ca1e7b36e373fcbd66300e21c2be8.jpe",
+        releaseDate: "Noviembre 2, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "Han destapado esta olla infernal.",
+        duration: "24 min",
+        description:
+          "Kuro se enfrenta a un ninja de UN en una batalla que combina técnicas tradicionales con tácticas modernas y extrañas, como el uso de drones y tecnología de vigilancia.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6731e206cce13ff4e3e51424f6886fe5.jpe",
+        releaseDate: "Noviembre 9, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "Miau, miau, ¿miau, miau, miau?.",
+        duration: "24 min",
+        description:
+          "La misión de Kuro se vuelve aún más extraña cuando debe cuidar de un gato que parece ser la clave para encontrar a su verdadero objetivo.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/2b7b344e7b0e18bf42e5c84074a5ca1c.jpe",
+        releaseDate: "Noviembre 16, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "Aniquilaremos a todos los ninjas del planeta.",
+        duration: "24 min",
+        description:
+          "Se revela el verdadero y ambicioso plan de UN: destruir la organización NIN desde dentro y exponer la existencia de los ninjas al mundo.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/9e092e76aa02ced73d6ead31f34aff81.jpe",
+        releaseDate: "Noviembre 23, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Pasaré a la historia como shinobi.",
+        duration: "24 min",
+        description:
+          "Kuro se enfrenta a un dilema moral: seguir las órdenes de NIN o tomar su propio camino para detener una catástrofe.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/549313c03b514b7d0c55b54dac671d29.jpe",
+        releaseDate: "Noviembre 30, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "El pecho de una chica es muy importante.",
+        duration: "24 min",
+        description:
+          "Una batalla se desata en plena luz del día. Kuro debe proteger a una compañera de clase que se ve envuelta en el conflicto entre NIN y UN.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e902cd08a646f5d257599b358f7704f0.jpe",
+        releaseDate: "Diciembre 7, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Kuro por fin empuña una espada.",
+        duration: "24 min",
+        description:
+          "Para el enfrentamiento final, Kuro finalmente desenvaina su espada, demostrando por qué, a pesar de ser un marginado, pertenece al legendario clan Kumogakure.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8c82b19d02fbfd73cfe12ce166eec4ff.jpe",
+        releaseDate: "Diciembre 14, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "Lo de siempre, sin cabos sueltos.",
+        duration: "24 min",
+        description:
+          "La primera temporada concluye con la resolución de la misión de Kuro en la preparatoria, pero la guerra entre NIN y UN está lejos de terminar.",
+        img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a2395a87f34eace4006e4aed3a5a8f77.jpe",
+        releaseDate: "Diciembre 21, 2023",
+        language: "Sub | Dob",
+        videoUrl: "frame/Under-ninja/T1/12.html",
+      },
+    ],
+  },
+  {
     id: "undead-unluck",
     title: "Undead Unluck",
     img: "https://cdn.jkdesu.com/assets/images/animes/image/undead-unluck.jpg",
@@ -28809,6 +28984,86 @@ export const animeData = [
         releaseDate: "Septiembre 27, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Undead-Murder-Farce/T1/13.html",
+      },
+    ],
+  },
+  {
+    id: "uzumaki",
+    title: "Uzumaki",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752074012/p_etw0mj.jpg",
+    heroImg:
+      "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/f3ba329b-1089-44bc-a844-6177fa69930e/0eaf9068-482f-4608-98b4-964ce480b64a?host=wbd-images.prod-vod.h264.io&partner=beamcom",
+    fonImg:
+      "https://images.cdn.prd.api.discomax.com/s7TNO/Se2LX4bd3mtJe8ZoA.jpeg",
+    logoImg:
+      "https://images.cdn.prd.api.discomax.com/JBt_y/PJENsuLektx-RGXGw.png?w=600&f=webp",
+    imgMobile:
+      "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/f3ba329b-1089-44bc-a844-6177fa69930e/0eaf9068-482f-4608-98b4-964ce480b64a?host=wbd-images.prod-vod.h264.io&partner=beamcom",
+    trailerUrl: "https://www.youtube.com/embed/iZAEfDYu-EQ?si=OsEzgHOGwpSvKgID",
+    description:
+      "¡Todo en este pueblo se está convirtiendo en espirales! En un intento de escapar de las espirales Kirie, decide abandonar su pueblo ¿podrá lograrlo?...",
+    genres: ["Drama", "Sobrenatural"],
+    rating: 4.6,
+    ratingCount: "4.2K",
+    seasons: 1,
+    episodesTotal: 4,
+    status: "Finalizado",
+    year: 2024,
+    type: "Anime",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 265)), // Calculado desde el 20/10/24
+    audio: "Sub | Cas",
+    creator: "Junji Ito",
+    contentWarning: "+16 Horror, Violencia",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Episodio 1.",
+        duration: "22 min",
+        description:
+          "Kirie Goshima y su novio Shuichi Saito son testigos de cómo el padre de Shuichi se obsesiona extrañamente con las espirales, marcando el inicio de la terrible maldición que acecha al pueblo de Kurouzu-cho.",
+        img: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/0cfba4de-24da-46ba-a941-83a3dc377196/8be6d012-7170-11ef-9575-02511bb43bc3?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+        releaseDate: "Septiembre 29, 2024",
+        language: "Sub | Cas",
+        videoUrl: "frame/Uzumaki/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Episodio 2.",
+        duration: "22 min",
+        description:
+          "La obsesión por las espirales se extiende por el pueblo, afectando a más habitantes. Una compañera de clase de Kirie comienza a desarrollar una espiral en su frente.",
+        img: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/6239a9f7-551a-4bc0-ba92-d6016573f12d/67b4e279-7a98-11ef-9926-12cb3f34bca7?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+        releaseDate: "Octubre 6, 2024",
+        language: "Sub | Cas",
+        videoUrl: "frame/Uzumaki/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Episodio 3.",
+        duration: "22 min",
+        description:
+          "La maldición de la espiral toma formas cada vez más grotescas. El pelo de una estudiante comienza a formar espirales hipnóticas y mortales, mientras otros se convierten en caracoles humanos.",
+        img: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/53268757-6b9d-4cfd-8a20-7f9e288d3fb4/be8ddeaa-828e-11ef-9926-12cb3f34bca7?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+        releaseDate: "Octubre 13, 2024",
+        language: "Sub | Cas",
+        videoUrl: "frame/Uzumaki/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "Episodio 4.",
+        duration: "22 min",
+        description:
+          "Kirie y Shuichi intentan escapar del pueblo, pero descubren que la espiral no los dejará ir. El pueblo entero comienza a retorcerse sobre sí mismo, atrapándolos en una pesadilla sin fin.",
+        img: "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/94d311d2-4d1f-4c66-adc9-c50b17fc6eeb/631867d0-589d-46da-ae7d-80b744a1a78c?host=wbd-images.prod-vod.h264.io&partner=beamcom&w=320",
+        releaseDate: "Octubre 20, 2024",
+        language: "Sub | Cas",
+        videoUrl: "frame/Uzumaki/T1/4.html",
       },
     ],
   },
@@ -29649,6 +29904,7 @@ export const animeData = [
       },
     ],
   },
+  // Z
   {
     id: "zom-100-the-bucket-list-of-the-dead",
     title: "Zom 100: The Bucket List of the Dead",
