@@ -28504,13 +28504,57 @@ export const animeData = [
         season: 1,
         number: 1,
         title: "The Beginning.",
-        duration: "120 min",
+        duration: "2 hrs",
         description:
           "Diez años después de sus aventuras, los DigiDestinados de 02 se reúnen cuando un misterioso joven, Lui Ohwada, aparece afirmando ser el primer humano en tener un compañero Digimon. Su llegada desvela un secreto que podría cambiar la historia de la relación entre ambos mundos.",
         img: "https://image.tmdb.org/t/p/w300/stgwLe5ixbMzirxWpnxhJyGBHUg.jpg",
         releaseDate: "Diciembre 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Digimon-adventure-the-beginning-2/1.html",
+      },
+    ],
+  },
+  {
+    id: "slam-dunk-the-first-slam-dunk",
+    title: "Slam Dunk: The First Slam Dunk",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752023801/p_eok1sf.jpg",
+    heroImg:
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEjL4xeCSBCqFHVgfEzFnOzdmn_wHfCaRfYXeetPUH1kQtfKvMimQOMxGAuopfXIbcYBRj7IiEx4OGnpU1ajz7ZXjmHKldCCIVoNXKw81xuHs51XcRTUPY7so9kWo9HH4-WFioIBwfNh4oeOZgqIMJc4Exsfs9mB9E5gINHpfSrSsTi09Ml2-rMISxAQ/s800/slam-dunk-movie.jpg",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752023801/p_eok1sf.jpg",
+    logoImg:
+      "https://www.selecta-vision.com/wp-content/uploads/thefirst-slamdunk-logo.png",
+    imgMobile:
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEjL4xeCSBCqFHVgfEzFnOzdmn_wHfCaRfYXeetPUH1kQtfKvMimQOMxGAuopfXIbcYBRj7IiEx4OGnpU1ajz7ZXjmHKldCCIVoNXKw81xuHs51XcRTUPY7so9kWo9HH4-WFioIBwfNh4oeOZgqIMJc4Exsfs9mB9E5gINHpfSrSsTi09Ml2-rMISxAQ/s800/slam-dunk-movie.jpg",
+    trailerUrl: "https://www.youtube.com/embed/3qSEwqLVFpw?si=r7925Rv2cTLf5mAb",
+    description:
+      "Ryouta Miyagi, el “velocista” y base del Shohoku, siempre juega con inteligencia y a la velocidad del rayo, corriendo en círculos alrededor de sus oponentes mientras finge compostura. Nacido y criado en Okinawa, Ryouta tenía un hermano tres años mayor que él. Siguiendo los pasos de su hermano mayor, que era un famoso jugador local desde muy joven, Ryouta también se hizo adicto al baloncesto. En su segundo año de instituto, Ryouta juega con el equipo de baloncesto del instituto Shohoku junto con Sakuragi, Rukawa, Akagi y Mitsui, que se presentan al Campeonato Nacional Interuniversitario. Y ahora están a punto de desafiar al actual campeón, el instituto Sannoh Kogyo.",
+    genres: ["Deporte", "Comedia", "Shounen"],
+    rating: 4.5,
+    ratingCount: "8.2K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "Finalizado",
+    year: 2022,
+    type: "Película",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 948)), // Calculado desde el 03/12/22
+    audio: "Sub | Dob",
+    creator: "Takehiko Inoue",
+    contentWarning: "+12",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "The First Slam Dunk.",
+        duration: "1h 59 min",
+        description:
+          "La historia sigue a Ryota Miyagi, el base del equipo de baloncesto del instituto Shohoku. Conocido por su velocidad y su juego inteligente, Ryota lidera a su equipo, junto con Sakuragi, Rukawa, Akagi y Mitsui, en el desafío de sus vidas contra el campeón nacional, el instituto Sannoh Kogyo.",
+        img: "https://image.tmdb.org/t/p/w300/zjmHE7pDSOFVOsfDTwSsczwXPdP.jpg",
+        releaseDate: "Diciembre 3, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Slam-dunk-the-first-slam-dunk/1.html",
       },
     ],
   },
