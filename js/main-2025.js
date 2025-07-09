@@ -1,6 +1,33 @@
 import { animeData } from "./database.js";
 
 $(document).ready(function () {
+  // --- LÓGICA DE CAMBIO DE TEMA ---
+  const themeToggle = $("#theme-toggle");
+  const currentTheme = localStorage.getItem("theme");
+
+  function applyTheme(theme) {
+    if (theme === "red-theme") {
+      $("body").addClass("red-theme");
+      themeToggle.find("i").removeClass("fa-sun").addClass("fa-moon");
+    } else {
+      $("body").removeClass("red-theme");
+      themeToggle.find("i").removeClass("fa-moon").addClass("fa-sun");
+    }
+  }
+
+  if (currentTheme) {
+    applyTheme(currentTheme);
+  }
+
+  themeToggle.on("click", function () {
+    let theme = "dark-theme";
+    if (!$("body").hasClass("red-theme")) {
+      theme = "red-theme";
+    }
+    localStorage.setItem("theme", theme);
+    applyTheme(theme);
+  });
+
   // --- FUNCIONES AUXILIARES ---
   function debounce(func, delay) {
     let timeout;
@@ -51,9 +78,8 @@ $(document).ready(function () {
 
   function createDynamicEpisodeItem(episode, anime) {
     const originalMeta = `Episodio ${episode.number} • ${episode.language}`;
-    // *** AQUÍ ESTÁ EL CAMBIO ***
-    const initialImage = anime.fonImg; // La imagen inicial ahora es el póster del anime.
-    const hoverImage = episode.img; // La imagen al pasar el cursor es la miniatura del episodio.
+    const initialImage = anime.fonImg;
+    const hoverImage = episode.img;
 
     return `
       <li class="episode-item"
@@ -92,6 +118,7 @@ $(document).ready(function () {
             </div>`;
   }
 
+  // --- LÓGICA DE LA PÁGINA DE INICIO (ACTUALIZADA) ---
   function populateHomePage() {
     const recommendationsCarousel = $("#recommendations-carousel");
     const dubsCarousel = $("#dubs-carousel");
@@ -119,44 +146,37 @@ $(document).ready(function () {
 
     if (episodesListHoy.length || episodesListAyer.length) {
       const today = new Date();
-      const yesterday = new Date();
+      today.setHours(0, 0, 0, 0);
+      const yesterday = new Date(today);
       yesterday.setDate(today.getDate() - 1);
 
-      const isSameDay = (d1, d2) => {
-        return (
-          d1.getFullYear() === d2.getFullYear() &&
-          d1.getMonth() === d2.getMonth() &&
-          d1.getDate() === d2.getDate()
-        );
-      };
-
-      let todayEpisodes = [];
-      let yesterdayEpisodes = [];
-
+      let allEpisodes = [];
       animeData.forEach((anime) => {
         if (anime.episodes) {
           anime.episodes.forEach((episode) => {
-            const releaseDate = new Date(episode.releaseDate);
-            if (!isNaN(releaseDate)) {
-              if (isSameDay(releaseDate, today)) {
-                todayEpisodes.push({ anime, episode });
-              } else if (isSameDay(releaseDate, yesterday)) {
-                yesterdayEpisodes.push({ anime, episode });
-              }
-            }
+            allEpisodes.push({
+              anime,
+              episode,
+              releaseDate: new Date(episode.releaseDate),
+            });
           });
         }
       });
 
+      const todayEpisodes = allEpisodes.filter(
+        (item) => item.releaseDate.getTime() === today.getTime()
+      );
+      const yesterdayEpisodes = allEpisodes.filter(
+        (item) => item.releaseDate.getTime() === yesterday.getTime()
+      );
+
       episodesListHoy.empty();
       if (todayEpisodes.length > 0) {
-        todayEpisodes
-          .sort((a, b) => b.episode.number - a.episode.number)
-          .forEach((item) =>
-            episodesListHoy.append(
-              createDynamicEpisodeItem(item.episode, item.anime)
-            )
-          );
+        todayEpisodes.forEach((item) =>
+          episodesListHoy.append(
+            createDynamicEpisodeItem(item.episode, item.anime)
+          )
+        );
       } else {
         episodesListHoy.html(
           '<p class="no-results" style="padding: 2rem 0;">No hay nuevos episodios hoy.</p>'
@@ -164,18 +184,17 @@ $(document).ready(function () {
       }
 
       episodesListAyer.empty();
+      const yesterdayContainer = $("#yesterday-episodes-container");
       if (yesterdayEpisodes.length > 0) {
-        yesterdayEpisodes
-          .sort((a, b) => b.episode.number - a.episode.number)
-          .forEach((item) =>
-            episodesListAyer.append(
-              createDynamicEpisodeItem(item.episode, item.anime)
-            )
-          );
-        $("#yesterday-episodes-container").show();
+        yesterdayEpisodes.forEach((item) =>
+          episodesListAyer.append(
+            createDynamicEpisodeItem(item.episode, item.anime)
+          )
+        );
+        yesterdayContainer.show();
         $("#show-more-episodes").show();
       } else {
-        $("#yesterday-episodes-container").hide();
+        yesterdayContainer.hide();
         $("#show-more-episodes").hide();
       }
     }
@@ -304,7 +323,6 @@ $(document).ready(function () {
     const favoriteEpisodesGrid = $("#favorites-episodes-grid");
     if (!favoritesGrid.length) return;
 
-    // Cargar Animes Favoritos
     const favoriteIds =
       JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
     favoritesGrid.empty();
@@ -321,7 +339,6 @@ $(document).ready(function () {
       );
     }
 
-    // Cargar Episodios Favoritos
     const favoriteEpisodeIds =
       JSON.parse(localStorage.getItem("favoriteEpisodes")) || [];
     favoriteEpisodesGrid.empty();
@@ -697,7 +714,6 @@ $(document).ready(function () {
 
     function updateVoteUI(episodeId) {
       let allVotes = getEpisodeVotes();
-      // Inicializar con datos base de la DB si no existe en localStorage
       if (!allVotes[episodeId]) {
         const epData = anime.episodes.find(
           (e) => `${anime.id}-s${e.season}-ep${e.number}` === episodeId
@@ -720,7 +736,6 @@ $(document).ready(function () {
         `;
       $("#player-episode-actions").html(actionsHtml);
 
-      // Actualizar estado visual del botón
       const userVotes = getUserEpisodeVote();
       const userVote = userVotes[episodeId];
       $("#player-episode-actions .like-btn").toggleClass(
@@ -771,7 +786,6 @@ $(document).ready(function () {
       $("body").css("overflow", "auto");
     });
 
-    // Favoritos de Anime (el botón principal)
     const favoriteAnimeBtn = $("#favorite-anime-btn");
 
     function getAnimeFavorites() {

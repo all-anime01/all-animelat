@@ -126,6 +126,35 @@ header .navbar ul li a.active {
     gap: 1rem;
 }
 
+/* --- Botón de Tema --- */
+.theme-toggle-btn {
+    background: none;
+    color: var(--light-text);
+    cursor: pointer;
+    font-size: 2.2rem;
+    transition: color 0.3s, transform 0.3s;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* --- Estilos del Tema Rojo --- */
+body.red-theme header.scrolled {
+    background-color: var(--primary-color);
+    backdrop-filter: none;
+    background-image: none;
+}
+
+body.red-theme header {
+    background-image: linear-gradient(to bottom, rgba(202, 48, 48, 0.7), transparent);
+}
+
 /* --- Estilos de Buscador --- */
 .search-container {
     position: relative;
@@ -1288,7 +1317,7 @@ header .navbar ul li a.active {
 
 .player-video-container {
     width: 100%;
-    height: 56.25vh;
+    height: 57.50vh;
     /* 16:9 aspect ratio */
     max-height: 75vh;
     /* Límite para que no ocupe toda la pantalla */
@@ -1341,7 +1370,7 @@ header .navbar ul li a.active {
 }
 
 #player-anime-title {
-    font-size: 2.4rem !important;
+    font-size: 2.8rem !important;
     color: var(--secondary-color) !important;
     font-weight: 700;
     font-family: var(--font-headings);
