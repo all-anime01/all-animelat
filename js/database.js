@@ -6827,7 +6827,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 2)), // Hace 2 días
+    dateAdded: new Date(), // Hace 2 días
     audio: "Sub | Dob",
     creator: "Yukinobu Tatsu",
     contentWarning: "+16 Violencia, Lenguaje",
@@ -6934,7 +6934,6 @@ export const animeData = [
         releaseDate: "Noviembre 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T1/8.html",
-        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 1,
@@ -6999,7 +6998,6 @@ export const animeData = [
         releaseDate: "Julio 3, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T2/13.html",
-        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -11852,7 +11850,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // Hace 1 días
+    dateAdded: new Date(), // Hace 1 días
     audio: "Sub | Dob",
     creator: "Kei Urana",
     contentWarning: "+16 Violencia",
@@ -11897,7 +11895,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 5)), // Hace 5 días
+    dateAdded: new Date(), // Hace 5 días
     audio: "Subtitulado",
     creator: "Sho Makura & Takeshi Okano",
     contentWarning: "+14 Violencia, Desnudos",
