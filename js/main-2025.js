@@ -850,7 +850,10 @@ $(document).ready(function () {
   function populateCalendarPage() {
     const last24hList = $("#last-24h-list");
     const lastWeekList = $("#last-week-list");
-    if (!last24hList.length) return;
+
+    if (!last24hList.length && !lastWeekList.length) {
+      return; // Salir si los elementos no existen en la página
+    }
 
     const now = new Date();
     const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
@@ -859,15 +862,33 @@ $(document).ready(function () {
     const last24hAnimes = [];
     const lastWeekAnimes = [];
 
+    // Recorrer cada anime para encontrar su último episodio
     animeData.forEach((anime) => {
-      const addedDate = new Date(anime.dateAdded);
-      if (addedDate >= oneDayAgo) {
-        last24hAnimes.push(anime);
-      } else if (addedDate >= oneWeekAgo) {
-        lastWeekAnimes.push(anime);
+      if (anime.episodes && anime.episodes.length > 0) {
+        // Encontrar el episodio más reciente
+        const latestEpisode = anime.episodes.reduce((latest, current) => {
+          const latestDate = new Date(latest.releaseDate);
+          const currentDate = new Date(current.releaseDate);
+          return currentDate > latestDate ? current : latest;
+        });
+
+        const releaseDate = new Date(latestEpisode.releaseDate);
+
+        // Clasificar el anime según la fecha de su último episodio
+        if (releaseDate >= oneDayAgo) {
+          // Si el anime ya está en la lista, no lo agregamos de nuevo
+          if (!last24hAnimes.some((a) => a.id === anime.id)) {
+            last24hAnimes.push(anime);
+          }
+        } else if (releaseDate >= oneWeekAgo) {
+          if (!lastWeekAnimes.some((a) => a.id === anime.id)) {
+            lastWeekAnimes.push(anime);
+          }
+        }
       }
     });
 
+    // Limpiar las listas antes de poblarlas
     last24hList.empty();
     if (last24hAnimes.length > 0) {
       last24hAnimes.forEach((anime) =>
@@ -875,7 +896,7 @@ $(document).ready(function () {
       );
     } else {
       last24hList.html(
-        '<p class="no-results">No se añadieron animes en las últimas 24 horas.</p>'
+        '<p class="no-results">No se añadieron nuevos episodios en las últimas 24 horas.</p>'
       );
     }
 
@@ -886,7 +907,7 @@ $(document).ready(function () {
       );
     } else {
       lastWeekList.html(
-        '<p class="no-results">No se añadieron animes en la última semana.</p>'
+        '<p class="no-results">No se añadieron nuevos episodios en la última semana.</p>'
       );
     }
   }

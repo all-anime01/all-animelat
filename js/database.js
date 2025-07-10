@@ -26,7 +26,7 @@ export const animeData = [
     type: "Anime",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 6955)), // Calculado desde el 19/07/08
+    dateAdded: new Date(), // new Date().setDate(new Date().getDate() - 6955)
     audio: "Sub | Dob",
     creator: "Michael Dante DiMartino & Bryan Konietzko",
     contentWarning: "+7",
@@ -797,7 +797,7 @@ export const animeData = [
     type: "Anime",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 465)), // Calculado desde el 29/03/24
+    dateAdded: new Date(), // Calculado desde el 29/03/24 new Date().setDate(new Date().getDate() - 465)
     audio: "Sub | Dob",
     creator: "Homura Kawamoto & Hikaru Muno",
     contentWarning: "+7",
@@ -1129,7 +1129,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1378)), // Calculado desde el 28/09/21
+    dateAdded: new Date(), // Calculado desde el 28/09/21 new Date().setDate(new Date().getDate() - 1378)
     audio: "Sub | Dob",
     creator: "Yūki Tabata",
     contentWarning: "+13",
@@ -3211,7 +3211,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 461)), // Calculado desde el final de la T1
+    dateAdded: new Date(), // Calculado desde el final de la T1 new Date().setDate(new Date().getDate() - 461)
     audio: "Sub | Dob",
     creator: "Chugong",
     contentWarning: "+16 Violencia, Gore",
@@ -11537,7 +11537,7 @@ export const animeData = [
     type: "Anime",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 110)), // Calculado desde el 07/04/25
+    dateAdded: new Date(), // Calculado desde el 07/04/25 new Date().setDate(new Date().getDate() - 110)
     audio: "Subtitulado",
     creator: "Yudetamago",
     contentWarning: "+16",
@@ -13180,7 +13180,7 @@ export const animeData = [
         description:
           "Klein Moretti se une a los Halcones Nocturnos, lo que lo hace descubrir una pista sobre su cuaderno perdido.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e4046c9d54735a0be9307564b2fcf39a.jpg",
-        releaseDate: "Junio 37, 2025",
+        releaseDate: "Junio 27, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/2.html",
         votes: { likes: 987, dislikes: 8 },
