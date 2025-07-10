@@ -37,6 +37,55 @@ $(document).ready(function () {
     };
   }
 
+  /**
+   * NUEVA FUNCIÓN PARA PARSEAR FECHAS EN DIFERENTES FORMATOS
+   * Esta función convierte los formatos de fecha de tu base de datos a un formato
+   * que JavaScript puede entender correctamente.
+   */
+  function parseCustomDate(dateString) {
+    const monthMap = {
+      enero: 0,
+      febrero: 1,
+      marzo: 2,
+      abril: 3,
+      mayo: 4,
+      junio: 5,
+      julio: 6,
+      agosto: 7,
+      septiembre: 8,
+      octubre: 9,
+      noviembre: 10,
+      diciembre: 11,
+    };
+
+    // Intenta parsear formatos como "Julio 7, 2024"
+    const partsWithComma = dateString.replace(",", "").toLowerCase().split(" ");
+    if (
+      partsWithComma.length === 3 &&
+      monthMap.hasOwnProperty(partsWithComma[0])
+    ) {
+      const month = monthMap[partsWithComma[0]];
+      const day = parseInt(partsWithComma[1], 10);
+      const year = parseInt(partsWithComma[2], 10);
+      return new Date(year, month, day);
+    }
+
+    // Intenta parsear formatos como "DD/MM/YY"
+    const partsWithSlash = dateString.split("/");
+    if (partsWithSlash.length === 3) {
+      const day = parseInt(partsWithSlash[0], 10);
+      const month = parseInt(partsWithSlash[1], 10) - 1; // Meses en JS son 0-11
+      let year = parseInt(partsWithSlash[2], 10);
+      if (year < 100) {
+        year += 2000; // Asumimos que "23" es 2023, "24" es 2024, etc.
+      }
+      return new Date(year, month, day);
+    }
+
+    // Si no coincide con los formatos anteriores, intenta el parseo por defecto
+    return new Date(dateString);
+  }
+
   // --- FUNCIONES PARA RENDERIZAR CONTENIDO DINÁMICO ---
   function createAnimeCard(anime) {
     return `
@@ -78,7 +127,7 @@ $(document).ready(function () {
 
   function createDynamicEpisodeItem(episode, anime) {
     const originalMeta = `Episodio ${episode.number} • ${episode.language}`;
-    const initialImage = anime.fonImg;
+    const initialImage = anime.fonImg || anime.img;
     const hoverImage = episode.img;
 
     return `
@@ -157,7 +206,7 @@ $(document).ready(function () {
             allEpisodes.push({
               anime,
               episode,
-              releaseDate: new Date(episode.releaseDate),
+              releaseDate: parseCustomDate(episode.releaseDate),
             });
           });
         }
@@ -317,12 +366,13 @@ $(document).ready(function () {
     applyFilters();
   }
 
-  // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE FAVORITOS ---
+  // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE FAVORITOS (ACTUALIZADA)---
   function setupFavoritesPage() {
     const favoritesGrid = $("#favorites-anime-grid");
     const favoriteEpisodesGrid = $("#favorites-episodes-grid");
     if (!favoritesGrid.length) return;
 
+    // Poblar animes favoritos (sin cambios)
     const favoriteIds =
       JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
     favoritesGrid.empty();
@@ -339,25 +389,31 @@ $(document).ready(function () {
       );
     }
 
+    // *** INICIO DEL CÓDIGO AÑADIDO Y CORREGIDO ***
     const favoriteEpisodeIds =
       JSON.parse(localStorage.getItem("favoriteEpisodes")) || [];
     favoriteEpisodesGrid.empty();
+
     if (favoriteEpisodeIds.length === 0) {
       favoriteEpisodesGrid.html(
         '<p class="no-results" style="padding: 2rem;">No has guardado ningún episodio.</p>'
       );
     } else {
+      // Iterar sobre los IDs de episodios guardados
       favoriteEpisodeIds.forEach((episodeId) => {
         const [animeId, seasonStr, episodeStr] = episodeId.split("-");
         const seasonNum = parseInt(seasonStr.replace("s", ""));
         const episodeNum = parseFloat(episodeStr.replace("ep", ""));
 
         const anime = animeData.find((a) => a.id === animeId);
+
         if (anime && anime.episodes) {
           const episode = anime.episodes.find(
             (ep) => ep.season === seasonNum && ep.number === episodeNum
           );
+
           if (episode) {
+            // Usar la función existente para crear la tarjeta del episodio
             favoriteEpisodesGrid.append(
               createFavoriteEpisodeCard(episode, anime)
             );
@@ -365,6 +421,7 @@ $(document).ready(function () {
         }
       });
     }
+    // *** FIN DEL CÓDIGO AÑADIDO Y CORREGIDO ***
   }
 
   // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE DETALLES ---
@@ -867,20 +924,19 @@ $(document).ready(function () {
       if (anime.episodes && anime.episodes.length > 0) {
         // Encontrar el episodio más reciente
         const latestEpisode = anime.episodes.reduce((latest, current) => {
-          const latestDate = new Date(latest.releaseDate);
-          const currentDate = new Date(current.releaseDate);
+          const latestDate = parseCustomDate(latest.releaseDate);
+          const currentDate = parseCustomDate(current.releaseDate);
           return currentDate > latestDate ? current : latest;
         });
 
-        const releaseDate = new Date(latestEpisode.releaseDate);
+        const releaseDate = parseCustomDate(latestEpisode.releaseDate);
 
         // Clasificar el anime según la fecha de su último episodio
-        if (releaseDate >= oneDayAgo) {
-          // Si el anime ya está en la lista, no lo agregamos de nuevo
+        if (releaseDate >= oneDayAgo && releaseDate <= now) {
           if (!last24hAnimes.some((a) => a.id === anime.id)) {
             last24hAnimes.push(anime);
           }
-        } else if (releaseDate >= oneWeekAgo) {
+        } else if (releaseDate >= oneWeekAgo && releaseDate < oneDayAgo) {
           if (!lastWeekAnimes.some((a) => a.id === anime.id)) {
             lastWeekAnimes.push(anime);
           }
