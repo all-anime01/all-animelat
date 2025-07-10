@@ -11830,7 +11830,7 @@ export const animeData = [
   {
     id: "gachiakuta",
     title: "Gachiakuta",
-    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/9cb0a0ec4fa0f33a27cb368e37bb4072.jpg",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/0c9f7ec4c0828a17ed1e03558a1f637b.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GP5HJ84P7-backdrop_wide",
     fonImg:
@@ -11905,7 +11905,7 @@ export const animeData = [
       {
         season: 1,
         number: 1,
-        title: "El aterrador nuevo maestro y su mano del demonio",
+        title: "El insecto de las noventa y nueve patas",
         duration: "25 min",
         description:
           "Un nuevo maestro, Meisuke 'Nube' Nueno, llega a la escuela primaria Domori. Sus estudiantes pronto descubren que su torpeza esconde un oscuro y poderoso secreto.",
@@ -11926,7 +11926,19 @@ export const animeData = [
         releaseDate: "Julio 2, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Hell-teacher-nube/T1/2.html",
-        votes: { likes: 987, dislikes: 8 },
+        votes: { likes: 87, dislikes: 2 },
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "El estudiante de honor de medianoche",
+        duration: "24 min",
+        description:
+          "Un estudiante modelo apareciendo en la escuela de noche… ¿Es acaso un muñeco de anatomía humana?",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_d2cdf62b1d2fab76a5d405e988421830.jpg",
+        releaseDate: "Julio 9, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Hell-teacher-nube/T1/3.html",
       },
     ],
   },
@@ -15438,10 +15450,12 @@ export const animeData = [
   {
     id: "ousama-ranking",
     title: "Ranking of King: Ousama Ranking",
-    img: "/image/Ousama-Ranking/p.webp",
-    heroImg: "/image/Ousama-Ranking/b.jpg",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/1500ddfac4a1ffbc767603fcac1b9b2a.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G79H23W70-backdrop_wide",
+    fonImg: "/image/Ousama-Ranking/b.jpg",
     logoImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/catalog/crunchyroll/333333872c051a37c154379a32c6a08f.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G79H23W70-title_logo-en-us",
     imgMobile: "/image/Ousama-Ranking/b.jpg",
     trailerUrl: "https://www.youtube.com/embed/IziwkeGaBaA?si=yRAGqZWNkn12XG0W",
     description:
@@ -15469,7 +15483,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji, un príncipe sordo y débil, conoce a Kage, una sombra que se convierte en su primer y único amigo.",
-        img: "/image/Ranking-of-king/T1/1.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fe2ab30aa62da3af20a6cc57ed31d2e1.jpg",
         releaseDate: "Octubre 14, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/1.html",
@@ -15481,7 +15495,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji y Kage comienzan su amistad. Mientras tanto, la muerte del Rey Bosse pone en marcha una lucha por la sucesión al trono.",
-        img: "/image/Ranking-of-king/T1/2.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2063f07266e7cdb47d87151b93b70a8e.jpg",
         releaseDate: "Octubre 21, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/2.html",
@@ -15493,7 +15507,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "El testamento del Rey Bosse es revelado, y el consejo del reino debe decidir quién será el próximo rey: el débil Bojji o su poderoso hermanastro, Daida.",
-        img: "/image/Ranking-of-king/T1/3.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/baa1f9e93fe7fa29def6051e40c2487f.jpg",
         releaseDate: "Octubre 28, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/3.html",
@@ -15505,7 +15519,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Tras ser despojado de su derecho al trono, Bojji decide embarcarse en un viaje para volverse más fuerte. Kage, conmovido por su determinación, lo acompaña.",
-        img: "/image/Ranking-of-king/T1/4.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/263003d28c2159fadf192d9291bdad25.jpg",
         releaseDate: "Noviembre 4, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/4.html",
@@ -15517,7 +15531,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji y Kage se dirigen al inframundo para encontrar a un maestro que pueda entrenar a Bojji. Mientras, en el castillo, las conspiraciones de Miranjo comienzan a tomar forma.",
-        img: "/image/Ranking-of-king/T1/5.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/464cacc19ffd4cf0520cbf24eb71edda.jpg",
         releaseDate: "Noviembre 11, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/5.html",
@@ -15529,7 +15543,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji llega al inframundo y conoce a Despa, el hermano del Rey Desha, quien accede a entrenarlo a cambio de un tesoro.",
-        img: "/image/Ranking-of-king/T1/6.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/4058f0203a6679c5e9a282fe0fd06652.jpg",
         releaseDate: "Noviembre 18, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/6.html",
@@ -15541,7 +15555,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bajo la tutela de Despa, Bojji aprende a utilizar su agilidad y su pequeño tamaño como un arma, desarrollando un estilo de lucha único.",
-        img: "/image/Ranking-of-king/T1/7.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d686665e42d55085658f0db95d968006.jpg",
         releaseDate: "Noviembre 25, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/7.html",
@@ -15553,7 +15567,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Daida, manipulado por Miranjo, bebe una poción que le promete un poder inmenso, pero el precio es la resurrección del Rey Bosse en su cuerpo.",
-        img: "/image/Ranking-of-king/T1/8.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c8c64daac87d74914c77203a9a3a882a.jpg",
         releaseDate: "Diciembre 2, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/8.html",
@@ -15565,7 +15579,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "La Reina Hiling, al descubrir la verdad sobre Miranjo, intenta proteger a su hijo Daida, demostrando su increíble poder de curación y su amor de madre.",
-        img: "/image/Ranking-of-king/T1/9.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/caa7bac3f2c65a8627126786b1d4c64b.jpg",
         releaseDate: "Diciembre 9, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/9.html",
@@ -15577,7 +15591,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji completa su entrenamiento y recibe su arma: un estoque ligero y rápido, perfecto para su estilo de lucha. Ahora está listo para regresar a su reino.",
-        img: "/image/Ranking-of-king/T1/10.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/befab8680810065e9f4490a1a7f96d86.jpg",
         releaseDate: "Diciembre 16, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/10.html",
@@ -15589,7 +15603,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "El Rey Bosse, ahora en el cuerpo de Daida, regresa al castillo y toma el control. Mientras, Bojji y Kage emprenden el camino de vuelta.",
-        img: "/image/Ranking-of-king/T1/11.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d8874e1c1a7696a79aecdfda7a8b0d6c.jpg",
         releaseDate: "Diciembre 23, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/11.html",
@@ -15601,7 +15615,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "El inframundo, liderado por el Rey Desha, declara la guerra al reino de Bosse para detener a Miranjo, quien ha liberado a peligrosos criminales.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/0a2ec59a835cd7539c7cfdfddaae55eb.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/56c9734128a4c4bd07d4cea0ae9b901a.jpg",
         releaseDate: "Enero 6, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/12.html",
@@ -15613,7 +15627,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Los criminales liberados del inframundo, junto con Miranjo, atacan el castillo, poniendo en jaque a los Cuatro Grandes, los guerreros más leales del rey.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/b326c62ac6418ecd3df6418f8b1cf162.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0d24b01bdcf730c44f595970a7c02d89.jpg",
         releaseDate: "Enero 13, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/13.html",
@@ -15625,7 +15639,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Justo cuando todo parece perdido, Bojji regresa al reino, demostrando una fuerza y habilidad que sorprenden a todos.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/a89f2ad479f1f806e41aee0764a34eb9.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/cb9ff0f4730e14f0bb40a995d556349e.jpg",
         releaseDate: "Enero 20, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/14.html",
@@ -15637,7 +15651,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji se enfrenta a los caballeros del inframundo, derrotándolos uno por uno con su nueva técnica, y se gana el respeto del Rey Desha.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/884807f7b642dfe69f27b6e1d2d9a1b1.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/34da2a537345d5d03c8d8d7fdbf5353c.jpg",
         releaseDate: "Enero 27, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/15.html",
@@ -15649,7 +15663,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "El Rey Bosse entra en la batalla, demostrando por qué es el guerrero más fuerte del mundo, incluso en el cuerpo de su hijo.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/b29d1ff802213d5f0a5666fe00f1bec5.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/72d1befd4a4b2dfb282579fac8888e18.jpg",
         releaseDate: "Febrero 3, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/16.html",
@@ -15661,7 +15675,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Se revela el pasado de Ouken, el inmortal Rey de la Espada, y la tragedia que lo convirtió en un ser que solo busca el fin de su sufrimiento.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/e5a1a0c26b643fa9b8cffcac7ff582b7.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e4e7838d1c9baf16db29c5dfb0674cbc.jpg",
         releaseDate: "Febrero 10, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/17.html",
@@ -15673,7 +15687,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Un flashback muestra la antigua guerra entre los dioses y los gigantes, revelando el origen del poder del Rey Bosse y su trato con un demonio.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/90241d13f32cb248fe46862ab2683d70.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3a2420cbe32926f20cf5ae7dd4cf0274.jpg",
         releaseDate: "Febrero 17, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/18.html",
@@ -15685,7 +15699,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji debe enfrentarse a Ouken, cuya inmortalidad lo convierte en un enemigo casi invencible. La batalla es una prueba de ingenio y resistencia.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/4ad5f2eb0302b250db738f8cd60c6eb3.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9c76208d0297293c28d48a6b84ea45fe.jpg",
         releaseDate: "Febrero 24, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/19.html",
@@ -15697,7 +15711,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "La batalla se intensifica cuando el Rey Bosse decide enfrentarse a Ouken. Es un choque entre el hombre que no puede morir y el hombre que no puede ser derrotado.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/d06a697477049b29a00b8d91f73e867c.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5c287a47ad4460e5a829330c4995c171.jpg",
         releaseDate: "Marzo 3, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/20.html",
@@ -15709,7 +15723,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji se interpone en la batalla de su padre y demuestra su propio estilo de esgrima, uno que no se basa en la fuerza, sino en la compasión y la comprensión del oponente.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/caafc89b2077f6e84312df7c4d32ec6a.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7a019aced66922356c327b84947645a9.jpg",
         releaseDate: "Marzo 10, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/21.html",
@@ -15721,7 +15735,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Se revela el pacto final del Rey Bosse y el trágico destino de Miranjo. Bojji debe decidir si puede perdonar a aquellos que le han hecho tanto daño.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/1b6c8741fc209fa9babdba54b8d0c9ca.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/74282144066335553c1c811f89644e20.jpg",
         releaseDate: "Marzo 17, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/22.html",
@@ -15733,7 +15747,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "La batalla final entre Bojji y su padre, el Rey Bosse, llega a su conclusión, decidiendo el futuro del reino y el verdadero significado de ser un rey.",
-        img: "/image/Ranking-of-king/T1/23.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b734ed22d4c8b4d16103ab8026ec379f.jpg",
         releaseDate: "Marzo 24, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/T1/23.html",
@@ -15746,7 +15760,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Una colección de historias cortas que exploran las aventuras de Kage y las lecciones de Bojji sobre el valor del dinero.",
-        img: "/image/Ousama-Ranking/T2/1.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/f58086810e34a92127096924687da693.jpg",
         releaseDate: "Abril 13, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/1.html",
@@ -15758,7 +15772,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji se encuentra con una bestia herida en el desierto y demuestra su compasión. Mientras, los caballeros del reino se enfrentan a un misterioso fenómeno.",
-        img: "/image/Ousama-Ranking/T2/2.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7b4cf80acc9dfb3978662b0dac7dc742.jpg",
         releaseDate: "Abril 20, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/2.html",
@@ -15770,7 +15784,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "La Reina Hiling recuerda su juventud y su amistad con una poderosa hechicera. Daida, ahora rey, comienza a explorar el mundo de la magia.",
-        img: "/image/Ousama-Ranking/T2/3.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/89fd4f45276768acfc681aecfe3a944d.jpg",
         releaseDate: "Abril 27, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/3.html",
@@ -15782,7 +15796,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Se explora la historia de los tres hermanos Desha, Despa y Ouken, y la maldición de la inmortalidad que atormenta a uno de ellos.",
-        img: "/image/Ousama-Ranking/T2/4.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b040893b39ce23175049f437d9b377e5.jpg",
         releaseDate: "Mayo 4, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/4.html",
@@ -15795,7 +15809,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Una serie de viñetas que muestran las estrictas reglas del inframundo, el amor no correspondido de un caballo y la lealtad inquebrantable de Hokuro hacia Bojji.",
-        img: "/image/Ousama-Ranking/T2/5.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d6b0d7638e865c08a6d0ac2d7c3fe413.jpg",
         releaseDate: "Mayo 11, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/5.html",
@@ -15807,7 +15821,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bojji debe presidir un juicio, demostrando su sabiduría y su capacidad para gobernar. Mientras, Daida se siente abrumado por las responsabilidades de ser rey.",
-        img: "/image/Ousama-Ranking/T2/6.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/42f20705762ff0ea3a62093f3c838057.jpg",
         releaseDate: "Mayo 18, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/6.html",
@@ -15820,7 +15834,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Bebin, uno de los Cuatro Grandes, demuestra su habilidad para comunicarse con las serpientes. Más tarde, los cuatro guerreros más leales del rey comparten una comida.",
-        img: "/image/Ousama-Ranking/T2/7.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/607117dc9d0d028e38741ed871f73b45.jpg",
         releaseDate: "Mayo 25, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/7.html",
@@ -15832,7 +15846,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Kage recuerda su pasado y su sueño de encontrar un lugar al que pertenecer. La historia también explora la fuerza y el sacrificio de la madre de Kage.",
-        img: "/image/Ousama-Ranking/T2/8.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/dbe75b8358806d53f3451a8f2fec572e.jpg",
         releaseDate: "Junio 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/8.html",
@@ -15844,7 +15858,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Se revela más sobre el pacto de Miranjo con un demonio y su trágico pasado. Bojji aprende que los tesoros más grandes no son materiales.",
-        img: "/image/Ousama-Ranking/T2/9.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a5e3c4fbe9a944b0e997a40200c63926.jpg",
         releaseDate: "Junio 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/9.html",
@@ -15856,7 +15870,7 @@ export const animeData = [
         duration: "22 min",
         description:
           "Ouken, el inmortal Rey de la Espada, regresa. Su poder y su locura representan una nueva amenaza que Bojji y sus amigos deberán enfrentar.",
-        img: "/image/Ousama-Ranking/T2/10.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c929fa055abed6200befa4b1910cecce.jpg",
         releaseDate: "Junio 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/10.html",
@@ -21744,6 +21758,326 @@ export const animeData = [
     ],
   },
   {
+    id: "platinum-end",
+    title: "Platinum End",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/a003327d23ee474087f40d5efa8afa2d.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G8DHV722J-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/49221da434316ccda68f03761ed7bb43.jpg",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G8DHV722J-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/a003327d23ee474087f40d5efa8afa2d.jpg",
+    trailerUrl: "https://www.youtube.com/embed/O6qVieflwqs4",
+    description:
+      "Mirai Kakehashi es un joven que pierde a sus padres en un accidente y queda al cuidado de sus tíos. Desde entonces, las cosas no han ido nada bien para el pobre Mirai, quien un día decide suicidarse. Lo que Mirai no se espera es que un ángel llamado Nasse lo salve y le ofrezca ser el nuevo Dios del mundo, un puesto para el que tendrá que competir con otros 12 candidatos en 999 días. Ahora Mirai luchará por ser el nuevo Dios mientras intenta ser feliz, algo que nunca antes ha experimentado.",
+    genres: ["Drama", "Psicológico", "Shounen", "Sobrenatural"],
+    rating: 4.5,
+    ratingCount: "13.6K",
+    seasons: 1,
+    episodesTotal: 24,
+    status: "Finalizado",
+    year: 2021,
+    type: "Anime",
+    quality: "1080p",
+    tags: ["recomendado", "agregado", "doblaje"],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1198)), // Calculado desde el 24/03/22
+    audio: "Sub | Dob",
+    creator: "Tsugumi Ohba & Takeshi Obata",
+    contentWarning: "+16 Violencia, Suicidio",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "El regalo del ángel.",
+        duration: "22 min",
+        description:
+          "Mirai Kakehashi, un joven al borde del suicidio, es salvado por un ángel llamado Nasse, quien le otorga alas y flechas para encontrar la felicidad.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/076f87425b06d11f71f6424e6c9867c2.jpe",
+        releaseDate: "Octubre 7, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "El héroe de la justicia.",
+        duration: "22 min",
+        description:
+          "Mirai descubre que es uno de los 13 candidatos elegidos para convertirse en el próximo Dios. Su primer encuentro es con Metrópolis Man, un héroe que usa sus poderes de forma violenta.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/37b120c1ed51a37c98ed4802c6114e9f.jpe",
+        releaseDate: "Octubre 14, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "El amor de mi vida.",
+        duration: "22 min",
+        description:
+          "Mirai se reencuentra con Saki Hanakago, su amor de la infancia y otra candidata a Dios. Juntos, deciden formar una alianza para sobrevivir al juego.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/0252b478d3eb6f0f701cdb86217e4d8a.jpe",
+        releaseDate: "Octubre 21, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "La hora de la reunión.",
+        duration: "22 min",
+        description:
+          "Los candidatos a Dios comienzan a moverse. Metrópolis Man convoca a una reunión, pero sus verdaderas intenciones son eliminar a sus rivales.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
+        releaseDate: "Octubre 28, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Pena de muerte.",
+        duration: "22 min",
+        description:
+          "Mirai y Saki se enfrentan a otro candidato, un comediante desquiciado que usa su poder para el mal. La batalla pone a prueba la determinación de Mirai de no matar.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
+        releaseDate: "Noviembre 4, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "Dos luces dolorosas.",
+        duration: "22 min",
+        description:
+          "La batalla en la torre continúa. Mirai debe encontrar una manera de derrotar a su oponente sin romper su juramento, mientras Metrópolis Man observa desde las sombras.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
+        releaseDate: "Noviembre 11, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "La torre de pesadilla.",
+        duration: "22 min",
+        description:
+          "Un nuevo candidato, Nanato Mukaido, se une a la alianza de Mirai y Saki. Juntos, se preparan para enfrentarse a Metrópolis Man.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/971556a310c14c5c28e937d5c9578278.jpe",
+        releaseDate: "Noviembre 18, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "Símbolo de promesa.",
+        duration: "22 min",
+        description:
+          "El grupo investiga la identidad de Metrópolis Man, descubriendo que podría ser un poderoso miembro de las fuerzas especiales.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/617937d95b5c90d5658e392652cc70b6.jpe",
+        releaseDate: "Noviembre 25, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "El rostro de un asesino.",
+        duration: "22 min",
+        description:
+          "La verdadera identidad de Metrópolis Man es revelada. Su nombre es Kanade Uryu, y su visión de un mundo perfecto es retorcida y peligrosa.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/3e226685f0cd94d80d195f462a6323c2.jpe",
+        releaseDate: "Diciembre 2, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Donde las lágrimas van.",
+        duration: "22 min",
+        description:
+          "La batalla contra Uryu comienza. Nanato se sacrifica para proteger a su familia y darle a Mirai una oportunidad de ganar.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/0572b93895311f5d6f6e52c803405786.jpe",
+        releaseDate: "Diciembre 9, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Tu propio valor.",
+        duration: "22 min",
+        description:
+          "Inspirado por el sacrificio de Nanato, Mirai finalmente encuentra su propia razón para luchar y desata un nuevo nivel de poder.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/87a93437ca5e85c138b555d49e5d4ab0.jpe",
+        releaseDate: "Diciembre 16, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "Una promesa en el papel.",
+        duration: "22 min",
+        description:
+          "La batalla contra Metrópolis Man llega a su fin. Mirai, aunque victorioso, debe lidiar con las consecuencias de la batalla y la pérdida de su amigo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/6c30e527f311eb77501a6b0c2a71f76d.jpe",
+        releaseDate: "Diciembre 23, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/12.html",
+      },
+      {
+        season: 1,
+        number: 13,
+        title: "El mejor del mundo.",
+        duration: "23 min",
+        description:
+          "El mundo reacciona a la muerte de Metrópolis Man. Un nuevo candidato a Dios, un niño genio llamado Susumu, entra en el juego.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
+        releaseDate: "Enero 6, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/13.html",
+      },
+      {
+        season: 1,
+        number: 14,
+        title: "Dos luces.",
+        duration: "23 min",
+        description:
+          "Mirai y Saki se enfrentan a un nuevo dilema: cómo lidiar con los candidatos a Dios que no son inherentemente malvados, pero que representan una amenaza.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/d78905322a36b5398a69e4f50684f09d.jpe",
+        releaseDate: "Enero 13, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/14.html",
+      },
+      {
+        season: 1,
+        number: 15,
+        title: "Poder difundido.",
+        duration: "23 min",
+        description:
+          "Los candidatos restantes deciden reunirse para discutir el futuro del juego. Sin embargo, la desconfianza y las agendas ocultas complican las negociaciones.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/273a5a7d8858db0cb188448cd0290132.jpe",
+        releaseDate: "Enero 20, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/15.html",
+      },
+      {
+        season: 1,
+        number: 16,
+        title: "El mayor asesino.",
+        duration: "23 min",
+        description:
+          "Se revela la identidad del candidato a Dios más peligroso, un asesino en serie que ha estado eliminando a otros candidatos en secreto.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/d935f11da067b57b6d191244e8ddf732.jpe",
+        releaseDate: "Enero 27, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/16.html",
+      },
+      {
+        season: 1,
+        number: 17,
+        title: "Los otros cinco.",
+        duration: "23 min",
+        description:
+          "Mirai y su alianza se enfrentan al asesino en una batalla en un estadio, pero su oponente es un estratega brillante que ha preparado trampas mortales.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/274a1251e6b36a30eb6a761e0186938a.jpe",
+        releaseDate: "Febrero 3, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/17.html",
+      },
+      {
+        season: 1,
+        number: 18,
+        title: "El último recurso.",
+        duration: "23 min",
+        description:
+          "Acorralados, el equipo debe tomar una decisión desesperada para detener al asesino, una decisión que podría costarles la vida a uno de ellos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/e8b387e748cf696e57ab32de4b9e2ed3.jpe",
+        releaseDate: "Febrero 10, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/18.html",
+      },
+      {
+        season: 1,
+        number: 19,
+        title: "El futuro de la humanidad.",
+        duration: "23 min",
+        description:
+          "El niño genio, Susumu, propone una solución pacífica al juego: elegir a Dios a través de un debate televisado a nivel mundial.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/690559f9c940b23028246e4c70d44b58.jpe",
+        releaseDate: "Febrero 17, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/19.html",
+      },
+      {
+        season: 1,
+        number: 20,
+        title: "El precio del honor.",
+        duration: "23 min",
+        description:
+          "Los candidatos a Dios debaten sobre sus visiones para el futuro de la humanidad, pero un nuevo y misterioso candidato aparece para desafiar a todos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/054868f12128df13b194d352f5347209.jpe",
+        releaseDate: "Febrero 24, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/20.html",
+      },
+      {
+        season: 1,
+        number: 21,
+        title: "La hora de la verdad.",
+        duration: "23 min",
+        description:
+          "El debate se convierte en una batalla de ingenio y manipulación. Mirai debe defender su ideal de felicidad contra las visiones más extremas de los otros candidatos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/48b2e1061952a220268516093d584347.jpe",
+        releaseDate: "Marzo 3, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/21.html",
+      },
+      {
+        season: 1,
+        number: 22,
+        title: "Las alas de la determinación.",
+        duration: "23 min",
+        description:
+          "Mirai toma su decisión final, una que no busca convertirse en Dios, sino encontrar la felicidad en su propia vida y en la de los demás.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/0e7c53e0513e9a4f489f649646487e9d.jpe",
+        releaseDate: "Marzo 10, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/22.html",
+      },
+      {
+        season: 1,
+        number: 23,
+        title: "La flecha del valor.",
+        duration: "23 min",
+        description:
+          "El juego llega a una conclusión inesperada cuando el nuevo Dios es elegido, pero su primera decisión como deidad sorprende al mundo entero.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/38d8109d9487779f47171c77879e6587.jpe",
+        releaseDate: "Marzo 17, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/23.html",
+      },
+      {
+        season: 1,
+        number: 24,
+        title: "El fin de la promesa.",
+        duration: "23 min",
+        description:
+          "El nuevo Dios toma una decisión radical que cambiará la humanidad para siempre. Mirai y los demás supervivientes deben encontrar una nueva forma de vivir en este mundo transformado.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180,quality=70/catalog/crunchyroll/0f8a85f8e02d627b003be22b64d008f5.jpe",
+        releaseDate: "Marzo 24, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Platinum-end/T1/24.html",
+      },
+    ],
+  },
+  {
     id: "pluto",
     title: "Pluto",
     img: "https://images.ctfassets.net/4cd45et68cgf/4ESSpHx4iyHhdk6GEMhRjO/6b0f609919df286437ffa98c7e51a428/en-US_pluto_main_main_vertical_27x40_rgb_pre_1.jpg",
@@ -21873,6 +22207,195 @@ export const animeData = [
         releaseDate: "Octubre 26, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Pluto/T1/8.html",
+      },
+    ],
+  },
+  // Q
+  {
+    id: "quality-assurance-in-another-world",
+    title: "Quality Assurance in Another World",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752127615/filters_quality_95_format_webp_al2hez.webp",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G24H1NW30-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/33a512daeaebdeaee0ccf29140a931e0.jpg",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G24H1NW30-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/cr/landscape_large/8ebf1f3a-79f8-45a2-9e90-c037dae6059d.png",
+    trailerUrl: "https://www.youtube.com/embed/O6qVieflwqs3",
+    description:
+      "Nikola es solo una chica de pueblo que trabaja en la posada hasta el día en que los dragones invaden, y conoce a Haga, un erudito de todo lo que la rodea. Él es el nuevo miembro de una organización de élite llamada “Seeker”, cuyo objetivo es fomentar la coexistencia pacífica entre humanos y monstruos. Pero Nikola tiene sus propios planes secretos y no dejará que un dragón, un Seeker o cualquier otro ser se interponga en su camino.",
+    genres: ["Fantasía", "Aventura", "Comedia"],
+    rating: 4.0,
+    ratingCount: "10.2K",
+    seasons: 1,
+    episodesTotal: 13,
+    status: "Finalizado",
+    year: 2024,
+    type: "Anime",
+    quality: "1080p",
+    tags: [],
+    dateAdded: new Date(new Date().setDate(new Date().getDate() - 364)), // Calculado desde el 27/09/24
+    audio: "Sub | Dob",
+    creator: "Masamichi Sato",
+    contentWarning: "+13",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Nikola, la sirvienta",
+        duration: "24 min",
+        description:
+          "Nikola, una joven posadera, conoce a Haga, un nuevo 'Seeker' encargado de mantener la paz entre humanos y monstruos. Su encuentro marca el inicio de una aventura inesperada.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/802fb9c1e9fc6cf230f46f71f199b707.jpg",
+        releaseDate: "Julio 5, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Makoto Haga",
+        duration: "24 min",
+        description:
+          "La primera misión de Haga es investigar la causa de un desequilibrio en el ecosistema local. Nikola, con sus propias intenciones, decide acompañarlo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e66beef89be45c4a2f86a2c23855a419.jpg",
+        releaseDate: "Julio 12, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "Tesla",
+        duration: "24 min",
+        description:
+          "El dúo se enfrenta a un monstruo que resulta ser mucho más inteligente y peligroso de lo que esperaban. Deben combinar el conocimiento de Haga y la audacia de Nikola para sobrevivir.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/29464058400cd56845281d25ae930757.jpg",
+        releaseDate: "Julio 19, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/3.html",
+      },
+      {
+        season: 1,
+        number: 4,
+        title: "Isora Amano",
+        duration: "24 min",
+        description:
+          "La investigación los lleva a un antiguo bosque protegido por un guardián legendario. Para avanzar, deben ganarse su confianza o derrotarlo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/443332439b0f3e2023d5e9452e8fef15.jpg",
+        releaseDate: "Julio 26, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "Infiltración",
+        duration: "24 min",
+        description:
+          "Descubren una aldea oculta de seres que se creían extintos. Su existencia es un secreto que podría alterar el equilibrio del mundo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/57097f53f10f3c6b655e26a93b9b9321.jpg",
+        releaseDate: "Agosto 2, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/5.html",
+      },
+      {
+        season: 1,
+        number: 6,
+        title: "El rey loco",
+        duration: "24 min",
+        description:
+          "Se revela el verdadero motivo por el que Nikola se unió a Haga: busca un antiguo artefacto que se rumorea que puede conceder cualquier deseo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1c330da0537ee3ffc006ee19fc49612f.jpg",
+        releaseDate: "Agosto 9, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/6.html",
+      },
+      {
+        season: 1,
+        number: 7,
+        title: "El jefe",
+        duration: "24 min",
+        description:
+          "La verdad detrás del desequilibrio del ecosistema resulta ser una conspiración de una facción dentro de los Seekers que busca la guerra.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/62bc0d660d606ad3f04d83734e240351.jpg",
+        releaseDate: "Agosto 16, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/7.html",
+      },
+      {
+        season: 1,
+        number: 8,
+        title: "Consola de comandos",
+        duration: "24 min",
+        description:
+          "Haga y Nikola son traicionados y deben huir, convirtiéndose en fugitivos de la propia organización a la que pertenecen.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1dd864208a0d1736a95e95c5879b3d63.jpg",
+        releaseDate: "Agosto 30, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/8.html",
+      },
+      {
+        season: 1,
+        number: 9,
+        title: "Akira Kagami",
+        duration: "24 min",
+        description:
+          "Para limpiar sus nombres y detener la conspiración, deben buscar la ayuda de aliados inesperados, incluyendo a monstruos y renegados.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/94fcd06a9d660a8b68fefd9063cd434e.jpg",
+        releaseDate: "Septiembre 6, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/9.html",
+      },
+      {
+        season: 1,
+        number: 10,
+        title: "Gaydle y Yamanaka",
+        duration: "24 min",
+        description:
+          "Haga y Nikola lanzan un contraataque, infiltrándose en la sede de los Seekers para exponer la verdad al mundo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a0ef06558a4145d9e3e12f2b09032f07.jpg",
+        releaseDate: "Septiembre 13, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/10.html",
+      },
+      {
+        season: 1,
+        number: 11,
+        title: "Alba",
+        duration: "24 min",
+        description:
+          "Haga utiliza su vasto conocimiento de los monstruos y el ecosistema para cambiar el rumbo de la batalla de una manera que nadie esperaba.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/930a05ebf2627e2b6b1fa1e677893fdd.jpg",
+        releaseDate: "Septiembre 20, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "El Diamante",
+        duration: "24 min",
+        description:
+          "La temporada concluye con la conspiración expuesta y un nuevo equilibrio entre humanos y monstruos. Nikola encuentra su propio camino, uno diferente al que buscaba.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/81eb6cbd9e52caa7c26e0941623d34a8.jpg",
+        releaseDate: "Septiembre 27, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/12.html",
+      },
+      {
+        season: 1,
+        number: 13,
+        title: "Silence",
+        duration: "24 min",
+        description:
+          "La temporada concluye con la conspiración expuesta y un nuevo equilibrio entre humanos y monstruos. Nikola encuentra su propio camino, uno diferente al que buscaba.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3ac7d94e04cb4c37b383bc0cf88bd1e9.jpg",
+        releaseDate: "Octubre 4, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Quality-Assurance-in-Another-World/T1/13.html",
       },
     ],
   },
