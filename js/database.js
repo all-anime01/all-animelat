@@ -25,7 +25,7 @@ export const animeData = [
     year: 2005,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: [],
     dateAdded: new Date(), // new Date().setDate(new Date().getDate() - 6955)
     audio: "Sub | Dob",
     creator: "Michael Dante DiMartino & Bryan Konietzko",
@@ -796,7 +796,7 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(), // Calculado desde el 29/03/24 new Date().setDate(new Date().getDate() - 465)
     audio: "Sub | Dob",
     creator: "Homura Kawamoto & Hikaru Muno",
@@ -1128,7 +1128,7 @@ export const animeData = [
     year: 2018,
     type: "TV",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: ["recomendado"],
     dateAdded: new Date(), // Calculado desde el 28/09/21 new Date().setDate(new Date().getDate() - 1378)
     audio: "Sub | Dob",
     creator: "Yūki Tabata",
@@ -3210,7 +3210,7 @@ export const animeData = [
     year: 2022,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado"],
+    tags: ["recomendado"],
     dateAdded: new Date(), // Calculado desde el final de la T1 new Date().setDate(new Date().getDate() - 461)
     audio: "Sub | Dob",
     creator: "Chugong",
@@ -3737,7 +3737,7 @@ export const animeData = [
     year: 2022,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "doblaje"],
+    tags: ["recomendado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 279)), // Calculado desde el final de la Parte 2
     audio: "Sub | Dob",
     creator: "Chugong",
@@ -4287,7 +4287,7 @@ export const animeData = [
     year: 2011,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["recomendado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 468)), // Calculado desde el final de la T3
     episodes: [
       // Temporada 1
@@ -5270,7 +5270,7 @@ export const animeData = [
     year: 2018,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 370)), // Calculado desde el 30/06/24 hasta el 05/07/25 (simulado)
     audio: "Sub | Dob",
     creator: "Yoichi Takahashi",
@@ -6487,7 +6487,7 @@ export const animeData = [
     year: 2022,
     type: "Anime",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 1028)), // Calculado desde el 13/09/22
     audio: "Sub | Dob",
     creator: "CD Projekt Red & Studio Trigger",
@@ -6637,7 +6637,7 @@ export const animeData = [
     year: 2022,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado"],
+    tags: ["recomendado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 920)), // Calculado desde el 27/12/22
     audio: "Sub | Dob",
     creator: "Tatsuki Fujimoto",
@@ -7022,7 +7022,7 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["recomendado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 749)), // Calculado desde el 24/06/23
     audio: "Sub | Dob",
     creator: "Masakazu Ishiguro",
