@@ -7056,6 +7056,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T2/13.html",
       },
+      {
+        season: 2,
+        number: 14,
+        title: "Mal de Ojo",
+        duration: "24 min",
+        description:
+          "Mientras Jiji, Okarun y Momo tratan de huir de la Gran Serpiente, aparece el fantasma que atormentaba a Jiji.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/94726726b14192079456dc62491fc48e.jpg",
+        releaseDate: "Julio 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dandadan/T2/14.html",
+      },
     ],
   },
   {
