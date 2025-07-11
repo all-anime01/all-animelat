@@ -12255,7 +12255,7 @@ export const animeData = [
         season: 1,
         number: 1,
         title: "Reemplazo",
-        duration: "24 min",
+        duration: "23 min",
         description:
           "Ante la sospecha, Yoshiki confronta a Hikaru... y descubre la aterradora verdad. A pesar de que intentan llevar una vida normal, empiezan a ocurrir accidentes inquietantes.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABaKHZ7JzCju12mZ0XxB8gRF1vq7mzrL96V-MQOmb6UThLyuowo-sY6Qq696FcEwuU9MniutzSYQgNhmeBlxYWTNM5GPoDyr9VT3MN81T2E1j9pZv5GDr9d6p.webp?r=2f7",
@@ -15417,7 +15417,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Joe Higan, un ex ninja que vive una vida pacífica, es atacado por asesinos de su antiguo clan. La tragedia lo obliga a retomar su identidad como Ninja Kamui para buscar venganza.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GY6Q5CA4HsY_AXQEAAAAi/tileburnedin?v=d278065b934c9c22e4316d958569c79f&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/ivnlW/Ndqc93UDscFzBxkNA.jpeg",
         releaseDate: "Febrero 11, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/1.html",
@@ -15429,7 +15429,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kamui comienza su cacería, siguiendo las pistas de los asesinos. Su investigación lo lleva a un club clandestino donde se enfrenta a su primer objetivo.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GY6RA7AN_wZJAXgEAAAAJ/tileburnedin?v=480287a6d895b6c3182877a760b29849&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/Oodjk/sdc0OPr23ZzfMXP1A.jpeg",
         releaseDate: "Febrero 18, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/2.html",
@@ -15441,7 +15441,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Dos agentes del FBI, Mike y Emma, comienzan a investigar los extraños sucesos, y su camino se cruza con la sangrienta venganza de Kamui.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GY60YxwHHYaLDUgEAAAAK/tileburnedin?v=e6a39b369527f05810a9a13b5675c92c&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/klu2U/CMu3rW6_654sqyT5g.jpeg",
         releaseDate: "Febrero 25, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/3.html",
@@ -15453,7 +15453,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kamui se enfrenta a un ninja que utiliza tecnología avanzada y un traje de combate mecha, en una batalla que combina el arte antiguo con la ciencia ficción.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GY7w52QfK1r6_oQEAAAAL/tileburnedin?v=4b29c9b10665d95d852a32df157e1d53&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/YVwQE/Cwxzyr6Az3E0gowsw.jpeg",
         releaseDate: "Marzo 3, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/4.html",
@@ -15465,7 +15465,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Se revela más sobre el pasado de Joe Higan, su entrenamiento en el clan ninja y la razón por la que decidió abandonarlo todo por una vida de paz.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GY8g5YwtP3cPCYAEAAAAJ/tileburnedin?v=983d958569c79f906b3a3d274c483d31&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/31FkD/rDbPNcyILw6h3am0A.jpeg",
         releaseDate: "Marzo 10, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/5.html",
@@ -15477,7 +15477,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kamui se infiltra en una de las bases de la organización, donde descubre que están creando un ejército de ninjas cibernéticos.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GY805tA-_0mHCYAEAAAAK/tileburnedin?v=e779a51833076136d8d64115f5d81b4f&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/tGj3_/k8SQlpUCNegxy09vQ.jpeg",
         releaseDate: "Marzo 17, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/6.html",
@@ -15489,7 +15489,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La batalla en la base se intensifica. Kamui se enfrenta a uno de los generales del clan, un antiguo compañero de entrenamiento.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GY9-UaAFX_ZJAXgEAAAAL/tileburnedin?v=b42661c90538f9b97b0a72c1c68f23f0&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/jidUf/VRs8DqH7lZBbQDg2A.jpeg",
         releaseDate: "Marzo 24, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/7.html",
@@ -15501,7 +15501,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Mike y Emma, los agentes del FBI, se acercan a la verdad, pero la organización los considera una amenaza y envía a un asesino para eliminarlos.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GZBC3GgBi3YDDXgEAAAAJ/tileburnedin?v=114fc8286a11e403d6d06d4e287a6d89&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/NEwIR/LrjgvaCKFHh7OjJqg.jpeg",
         releaseDate: "Marzo 31, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/8.html",
@@ -15513,7 +15513,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kamui forma una alianza incómoda con los agentes del FBI para enfrentarse a la organización. La línea entre la justicia y la venganza se vuelve borrosa.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GZBC-KADX1sPCYAEAAAAK/tileburnedin?v=e256b825317772c5b3648f572a11b228&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/g_SRw/w947AIShN6IBfSsjw.jpeg",
         releaseDate: "Abril 7, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/9.html",
@@ -15525,7 +15525,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El líder del clan revela su plan final: usar la tecnología ninja para crear un nuevo orden mundial. Kamui se prepara para el enfrentamiento final.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GZCr6KQuXvL6_oQEAAAAL/tileburnedin?v=a6c11d4d3d82d47781b0a7018d451a81&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/goLCJ/shluTMxGgU0NAx8hQ.jpeg",
         releaseDate: "Abril 14, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/10.html",
@@ -15537,7 +15537,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kamui se enfrenta a su antiguo maestro en una batalla que es tanto física como filosófica, sobre el verdadero significado de ser un ninja.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GZC7t8w41X51IwgEAAAAK/tileburnedin?v=0de086a6042168f18de7d589f2a969f5&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/Rn-BP/CK0FwQ9nlqQtZuUqg.jpeg",
         releaseDate: "Abril 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/11.html",
@@ -15549,7 +15549,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La batalla final por el destino del mundo. Kamui debe usar todo lo que ha aprendido, tanto como ninja como humano, para proteger el legado de su familia.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GZDaI9QxK2qLDXgEAAAAL/tileburnedin?v=5250ff515159344403d157e1d5330e79&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/7cfM_/CgnUbURmU8HWxpWaQ.jpeg",
         releaseDate: "Abril 28, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/12.html",
@@ -15561,7 +15561,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La temporada concluye con Kamui habiendo cumplido su venganza, pero ahora debe decidir qué camino tomar en un mundo que ya no tiene un lugar claro para él.",
-        img: "https://art-gallery-latam.api.hbo.com/images/GZDpTQwH1Y5JAXgEAAAAM/tileburnedin?v=b0a5a415a77f90e6e760c477d9c15d1c&size=640x360&compression=low&protection=false&scaleDownToFit=false&productCode=hboMax&language=es-419",
+        img: "https://images.cdn.prd.api.discomax.com/fVllD/iysAFNqyzEiqi3frw.jpeg",
         releaseDate: "Mayo 4, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ninja-kamui/T1/13.html",
@@ -15592,7 +15592,7 @@ export const animeData = [
     type: "Anime",
     quality: "1080p",
     tags: [],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1095)), // Calculado desde el 15/06/23
+    dateAdded: new Date(), // new Date().setDate(new Date().getDate() - 1095) Calculado desde el 15/06/23
     audio: "Sub | Dob",
     creator: "Sōsuke Tōka",
     contentWarning: "+13 Violencia",
@@ -28107,7 +28107,7 @@ export const animeData = [
           "La temporada concluye con Bam y su equipo listos para continuar su ascenso, ahora más fuertes y con nuevos aliados, pero también con enemigos más poderosos esperándolos.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/dc85c15d1c8b7dca6076937fda57b354.jpg",
         releaseDate: "Diciembre 29, 2024",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Tower-of-god/T2/13.html",
       },
     ],
@@ -28986,7 +28986,7 @@ export const animeData = [
           "Kuro Kumogakure, un ninja moderno y un tanto marginado, recibe su primera misión tras un largo período de inactividad: infiltrarse en una preparatoria.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/54a642ef12105133607491d176a9e777.jpe",
         releaseDate: "Octubre 5, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/1.html",
       },
       {
@@ -28998,7 +28998,7 @@ export const animeData = [
           "Kuro comienza su vida encubierta, intentando adaptarse a la normalidad de la vida escolar mientras espera sus órdenes, pero su naturaleza ninja no tarda en salir a la luz.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/1351f659f860ea796b21433e342a228f.jpe",
         releaseDate: "Octubre 12, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/2.html",
       },
       {
@@ -29010,7 +29010,7 @@ export const animeData = [
           "Kuro se encuentra con otros ninjas infiltrados y descubre que su misión podría estar conectada con un estudiante extranjero y un misterioso paquete.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/45fff22cbc390bf0f014fae094c06bc9.jpe",
         releaseDate: "Octubre 19, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/3.html",
       },
       {
@@ -29022,7 +29022,7 @@ export const animeData = [
           "La trama se complica cuando se revela la existencia de una facción enemiga, UN (Under Ninja), que se opone a la organización NIN a la que pertenece Kuro.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/c5fa7560c8788d1dff76d39fe40f1317.jpe",
         releaseDate: "Octubre 26, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/4.html",
       },
       {
@@ -29035,7 +29035,7 @@ export const animeData = [
           "Se explora el pasado de la familia Kumogakure y la razón por la que Kuro, a pesar de su linaje, es considerado un ninja de bajo rango.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/fa8ca1e7b36e373fcbd66300e21c2be8.jpe",
         releaseDate: "Noviembre 2, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/5.html",
       },
       {
@@ -29047,7 +29047,7 @@ export const animeData = [
           "Kuro se enfrenta a un ninja de UN en una batalla que combina técnicas tradicionales con tácticas modernas y extrañas, como el uso de drones y tecnología de vigilancia.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/6731e206cce13ff4e3e51424f6886fe5.jpe",
         releaseDate: "Noviembre 9, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/6.html",
       },
       {
@@ -29059,7 +29059,7 @@ export const animeData = [
           "La misión de Kuro se vuelve aún más extraña cuando debe cuidar de un gato que parece ser la clave para encontrar a su verdadero objetivo.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/2b7b344e7b0e18bf42e5c84074a5ca1c.jpe",
         releaseDate: "Noviembre 16, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/7.html",
       },
       {
@@ -29071,7 +29071,7 @@ export const animeData = [
           "Se revela el verdadero y ambicioso plan de UN: destruir la organización NIN desde dentro y exponer la existencia de los ninjas al mundo.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/9e092e76aa02ced73d6ead31f34aff81.jpe",
         releaseDate: "Noviembre 23, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/8.html",
       },
       {
@@ -29083,7 +29083,7 @@ export const animeData = [
           "Kuro se enfrenta a un dilema moral: seguir las órdenes de NIN o tomar su propio camino para detener una catástrofe.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/549313c03b514b7d0c55b54dac671d29.jpe",
         releaseDate: "Noviembre 30, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/9.html",
       },
       {
@@ -29095,7 +29095,7 @@ export const animeData = [
           "Una batalla se desata en plena luz del día. Kuro debe proteger a una compañera de clase que se ve envuelta en el conflicto entre NIN y UN.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/e902cd08a646f5d257599b358f7704f0.jpe",
         releaseDate: "Diciembre 7, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/10.html",
       },
       {
@@ -29107,7 +29107,7 @@ export const animeData = [
           "Para el enfrentamiento final, Kuro finalmente desenvaina su espada, demostrando por qué, a pesar de ser un marginado, pertenece al legendario clan Kumogakure.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/8c82b19d02fbfd73cfe12ce166eec4ff.jpe",
         releaseDate: "Diciembre 14, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/11.html",
       },
       {
@@ -29119,7 +29119,7 @@ export const animeData = [
           "La primera temporada concluye con la resolución de la misión de Kuro en la preparatoria, pero la guerra entre NIN y UN está lejos de terminar.",
         img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/320x180/catalog/crunchyroll/a2395a87f34eace4006e4aed3a5a8f77.jpe",
         releaseDate: "Diciembre 21, 2023",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Under-ninja/T1/12.html",
       },
     ],
