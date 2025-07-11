@@ -6804,7 +6804,7 @@ export const animeData = [
   },
   {
     id: "clevatess",
-    title: "Clevatess",
+    title: "Clevatess: Clevatess Majuu no Ou to Akago to Kabane no Yuusha",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/dd71fcce5a6f3a5e84cf33d3c9a8830a.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G8DHV78ZM-backdrop_wide",
