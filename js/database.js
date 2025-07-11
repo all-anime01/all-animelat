@@ -8992,7 +8992,7 @@ export const animeData = [
     year: 2019,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["recomendado", "agregado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 371)), // Calculado desde el 30/06/24
     audio: "Sub | Dob",
     creator: "Koyoharu Gotouge",
@@ -9837,7 +9837,6 @@ export const animeData = [
         releaseDate: "Junio 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/8.html",
-        votes: { likes: 987, dislikes: 8 },
       },
     ],
   },
@@ -10500,8 +10499,8 @@ export const animeData = [
     year: 2024,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 188)), // Calculado desde el 05/01/25 hasta el 05/07/25 (simulado)
+    tags: ["recomendado", "agregado"],
+    dateAdded: new Date(), // Calculado desde el 05/01/25 hasta el 05/07/25 (simulado)
     audio: "Sub | Dob",
     creator: "Hiro Mashima",
     contentWarning: "+16",
@@ -11617,7 +11616,7 @@ export const animeData = [
     year: 2024,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["agregado"],
     dateAdded: new Date(), // Calculado desde el 07/04/25 new Date().setDate(new Date().getDate() - 110)
     audio: "Subtitulado",
     creator: "Yudetamago",
@@ -12286,8 +12285,8 @@ export const animeData = [
     year: 2020,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 553)),
+    tags: ["recomendado", "agregado"],
+    dateAdded: new Date(), // new Date().setDate(new Date().getDate() - 553)
     episodes: [
       {
         season: 1,
@@ -14180,8 +14179,8 @@ export const animeData = [
     year: 2016,
     type: "TV",
     quality: "1080p",
-    tags: ["agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 927)), // Calculado desde el 21/12/22
+    tags: ["agregado"],
+    dateAdded: new Date(), // Calculado desde el 21/12/22 new Date().setDate(new Date().getDate() - 927)
     audio: "Sub | Dob",
     creator: "ONE",
     contentWarning: "+14",
@@ -14736,7 +14735,7 @@ export const animeData = [
     year: 2016,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["recomendado", "agregado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 361)), // Calculado desde el 12/10/24
     audio: "Sub | Dob",
     creator: "Kohei Horikoshi",
@@ -15405,7 +15404,7 @@ export const animeData = [
     year: 2024,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["agregado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 431)), // Calculado desde el 04/05/24
     audio: "Sub | Dob",
     creator: "Sunghoo Park",
@@ -21871,8 +21870,8 @@ export const animeData = [
     year: 2023,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 8)),
+    tags: ["agregado"],
+    dateAdded: new Date(),
     audio: "Sub | Dob",
     creator: "Satoshi Tajiri",
     contentWarning: "+7 Para todos los públicos",
@@ -21904,8 +21903,8 @@ export const animeData = [
     year: 2021,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1198)), // Calculado desde el 24/03/22
+    tags: ["agregado"],
+    dateAdded: new Date(), // Calculado desde el 24/03/22
     audio: "Sub | Dob",
     creator: "Tsugumi Ohba & Takeshi Obata",
     contentWarning: "+16 Violencia, Suicidio",
@@ -22229,8 +22228,8 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 618)), // Calculado desde el 26/10/23
+    tags: ["recomendado", "agregado"],
+    dateAdded: new Date(), // Calculado desde el 26/10/23
     audio: "Sub | Dob",
     creator: "Naoki Urasawa & Osamu Tezuka",
     contentWarning: "+16 Violencia, Lenguaje",
@@ -22546,8 +22545,8 @@ export const animeData = [
     year: 2023,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 462)), // Calculado desde el 30/03/24
+    tags: ["recomendado", "agregado"],
+    dateAdded: new Date(), // Calculado desde el 30/03/24
     audio: "Subtitulado",
     creator: "Daiki Kobayashi",
     contentWarning: "+16 Violencia, Gore",
@@ -30539,7 +30538,7 @@ export const animeData = [
       {
         season: 1,
         number: 11,
-        title: "Raijinken vs. Fujinken.",
+        title: "Raijinken vs. Fujinken",
         duration: "23 min",
         description:
           "La batalla final. Yaiba, habiendo dominado sus poderes, se enfrenta a Onimaru en un duelo que decidirá el destino del mundo.",
@@ -30547,6 +30546,30 @@ export const animeData = [
         releaseDate: "Junio 14, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "Nadeshiko Yamato llama",
+        duration: "23 min",
+        description:
+          "Yaiba se enfrenta a un nuevo desafío en el dojo cuando aparece la enigmática Nadeshiko Yamato, una luchadora samurái vinculada a él por una antigua promesa.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_8b2457f72e9481c8c3e531a30cc75eed.jpg",
+        releaseDate: "Junio 21, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/12.html",
+      },
+      {
+        season: 1,
+        number: 13,
+        title: "La Búsqueda del Orbe del Dios Dragón",
+        duration: "23 min",
+        description:
+          "Yaiba abandona la jungla y se sumerge en una bulliciosa ciudad japonesa en su búsqueda del legendario Orbe del Dragón.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_e66daec655b280eb29a59ae77d033982.jpg",
+        releaseDate: "Junio 28, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/13.html",
       },
     ],
   },
