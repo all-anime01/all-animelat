@@ -8002,6 +8002,8 @@ export const animeData = [
     img: "https://a.storyblok.com/f/178900/960x1357/d42021c586/dr-stone-science-future-kv.jpeg/m/filters:quality(95)format(webp)",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Dr%20STONE%20/SEASON%204/ULTRA-WIDE/DrSTONE-S4-KV1-UW-LTR.png",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/f3accca2b543e1d3b7b9533ca55d2119.jpg",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/CurationAssets/Dr%20STONE%20/SEASON%204/ULTRA-WIDE/DrSTONE-S4-KV1-UW-Logo-EN.png",
     imgMobile:
@@ -8019,7 +8021,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 562)), // Calculado desde el 21/12/23
+    dateAdded: new Date(), // Calculado desde el 21/12/23
     audio: "Sub | Dob",
     creator: "Riichiro Inagaki",
     contentWarning: "+14",
