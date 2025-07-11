@@ -8016,7 +8016,7 @@ export const animeData = [
     ratingCount: "161.7K",
     seasons: 5,
     episodesTotal: 71,
-    status: "Finalizado",
+    status: "En emisión",
     year: 2019,
     type: "TV",
     quality: "1080p",
@@ -12222,6 +12222,50 @@ export const animeData = [
       },
     ],
   },
+  {
+    id: "hikaru-ga-shinda-natsu",
+    title: "El vernano en que Hikaru murió: Hikaru ga Shinda Natsu",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752213737/Hikaru-ga-Shinda-Natsu_xdg8yd.webp",
+    heroImg:
+      "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABW8H6hivNkU4I-lgzrjJeZlln2yvXvs9t18-LSpY1pRWvfVIdL8WRzLyuhFMbKo5xq92lT8IIk2e8DmGbkBcUkkO5jdAOTNHdHVG.jpg?r=3c7",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752213777/31066_ext_09_en_0_eolwxq.png",
+    logoImg:
+      "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABVW_Bicr5e-WxfOX8p9eJiiB9Dixy2XBBMZHcFA_I2SyXfF6wIRcXkuP8pNdtPrRGwF2gP7rx842DpvJqSUfgieEpL2o66wYgA.webp?r=094",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752213727/hikaru-ga-shinda-natsu-655f6629af_osbefh.jpg",
+    trailerUrl: "https://www.youtube.com/embed/KeD4AqVMuHE?si=qqTvx4-QV_NOEDFi",
+    description:
+      "Yoshiki y Hikaru son dos chicos que viven en un pequeño pueblo. Son amigos de la infancia y siempre han estado juntos... hasta que un día, Hikaru desaparece en la montaña durante una semana. Regresa, pero algo en él ha cambiado. Yoshiki se da cuenta de que su amigo ha sido reemplazado por 'algo más', pero decide seguir a su lado. A medida que los días pasan, extraños y terroríficos eventos comienzan a ocurrir en su pueblo, todos conectados con la nueva y misteriosa existencia de 'Hikaru'.",
+    genres: ["Misterio", "Horror", "Psicológico", "Sobrenatural"],
+    rating: 4.8,
+    ratingCount: "2.1K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "En emisión",
+    year: 2025,
+    type: "Anime",
+    quality: "1080p",
+    tags: ["agregado"],
+    dateAdded: new Date(), // Calculado desde el 21/09/25
+    audio: "Subtitulado",
+    creator: "Mokumokuren",
+    contentWarning: "+13 Horror, Violencia",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Reemplazo",
+        duration: "24 min",
+        description:
+          "Ante la sospecha, Yoshiki confronta a Hikaru... y descubre la aterradora verdad. A pesar de que intentan llevar una vida normal, empiezan a ocurrir accidentes inquietantes.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABaKHZ7JzCju12mZ0XxB8gRF1vq7mzrL96V-MQOmb6UThLyuowo-sY6Qq696FcEwuU9MniutzSYQgNhmeBlxYWTNM5GPoDyr9VT3MN81T2E1j9pZv5GDr9d6p.webp?r=2f7",
+        releaseDate: "Julio 5, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/1.html",
+      },
+    ],
+  },
   //J
   {
     id: "jujutsu-kaisen",
@@ -13238,7 +13282,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // Hace 1 días
+    dateAdded: new Date(), // Hace 1 días
     episodes: [
       {
         season: 1,
@@ -30367,7 +30411,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 2)), // Hace 2 días
+    dateAdded: new Date(), // Hace 2 días
     audio: "Subtitulado",
     creator: "Gosho Aoyama",
     contentWarning: "+13",
