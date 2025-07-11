@@ -6866,7 +6866,7 @@ export const animeData = [
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/cr/landscape_large/a6c923e2-8ab4-4663-b93a-524fddb69143.png",
     fonImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/cr/landscape_large/a6c923e2-8ab4-4663-b93a-524fddb69143.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/fa62dd1fc7a9bc0b587f36f53bf572c1.jpg",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/cr/logo/67a17a44-9ca2-419c-a761-5db1bb4e1b2d.png",
     imgMobile:
@@ -8941,7 +8941,6 @@ export const animeData = [
         releaseDate: "Marzo 20, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/11.html",
-        votes: { likes: 987, dislikes: 8 },
       },
       {
         season: 4,
@@ -8954,7 +8953,18 @@ export const animeData = [
         releaseDate: "Marzo 27, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/12.html",
-        votes: { likes: 987, dislikes: 8 },
+      },
+      {
+        season: 4,
+        number: 13,
+        title: "Mirando la misma luna",
+        duration: "23 min",
+        description:
+          "Senku se reúne con Xeno y ambos comparten la información que tienen sobre el rayo petrificador.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9b48c1126fa06d2151bf75b94e53a21c.jpg",
+        releaseDate: "Julio 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dr-stone/T4/13.html",
       },
     ],
   },
