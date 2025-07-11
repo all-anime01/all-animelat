@@ -27131,7 +27131,51 @@ export const animeData = [
       },
     ],
   },
-  // T
+  //letra T
+  {
+    id: "Tougen-anki",
+    title: "Tougen Anki",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/8d489640820a6d7b253bb8da9d5682c1.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/e0b2a13efabc6c589810a29931da4ebf.jpg",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/e0b2a13efabc6c589810a29931da4ebf.jpg",
+    logoImg:
+      "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABYQRECVuKUEK7cf89qsAFewtfrfyxpjKPwdWDB1UsAMSVW3SKZI919o2e3BS6qejAwmvFIWRhpfHTe2Tthcv3_EysT9WSl3glA.webp?r=a91",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/8d489640820a6d7b253bb8da9d5682c1.jpg",
+    trailerUrl: "https://www.youtube.com/embed/CXoluVnOiR8?si=-URwgjrkdHbpkl8h",
+    description:
+      "En un mundo en el que los Oni y los Momotaro llevan generaciones enfrentados, Shiki Ichinose es un estudiante de instituto normal y corriente. Todo cambia cuando un misterioso hombre les ataca a él y a su padre, lo que hace que Shiki descubra que es un Oni. Ahora se ve arrastrado a una oscura y sangrienta guerra secreta en la que Shiki deberá dominar sus poderes para llevar a cabo su venganza.",
+    genres: ["Acción", "Fantasía"],
+    rating: 4.8,
+    ratingCount: "704",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "En Emisión",
+    year: 2025,
+    type: "Anime",
+    quality: "1080p",
+    tags: ["agregado", "doblaje"],
+    dateAdded: new Date(),
+    audio: "Sub | Dob",
+    creator: "Yura Urushibara",
+    contentWarning: "+16",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Sangre de Oni",
+        duration: "24 min",
+        description:
+          "Shiki es atacado por un hombre misterioso. Mientras su padre adoptivo, Tsuyoshi, lo ayuda a escapar, el chico descubre su sorprendente y épico legado.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ae046761976522c938727684f33305ba.jpg",
+        releaseDate: "Julios 11, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/1.html",
+      },
+    ],
+  },
   {
     id: "tokyo-revengers",
     title: "Tokyo Revengers",
