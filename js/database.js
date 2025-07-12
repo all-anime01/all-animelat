@@ -33287,7 +33287,7 @@ export const animeData = [
   // Y
   {
     id: "yaiba-samurai-legend",
-    title: "YAIBA: Samurai Legend",
+    title: "YAIBA: Samurai Legend: Shin Samurai-den Yaiba",
     img: "https://a.storyblok.com/f/178900/905x1280/c980117c57/yaiba-samurai-legend-main-visual.jpg/m/filters:quality(95)format(webp)",
     heroImg:
       "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABQBIw4o2OzZdi2UKWYl7_vcEWbQmgokm6NQanpKd2XI7S_wCN1mV8vsL5cY8p2S23N0iwcO7DKgqgeSzotD_zBMtLGuTxkUxe6l8.jpg?r=7c8",
@@ -33470,6 +33470,18 @@ export const animeData = [
         releaseDate: "Junio 28, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/13.html",
+      },
+      {
+        season: 1,
+        number: 14,
+        title: "¡El ascenso del ninja Kotaro!",
+        duration: "23 min",
+        description:
+          "El grupo llega a Shikoku y se encuentra con Kotaro, un misterioso ninja con un pasado ligado a una antigua rivalidad. Su llegada genera tensiones y plantea una posible alianza inesperada dentro del equipo. Kotaro podría ser clave para la lucha contra Onimaru, pero su presencia también podría desencadenar conflictos.  ",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_ddb6edfc0760f4c4d507eb7e17757a47.jpg",
+        releaseDate: "Julio 12, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/14.html",
       },
     ],
   },
