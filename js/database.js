@@ -16018,7 +16018,7 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["recomendado", "agregado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 367)), // Calculado desde el 29/12/24
     audio: "Sub | Dob",
     creator: "Nakaba Suzuki",
