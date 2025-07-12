@@ -11786,7 +11786,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "2.1K",
     seasons: 1,
-    episodesTotal: 1,
+    episodesTotal: 2,
     status: "En emisión",
     year: 2025,
     type: "Anime",
@@ -11808,6 +11808,18 @@ export const animeData = [
         releaseDate: "Julio 5, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Sospecha",
+        duration: "23 min",
+        description:
+          "Mientras Yoshiki y Hikaru recorren con sus compañeros de clase un escalofriante sendero en la montaña, un misterioso hombre llega a la aldea Kubitachi y empieza a investigar.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABSYpBsrlMKF9VLZZFxwmwuIjq6ce-SF8zWyE5x-lwzHApR8NLPOR3u3J1_6cM3K2GNfeCG50V8yNt9-o8Mc0oA4kvZyfr0csMsnJrZQC3l0b4bG5hnQjNiTk.webp?r=a5c",
+        releaseDate: "Julio 12, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/2.html",
       },
     ],
   },
@@ -28765,8 +28777,8 @@ export const animeData = [
     year: 2025,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 21)), // Calculado desde el 16/06/25
+    tags: ["agregado"],
+    dateAdded: new Date(), // Calculado desde el 16/06/25
     audio: "Subtitulado",
     creator: "Motoo Nakanishi",
     contentWarning: "+16",
