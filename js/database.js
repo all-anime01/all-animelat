@@ -26427,7 +26427,7 @@ export const animeData = [
     logoImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752299656/Shaman_King_2021_logo.webp_iuphas.png",
     imgMobile:
-      "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABQwwU2b0D9yIfMvj5Fey_3cb8oW0v9xSOtrb8NzaoXqQ4k4f_Sg7qj-dFhZ-Yp1E0nQcO2hO-3zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752299412/ShK-Poster_jvvyhc.jpg",
     trailerUrl: "https://www.youtube.com/embed/rV8RZrZskdk?si=zYYMVZW8g37hORHT",
     description:
       "Manta Oyamada, un estudiante de secundaria, decide tomar un atajo por el cementerio y se encuentra con un chico misterioso que está contemplando las estrellas. Resulta ser Yoh Asakura, un chamán en entrenamiento. A partir de ese momento, Manta se ve envuelto en el mundo de los chamanes, espíritus y el Torneo de Chamanes, una batalla que se celebra cada 500 años para decidir quién será el próximo Rey Chamán.",
@@ -26440,8 +26440,8 @@ export const animeData = [
     year: 2021,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1109)), // Calculado desde el 21/04/22
+    tags: ["agregado"],
+    dateAdded: new Date(), // Calculado desde el 21/04/22
     audio: "Sub | Dob",
     creator: "Hiroyuki Takei",
     contentWarning: "+13 Violencia",
