@@ -28,12 +28,14 @@
                 <li><a href="explorar.html">Explorar</a></li>
                 <li><a href="peliculas.html">Películas</a></li>
                 <li><a href="favoritos.html" title="Mis Favoritos"><i class="fas fa-bookmark"></i></a></li>
+                <li>
+                    <button class="theme-toggle-btn" id="theme-toggle" title="Cambiar Tema">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
             </ul>
         </nav>
         <div class="header-right">
-            <button class="theme-toggle-btn" id="theme-toggle" title="Cambiar Tema">
-                <i class="fas fa-sun"></i>
-            </button>
             <div class="search-container">
                 <input type="text" placeholder="Buscar..." id="search-input">
                 <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
@@ -103,6 +105,14 @@
             <div class="card-carousel" id="recommendations-carousel"></div>
         </section>
 
+        <section class="anime-listing-section" id="continue-watching-section">
+            <div class="section-header">
+                <h2 class="section-title"><i class="material-icons">history</i> Seguir Viendo...</h2>
+                <a href="historial.html" class="calendar-link">VER HISTORIAL <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="anime-grid" id="continue-watching-grid">
+            </div>
+        </section>
         <section class="new-episodes-section">
             <div class="section-header">
                 <h2 class="section-title">Episodios Nuevos</h2>
@@ -124,17 +134,16 @@
             </div>
         </section>
 
-        <section class="anime-listing-section">
-            <h2 class="section-title"><i class="material-icons" style="color: var(--secondary-color);">stars</i> Animes
-                Agregados</h2>
-            <div class="anime-grid" id="added-animes-grid"></div>
-        </section>
-
         <section class="card-carousel-section">
             <h2 class="section-title"><i class="material-icons">mic</i> Doblajes de la Temporada</h2>
             <div class="card-carousel" id="dubs-carousel"></div>
         </section>
 
+        <section class="anime-listing-section">
+            <h2 class="section-title"><i class="material-icons" style="color: var(--secondary-color);">stars</i> Animes
+                Agregados</h2>
+            <div class="anime-grid" id="added-animes-grid"></div>
+        </section>
     </main>
 
     <footer class="footer">

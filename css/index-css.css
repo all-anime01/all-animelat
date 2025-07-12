@@ -77,12 +77,14 @@ header .logo {
     flex-shrink: 0;
 }
 
-header .logo img {
+header .logo img,
+header .logo .logo-svg {
     height: 45px;
-    transition: height 0.4s ease;
+    transition: height 0.4s ease, fill 0.3s ease;
 }
 
-header.scrolled .logo img {
+header.scrolled .logo img,
+header.scrolled .logo .logo-svg {
     height: 35px;
 }
 
@@ -152,7 +154,7 @@ body.red-theme header.scrolled {
 }
 
 body.red-theme header {
-    background-image: linear-gradient(to bottom, rgba(202, 48, 48, 0.0), transparent);
+    background-image: linear-gradient(to bottom, rgba(202, 48, 48, 0.7), transparent);
 }
 
 /* --- Estilos de Buscador --- */
@@ -575,7 +577,9 @@ body.red-theme header {
     margin-bottom: 6rem;
 }
 
-.anime-grid {
+.anime-grid,
+#continue-watching-grid,
+#history-episodes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2.5rem;
@@ -1587,12 +1591,12 @@ h5.player-nav-title {
 
 
 /* --- INICIO: NUEVOS ESTILOS PARA LOGO (CORREGIDOS) --- */
-.logo-svg .logo-part {
-    transition: fill 0.3s ease;
+.logo-desktop {
+    transition: filter 0.3s ease;
 }
 
-.logo:hover .logo-svg .logo-part {
-    fill: var(--secondary-color);
+.logo a:hover .logo-desktop {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(85%) saturate(1450%) hue-rotate(85deg) brightness(110%) contrast(101%);
 }
 
 .logo-mobile {
@@ -1718,7 +1722,9 @@ h5.player-nav-title {
         margin-top: -5vh;
     }
 
-    .anime-grid {
+    .anime-grid,
+    #continue-watching-grid,
+    #history-episodes-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1.5rem;
     }
