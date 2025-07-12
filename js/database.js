@@ -7076,6 +7076,8 @@ export const animeData = [
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955668/unnamed_kplmdq.jpg",
     heroImg:
       "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/EFBFCA2071BEFA28CA23D387D57B7875E566FD59541FA1C2952D91D02A369896/scale?width=1440&aspectRatio=1.78&format=jpeg",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955545/n_zlshve.webp",
     logoImg: "https://media.vgm.io/products/98/12789/12789-1680625278.png",
     imgMobile:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955545/n_zlshve.webp",
@@ -7092,7 +7094,7 @@ export const animeData = [
     type: "Anime",
     quality: "1080p",
     tags: ["recomendado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 749)), // Calculado desde el 24/06/23
+    dateAdded: new Date(), // Calculado desde el 24/06/23
     audio: "Sub | Dob",
     creator: "Masakazu Ishiguro",
     contentWarning: "+16 Violencia, Desnudos",
@@ -7107,7 +7109,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751954922/1_wdeibn.jpg",
         releaseDate: "Abril 1, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/1.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/1.html",
       },
       {
         season: 1,
@@ -7119,7 +7121,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955451/2_rusx55.jpg",
         releaseDate: "Abril 8, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/2.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/2.html",
       },
       {
         season: 1,
@@ -7131,7 +7133,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955464/3_x4ivar.jpg",
         releaseDate: "Abril 15, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/3.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/3.html",
       },
       {
         season: 1,
@@ -7143,7 +7145,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955516/4_uqdqet.jpg",
         releaseDate: "Abril 22, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/4.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/4.html",
       },
       {
         season: 1,
@@ -7155,7 +7157,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955520/5_avo7or.jpg",
         releaseDate: "Abril 29, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/5.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/5.html",
       },
       {
         season: 1,
@@ -7167,7 +7169,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955524/6_qh9ljx.jpg",
         releaseDate: "Mayo 6, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/6.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/6.html",
       },
       {
         season: 1,
@@ -7179,7 +7181,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955527/7_nielwe.jpg",
         releaseDate: "Mayo 13, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/7.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/7.html",
       },
       {
         season: 1,
@@ -7191,7 +7193,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955531/8_klv6z3.jpg",
         releaseDate: "Mayo 20, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/8.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/8.html",
       },
       {
         season: 1,
@@ -7203,7 +7205,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955537/9_hjpapf.jpg",
         releaseDate: "Mayo 27, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/9.html",
+        videoUrl: "frame/Tengoku-daimakyou/T1/9.html",
       },
       {
         season: 1,
@@ -7215,7 +7217,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955455/10_abxtq3.webp",
         releaseDate: "Junio 3, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/10.html",
+        videoUrl: "frame/Tengoku-daimakyou/1T1/0.html",
       },
       {
         season: 1,
@@ -7227,7 +7229,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751954931/11_krbpym.jpg",
         releaseDate: "Junio 10, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/11.html",
+        videoUrl: "frame/Tengoku-daimakyou/1T1/1.html",
       },
       {
         season: 1,
@@ -7239,7 +7241,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751954942/12_uwgjwy.jpg",
         releaseDate: "Junio 17, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/12.html",
+        videoUrl: "frame/Tengoku-daimakyou/1T1/2.html",
       },
       {
         season: 1,
@@ -7251,7 +7253,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751955447/13_duannm.jpg",
         releaseDate: "Junio 24, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/Tengoku-daimakyou/13.html",
+        videoUrl: "frame/Tengoku-daimakyou/1T1/3.html",
       },
     ],
   },
