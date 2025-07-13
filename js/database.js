@@ -20729,6 +20729,18 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1135.html",
       },
+      {
+        season: 21,
+        number: 1136,
+        title: "La vida de Kuma",
+        duration: "23 min",
+        description:
+          "Kuma termina sus últimos días como ser humano mientras ve crecer a Luffy como esperanza de la humanidad.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5b2c4c3222d4077e0f0c7e13274f16f4.jpg",
+        releaseDate: "Julio 13, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1136.html",
+      },
     ],
   },
   //P
