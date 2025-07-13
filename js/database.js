@@ -11507,6 +11507,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/1.html",
       },
+      {
+        season: 1,
+        number: 2,
+        title: "Los habitantes",
+        duration: "23 min",
+        description:
+          "Ludo cae en el Abismo, un lugar lleno de basura, monstruos y habitantes violentos. Pero despierta un poder…",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c7201af37d5fa8d6867e4d03ae3ae98f.jpg",
+        releaseDate: "Julio 13, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Gachiakuta/T1/2.html",
+      },
     ],
   },
   //H
