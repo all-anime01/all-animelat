@@ -24046,7 +24046,7 @@ export const animeData = [
     ratingCount: "7.6K",
     seasons: 2,
     episodesTotal: 13,
-    status: "Finalizado",
+    status: "En emisión",
     year: 2025,
     type: "TV",
     quality: "1080p",
