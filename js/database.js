@@ -24044,14 +24044,14 @@ export const animeData = [
     genres: ["Acción", "Comedia"],
     rating: 4.6,
     ratingCount: "7.6K",
-    seasons: 1,
-    episodesTotal: 11,
+    seasons: 2,
+    episodesTotal: 13,
     status: "Finalizado",
     year: 2025,
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 198)), // Calculado desde el 15/03/25
+    dateAdded: new Date(), // Calculado desde el 15/03/25
     audio: "Sub | Dob",
     creator: "Yuto Suzuki",
     contentWarning: "+16",
