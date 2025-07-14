@@ -24199,7 +24199,7 @@ export const animeData = [
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_eeb43597ce22b0be95c84cc356abf092.jpg",
         releaseDate: "Julio 14, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/Sakamoto-days/T1/1.html",
+        videoUrl: "frame/Sakamoto-days/T2/1.html",
       },
       {
         season: 2,
@@ -24211,7 +24211,7 @@ export const animeData = [
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_94882ea7a2d9cbd5c66fdd76441a418b.jpg",
         releaseDate: "Julio 14, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/Sakamoto-days/T1/2.html",
+        videoUrl: "frame/Sakamoto-days/T2/2.html",
       },
     ],
   },
