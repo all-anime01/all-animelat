@@ -12468,7 +12468,7 @@ export const animeData = [
         description:
           "Kafka Hibino aspira a unirse al Cuerpo de Defensa que luchan contra los Kaiju, pero se convertirá en uno.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ccf01d3a8402d46b3cd1c9ff552103be.jpg",
-        releaseDate: "Julio 12, 2024",
+        releaseDate: "Julio 12, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/Especiales-peliculas/1.html",
       },
