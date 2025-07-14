@@ -24032,6 +24032,8 @@ export const animeData = [
     img: "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQTA0WH6Znc8it-5EP5hduuMVjwyhhGlAt6E33RgLTxjpJDShUnvsirIEq9-fjG1G0Fnf95nVmpDSNZTjLnIrEHwYzwb-wx453ISGixLcJjo_oC5v3Obk8y1n_HhX7Zka8eXqLW5YewPssqDcN2LlEyXX.jpg?r=1f3",
     heroImg:
       "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABXTG17BFUnYPJ85VMDsaTVpjNKwj2WHsUHHrcoifNyZeQBHHDHZlXtNfRk8_yBGZRhuOWBmGAadp4YEYyAeNwT-Q2Pe1szDw6Ltn.webp?r=5cf",
+    fonImg:
+      "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABbERq_aL7Nej4e_fjN0OZY9qMp4g9JirfV5VKZgJr7FSdM7NE2i_1c3Nep4NDwnBo9r-a5_qAuko9O_FG-n4-oHa7oK1VDBwf8sn.jpg?r=acd",
     logoImg:
       "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABemKOWL1V4rv61wwalKNdi9che_5dUQD3KvcrCf-CHZWg3F8-e6KEvIYBMHanQPGS-ZzKnH9EwrXc_cP8udykMZLMVTVusZ_VQ.webp?r=0b2",
     imgMobile:
@@ -24185,6 +24187,31 @@ export const animeData = [
         releaseDate: "Marzo 22, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T1/11.html",
+      },
+      //Temporada 2
+      {
+        season: 2,
+        number: 1,
+        title: "La Fuente de la Fuerza",
+        duration: "25 min",
+        description:
+          "Sakamoto y Shin continúan su enfrentamiento, con Shin sorprendido por la fuerza de Sakamoto y admitiendo que está empezando a divertirse.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_eeb43597ce22b0be95c84cc356abf092.jpg",
+        releaseDate: "Julio 14, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Sakamoto-days/T1/1.html",
+      },
+      {
+        season: 2,
+        number: 2,
+        title: "El pasado revelado",
+        duration: "25 min",
+        description:
+          "Sakamoto, Nagumo y Akao, dentro de la Tienda departamental del asesino",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_94882ea7a2d9cbd5c66fdd76441a418b.jpg",
+        releaseDate: "Julio 14, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Sakamoto-days/T1/2.html",
       },
     ],
   },
