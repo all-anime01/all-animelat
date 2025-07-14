@@ -28943,6 +28943,74 @@ export const animeData = [
   },
   //letra T
   {
+    id: "Takopis-Original-Sin",
+    title: "Takopi's Original Sin",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/bae247ea93a92284a914c4999db1975a.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/fe04fb008e1f7efbd1ff61a73dc88de0.jpg",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/fe04fb008e1f7efbd1ff61a73dc88de0.jpg",
+    logoImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752451214/logo_Takopi_s_Original_Sin_qqq9tu.png",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/bae247ea93a92284a914c4999db1975a.jpg",
+    trailerUrl: "https://www.youtube.com/embed/iBUPjud0lAM?si=hR1icFPxekcZrGoV",
+    description:
+      "Takopi, un alienígena procedente del planeta Feliz, aterriza en la Tierra con una misión: ¡propagar la felicidad! Cuando conoce a Shizuka, una chica solitaria de cuarto curso, promete devolverle la sonrisa usando sus Artefactos de la Felicidad. Pero mientras descubre el dolor que hay en su vida, Takopi aprende que para ser feliz quizás necesites algo más que artilugios.",
+    genres: ["Drama", "Ciencia Ficción", "Suspenso"],
+    rating: 4.9,
+    ratingCount: "15.2K",
+    seasons: 1,
+    episodesTotal: 3,
+    status: "En Emisión",
+    year: 2025,
+    type: "Anime",
+    quality: "1080p",
+    tags: ["agregado"],
+    dateAdded: new Date(),
+    audio: "Subtitulado",
+    creator: "Taizan 5",
+    contentWarning: "+16 Temas para adultos, Suicidio, Violencia",
+    episodes: [
+      {
+        season: 1,
+        number: 1,
+        title: "Para ti en 2016",
+        duration: "37 min",
+        description:
+          "Takopi, un alien del Planeta Feliz, intenta ayudar a una niña triste llamada Shizuka, pero hay algo detrás...",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1c7bbbf7f251567ece2b936e6a4dc5b3.jpg",
+        releaseDate: "Junio 27, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Takopis-Original-Sin/T1/1.html",
+      },
+      {
+        season: 1,
+        number: 2,
+        title: "Takopi al rescate",
+        duration: "21 min",
+        description:
+          "Takopi quiere hacer feliz a Shizuka a toda costa, pero puede que la forma de hacerlo no sea la ideal.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/94a98a315faa260b0293a23d99c27b66.jpg",
+        releaseDate: "Julio 4, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Takopis-Original-Sin/T1/2.html",
+      },
+      {
+        season: 1,
+        number: 3,
+        title: "La confesión de Takopi",
+        duration: "26 min",
+        description:
+          "Azuma descubre lo ocurrido con Marina y entre los tres urden un plan que no saldrá como esperaban.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c7718062fd7b2561b5836e72a638a65a.jpg",
+        releaseDate: "Julio 11, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Takopis-Original-Sin/T1/3.html",
+      },
+    ],
+  },
+  {
     id: "Tougen-anki",
     title: "Tougen Anki",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/8d489640820a6d7b253bb8da9d5682c1.jpg",
@@ -28980,7 +29048,7 @@ export const animeData = [
         description:
           "Shiki es atacado por un hombre misterioso. Mientras su padre adoptivo, Tsuyoshi, lo ayuda a escapar, el chico descubre su sorprendente y épico legado.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ae046761976522c938727684f33305ba.jpg",
-        releaseDate: "Julios 11, 2025",
+        releaseDate: "Julio 11, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/1.html",
       },
