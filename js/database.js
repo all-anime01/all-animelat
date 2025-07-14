@@ -12434,7 +12434,9 @@ export const animeData = [
     title: "Kaiju No. 8",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/3455ff9a3021e04fefd4fa2a417637b5.jpg",
     heroImg:
-      "https://static.crunchyroll.com/fms/landscape_large/94/png/e07b68b9-58b8-4a6b-94c0-c2757e8531f1.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GG5H5XQ7D-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/c2257c075677c3bfe0d66b46411529fb.jpg",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/53e9c240-3200-4b4e-94ed-1f357554f712.png",
     imgMobile:
@@ -12459,15 +12461,25 @@ export const animeData = [
       "+14 Sangre/Gore, Luces intermitentes, Tabaquismo, Violencia",
     episodes: [
       {
+        season: 0,
+        number: 1,
+        title: "Kaiju Nº 8: Misión de Reconocimiento",
+        duration: "1h 59m",
+        description:
+          "Kafka Hibino aspira a unirse al Cuerpo de Defensa que luchan contra los Kaiju, pero se convertirá en uno.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ccf01d3a8402d46b3cd1c9ff552103be.jpg",
+        releaseDate: "Julio 12, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Kaiju-No-8/Especiales-peliculas/1.html",
+      },
+      {
         season: 1,
         number: 1,
         title: "El hombre que se convirtió en kaiju",
         duration: "23 min",
         description:
           "Kafka Hibino es un hombre que, tras renunciar a su sueño, trabaja como limpiador de cadáveres de kaijus. La llegada de un nuevo compañero hará que las cosas cambien en su vida, pero un incidente inesperado lo transformará para siempre.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/c2257c075677c3bfe0d66b46411529fb.jpg",
-        hoverImg:
-          "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/39a7d1b7fd412685e1d409f77e42f404.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/39a7d1b7fd412685e1d409f77e42f404.jpg",
         releaseDate: "Abril 13, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/1.html",
