@@ -24029,21 +24029,21 @@ export const animeData = [
   {
     id: "sakamoto-days",
     title: "Sakamoto Days",
-    img: "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQTA0WH6Znc8it-5EP5hduuMVjwyhhGlAt6E33RgLTxjpJDShUnvsirIEq9-fjG1G0Fnf95nVmpDSNZTjLnIrEHwYzwb-wx453ISGixLcJjo_oC5v3Obk8y1n_HhX7Zka8eXqLW5YewPssqDcN2LlEyXX.jpg?r=1f3",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752549865/AAAAQSHBQVhtjd1LYiSNxPN9bLPFlbDo3swK9G6TivIEAPysUo0_-cJ57S-EcafNC0_0O4vQD7HGMJIUvoPeWmgZfbLDxVyyPdzBx19T8i2cS8YVyaQmeUx7uvrraloCJdNI2SJ4QSMUe9W1oWEqzXm91x57_rdi9qu.jpg",
     heroImg:
       "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABXTG17BFUnYPJ85VMDsaTVpjNKwj2WHsUHHrcoifNyZeQBHHDHZlXtNfRk8_yBGZRhuOWBmGAadp4YEYyAeNwT-Q2Pe1szDw6Ltn.webp?r=5cf",
     fonImg:
-      "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABbERq_aL7Nej4e_fjN0OZY9qMp4g9JirfV5VKZgJr7FSdM7NE2i_1c3Nep4NDwnBo9r-a5_qAuko9O_FG-n4-oHa7oK1VDBwf8sn.jpg?r=acd",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752549935/sakamoto-days-season-1-part-2-poster_jmbqio.webp",
     logoImg:
       "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABemKOWL1V4rv61wwalKNdi9che_5dUQD3KvcrCf-CHZWg3F8-e6KEvIYBMHanQPGS-ZzKnH9EwrXc_cP8udykMZLMVTVusZ_VQ.webp?r=0b2",
     imgMobile:
-      "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABXTG17BFUnYPJ85VMDsaTVpjNKwj2WHsUHHrcoifNyZeQBHHDHZlXtNfRk8_yBGZRhuOWBmGAadp4YEYyAeNwT-Q2Pe1szDw6Ltn.webp?r=5cf",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752549806/Sakamoto-Days-anime-2-cours_sz1vd9.webp",
     trailerUrl: "https://www.youtube.com/embed/UF4Fz5WKGCc?si=ZdlqX5TErU9mgif0",
     description:
       "Taro Sakamoto, célebre asesino a sueldo, decidió retirarse de la acción cuando se enamoró. Pero el pasado vuelve por él y ahora debe dar pelea para proteger a su familia.",
     genres: ["Acción", "Comedia"],
     rating: 4.6,
-    ratingCount: "7.6K",
+    ratingCount: "9.3K",
     seasons: 2,
     episodesTotal: 13,
     status: "En emisión",
@@ -28977,6 +28977,42 @@ export const animeData = [
         releaseDate: "Junio 9, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Kijin-gentoushou/T1/11.html",
+      },
+      {
+        season: 1,
+        number: 12,
+        title: "Sueños ebrios de nieve persistente (Part 2).",
+        duration: "23 min",
+        description:
+          "Tsuguru y el misterioso sacerdote continúan atrapados en la aldea cubierta por la nieve, mientras extraños sueños conectan a los habitantes con eventos del pasado.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_447310a9115f27dd83598b3d8135e855.jpg",
+        releaseDate: "Junio 16, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/12.html",
+      },
+      {
+        season: 1,
+        number: 13,
+        title: "Sueños ebrios de nieve persistente (Part 3).",
+        duration: "23 min",
+        description:
+          "Tsuguru, cada vez más perturbado por visiones fragmentadas, descubre que los sueños de los aldeanos están conectados a un antiguo espíritu del inframundo deseando liberarse.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_f359b2928f93176f72b84651839e8fc9.jpg",
+        releaseDate: "Junio 23, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/13.html",
+      },
+      {
+        season: 1,
+        number: 14,
+        title: "La aparición del corazón celoso.",
+        duration: "23 min",
+        description:
+          "Flashback al pasado de Jinya, cuando aún era conocido como Jinta. Tras recibir informes de extrañas presencias en el río Modorigawa, la miko Itsukihime (Byakuya) lo nombra 鬼切役 (Onikiri-e) para investigar la amenaza y proteger la aldea.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_693bc0d5789a25f4421f55b8876f64c3.jpg",
+        releaseDate: "Julio 14, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/14.html",
       },
     ],
   },
