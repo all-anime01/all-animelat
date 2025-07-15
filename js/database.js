@@ -22973,14 +22973,16 @@ export const animeData = [
   },
   {
     id: "ranger-reject",
-    title: "Ranger Reject",
+    title: "Ranger Reject : Sentai daishikkaku",
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751791683/p_iuu6s2.webp",
     heroImg:
       "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/5B4B5C84C51346E6CA9543543F7E15EA983AED4D3B67D82250B5E5CE40E535F6/scale?width=1440&aspectRatio=1.78&format=jpeg",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752554485/gogoloserranger-disneplus_j2iyka.jpg",
     logoImg:
       "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/91F7042D5FB294151FCDDA7094E94A94D0EBC84D6F0B44E7DB03A99C218AE121/scale?width=1440&aspectRatio=1.78&format=png",
     imgMobile:
-      "https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/5B4B5C84C51346E6CA9543543F7E15EA983AED4D3B67D82250B5E5CE40E535F6/scale?width=1440&aspectRatio=1.78&format=jpeg",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752554459/go-go-loser-ranger-anime_khcrr2.jpg",
     trailerUrl: "https://www.youtube.com/embed/QH_dj-qi8js?si=D5mPDxabSc7pZMwb",
     description:
       "Con su antiguo escondite y sus jefes aniquilados, los Dusters supervivientes llegan a un acuerdo secreto con el equipo Ranger para participar en el enfrentamiento dominical, uno en el que siempre serán derrotados. ¡Cansado de esta farsa, el Luchador D finalmente da un paso al frente para hacer un cambio de una vez por todas!.",
