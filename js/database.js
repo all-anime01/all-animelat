@@ -23255,6 +23255,18 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Ranger-reject/T2/9.html",
       },
+      {
+        season: 2,
+        number: 10,
+        title: "Un vínculo especial: Hibiki y Sesera",
+        duration: "23 min",
+        description:
+          "Durante una batalla épica contra los Kaijin y su misterioso líder, el recién nombrado Guardián Azul y su escuadrón se ven obligados a luchar por sus vidas.",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_5524801e42bf61918a93a861f12414e4.jpg",
+        releaseDate: "Junio 15, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Ranger-reject/T2/10.html",
+      },
     ],
   },
   {
