@@ -8640,6 +8640,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/13.html",
       },
+      {
+        season: 4,
+        number: 14,
+        title: "Carrera terrestre",
+        duration: "23 min",
+        description:
+          "Senku y compañía deben huir del barco de Stanley, pero tienen que ir parando para reabastecer combustible.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b9afb453b7c3e2d78b534155743af969.jpg",
+        releaseDate: "Julio 17, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dr-stone/T4/14.html",
+      },
     ],
   },
   {
