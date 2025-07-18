@@ -29680,7 +29680,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/388cb9ea7ba0c4d4415e4d56229504d0.jpg",
         releaseDate: "Junio 14, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/To-be-Hero-X/T1/11.html",
+        videoUrl: "frame/To-be-hero-X/T1/11.html",
       },
       {
         season: 1,
@@ -29692,7 +29692,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/471af477c7357e22c13e169e6fe84e7d.jpg",
         releaseDate: "Junio 21, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/To-be-Hero-X/T1/12.html",
+        videoUrl: "frame/To-be-hero-X/T1/12.html",
       },
       {
         season: 1,
@@ -29704,7 +29704,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/843aacf1daaf1fa151dc172f64aaf77e.jpg",
         releaseDate: "Junio 28, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/To-be-Hero-X/T1/13.html",
+        videoUrl: "frame/To-be-hero-X/T1/13.html",
       },
       {
         season: 1,
@@ -29716,7 +29716,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/de7d35e16427fcd950c20b7fa3d3dd86.jpg",
         releaseDate: "Julio 5, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/To-be-Hero-X/T1/14.html",
+        videoUrl: "frame/To-be-hero-X/T1/14.html",
       },
       {
         season: 1,
@@ -29728,7 +29728,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/15dc89436baa4dd0da6a7169b6ad21f5.jpg",
         releaseDate: "Julio 12, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/To-be-Hero-X/T1/15.html",
+        videoUrl: "frame/To-be-hero-X/T1/15.html",
       },
     ],
   },
