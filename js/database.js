@@ -29513,7 +29513,7 @@ export const animeData = [
         description:
           "Mientras planean el viaje a Tokio, se descubre lo de Marina, y Azuma piensa cómo rescatar a Shizuka.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e18b87d8d4a2e9fbf581b47e3b40a0ff.jpg",
-        releaseDate: "Julio 11, 2025",
+        releaseDate: "Julio 18, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Takopis-Original-Sin/T1/4.html",
       },
