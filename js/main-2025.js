@@ -1,6 +1,17 @@
 import { animeData } from "./database.js";
 
 $(document).ready(function () {
+  // --- LÓGICA DE ANIMACIÓN DE CARGA ---
+  if (window.innerWidth <= 991 && !sessionStorage.getItem("loaderShown")) {
+    $("body").css("overflow", "hidden");
+    setTimeout(() => {
+      $("body").css("overflow", "");
+    }, 5000);
+    sessionStorage.setItem("loaderShown", "true");
+  } else {
+    $(".loader-wrapper").hide();
+  }
+
   // --- LÓGICA DE CAMBIO DE TEMA ---
   const themeToggle = $("#theme-toggle");
   const currentTheme = localStorage.getItem("theme");
@@ -868,14 +879,17 @@ $(document).ready(function () {
       );
     });
   }
+
+  // CORRECCIÓN DEL BOTÓN MOSTRAR MÁS
   $("#show-more-episodes").on("click", function () {
     const yesterdaySection = $("#yesterday-episodes-container");
-    yesterdaySection.slideToggle(400, () =>
+    yesterdaySection.slideToggle(400, () => {
       $(this).text(
         yesterdaySection.is(":visible") ? "Mostrar Menos" : "Mostrar Más"
-      )
-    );
+      );
+    });
   });
+
   $(".episodes-list")
     .on("mouseenter", ".episode-item a", function () {
       const item = $(this).closest(".episode-item");
@@ -943,8 +957,7 @@ $(document).ready(function () {
     const playerModal = $("#episode-player-modal");
     const episodeId = playerModal.attr("data-episode-id");
     if (episodeId) saveToHistory(episodeId);
-    if (typeof populateContinueWatching === "function")
-      populateContinueWatching();
+    populateContinueWatching();
     playerModal.fadeOut(() => $("#episode-iframe").attr("src", ""));
     $("body").css("overflow", "auto");
   });
