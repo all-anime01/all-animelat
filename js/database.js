@@ -29762,6 +29762,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/1.html",
       },
+      {
+        season: 1,
+        number: 2,
+        title: "Si quieres lograrlo, sigue ganando",
+        duration: "24 min",
+        description:
+          "Shiki despierta desconcertado ante Naito, que le explica la situación de los Oni contra los Momotaro.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9a21bb9b826aa1474b3078734a8dc907.jpg",
+        releaseDate: "Julio 18, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/2.html",
+      },
     ],
   },
   {
