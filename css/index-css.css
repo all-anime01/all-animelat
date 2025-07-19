@@ -30,13 +30,12 @@
     z-index: 9999;
     animation: fadeOutLoader 5s forwards;
     display: none;
-    /* Se activa solo en móvil vía JS y media query */
+    /* Se activa solo en móvil */
 }
 
 .loader-logo {
     animation: meteorFall 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
     width: 150px;
-    /* Tamaño del logo en la animación */
 }
 
 @keyframes meteorFall {
@@ -137,7 +136,7 @@ header .logo {
 header .logo img,
 header .logo .logo-svg {
     height: 45px;
-    transition: height 0.4s ease;
+    transition: height 0.4s ease, filter 0.3s ease;
 }
 
 header.scrolled .logo img,
@@ -242,6 +241,7 @@ body.red-theme header {
     color: var(--dark-bg);
     background-color: var(--light-text);
 }
+
 
 .search-container #search-input {
     background: var(--card-bg);
@@ -687,6 +687,23 @@ body.red-theme header {
     z-index: 5;
 }
 
+.new-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), #ff6b6b);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: var(--font-headings);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+
 .card-overlay {
     position: absolute;
     top: 0;
@@ -843,7 +860,8 @@ body.red-theme header {
 .filter-group label {
     font-size: 1.4rem;
     font-weight: 700;
-    color: var(--grey-text);
+    color: white;
+    /* Cambio de color para "Géneros" */
     margin-bottom: 1rem;
     display: block;
 }
@@ -1598,7 +1616,7 @@ h5.player-nav-title {
 /* --- Loader --- */
 .loader {
     border: 4px solid var(--border-color);
-    border-top: 4px solid var(--light-text);
+    border-top: 4px solid var(--gemini-blue);
     border-radius: 50%;
     width: 40px;
     height: 40px;

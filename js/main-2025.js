@@ -152,18 +152,34 @@ $(document).ready(function () {
 
   function createHistoryEpisodeCard(episode, anime) {
     const link = `anime-details.html?id=${anime.id}&season=${episode.season}&episode=${episode.number}`;
+
+    const releaseDate = parseCustomDate(episode.releaseDate);
+    const today = new Date();
+    const sevenDaysAgo = new Date(today);
+    sevenDaysAgo.setDate(today.getDate() - 7);
+    const isNew = releaseDate >= sevenDaysAgo;
+
     return `
             <div class="episode-detail-card">
                 <a href="${link}">
                     <div class="episode-img-container">
-                        <img src="${episode.img}" alt="${episode.title}" loading="lazy">
+                        <img src="${
+                          episode.img
+                        }" alt="${episode.title}" loading="lazy">
+                        ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
                         <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
                         <span class="duration-tag">${episode.duration}</span>
                     </div>
                     <div class="episode-card-info">
-                        <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${anime.title}</p>
-                        <h5 class="episode-card-title">${episode.number}. ${episode.title}</h5>
-                        <p class="episode-card-meta">${episode.language} • ${episode.releaseDate}</p>
+                        <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${
+                          anime.title
+                        }</p>
+                        <h5 class="episode-card-title">${
+                          episode.number
+                        }. ${episode.title}</h5>
+                        <p class="episode-card-meta">${
+                          episode.language
+                        } • ${episode.releaseDate}</p>
                     </div>
                 </a>
             </div>`;
@@ -316,6 +332,8 @@ $(document).ready(function () {
   function createDynamicEpisodeItem(episode, anime) {
     const initialImage = anime.fonImg || anime.img;
     const link = `anime-details.html?id=${anime.id}&season=${episode.season}&episode=${episode.number}`;
+
+    // MODIFICACIÓN: Se elimina la etiqueta "Nuevo" de esta función específica
     return `
         <li class="episode-item" data-original-img="${initialImage}" data-hover-img="${episode.img}" data-original-meta="Episodio ${episode.number} • ${episode.language}" data-episode-num="${episode.number}">
             <a href="${link}">
@@ -333,18 +351,34 @@ $(document).ready(function () {
 
   function createFavoriteEpisodeCard(episode, anime) {
     const link = `anime-details.html?id=${anime.id}&season=${episode.season}&episode=${episode.number}`;
+
+    const releaseDate = parseCustomDate(episode.releaseDate);
+    const today = new Date();
+    const sevenDaysAgo = new Date(today);
+    sevenDaysAgo.setDate(today.getDate() - 7);
+    const isNew = releaseDate >= sevenDaysAgo;
+
     return `
         <div class="episode-detail-card">
             <a href="${link}">
                 <div class="episode-img-container">
-                    <img src="${episode.img}" alt="${episode.title}" loading="lazy">
+                    <img src="${
+                      episode.img
+                    }" alt="${episode.title}" loading="lazy">
+                    ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
                     <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
                     <span class="duration-tag">${episode.duration}</span>
                 </div>
                 <div class="episode-card-info">
-                    <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${anime.title}</p>
-                    <h5 class="episode-card-title">${episode.number}. ${episode.title}</h5>
-                    <p class="episode-card-meta">${episode.language} • ${episode.releaseDate}</p>
+                    <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${
+                      anime.title
+                    }</p>
+                    <h5 class="episode-card-title">${
+                      episode.number
+                    }. ${episode.title}</h5>
+                    <p class="episode-card-meta">${
+                      episode.language
+                    } • ${episode.releaseDate}</p>
                 </div>
             </a>
         </div>`;
@@ -651,17 +685,30 @@ $(document).ready(function () {
         return;
       }
       currentSeasonEpisodes.forEach((ep, index) => {
+        const releaseDate = parseCustomDate(ep.releaseDate);
+        const today = new Date();
+        const sevenDaysAgo = new Date(today);
+        sevenDaysAgo.setDate(today.getDate() - 7);
+        const isNew = releaseDate >= sevenDaysAgo;
+
         episodesContainer.append(`
                 <div class="episode-detail-card" data-episode-index="${index}">
                     <a href="#" class="open-player-from-details" data-episode-index="${index}">
                         <div class="episode-img-container">
-                            <img src="${ep.img}" alt="${ep.title}" loading="lazy">
+                            <img src="${ep.img}" alt="${
+          ep.title
+        }" loading="lazy">
+                            ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
                             <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
                             <span class="duration-tag">${ep.duration}</span>
                         </div>
                         <div class="episode-card-info">
-                            <h5 class="episode-card-title">${ep.number}. ${ep.title}</h5>
-                            <p class="episode-card-meta">${ep.language} • ${ep.releaseDate}</p>
+                            <h5 class="episode-card-title">${ep.number}. ${
+          ep.title
+        }</h5>
+                            <p class="episode-card-meta">${ep.language} • ${
+          ep.releaseDate
+        }</p>
                             <p class="episode-card-desc">${ep.description}</p>
                         </div>
                     </a>

@@ -12667,7 +12667,7 @@ export const animeData = [
       },
       {
         season: 2,
-        number: "EX",
+        number: "00",
         title: "El día libre de Hoshina",
         duration: "23 min",
         description:
@@ -12676,6 +12676,18 @@ export const animeData = [
         releaseDate: "Julio 5, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T2/00.html",
+      },
+      {
+        season: 2,
+        number: 13,
+        title: "Arma kaiju",
+        duration: "23 min",
+        description:
+          "Todos los novatos de la División de Defensa son transferidos a nuevas bases, incluido Kafka Hibino.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/da4d30fca601bd6fc95c6ffbbf276419.jpg",
+        releaseDate: "Julio 19, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Kaiju-No-8/T2/13.html",
       },
     ],
   },
@@ -12901,6 +12913,18 @@ export const animeData = [
         releaseDate: "Julio 11, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/4.html",
+      },
+      {
+        season: 1,
+        number: 5,
+        title: "El héroe",
+        duration: "33 min",
+        description:
+          "La tragedia desatada en un barco levanta las sospechas de los Halcones Nocturnos e inician una investigación.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d69698bda377eae7d3ad003f2fd1a2bb.jpg",
+        releaseDate: "Julio 18, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Lord-of-mysteries/T1/5.html",
       },
     ],
   },
@@ -33278,7 +33302,7 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 562)), // Calculado desde el 25/12/23
     audio: "Sub | Dob",
     creator: "Haro Aso & Kotaro Takata",
