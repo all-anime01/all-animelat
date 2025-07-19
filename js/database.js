@@ -22045,7 +22045,6 @@ export const animeData = [
         releaseDate: "Junio 7, 2025", // Fecha corregida a YYYY-MM-DD
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/98.html",
-        votes: { likes: 349, dislikes: 6 },
       },
       {
         season: 1,
@@ -22058,7 +22057,18 @@ export const animeData = [
         releaseDate: "14/06/25",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/99.html",
-        votes: { likes: 1087, dislikes: 8 },
+      },
+      {
+        season: 1,
+        number: 100,
+        title: "¡Somos los Tacleada de Voltios en ascenso!",
+        duration: "24m",
+        description:
+          "Liko y sus amigos luchan contra los Exploradores en una fábrica, enfrentándose a Centauros de Paldea fortalecidos por la Esfera Fuerte.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752963407/wggpwc7622ct_uuwcar.jpg",
+        releaseDate: "Junio 21, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Pokemon-horizons/T1/100.html",
       },
     ],
   },
