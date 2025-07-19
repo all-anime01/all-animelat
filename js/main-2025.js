@@ -333,7 +333,6 @@ $(document).ready(function () {
     const initialImage = anime.fonImg || anime.img;
     const link = `anime-details.html?id=${anime.id}&season=${episode.season}&episode=${episode.number}`;
 
-    // MODIFICACIÓN: Se elimina la etiqueta "Nuevo" de esta función específica
     return `
         <li class="episode-item" data-original-img="${initialImage}" data-hover-img="${episode.img}" data-original-meta="Episodio ${episode.number} • ${episode.language}" data-episode-num="${episode.number}">
             <a href="${link}">
