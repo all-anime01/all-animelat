@@ -775,7 +775,7 @@ export const animeData = [
   {
     id: "beyblade-x",
     title: "Beyblade X",
-    img: "https://m.media-amazon.com/images/M/MV5BMmJhNGQ4MjItMTBhMC00OWIxLTg5NjAtYjM5ZjE3NWM2ZjMzXkEyXkFqcGdeQXVyMTY2MjYzNzE2._V1_.jpg",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752984645/MV5BMmJhNGQ4MjItMTBhMC00OWIxLTg5NjAtYjM5ZjE3NWM2ZjMzXkEyXkFqcGdeQXVyMTY2MjYzNzE2._V1__biyzkr.jpg",
     heroImg:
       "https://image.tmdb.org/t/p/original/6OAvlyDxLhfxxPB9Mn9w43EaR3N.jpg",
     fonImg:
@@ -8202,8 +8202,8 @@ export const animeData = [
     year: 2023,
     type: "TV",
     quality: "1080p",
-    tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 560)), // Calculado desde el 25/12/23
+    tags: [],
+    dateAdded: new Date(), // Calculado desde el 25/12/23 new Date().setDate(new Date().getDate() - 560)
     audio: "Sub | Dob",
     creator: "Ryohgo Narita & Shinta Fujimoto",
     contentWarning: "+16 Violencia, Gore",
@@ -10248,7 +10248,7 @@ export const animeData = [
     year: 2021,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["recomendado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 647)), // Calculado desde el 30/09/23
     audio: "Sub | Dob",
     creator: "Hiro Mashima",
@@ -10882,7 +10882,7 @@ export const animeData = [
     year: 2024,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado"],
+    tags: [],
     dateAdded: new Date(), // Calculado desde el 05/01/25 hasta el 05/07/25 (simulado)
     audio: "Sub | Dob",
     creator: "Hiro Mashima",
@@ -11970,7 +11970,7 @@ export const animeData = [
     ratingCount: "1.1K",
     seasons: 2,
     episodesTotal: 23,
-    status: "En Emisión",
+    status: "Finalizado",
     year: 2024,
     type: "Anime",
     quality: "1080p",
@@ -12677,7 +12677,7 @@ export const animeData = [
     year: 2020,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado"],
+    tags: ["recomendado"],
     dateAdded: new Date(), // new Date().setDate(new Date().getDate() - 553)
     episodes: [
       {
@@ -13726,7 +13726,7 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 656)), // Calculado desde el 18/09/23
     audio: "Sub | Dob",
     creator: "Onigunsou",
@@ -14049,8 +14049,8 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 468)), // Calculado desde el 30/03/24
+    tags: ["recomendado"],
+    dateAdded: new Date(), // Calculado desde el 30/03/24
     audio: "Sub | Dob",
     creator: "Hajime Komoto",
     contentWarning: "+14 Violencia, Comedia",
@@ -14557,7 +14557,7 @@ export const animeData = [
     year: 2016,
     type: "TV",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(), // Calculado desde el 21/12/22 new Date().setDate(new Date().getDate() - 927)
     audio: "Sub | Dob",
     creator: "ONE",
@@ -15075,7 +15075,7 @@ export const animeData = [
     year: 2021,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado"],
+    tags: ["recomendado"],
     dateAdded: new Date(), // Calculado desde el 30/06/24
     audio: "Sub | Dob",
     creator: "Rifujin na Magonote",
@@ -16785,8 +16785,8 @@ export const animeData = [
     year: 2024,
     type: "Anime",
     quality: "1080p",
-    tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 431)), // Calculado desde el 04/05/24
+    tags: [],
+    dateAdded: new Date(), // Calculado desde el 04/05/24 new Date().setDate(new Date().getDate() - 431)
     audio: "Sub | Dob",
     creator: "Sunghoo Park",
     contentWarning: "+18 Violencia Extrema, Gore",
@@ -22892,7 +22892,7 @@ export const animeData = [
     year: 2023,
     type: "TV",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(),
     audio: "Sub | Dob",
     creator: "Satoshi Tajiri",
@@ -22925,7 +22925,7 @@ export const animeData = [
     year: 2021,
     type: "Anime",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(), // Calculado desde el 24/03/22
     audio: "Sub | Dob",
     creator: "Tsugumi Ohba & Takeshi Obata",
@@ -23250,7 +23250,7 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado"],
+    tags: ["recomendado"],
     dateAdded: new Date(), // Calculado desde el 26/10/23
     audio: "Sub | Dob",
     creator: "Naoki Urasawa & Osamu Tezuka",
@@ -26032,8 +26032,8 @@ export const animeData = [
     year: 2022,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1113)), // Calculado desde el 21/06/22
+    tags: ["recomendado"],
+    dateAdded: new Date(), // Calculado desde el 21/06/22
     audio: "Sub | Dob",
     creator: "Atsushi Ōkubo",
     contentWarning: "+13 Violencia, Desnudos",
@@ -26699,7 +26699,7 @@ export const animeData = [
     year: 2021,
     type: "Anime",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(), // Calculado desde el 21/04/22
     audio: "Sub | Dob",
     creator: "Hiroyuki Takei",
@@ -27353,8 +27353,8 @@ export const animeData = [
     year: 2024,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 461)), // Calculado desde el 02/04/24
+    tags: [],
+    dateAdded: new Date(), // Calculado desde el 02/04/24
     audio: "Sub | Dob",
     creator: "Hiroyuki Takei",
     contentWarning: "+13 Violencia",
@@ -27539,8 +27539,8 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 198)), // Calculado desde el 30/03/25
+    tags: ["recomendado"],
+    dateAdded: new Date(), // Calculado desde el 30/03/25
     audio: "Sub | Dob",
     creator: "Katarina",
     contentWarning: "+14",
@@ -28177,7 +28177,7 @@ export const animeData = [
     year: 2013,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado"],
+    tags: ["recomendado"],
     dateAdded: new Date(), // Calculado desde el 18/11/23
     audio: "Sub | Dob",
     creator: "Hajime Isayama",
@@ -29295,8 +29295,8 @@ export const animeData = [
     year: 2022,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 562)), // Calculado desde el 23/12/23
+    tags: [],
+    dateAdded: new Date(), // Calculado desde el 23/12/23
     audio: "Sub | Dob",
     creator: "Tatsuya Endo",
     contentWarning: "+13",
@@ -29774,8 +29774,8 @@ export const animeData = [
     year: 2022,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1105)), // Calculado desde el 30/09/22
+    tags: ["recomendado"],
+    dateAdded: new Date(), // Calculado desde el 30/09/22
     audio: "Sub | Dob",
     creator: "Yasuki Tanaka",
     contentWarning: "+16 Violencia, Desnudos",
@@ -30654,8 +30654,8 @@ export const animeData = [
     year: 2021,
     type: "Anime",
     quality: "1080p",
-    tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 562)), // Calculado desde el 26/12/23
+    tags: [],
+    dateAdded: new Date(), // Calculado desde el 26/12/23
     audio: "Sub | Dob",
     creator: "Ken Wakui",
     contentWarning: "+16 Violencia, Lenguaje",
@@ -31289,8 +31289,8 @@ export const animeData = [
     year: 2022,
     type: "Anime",
     quality: "1080p",
-    tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 280)), // Calculado desde el 29/09/24
+    tags: [],
+    dateAdded: new Date(), // Calculado desde el 29/09/24
     audio: "Sub | Dob",
     creator: "SIU (Slave in Utero)",
     contentWarning: "+13 Violencia",
@@ -31796,8 +31796,8 @@ export const animeData = [
     year: 2024,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 380)), // Calculado desde el 13/06/24
+    tags: ["recomendado"],
+    dateAdded: new Date(), // Calculado desde el 13/06/24
     audio: "Sub | Dob",
     creator: "Ryoko Kui",
     contentWarning: "+16",
@@ -32116,7 +32116,7 @@ export const animeData = [
     year: 2025,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: ["recomendado", "agregado"],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 175)), // Calculado desde el 23/05/25
     audio: "Subtitulado",
     creator: "Hye-sung Nam",
@@ -32296,7 +32296,7 @@ export const animeData = [
     year: 2023,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 840)), // Calculado desde el 15/04/23
     audio: "Sub | Dob",
     creator: "Yasuhiro Nightow",
@@ -32471,7 +32471,7 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 564)), // Calculado desde el 21/12/23
     audio: "Sub | Dob",
     creator: "Kengo Hanazawa",
@@ -32648,7 +32648,7 @@ export const animeData = [
     year: 2023,
     type: "TV",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 473)), // Calculado desde el 22/03/24
     audio: "Sub | Dob",
     creator: "Yoshifumi Tozuka",
@@ -32968,8 +32968,8 @@ export const animeData = [
     year: 2023,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 656)), // Calculado desde el 27/09/23
+    tags: [],
+    dateAdded: new Date(), // Calculado desde el 27/09/23
     audio: "Sub | Dob",
     creator: "Yugo Aosaki",
     contentWarning: "+16 Violencia, Desnudos",
@@ -33156,7 +33156,7 @@ export const animeData = [
     year: 2024,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 265)), // Calculado desde el 20/10/24
     audio: "Sub | Cas",
     creator: "Junji Ito",
@@ -33237,7 +33237,7 @@ export const animeData = [
     year: 2024,
     type: "TV",
     quality: "1080p",
-    tags: ["agregado"],
+    tags: [],
     dateAdded: new Date(new Date().setDate(new Date().getDate() - 375)), // Calculado desde el 26/06/24
     audio: "Subtitulado",
     creator: "Taejun Pak",
@@ -33732,8 +33732,8 @@ export const animeData = [
     year: 2024,
     type: "Anime",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 281)), // Calculado desde el 29/09/24
+    tags: ["recomendado"],
+    dateAdded: new Date(), // Calculado desde el 29/09/24
     audio: "Sub | Dob",
     creator: "Fujino Omori",
     contentWarning: "+16",
