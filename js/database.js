@@ -30574,6 +30574,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/To-be-hero-X/T1/15.html",
       },
+      {
+        season: 1,
+        number: 16,
+        title: "La cura",
+        duration: "23 min",
+        description:
+          "Loli descubre que Ghostblade es quien sigue a Nuonuo y lo expone delante de todos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/009288f7588b96b0fa738df8116608e2.jpg",
+        releaseDate: "Julio 19, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/To-be-hero-X/T1/16.html",
+      },
     ],
   },
   {
