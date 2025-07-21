@@ -4440,7 +4440,7 @@ export const animeData = [
   },
   {
     id: "bleach-thousand-year-blood-war",
-    title: "Bleach: Sennen Kessen-hen",
+    title: "Bleach: Thousand Year Blood War: Bleach: Sennen Kessen-hen",
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751791287/p_hq1iu0.jpg",
     heroImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751946602/27692bf1d8b19119b81ca8adce7f12542306ee4fd84be51814a0b1fa346fa23d_nyqe79.jpg",
@@ -4469,7 +4469,7 @@ export const animeData = [
     episodes: [
       // Temporada 1 - The Blood Warfare
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 1,
         title: "La guerra sangrienta",
         duration: "24 min",
@@ -4481,7 +4481,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/1.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 2,
         title: "La piedra angular",
         duration: "24 min",
@@ -4493,7 +4493,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/2.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 3,
         title: "La marcha de la estrella cruzada",
         duration: "24 min",
@@ -4505,7 +4505,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/3.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 4,
         title: "El Seireitei",
         duration: "24 min",
@@ -4517,7 +4517,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/4.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 5,
         title: "La ira como un relámpago",
         duration: "24 min",
@@ -4529,7 +4529,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/5.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 6,
         title: "El fuego",
         duration: "24 min",
@@ -4541,7 +4541,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/6.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 7,
         title: "Nacido en la oscuridad",
         duration: "24 min",
@@ -4553,7 +4553,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/7.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 8,
         title: "El Proyecto Estrella Fugaz [Zero Mix]",
         duration: "24 min",
@@ -4565,7 +4565,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/8.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 9,
         title: "La caída",
         duration: "24 min",
@@ -4577,7 +4577,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/9.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 10,
         title: "La batalla",
         duration: "24 min",
@@ -4589,7 +4589,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/10.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 11,
         title: "Todo menos la lluvia",
         duration: "24 min",
@@ -4601,7 +4601,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/11.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 12,
         title: "Todo menos la lluvia la verdad de junio",
         duration: "24 min",
@@ -4613,7 +4613,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/12.html",
       },
       {
-        season: "Temporada 1",
+        season: "Temporada 1: The Blood Warfare",
         number: 13,
         title: "Parte 1 Final",
         duration: "24 min",
@@ -4626,7 +4626,7 @@ export const animeData = [
       },
       // Temporada 2 - The Separation
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 14,
         title: "Los últimos 9 días",
         duration: "24 min",
@@ -4638,7 +4638,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/14.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 15,
         title: "La paz desde las sombras",
         duration: "24 min",
@@ -4650,7 +4650,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/15.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 16,
         title: "La Virulencia Fundamental",
         duration: "24 min",
@@ -4662,7 +4662,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/16.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 17,
         title: "Corazón de lobo",
         duration: "24 min",
@@ -4674,7 +4674,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/17.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 18,
         title: "Furia junto al ring",
         duration: "24 min",
@@ -4686,7 +4686,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/18.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 19,
         title: "La neblina blanca",
         duration: "24 min",
@@ -4698,7 +4698,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/19.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 20,
         title: "Yo soy el filo",
         duration: "24 min",
@@ -4710,7 +4710,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/20.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 21,
         title: "La estrella sin cabeza",
         duration: "24 min",
@@ -4722,7 +4722,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/21.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 22,
         title: "La Marcha Zombi",
         duration: "24 min",
@@ -4734,7 +4734,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/22.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 23,
         title: "La Marcha Zombi, parte 2",
         duration: "24 min",
@@ -4746,7 +4746,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/23.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 24,
         title: "Demasiado pronto para ganar Demasiado tarde para saber",
         duration: "24 min",
@@ -4758,7 +4758,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/24.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 25,
         title: "El Maestro",
         duration: "24 min",
@@ -4770,7 +4770,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/25.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: The Separation",
         number: 26,
         title: "Negro",
         duration: "24 min",
@@ -4783,7 +4783,7 @@ export const animeData = [
       },
       // Temporada 3 - The Conflict
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 27,
         title: "A",
         duration: "23 min",
@@ -4795,7 +4795,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/27.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 28,
         title: "Kill the King",
         duration: "23 min",
@@ -4807,7 +4807,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/28.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 29,
         title: "The Dark Arm",
         duration: "23 min",
@@ -4819,7 +4819,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/29.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 30,
         title: "Against the Judgement",
         duration: "23 min",
@@ -4831,7 +4831,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/30.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 31,
         title: "THE HOLY NEWBORN",
         duration: "23 min",
@@ -4843,7 +4843,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/31.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 32,
         title: "THE HOLY NEWBORN",
         duration: "23 min",
@@ -4855,7 +4855,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/32.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 33,
         title: "GATE OF THE SUN",
         duration: "23 min",
@@ -4867,7 +4867,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/33.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 34,
         title: "BABY, HOLD YOUR HAND",
         duration: "23 min",
@@ -4879,7 +4879,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/34.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 35,
         title: "BABY, HOLD YOUR HAND 2",
         duration: "23 min",
@@ -4891,7 +4891,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/35.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 36,
         title: "SHADOWS GONE",
         duration: "23 min",
@@ -4903,7 +4903,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/36.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 37,
         title: "FRIEND",
         duration: "23 min",
@@ -4915,7 +4915,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/37.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 38,
         title: "THE VISIBLE ANSWER",
         duration: "23 min",
@@ -4927,7 +4927,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/38.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 39,
         title: "MY LAST WORDS",
         duration: "23 min",
@@ -4939,7 +4939,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/39.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: The Conflict",
         number: 40,
         title: "MY LAST WORDS 2",
         duration: "23 min",
@@ -5277,7 +5277,7 @@ export const animeData = [
       },
       // Temporada 2 - Kyoto Saga
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 1,
         title: "El comienzo",
         duration: "24 min",
@@ -5289,7 +5289,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/1.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 2,
         title: "Extraña pareja",
         duration: "24 min",
@@ -5301,7 +5301,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/2.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 3,
         title: "Hermanos",
         duration: "24 min",
@@ -5313,7 +5313,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/3.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 4,
         title: "Cielo sin estrellas",
         duration: "24 min",
@@ -5325,7 +5325,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/4.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 5,
         title: "Alianza Misteriosa",
         duration: "24 min",
@@ -5337,7 +5337,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/5.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 6,
         title: "La Niebla Ponzoñosa",
         duration: "24 min",
@@ -5349,7 +5349,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/6.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 7,
         title: "Igual que una luciérnaga bajo el sol",
         duration: "24 min",
@@ -5361,7 +5361,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/7.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 8,
         title: "De aquí en adelante",
         duration: "24 min",
@@ -5373,7 +5373,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/8.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 9,
         title: "Por los suelos",
         duration: "24 min",
@@ -5385,7 +5385,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/9.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 10,
         title: "Indoblegable",
         duration: "24 min",
@@ -5397,7 +5397,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/10.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 11,
         title: "Abre los ojos a la verdad",
         duration: "24 min",
@@ -5409,7 +5409,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/11.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Kyoto Saga",
         number: 12,
         title: "Resplandor",
         duration: "24 min",
@@ -5422,7 +5422,7 @@ export const animeData = [
       },
       // Temporada 3 - Shimane Illuminati Saga
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 1,
         title: "El mundo se moviliza",
         duration: "24 min",
@@ -5434,7 +5434,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/1.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 2,
         title: "El paradero de los secretos",
         duration: "24 min",
@@ -5446,7 +5446,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/2.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 3,
         title: "Festival de la Academia de la Vera Cruz",
         duration: "24 min",
@@ -5458,7 +5458,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/3.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 4,
         title: "Topo",
         duration: "24 min",
@@ -5470,7 +5470,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/4.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 5,
         title: "Destino",
         duration: "24 min",
@@ -5482,7 +5482,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/5.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 6,
         title: "No puedo depender de nadie",
         duration: "24 min",
@@ -5494,7 +5494,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/6.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 7,
         title: "Dudas",
         duration: "24 min",
@@ -5506,7 +5506,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/7.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 8,
         title: "Determinación",
         duration: "24 min",
@@ -5518,7 +5518,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/8.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 9,
         title: "Ayuda",
         duration: "24 min",
@@ -5530,7 +5530,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/9.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 10,
         title: "Compañeros",
         duration: "24 min",
@@ -5542,7 +5542,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/10.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 11,
         title: "Araña rosa",
         duration: "24 min",
@@ -5554,7 +5554,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/11.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Shimane Illuminati Saga",
         number: 12,
         title: "Verdades ocultas",
         duration: "24 min",
@@ -5567,7 +5567,7 @@ export const animeData = [
       },
       // Temporada 4 - Beyond the Snow Saga
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 1,
         title: "Aspiraciones",
         duration: "23 min",
@@ -5579,7 +5579,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/1.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 2,
         title: "Angustia",
         duration: "23 min",
@@ -5591,7 +5591,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/2.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 3,
         title: "Hogar",
         duration: "23 min",
@@ -5603,7 +5603,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/3.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 4,
         title: "Adiós, mi amor",
         duration: "23 min",
@@ -5615,7 +5615,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/4.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 5,
         title: "Como reclamando un llanto",
         duration: "23 min",
@@ -5627,7 +5627,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/5.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 6,
         title: "Despertar",
         duration: "23 min",
@@ -5639,7 +5639,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/6.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 7,
         title: "Heterofilia foliar",
         duration: "23 min",
@@ -5651,7 +5651,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/7.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 8,
         title: "¡Feliz (Navidad) cumpleaños!",
         duration: "23 min",
@@ -5663,7 +5663,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/8.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 9,
         title: "Felicitaciones",
         duration: "23 min",
@@ -5675,7 +5675,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/9.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 10,
         title: "Entre la nieve que cae",
         duration: "23 min",
@@ -5687,7 +5687,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/10.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 11,
         title: "Más allá de la nieve",
         duration: "23 min",
@@ -5699,7 +5699,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/11.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Beyond the Snow Saga",
         number: 12,
         title: "Separación",
         duration: "23 min",
@@ -5712,7 +5712,7 @@ export const animeData = [
       },
       // Temporada 5 - The Blue Night Saga
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 1,
         title: "Shiro y Yuri",
         duration: "23 min",
@@ -5724,7 +5724,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/1.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 2,
         title: "La verdad",
         duration: "23 min",
@@ -5736,7 +5736,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/2.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 3,
         title: "Solo",
         duration: "23 min",
@@ -5748,7 +5748,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/3.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 4,
         title: "El despertar de Satán",
         duration: "23 min",
@@ -5760,7 +5760,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/4.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 5,
         title: "Algo más importante que el cuerpo",
         duration: "23 min",
@@ -5772,7 +5772,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/5.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 6,
         title: "Si yo no existiera",
         duration: "23 min",
@@ -5784,7 +5784,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/6.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 7,
         title: "Víspera",
         duration: "23 min",
@@ -5796,7 +5796,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/7.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 8,
         title: "La Noche Azul",
         duration: "23 min",
@@ -5808,7 +5808,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/8.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 9,
         title: "Combate a muerte",
         duration: "23 min",
@@ -5820,7 +5820,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/9.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 10,
         title: "Luz",
         duration: "23 min",
@@ -5832,7 +5832,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/10.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 11,
         title: "Promesa",
         duration: "23 min",
@@ -5844,7 +5844,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/11.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: The Blue Night Saga",
         number: 12,
         title: "Gracias",
         duration: "23 min",
@@ -7384,7 +7384,7 @@ export const animeData = [
     title: "Dandadan",
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751946011/dan_da_dan-595579109-large_modnfj.jpg",
     heroImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/cr/landscape_large/a6c923e2-8ab4-4663-b93a-524fddb69143.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/DAN%20DA%20DAN/SEASON%202/ULTRA-WIDE/DanDaDan-S2C1-KV1-UW-LTR.png",
     fonImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/fa62dd1fc7a9bc0b587f36f53bf572c1.jpg",
     logoImg:
@@ -9419,13 +9419,15 @@ export const animeData = [
   {
     id: "kimetsu-no-yaiba",
     title: "Demon slayer: Kimetsu no Yaiba",
-    img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/765ee047befcfb677d169f5de4c82d5c.jpe",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753126453/kv_1_xnruu8.jpg",
     heroImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GY5P48XEY-backdrop_wide",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753127219/demon-slayer-sets-unfortunate-gen-z-record-ahead-of-infinity-castle-anime-release_o4g4ki.avif",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753126412/Crunchyroll-announces-cinema-release-dates-for-Demon-Slayer-Kimetsu-no-Yaiba-Infinity-Castle-1068x601.jpg_l7crjz.avif",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GY5P48XEY-title_logo-en-us",
     imgMobile:
-      "https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/765ee047befcfb677d169f5de4c82d5c.jpe",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753126368/demon-slayer-kimetsu-no-yaiba-casdtillo-infinito_xctrab.webp",
     trailerUrl: "https://www.youtube.com/embed/sbkI9YjBmd0?si=tJWrBwNdwJYKTIaf",
     description:
       "Estamos en la era Taisho de Japón. Tanjiro, un joven que se gana la vida vendiendo carbón, descubre un día que su familia ha sido asesinada por un demonio. Para empeorar las cosas, su hermana menor Nezuko, la única superviviente de la masacre, ha sufrido una transformación en demonio. Destrozado por los acontecimientos Tanjiro decide convertirse en un cazador de demonios para poder devolver a su hermana a la normalidad y matar al demonio que masacró a su familia.",
@@ -9439,7 +9441,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 371)), // Calculado desde el 30/06/24
+    dateAdded: new Date(), // Calculado desde el 30/06/24
     audio: "Sub | Dob",
     creator: "Koyoharu Gotouge",
     contentWarning: "+16 Violencia, Gore",
@@ -9760,7 +9762,7 @@ export const animeData = [
 
       // Temporada 2: Arco del Tren del Infinito
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Mugen Train Arc",
         number: 1,
         title: "El pilar del fuego, Kyojuro Rengoku",
         duration: "26 min",
@@ -9772,7 +9774,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/1.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Mugen Train Arc",
         number: 2,
         title: "Un sueño profundo",
         duration: "22 min",
@@ -9784,7 +9786,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/2.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Mugen Train Arc",
         number: 3,
         title: "Si fuera verdad...",
         duration: "25 min",
@@ -9796,7 +9798,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/3.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Mugen Train Arc",
         number: 4,
         title: "Agravio",
         duration: "23 min",
@@ -9808,7 +9810,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/4.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Mugen Train Arc",
         number: 5,
         title: "Hacia delante",
         duration: "21 min",
@@ -9820,7 +9822,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/5.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Mugen Train Arc",
         number: 6,
         title: "Akaza",
         duration: "23 min",
@@ -9832,7 +9834,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/6.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Mugen Train Arc",
         number: 7,
         title: "Haz arder tu corazón",
         duration: "26 min",
@@ -9846,7 +9848,7 @@ export const animeData = [
 
       // Temporada 2: Arco del Distrito Rojo
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 8,
         title: "Tengen Uzui, pilar del sonido",
         duration: "46 min",
@@ -9858,7 +9860,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/1.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 8,
         title: "Tengen Uzui, pilar del sonido",
         duration: "46 min",
@@ -9870,7 +9872,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/1.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 9,
         title: "Entrada al distrito rojo",
         duration: "23 min",
@@ -9882,7 +9884,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/2.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 10,
         title: "¿Quién es?",
         duration: "23 min",
@@ -9894,7 +9896,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/3.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 11,
         title: "Esta noche",
         duration: "23 min",
@@ -9906,7 +9908,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/4.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 12,
         title: "¡Llamemos la atención!",
         duration: "23 min",
@@ -9918,7 +9920,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/5.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 13,
         title: "Recuerdos superpuestos",
         duration: "23 min",
@@ -9930,7 +9932,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/6.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 14,
         title: "Transformación",
         duration: "23 min",
@@ -9942,7 +9944,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/7.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 15,
         title: "Reunión",
         duration: "23 min",
@@ -9954,7 +9956,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/8.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 16,
         title: "Tras derrotar a una luna creciente",
         duration: "23 min",
@@ -9966,7 +9968,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/9.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 17,
         title: "¡No me rendiré!",
         duration: "23 min",
@@ -9978,7 +9980,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/10.html",
       },
       {
-        season: "Temporada 2",
+        season: "Temporada 2: Arco Distrito Rojo",
         number: 18,
         title: "Aunque nos reencarnemos",
         duration: "32 min",
@@ -9992,7 +9994,7 @@ export const animeData = [
 
       // Temporada 3: Arco de la Aldea de los Herreros
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 1,
         title: "El sueño de alguien",
         duration: "49 min",
@@ -10004,7 +10006,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/1.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 2,
         title: "Yoriichi modelo cero",
         duration: "23 min",
@@ -10016,7 +10018,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/2.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 3,
         title: "Una espada de hace más de 300 años",
         duration: "23 min",
@@ -10028,7 +10030,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/3.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 4,
         title: "Gracias, Tokito",
         duration: "23 min",
@@ -10040,7 +10042,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/4.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 5,
         title: "Espada al rojo vivo",
         duration: "23 min",
@@ -10052,7 +10054,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/5.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 6,
         title: "¿No querías ser un Pilar?",
         duration: "23 min",
@@ -10064,7 +10066,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/6.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 7,
         title: "Los villanos más detestables",
         duration: "23 min",
@@ -10076,7 +10078,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/7.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 8,
         title: "El Mu en Muichiro",
         duration: "23 min",
@@ -10088,7 +10090,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/8.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 9,
         title: "Muichiro Tokito, el Pilar de la Neblina",
         duration: "23 min",
@@ -10100,7 +10102,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/9.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 10,
         title: "Mitsuri Kanroji, el Pilar del amor",
         duration: "23 min",
@@ -10112,7 +10114,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/10.html",
       },
       {
-        season: "Temporada 3",
+        season: "Temporada 3: Arco de la Aldea de los Herreros",
         number: 11,
         title: "Nuestros lazos y la luz del alba",
         duration: "51 min",
@@ -10126,7 +10128,7 @@ export const animeData = [
 
       // Temporada 4: Arco del Entrenamiento de los Pilares
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Arco del Entrenamiento de los Pilare",
         number: 1,
         title: "Para vencer a Muzan Kibutsuji",
         duration: "48 min",
@@ -10138,7 +10140,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/1.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Arco del Entrenamiento de los Pilare",
         number: 2,
         title: "El dolor de Giyu Tomioka, el Pilar del Agua",
         duration: "23 min",
@@ -10150,7 +10152,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/2.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Arco del Entrenamiento de los Pilare",
         number: 3,
         title: "Tanjiro participa en el entrenamiento de los Pilares",
         duration: "23 min",
@@ -10162,7 +10164,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/3.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Arco del Entrenamiento de los Pilare",
         number: 4,
         title: "Me trae una sonrisa",
         duration: "23 min",
@@ -10174,7 +10176,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/4.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Arco del Entrenamiento de los Pilare",
         number: 5,
         title: "Hasta terminé comiendo demonios",
         duration: "23 min",
@@ -10186,7 +10188,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/5.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Arco del Entrenamiento de los Pilare",
         number: 6,
         title: "El más fuerte en la Compañía Cazademonios",
         duration: "23 min",
@@ -10198,7 +10200,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/6.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Arco del Entrenamiento de los Pilare",
         number: 7,
         title: "Gyomei Himejima, el Pilar de la Roca",
         duration: "23 min",
@@ -10210,7 +10212,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/7.html",
       },
       {
-        season: "Temporada 4",
+        season: "Temporada 4: Arco del Entrenamiento de los Pilare",
         number: 8,
         title: "La movilización de los Pilares",
         duration: "40 min",
@@ -10220,6 +10222,18 @@ export const animeData = [
         releaseDate: "Junio 30, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kimetsu-no-yaiba/T4/8.html",
+      },
+      {
+        season: "The Movie: Castillo Infinito",
+        number: 1,
+        title: "Infinity Castle",
+        duration: "2h 32min",
+        description:
+          "La serie de películas se desarrolla inmediatamente después del final de la cuarta temporada, cuando Muzan Kibutsuji trampas Tanjiro Kamado y sus compañeros del Cuerpo de Cazadores de Demonios dentro de su fortaleza, el 'Castillo del Infinito', donde comienza una batalla decisiva entre los Cazadores de Demonios y los subordinados de Muzan, las Lunas Superiores.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753128520/lnhezv2iw563_t_jnyemx.jpg",
+        releaseDate: "Julio 18, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kimetsu-no-yaiba/Castillo-infinito/1.html",
       },
     ],
   },
@@ -30278,6 +30292,18 @@ export const animeData = [
         releaseDate: "Julio 14, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Kijin-gentoushou/T1/14.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 15,
+        title: "La Espada del Cazador de Demonios",
+        duration: "23 min",
+        description:
+          "Cuando un demonio revela una profecía que predice un destino ligado al “Dios Demonio” y a un futuro distante, Jinta inicia un viaje trascendental. La narrativa se convierte en una odisea que abarca siglos, desde la era Edo hasta la era Heisei, mientras Jinta busca entender el significado profundo de empuñar su espada y cuestiona su rol como cazador de demonios.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753128830/dyaghc79702g_tbygr7.jpg",
+        releaseDate: "Julio 21, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/15.html",
       },
     ],
   },

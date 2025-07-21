@@ -210,7 +210,7 @@ body.red-theme header.scrolled {
 }
 
 body.red-theme header {
-    background-image: linear-gradient(to bottom, rgba(202, 48, 48, 0.7), transparent);
+    background-image: linear-gradient(to bottom, rgba(202, 48, 48, 0.1), transparent);
 }
 
 /* --- Estilos de Buscador --- */
