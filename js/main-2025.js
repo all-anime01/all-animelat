@@ -48,7 +48,7 @@ $(document).ready(function () {
     };
   }
 
-  function parseCustomDate(dateString) {
+  function parseCustomDate(dateString, timeString = "00:00") {
     const monthMap = {
       enero: 0,
       febrero: 1,
@@ -63,28 +63,31 @@ $(document).ready(function () {
       noviembre: 10,
       diciembre: 11,
     };
+    const [hours, minutes] = timeString.split(":").map(Number);
+
     const partsWithComma = dateString.replace(",", "").toLowerCase().split(" ");
     if (
       partsWithComma.length === 3 &&
       monthMap.hasOwnProperty(partsWithComma[0])
     ) {
-      return new Date(
-        partsWithComma[2],
-        monthMap[partsWithComma[0]],
-        partsWithComma[1]
-      );
+      const year = parseInt(partsWithComma[2], 10);
+      const month = monthMap[partsWithComma[0]];
+      const day = parseInt(partsWithComma[1], 10);
+      return new Date(year, month, day, hours, minutes);
     }
+
     const partsWithSlash = dateString.split("/");
     if (partsWithSlash.length === 3) {
       let year = parseInt(partsWithSlash[2], 10);
       if (year < 100) year += 2000;
-      return new Date(
-        year,
-        parseInt(partsWithSlash[1], 10) - 1,
-        parseInt(partsWithSlash[0], 10)
-      );
+      const month = parseInt(partsWithSlash[1], 10) - 1;
+      const day = parseInt(partsWithSlash[0], 10);
+      return new Date(year, month, day, hours, minutes);
     }
-    return new Date(dateString);
+
+    const genericDate = new Date(dateString);
+    genericDate.setHours(hours, minutes, 0, 0);
+    return genericDate;
   }
 
   // --- FUNCIONES GLOBALES DE MODAL Y FAVORITOS ---
@@ -151,13 +154,17 @@ $(document).ready(function () {
   }
 
   function createHistoryEpisodeCard(episode, anime) {
-    const link = `anime-details.html?id=${anime.id}&season=${episode.season}&episode=${episode.number}`;
-
-    const releaseDate = parseCustomDate(episode.releaseDate);
+    const link = `anime-details.html?id=${anime.id}&season=${encodeURIComponent(
+      episode.season
+    )}&episode=${episode.number}`;
+    const releaseDateTime = parseCustomDate(
+      episode.releaseDate,
+      episode.releaseTime
+    );
     const today = new Date();
     const sevenDaysAgo = new Date(today);
     sevenDaysAgo.setDate(today.getDate() - 7);
-    const isNew = releaseDate >= sevenDaysAgo;
+    const isNew = releaseDateTime >= sevenDaysAgo;
 
     return `
             <div class="episode-detail-card">
@@ -189,26 +196,21 @@ $(document).ready(function () {
     const grid = $("#continue-watching-grid");
     const section = $("#continue-watching-section");
     if (!grid.length) return;
-
     const history = getWatchHistory();
     grid.empty();
-
     if (history.length === 0) {
       section.hide();
       return;
     }
-
     section.show();
     const itemsToShow = history.slice(0, 6);
-
     itemsToShow.forEach((item) => {
       const [animeId, seasonStr, episodeStr] = item.id.split("::");
-      const seasonNum = parseInt(seasonStr.replace("s", ""));
       const episodeNum = parseFloat(episodeStr.replace("ep", ""));
       const anime = animeData.find((a) => a.id === animeId);
       if (anime && anime.episodes) {
         const episode = anime.episodes.find(
-          (ep) => ep.season === seasonNum && ep.number === episodeNum
+          (ep) => ep.season === seasonStr && ep.number === episodeNum
         );
         if (episode) {
           grid.append(createHistoryEpisodeCard(episode, anime));
@@ -220,25 +222,21 @@ $(document).ready(function () {
   function populateHistoryPage() {
     const grid = $("#history-episodes-grid");
     if (!grid.length) return;
-
     const history = getWatchHistory();
     grid.empty();
-
     if (history.length === 0) {
       grid.html(
         '<p class="no-results" style="padding: 4rem; text-align: center;">Tu historial está vacío.</p>'
       );
       return;
     }
-
     history.forEach((item) => {
       const [animeId, seasonStr, episodeStr] = item.id.split("::");
-      const seasonNum = parseInt(seasonStr.replace("s", ""));
       const episodeNum = parseFloat(episodeStr.replace("ep", ""));
       const anime = animeData.find((a) => a.id === animeId);
       if (anime && anime.episodes) {
         const episode = anime.episodes.find(
-          (ep) => ep.season === seasonNum && ep.number === episodeNum
+          (ep) => ep.season === seasonStr && ep.number === episodeNum
         );
         if (episode) {
           grid.append(createHistoryEpisodeCard(episode, anime));
@@ -251,10 +249,8 @@ $(document).ready(function () {
   function openPlayer(anime, episode) {
     if (!anime || !episode) return;
     const playerModal = $("#episode-player-modal");
-
-    const episodeId = `${anime.id}::s${episode.season}::ep${episode.number}`;
+    const episodeId = `${anime.id}::${episode.season}::ep${episode.number}`;
     playerModal.attr("data-episode-id", episodeId);
-
     const seasonEpisodes = anime.episodes
       .filter((e) => e.season === episode.season)
       .sort((a, b) => a.number - b.number);
@@ -278,14 +274,38 @@ $(document).ready(function () {
     const prevPreviewContainer = $("#player-prev-episode-preview").empty();
     if (prevEpisode) {
       prevPreviewContainer.html(
-        `<h5 class="player-nav-title">EPISODIO ANTERIOR</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${anime.id}" data-season="${prevEpisode.season}" data-episode-number="${prevEpisode.number}"><div class="player-nav-img-wrapper"><img src="${prevEpisode.img}" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${prevEpisode.number} - ${prevEpisode.title}</p><span>${prevEpisode.language}</span></div></a>`
+        `<h5 class="player-nav-title">EPISODIO ANTERIOR</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${
+          anime.id
+        }" data-season="${encodeURIComponent(
+          prevEpisode.season
+        )}" data-episode-number="${
+          prevEpisode.number
+        }"><div class="player-nav-img-wrapper"><img src="${
+          prevEpisode.img
+        }" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${
+          prevEpisode.number
+        } - ${prevEpisode.title}</p><span>${
+          prevEpisode.language
+        }</span></div></a>`
       );
     }
 
     const nextPreviewContainer = $("#player-next-episode-preview").empty();
     if (nextEpisode) {
       nextPreviewContainer.html(
-        `<h5 class="player-nav-title">SIGUIENTE EPISODIO</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${anime.id}" data-season="${nextEpisode.season}" data-episode-number="${nextEpisode.number}"><div class="player-nav-img-wrapper"><img src="${nextEpisode.img}" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${nextEpisode.number} - ${nextEpisode.title}</p><span>${nextEpisode.language}</span></div></a>`
+        `<h5 class="player-nav-title">SIGUIENTE EPISODIO</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${
+          anime.id
+        }" data-season="${encodeURIComponent(
+          nextEpisode.season
+        )}" data-episode-number="${
+          nextEpisode.number
+        }"><div class="player-nav-img-wrapper"><img src="${
+          nextEpisode.img
+        }" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${
+          nextEpisode.number
+        } - ${nextEpisode.title}</p><span>${
+          nextEpisode.language
+        }</span></div></a>`
       );
     }
 
@@ -331,7 +351,9 @@ $(document).ready(function () {
 
   function createDynamicEpisodeItem(episode, anime) {
     const initialImage = anime.fonImg || anime.img;
-    const link = `anime-details.html?id=${anime.id}&season=${episode.season}&episode=${episode.number}`;
+    const link = `anime-details.html?id=${anime.id}&season=${encodeURIComponent(
+      episode.season
+    )}&episode=${episode.number}`;
 
     return `
         <li class="episode-item" data-original-img="${initialImage}" data-hover-img="${episode.img}" data-original-meta="Episodio ${episode.number} • ${episode.language}" data-episode-num="${episode.number}">
@@ -339,23 +361,32 @@ $(document).ready(function () {
                 <div class="episode-thumbnail">
                     <img src="${initialImage}" alt="${anime.title} Cover" loading="lazy">
                     <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <span class="release-time">${
+                      episode.releaseTime || ""
+                    }</span>
                 </div>
                 <div class="episode-details">
                     <p class="episode-title">${anime.title}</p>
-                    <p class="episode-meta">Episodio ${episode.number} • ${episode.language}</p>
+                    <p class="episode-meta">Episodio ${
+                      episode.number
+                    } • ${episode.language}</p>
                 </div>
             </a>
         </li>`;
   }
 
   function createFavoriteEpisodeCard(episode, anime) {
-    const link = `anime-details.html?id=${anime.id}&season=${episode.season}&episode=${episode.number}`;
-
-    const releaseDate = parseCustomDate(episode.releaseDate);
+    const link = `anime-details.html?id=${anime.id}&season=${encodeURIComponent(
+      episode.season
+    )}&episode=${episode.number}`;
+    const releaseDateTime = parseCustomDate(
+      episode.releaseDate,
+      episode.releaseTime
+    );
     const today = new Date();
     const sevenDaysAgo = new Date(today);
     sevenDaysAgo.setDate(today.getDate() - 7);
-    const isNew = releaseDate >= sevenDaysAgo;
+    const isNew = releaseDateTime >= sevenDaysAgo;
 
     return `
         <div class="episode-detail-card">
@@ -411,19 +442,39 @@ $(document).ready(function () {
       today.setHours(0, 0, 0, 0);
       const yesterday = new Date(today);
       yesterday.setDate(today.getDate() - 1);
-      const allEpisodes = animeData.flatMap((anime) =>
-        (anime.episodes || []).map((episode) => ({
-          anime,
-          episode,
-          releaseDate: parseCustomDate(episode.releaseDate),
-        }))
-      );
-      const todayEpisodes = allEpisodes.filter(
-        (item) => item.releaseDate.getTime() === today.getTime()
-      );
-      const yesterdayEpisodes = allEpisodes.filter(
-        (item) => item.releaseDate.getTime() === yesterday.getTime()
-      );
+
+      let allEpisodes = [];
+      animeData.forEach((anime) => {
+        if (anime.episodes) {
+          anime.episodes.forEach((episode) => {
+            allEpisodes.push({
+              anime,
+              episode,
+              dateTime: parseCustomDate(
+                episode.releaseDate,
+                episode.releaseTime
+              ),
+            });
+          });
+        }
+      });
+
+      const todayEpisodes = allEpisodes
+        .filter(
+          (item) =>
+            item.dateTime.getTime() >= today.getTime() &&
+            item.dateTime.getTime() <
+              new Date(today).setDate(today.getDate() + 1)
+        )
+        .sort((a, b) => b.dateTime - a.dateTime);
+
+      const yesterdayEpisodes = allEpisodes
+        .filter(
+          (item) =>
+            item.dateTime.getTime() >= yesterday.getTime() &&
+            item.dateTime.getTime() < today.getTime()
+        )
+        .sort((a, b) => b.dateTime - a.dateTime);
 
       episodesListHoy.empty();
       if (todayEpisodes.length > 0)
@@ -585,12 +636,11 @@ $(document).ready(function () {
     } else {
       favoriteEpisodeIds.forEach((episodeId) => {
         const [animeId, seasonStr, episodeStr] = episodeId.split("::");
-        const seasonNum = parseInt(seasonStr.replace("s", ""), 10);
         const episodeNum = parseFloat(episodeStr.replace("ep", ""));
         const anime = animeData.find((a) => a.id === animeId);
         if (anime && anime.episodes) {
           const episode = anime.episodes.find(
-            (ep) => ep.season === seasonNum && ep.number === episodeNum
+            (ep) => ep.season === seasonStr && ep.number === episodeNum
           );
           if (episode) {
             favoriteEpisodesGrid.append(
@@ -649,18 +699,18 @@ $(document).ready(function () {
 
     const seasons =
       anime.episodes && anime.episodes.length > 0
-        ? [...new Set(anime.episodes.map((e) => e.season))].sort(
-            (a, b) => a - b
-          )
+        ? [...new Set(anime.episodes.map((e) => e.season))]
         : [];
     if (seasons.length > 0) {
+      seasonSelect.empty();
       seasons.forEach((s) =>
-        seasonSelect.append(`<option value="${s}">Temporada ${s}</option>`)
+        seasonSelect.append(`<option value="${s}">${s}</option>`)
       );
-      seasonSelect.val(Math.max(...seasons));
+      // CORRECCIÓN: Seleccionar la última temporada por defecto
+      seasonSelect.val(seasons[seasons.length - 1]);
     }
 
-    function renderEpisodes(seasonNum, searchTerm = "", sortOrder = "desc") {
+    function renderEpisodes(seasonName, searchTerm = "", sortOrder = "desc") {
       if (episodesContainer.hasClass("slick-initialized"))
         episodesContainer.slick("unslick");
       episodesContainer.empty();
@@ -668,7 +718,7 @@ $(document).ready(function () {
       currentSeasonEpisodes = (anime.episodes || [])
         .filter(
           (e) =>
-            e.season == seasonNum &&
+            e.season === seasonName &&
             (!normalizedSearchTerm ||
               e.title.toLowerCase().includes(normalizedSearchTerm) ||
               e.number.toString().includes(normalizedSearchTerm))
@@ -684,11 +734,11 @@ $(document).ready(function () {
         return;
       }
       currentSeasonEpisodes.forEach((ep, index) => {
-        const releaseDate = parseCustomDate(ep.releaseDate);
+        const releaseDateTime = parseCustomDate(ep.releaseDate, ep.releaseTime);
         const today = new Date();
         const sevenDaysAgo = new Date(today);
         sevenDaysAgo.setDate(today.getDate() - 7);
-        const isNew = releaseDate >= sevenDaysAgo;
+        const isNew = releaseDateTime >= sevenDaysAgo;
 
         episodesContainer.append(`
                 <div class="episode-detail-card" data-episode-index="${index}">
@@ -831,7 +881,9 @@ $(document).ready(function () {
     const episodeToOpen = urlParams.get("episode");
     if (seasonToOpen && episodeToOpen) {
       const episode = anime.episodes.find(
-        (ep) => ep.season == seasonToOpen && ep.number == episodeToOpen
+        (ep) =>
+          ep.season === decodeURIComponent(seasonToOpen) &&
+          ep.number == episodeToOpen
       );
       if (episode) setTimeout(() => openPlayer(anime, episode), 100);
     }
@@ -842,52 +894,60 @@ $(document).ready(function () {
     const last24hList = $("#last-24h-list");
     const lastWeekList = $("#last-week-list");
     if (!last24hList.length && !lastWeekList.length) return;
+
     const now = new Date();
     const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
     const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-    const animesInLists = new Set();
-    const last24hAnimes = [],
-      lastWeekAnimes = [];
 
+    let allRecentEpisodes = [];
     animeData.forEach((anime) => {
-      if (anime.episodes && anime.episodes.length > 0) {
-        const latestEpisode = anime.episodes.reduce((latest, current) =>
-          parseCustomDate(current.releaseDate) >
-          parseCustomDate(latest.releaseDate)
-            ? current
-            : latest
-        );
-        const releaseDate = parseCustomDate(latestEpisode.releaseDate);
-        if (!animesInLists.has(anime.id)) {
-          if (releaseDate >= oneDayAgo && releaseDate <= now) {
-            last24hAnimes.push(anime);
-            animesInLists.add(anime.id);
-          } else if (releaseDate >= oneWeekAgo && releaseDate < oneDayAgo) {
-            lastWeekAnimes.push(anime);
-            animesInLists.add(anime.id);
+      if (anime.episodes) {
+        anime.episodes.forEach((episode) => {
+          const releaseDateTime = parseCustomDate(
+            episode.releaseDate,
+            episode.releaseTime
+          );
+          if (releaseDateTime >= oneWeekAgo && releaseDateTime <= now) {
+            allRecentEpisodes.push({
+              anime,
+              episode,
+              dateTime: releaseDateTime,
+            });
           }
-        }
+        });
       }
     });
 
+    allRecentEpisodes.sort((a, b) => b.dateTime - a.dateTime);
+
+    const last24hAnimes = allRecentEpisodes.filter(
+      (item) => item.dateTime >= oneDayAgo
+    );
+    const lastWeekAnimes = allRecentEpisodes.filter(
+      (item) => item.dateTime < oneDayAgo
+    );
+
     last24hList.empty();
-    if (last24hAnimes.length > 0)
-      last24hAnimes.forEach((anime) =>
-        last24hList.append(createAnimeCard(anime))
+    if (last24hAnimes.length > 0) {
+      last24hAnimes.forEach((item) =>
+        last24hList.append(createAnimeCard(item.anime))
       );
-    else
+    } else {
       last24hList.html(
-        '<p class="no-results">No se añadieron nuevos episodios en las últimas 24 horas.</p>'
+        '<p class="no-results">No se añadieron nuevos animes en las últimas 24 horas.</p>'
       );
+    }
+
     lastWeekList.empty();
-    if (lastWeekAnimes.length > 0)
-      lastWeekAnimes.forEach((anime) =>
-        lastWeekList.append(createAnimeCard(anime))
+    if (lastWeekAnimes.length > 0) {
+      lastWeekAnimes.forEach((item) =>
+        lastWeekList.append(createAnimeCard(item.anime))
       );
-    else
+    } else {
       lastWeekList.html(
-        '<p class="no-results">No se añadieron nuevos episodios en la última semana.</p>'
+        '<p class="no-results">No se añadieron nuevos animes en la última semana.</p>'
       );
+    }
   }
 
   // --- EVENTOS GLOBALES Y DE NAVEGACIÓN ---
@@ -1019,12 +1079,12 @@ $(document).ready(function () {
   $(document).on("click", ".open-player-from-modal", function (e) {
     e.preventDefault();
     const animeId = $(this).data("anime-id");
-    const season = $(this).data("season");
+    const season = decodeURIComponent($(this).data("season"));
     const episodeNumber = $(this).data("episode-number");
     const anime = animeData.find((a) => a.id === animeId);
     if (anime && anime.episodes) {
       const episode = anime.episodes.find(
-        (ep) => ep.season == season && ep.number == episodeNumber
+        (ep) => ep.season === season && ep.number == episodeNumber
       );
       if (episode) openPlayer(anime, episode);
     }

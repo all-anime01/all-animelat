@@ -33,7 +33,7 @@ export const animeData = [
     episodes: [
       // Libro 1: Agua
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El niño en el iceberg",
         duration: "24 min",
@@ -45,7 +45,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El Avatar regresa",
         duration: "22 min",
@@ -57,7 +57,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El templo del aire del sur",
         duration: "23 min",
@@ -69,7 +69,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Los guerreros kyoshi",
         duration: "23 min",
@@ -81,7 +81,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El rey de Omashu",
         duration: "23 min",
@@ -93,7 +93,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Prisioneros",
         duration: "24 min",
@@ -105,7 +105,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Solsticio de invierno: Parte 1: El mundo de los espíritus",
         duration: "24 min",
@@ -117,7 +117,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Solsticio de invierno: Parte 2: El Avatar Roku",
         duration: "24 min",
@@ -129,7 +129,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El pergamino de los maestros Agua",
         duration: "24 min",
@@ -141,7 +141,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Jet",
         duration: "24 min",
@@ -153,7 +153,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El cañón de la muerte",
         duration: "24 min",
@@ -165,7 +165,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Tormenta",
         duration: "24 min",
@@ -177,7 +177,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "El espíritu azul",
         duration: "24 min",
@@ -189,7 +189,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Predicciones",
         duration: "24 min",
@@ -201,7 +201,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Bato de la tribu Agua",
         duration: "24 min",
@@ -213,7 +213,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "El desertor",
         duration: "24 min",
@@ -225,7 +225,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Los planeadores",
         duration: "24 min",
@@ -237,7 +237,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "El maestro del Agua control",
         duration: "24 min",
@@ -249,7 +249,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "El trono del Norte: Primera parte",
         duration: "24 min",
@@ -261,7 +261,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "El trono del Norte: Segunda parte",
         duration: "25 min",
@@ -275,7 +275,7 @@ export const animeData = [
 
       // Libro 2: Tierra
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "El estado avatar",
         duration: "24 min",
@@ -287,7 +287,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "La cueva de los Dos enamorados",
         duration: "24 min",
@@ -299,7 +299,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "El regreso a Omashu",
         duration: "24 min",
@@ -311,7 +311,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "El pantano",
         duration: "24 min",
@@ -323,7 +323,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "El día del avatar",
         duration: "24 min",
@@ -335,7 +335,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "La bandida ciega",
         duration: "25 min",
@@ -347,7 +347,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Zuko solitario",
         duration: "25 min",
@@ -359,7 +359,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "La persecución",
         duration: "25 min",
@@ -371,7 +371,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "La Maestra Control del Mañana",
         duration: "24 min",
@@ -383,7 +383,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "El taladro",
         duration: "24 min",
@@ -395,7 +395,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "La biblioteca",
         duration: "24 min",
@@ -407,7 +407,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "El desierto",
         duration: "24 min",
@@ -419,7 +419,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "El paso de la serpiente",
         duration: "24 min",
@@ -431,7 +431,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "La ciudad de los muros y los secretos",
         duration: "24 min",
@@ -443,7 +443,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Los días perdidos de Appa",
         duration: "24 min",
@@ -455,7 +455,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "El Lago Laogai",
         duration: "24 min",
@@ -467,7 +467,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "El Rey de la Tierra",
         duration: "24 min",
@@ -479,7 +479,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "El gurú",
         duration: "24 min",
@@ -491,7 +491,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "Las encrucijadas del destino",
         duration: "24 min",
@@ -504,7 +504,7 @@ export const animeData = [
       },
       // ... (Episodios 2 a 19 del Libro 2)
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Las encrucijadas del destino",
         duration: "24 min",
@@ -518,7 +518,7 @@ export const animeData = [
 
       // Libro 3: Fuego
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "El despertar",
         duration: "24 min",
@@ -530,7 +530,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title: "La vincha",
         duration: "24 min",
@@ -542,7 +542,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "La dama pintada",
         duration: "24 min",
@@ -554,7 +554,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "El maestro de Sokka",
         duration: "24 min",
@@ -566,7 +566,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "La playa",
         duration: "24 min",
@@ -578,7 +578,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "El Avatar y el Señor del Fuego",
         duration: "24 min",
@@ -590,7 +590,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "La fugitiva",
         duration: "24 min",
@@ -602,7 +602,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "La titiritera",
         duration: "24 min",
@@ -614,7 +614,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "Pesadillas y fantasías",
         duration: "24 min",
@@ -626,7 +626,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "El día del Sol Negro, primera parte: La invasión",
         duration: "24 min",
@@ -638,7 +638,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/10.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 11,
         title: "El día del Sol Negro, segunda parte: El eclipse",
         duration: "24 min",
@@ -650,7 +650,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/11.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 12,
         title: "El Templo del Aire del Oeste",
         duration: "24 min",
@@ -662,7 +662,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/12.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 13,
         title: "Los maestros del Fuego Control",
         duration: "24 min",
@@ -674,7 +674,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/13.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 14,
         title: "La Roca Hirviente, primera parte",
         duration: "24 min",
@@ -686,7 +686,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/14.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 15,
         title: "La Roca Hirviente, segunda parte",
         duration: "24 min",
@@ -698,7 +698,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/15.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 16,
         title: "Los invasores del Sur",
         duration: "24 min",
@@ -710,7 +710,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/16.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 17,
         title: "Los actores de la Isla Ember",
         duration: "24 min",
@@ -722,7 +722,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/17.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 18,
         title: "El cometa de Sozin, parte 1: El Rey Fénix",
         duration: "24 min",
@@ -734,7 +734,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/18.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 19,
         title: "El cometa de Sozin, parte 2: Los viejos maestros",
         duration: "24 min",
@@ -746,7 +746,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/19.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 20,
         title: "El cometa de Sozin, parte 3: Al infierno",
         duration: "24 min",
@@ -758,7 +758,7 @@ export const animeData = [
         videoUrl: "frame/Avatar-la-leyenda-de-Aang/T3/20.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 21,
         title: "El cometa de Sozin, parte 4: El Avatar Aang",
         duration: "24 min",
@@ -803,7 +803,7 @@ export const animeData = [
     contentWarning: "+7",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "X.",
         duration: "24 min",
@@ -815,7 +815,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La asesina del arcoiris.",
         duration: "24 min",
@@ -827,7 +827,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Equipo persona.",
         duration: "24 min",
@@ -839,7 +839,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Beypatrocinador.",
         duration: "24 min",
@@ -851,7 +851,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Aquí estamos, Torre X.",
         duration: "24 min",
@@ -863,7 +863,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "La jungla del León.",
         duration: "24 min",
@@ -875,7 +875,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "La jungla del León.",
         duration: "24 min",
@@ -887,7 +887,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Kamen y el Rey de los leones.",
         duration: "24 min",
@@ -899,7 +899,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Beycrafter.",
         duration: "24 min",
@@ -911,7 +911,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "El mundo de los profesionales.",
         duration: "24 min",
@@ -923,7 +923,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La prueba de Kadovar.",
         duration: "24 min",
@@ -935,7 +935,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "La última batalla.",
         duration: "24 min",
@@ -947,7 +947,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "La primera fan.",
         duration: "24 min",
@@ -959,7 +959,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Ex Exercise.",
         duration: "24 min",
@@ -971,7 +971,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Acertijo y Bey.",
         duration: "24 min",
@@ -983,7 +983,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Noblesse Oblige.",
         duration: "24 min",
@@ -995,7 +995,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Bei Taimu Shifuto.",
         duration: "24 min",
@@ -1007,7 +1007,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Puraido.",
         duration: "24 min",
@@ -1019,7 +1019,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Datto.",
         duration: "24 min",
@@ -1031,7 +1031,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Sushi Memory.",
         duration: "24 min",
@@ -1043,7 +1043,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Mote Produce.",
         duration: "24 min",
@@ -1055,7 +1055,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Black & White.",
         duration: "24 min",
@@ -1067,7 +1067,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "True Heart.",
         duration: "24 min",
@@ -1079,7 +1079,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "The Fastest Advent.",
         duration: "24 min",
@@ -1091,7 +1091,7 @@ export const animeData = [
         videoUrl: "frame/Beyblade-x/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Proof of the Fastest.",
         duration: "24 min",
@@ -1136,7 +1136,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "La fortuna es impredecible y alterable.",
         duration: "24 min",
@@ -1148,7 +1148,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Cierta bomba.",
         duration: "24 min",
@@ -1160,7 +1160,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Yokohama Gangster Paradise.",
         duration: "23 min",
@@ -1172,7 +1172,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "La tragedia del fatalismo.",
         duration: "23 min",
@@ -1184,7 +1184,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Murder on D street.",
         duration: "23 min",
@@ -1196,7 +1196,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El mensajero azul.",
         duration: "23 min",
@@ -1208,7 +1208,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El amor por un transtorno llamado ideal.",
         duration: "23 min",
@@ -1220,7 +1220,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Criados para matar y morir.",
         duration: "23 min",
@@ -1232,7 +1232,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Una belleza silenciosa como una estatua de piedra.",
         duration: "23 min",
@@ -1244,7 +1244,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Rashomon y el tigre.",
         duration: "23 min",
@@ -1256,7 +1256,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title:
           "Primero: una profesión inadecuada para ella. Segundo: una agencia de detectives eufórica.",
@@ -1269,7 +1269,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Em regresión sin pausa.",
         duration: "24 min",
@@ -1283,7 +1283,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "La edad oscura.",
         duration: "24 min",
@@ -1295,7 +1295,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "El lugar al cual no puedes regresar.",
         duration: "24 min",
@@ -1307,7 +1307,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Algún día, en un cuarto con vista al mar.",
         duration: "24 min",
@@ -1319,7 +1319,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Bungo stray dogs.",
         duration: "24 min",
@@ -1331,7 +1331,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Disputa triangular entre organizaciones.",
         duration: "24 min",
@@ -1343,7 +1343,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "La estrategia del conflicto.",
         duration: "24 min",
@@ -1355,7 +1355,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "La voluntad del magnate.",
         duration: "24 min",
@@ -1367,7 +1367,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Aunque la mente podría estar equivocada.",
         duration: "24 min",
@@ -1379,7 +1379,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Doble negro.",
         duration: "24 min",
@@ -1391,7 +1391,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "Poe y Rampo / Moby-Dick surca los cielos.",
         duration: "24 min",
@@ -1403,7 +1403,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Rashoumon, el tigre y el último magnate.",
         duration: "24 min",
@@ -1415,7 +1415,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Caminando solo.",
         duration: "23 min",
@@ -1429,7 +1429,7 @@ export const animeData = [
 
       // Temporada 3
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "Dazai, Chuuya, 15 años.",
         duration: "23 min",
@@ -1441,7 +1441,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title: "Ahora mismo, el dios...",
         duration: "23 min",
@@ -1453,7 +1453,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "Solo un diamante puede.",
         duration: "23 min",
@@ -1465,7 +1465,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "Conferir pecados es trabajo de Dios.",
         duration: "23 min",
@@ -1477,7 +1477,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "Slap the Stick & Addict.",
         duration: "23 min",
@@ -1489,7 +1489,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "¡Pelea de gata!/ Retrato paternal.",
         duration: "23 min",
@@ -1501,7 +1501,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "El asceno de Fitzgerald.",
         duration: "23 min",
@@ -1513,7 +1513,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "El asesino enmascarado.",
         duration: "23 min",
@@ -1525,7 +1525,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "Destrucción mutua (parte uno).",
         duration: "23 min",
@@ -1537,7 +1537,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "Destrucción mutua (parte dos).",
         duration: "23 min",
@@ -1549,7 +1549,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/10.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 11,
         title: "Destrucción mutua (parte tres).",
         duration: "23 min",
@@ -1561,7 +1561,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T3/11.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 12,
         title: "Eco.",
         duration: "23 min",
@@ -1575,7 +1575,7 @@ export const animeData = [
 
       // Temporada 4
       {
-        season: 4,
+        season: "Temporada 4",
         number: 1,
         title: "El espadachín solitario y el detective.",
         duration: "23 min",
@@ -1587,7 +1587,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/1.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 2,
         title: "El día es sueño, la noche es real.",
         duration: "23 min",
@@ -1599,7 +1599,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/2.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 3,
         title: "Los secretos de la fundación de la agencia de detectives.",
         duration: "23 min",
@@ -1611,7 +1611,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/3.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 4,
         title: "Un asesinato y un asesino perfectos(parte uno).",
         duration: "23 min",
@@ -1623,7 +1623,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/4.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 5,
         title: "Un asesinato y un asesino perfectos(parte dos).",
         duration: "23 min",
@@ -1635,7 +1635,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/5.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 6,
         title: "Un domingo trágico.",
         duration: "23 min",
@@ -1647,7 +1647,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/6.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 7,
         title: "Hunt Dogs.",
         duration: "23 min",
@@ -1659,7 +1659,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/7.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 8,
         title: "Tú eres cruel, igual que yo.",
         duration: "23 min",
@@ -1671,7 +1671,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/8.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 9,
         title: "Soñar con mariposa.",
         duration: "23 min",
@@ -1683,7 +1683,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/9.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 10,
         title: "La tristeza de un cuerpo sin alas.",
         duration: "23 min",
@@ -1695,7 +1695,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/10.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 11,
         title: "Crónica de una fuga.",
         duration: "23 min",
@@ -1707,7 +1707,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/11.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 12,
         title: "Bungo Hound Dogs.",
         duration: "23 min",
@@ -1719,7 +1719,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T4/12.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 13,
         title: "Skyfall.",
         duration: "23 min",
@@ -1733,7 +1733,7 @@ export const animeData = [
 
       // Temporada 5
       {
-        season: 5,
+        season: "Temporada 5",
         number: 1,
         title: "El hombre más fuerte.",
         duration: "23 min",
@@ -1745,7 +1745,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/1.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 2,
         title: "Todas las respuestas.",
         duration: "23 min",
@@ -1757,7 +1757,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/2.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 3,
         title: "Héroe contra criminal.",
         duration: "23 min",
@@ -1769,7 +1769,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/3.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 4,
         title: "GUERRA DE HÉROES, GUERRA DE BANDAS.",
         duration: "23 min",
@@ -1781,7 +1781,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/4.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 5,
         title: "En el puerto del cielo (parte 1).",
         duration: "23 min",
@@ -1793,7 +1793,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/5.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 6,
         title: "En el puerto del cielo (parte dos).",
         duration: "23 min",
@@ -1805,7 +1805,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/6.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 7,
         title: "En el puerto del cielo (parte tres).",
         duration: "23 min",
@@ -1817,7 +1817,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/7.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 8,
         title: "Lugares Ominosos más allá de lo Humano (Parte uno).",
         duration: "23 min",
@@ -1829,7 +1829,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/8.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 9,
         title: "Lugares Ominosos más allá de lo Humano (Parte dos).",
         duration: "23 min",
@@ -1841,7 +1841,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/9.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 10,
         title: "Lugares Ominosos más allá de lo Humano (Parte tres).",
         duration: "23 min",
@@ -1853,7 +1853,7 @@ export const animeData = [
         videoUrl: "frame/Bungo-stray-dogs/T5/10.html",
       },
       {
-        season: 5,
+        season: "Temporada 5",
         number: 11,
         title: "Caminando solo.",
         duration: "23 min",
@@ -1897,7 +1897,7 @@ export const animeData = [
     contentWarning: "+13",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Asta y Yuno.",
         duration: "23 min",
@@ -1909,7 +1909,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El juramento del muchacho.",
         duration: "23 min",
@@ -1921,7 +1921,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "¡Hacia la capital del reino del Trébol!.",
         duration: "23 min",
@@ -1933,7 +1933,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El examen de caballería.",
         duration: "23 min",
@@ -1945,7 +1945,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El camino hasta ser rey mago.",
         duration: "23 min",
@@ -1957,7 +1957,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Los Toros negros.",
         duration: "23 min",
@@ -1969,7 +1969,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "La otra novata.",
         duration: "23 min",
@@ -1981,7 +1981,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "La primera misión.",
         duration: "23 min",
@@ -1993,7 +1993,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Bestia.",
         duration: "23 min",
@@ -2005,7 +2005,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Lo que proteger.",
         duration: "23 min",
@@ -2017,7 +2017,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Lo sucedido en la ciudad del castillo.",
         duration: "23 min",
@@ -2029,7 +2029,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Lo que ve el rey mago.",
         duration: "23 min",
@@ -2041,7 +2041,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Lo que ve el rey mago, continuación.",
         duration: "23 min",
@@ -2053,7 +2053,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Mazmorra.",
         duration: "23 min",
@@ -2065,7 +2065,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "El guerrero mágico del diamante.",
         duration: "23 min",
@@ -2077,7 +2077,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Compañeros.",
         duration: "23 min",
@@ -2089,7 +2089,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Destructor.",
         duration: "23 min",
@@ -2101,7 +2101,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Recuerdos del pasado.",
         duration: "23 min",
@@ -2113,7 +2113,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Destrucción y salvación.",
         duration: "23 min",
@@ -2125,7 +2125,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Reunión en la capital.",
         duration: "23 min",
@@ -2137,7 +2137,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Disturbios en la capital.",
         duration: "23 min",
@@ -2149,7 +2149,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Danza bulliciosa de magia.",
         duration: "23 min",
@@ -2161,7 +2161,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "El rey león carmesí.",
         duration: "23 min",
@@ -2173,7 +2173,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Blackout.",
         duration: "23 min",
@@ -2185,7 +2185,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Adversidad.",
         duration: "23 min",
@@ -2197,7 +2197,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/25.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 26,
         title: "Bestia herida.",
         duration: "23 min",
@@ -2209,7 +2209,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/26.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 27,
         title: "Luz.",
         duration: "23 min",
@@ -2221,7 +2221,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/27.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 28,
         title: "La persona en mi corazón.",
         duration: "23 min",
@@ -2233,7 +2233,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/28.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 29,
         title: "Camino.",
         duration: "23 min",
@@ -2245,7 +2245,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/29.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 30,
         title: "El mago del espejo.",
         duration: "23 min",
@@ -2257,7 +2257,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/30.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 31,
         title: "Persecución en la nieve.",
         duration: "23 min",
@@ -2269,7 +2269,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/31.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 32,
         title: "Brote de tres ojos.",
         duration: "23 min",
@@ -2281,7 +2281,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/32.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 33,
         title: "En el futuro ayudará a alguien.",
         duration: "23 min",
@@ -2293,7 +2293,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/33.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 34,
         title: "Magia de Luz contra Magia de Oscuridad.",
         duration: "23 min",
@@ -2305,7 +2305,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/34.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 35,
         title: "Luz del juicio.",
         duration: "23 min",
@@ -2317,7 +2317,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/35.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 36,
         title: "Los tres ojos.",
         duration: "23 min",
@@ -2329,7 +2329,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/36.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 37,
         title: "Aquel sin magia.",
         duration: "23 min",
@@ -2341,7 +2341,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/37.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 38,
         title: "Reunión de los capitanes.",
         duration: "23 min",
@@ -2353,7 +2353,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/38.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 39,
         title: "Saludo de tres hojas.",
         duration: "23 min",
@@ -2365,7 +2365,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/39.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 40,
         title: "Los Toros Negros en la playa.",
         duration: "23 min",
@@ -2377,7 +2377,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/40.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 41,
         title: "El crecimiento de la chica del agua.",
         duration: "23 min",
@@ -2389,7 +2389,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/41.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 42,
         title: "Templo Submarino.",
         duration: "23 min",
@@ -2401,7 +2401,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/42.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 43,
         title: "Batalla real en el templo.",
         duration: "23 min",
@@ -2413,7 +2413,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/43.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 43,
         title: "Batalla real en el templo.",
         duration: "23 min",
@@ -2425,7 +2425,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/43.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 44,
         title: "Fuego honesto y rayos salvajes.",
         duration: "23 min",
@@ -2437,7 +2437,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/44.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 45,
         title: "El hombre que nunca se rinde.",
         duration: "23 min",
@@ -2449,7 +2449,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/45.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 46,
         title: "Despertar.",
         duration: "23 min",
@@ -2461,7 +2461,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/46.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 47,
         title: "Arma única.",
         duration: "23 min",
@@ -2473,7 +2473,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/47.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 48,
         title: "Desesperación contra esperanza.",
         duration: "23 min",
@@ -2485,7 +2485,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/48.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 49,
         title: "Más allá del límite.",
         duration: "23 min",
@@ -2497,7 +2497,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/49.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 50,
         title: "Fin de la batalla, fin de la desesperación.",
         duration: "23 min",
@@ -2509,7 +2509,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/50.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 51,
         title: "Señales de justicia.",
         duration: "23 min",
@@ -2521,7 +2521,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/51.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 52,
         title: "Gana el más fuerte.",
         duration: "23 min",
@@ -2533,7 +2533,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/52.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 53,
         title: "Detrás de la máscara.",
         duration: "23 min",
@@ -2545,7 +2545,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/53.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 54,
         title: "Nunca más.",
         duration: "23 min",
@@ -2557,7 +2557,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/54.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 55,
         title: "El hombre llamado Fanzell.",
         duration: "23 min",
@@ -2569,7 +2569,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/55.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 56,
         title: "El hombre llamado Fanzell, continuación.",
         duration: "23 min",
@@ -2581,7 +2581,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/56.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 57,
         title: "Infiltración.",
         duration: "23 min",
@@ -2593,7 +2593,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/57.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 58,
         title: "Decisiones en el campo de batalla.",
         duration: "23 min",
@@ -2605,7 +2605,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/58.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 59,
         title: "Llamas de odio.",
         duration: "23 min",
@@ -2617,7 +2617,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/59.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 60,
         title: "La expiación del desertor.",
         duration: "23 min",
@@ -2629,7 +2629,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/60.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 61,
         title: "El mundo prometido.",
         duration: "23 min",
@@ -2641,7 +2641,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/61.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 62,
         title: "La persona que te hace mejorar.",
         duration: "23 min",
@@ -2653,7 +2653,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/62.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 63,
         title: "Desesperación contra esperanza.",
         duration: "23 min",
@@ -2665,7 +2665,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/63.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 64,
         title: "El hilo rojo del destino.",
         duration: "23 min",
@@ -2678,7 +2678,7 @@ export const animeData = [
       },
       // ... (Episodios 2 a 64)
       {
-        season: 1,
+        season: "Temporada 1",
         number: 65,
         title: "Regresamos.",
         duration: "23 min",
@@ -2690,7 +2690,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/65.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 66,
         title: "El secreto del Ojo Maligno de la Noche Blanca.",
         duration: "23 min",
@@ -2702,7 +2702,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/66.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 67,
         title: "Una cita en el festival.",
         duration: "23 min",
@@ -2714,7 +2714,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/67.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 68,
         title: "Batalla mortal contra el capitán de los Leones Carmesí.",
         duration: "23 min",
@@ -2726,7 +2726,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/68.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 69,
         title: "La miseria de los que se fueron.",
         duration: "23 min",
@@ -2738,7 +2738,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/69.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 70,
         title: "Dos nuevas estrellas.",
         duration: "23 min",
@@ -2750,7 +2750,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/70.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 71,
         title: "Reina sin corona y sin reino.",
         duration: "23 min",
@@ -2762,7 +2762,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/71.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 72,
         title: "El brote de San Trébol.",
         duration: "23 min",
@@ -2774,7 +2774,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/72.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 73,
         title: "Flor de resolución.",
         duration: "23 min",
@@ -2786,7 +2786,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/73.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 74,
         title: "Flores de batalla.",
         duration: "23 min",
@@ -2798,7 +2798,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/74.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 75,
         title: "Combate feroz.",
         duration: "23 min",
@@ -2810,7 +2810,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/75.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 76,
         title: "Mago X.",
         duration: "23 min",
@@ -2822,7 +2822,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/76.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 77,
         title: "Rencor.",
         duration: "23 min",
@@ -2834,7 +2834,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/77.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 78,
         title: "Trampa de plebeyos.",
         duration: "23 min",
@@ -2846,7 +2846,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/78.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 79,
         title: "El gamberro contra el cabeza de músculos.",
         duration: "23 min",
@@ -2858,7 +2858,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/79.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 80,
         title:
           "El hermano menor superdotado contra el hermano mayor fracasado.",
@@ -2871,7 +2871,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/80.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 81,
         title: "La vida de un hombre.",
         duration: "23 min",
@@ -2883,7 +2883,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/81.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 82,
         title: "¡Miniespecial! ¡Las horripilantes travesuras de Charmy!",
         duration: "23 min",
@@ -2895,7 +2895,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/82.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 83,
         title: "Quemar.",
         duration: "23 min",
@@ -2907,7 +2907,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/83.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 84,
         title: "Los vencedores.",
         duration: "23 min",
@@ -2919,7 +2919,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/84.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 85,
         title: "Confesión en el baño.",
         duration: "23 min",
@@ -2931,7 +2931,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/85.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 86,
         title: "El baile de Yami.",
         duration: "23 min",
@@ -2943,7 +2943,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/86.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 87,
         title: "La formación de los Caballeros Reales.",
         duration: "23 min",
@@ -2955,7 +2955,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/87.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 88,
         title: "Asalto a la guarida del Ojo Maligno de la Noche Blanca.",
         duration: "23 min",
@@ -2967,7 +2967,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/88.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 89,
         title: "La guarida de los Toros Negros.",
         duration: "23 min",
@@ -2979,7 +2979,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/89.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 90,
         title: "Una loca batalla de magia.",
         duration: "23 min",
@@ -2991,7 +2991,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/90.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 91,
         title: "Mereoleona contra Raia, la desleal.",
         duration: "23 min",
@@ -3003,7 +3003,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/91.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 92,
         title:
           "El rey mago contra el líder del Ojo Maligno de la Noche Blanca.",
@@ -3016,7 +3016,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/92.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 93,
         title: "Julius Novachrono.",
         duration: "23 min",
@@ -3028,7 +3028,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/93.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 94,
         title: "Nuevo futuro.",
         duration: "23 min",
@@ -3040,7 +3040,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/94.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 95,
         title: "Reencarnación.",
         duration: "23 min",
@@ -3052,7 +3052,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/95.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 96,
         title: "El capitán de los Toros Negros contra la rosa carmesí.",
         duration: "23 min",
@@ -3064,7 +3064,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/96.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 97,
         title: "Desventaja arrolladora.",
         duration: "23 min",
@@ -3076,7 +3076,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/97.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 98,
         title: "El león durmiente.",
         duration: "23 min",
@@ -3088,7 +3088,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/98.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 99,
         title: "El camino de la supervivencia desesperada.",
         duration: "23 min",
@@ -3100,7 +3100,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/99.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 100,
         title: "No perderemos contra ti.",
         duration: "23 min",
@@ -3112,7 +3112,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/100.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 101,
         title: "Los habitantes del pueblo más recóndito.",
         duration: "23 min",
@@ -3124,7 +3124,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/101.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 102,
         title: "Dos milagros.",
         duration: "23 min",
@@ -3136,7 +3136,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/102.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 103,
         title: "Liberación del infortunio.",
         duration: "23 min",
@@ -3148,7 +3148,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/103.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 104,
         title: "El rayo de la ira contra los amigos.",
         duration: "23 min",
@@ -3160,7 +3160,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/104.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 105,
         title: "Sonrisas y lágrimas.",
         duration: "23 min",
@@ -3172,7 +3172,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/105.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 106,
         title: "El camino de la venganza, el camino de la expiación.",
         duration: "23 min",
@@ -3184,7 +3184,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/106.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 107,
         title: "La batalla por el castillo del Trébol.",
         duration: "23 min",
@@ -3196,7 +3196,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/107.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 108,
         title: "La bailarina del campo de batalla.",
         duration: "23 min",
@@ -3208,7 +3208,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/108.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 109,
         title: "Magia espacial de hermanos.",
         duration: "23 min",
@@ -3220,7 +3220,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/109.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 110,
         title: "El violento Toro Negro se une a la batalla.",
         duration: "23 min",
@@ -3232,7 +3232,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/110.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 111,
         title: "La mirada en el espejo.",
         duration: "23 min",
@@ -3244,7 +3244,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/111.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 112,
         title: "Los humanos en quienes se puede confiar.",
         duration: "23 min",
@@ -3256,7 +3256,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/112.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 113,
         title: "Asalto al palacio de las sombras.",
         duration: "23 min",
@@ -3268,7 +3268,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/113.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 114,
         title: "Los últimos en llegar.",
         duration: "23 min",
@@ -3280,7 +3280,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/114.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 115,
         title: "El autor.",
         duration: "23 min",
@@ -3292,7 +3292,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/115.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 116,
         title: "El enemigo natural.",
         duration: "23 min",
@@ -3304,7 +3304,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/116.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 117,
         title: "Romper el sello.",
         duration: "23 min",
@@ -3316,7 +3316,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/117.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 118,
         title: "Una reunión más allá del tiempo.",
         duration: "23 min",
@@ -3328,7 +3328,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/118.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 119,
         title: "El ataque final.",
         duration: "23 min",
@@ -3340,7 +3340,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/119.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 120,
         title: "El amanecer.",
         duration: "23 min",
@@ -3352,7 +3352,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/120.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 121,
         title: "Tres problemas.",
         duration: "23 min",
@@ -3364,7 +3364,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/121.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 122,
         title: "Tan negro como el carbón.",
         duration: "23 min",
@@ -3376,7 +3376,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/122.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 123,
         title: "El regreso de Nero.",
         duration: "23 min",
@@ -3388,7 +3388,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/123.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 124,
         title: "El regreso de Nero - Continuación.",
         duration: "23 min",
@@ -3400,7 +3400,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/124.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 125,
         title: "Regreso a casa.",
         duration: "23 min",
@@ -3412,7 +3412,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/125.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 126,
         title: "La confesión de la Leona Azul.",
         duration: "23 min",
@@ -3424,7 +3424,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/126.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 127,
         title: "Pista.",
         duration: "23 min",
@@ -3436,7 +3436,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/127.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 128,
         title: "¡Al Reino del Corazón!.",
         duration: "23 min",
@@ -3448,7 +3448,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/128.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 129,
         title: "¡El demonio Megicula!.",
         duration: "23 min",
@@ -3460,7 +3460,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/129.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 130,
         title: "Nueva reunión de capitanes.",
         duration: "23 min",
@@ -3472,7 +3472,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/130.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 131,
         title: "Una nueva determinación.",
         duration: "23 min",
@@ -3484,7 +3484,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/131.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 132,
         title: "El despertar del león.",
         duration: "23 min",
@@ -3496,7 +3496,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/132.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 133,
         title: "El despertar del león, continuación.",
         duration: "23 min",
@@ -3508,7 +3508,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/133.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 134,
         title: "Los elegidos.",
         duration: "23 min",
@@ -3520,7 +3520,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/134.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 135,
         title: "Aquél a quien mi corazón, mi mente y mi alma eligieron.",
         duration: "23 min",
@@ -3532,7 +3532,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/135.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 136,
         title: "Una historia negra en las profundidades del mar.",
         duration: "23 min",
@@ -3544,7 +3544,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/136.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 137,
         title: "El centenario de Charmy.",
         duration: "23 min",
@@ -3556,7 +3556,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/137.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 138,
         title: "La herencia de Zora.",
         duration: "23 min",
@@ -3568,7 +3568,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/138.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 139,
         title: "Un regreso a casa para la bruja.",
         duration: "23 min",
@@ -3580,7 +3580,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/139.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 140,
         title: "La petición de Julius.",
         duration: "23 min",
@@ -3592,7 +3592,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/140.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 141,
         title: "La familia dorada.",
         duration: "23 min",
@@ -3604,7 +3604,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/141.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 142,
         title: "Los que se quedaron.",
         duration: "23 min",
@@ -3616,7 +3616,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/142.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 143,
         title: "La balanza inclinada.",
         duration: "23 min",
@@ -3628,7 +3628,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/143.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 144,
         title: "Los que quieren la aniquilación de los demonios.",
         duration: "23 min",
@@ -3640,7 +3640,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/144.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 145,
         title: "Rescate.",
         duration: "23 min",
@@ -3652,7 +3652,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/145.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 146,
         title: "Los que adoran al demonio.",
         duration: "23 min",
@@ -3664,7 +3664,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/146.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 147,
         title: "Disposición.",
         duration: "23 min",
@@ -3676,7 +3676,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/147.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 148,
         title: "Conviértete en la luz que ilumine la oscuridad.",
         duration: "23 min",
@@ -3688,7 +3688,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/148.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 149,
         title: "Dos búsquedas.",
         duration: "23 min",
@@ -3700,7 +3700,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/149.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 150,
         title: "El desafío de las doncellas.",
         duration: "23 min",
@@ -3712,7 +3712,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/150.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 151,
         title: "¡Fragor! ¡Batalla de capitanes!.",
         duration: "23 min",
@@ -3724,7 +3724,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/151.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 152,
         title: "¡Hacia el mañana!.",
         duration: "23 min",
@@ -3736,7 +3736,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/152.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 153,
         title: "Los elegidos.",
         duration: "23 min",
@@ -3748,7 +3748,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/153.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 154,
         title: "Vicecapitán Langris Vaude.",
         duration: "23 min",
@@ -3760,7 +3760,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/154.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 155,
         title: "Los cinco guardianes del espíritu.",
         duration: "23 min",
@@ -3772,7 +3772,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/155.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 156,
         title: "El despertar del poder.",
         duration: "23 min",
@@ -3784,7 +3784,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/156.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 157,
         title: "El trébol de cinco hojas.",
         duration: "23 min",
@@ -3796,7 +3796,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/157.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 158,
         title: "El principio de la esperanza y la desesperación.",
         duration: "23 min",
@@ -3808,7 +3808,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/158.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 159,
         title: "Unos pasos sigilosos en la oscuridad.",
         duration: "23 min",
@@ -3820,7 +3820,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/159.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 160,
         title: "El mensajero del Reino de la Pica.",
         duration: "23 min",
@@ -3832,7 +3832,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/160.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 161,
         title: "El poder de Zeno.",
         duration: "23 min",
@@ -3844,7 +3844,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/161.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 162,
         title: "La gran guerra estalla.",
         duration: "23 min",
@@ -3856,7 +3856,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/162.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 163,
         title: "Dante contra el capitán de los Toros Negros.",
         duration: "23 min",
@@ -3868,7 +3868,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/163.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 164,
         title: "Batalla en el Reino del Corazón.",
         duration: "23 min",
@@ -3880,7 +3880,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/164.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 165,
         title: "Bautismo de agua.",
         duration: "23 min",
@@ -3892,7 +3892,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/165.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 166,
         title: "Capitán Yami Sukehiro.",
         duration: "23 min",
@@ -3904,7 +3904,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/166.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 167,
         title: "Juramento negro.",
         duration: "23 min",
@@ -3916,7 +3916,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/167.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 168,
         title: "El poder más fuerte.",
         duration: "23 min",
@@ -3928,7 +3928,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/168.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 169,
         title: "El ritual de sumisión del demonio.",
         duration: "23 min",
@@ -3940,7 +3940,7 @@ export const animeData = [
         videoUrl: "frame/Black-clover/T1/169.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 170,
         title: "El futuro lejano.",
         duration: "23 min",
@@ -3980,7 +3980,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Sueño",
         duration: "24 min",
@@ -3992,7 +3992,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Monstruo",
         duration: "24 min",
@@ -4004,7 +4004,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El 'cero' del fútbol",
         duration: "23 min",
@@ -4016,7 +4016,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Premonición e intuición",
         duration: "23 min",
@@ -4028,7 +4028,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Para renacer",
         duration: "24 min",
@@ -4040,7 +4040,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Lo siento",
         duration: "23 min",
@@ -4052,7 +4052,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Subidón",
         duration: "23 min",
@@ -4064,7 +4064,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "La fórmula para marcar gol",
         duration: "23 min",
@@ -4076,7 +4076,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El despertar",
         duration: "23 min",
@@ -4088,7 +4088,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Que se quede así",
         duration: "23 min",
@@ -4100,7 +4100,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La última pieza",
         duration: "24 min",
@@ -4112,7 +4112,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "La segunda fase",
         duration: "23 min",
@@ -4124,7 +4124,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Top 3",
         duration: "24 min",
@@ -4136,7 +4136,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Genios y mediocres",
         duration: "24 min",
@@ -4148,7 +4148,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Asimilación",
         duration: "23 min",
@@ -4160,7 +4160,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Fusión triple",
         duration: "24 min",
@@ -4172,7 +4172,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Paquete",
         duration: "24 min",
@@ -4184,7 +4184,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "El escenario de la estrella",
         duration: "24 min",
@@ -4196,7 +4196,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Dancing boy",
         duration: "24 min",
@@ -4208,7 +4208,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Superjuego combinado",
         duration: "23 min",
@@ -4220,7 +4220,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "No estoy ahí",
         duration: "24 min",
@@ -4232,7 +4232,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "La voz",
         duration: "24 min",
@@ -4244,7 +4244,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Suerte",
         duration: "24 min",
@@ -4256,7 +4256,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Ha llegado la hora",
         duration: "24 min",
@@ -4269,7 +4269,7 @@ export const animeData = [
       },
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 25,
         title: "Pruebas",
         duration: "25 min",
@@ -4281,7 +4281,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/25.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 26,
         title: "El asesino y el ninja",
         duration: "23 min",
@@ -4293,7 +4293,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/26.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 27,
         title: "Un mundo de sensaciones",
         duration: "23 min",
@@ -4305,7 +4305,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/27.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 28,
         title: "Camaleón",
         duration: "25 min",
@@ -4317,7 +4317,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/28.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 29,
         title: "Flujo",
         duration: "25 min",
@@ -4329,7 +4329,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/29.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 30,
         title: "El gran escenario",
         duration: "24 min",
@@ -4341,7 +4341,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/30.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 31,
         title: "Sae Itoshi",
         duration: "24 min",
@@ -4353,7 +4353,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/31.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 32,
         title: "Genes Azules",
         duration: "24 min",
@@ -4365,7 +4365,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/32.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 33,
         title: "Nieve nocturna",
         duration: "25 min",
@@ -4377,7 +4377,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/33.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 34,
         title: "Cambios",
         duration: "25 min",
@@ -4389,7 +4389,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/34.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 35,
         title: "Lo que nos enseñaste",
         duration: "25 min",
@@ -4401,7 +4401,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/35.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 36,
         title: "Flor",
         duration: "25 min",
@@ -4413,7 +4413,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/36.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 37,
         title: "No estoy solo",
         duration: "24 min",
@@ -4425,7 +4425,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Lock/T2/37.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 38,
         title: "Golpe de gracia",
         duration: "23 min",
@@ -4469,7 +4469,7 @@ export const animeData = [
     episodes: [
       // Temporada 1 - The Blood Warfare
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "La guerra sangrienta",
         duration: "24 min",
@@ -4481,7 +4481,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La piedra angular",
         duration: "24 min",
@@ -4493,7 +4493,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "La marcha de la estrella cruzada",
         duration: "24 min",
@@ -4505,7 +4505,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El Seireitei",
         duration: "24 min",
@@ -4517,7 +4517,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "La ira como un relámpago",
         duration: "24 min",
@@ -4529,7 +4529,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El fuego",
         duration: "24 min",
@@ -4541,7 +4541,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Nacido en la oscuridad",
         duration: "24 min",
@@ -4553,7 +4553,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El Proyecto Estrella Fugaz [Zero Mix]",
         duration: "24 min",
@@ -4565,7 +4565,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "La caída",
         duration: "24 min",
@@ -4577,7 +4577,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "La batalla",
         duration: "24 min",
@@ -4589,7 +4589,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Todo menos la lluvia",
         duration: "24 min",
@@ -4601,7 +4601,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Todo menos la lluvia la verdad de junio",
         duration: "24 min",
@@ -4613,7 +4613,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Parte 1 Final",
         duration: "24 min",
@@ -4626,7 +4626,7 @@ export const animeData = [
       },
       // Temporada 2 - The Separation
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Los últimos 9 días",
         duration: "24 min",
@@ -4638,7 +4638,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "La paz desde las sombras",
         duration: "24 min",
@@ -4650,7 +4650,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "La Virulencia Fundamental",
         duration: "24 min",
@@ -4662,7 +4662,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "Corazón de lobo",
         duration: "24 min",
@@ -4674,7 +4674,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Furia junto al ring",
         duration: "24 min",
@@ -4686,7 +4686,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "La neblina blanca",
         duration: "24 min",
@@ -4698,7 +4698,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Yo soy el filo",
         duration: "24 min",
@@ -4710,7 +4710,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "La estrella sin cabeza",
         duration: "24 min",
@@ -4722,7 +4722,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "La Marcha Zombi",
         duration: "24 min",
@@ -4734,7 +4734,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "La Marcha Zombi, parte 2",
         duration: "24 min",
@@ -4746,7 +4746,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/23.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Demasiado pronto para ganar Demasiado tarde para saber",
         duration: "24 min",
@@ -4758,7 +4758,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/24.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 25,
         title: "El Maestro",
         duration: "24 min",
@@ -4770,7 +4770,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T2/25.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 26,
         title: "Negro",
         duration: "24 min",
@@ -4783,7 +4783,7 @@ export const animeData = [
       },
       // Temporada 3 - The Conflict
       {
-        season: 3,
+        season: "Temporada 3",
         number: 27,
         title: "A",
         duration: "23 min",
@@ -4795,7 +4795,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/27.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 28,
         title: "Kill the King",
         duration: "23 min",
@@ -4807,7 +4807,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/28.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 29,
         title: "The Dark Arm",
         duration: "23 min",
@@ -4819,7 +4819,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/29.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 30,
         title: "Against the Judgement",
         duration: "23 min",
@@ -4831,7 +4831,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/30.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 31,
         title: "THE HOLY NEWBORN",
         duration: "23 min",
@@ -4843,7 +4843,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/31.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 32,
         title: "THE HOLY NEWBORN",
         duration: "23 min",
@@ -4855,7 +4855,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/32.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 33,
         title: "GATE OF THE SUN",
         duration: "23 min",
@@ -4867,7 +4867,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/33.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 34,
         title: "BABY, HOLD YOUR HAND",
         duration: "23 min",
@@ -4879,7 +4879,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/34.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 35,
         title: "BABY, HOLD YOUR HAND 2",
         duration: "23 min",
@@ -4891,7 +4891,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/35.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 36,
         title: "SHADOWS GONE",
         duration: "23 min",
@@ -4903,7 +4903,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/36.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 37,
         title: "FRIEND",
         duration: "23 min",
@@ -4915,7 +4915,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/37.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 38,
         title: "THE VISIBLE ANSWER",
         duration: "23 min",
@@ -4927,7 +4927,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/38.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 39,
         title: "MY LAST WORDS",
         duration: "23 min",
@@ -4939,7 +4939,7 @@ export const animeData = [
         videoUrl: "frame/Bleach-sennen-kessen-hen/T3/39.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 40,
         title: "MY LAST WORDS 2",
         duration: "23 min",
@@ -4976,7 +4976,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Los demonios moran en el corazón de los hombres",
         duration: "24 min",
@@ -4988,7 +4988,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La Puerta de Gehenna",
         duration: "24 min",
@@ -5000,7 +5000,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Hermanos",
         duration: "24 min",
@@ -5012,7 +5012,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El Jardín de Amahara",
         duration: "24 min",
@@ -5024,7 +5024,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El niño del templo maldito",
         duration: "24 min",
@@ -5036,7 +5036,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El cocinero fantasma",
         duration: "24 min",
@@ -5048,7 +5048,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Manada de chidori",
         duration: "24 min",
@@ -5060,7 +5060,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Ahora, un hombre se enferma",
         duration: "24 min",
@@ -5072,7 +5072,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Recuerdos",
         duration: "24 min",
@@ -5084,7 +5084,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Gato negro",
         duration: "24 min",
@@ -5096,7 +5096,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Demonio de las profundidades",
         duration: "24 min",
@@ -5108,7 +5108,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Un juego de atrapados",
         duration: "24 min",
@@ -5120,7 +5120,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Prueba",
         duration: "24 min",
@@ -5132,7 +5132,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Un campamento divertido",
         duration: "24 min",
@@ -5144,7 +5144,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Acto de bondad",
         duration: "24 min",
@@ -5156,7 +5156,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "La apuesta",
         duration: "24 min",
@@ -5168,7 +5168,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Tentación",
         duration: "24 min",
@@ -5180,7 +5180,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Gale",
         duration: "24 min",
@@ -5192,7 +5192,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Un día cualquiera",
         duration: "24 min",
@@ -5204,7 +5204,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Máscara",
         duration: "24 min",
@@ -5216,7 +5216,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Jardín secreto",
         duration: "24 min",
@@ -5228,7 +5228,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Caza de demonios",
         duration: "24 min",
@@ -5240,7 +5240,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Verdad",
         duration: "24 min",
@@ -5252,7 +5252,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "La estirpe de Satán",
         duration: "24 min",
@@ -5264,7 +5264,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Detengan el tiempo",
         duration: "24 min",
@@ -5277,7 +5277,7 @@ export const animeData = [
       },
       // Temporada 2 - Kyoto Saga
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "El comienzo",
         duration: "24 min",
@@ -5289,7 +5289,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Extraña pareja",
         duration: "24 min",
@@ -5301,7 +5301,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Hermanos",
         duration: "24 min",
@@ -5313,7 +5313,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Cielo sin estrellas",
         duration: "24 min",
@@ -5325,7 +5325,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Alianza Misteriosa",
         duration: "24 min",
@@ -5337,7 +5337,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "La Niebla Ponzoñosa",
         duration: "24 min",
@@ -5349,7 +5349,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Igual que una luciérnaga bajo el sol",
         duration: "24 min",
@@ -5361,7 +5361,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "De aquí en adelante",
         duration: "24 min",
@@ -5373,7 +5373,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Por los suelos",
         duration: "24 min",
@@ -5385,7 +5385,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "Indoblegable",
         duration: "24 min",
@@ -5397,7 +5397,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Abre los ojos a la verdad",
         duration: "24 min",
@@ -5409,7 +5409,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Resplandor",
         duration: "24 min",
@@ -5422,7 +5422,7 @@ export const animeData = [
       },
       // Temporada 3 - Shimane Illuminati Saga
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "El mundo se moviliza",
         duration: "24 min",
@@ -5434,7 +5434,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title: "El paradero de los secretos",
         duration: "24 min",
@@ -5446,7 +5446,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "Festival de la Academia de la Vera Cruz",
         duration: "24 min",
@@ -5458,7 +5458,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "Topo",
         duration: "24 min",
@@ -5470,7 +5470,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "Destino",
         duration: "24 min",
@@ -5482,7 +5482,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "No puedo depender de nadie",
         duration: "24 min",
@@ -5494,7 +5494,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "Dudas",
         duration: "24 min",
@@ -5506,7 +5506,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "Determinación",
         duration: "24 min",
@@ -5518,7 +5518,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "Ayuda",
         duration: "24 min",
@@ -5530,7 +5530,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "Compañeros",
         duration: "24 min",
@@ -5542,7 +5542,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/10.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 11,
         title: "Araña rosa",
         duration: "24 min",
@@ -5554,7 +5554,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T3/11.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 12,
         title: "Verdades ocultas",
         duration: "24 min",
@@ -5567,7 +5567,7 @@ export const animeData = [
       },
       // Temporada 4 - Beyond the Snow Saga
       {
-        season: 4,
+        season: "Temporada 4",
         number: 1,
         title: "Aspiraciones",
         duration: "23 min",
@@ -5579,7 +5579,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/1.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 2,
         title: "Angustia",
         duration: "23 min",
@@ -5591,7 +5591,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/2.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 3,
         title: "Hogar",
         duration: "23 min",
@@ -5603,7 +5603,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/3.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 4,
         title: "Adiós, mi amor",
         duration: "23 min",
@@ -5615,7 +5615,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/4.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 5,
         title: "Como reclamando un llanto",
         duration: "23 min",
@@ -5627,7 +5627,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/5.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 6,
         title: "Despertar",
         duration: "23 min",
@@ -5639,7 +5639,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/6.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 7,
         title: "Heterofilia foliar",
         duration: "23 min",
@@ -5651,7 +5651,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/7.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 8,
         title: "¡Feliz (Navidad) cumpleaños!",
         duration: "23 min",
@@ -5663,7 +5663,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/8.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 9,
         title: "Felicitaciones",
         duration: "23 min",
@@ -5675,7 +5675,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/9.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 10,
         title: "Entre la nieve que cae",
         duration: "23 min",
@@ -5687,7 +5687,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/10.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 11,
         title: "Más allá de la nieve",
         duration: "23 min",
@@ -5699,7 +5699,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T4/11.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 12,
         title: "Separación",
         duration: "23 min",
@@ -5712,7 +5712,7 @@ export const animeData = [
       },
       // Temporada 5 - The Blue Night Saga
       {
-        season: 4,
+        season: "Temporada 4",
         number: 1,
         title: "Shiro y Yuri",
         duration: "23 min",
@@ -5724,7 +5724,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/1.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 2,
         title: "La verdad",
         duration: "23 min",
@@ -5736,7 +5736,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/2.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 3,
         title: "Solo",
         duration: "23 min",
@@ -5748,7 +5748,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/3.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 4,
         title: "El despertar de Satán",
         duration: "23 min",
@@ -5760,7 +5760,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/4.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 5,
         title: "Algo más importante que el cuerpo",
         duration: "23 min",
@@ -5772,7 +5772,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/5.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 6,
         title: "Si yo no existiera",
         duration: "23 min",
@@ -5784,7 +5784,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/6.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 7,
         title: "Víspera",
         duration: "23 min",
@@ -5796,7 +5796,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/7.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 8,
         title: "La Noche Azul",
         duration: "23 min",
@@ -5808,7 +5808,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/8.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 9,
         title: "Combate a muerte",
         duration: "23 min",
@@ -5820,7 +5820,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/9.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 10,
         title: "Luz",
         duration: "23 min",
@@ -5832,7 +5832,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/10.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 11,
         title: "Promesa",
         duration: "23 min",
@@ -5844,7 +5844,7 @@ export const animeData = [
         videoUrl: "frame/Blue-Exorcist/T5/11.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 12,
         title: "Gracias",
         duration: "23 min",
@@ -5890,7 +5890,7 @@ export const animeData = [
     episodes: [
       // Temporada 1 (2018 Series - 52 Episodios)
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "¡Vuela hacia el cielo!",
         duration: "24 min",
@@ -5902,7 +5902,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "¡Salto!",
         duration: "24 min",
@@ -5914,7 +5914,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El nuevo club de fútbol de Nankatsu",
         duration: "24 min",
@@ -5926,7 +5926,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Tsubasa y Roberto",
         duration: "24 min",
@@ -5938,7 +5938,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Hacia el torneo intercolegial",
         duration: "24 min",
@@ -5950,7 +5950,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "¡Patada inicial! Nankatsu vs. Shutetsu",
         duration: "24 min",
@@ -5962,7 +5962,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El fantasista Tsubasa",
         duration: "24 min",
@@ -5974,7 +5974,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El nacimiento del dúo de oro de Nankatsu",
         duration: "24 min",
@@ -5986,7 +5986,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Un final refrescante",
         duration: "24 min",
@@ -5998,7 +5998,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Aparece Kojiro",
         duration: "24 min",
@@ -6010,7 +6010,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Un rival inesperado",
         duration: "24 min",
@@ -6022,7 +6022,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Wakabayashi contra Hyuga",
         duration: "24 min",
@@ -6034,7 +6034,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "¡Guerra en el torneo nacional!",
         duration: "24 min",
@@ -6046,7 +6046,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "¡Arde, Nankatsu! ¡Acaben con el Meiwa!",
         duration: "24 min",
@@ -6058,7 +6058,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "¡No rendiré mis sueños!",
         duration: "24 min",
@@ -6070,7 +6070,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "¡El fútbol acrobático!",
         duration: "24 min",
@@ -6082,7 +6082,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "El capitán del equipo",
         duration: "24 min",
@@ -6094,7 +6094,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "¡Duelo de ases! Hyuga contra Misugi",
         duration: "24 min",
@@ -6106,7 +6106,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "¡Vuelve la Pantera Negra!",
         duration: "24 min",
@@ -6118,7 +6118,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "El gran equipo de Nankatsu",
         duration: "24 min",
@@ -6130,7 +6130,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "El príncipe de cristal",
         duration: "24 min",
@@ -6142,7 +6142,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "¡Vuela, Chilena!",
         duration: "24 min",
@@ -6154,7 +6154,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "¡El regreso del portero genial!",
         duration: "24 min",
@@ -6166,7 +6166,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Llama de la venganza",
         duration: "24 min",
@@ -6178,7 +6178,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "¡El glorioso número 10!",
         duration: "24 min",
@@ -6190,7 +6190,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/25.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 26,
         title: "El Balón es mi amigo",
         duration: "24 min",
@@ -6202,7 +6202,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/26.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 27,
         title: "El momento de la verdad",
         duration: "24 min",
@@ -6214,7 +6214,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/27.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 28,
         title: "¡Gloria!",
         duration: "24 min",
@@ -6226,7 +6226,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/28.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 29,
         title: "Comienza un nuevo verano",
         duration: "24 min",
@@ -6238,7 +6238,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/29.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 30,
         title: "El último partido de selección en Shizuoka",
         duration: "24 min",
@@ -6250,7 +6250,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/30.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 31,
         title: "¡El tiro de la navaja!",
         duration: "24 min",
@@ -6262,7 +6262,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/31.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 32,
         title: "¡Derroten a Tsubasa! Hyuga contra Misugi",
         duration: "24 min",
@@ -6274,7 +6274,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/32.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 33,
         title: "¡Duelo en la final de Tokio!",
         duration: "24 min",
@@ -6286,7 +6286,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/33.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 34,
         title: "¡Una batalla feroz! ¡La final!",
         duration: "24 min",
@@ -6298,7 +6298,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/34.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 35,
         title: "El tiro del tigre",
         duration: "24 min",
@@ -6310,7 +6310,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/35.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 36,
         title: "Sentimientos encontrados",
         duration: "24 min",
@@ -6322,7 +6322,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/36.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 37,
         title: "El tiro con efecto",
         duration: "24 min",
@@ -6334,7 +6334,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/37.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 38,
         title: "¡Impacto! La final",
         duration: "24 min",
@@ -6346,7 +6346,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/38.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 39,
         title: "¡Resurrección! ¡Tiro del Tigre!",
         duration: "24 min",
@@ -6358,7 +6358,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/39.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 40,
         title: "Nankatsu vs. Toho: ¡El deber!",
         duration: "24 min",
@@ -6370,7 +6370,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/40.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 41,
         title: "El terror del Furano",
         duration: "24 min",
@@ -6382,7 +6382,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/41.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 42,
         title: "El águila del norte",
         duration: "24 min",
@@ -6394,7 +6394,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/42.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 43,
         title: "Una premonición de pérdida",
         duration: "24 min",
@@ -6406,7 +6406,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/43.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 44,
         title: "Un gol anulado",
         duration: "24 min",
@@ -6418,7 +6418,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/44.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 45,
         title: "Las lágrimas del adiós",
         duration: "24 min",
@@ -6430,7 +6430,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/45.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 46,
         title: "El tiro del siglo",
         duration: "24 min",
@@ -6442,7 +6442,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/46.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 47,
         title: "Un nuevo comienzo",
         duration: "24 min",
@@ -6454,7 +6454,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/47.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 48,
         title: "De Japón al mundo",
         duration: "24 min",
@@ -6466,7 +6466,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/48.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 49,
         title: "El Emperador",
         duration: "24 min",
@@ -6478,7 +6478,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/49.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 50,
         title: "Nuestros respectivos sueños",
         duration: "24 min",
@@ -6490,7 +6490,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/50.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 51,
         title: "¡Un tiro milagroso!",
         duration: "24 min",
@@ -6502,7 +6502,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T1/51.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 52,
         title: "Verano sin fin",
         duration: "24 min",
@@ -6515,7 +6515,7 @@ export const animeData = [
       },
       // Temporada 2 (Junior Youth Arc - 39 Episodios)
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Un nuevo desafío",
         duration: "23 min",
@@ -6527,7 +6527,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Saludando a un viejo rival",
         duration: "23 min",
@@ -6539,7 +6539,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "¡Un combatiente profesional!",
         duration: "23 min",
@@ -6551,7 +6551,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Comenzando de cero",
         duration: "23 min",
@@ -6563,7 +6563,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Otra figura importante",
         duration: "23 min",
@@ -6575,7 +6575,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "¡Arranque! ¡La selección juvenil de Japón!",
         duration: "23 min",
@@ -6587,7 +6587,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "¡Reunión en París!",
         duration: "23 min",
@@ -6599,7 +6599,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Soy Taro Misaki",
         duration: "23 min",
@@ -6611,7 +6611,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "¡El gran despegue!",
         duration: "23 min",
@@ -6623,7 +6623,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "¡El dúo de oro está de vuelta!",
         duration: "23 min",
@@ -6635,7 +6635,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "El despertar del tigre",
         duration: "23 min",
@@ -6647,7 +6647,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "La ventura de la victoria",
         duration: "23 min",
@@ -6659,7 +6659,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "El juramento del cielo estrellado",
         duration: "23 min",
@@ -6671,7 +6671,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "No te rindas nunca",
         duration: "23 min",
@@ -6683,7 +6683,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "La selección juvenil japonesa contraataca",
         duration: "23 min",
@@ -6695,7 +6695,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Partido de ida y vuelta",
         duration: "23 min",
@@ -6707,7 +6707,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "¡El retorno del Príncipe del Campo!",
         duration: "23 min",
@@ -6719,7 +6719,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "¡Se reúnen los semifinalistas!",
         duration: "23 min",
@@ -6731,7 +6731,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "La verdad sobre la bola de fuego",
         duration: "23 min",
@@ -6743,7 +6743,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "¡Comienza el partido! Japón contra Francia",
         duration: "23 min",
@@ -6755,7 +6755,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "10 contra 11",
         duration: "23 min",
@@ -6767,7 +6767,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "El ataque de la bestia hermosa",
         duration: "23 min",
@@ -6779,7 +6779,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Misaki contra Pierre",
         duration: "23 min",
@@ -6791,7 +6791,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/23.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Prórroga bajo la lluvia",
         duration: "23 min",
@@ -6803,7 +6803,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/24.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 25,
         title: "Defendiendo vapuleados",
         duration: "23 min",
@@ -6815,7 +6815,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/25.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 26,
         title: "Puños milagrosos",
         duration: "23 min",
@@ -6827,7 +6827,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/26.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 27,
         title: "¡Los leones de la final!",
         duration: "23 min",
@@ -6839,7 +6839,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/27.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 28,
         title: "¡Aluvión de disparos!",
         duration: "23 min",
@@ -6851,7 +6851,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/28.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 29,
         title: "Schneider contra Wakabayashi",
         duration: "23 min",
@@ -6863,7 +6863,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/29.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 30,
         title: "Un primer gol llameante",
         duration: "23 min",
@@ -6875,7 +6875,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/30.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 31,
         title: "El tiro más potente de la historia",
         duration: "23 min",
@@ -6887,7 +6887,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/31.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 32,
         title: "La gorra rota",
         duration: "23 min",
@@ -6899,7 +6899,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/32.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 33,
         title: "¡Responde al mensaje!",
         duration: "23 min",
@@ -6911,7 +6911,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/33.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 34,
         title: "¡El duelo predestinado!",
         duration: "23 min",
@@ -6923,7 +6923,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/34.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 35,
         title: "¡¿El puesto de mejor del mundo a la vista?!",
         duration: "23 min",
@@ -6935,7 +6935,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/35.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 36,
         title: "Una promesa al cielo",
         duration: "23 min",
@@ -6947,7 +6947,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/36.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 37,
         title: "¡Confesión!",
         duration: "23 min",
@@ -6959,7 +6959,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/37.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 38,
         title: "¡Hacia una nueva era!",
         duration: "23 min",
@@ -6971,7 +6971,7 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/38.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 39,
         title: "Tsubasa alza el vuelo",
         duration: "23 min",
@@ -7015,7 +7015,7 @@ export const animeData = [
     contentWarning: "+18 Violencia Extrema, Gore, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "No quiero decepcionarle.",
         duration: "25 min",
@@ -7027,7 +7027,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Como un chico.",
         duration: "25 min",
@@ -7039,7 +7039,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Banda criminal.",
         duration: "25 min",
@@ -7051,7 +7051,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "¡Qué suerte la tuya!.",
         duration: "25 min",
@@ -7063,7 +7063,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Todas las miradas sobre mi.",
         duration: "24 min",
@@ -7075,7 +7075,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Chica en llamas.",
         duration: "26 min",
@@ -7087,7 +7087,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Más fuerte.",
         duration: "25 min",
@@ -7099,7 +7099,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Quédate.",
         duration: "25 min",
@@ -7111,7 +7111,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Humanidad.",
         duration: "26 min",
@@ -7123,7 +7123,7 @@ export const animeData = [
         videoUrl: "frame/Cyberpunk-edge-runners/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Mi luna, mi hombre.",
         duration: "28 min",
@@ -7165,7 +7165,7 @@ export const animeData = [
     contentWarning: "+18 Violencia extrema, Gore",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Perro y motosierra",
         duration: "25 min",
@@ -7177,7 +7177,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Llegada a tokyo",
         duration: "23 min",
@@ -7189,7 +7189,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El paradero de Nyako",
         duration: "23 min",
@@ -7201,7 +7201,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Rescate",
         duration: "23 min",
@@ -7213,7 +7213,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Demonio pistola",
         duration: "23 min",
@@ -7225,7 +7225,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Matar a denji",
         duration: "23 min",
@@ -7237,7 +7237,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El sabor de un beso",
         duration: "23 min",
@@ -7249,7 +7249,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Tiroteo",
         duration: "23 min",
@@ -7261,7 +7261,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Desde kyoto",
         duration: "23 min",
@@ -7273,7 +7273,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Magullados y Maltratados",
         duration: "23 min",
@@ -7285,7 +7285,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Comienzo de la misión",
         duration: "23 min",
@@ -7297,7 +7297,7 @@ export const animeData = [
         videoUrl: "frame/Chainsaw-man/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Espada vs Motosierra",
         duration: "23 min",
@@ -7341,7 +7341,7 @@ export const animeData = [
     contentWarning: "+16 Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El Rey de las Bestias Mágicas",
         duration: "45 min",
@@ -7353,7 +7353,7 @@ export const animeData = [
         videoUrl: "frame/Clevatess/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El Rey de las Bestias Mágicas en captividad",
         duration: "23 min",
@@ -7365,7 +7365,7 @@ export const animeData = [
         videoUrl: "frame/Clevatess/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El trabajo de los héroes",
         duration: "23 min",
@@ -7410,7 +7410,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Lenguaje",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Yo diría que así inicia el amor, ¿no crees?",
         duration: "25 min",
@@ -7422,7 +7422,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Eso es un extraterrestre, ¿no?",
         duration: "25 min",
@@ -7434,7 +7434,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El choque de abuela contra abuela",
         duration: "25 min",
@@ -7446,7 +7446,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "A mandar a volar a la Turbo Ruca",
         duration: "25 min",
@@ -7458,7 +7458,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Oye, ¿dónde quedaron tus bolas?",
         duration: "25 min",
@@ -7470,7 +7470,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Se aparece una mujer peligrosa",
         duration: "25 min",
@@ -7482,7 +7482,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Hacia un mundo compasivo",
         duration: "25 min",
@@ -7494,7 +7494,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Siento algo extraño en el pecho",
         duration: "25 min",
@@ -7506,7 +7506,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "¡Fusión! ¡El Demonio Dover Nessie Serpiano!",
         duration: "25 min",
@@ -7518,7 +7518,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "¿Has visto la mutilación de ganado?",
         duration: "25 min",
@@ -7530,7 +7530,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Su primer amor",
         duration: "25 min",
@@ -7542,7 +7542,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Vayamos a la casa embrujada",
         duration: "25 min",
@@ -7554,7 +7554,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T1/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Conque así era la leyenda de la Gran Serpiente",
         duration: "24 min",
@@ -7566,7 +7566,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Mal de Ojo",
         duration: "24 min",
@@ -7578,7 +7578,7 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Me las pagarás",
         duration: "24 min",
@@ -7621,7 +7621,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Infierno y paraíso.",
         duration: "24 min",
@@ -7633,7 +7633,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Dos confesiones.",
         duration: "23 min",
@@ -7645,7 +7645,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyouT1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Kiriko y Haruki.",
         duration: "23 min",
@@ -7657,7 +7657,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Kuku.",
         duration: "23 min",
@@ -7669,7 +7669,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Día de recogida.",
         duration: "23 min",
@@ -7681,7 +7681,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Agua 100% potable.",
         duration: "23 min",
@@ -7693,7 +7693,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El culto inmortal.",
         duration: "23 min",
@@ -7705,7 +7705,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Sus respectivas elecciones.",
         duration: "23 min",
@@ -7717,7 +7717,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Niños en la escuela.",
         duration: "23 min",
@@ -7729,7 +7729,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Ciudad amurallada.",
         duration: "23 min",
@@ -7741,7 +7741,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Prueba de inicio.",
         duration: "23 min",
@@ -7753,7 +7753,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "El exterior del exterior.",
         duration: "23 min",
@@ -7765,7 +7765,7 @@ export const animeData = [
         videoUrl: "frame/Tengoku-daimakyou/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "El viaje continúa y comienza.",
         duration: "23 min",
@@ -7809,7 +7809,7 @@ export const animeData = [
     contentWarning: "+12",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "La conspiración",
         duration: "32 min",
@@ -7821,7 +7821,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Glorio",
         duration: "23 min",
@@ -7833,7 +7833,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Daima",
         duration: "23 min",
@@ -7845,7 +7845,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Conversadores",
         duration: "23 min",
@@ -7857,7 +7857,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Panzy",
         duration: "23 min",
@@ -7869,7 +7869,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Relámpago",
         duration: "23 min",
@@ -7881,7 +7881,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Collar",
         duration: "23 min",
@@ -7893,7 +7893,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Tamagami",
         duration: "23 min",
@@ -7905,7 +7905,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Ladrones",
         duration: "23 min",
@@ -7917,7 +7917,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Océano",
         duration: "23 min",
@@ -7929,7 +7929,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Leyenda",
         duration: "23 min",
@@ -7941,7 +7941,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Verdadera fuerza",
         duration: "23 min",
@@ -7953,7 +7953,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Sorpresa",
         duration: "23 min",
@@ -7965,7 +7965,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Tabú",
         duration: "23 min",
@@ -7977,7 +7977,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Tercer Ojo",
         duration: "23 min",
@@ -7989,7 +7989,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Degesu",
         duration: "23 min",
@@ -8001,7 +8001,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Gomah",
         duration: "23 min",
@@ -8013,7 +8013,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Despertar",
         duration: "23 min",
@@ -8025,7 +8025,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Traición",
         duration: "23 min",
@@ -8037,7 +8037,7 @@ export const animeData = [
         videoUrl: "frame/Dragon-Ball-Daima/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Máximo",
         duration: "23 min",
@@ -8081,7 +8081,7 @@ export const animeData = [
     contentWarning: "+18 Violencia, Gore",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Infierno.",
         duration: "30 min",
@@ -8093,7 +8093,7 @@ export const animeData = [
         videoUrl: "frame/Devil-may-cry-netflix/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Nuestra Señora de los Dolores.",
         duration: "29 min",
@@ -8105,7 +8105,7 @@ export const animeData = [
         videoUrl: "frame/Devil-may-cry-netflix/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El camino profundo y salvaje.",
         duration: "29 min",
@@ -8117,7 +8117,7 @@ export const animeData = [
         videoUrl: "frame/Devil-may-cry-netflix/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Abandona toda esperanza.",
         duration: "31 min",
@@ -8129,7 +8129,7 @@ export const animeData = [
         videoUrl: "frame/Devil-may-cry-netflix/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El descenso.",
         duration: "30 min",
@@ -8141,7 +8141,7 @@ export const animeData = [
         videoUrl: "frame/Devil-may-cry-netflix/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El primer círculo.",
         duration: "21 min",
@@ -8153,7 +8153,7 @@ export const animeData = [
         videoUrl: "frame/Devil-may-cry-netflix/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Ante las puertas del paraíso.",
         duration: "30 min",
@@ -8165,7 +8165,7 @@ export const animeData = [
         videoUrl: "frame/Devil-may-cry-netflix/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Un río de sangre hirviente.",
         duration: "32 min",
@@ -8210,7 +8210,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "La reencarnación.",
         duration: "23 min",
@@ -8222,7 +8222,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El nuevo mundo.",
         duration: "23 min",
@@ -8234,7 +8234,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El nigromante.",
         duration: "23 min",
@@ -8246,7 +8246,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El perro rabioso.",
         duration: "23 min",
@@ -8258,7 +8258,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El monstruo.",
         duration: "23 min",
@@ -8270,7 +8270,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Insecto Exhalafuego.",
         duration: "23 min",
@@ -8282,7 +8282,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El mago.",
         duration: "23 min",
@@ -8294,7 +8294,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El asesino.",
         duration: "23 min",
@@ -8306,7 +8306,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "La señal.",
         duration: "23 min",
@@ -8318,7 +8318,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "El emblema.",
         duration: "23 min",
@@ -8330,7 +8330,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El comienzo.",
         duration: "23 min",
@@ -8342,7 +8342,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "El lugar sagrado.",
         duration: "23 min",
@@ -8354,7 +8354,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Los invasores.",
         duration: "23 min",
@@ -8366,7 +8366,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "El cadáver.",
         duration: "23 min",
@@ -8378,7 +8378,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "El vampiro.",
         duration: "23 min",
@@ -8390,7 +8390,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "El impostor.",
         duration: "23 min",
@@ -8402,7 +8402,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "La matriarca.",
         duration: "23 min",
@@ -8414,7 +8414,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "La venganza.",
         duration: "23 min",
@@ -8426,7 +8426,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Los amigos.",
         duration: "23 min",
@@ -8438,7 +8438,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Los visitantes.",
         duration: "23 min",
@@ -8450,7 +8450,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "El espíritu.",
         duration: "23 min",
@@ -8462,7 +8462,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "El karma.",
         duration: "23 min",
@@ -8474,7 +8474,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "La declaración.",
         duration: "23 min",
@@ -8486,7 +8486,7 @@ export const animeData = [
         videoUrl: "frame/Dead-mount-death-play/T2/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "La guerra de Shinjuku.",
         duration: "23 min",
@@ -8531,7 +8531,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Mundo de piedra",
         duration: "24 min",
@@ -8543,7 +8543,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Rey del mundo de piedra",
         duration: "24 min",
@@ -8555,7 +8555,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Armas de la ciencia",
         duration: "24 min",
@@ -8567,7 +8567,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Dispara la señal de humo",
         duration: "24 min",
@@ -8579,7 +8579,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El principio del mundo de piedra",
         duration: "24 min",
@@ -8591,7 +8591,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Dos países del mundo de piedra",
         duration: "24 min",
@@ -8603,7 +8603,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El paradero de los millones de años",
         duration: "24 min",
@@ -8615,7 +8615,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Camino de piedra",
         duration: "24 min",
@@ -8627,7 +8627,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Que se haga la luz de la ciencia",
         duration: "24 min",
@@ -8639,7 +8639,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Una tenue alianza",
         duration: "24 min",
@@ -8651,7 +8651,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Mundo claro",
         duration: "24 min",
@@ -8663,7 +8663,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Compañeros espalda con espalda",
         duration: "24 min",
@@ -8675,7 +8675,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Guerrero enmascarado",
         duration: "24 min",
@@ -8687,7 +8687,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Amo de la llama",
         duration: "24 min",
@@ -8699,7 +8699,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "La culminación de dos millones de años",
         duration: "24 min",
@@ -8711,7 +8711,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Una historia para la eternidad",
         duration: "24 min",
@@ -8723,7 +8723,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Cien noches y mil cielos",
         duration: "24 min",
@@ -8735,7 +8735,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Guerra de piedra",
         duration: "24 min",
@@ -8747,7 +8747,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "A la modernidad",
         duration: "24 min",
@@ -8759,7 +8759,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "La era de la energía",
         duration: "24 min",
@@ -8771,7 +8771,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Club de manualidades pesadas",
         duration: "24 min",
@@ -8783,7 +8783,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "El tesoro",
         duration: "24 min",
@@ -8795,7 +8795,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Ola de ciencia",
         duration: "24 min",
@@ -8807,7 +8807,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Oído a distancias infinitas",
         duration: "23 min",
@@ -8821,7 +8821,7 @@ export const animeData = [
 
       // Temporada 2: Stone Wars
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Comienza la Stone Wars",
         duration: "24 min",
@@ -8833,7 +8833,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Comienza la Stone Wars",
         duration: "24 min",
@@ -8845,7 +8845,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Línea directa",
         duration: "24 min",
@@ -8857,7 +8857,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Los muertos llaman",
         duration: "24 min",
@@ -8869,7 +8869,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Marcha de todas las unidades",
         duration: "24 min",
@@ -8881,7 +8881,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Gorila de vapor",
         duration: "24 min",
@@ -8893,7 +8893,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Escapar de prisión",
         duration: "24 min",
@@ -8905,7 +8905,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Misión secreta",
         duration: "24 min",
@@ -8917,7 +8917,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Batalla final",
         duration: "24 min",
@@ -8929,7 +8929,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "El que destruye, el que salva",
         duration: "24 min",
@@ -8941,7 +8941,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "El dúo más fuerte de la humanidad",
         duration: "24 min",
@@ -8953,7 +8953,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Prólogo de Dr. Stone",
         duration: "24 min",
@@ -8967,7 +8967,7 @@ export const animeData = [
 
       // Temporada 3: Ryusui (Especial)
       {
-        season: 0,
+        season: "Especial Ryusui",
         number: 1,
         title: "Ryuusui",
         duration: "54 min",
@@ -8981,7 +8981,7 @@ export const animeData = [
 
       // Temporada 4: New World
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "Nuevo mapa mundial",
         duration: "23 min",
@@ -8993,7 +8993,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title: "Lo quiero = virtud",
         duration: "23 min",
@@ -9005,7 +9005,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "Primer contacto",
         duration: "24 min",
@@ -9017,7 +9017,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "Los ojos de la ciencia",
         duration: "24 min",
@@ -9029,7 +9029,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "El barco científico Perseo",
         duration: "24 min",
@@ -9041,7 +9041,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "Cofre del tesoro",
         duration: "24 min",
@@ -9053,7 +9053,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "La luz de la esperanza y la desesperación",
         duration: "24 min",
@@ -9065,7 +9065,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "El as está en el barco científico",
         duration: "24 min",
@@ -9077,7 +9077,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "Ciencia hermosa",
         duration: "24 min",
@@ -9089,7 +9089,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "Guerras científicas",
         duration: "24 min",
@@ -9101,7 +9101,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/10.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 11,
         title: "Haremos un milagro",
         duration: "24 min",
@@ -9113,7 +9113,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/11.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 12,
         title: "El reino científico contraataca",
         duration: "24 min",
@@ -9125,7 +9125,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/12.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 13,
         title: "El verdadero rostro de Medusa",
         duration: "24 min",
@@ -9137,7 +9137,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/13.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 14,
         title: "Maniobras intelectuales",
         duration: "24 min",
@@ -9149,7 +9149,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/14.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 15,
         title: "Batalla decisiva tridimensional",
         duration: "24 min",
@@ -9161,7 +9161,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/15.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 16,
         title: "Refriega por todo el territorio",
         duration: "24 min",
@@ -9173,7 +9173,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/16.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 17,
         title: "Joker",
         duration: "24 min",
@@ -9185,7 +9185,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/17.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 18,
         title: "El resplandor de la luna",
         duration: "24 min",
@@ -9197,7 +9197,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/18.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 19,
         title: "Último hombre en pie",
         duration: "24 min",
@@ -9209,7 +9209,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/19.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 20,
         title: "Primer sueño",
         duration: "24 min",
@@ -9221,7 +9221,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/20.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 21,
         title: "La isla del tesoro",
         duration: "24 min",
@@ -9233,7 +9233,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T3/21.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 22,
         title: "Más allá del nuevo mundo",
         duration: "24 min",
@@ -9247,7 +9247,7 @@ export const animeData = [
 
       // Temporada 5: Science Future
       {
-        season: 4,
+        season: "Temporada 4",
         number: 1,
         title: "Ryusui contra Senku",
         duration: "23 min",
@@ -9259,7 +9259,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/1.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 2,
         title: "Science Journey",
         duration: "23 min",
@@ -9271,7 +9271,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/2.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 3,
         title: "Trampa de luz en la oscuridad",
         duration: "23 min",
@@ -9283,7 +9283,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/3.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 4,
         title: "Dr. X",
         duration: "23 min",
@@ -9295,7 +9295,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/4.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 5,
         title: "Doctor VS. Doctor",
         duration: "23 min",
@@ -9307,7 +9307,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/5.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 6,
         title: "Science is elegant",
         duration: "23 min",
@@ -9319,7 +9319,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/6.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 7,
         title: "Dos científicos",
         duration: "23 min",
@@ -9331,7 +9331,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/7.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 8,
         title: "Lock on",
         duration: "23 min",
@@ -9343,7 +9343,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/8.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 9,
         title: "La luz de la ciencia",
         duration: "23 min",
@@ -9355,7 +9355,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/9.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 10,
         title: "Un camino de tierra",
         duration: "23 min",
@@ -9367,7 +9367,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/10.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 11,
         title: "Quien conoce y quien hace las reglas",
         duration: "23 min",
@@ -9379,7 +9379,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/11.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 12,
         title: "Reencuentro",
         duration: "23 min",
@@ -9391,7 +9391,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/12.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 13,
         title: "Mirando la misma luna",
         duration: "23 min",
@@ -9403,7 +9403,7 @@ export const animeData = [
         videoUrl: "frame/Dr-stone/T4/13.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 14,
         title: "Carrera terrestre",
         duration: "23 min",
@@ -9446,7 +9446,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Crueldad",
         duration: "23 min",
@@ -9458,7 +9458,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El instructor Sakonji Urokodaki",
         duration: "23 min",
@@ -9470,7 +9470,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Sabito y Makomo",
         duration: "23 min",
@@ -9482,7 +9482,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Selección Final",
         duration: "23 min",
@@ -9494,7 +9494,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Tu acero",
         duration: "23 min",
@@ -9506,7 +9506,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Espadachín con demonio",
         duration: "24 min",
@@ -9518,7 +9518,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Muzan Kibutsuji",
         duration: "23 min",
@@ -9530,7 +9530,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Cautivador olor a sangre",
         duration: "24 min",
@@ -9542,7 +9542,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Demonios de Temari y flechas",
         duration: "24 min",
@@ -9554,7 +9554,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Juntos para siempre",
         duration: "23 min",
@@ -9566,7 +9566,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Mansión Tsuzumi",
         duration: "24 min",
@@ -9578,7 +9578,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "El jabalí muestra sus colmillos mientras Zenitsu duerme",
         duration: "23 min",
@@ -9590,7 +9590,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Algo más importante que la vida",
         duration: "24 min",
@@ -9602,7 +9602,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "La casa del blasón de Glicinas",
         duration: "23 min",
@@ -9614,7 +9614,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "El Monte Natagumo",
         duration: "24 min",
@@ -9626,7 +9626,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Que otro vaya al frente",
         duration: "24 min",
@@ -9638,7 +9638,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Domina una única cosa",
         duration: "23 min",
@@ -9650,7 +9650,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Lazos simulados",
         duration: "24 min",
@@ -9662,7 +9662,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Dios del Fuego",
         duration: "23 min",
@@ -9674,7 +9674,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Una familia unida a la fuerza",
         duration: "24 min",
@@ -9686,7 +9686,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Violando las normas",
         duration: "23 min",
@@ -9698,7 +9698,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "El Patrón",
         duration: "24 min",
@@ -9710,7 +9710,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Reunión de los Pilares",
         duration: "24 min",
@@ -9722,7 +9722,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Entrenamiento de rehabilitación",
         duration: "24 min",
@@ -9734,7 +9734,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Kanao Tsuyuri, Tsuguko",
         duration: "24 min",
@@ -9746,7 +9746,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T1/25.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 26,
         title: "Una nueva misión",
         duration: "23 min",
@@ -9760,7 +9760,7 @@ export const animeData = [
 
       // Temporada 2: Arco del Tren del Infinito
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "El pilar del fuego, Kyojuro Rengoku",
         duration: "26 min",
@@ -9772,7 +9772,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Un sueño profundo",
         duration: "22 min",
@@ -9784,7 +9784,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Si fuera verdad...",
         duration: "25 min",
@@ -9796,7 +9796,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Agravio",
         duration: "23 min",
@@ -9808,7 +9808,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Hacia delante",
         duration: "21 min",
@@ -9820,7 +9820,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Akaza",
         duration: "23 min",
@@ -9832,7 +9832,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part1/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Haz arder tu corazón",
         duration: "26 min",
@@ -9846,7 +9846,7 @@ export const animeData = [
 
       // Temporada 2: Arco del Distrito Rojo
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Tengen Uzui, pilar del sonido",
         duration: "46 min",
@@ -9858,7 +9858,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Tengen Uzui, pilar del sonido",
         duration: "46 min",
@@ -9870,7 +9870,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Entrada al distrito rojo",
         duration: "23 min",
@@ -9882,7 +9882,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "¿Quién es?",
         duration: "23 min",
@@ -9894,7 +9894,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Esta noche",
         duration: "23 min",
@@ -9906,7 +9906,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "¡Llamemos la atención!",
         duration: "23 min",
@@ -9918,7 +9918,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Recuerdos superpuestos",
         duration: "23 min",
@@ -9930,7 +9930,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Transformación",
         duration: "23 min",
@@ -9942,7 +9942,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Reunión",
         duration: "23 min",
@@ -9954,7 +9954,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Tras derrotar a una luna creciente",
         duration: "23 min",
@@ -9966,7 +9966,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "¡No me rendiré!",
         duration: "23 min",
@@ -9978,7 +9978,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T2-part2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Aunque nos reencarnemos",
         duration: "32 min",
@@ -9992,7 +9992,7 @@ export const animeData = [
 
       // Temporada 3: Arco de la Aldea de los Herreros
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "El sueño de alguien",
         duration: "49 min",
@@ -10004,7 +10004,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title: "Yoriichi modelo cero",
         duration: "23 min",
@@ -10016,7 +10016,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "Una espada de hace más de 300 años",
         duration: "23 min",
@@ -10028,7 +10028,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "Gracias, Tokito",
         duration: "23 min",
@@ -10040,7 +10040,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "Espada al rojo vivo",
         duration: "23 min",
@@ -10052,7 +10052,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "¿No querías ser un Pilar?",
         duration: "23 min",
@@ -10064,7 +10064,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "Los villanos más detestables",
         duration: "23 min",
@@ -10076,7 +10076,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "El Mu en Muichiro",
         duration: "23 min",
@@ -10088,7 +10088,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "Muichiro Tokito, el Pilar de la Neblina",
         duration: "23 min",
@@ -10100,7 +10100,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "Mitsuri Kanroji, el Pilar del amor",
         duration: "23 min",
@@ -10112,7 +10112,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T3/10.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 11,
         title: "Nuestros lazos y la luz del alba",
         duration: "51 min",
@@ -10126,7 +10126,7 @@ export const animeData = [
 
       // Temporada 4: Arco del Entrenamiento de los Pilares
       {
-        season: 4,
+        season: "Temporada 4",
         number: 1,
         title: "Para vencer a Muzan Kibutsuji",
         duration: "48 min",
@@ -10138,7 +10138,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/1.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 2,
         title: "El dolor de Giyu Tomioka, el Pilar del Agua",
         duration: "23 min",
@@ -10150,7 +10150,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/2.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 3,
         title: "Tanjiro participa en el entrenamiento de los Pilares",
         duration: "23 min",
@@ -10162,7 +10162,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/3.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 4,
         title: "Me trae una sonrisa",
         duration: "23 min",
@@ -10174,7 +10174,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/4.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 5,
         title: "Hasta terminé comiendo demonios",
         duration: "23 min",
@@ -10186,7 +10186,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/5.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 6,
         title: "El más fuerte en la Compañía Cazademonios",
         duration: "23 min",
@@ -10198,7 +10198,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/6.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 7,
         title: "Gyomei Himejima, el Pilar de la Roca",
         duration: "23 min",
@@ -10210,7 +10210,7 @@ export const animeData = [
         videoUrl: "frame/Kimetsu-no-yaiba/T4/7.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 8,
         title: "La movilización de los Pilares",
         duration: "40 min",
@@ -10256,7 +10256,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Hacia el cielo donde vuelan las flores de cerezo.",
         duration: "24 min",
@@ -10268,7 +10268,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La chica y el gato azul.",
         duration: "24 min",
@@ -10280,7 +10280,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Aventureros.",
         duration: "24 min",
@@ -10292,7 +10292,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Un hombre llamado Weisz.",
         duration: "24 min",
@@ -10304,7 +10304,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Choque entre la pandilla de Sibir y la de Weisz.",
         duration: "24 min",
@@ -10316,7 +10316,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Skull Fairy.",
         duration: "24 min",
@@ -10328,7 +10328,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "La nave del Rey Demonio.",
         duration: "24 min",
@@ -10340,7 +10340,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El viento aúlla en la autopista.",
         duration: "24 min",
@@ -10352,7 +10352,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El planeta Guilst.",
         duration: "24 min",
@@ -10364,7 +10364,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "El escuadrón de los B-Cuber.",
         duration: "24 min",
@@ -10376,7 +10376,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Hermana Ivry.",
         duration: "24 min",
@@ -10388,7 +10388,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Nuevos amigos.",
         duration: "24 min",
@@ -10400,7 +10400,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Un mundo supervirtual.",
         duration: "24 min",
@@ -10412,7 +10412,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "La chica de la colina.",
         duration: "24 min",
@@ -10424,7 +10424,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "La gran Kaiju Shiki.",
         duration: "24 min",
@@ -10436,7 +10436,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Fuegos artificiales.",
         duration: "24 min",
@@ -10448,7 +10448,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "La sala de las Cuatro Estrellas Rutilantes.",
         duration: "24 min",
@@ -10460,7 +10460,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Las palabras son poder.",
         duration: "24 min",
@@ -10472,7 +10472,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Un rostro en el horizonte.",
         duration: "24 min",
@@ -10484,7 +10484,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Piedras.",
         duration: "24 min",
@@ -10496,7 +10496,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Reinicio.",
         duration: "24 min",
@@ -10508,7 +10508,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "La máquina como amiga.",
         duration: "24 min",
@@ -10520,7 +10520,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Hasta que se me acabe la vida.",
         duration: "24 min",
@@ -10532,7 +10532,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "La colina donde está el monolito.",
         duration: "24 min",
@@ -10544,7 +10544,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Alguien a quien amar.",
         duration: "24 min",
@@ -10558,7 +10558,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Belial Gore.",
         duration: "23 min",
@@ -10570,7 +10570,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Elemento 4.",
         duration: "23 min",
@@ -10582,7 +10582,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "El viento del cosmos Sakura.",
         duration: "23 min",
@@ -10594,7 +10594,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Número 29.",
         duration: "23 min",
@@ -10606,7 +10606,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Mediación.",
         duration: "23 min",
@@ -10618,7 +10618,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Nuestro futuro.",
         duration: "23 min",
@@ -10630,7 +10630,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "4 contra 4.",
         duration: "23 min",
@@ -10642,7 +10642,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "La espada de Edens.",
         duration: "23 min",
@@ -10654,7 +10654,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Shiki contra Drakken.",
         duration: "23 min",
@@ -10666,7 +10666,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "La llegada del Rey Demonio.",
         duration: "23 min",
@@ -10678,7 +10678,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Edens One.",
         duration: "23 min",
@@ -10690,7 +10690,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Choque en el cosmos.",
         duration: "23 min",
@@ -10702,7 +10702,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "La mujer a la que llamaban pirata.",
         duration: "23 min",
@@ -10714,7 +10714,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Mi querida Nadia.",
         duration: "23 min",
@@ -10726,7 +10726,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Una máquina enamorada.",
         duration: "23 min",
@@ -10738,7 +10738,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Convertirse en perro.",
         duration: "23 min",
@@ -10750,7 +10750,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "La batalla en foresta.",
         duration: "23 min",
@@ -10762,7 +10762,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Star Drain.",
         duration: "23 min",
@@ -10774,7 +10774,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "Mi querido cacharro.",
         duration: "23 min",
@@ -10786,7 +10786,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Beso y muerte.",
         duration: "23 min",
@@ -10798,7 +10798,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "Sistema del juicio final.",
         duration: "23 min",
@@ -10810,7 +10810,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Oceans 6.",
         duration: "23 min",
@@ -10822,7 +10822,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Judgment Day.",
         duration: "23 min",
@@ -10834,7 +10834,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/23.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Oasis en el desierto.",
         duration: "23 min",
@@ -10846,7 +10846,7 @@ export const animeData = [
         videoUrl: "frame/Edens-zero/T2/24.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 25,
         title: "Preludio de la batalla de Aoi.",
         duration: "23 min",
@@ -10889,7 +10889,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El primer gremio y el mejor gremio",
         duration: "23 min",
@@ -10901,7 +10901,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Mar de Dragones",
         duration: "23 min",
@@ -10913,7 +10913,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Filos, Armadura, Cenizas",
         duration: "23 min",
@@ -10925,7 +10925,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Teñir de blanco",
         duration: "23 min",
@@ -10937,7 +10937,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Una amarga decisión",
         duration: "23 min",
@@ -10949,7 +10949,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Linaje de fuego",
         duration: "23 min",
@@ -10961,7 +10961,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Al final todo salió bien",
         duration: "23 min",
@@ -10973,7 +10973,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Aldoron, the Wood Dragon God",
         duration: "23 min",
@@ -10985,7 +10985,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Resplandor Blanco",
         duration: "23 min",
@@ -10997,7 +10997,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Nuevos asesinos",
         duration: "23 min",
@@ -11009,7 +11009,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Wraith, Dragón Fantasma",
         duration: "23 min",
@@ -11021,7 +11021,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "El truco para remontar",
         duration: "23 min",
@@ -11033,7 +11033,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Duelo escarlata",
         duration: "23 min",
@@ -11045,7 +11045,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "El atróz Dragón Pegajoso",
         duration: "23 min",
@@ -11057,7 +11057,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "La tierra retumba",
         duration: "23 min",
@@ -11069,7 +11069,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Semillas Divinas",
         duration: "23 min",
@@ -11081,7 +11081,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "La fuerza para vivir",
         duration: "23 min",
@@ -11093,7 +11093,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Voluntad ardiente",
         duration: "23 min",
@@ -11105,7 +11105,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Aqua Aera",
         duration: "23 min",
@@ -11117,7 +11117,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Selene, Dragón Divino de la Luna",
         duration: "23 min",
@@ -11129,7 +11129,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Glosas de Luz de la Luna",
         duration: "23 min",
@@ -11141,7 +11141,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Desfile de Monstruos",
         duration: "23 min",
@@ -11153,7 +11153,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Esgrima sagrada",
         duration: "23 min",
@@ -11165,7 +11165,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Un mundo horrrendo",
         duration: "23 min",
@@ -11177,7 +11177,7 @@ export const animeData = [
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Retorno",
         duration: "23 min",
@@ -11222,7 +11222,7 @@ export const animeData = [
     episodes: [
       // Temporada 1 (24 episodios)
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Shinra Kusakabe se enlista.",
         duration: "24 min",
@@ -11234,7 +11234,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Corazón de soldado de fuego.",
         duration: "24 min",
@@ -11246,7 +11246,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El examen de novatos.",
         duration: "24 min",
@@ -11258,7 +11258,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "La heroína y la princesa.",
         duration: "24 min",
@@ -11270,7 +11270,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "La batalla comienza.",
         duration: "24 min",
@@ -11282,7 +11282,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Las chispas de la promesa.",
         duration: "24 min",
@@ -11294,7 +11294,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El primer problema.",
         duration: "24 min",
@@ -11306,7 +11306,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Infierno de insectos.",
         duration: "24 min",
@@ -11318,7 +11318,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "La hoguera.",
         duration: "24 min",
@@ -11330,7 +11330,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "La promesa.",
         duration: "24 min",
@@ -11342,7 +11342,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La formación del Octavo Escuadrón.",
         duration: "24 min",
@@ -11354,7 +11354,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "La víspera de la batalla.",
         duration: "24 min",
@@ -11366,7 +11366,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Trampas.",
         duration: "24 min",
@@ -11378,7 +11378,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Para la persona que amo.",
         duration: "24 min",
@@ -11390,7 +11390,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "La forja del caballero.",
         duration: "24 min",
@@ -11402,7 +11402,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Somos familia.",
         duration: "24 min",
@@ -11414,7 +11414,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Blanco y negro.",
         duration: "24 min",
@@ -11426,7 +11426,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "La luz del despertar.",
         duration: "24 min",
@@ -11438,7 +11438,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Hacia el Oasis.",
         duration: "24 min",
@@ -11450,7 +11450,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Con orgullo.",
         duration: "24 min",
@@ -11462,7 +11462,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Conectados.",
         duration: "24 min",
@@ -11474,7 +11474,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "La historia de un héroe.",
         duration: "24 min",
@@ -11486,7 +11486,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Sonrisas.",
         duration: "24 min",
@@ -11499,7 +11499,7 @@ export const animeData = [
       },
       // ... (Episodios 2 a 23)
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Sonrisas ardientes.",
         duration: "24 min",
@@ -11513,7 +11513,7 @@ export const animeData = [
 
       // Temporada 2 (24 episodios)
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "La lucha de un soldado de fuego.",
         duration: "24 min",
@@ -11525,7 +11525,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Llamas de locura.",
         duration: "24 min",
@@ -11537,7 +11537,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Una nueva chispa.",
         duration: "24 min",
@@ -11549,7 +11549,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "A brasas.",
         duration: "24 min",
@@ -11561,7 +11561,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Corna, el demonio infernal.",
         duration: "24 min",
@@ -11573,7 +11573,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Tiempo de hablar.",
         duration: "24 min",
@@ -11585,7 +11585,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "El camino del débil.",
         duration: "24 min",
@@ -11597,7 +11597,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "La quema del alma.",
         duration: "24 min",
@@ -11609,7 +11609,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "El núcleo.",
         duration: "24 min",
@@ -11621,7 +11621,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "La mujer de negro.",
         duration: "24 min",
@@ -11633,7 +11633,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "El complot de los de blanco.",
         duration: "24 min",
@@ -11645,7 +11645,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Sombras que anuncian el fin.",
         duration: "24 min",
@@ -11657,7 +11657,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Sangre de nuestra sangre.",
         duration: "24 min",
@@ -11669,7 +11669,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "La tierra de la lujuria.",
         duration: "24 min",
@@ -11681,7 +11681,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "La prueba de un soldado de fuego.",
         duration: "24 min",
@@ -11693,7 +11693,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "La explosión mental.",
         duration: "24 min",
@@ -11705,7 +11705,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "El chico con pies de diablo.",
         duration: "24 min",
@@ -11717,7 +11717,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "La sagrada guerra da comienzo.",
         duration: "24 min",
@@ -11729,7 +11729,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "El hombre de la cola.",
         duration: "24 min",
@@ -11741,7 +11741,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "La destrucción de todo.",
         duration: "24 min",
@@ -11753,7 +11753,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "El enemigo en la sombra.",
         duration: "24 min",
@@ -11765,7 +11765,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "El plan de destrucción.",
         duration: "24 min",
@@ -11777,7 +11777,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Las huellas del demonio.",
         duration: "24 min",
@@ -11790,7 +11790,7 @@ export const animeData = [
       },
       // ... (Episodios 2 a 23)
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Señales de fuego.",
         duration: "24 min",
@@ -11804,7 +11804,7 @@ export const animeData = [
 
       // Temporada 3 (11 episodios - hasta la fecha)
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "Convicción.",
         duration: "24 min",
@@ -11816,7 +11816,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title: "Cautivo.",
         duration: "24 min",
@@ -11828,7 +11828,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "Avatar de fuego.",
         duration: "24 min",
@@ -11840,7 +11840,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "El secreto del oro.",
         duration: "24 min",
@@ -11852,7 +11852,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "Encuentro con un antiguo enemigo.",
         duration: "24 min",
@@ -11864,7 +11864,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "El resultado de una plegaria.",
         duration: "24 min",
@@ -11876,7 +11876,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "La verdad durmiente.",
         duration: "24 min",
@@ -11888,7 +11888,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "La virgen oscura.",
         duration: "24 min",
@@ -11900,7 +11900,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "Renace la espada sagrada.",
         duration: "24 min",
@@ -11912,7 +11912,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "Aparición.",
         duration: "24 min",
@@ -11924,7 +11924,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/10.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 11,
         title: "Frente monstruoso.",
         duration: "24 min",
@@ -11936,7 +11936,7 @@ export const animeData = [
         videoUrl: "frame/Fire-force/T3/11.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 12,
         title: "Demencia arcaica",
         duration: "24 min",
@@ -11982,7 +11982,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 0,
         title: "Episodio 0.",
         duration: "23 min",
@@ -11994,7 +11994,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/0.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "¡El comienzo de una nueva era!.",
         duration: "23 min",
@@ -12006,7 +12006,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "¡¡Un infierno aterrador!!.",
         duration: "23 min",
@@ -12018,7 +12018,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "¡El tenaz Bronco de Texas!.",
         duration: "23 min",
@@ -12030,7 +12030,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "¡La incursión de Akuma Chojin!.",
         duration: "23 min",
@@ -12042,7 +12042,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "¡El orgullo de Akuma Chojin!.",
         duration: "23 min",
@@ -12054,7 +12054,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "¡El plan espacial de cuatro dimensiones!.",
         duration: "23 min",
@@ -12066,7 +12066,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "¡Choque de ideologías Chojin!.",
         duration: "23 min",
@@ -12078,7 +12078,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Episodio 8.",
         duration: "23 min",
@@ -12090,7 +12090,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Episodio 9.",
         duration: "23 min",
@@ -12102,7 +12102,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Episodio 10.",
         duration: "23 min",
@@ -12114,7 +12114,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Episodio 11.",
         duration: "23 min",
@@ -12128,7 +12128,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title:
           "¡La batalla decisiva de los tres caminos! ¡La lucha a muerte comienza en la pirámide de la etapa!.",
@@ -12141,7 +12141,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "El espíritu de la familia Brocken.",
         duration: "23 min",
@@ -12153,7 +12153,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "¡La Creencia del Noble Experto en Kung Fu!.",
         duration: "23 min",
@@ -12165,7 +12165,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "¡Una voz desde la cuarta dimensión!.",
         duration: "23 min",
@@ -12177,7 +12177,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Episodio 16.",
         duration: "23 min",
@@ -12189,7 +12189,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "Episodio 17.",
         duration: "23 min",
@@ -12201,7 +12201,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Episodio 18.",
         duration: "23 min",
@@ -12213,7 +12213,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "Episodio 19.",
         duration: "23 min",
@@ -12225,7 +12225,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Episodio 20.",
         duration: "23 min",
@@ -12237,7 +12237,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "Episodio 21.",
         duration: "23 min",
@@ -12249,7 +12249,7 @@ export const animeData = [
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Episodio 22.",
         duration: "23 min",
@@ -12294,7 +12294,7 @@ export const animeData = [
     contentWarning: "+16 Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "La Esfera",
         duration: "23 min",
@@ -12306,7 +12306,7 @@ export const animeData = [
         videoUrl: "frame/Gachiakuta/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Los habitantes",
         duration: "23 min",
@@ -12351,7 +12351,7 @@ export const animeData = [
     contentWarning: "+14 Violencia, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El insecto de las noventa y nueve patas",
         duration: "25 min",
@@ -12363,7 +12363,7 @@ export const animeData = [
         videoUrl: "frame/Hell-teacher-nube/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "¡El terror del baño! El fantasma Hanako",
         duration: "24 min",
@@ -12376,7 +12376,7 @@ export const animeData = [
         votes: { likes: 87, dislikes: 2 },
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El estudiante de honor de medianoche",
         duration: "23 min",
@@ -12388,7 +12388,7 @@ export const animeData = [
         videoUrl: "frame/Hell-teacher-nube/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El Yōkai del Cuello Gigante",
         duration: "23 min",
@@ -12432,7 +12432,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Gore, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El condenado y la ejecutora",
         duration: "24 min",
@@ -12444,7 +12444,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Selección y elección",
         duration: "24 min",
@@ -12456,7 +12456,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Debilidad y fortaleza",
         duration: "24 min",
@@ -12468,7 +12468,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Paraíso e infierno",
         duration: "24 min",
@@ -12480,7 +12480,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Samurái y mujer",
         duration: "24 min",
@@ -12492,7 +12492,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Corazón y razón",
         duration: "24 min",
@@ -12504,7 +12504,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Flores y ofrenda",
         duration: "24 min",
@@ -12516,7 +12516,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Discípulo y maestro",
         duration: "24 min",
@@ -12528,7 +12528,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Dios y mortales",
         duration: "24 min",
@@ -12540,7 +12540,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Yin y yang",
         duration: "24 min",
@@ -12552,7 +12552,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Fuerte y débil",
         duration: "24 min",
@@ -12564,7 +12564,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Sombrilla y tinta",
         duration: "24 min",
@@ -12576,7 +12576,7 @@ export const animeData = [
         videoUrl: "frame/Hells-paradise/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Sueño y realidad",
         duration: "24 min",
@@ -12620,7 +12620,7 @@ export const animeData = [
     contentWarning: "+13 Horror, Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Reemplazo",
         duration: "23 min",
@@ -12632,7 +12632,7 @@ export const animeData = [
         videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Sospecha",
         duration: "23 min",
@@ -12644,7 +12644,7 @@ export const animeData = [
         videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Negación",
         duration: "23 min",
@@ -12681,7 +12681,7 @@ export const animeData = [
     dateAdded: new Date(), // new Date().setDate(new Date().getDate() - 553)
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Ryomen Sukuna",
         duration: "23 min",
@@ -12693,7 +12693,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Por mí",
         duration: "23 min",
@@ -12705,7 +12705,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Chica de acero",
         duration: "23 min",
@@ -12717,7 +12717,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "La existencia terrenal del vientre maldito",
         duration: "23 min",
@@ -12729,7 +12729,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "La existencia terrenal del vientre maldito II",
         duration: "23 min",
@@ -12741,7 +12741,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Tras la lluvia",
         duration: "23 min",
@@ -12753,7 +12753,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Asalto",
         duration: "23 min",
@@ -12765,7 +12765,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Aburrimiento",
         duration: "23 min",
@@ -12777,7 +12777,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Donnadies y castigo",
         duration: "23 min",
@@ -12789,7 +12789,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Mutación pasiva",
         duration: "23 min",
@@ -12801,7 +12801,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "De mente cerrada",
         duration: "23 min",
@@ -12813,7 +12813,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Para ti, algún día",
         duration: "23 min",
@@ -12825,7 +12825,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Hasta mañana",
         duration: "23 min",
@@ -12837,7 +12837,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title:
           "El evento de intercambio con la escuela de kioto -Combate grupal 0-",
@@ -12850,7 +12850,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title:
           "El evento de intercambio con la escuela de kioto -Combate grupal 1-",
@@ -12863,7 +12863,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title:
           "El evento de intercambio con la escuela de kioto -Combate grupal 2-",
@@ -12876,7 +12876,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title:
           "El evento de intercambio con la escuela de kioto -Combate grupal 3-",
@@ -12889,7 +12889,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Sabios",
         duration: "23 min",
@@ -12901,7 +12901,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Destello negro",
         duration: "23 min",
@@ -12913,7 +12913,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Fuera de lo común",
         duration: "23 min",
@@ -12925,7 +12925,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Jujutsu koshien",
         duration: "23 min",
@@ -12937,7 +12937,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "El origen de la fe ciega",
         duration: "23 min",
@@ -12949,7 +12949,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "El origen de la fe ciega II",
         duration: "23 min",
@@ -12961,7 +12961,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Complices",
         duration: "23 min",
@@ -12973,7 +12973,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T1/24.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 25,
         title: "El tesoro escondido",
         duration: "23 min",
@@ -12985,7 +12985,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 26,
         title: "El tesoro escondido - Parte 2",
         duration: "23 min",
@@ -12997,7 +12997,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 27,
         title: "El tesoro escondido - Parte 3",
         duration: "23 min",
@@ -13009,7 +13009,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 28,
         title: "El tesoro escondido - Parte 4",
         duration: "23 min",
@@ -13021,7 +13021,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 29,
         title: "El tesoro perdido",
         duration: "23 min",
@@ -13033,7 +13033,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 30,
         title: "De eso se trata",
         duration: "23 min",
@@ -13045,7 +13045,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 31,
         title: "La víspera del festival",
         duration: "23 min",
@@ -13057,7 +13057,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 32,
         title: "El incidente de Shibuya",
         duration: "23 min",
@@ -13069,7 +13069,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 33,
         title: "El incidente de Shibuya - Apertura del portal",
         duration: "23 min",
@@ -13081,7 +13081,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 34,
         title: "Confusión",
         duration: "23 min",
@@ -13093,7 +13093,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 35,
         title: "Espiritismo",
         duration: "23 min",
@@ -13105,7 +13105,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 36,
         title: "Cuchillo desafilado",
         duration: "23 min",
@@ -13117,7 +13117,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 37,
         title: "Escamas Carmesíes",
         duration: "23 min",
@@ -13129,7 +13129,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 38,
         title: "Temblores",
         duration: "23 min",
@@ -13141,7 +13141,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 39,
         title: "Temblores, parte dos",
         duration: "23 min",
@@ -13153,7 +13153,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 40,
         title: "Trueno",
         duration: "23 min",
@@ -13165,7 +13165,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 41,
         title: "Trueno, parte 2",
         duration: "23 min",
@@ -13177,7 +13177,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 42,
         title: "Lo correcto y lo incorrecto",
         duration: "23 min",
@@ -13189,7 +13189,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 43,
         title: "Lo correcto y lo incorrecto, parte 2",
         duration: "23 min",
@@ -13201,7 +13201,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 44,
         title: "Lo correcto y lo incorrecto, parte 3",
         duration: "23 min",
@@ -13213,7 +13213,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 45,
         title: "Metamorfosis",
         duration: "23 min",
@@ -13225,7 +13225,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 46,
         title: "Metamorfosis, parte dos",
         duration: "23 min",
@@ -13237,7 +13237,7 @@ export const animeData = [
         videoUrl: "frame/Jujutsu-kaisen/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 47,
         title: "El incidente de Shibuya, cierre del portal",
         duration: "23 min",
@@ -13295,7 +13295,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/Especiales-peliculas/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El hombre que se convirtió en kaiju",
         duration: "23 min",
@@ -13307,7 +13307,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El kaiju que elimina a otros kaiju",
         duration: "23 min",
@@ -13319,7 +13319,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Partido de revancha",
         duration: "23 min",
@@ -13332,7 +13332,7 @@ export const animeData = [
         votes: { likes: 387, dislikes: 5 },
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Onda de generación 9.8",
         duration: "23 min",
@@ -13344,7 +13344,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "¡Alistamiento!",
         duration: "23 min",
@@ -13356,7 +13356,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Operación de caza al amanecer en Sagamihara",
         duration: "23 min",
@@ -13368,7 +13368,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Kaiju número 9",
         duration: "23 min",
@@ -13380,7 +13380,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Bienvenido a las Fuerzas de Defensa",
         duration: "23 min",
@@ -13392,7 +13392,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Ataque a la base de Tachikawa",
         duration: "23 min",
@@ -13404,7 +13404,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Expuesto",
         duration: "23 min",
@@ -13416,7 +13416,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El kaiju número 8 es capturado",
         duration: "23 min",
@@ -13428,7 +13428,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Kafka Hibino",
         duration: "23 min",
@@ -13440,7 +13440,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T1/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: "00",
         title: "El día libre de Hoshina",
         duration: "23 min",
@@ -13452,7 +13452,7 @@ export const animeData = [
         videoUrl: "frame/Kaiju-No-8/T2/00.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Arma kaiju",
         duration: "23 min",
@@ -13495,7 +13495,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Adiós, Mundo Cruel.",
         duration: "24 min",
@@ -13507,7 +13507,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La Vida en la Vía Rápida.",
         duration: "24 min",
@@ -13519,7 +13519,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Muy Lejos de Casa.",
         duration: "24 min",
@@ -13531,7 +13531,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "No Detengan el Baile.",
         duration: "24 min",
@@ -13543,7 +13543,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Bien Desocupados.",
         duration: "24 min",
@@ -13555,7 +13555,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El Paraíso en la Tierra.",
         duration: "24 min",
@@ -13567,7 +13567,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Casi Triste.",
         duration: "24 min",
@@ -13579,7 +13579,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El Fuego Inolvidable.",
         duration: "24 min",
@@ -13591,7 +13591,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Muerte en Dos Piernas.",
         duration: "24 min",
@@ -13603,7 +13603,7 @@ export const animeData = [
         videoUrl: "frame/Lazarus/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "No Puedo Decirte Por Qué.",
         duration: "24 min",
@@ -13641,7 +13641,7 @@ export const animeData = [
     dateAdded: new Date(), // Hace 1 días
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El loco",
         duration: "34 min",
@@ -13653,7 +13653,7 @@ export const animeData = [
         videoUrl: "frame/Lord-of-mysteries/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Beyonder",
         duration: "36 min",
@@ -13665,7 +13665,7 @@ export const animeData = [
         videoUrl: "frame/Lord-of-mysteries/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El códice",
         duration: "33 min",
@@ -13677,7 +13677,7 @@ export const animeData = [
         videoUrl: "frame/Lord-of-mysteries/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El espejo mágico",
         duration: "37 min",
@@ -13689,7 +13689,7 @@ export const animeData = [
         videoUrl: "frame/Lord-of-mysteries/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El héroe",
         duration: "33 min",
@@ -13734,7 +13734,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Hyoma.",
         duration: "23 min",
@@ -13746,7 +13746,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Ribera.",
         duration: "23 min",
@@ -13758,7 +13758,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Rebosante.",
         duration: "23 min",
@@ -13770,7 +13770,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Acuerdo secreto.",
         duration: "23 min",
@@ -13782,7 +13782,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Sospecha.",
         duration: "23 min",
@@ -13794,7 +13794,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Botan.",
         duration: "23 min",
@@ -13806,7 +13806,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Indicios.",
         duration: "23 min",
@@ -13818,7 +13818,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Circunstancias.",
         duration: "23 min",
@@ -13830,7 +13830,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Fuego espectral.",
         duration: "23 min",
@@ -13842,7 +13842,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Falsa valía.",
         duration: "23 min",
@@ -13854,7 +13854,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Flecha oscura.",
         duration: "23 min",
@@ -13866,7 +13866,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Destello de luz.",
         duration: "23 min",
@@ -13880,7 +13880,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Salida al escenario.",
         duration: "23 min",
@@ -13892,7 +13892,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Música y danza.",
         duration: "23 min",
@@ -13904,7 +13904,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Temor a la oscuridad.",
         duration: "23 min",
@@ -13916,7 +13916,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "La llegada de los héroes.",
         duration: "23 min",
@@ -13928,7 +13928,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "Puesta lunar.",
         duration: "23 min",
@@ -13940,7 +13940,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Votos sagrados.",
         duration: "23 min",
@@ -13952,7 +13952,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "Mar bravo.",
         duration: "23 min",
@@ -13964,7 +13964,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Florecimiento tardío.",
         duration: "23 min",
@@ -13976,7 +13976,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "Recibimiento.",
         duration: "23 min",
@@ -13988,7 +13988,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Danza sagrada.",
         duration: "23 min",
@@ -14000,7 +14000,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Chispa.",
         duration: "23 min",
@@ -14012,7 +14012,7 @@ export const animeData = [
         videoUrl: "frame/Mononogatari/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Fuente de inspiración.",
         duration: "23 min",
@@ -14057,7 +14057,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Mash Burnedead y unos músculos bien trabajados.",
         duration: "23 min",
@@ -14069,7 +14069,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Mash Burnedead y el laberinto misterioso.",
         duration: "23 min",
@@ -14081,7 +14081,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Mash Burnedead y alguien a quien no hacer enfadar.",
         duration: "23 min",
@@ -14093,7 +14093,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Mash Burnedead y el mago bastante fuerte.",
         duration: "23 min",
@@ -14105,7 +14105,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Mash Burnedead y el compañero que no consigue novia.",
         duration: "23 min",
@@ -14117,7 +14117,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Mash Burnedead y la magia de hierro.",
         duration: "23 min",
@@ -14129,7 +14129,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6.5,
         title: "Episodio Especial: Resumen hasta ahora.",
         duration: "23 min",
@@ -14141,7 +14141,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/6.5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Mash Burnedead y el mago titiritero.",
         duration: "23 min",
@@ -14153,7 +14153,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Mash Burnedead y Magia Lupus.",
         duration: "23 min",
@@ -14165,7 +14165,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Mash Burnedead y el mago acelerador.",
         duration: "23 min",
@@ -14177,7 +14177,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Mash Burnedead y el Visionario Divino.",
         duration: "23 min",
@@ -14189,7 +14189,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Mash Burnedead y la ley del más fuerte.",
         duration: "23 min",
@@ -14201,7 +14201,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Mash Burnedead y el espejo mágico.",
         duration: "23 min",
@@ -14214,7 +14214,7 @@ export const animeData = [
       },
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Mash Burnedead y los visionarios divinos.",
         duration: "23 min",
@@ -14226,7 +14226,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Mash Burnedead y su casa.",
         duration: "23 min",
@@ -14238,7 +14238,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Rayne Ames y el poder de los dioses.",
         duration: "23 min",
@@ -14250,7 +14250,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Mash Burnedead y el globo resistente.",
         duration: "23 min",
@@ -14262,7 +14262,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "Finn Ames y la amistad.",
         duration: "23 min",
@@ -14274,7 +14274,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Mash Burnedead y el juego peligroso.",
         duration: "23 min",
@@ -14286,7 +14286,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "Mash Burnedead y el mago del sonido.",
         duration: "23 min",
@@ -14298,7 +14298,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Mash Burnedead y la gran torre.",
         duration: "23 min",
@@ -14310,7 +14310,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "Wahlberg Baigan y la magia de oscuridad.",
         duration: "23 min",
@@ -14322,7 +14322,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Wahlberg Baigan y el mayor peligro.",
         duration: "23 min",
@@ -14334,7 +14334,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Mash Burnedead y el albor del mago más fuerte.",
         duration: "23 min",
@@ -14346,7 +14346,7 @@ export const animeData = [
         videoUrl: "frame/Mashle-magic-and-muscles/T2/23.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Mash Burnedead y los buenos amigos.",
         duration: "23 min",
@@ -14390,7 +14390,7 @@ export const animeData = [
     contentWarning: "+14",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Usuaria de Mecha-Ude.",
         duration: "23 min",
@@ -14402,7 +14402,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Somos de mundos muy distintos.",
         duration: "23 min",
@@ -14414,7 +14414,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Te tendí la mano porque así lo quisiste.",
         duration: "23 min",
@@ -14426,7 +14426,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Debe ser importante.",
         duration: "23 min",
@@ -14438,7 +14438,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "¿Ocultas algo?.",
         duration: "23 min",
@@ -14450,7 +14450,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "En resumen, los amigos son...",
         duration: "23 min",
@@ -14462,7 +14462,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Me acabas de conocer...",
         duration: "23 min",
@@ -14474,7 +14474,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Tienes unas piernas demasiado lentas.",
         duration: "23 min",
@@ -14486,7 +14486,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "¡Eres increíble!.",
         duration: "23 min",
@@ -14498,7 +14498,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Recuerda, hermano.",
         duration: "23 min",
@@ -14510,7 +14510,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "¡No te detengas aquí!.",
         duration: "23 min",
@@ -14522,7 +14522,7 @@ export const animeData = [
         videoUrl: "frame/Mecha-ude/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "A pesar de todo, seguimos adelante.",
         duration: "23 min",
@@ -14565,7 +14565,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El psíquico autoproclamado: Arataka reigen y mob.",
         duration: "23 min",
@@ -14577,7 +14577,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El psíquico autoproclamado: Arataka reigen y mob.",
         duration: "23 min",
@@ -14589,7 +14589,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Las dudas de la juventud ~Aparece el club de telepatía~.",
         duration: "23 min",
@@ -14601,7 +14601,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Un invitación ~En resumen, quiero ser popular~.",
         duration: "23 min",
@@ -14613,7 +14613,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Un evento exclusivo para idiotas ~Kin~.",
         duration: "23 min",
@@ -14625,7 +14625,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Ochimusha ~Los poderes psíquicos y yo~.",
         duration: "23 min",
@@ -14637,7 +14637,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Discordancia ~Volverse uno~.",
         duration: "23 min",
@@ -14649,7 +14649,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Exaltación ~Solo conseguí pérdidas~.",
         duration: "23 min",
@@ -14661,7 +14661,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El mayor se postra ~Intenciones destructivas~.",
         duration: "23 min",
@@ -14673,7 +14673,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Garra ~La séptima división~.",
         duration: "23 min",
@@ -14685,7 +14685,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Gran aura maléfica ~Mente maestra~.",
         duration: "23 min",
@@ -14697,7 +14697,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El maestro ~El líder~.",
         duration: "23 min",
@@ -14709,7 +14709,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Mob y Reigen ~La aparición del tsuchinoko gigante~.",
         duration: "23 min",
@@ -14723,7 +14723,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Hecho pedazos.~Hay alguien mirando.",
         duration: "23 min",
@@ -14735,7 +14735,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Hecho pedazos.~Hay alguien mirando.",
         duration: "23 min",
@@ -14747,7 +14747,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Leyendas urbanas ~Encontrándose con rumores~.",
         duration: "23 min",
@@ -14759,7 +14759,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Un peligro tras otro ~Degeneración~.",
         duration: "23 min",
@@ -14771,7 +14771,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Interior ~Espectro~.",
         duration: "23 min",
@@ -14783,7 +14783,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Discordia ~Elección~.",
         duration: "23 min",
@@ -14795,7 +14795,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Un día blanco solitario.",
         duration: "23 min",
@@ -14807,7 +14807,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Fase final ~Identidad~.",
         duration: "23 min",
@@ -14819,7 +14819,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Aun así ~Avanza~.",
         duration: "23 min",
@@ -14831,7 +14831,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Muéstralo ~Reunión~.",
         duration: "23 min",
@@ -14843,7 +14843,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "Colisión ~Potencia~.",
         duration: "23 min",
@@ -14855,7 +14855,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Guía ~Psíquicos perceptivos~.",
         duration: "23 min",
@@ -14867,7 +14867,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Batalla del retorno de la sociedad ~Amistad~.",
         duration: "23 min",
@@ -14879,7 +14879,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Batalla contra el jefe ~La última luz~.",
         duration: "23 min",
@@ -14893,7 +14893,7 @@ export const animeData = [
 
       // Temporada 3
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "El mañana -planes del futuro.",
         duration: "23 min",
@@ -14905,7 +14905,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "El mañana -planes del futuro-",
         duration: "23 min",
@@ -14917,7 +14917,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title:
           "¡Llega el cazador de yokai Haruaki Amakusa!-¡El ataque de los cien yokai!",
@@ -14930,7 +14930,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "Ser arrogante al 100%",
         duration: "23 min",
@@ -14942,7 +14942,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "Árbol Divinio I -Aparece El Fundador-",
         duration: "23 min",
@@ -14954,7 +14954,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "Árbol Divinio II -Paz-",
         duration: "23 min",
@@ -14966,7 +14966,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "Árbol Divinio III -Hoyuelo-",
         duration: "23 min",
@@ -14978,7 +14978,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "Transmitiendo 1 ~Vacaciones De Invierno~",
         duration: "23 min",
@@ -14990,7 +14990,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "Transmitiendo 2 ~Encuentro con lo desconocido~",
         duration: "23 min",
@@ -15002,7 +15002,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "Mob 1 ~Mudanza~",
         duration: "23 min",
@@ -15014,7 +15014,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "Mob 2 ~Rival~",
         duration: "23 min",
@@ -15026,7 +15026,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Mob 3 ~Trauma~",
         duration: "23 min",
@@ -15038,7 +15038,7 @@ export const animeData = [
         videoUrl: "frame/Mob-Psycho-100/T3/11.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 12,
         title: "Mob 3 ~Confesión: A partir de ahora~.",
         duration: "23 min",
@@ -15083,7 +15083,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Reencarnación sin empleo.",
         duration: "23 min",
@@ -15095,7 +15095,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Maestra.",
         duration: "23 min",
@@ -15107,7 +15107,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Un amigo.",
         duration: "23 min",
@@ -15119,7 +15119,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Reunión familiar de emergencia.",
         duration: "23 min",
@@ -15131,7 +15131,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Una joven y la violencia.",
         duration: "23 min",
@@ -15143,7 +15143,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Un día libre con Roa.",
         duration: "23 min",
@@ -15155,7 +15155,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Lo que hay más allá del esfuerzo.",
         duration: "23 min",
@@ -15167,7 +15167,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Punto de inflexión 1.",
         duration: "23 min",
@@ -15179,7 +15179,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Un encuentro fortuito.",
         duration: "23 min",
@@ -15191,7 +15191,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "El primer encargo y el valor de la vida.",
         duration: "23 min",
@@ -15203,7 +15203,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Niños y guerreros.",
         duration: "23 min",
@@ -15215,7 +15215,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "La mujer con los ojos de demonio.",
         duration: "23 min",
@@ -15227,7 +15227,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Conexiones perdidas.",
         duration: "23 min",
@@ -15239,7 +15239,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Nada en la vida es gratis.",
         duration: "23 min",
@@ -15251,7 +15251,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "La tranquila vida en la aldea Doldia.",
         duration: "23 min",
@@ -15263,7 +15263,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Conflicto familiar.",
         duration: "23 min",
@@ -15275,7 +15275,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Reunión.",
         duration: "23 min",
@@ -15287,7 +15287,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Viajes divididos.",
         duration: "23 min",
@@ -15299,7 +15299,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Selección de ruta.",
         duration: "23 min",
@@ -15311,7 +15311,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "El nacimiento de mi hermana menor, la criada.",
         duration: "23 min",
@@ -15323,7 +15323,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Punto de inflexión 2.",
         duration: "23 min",
@@ -15335,7 +15335,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Sueños y realidad.",
         duration: "23 min",
@@ -15347,7 +15347,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Despierta y da un paso.",
         duration: "23 min",
@@ -15359,7 +15359,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Eris the Goblin Slayer.",
         duration: "23 min",
@@ -15373,7 +15373,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 0,
         title: "La guardaespaldas Fitts.",
         duration: "23 min",
@@ -15385,7 +15385,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/0.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "El mago descorazonado.",
         duration: "23 min",
@@ -15397,7 +15397,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Acercamiento repentino.",
         duration: "23 min",
@@ -15409,7 +15409,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Carta de invitación.",
         duration: "23 min",
@@ -15421,7 +15421,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "La Universidad Mágica de Ranoa.",
         duration: "23 min",
@@ -15433,7 +15433,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "No quiero morir.",
         duration: "23 min",
@@ -15445,7 +15445,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Secuestro y confinamiento de unas jóvenes bestias.",
         duration: "23 min",
@@ -15457,7 +15457,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Un compromiso angustioso.",
         duration: "23 min",
@@ -15469,7 +15469,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "La máscara blanca.",
         duration: "23 min",
@@ -15481,7 +15481,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "Estos sentimientos.",
         duration: "23 min",
@@ -15493,7 +15493,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Para ti.",
         duration: "23 min",
@@ -15505,7 +15505,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Quiero que me lo cuentes.",
         duration: "23 min",
@@ -15517,7 +15517,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Mi hogar de ensueño.",
         duration: "23 min",
@@ -15529,7 +15529,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Banquete de boda.",
         duration: "23 min",
@@ -15541,7 +15541,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Lejano.",
         duration: "23 min",
@@ -15553,7 +15553,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Norn y Aisha.",
         duration: "23 min",
@@ -15565,7 +15565,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "Los sentimientos de mi hermano mayor.",
         duration: "23 min",
@@ -15577,7 +15577,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Punto de inflexión 3.",
         duration: "23 min",
@@ -15589,7 +15589,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "Viaje desértico.",
         duration: "23 min",
@@ -15601,7 +15601,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Entrada al laberinto.",
         duration: "23 min",
@@ -15613,7 +15613,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "Círculos mágicos del sexto estrato.",
         duration: "23 min",
@@ -15625,7 +15625,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Padres.",
         duration: "23 min",
@@ -15637,7 +15637,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Volvamos a casa.",
         duration: "23 min",
@@ -15649,7 +15649,7 @@ export const animeData = [
         videoUrl: "frame/Mushoku-tensei/T2/23.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Sucesión.",
         duration: "23 min",
@@ -15692,7 +15692,7 @@ export const animeData = [
     episodes: [
       // Temporada 1 (13 episodios)
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Midoriya Izuku: Origen",
         duration: "24 min",
@@ -15704,7 +15704,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Lo que se necesita para ser un héroe",
         duration: "24 min",
@@ -15716,7 +15716,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Músculos excelentes",
         duration: "24 min",
@@ -15728,7 +15728,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Línea de salida",
         duration: "24 min",
@@ -15740,7 +15740,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Lo que puedo hacer ahora",
         duration: "24 min",
@@ -15752,7 +15752,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Enfurecete, maldito nerd",
         duration: "24 min",
@@ -15764,7 +15764,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Deku vs. Kacchan",
         duration: "24 min",
@@ -15776,7 +15776,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "La línea de salida de Bakugo",
         duration: "24 min",
@@ -15788,7 +15788,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Sí, solo da lo mejor, Iida",
         duration: "24 min",
@@ -15800,7 +15800,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Encuentro con lo desconocido",
         duration: "24 min",
@@ -15812,7 +15812,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Fin del juego",
         duration: "24 min",
@@ -15824,7 +15824,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "All Might",
         duration: "24 min",
@@ -15836,7 +15836,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "En cada corazón",
         duration: "24 min",
@@ -15850,7 +15850,7 @@ export const animeData = [
 
       // Temporada 2 (25 episodios)
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "¡Es la idea, Ochaco!",
         duration: "24 min",
@@ -15862,7 +15862,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "¡Arde, Festival Deportivo!",
         duration: "24 min",
@@ -15874,7 +15874,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "A su manera",
         duration: "24 min",
@@ -15886,7 +15886,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "Estrategia, estrategia, estrategia",
         duration: "24 min",
@@ -15898,7 +15898,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Final de la batalla de caballería",
         duration: "24 min",
@@ -15910,7 +15910,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "El chico que lo tiene todo",
         duration: "24 min",
@@ -15922,7 +15922,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Victoria o derrota",
         duration: "24 min",
@@ -15934,7 +15934,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "Lucha, aspirante",
         duration: "24 min",
@@ -15946,7 +15946,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Bakugo vs. Uraraka",
         duration: "24 min",
@@ -15958,7 +15958,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Shoto Todoroki: Origen",
         duration: "24 min",
@@ -15970,7 +15970,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Lucha, Iida",
         duration: "24 min",
@@ -15982,7 +15982,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 25,
         title: "Todoroki vs. Bakugo",
         duration: "24 min",
@@ -15994,7 +15994,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 26,
         title: "La elección de los nombres de héroes",
         duration: "24 min",
@@ -16008,7 +16008,7 @@ export const animeData = [
 
       // Temporada 3 (25 episodios)
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "Empieza el juego",
         duration: "24 min",
@@ -16021,7 +16021,7 @@ export const animeData = [
       },
       // ... (Episodios 2 a 24)
       {
-        season: 3,
+        season: "Temporada 3",
         number: 25,
         title: "Un nuevo curso",
         duration: "24 min",
@@ -16035,7 +16035,7 @@ export const animeData = [
 
       // Temporada 4 (25 episodios)
       {
-        season: 4,
+        season: "Temporada 4",
         number: 1,
         title: "La primicia de la clase 1-A de la U.A.",
         duration: "24 min",
@@ -16048,7 +16048,7 @@ export const animeData = [
       },
       // ... (Episodios 2 a 24)
       {
-        season: 4,
+        season: "Temporada 4",
         number: 25,
         title: "¡Su gran comienzo!",
         duration: "24 min",
@@ -16062,7 +16062,7 @@ export const animeData = [
 
       // Temporada 5 (25 episodios)
       {
-        season: 5,
+        season: "Temporada 5",
         number: 1,
         title: "¡Todos a la acción! Clase 1-A",
         duration: "24 min",
@@ -16075,7 +16075,7 @@ export const animeData = [
       },
       // ... (Episodios 2 a 24)
       {
-        season: 5,
+        season: "Temporada 5",
         number: 25,
         title: "Los cielos despejados",
         duration: "24 min",
@@ -16173,7 +16173,7 @@ export const animeData = [
     contentWarning: "+14",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Aquí me tienen.",
         duration: "23 min",
@@ -16185,7 +16185,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Despegue.",
         duration: "23 min",
@@ -16197,7 +16197,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Abejas.",
         duration: "23 min",
@@ -16209,7 +16209,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El mejor corredor.",
         duration: "23 min",
@@ -16221,7 +16221,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Condena.",
         duration: "23 min",
@@ -16233,7 +16233,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Una línea.",
         duration: "23 min",
@@ -16245,7 +16245,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Verdad.",
         duration: "23 min",
@@ -16257,7 +16257,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Un grande.",
         duration: "23 min",
@@ -16269,7 +16269,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Incursión materna.",
         duration: "23 min",
@@ -16281,7 +16281,7 @@ export const animeData = [
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Se celebra un evento.",
         duration: "23 min",
@@ -16328,7 +16328,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Adiós día de verano.",
         duration: "23 min",
@@ -16340,7 +16340,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Poder desconocido.",
         duration: "23 min",
@@ -16352,7 +16352,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Cuatro Caballeros del Apocalipsis.",
         duration: "23 min",
@@ -16364,7 +16364,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Diablo en el Valle de los Espíritus de Madera.",
         duration: "23 min",
@@ -16376,7 +16376,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Más determinación.",
         duration: "23 min",
@@ -16388,7 +16388,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Sistana Shaken.",
         duration: "23 min",
@@ -16400,7 +16400,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El nombre de la magia.",
         duration: "23 min",
@@ -16412,7 +16412,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Jóvenes héroes.",
         duration: "23 min",
@@ -16424,7 +16424,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Maestro y alumno.",
         duration: "23 min",
@@ -16436,7 +16436,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "El rugido de la destrucción.",
         duration: "23 min",
@@ -16448,7 +16448,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Verdaderos Caballeros Santos.",
         duration: "23 min",
@@ -16460,7 +16460,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Intentos perversos.",
         duration: "23 min",
@@ -16472,7 +16472,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "El acorralado.",
         duration: "23 min",
@@ -16484,7 +16484,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Gaut Singh.",
         duration: "23 min",
@@ -16496,7 +16496,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Los talismanes oscuros.",
         duration: "23 min",
@@ -16508,7 +16508,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Adiós a Shin.",
         duration: "23 min",
@@ -16520,7 +16520,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "El Rey de Liones.",
         duration: "23 min",
@@ -16532,7 +16532,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Los caballeros de la profecía se reúnen.",
         duration: "23 min",
@@ -16544,7 +16544,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Liones en llamas.",
         duration: "23 min",
@@ -16556,7 +16556,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Domando un caballo salvaje.",
         duration: "23 min",
@@ -16568,7 +16568,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Los cuatro jinetes contra los siervos del caos.",
         duration: "23 min",
@@ -16580,7 +16580,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Corazones helados y ardientes.",
         duration: "23 min",
@@ -16592,7 +16592,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Reino de los Caballeros Sagrados contra Milagaran.",
         duration: "23 min",
@@ -16604,7 +16604,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Adviento.",
         duration: "23 min",
@@ -16618,7 +16618,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "La majestuosidad del rey.",
         duration: "24 min",
@@ -16630,7 +16630,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Listos para despedirse.",
         duration: "25 min",
@@ -16642,7 +16642,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Guinevere.",
         duration: "24 min",
@@ -16654,7 +16654,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Confrontación.",
         duration: "23 min",
@@ -16666,7 +16666,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Batalla en la Ciudad Amurallada.",
         duration: "23 min",
@@ -16678,7 +16678,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "El Caballero Sagrado Negro.",
         duration: "23 min",
@@ -16690,7 +16690,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Rey loco.",
         duration: "23 min",
@@ -16702,7 +16702,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "El salvador.",
         duration: "23 min",
@@ -16714,7 +16714,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Behemoth de la Calamidad.",
         duration: "23 min",
@@ -16726,7 +16726,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "Un Corazón Vacilante.",
         duration: "23 min",
@@ -16738,7 +16738,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "El niño del destino.",
         duration: "23 min",
@@ -16750,7 +16750,7 @@ export const animeData = [
         videoUrl: "frame/Nanatsu-no-taizai-mokushiroku-no-yonkishi/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "La fiesta de los poderosos.",
         duration: "23 min",
@@ -16792,7 +16792,7 @@ export const animeData = [
     contentWarning: "+18 Violencia Extrema, Gore",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Episodio 1.",
         duration: "23 min",
@@ -16804,7 +16804,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Episodio 2.",
         duration: "23 min",
@@ -16816,7 +16816,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Episodio 3.",
         duration: "23 min",
@@ -16828,7 +16828,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Episodio 4.",
         duration: "23 min",
@@ -16840,7 +16840,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Episodio 5.",
         duration: "23 min",
@@ -16852,7 +16852,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Episodio 6.",
         duration: "23 min",
@@ -16864,7 +16864,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Episodio 7.",
         duration: "23 min",
@@ -16876,7 +16876,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Episodio 8.",
         duration: "23 min",
@@ -16888,7 +16888,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Episodio 9.",
         duration: "23 min",
@@ -16900,7 +16900,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Episodio 10.",
         duration: "23 min",
@@ -16912,7 +16912,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Episodio 11.",
         duration: "23 min",
@@ -16924,7 +16924,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Episodio 12.",
         duration: "23 min",
@@ -16936,7 +16936,7 @@ export const animeData = [
         videoUrl: "frame/Ninja-kamui/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Episodio 13.",
         duration: "23 min",
@@ -16980,7 +16980,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El nuevo traje del príncipe.",
         duration: "22 min",
@@ -16992,7 +16992,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El Príncipe y Kage.",
         duration: "22 min",
@@ -17004,7 +17004,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El nuevo rey.",
         duration: "22 min",
@@ -17016,7 +17016,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Su primer viaje.",
         duration: "22 min",
@@ -17028,7 +17028,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Tramas entrelazadas.",
         duration: "22 min",
@@ -17040,7 +17040,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El Rey del inframundo.",
         duration: "22 min",
@@ -17052,7 +17052,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "La formación del principe.",
         duration: "22 min",
@@ -17064,7 +17064,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El sacrifício de sueños.",
         duration: "22 min",
@@ -17076,7 +17076,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "La reina y el escudo.",
         duration: "22 min",
@@ -17088,7 +17088,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "La espada del Príncipe.",
         duration: "22 min",
@@ -17100,7 +17100,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Hermanos mayores y menores.",
         duration: "22 min",
@@ -17112,7 +17112,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Se oyen pasos de guerra.",
         duration: "22 min",
@@ -17124,7 +17124,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "El reino en crisis.",
         duration: "22 min",
@@ -17136,7 +17136,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "El regreso del príncipe.",
         duration: "22 min",
@@ -17148,7 +17148,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "La orden de los caballeros del inframundo.",
         duration: "22 min",
@@ -17160,7 +17160,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "La elegancia del rey.",
         duration: "22 min",
@@ -17172,7 +17172,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "La maldición de la inmortalidad.",
         duration: "22 min",
@@ -17184,7 +17184,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "La guerra contra los dioses.",
         duration: "22 min",
@@ -17196,7 +17196,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "La última fortaleza.",
         duration: "22 min",
@@ -17208,7 +17208,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Inmortal contra invencible.",
         duration: "22 min",
@@ -17220,7 +17220,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "La esgrima de un rey.",
         duration: "22 min",
@@ -17232,7 +17232,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "La promesa al diablo.",
         duration: "22 min",
@@ -17244,7 +17244,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "El rey y el sol.",
         duration: "22 min",
@@ -17257,7 +17257,7 @@ export const animeData = [
       },
       // Temporada 2: The Treasure Chest of Courage
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Kage haciendo recados / El principe y el dinero.",
         duration: "22 min",
@@ -17269,7 +17269,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "La bestia y el yermo / El desierto misterioso.",
         duration: "22 min",
@@ -17281,7 +17281,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "La vieja amiga de Hiling / Daida y la magia.",
         duration: "22 min",
@@ -17293,7 +17293,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "La inmortalidad y los tres hermanos.",
         duration: "22 min",
@@ -17305,7 +17305,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title:
           "Las reglas del inframundo / La yegua blanca enamorada / Hokuro, el soldado amable.",
@@ -17318,7 +17318,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Bojji como rey / La melancolía del rey Daida.",
         duration: "22 min",
@@ -17330,7 +17330,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title:
           "El domador de serpientes de sonrisa tenue / El convite de los Cuatro Grandes.",
@@ -17343,7 +17343,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "El sueño de Kage / Una gran madre.",
         duration: "22 min",
@@ -17355,7 +17355,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Miranjo y el diablo / El príncipe y los tesoros.",
         duration: "22 min",
@@ -17367,7 +17367,7 @@ export const animeData = [
         videoUrl: "frame/Ousama-ranking/The-treasure-chest-of-courage/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "El retorno del rey de la espada.",
         duration: "22 min",
@@ -17414,7 +17414,7 @@ export const animeData = [
     episodes: [
       // Temporada 1: East Blue (Episodios 1-61)
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title:
           "¡Soy Luffy! ¡El hombre que se convertirá en el Rey de los Piratas!",
@@ -17426,7 +17426,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title:
           "¡Aparece el gran espadachín! ¡Roronoa Zoro, el Cazador de Piratas!",
@@ -17438,7 +17438,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "¡Morgan vs. Luffy! ¿Quién es esa guapa muchacha?",
         releaseDate: "Noviembre 24, 1999",
@@ -17449,7 +17449,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "¡El pasado de Luffy! ¡Aparece Shanks, el Pelirrojo!",
         releaseDate: "Diciembre 8, 1999",
@@ -17460,7 +17460,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "¡Teme el misterioso poder! ¡Buggy, el payaso pirata!",
         releaseDate: "Diciembre 15, 1999",
@@ -17471,7 +17471,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "¡Situación desesperada! ¡Mohji, el domador, contra Luffy!",
         releaseDate: "Diciembre 22, 1999",
@@ -17482,7 +17482,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "¡Gran duelo! ¡Zoro, el espadachín, contra Cabaji, el acróbata!",
         releaseDate: "Diciembre 29, 1999",
@@ -17493,7 +17493,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title:
           "¿Quién es el vencedor? ¡Aclarando las cosas entre los poderes de las frutas del diablo!",
@@ -17505,7 +17505,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Mentiroso honorable. Capitán Usopp",
         releaseDate: "Enero 12, 2000",
@@ -17516,7 +17516,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "¡El hombre más raro del mundo! ¡Jango, el hipnotizador!",
         releaseDate: "Enero 19, 2000",
@@ -17527,7 +17527,7 @@ export const animeData = [
         description: "",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "¡Revelando el complot! El pirata mayordomo, Capitán Kuro",
         duration: "24 min",
@@ -17539,7 +17539,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "¡Batalla! ¡Los piratas de Kuroneko, batalla en la cuesta!",
         duration: "24 min",
@@ -17551,7 +17551,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "¡Dúo aterrador! Nyaban Brothers vs. Zoro",
         duration: "24 min",
@@ -17563,7 +17563,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title:
           "¡El renacimiento de Luffy! La confrontación de la señorita Kaya",
@@ -17576,7 +17576,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "¡Derrotar a Kuro! ¡La determinación de Usopp!",
         duration: "24 min",
@@ -17588,7 +17588,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "¡Proteger a Kaya! ¡Los piratas de Usopp entran en acción!",
         duration: "24 min",
@@ -17600,7 +17600,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "¡Completamente furioso! Kuro vs. Luffy, ¡la batalla final!",
         duration: "24 min",
@@ -17612,7 +17612,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "¡Eres un bicho raro! Gaimon y sus extraños amigos",
         duration: "24 min",
@@ -17624,7 +17624,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title:
           "¡El pasado de las tres espadas! ¡La promesa entre Zoro y Kuina!",
@@ -17637,7 +17637,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "¡El famoso cocinero! Sanji, del restaurante flotante",
         duration: "24 min",
@@ -17649,7 +17649,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title:
           "¡Un invitado inesperado! ¡La comida de Sanji y la gracia de Gin!",
@@ -17662,7 +17662,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "La flota pirata más grande. ¡El capitán Don Krieg!",
         duration: "24 min",
@@ -17674,7 +17674,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title:
           "¡Proteger el Baratie! ¡El gran pirata Zeff, el de la pierna roja!",
@@ -17687,7 +17687,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "¡Mihawk Ojos de Halcón! El espadachín Zoro cae al mar",
         duration: "24 min",
@@ -17699,7 +17699,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title:
           "¡La magnífica técnica de patadas! ¡Sanji vs. Pearl, el muro de hierro!",
@@ -17712,7 +17712,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/25.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 26,
         title: "¡El sueño de Zeff y Sanji! El mar de los milagros, el All Blue",
         duration: "24 min",
@@ -17724,7 +17724,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/26.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 27,
         title:
           "¡El demonio sin corazón! Gin, el vicealmirante de la flota pirata",
@@ -17737,7 +17737,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/27.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 28,
         title: "¡No moriré! ¡La conclusión: Luffy vs. Krieg!",
         duration: "24 min",
@@ -17749,7 +17749,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/28.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 29,
         title: "¡El resultado de una batalla mortal! ¡La lanza oculta!",
         duration: "24 min",
@@ -17761,7 +17761,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/29.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 30,
         title: "¡Partida! ¡El cocinero del mar se va con Luffy!",
         duration: "24 min",
@@ -17773,7 +17773,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/30.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 31,
         title: "¡El hombre más malvado de East Blue! ¡Arlong, el hombre-pez!",
         duration: "24 min",
@@ -17785,7 +17785,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/31.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 32,
         title: "La bruja de Cocoyashi. ¡La oficial de Arlong!",
         duration: "24 min",
@@ -17797,7 +17797,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/32.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 33,
         title: "¡¿Usopp muerto?! ¿Y Luffy, aún no?",
         duration: "24 min",
@@ -17809,7 +17809,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/33.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 34,
         title: "¡Todos reunidos! ¡Usopp cuenta la verdad sobre Nami!",
         duration: "24 min",
@@ -17821,7 +17821,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/34.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 35,
         title: "¡El pasado oculto! ¡Bell-mère, la luchadora!",
         duration: "24 min",
@@ -17833,7 +17833,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/35.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 36,
         title: "¡Sobrevivid! ¡Bell-mère, la madre, y el lazo de Nami!",
         duration: "24 min",
@@ -17845,7 +17845,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/36.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 37,
         title: "¡Luffy se levanta! ¡El fin de una promesa rota!",
         duration: "24 min",
@@ -17857,7 +17857,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/37.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 38,
         title: "¡Luffy en apuros! ¡Los hombres-pez vs. los piratas de Luffy!",
         duration: "24 min",
@@ -17869,7 +17869,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/38.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 39,
         title: "¡Luffy se sumerge! Zoro vs. el pulpo Hatchan",
         duration: "24 min",
@@ -17881,7 +17881,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/39.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 40,
         title: "¡Orgullosos guerreros! ¡La dramática batalla de Sanji y Usopp!",
         duration: "24 min",
@@ -17893,7 +17893,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/40.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 41,
         title: "¡Lo mejor de Luffy! ¡El coraje de Nami y el sombrero de paja!",
         duration: "24 min",
@@ -17905,7 +17905,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/41.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 42,
         title:
           "¡Apartad! ¡El hombre-pez Arlong, un temible ataque desde el mar!",
@@ -17918,7 +17918,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/42.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 43,
         title: "¡El fin del imperio de los hombres-pez! ¡Nami es mi nakama!",
         duration: "24 min",
@@ -17930,7 +17930,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/43.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 44,
         title:
           "¡Partir con una sonrisa! ¡Adiós, mi hogar, pueblo de Cocoyashi!",
@@ -17943,7 +17943,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/44.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 45,
         title:
           "¡Recompensa! ¡Luffy, el del sombrero de paja, se da a conocer al mundo!",
@@ -17956,7 +17956,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/45.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 46,
         title: "¡Tras el del sombrero de paja! ¡La gran aventura de Buggy!",
         duration: "24 min",
@@ -17968,7 +17968,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/46.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 47,
         title: "¡Lo estabais esperando! ¡El regreso del capitán Buggy!",
         duration: "24 min",
@@ -17980,7 +17980,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/47.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 48,
         title: "La ciudad del alfa y el omega. ¡Loguetown!",
         duration: "24 min",
@@ -17992,7 +17992,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/48.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 49,
         title:
           "¡Sandai Kitetsu y Yubashiri! ¡Las nuevas espadas de Zoro y la sargento mayor!",
@@ -18005,7 +18005,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/49.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 50,
         title: "¡Usopp vs. Daddy, el padre! ¡Duelo a pleno sol!",
         duration: "24 min",
@@ -18017,7 +18017,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/50.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 51,
         title:
           "¡¿Una ardiente batalla culinaria?! Sanji vs. la magnífica cocinera",
@@ -18030,7 +18030,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/51.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 52,
         title: "¡La venganza de Buggy! ¡El hombre que sonríe en el patíbulo!",
         duration: "24 min",
@@ -18042,7 +18042,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/52.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 53,
         title: "¡La leyenda ha comenzado! ¡Rumbo a la Grand Line!",
         duration: "24 min",
@@ -18054,7 +18054,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/53.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 54,
         title:
           "¡La premonición de una nueva aventura! Apis, la niña misteriosa",
@@ -18067,7 +18067,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/54.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 55,
         title:
           "¡La criatura milagrosa! El secreto de Apis y la isla legendaria",
@@ -18080,7 +18080,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/55.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 56,
         title: "¡El ataque de Erik! ¡La gran huida de la Isla Gunkan!",
         duration: "24 min",
@@ -18092,7 +18092,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/56.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 57,
         title:
           "¡La isla solitaria en un mar lejano! La legendaria Isla Perdida",
@@ -18105,7 +18105,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/57.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 58,
         title: "¡Duelo en las ruinas! ¡Zoro contra Erik bajo la tensión!",
         duration: "24 min",
@@ -18117,7 +18117,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/58.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 59,
         title:
           "¡Luffy, completamente rodeado! El plan secreto del Comodoro Nelson",
@@ -18130,7 +18130,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/59.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 60,
         title:
           "¡Los que vuelan por los cielos! ¡El renacer de una leyenda de 1000 años!",
@@ -18143,7 +18143,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T1/60.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 61,
         title: "¡El final de una dura batalla! ¡Atravesando la Red Line!",
         duration: "24 min",
@@ -18156,7 +18156,7 @@ export const animeData = [
       },
       // Temporada 2: Alabasta (Episodios 62-135)
       {
-        season: 2,
+        season: "Temporada 2",
         number: 62,
         title: "¡¿El primer obstáculo?! La ballena gigante Laboon aparece",
         releaseDate: "Marzo 21, 2001",
@@ -18168,7 +18168,7 @@ export const animeData = [
           "Al entrar a la Grand Line, la tripulación se encuentra con una ballena gigante que bloquea su camino y con el misterioso Crocus.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 63,
         title:
           "La promesa de un hombre. Luffy y la ballena juran reencontrarse",
@@ -18181,7 +18181,7 @@ export const animeData = [
           "Luffy lucha contra Laboon para hacerle una promesa: volverán a verse cuando se convierta en el Rey de los Piratas.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 64,
         title: "¡Un pueblo de amantes de los piratas! ¡Llegada a Whiskey Peak!",
         releaseDate: "Abril 22, 2001",
@@ -18193,7 +18193,7 @@ export const animeData = [
           "La tripulación llega a Whiskey Peak, un pueblo que les da una bienvenida sospechosamente calurosa, sin saber que es una base de cazarrecompensas.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 65,
         title: "¡Santouryu explosivo! ¡Zoro vs. Baroque Works!",
         releaseDate: "Abril 29, 2001",
@@ -18205,7 +18205,7 @@ export const animeData = [
           "Mientras Luffy, Usopp y Sanji festejan, Zoro descubre la verdad sobre el pueblo y se enfrenta solo a 100 agentes de la organización Baroque Works.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 66,
         title: "¡Una pelea en serio! ¡Luffy vs. Zoro, el duelo inesperado!",
         releaseDate: "Mayo 6, 2001",
@@ -18217,7 +18217,7 @@ export const animeData = [
           "Debido a un malentendido, Luffy cree que Zoro ha atacado a la gente que les dio de comer y comienza una pelea absurda entre ambos.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 67,
         title: "¡Proteger a la princesa Vivi! La huida de los piratas de Luffy",
         releaseDate: "Mayo 13, 2001",
@@ -18229,7 +18229,7 @@ export const animeData = [
           "Se revela que Miss Wednesday es en realidad Nefertari Vivi, la princesa de Alabasta. Los Sombrero de Paja aceptan llevarla a su país para detener a Crocodile.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 68,
         title: "¡Ánimo, Koby! El diario de la lucha de Koby y Helmeppo",
         releaseDate: "Mayo 20, 2001",
@@ -18241,7 +18241,7 @@ export const animeData = [
           "Una mini-historia muestra el entrenamiento de Koby y Helmeppo en la Marina bajo la tutela del Vicealmirante Garp.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 69,
         title:
           "¡La determinación de Koby y Helmeppo! El orgullo paternal del vicealmirante Garp",
@@ -18254,7 +18254,7 @@ export const animeData = [
           "Koby y Helmeppo se enfrentan a Morgan Mano de Hacha, quien escapa de la custodia de la Marina.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 70,
         title: "¡La isla prehistórica! ¡Una sombra acecha en Little Garden!",
         releaseDate: "Junio 3, 2001",
@@ -18266,7 +18266,7 @@ export const animeData = [
           "La tripulación llega a Little Garden, una isla donde el tiempo se detuvo y los dinosaurios aún viven. Conocen a los gigantes Dorry y Brogy.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 71,
         title: "¡Un gran duelo! ¡Los gigantes Dorry y Brogy!",
         releaseDate: "Junio 17, 2001",
@@ -18278,7 +18278,7 @@ export const animeData = [
           "Luffy y Usopp se inspiran en el duelo honorable que los dos gigantes han mantenido durante 100 años.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 72,
         title: "¡Luffy se enfada! Un truco sucio en un duelo sagrado",
         releaseDate: "Junio 24, 2001",
@@ -18290,7 +18290,7 @@ export const animeData = [
           "Los agentes de Baroque Works, Mr. 3 y Miss Goldenweek, interfieren en el duelo de los gigantes, enfureciendo a Luffy.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 73,
         title: "¡Brogy llora en la victoria! El juicio de Elbaf",
         releaseDate: "Julio 15, 2001",
@@ -18302,7 +18302,7 @@ export const animeData = [
           "Gracias a los trucos de Mr. 3, Brogy gana el duelo, pero se da cuenta de la trampa. Luffy jura vengar el honor de los gigantes.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 74,
         title: "¡La vela del diablo! Lágrimas de lamento y lágrimas de ira",
         releaseDate: "Julio 22, 2001",
@@ -18314,7 +18314,7 @@ export const animeData = [
           "Zoro, Nami y Vivi son atrapados por la técnica de cera de Mr. 3, que amenaza con convertirlos en estatuas.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 75,
         title: "¡Luffy atacado por la magia! Colors Trap",
         releaseDate: "Agosto 12, 2001",
@@ -18326,7 +18326,7 @@ export const animeData = [
           "Luffy es afectado por los poderes hipnóticos de Miss Goldenweek, mientras Usopp y Karoo intentan liberar a sus amigos.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 76,
         title: "¡Contraataque crítico! ¡El ingenio de Usopp y sus Kaenboshi!",
         releaseDate: "Agosto 19, 2001",
@@ -18338,7 +18338,7 @@ export const animeData = [
           "Usopp demuestra su valía como guerrero del mar al enfrentarse a Mr. 5 y Miss Valentine para salvar a sus amigos.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 77,
         title: "¡Adiós, isla de los gigantes! ¡Rumbo a Alabasta!",
         releaseDate: "Agosto 19, 2001",
@@ -18350,7 +18350,7 @@ export const animeData = [
           "Tras derrotar a los agentes de Baroque Works, los gigantes abren camino a la tripulación para que continúen su viaje hacia Alabasta.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 78,
         title:
           "¡¿Nami está enferma?! Más allá de la nieve que cae en el océano",
@@ -18363,7 +18363,7 @@ export const animeData = [
           "Nami cae gravemente enferma por una picadura de insecto en Little Garden, obligando a la tripulación a buscar un médico.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 79,
         title: "¡Emboscada! El Bliking y Wapol el Blik",
         releaseDate: "Septiembre 2, 2001",
@@ -18375,7 +18375,7 @@ export const animeData = [
           "Llegan a una isla de invierno, pero se encuentran con el tirano Wapol, antiguo rey de la Isla de Drum, quien ataca el barco.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 80,
         title: "¡¿Una isla sin médicos?! ¡Aventura en el país sin nombre!",
         releaseDate: "Septiembre 9, 2001",
@@ -18387,7 +18387,7 @@ export const animeData = [
           "Luffy y Sanji llevan a una Nami febril a través de la nieve en busca de la única doctora de la isla, la Dra. Kureha.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 81,
         title: "¡¿Eres feliz?! ¡La doctora llamada bruja!",
         releaseDate: "Septiembre 16, 2001",
@@ -18399,7 +18399,7 @@ export const animeData = [
           "Conocen a Dalton, el líder del pueblo, quien les habla de la Dra. Kureha y su joven asistente, un reno llamado Tony Tony Chopper.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 82,
         title: "¡La determinación de Dalton! Las fuerzas de Wapol desembarcan",
         releaseDate: "Octubre 7, 2001",
@@ -18411,7 +18411,7 @@ export const animeData = [
           "Wapol regresa a la isla para reclamar su reino. Mientras tanto, Luffy debe escalar el altísimo Drum Rock para llegar al castillo donde vive Kureha.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 83,
         title:
           "¡La isla que vive bajo la nieve! ¡El ascenso de los Drum Rockies!",
@@ -18424,7 +18424,7 @@ export const animeData = [
           "Luffy, cargando a Sanji y Nami, escala la montaña con sus propias manos en una muestra de increíble determinación.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 84,
         title: "¡El reno de la nariz azul! El secreto de Chopper",
         releaseDate: "Octubre 21, 2001",
@@ -18436,7 +18436,7 @@ export const animeData = [
           "La Dra. Kureha atiende a Nami. Conocemos a Chopper, un reno que comió la fruta Hito Hito y ahora puede transformarse en humano.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 85,
         title: "¡El sueño de un paria! Hiriluk, el curandero",
         releaseDate: "Octubre 28, 2001",
@@ -18448,7 +18448,7 @@ export const animeData = [
           "Se cuenta el trágico pasado de Chopper y su relación con su mentor, el Dr. Hiriluk, un médico charlatán con un corazón de oro.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 86,
         title: "Los cerezos de Hiriluk y la voluntad heredada",
         releaseDate: "Noviembre 4, 2001",
@@ -18460,7 +18460,7 @@ export const animeData = [
           "Hiriluk se sacrifica para proteger a su país y a Chopper. Su sueño de hacer florecer los cerezos en la isla de nieve es heredado por Kureha y Chopper.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 87,
         title:
           "¡Contra el ejército de Wapol! ¡Las habilidades de la fruta Baku Baku!",
@@ -18473,7 +18473,7 @@ export const animeData = [
           "Luffy y Chopper se unen para luchar contra Wapol y sus secuaces, quienes han llegado al castillo para reclamarlo.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 88,
         title:
           "¡Una fruta del diablo de tipo Zoan! Las siete transformaciones de Chopper",
@@ -18486,7 +18486,7 @@ export const animeData = [
           "Chopper demuestra sus habilidades de combate utilizando las distintas transformaciones que le permite su fruta y las Rumble Balls que él mismo inventó.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 89,
         title:
           "¡Cuando la tiranía del reino acaba! La bandera de la convicción ondea para siempre",
@@ -18499,7 +18499,7 @@ export const animeData = [
           "Luffy derrota a Wapol con un espectacular ataque y defiende la bandera pirata de Hiriluk, un símbolo de convicción y sueños.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 90,
         title: "¡Los cerezos de Hiriluk! El milagro de los Drum Rockies",
         releaseDate: "Diciembre 2, 2001",
@@ -18511,7 +18511,7 @@ export const animeData = [
           "La Dra. Kureha cumple el sueño de Hiriluk, creando una hermosa nevada de flores de cerezo sobre la isla. Luffy invita a Chopper a unirse a su tripulación.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 91,
         title: "¡Adiós, Isla de Drum! ¡Me voy al mar!",
         releaseDate: "Diciembre 9, 2001",
@@ -18523,7 +18523,7 @@ export const animeData = [
           "Inspirado por Luffy, Chopper acepta convertirse en el médico de los Sombrero de Paja y se despide de la Dra. Kureha y de su hogar.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 92,
         title: "El héroe de Alabasta y la bailarina en el barco",
         releaseDate: "Diciembre 9, 2001",
@@ -18535,7 +18535,7 @@ export const animeData = [
           "Con Chopper a bordo, la tripulación finalmente pone rumbo a Alabasta. En el camino, se encuentran con un agente de Baroque Works, Mr. 2 Bon Kurei.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 93,
         title:
           "¡Rumbo al reino de arena! Unos polvos que traen la lluvia y el ejército rebelde",
@@ -18548,7 +18548,7 @@ export const animeData = [
           "La tripulación llega a Alabasta y descubre que Crocodile ha manipulado el clima para provocar una guerra civil.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 94,
         title: "¡Reunión de poderosos! Su nombre es Portgas D. Ace",
         releaseDate: "Diciembre 23, 2001",
@@ -18560,7 +18560,7 @@ export const animeData = [
           "En el desierto, Luffy se reencuentra con su hermano mayor, Portgas D. Ace, quien está persiguiendo a un traidor: Barbanegra.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 95,
         title: "¡Ace y Luffy! Recuerdos cálidos y lazos de hermandad",
         releaseDate: "Enero 6, 2002",
@@ -18572,7 +18572,7 @@ export const animeData = [
           "Ace se une temporalmente a la tripulación, y su presencia revela más sobre la relación entre los dos hermanos.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 96,
         title: "¡La ciudad verde, Erumalu, y los Kung-Fu Dugongs!",
         releaseDate: "Enero 13, 2002",
@@ -18584,7 +18584,7 @@ export const animeData = [
           "El grupo atraviesa el desierto y llega a la ciudad en ruinas de Erumalu, donde se encuentran con los simpáticos Kung-Fu Dugongs.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 97,
         title:
           "¡Aventura en el país de arena! Los demonios que viven en la abrasadora tierra",
@@ -18597,7 +18597,7 @@ export const animeData = [
           "La travesía por el desierto de Alabasta pone a prueba la resistencia de la tripulación.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 98,
         title:
           "¡Aquí llegan los Piratas de Arena! Los hombres que viven libremente",
@@ -18610,7 +18610,7 @@ export const animeData = [
           "Un episodio de relleno donde la tripulación se encuentra con un grupo de nómadas del desierto.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 99,
         title:
           "¡El orgullo de un impostor! ¡Kamyu, el corazón del ejército rebelde!",
@@ -18623,7 +18623,7 @@ export const animeData = [
           "Otro episodio de relleno centrado en un miembro del ejército rebelde liderado por Kohza.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 100,
         title:
           "¡Kohza, guerrero del ejército rebelde! ¡La promesa que le hizo a Vivi!",
@@ -18636,7 +18636,7 @@ export const animeData = [
           "Se revela el pasado de Kohza y su amistad de la infancia con la princesa Vivi, mostrando su determinación por salvar a su país.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 101,
         title: "¡Duelo en las ondas de calor! ¡Ace vs. Scorpion!",
         releaseDate: "Febrero 17, 2002",
@@ -18648,7 +18648,7 @@ export const animeData = [
           "Episodio de relleno en el que Ace se enfrenta a un cazarrecompensas llamado Scorpion.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 102,
         title:
           "¡Ruinas antiguas y almas perdidas! ¡Vivi, los amigos y la forma de la nación!",
@@ -18661,7 +18661,7 @@ export const animeData = [
           "El grupo se pierde en unas ruinas antiguas mientras intenta llegar a Yuba, el corazón del ejército rebelde.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 103,
         title:
           "¡Los oficiales enemigos se reúnen en el Spiders Cafe a las 8:00 p. m.!",
@@ -18674,7 +18674,7 @@ export const animeData = [
           "Los principales agentes de Baroque Works, los Oficiales Agentes, se reúnen en el Spiders Cafe para recibir las órdenes finales de Crocodile.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 104,
         title:
           "¡Luffy vs. Vivi! Una lucha entre lágrimas y el juramento de amistad",
@@ -18687,7 +18687,7 @@ export const animeData = [
           "Vivi se siente abrumada por la responsabilidad, y Luffy la confronta para recordarle que no está sola y que arriesgarán sus vidas por ella.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 105,
         title: "¡La guerra de Alabasta! Rainbase, la Ciudad de los Sueños",
         releaseDate: "Marzo 17, 2002",
@@ -18699,7 +18699,7 @@ export const animeData = [
           "El grupo llega a Rainbase, la ciudad casino controlada por Crocodile. Planean infiltrarse en su base, el Rain Dinners.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 106,
         title:
           "¡La trampa de la crisis absoluta! Infiltrándose en el Rain Dinners",
@@ -18712,7 +18712,7 @@ export const animeData = [
           "Luffy, Zoro, Nami, Usopp y Smoker caen en una trampa de Kairoseki puesta por Crocodile.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 107,
         title: "¡Comienza la Operación Utopía! La rebelión se pone en marcha",
         releaseDate: "Abril 14, 2002",
@@ -18724,7 +18724,7 @@ export const animeData = [
           "Crocodile revela su plan maestro, la 'Operación Utopía', para destruir Alubarna, la capital, y tomar el control del reino.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 108,
         title: "¡Los terribles Bananawani y Mr. Prince!",
         releaseDate: "Abril 21, 2002",
@@ -18736,7 +18736,7 @@ export const animeData = [
           "Sanji, bajo el alias de Mr. Prince, idea un plan audaz para rescatar a sus amigos de la jaula de Crocodile.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 109,
         title: "¡La llave para la gran huida! ¡La Galdino Ball!",
         releaseDate: "Abril 28, 2002",
@@ -18748,7 +18748,7 @@ export const animeData = [
           "Gracias al ingenio de Sanji y a la ayuda inesperada de Chopper, el grupo logra escapar de la inundada base de Crocodile.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 110,
         title: "¡Combate a muerte sin piedad! ¡Luffy vs. Crocodile!",
         releaseDate: "Mayo 5, 2002",
@@ -18760,7 +18760,7 @@ export const animeData = [
           "Luffy se enfrenta directamente a Crocodile para que sus amigos puedan llegar a Alubarna, pero es derrotado y abandonado a su suerte en el desierto.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 111,
         title:
           "¡Una carrera para lograr el milagro! El reino animal de Alabasta",
@@ -18773,7 +18773,7 @@ export const animeData = [
           "El resto de la tripulación corre hacia Alubarna para detener al ejército rebelde, usando a los animales del desierto para cruzar el río.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 112,
         title:
           "¡El ejército rebelde vs. el ejército real! ¡Enfrentamiento en Alubarna!",
@@ -18786,7 +18786,7 @@ export const animeData = [
           "La guerra civil estalla en la capital. Los Sombrero de Paja se enfrentan a los Oficiales Agentes de Baroque Works para proteger la ciudad.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 113,
         title: "¡Alubarna llora! ¡La feroz batalla del capitán Karoo!",
         releaseDate: "Junio 2, 2002",
@@ -18798,7 +18798,7 @@ export const animeData = [
           "Karoo, el pato de Vivi, demuestra una increíble valentía al intentar llevar un mensaje crucial a través del campo de batalla.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 114,
         title:
           "¡El juramento de amistad de un amigo! ¡Batalla en la cuarta madriguera de los topos!",
@@ -18811,7 +18811,7 @@ export const animeData = [
           "Sanji se enfrenta a Mr. 2 Bon Kurei, cuyo poder de transformación le permite adoptar la apariencia de sus amigos.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 115,
         title: "¡La gran actuación de hoy! ¡La Mone Mone Montage!",
         releaseDate: "Junio 16, 2002",
@@ -18823,7 +18823,7 @@ export const animeData = [
           "La batalla entre Sanji y Mr. 2 llega a su fin, con Sanji demostrando que su fuerza y convicciones son superiores a los trucos de su oponente.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 116,
         title: "¡Convertido en Nami! El poderoso ballet kenpo de Bon Kurei",
         releaseDate: "Junio 23, 2002",
@@ -18835,7 +18835,7 @@ export const animeData = [
           "Episodio de relleno que expande la batalla entre Sanji y Mr. 2.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 117,
         title: "¡El aviso de tornado de Nami! La explosión del Clima-Tact",
         releaseDate: "Junio 30, 2002",
@@ -18847,7 +18847,7 @@ export const animeData = [
           "Nami se enfrenta a Miss Doublefinger y estrena su nueva arma, el Clima-Tact, creado por Usopp, aunque no sabe cómo usarlo del todo.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 118,
         title: "¡El secreto de la familia real! El arma ancestral, Plutón",
         releaseDate: "Julio 14, 2002",
@@ -18859,7 +18859,7 @@ export const animeData = [
           "Zoro se enfrenta a Mr. 1 (Daz Bonez), cuyo cuerpo es de acero. Mientras, Crocodile revela que su objetivo es encontrar el arma ancestral Plutón.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 119,
         title:
           "¡La esencia de una espada poderosa! El poder de cortar el acero",
@@ -18872,7 +18872,7 @@ export const animeData = [
           "Al borde de la muerte, Zoro recuerda las enseñanzas de su maestro y aprende a 'escuchar el aliento' del acero, logrando cortar a Mr. 1.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 120,
         title: "¡La batalla ha terminado! ¡Kohza levanta la bandera blanca!",
         releaseDate: "Agosto 4, 2002",
@@ -18884,7 +18884,7 @@ export const animeData = [
           "Vivi intenta detener la guerra, y Kohza se da cuenta del engaño, pero es demasiado tarde para detener la batalla.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 121,
         title: "¡La voz de Vivi no se oye! ¡Un héroe desciende!",
         releaseDate: "Agosto 11, 2002",
@@ -18896,7 +18896,7 @@ export const animeData = [
           "Luffy, habiendo sobrevivido, regresa a Alubarna para un segundo asalto contra Crocodile.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 122,
         title: "¡Luffy de arena vs. Luffy de agua! ¡El duelo final!",
         releaseDate: "Agosto 18, 2002",
@@ -18908,7 +18908,7 @@ export const animeData = [
           "Luffy descubre la debilidad de Crocodile: el agua. Usando un barril de agua, logra golpearlo y comienza la verdadera batalla.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 123,
         title:
           "¡Huele a cocodrilo! ¡Corre a la tumba de la Familia Real, Luffy!",
@@ -18921,7 +18921,7 @@ export const animeData = [
           "La batalla se traslada a la tumba real, donde Crocodile planea detonar una bomba que destruirá la ciudad.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 124,
         title: "¡La pesadilla se acerca! La base secreta del Clan Suna Suna",
         releaseDate: "Septiembre 1, 2002",
@@ -18933,7 +18933,7 @@ export const animeData = [
           "Los Sombrero de Paja buscan la bomba mientras Luffy contiene a Crocodile.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 125,
         title:
           "¡Alas magníficas! ¡Mi nombre es Pell, el espíritu guardián del reino!",
@@ -18946,7 +18946,7 @@ export const animeData = [
           "Pell, uno de los guardianes de Alabasta, se sacrifica para llevar la bomba lejos de la ciudad y salvar a todos.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 126,
         title: "¡Te superaré! ¡La lluvia cae en Alabasta!",
         releaseDate: "Septiembre 15, 2002",
@@ -18958,7 +18958,7 @@ export const animeData = [
           "Luffy, usando su propia sangre, logra golpear a Crocodile y lo derrota con un ataque final que atraviesa el suelo del desierto, provocando la lluvia.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 127,
         title: "¡Adiós a las armas! ¡Piratas y un poco de justicia!",
         releaseDate: "Octubre 6, 2002",
@@ -18970,7 +18970,7 @@ export const animeData = [
           "Con la lluvia cayendo y Crocodile derrotado, la guerra en Alabasta finalmente termina.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 128,
         title:
           "¡El banquete de los piratas y la operación 'Escape de Alabasta'!",
@@ -18983,7 +18983,7 @@ export const animeData = [
           "La tripulación celebra su victoria con un gran banquete en el palacio real mientras planean su escape de la Marina.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 129,
         title: "¡Todo comenzó ese día! ¡Vivi cuenta sus aventuras!",
         releaseDate: "Octubre 20, 2002",
@@ -18995,7 +18995,7 @@ export const animeData = [
           "Vivi reflexiona sobre su viaje con los Sombrero de Paja. La tripulación se prepara para partir, esperando a Vivi en el punto de encuentro.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 130,
         title: "¡Huele a peligro! La séptima es Nico Robin",
         releaseDate: "Octubre 27, 2002",
@@ -19007,7 +19007,7 @@ export const animeData = [
           "Nico Robin, ex agente de Baroque Works, aparece en el barco y pide unirse a la tripulación. Vivi se despide de sus amigos con un gesto silencioso que sella su amistad.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 131,
         title: "¡El primer paciente! La anécdota de la Rumble Ball",
         releaseDate: "Noviembre 3, 2002",
@@ -19019,7 +19019,7 @@ export const animeData = [
           "Episodio de relleno donde Chopper recuerda cómo creó las Rumble Balls.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 132,
         title: "¡La rebelión de la navegante! ¡Por un sueño inquebrantable!",
         releaseDate: "Noviembre 10, 2002",
@@ -19031,7 +19031,7 @@ export const animeData = [
           "Episodio de relleno centrado en Nami y su sueño de dibujar un mapa del mundo.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 133,
         title: "¡Una receta heredada! ¡Sanji, el experto del curry!",
         releaseDate: "Noviembre 17, 2002",
@@ -19043,7 +19043,7 @@ export const animeData = [
           "Sanji ayuda a un joven aprendiz de cocinero de la Marina a preparar un curry legendario.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 134,
         title: "¡La haré florecer! La bola 8-shaku del varonil Usopp",
         releaseDate: "Noviembre 24, 2002",
@@ -19055,7 +19055,7 @@ export const animeData = [
           "Usopp ayuda a una niña a lanzar un gran fuego artificial en memoria de sus padres.",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 135,
         title: "¡El infame cazador de piratas! ¡Zoro, el espadachín errante!",
         releaseDate: "Diciembre 1, 2002",
@@ -19068,7 +19068,7 @@ export const animeData = [
       },
       // Temporada 3: Skypiea (Episodios 136-206) - Completo
       {
-        season: 3,
+        season: "Temporada 3",
         number: 136,
         title: "Zeny de la Isla de las Cabras y el barco pirata en la montaña",
         releaseDate: "Diciembre 8, 2002",
@@ -19080,7 +19080,7 @@ export const animeData = [
           "La tripulación se encuentra con un anciano llamado Zenny que vive solo con sus cabras en una isla.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 137,
         title:
           "¡¿Qué les parece el negocio?! ¡La ambición de Zenny, el prestamista!",
@@ -19093,7 +19093,7 @@ export const animeData = [
           "Chopper descubre que Zenny está enfermo y que su sueño es convertirse en pirata, por lo que la tripulación lo ayuda.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 138,
         title:
           "¡Dónde yace el tesoro de la isla! ¡La incursión de los Piratas de Zenny!",
@@ -19106,7 +19106,7 @@ export const animeData = [
           "Luffy y sus amigos ayudan a Zenny a cumplir su sueño de zarpar como un pirata antes de que su tiempo se acabe.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 139,
         title:
           "¡La leyenda de la Niebla Arcoíris! El viejo Henzo de la Isla Ruluka",
@@ -19119,7 +19119,7 @@ export const animeData = [
           "La tripulación llega a la isla Ruluka y escucha sobre la leyenda de la Niebla Arcoíris, un lugar del que nadie ha regresado.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 140,
         title:
           "¡Habitantes de la Tierra Jamás Vista! ¡Los Piratas de la Calabaza!",
@@ -19132,7 +19132,7 @@ export const animeData = [
           "El Going Merry queda atrapado dentro de la Niebla Arcoíris, un cementerio de barcos donde el tiempo fluye de manera diferente.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 141,
         title: "¡Anhelo por el hogar! ¡El ineludible cementerio de piratas!",
         releaseDate: "Enero 19, 2003",
@@ -19144,7 +19144,7 @@ export const animeData = [
           "La tripulación descubre que la Niebla Arcoíris es un espacio donde pueden reencontrarse con piratas del pasado.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 142,
         title: "¡Lucha desesperada! El plan de Whetton y la Torre Arcoíris",
         releaseDate: "Enero 26, 2003",
@@ -19156,7 +19156,7 @@ export const animeData = [
           "Luffy y sus amigos luchan para escapar de la niebla antes de que se cierre para siempre.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 143,
         title: "Y entonces comenzó la leyenda. ¡Rumbo al final del arcoíris!",
         releaseDate: "Febrero 2, 2003",
@@ -19168,7 +19168,7 @@ export const animeData = [
           "La tripulación escapa de la Niebla Arcoíris y un barco gigante cae del cielo, indicando la existencia de una isla en el cielo.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 144,
         title: "¡El Log capturado! ¡Masira, el Rey del Salvamento!",
         releaseDate: "Febrero 9, 2003",
@@ -19180,7 +19180,7 @@ export const animeData = [
           "Para llegar a la isla del cielo, la tripulación busca información en la isla de Jaya, un lugar sin ley lleno de piratas.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 145,
         title:
           "¡Aparecen los monstruos! No toques a los piratas de Barbablanca",
@@ -19193,7 +19193,7 @@ export const animeData = [
           "Luffy y Zoro son humillados por Bellamy y su tripulación, quienes se burlan de su sueño de encontrar la isla del cielo.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 146,
         title: "¡Deja de soñar! ¡Mock Town, la ciudad del desprecio!",
         releaseDate: "Febrero 23, 2003",
@@ -19205,7 +19205,7 @@ export const animeData = [
           "Un misterioso hombre, Barbanegra, anima a Luffy a seguir sus sueños. La tripulación busca a alguien que sepa cómo llegar a Skypiea.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 147,
         title:
           "El mejor pirata. El hombre que habla de sueños y el Rey de la Exploración Submarina",
@@ -19218,7 +19218,7 @@ export const animeData = [
           "La tripulación conoce a Montblanc Cricket, descendiente del infame 'Mentiroso' Norland, quien podría tener la clave para llegar al cielo.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 148,
         title: "¡La familia legendaria! Norland, el mentiroso",
         releaseDate: "Marzo 16, 2003",
@@ -19230,7 +19230,7 @@ export const animeData = [
           "Cricket cuenta la historia de su antepasado, Montblanc Norland, un explorador que afirmó haber encontrado una ciudad de oro.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 149,
         title: "¡Rumbo a las nubes! ¡Encontrar un Southbird!",
         releaseDate: "Marzo 23, 2003",
@@ -19242,7 +19242,7 @@ export const animeData = [
           "Para que la Corriente Ascendente los lleve al cielo, necesitan capturar un pájaro especial llamado Southbird.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 150,
         title: "¡¿Los sueños no se cumplen?! Bellamy vs. la Alianza Saruyama",
         releaseDate: "Abril 13, 2003",
@@ -19254,7 +19254,7 @@ export const animeData = [
           "Bellamy y su tripulación atacan a Cricket y le roban el oro que había encontrado. Luffy se enfurece.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 151,
         title:
           "¡El hombre de los 100 millones! La mayor autoridad del mundo y el pirata Barbanegra",
@@ -19267,7 +19267,7 @@ export const animeData = [
           "Luffy derrota a Bellamy de un solo golpe, recuperando el oro. Mientras, los Shichibukai se reúnen y se revela la recompensa de Luffy.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 152,
         title: "¡Navegando hacia el cielo! ¡Subir en la Knock-Up Stream!",
         releaseDate: "Abril 27, 2003",
@@ -19279,7 +19279,7 @@ export const animeData = [
           "Con el Going Merry modificado, la tripulación se posiciona sobre la gigantesca corriente de agua ascendente y se lanza hacia el cielo.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 153,
         title:
           "¡Este es el mar del cielo! El Caballero del Cielo y la Puerta del Paraíso",
@@ -19292,7 +19292,7 @@ export const animeData = [
           "La tripulación llega a Skypiea, una isla en un mar de nubes. Son atacados por un guerrero enmascarado, pero son salvados por el Caballero del Cielo, Gan Fall.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 154,
         title:
           "¡La Tierra de Dios, Skypiea! ¡Los ángeles de la playa de nubes!",
@@ -19305,7 +19305,7 @@ export const animeData = [
           "La tripulación explora Skypiea y conoce a Conis y su padre Pagaya, quienes les explican las costumbres y peligros del lugar, como el autoproclamado 'Dios' Enel.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 155,
         title:
           "¡La prohibida tierra sagrada! ¡La isla donde reside Dios y el Juicio de los Cielos!",
@@ -19318,7 +19318,7 @@ export const animeData = [
           "Por entrar ilegalmente a Skypiea, los Sombrero de Paja son sentenciados a recibir el 'Juicio de los Cielos' en la tierra sagrada de Upper Yard.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 156,
         title: "¡¿Ya somos criminales?! Los defensores de la ley en Skypiea",
         releaseDate: "Mayo 25, 2003",
@@ -19330,7 +19330,7 @@ export const animeData = [
           "Nami, Usopp, Sanji y Zoro deciden pagar la exorbitante multa para entrar, pero Luffy y los demás se adentran en Upper Yard.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 157,
         title: "¡¿Podemos escapar?! ¡Las pruebas de Dios están en marcha!",
         releaseDate: "Junio 15, 2003",
@@ -19342,7 +19342,7 @@ export const animeData = [
           "La tripulación que se adentró en Upper Yard se enfrenta a la primera de las cuatro pruebas de Dios, la 'Prueba de las Esferas', impuesta por el Sacerdote Satori.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 158,
         title: "¡La trampa de Lovely Street! El todopoderoso Dios Enel",
         releaseDate: "Junio 22, 2003",
@@ -19354,7 +19354,7 @@ export const animeData = [
           "Luffy, Sanji y Usopp luchan contra Satori y sus impredecibles Esferas Sorpresa, que contienen diversos peligros.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 159,
         title: "¡Adelante, Pequeño Cuervo! Al altar del sacrificio",
         releaseDate: "Julio 6, 2003",
@@ -19366,7 +19366,7 @@ export const animeData = [
           "Tras derrotar a Satori, el grupo se dirige al altar donde Nami, Zoro, Robin y Chopper han sido llevados como sacrificio.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 160,
         title:
           "¡Probabilidad de supervivencia: 10%! ¡El Sacerdote Satori, el poder del Mantra!",
@@ -19379,7 +19379,7 @@ export const animeData = [
           "Se explica el poder del Mantra, una habilidad que permite a los Sacerdotes y a Enel predecir los movimientos de sus oponentes.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 161,
         title:
           "El peligro de la 'Prueba de las Esferas'. ¡Lucha a muerte en el Bosque de las Dificultades!",
@@ -19392,7 +19392,7 @@ export const animeData = [
           "La tripulación se reúne en el altar, pero deben enfrentarse a los otros tres sacerdotes de Enel.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 162,
         title: "¡Chopper en peligro! El antiguo Dios vs. el Sacerdote Shura",
         releaseDate: "Agosto 3, 2003",
@@ -19404,7 +19404,7 @@ export const animeData = [
           "Chopper se enfrenta al Sacerdote Shura y su 'Prueba de los Hilos', pero es salvado por Gan Fall.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 163,
         title: "¡Siempre misteriosa! Prueba de los Hilos y Prueba de Amor",
         releaseDate: "Agosto 10, 2003",
@@ -19416,7 +19416,7 @@ export const animeData = [
           "La situación se complica y los Sombrero de Paja se ven envueltos en la guerra entre los Shandians y el ejército de Enel.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 164,
         title: "¡Encendamos el fuego de Shandora! Wiper, el guerrero",
         releaseDate: "Agosto 17, 2003",
@@ -19428,7 +19428,7 @@ export const animeData = [
           "Se introduce a Wiper, el líder de los guerreros Shandian, descendientes de la antigua civilización de Jaya.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 165,
         title: "¡La tierra flotante del oro, Jaya! ¡Al santuario de Dios!",
         releaseDate: "Agosto 24, 2003",
@@ -19440,7 +19440,7 @@ export const animeData = [
           "Nami descubre que la legendaria ciudad de oro, Jaya, se encuentra en Upper Yard, y planea encontrarla.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 166,
         title: "¡Víspera del festival de oro! ¡Afecto por el 'Vearth'!",
         releaseDate: "Septiembre 7, 2003",
@@ -19452,7 +19452,7 @@ export const animeData = [
           "Ambos bandos, los Sombrero de Paja y los Shandians, se preparan para la batalla final contra Enel y sus sacerdotes.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 167,
         title: "¡Aparece el Dios Enel! Aubade para los supervivientes",
         releaseDate: "Septiembre 21, 2003",
@@ -19464,7 +19464,7 @@ export const animeData = [
           "Enel aparece y anuncia un 'juego de supervivencia': solo 5 de los 81 combatientes quedarán en pie después de tres horas.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 168,
         title:
           "¡La anaconda de puros colmillos! ¡Comienza el juego de supervivencia!",
@@ -19477,7 +19477,7 @@ export const animeData = [
           "La batalla campal comienza en Upper Yard. Zoro se enfrenta al sacerdote Ohm, y una serpiente gigante llamada Nola causa estragos.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 169,
         title:
           "¡El Reject suicida! La determinación de Wiper, el 'Demonio de la Guerra'",
@@ -19490,7 +19490,7 @@ export const animeData = [
           "Wiper demuestra su increíble determinación y su poderosa arma, el Reject Dial, que puede herir incluso al usuario.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 170,
         title: "¡La batalla en el aire! El pirata Zoro vs. el guerrero Braham",
         releaseDate: "Octubre 12, 2003",
@@ -19502,7 +19502,7 @@ export const animeData = [
           "Zoro se enfrenta al shandian Braham, quien usa pistolas y Milky Dials en sus zapatos para moverse por el aire.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 171,
         title:
           "¡El aullador Burn Bazooka! ¡Luffy vs. Wiper, el demonio de la guerra!",
@@ -19515,7 +19515,7 @@ export const animeData = [
           "Luffy y Wiper tienen su primer enfrentamiento. El poder del Burn Bazooka de Wiper choca con la goma de Luffy.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 172,
         title: "¡La Prueba del Pantano! ¡Chopper vs. el sacerdote Gedatsu!",
         releaseDate: "Octubre 26, 2003",
@@ -19527,7 +19527,7 @@ export const animeData = [
           "Chopper cae en la 'Prueba del Pantano' y debe enfrentarse al despistado pero peligroso Sacerdote Gedatsu.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 173,
         title: "¡La habilidad invencible! La verdadera naturaleza de Enel",
         releaseDate: "Noviembre 2, 2003",
@@ -19539,7 +19539,7 @@ export const animeData = [
           "Se revela el terrorífico poder de la fruta Goro Goro de Enel, una Logia de rayo que lo hace virtualmente invencible y le permite escuchar todo Skypiea.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 174,
         title: "¡La ciudad desaparecida! ¡Las magníficas ruinas de Shandora!",
         releaseDate: "Noviembre 9, 2003",
@@ -19551,7 +19551,7 @@ export const animeData = [
           "Luffy, Nami, Sanji y Usopp son engullidos por la serpiente gigante Nola y llegan a las ruinas de la antigua ciudad de oro, Shandora.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 175,
         title:
           "¡Probabilidad de supervivencia: ¡0%! Chopper vs. el Sacerdote Ohm",
@@ -19564,7 +19564,7 @@ export const animeData = [
           "El Sacerdote Ohm y su 'Prueba del Hierro' aparecen. Chopper se enfrenta a él para proteger al herido Gan Fall.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 176,
         title:
           "¡Escalar el Giant Jack! Lucha desesperada en las ruinas superiores",
@@ -19577,7 +19577,7 @@ export const animeData = [
           "Zoro, Wiper y Gan Fall luchan contra Ohm mientras Luffy intenta escapar del interior de la serpiente Nola.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 177,
         title:
           "¡La verdadera valía de la Prueba del Hierro! ¡La lucha a muerte de las espinas blancas!",
@@ -19590,7 +19590,7 @@ export const animeData = [
           "La batalla de Zoro contra Ohm y sus trampas de hierro llega a su punto culminante.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 178,
         title: "¡El ataque de la espada cortante! ¡Zoro vs. el Sacerdote Ohm!",
         releaseDate: "Diciembre 7, 2003",
@@ -19602,7 +19602,7 @@ export const animeData = [
           "Zoro desata un nuevo y poderoso ataque a distancia, el 'Cañón de 108 Libras', para derrotar a Ohm.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 179,
         title: "¡Las ruinas superiores se derrumban! ¡El quinteto final!",
         releaseDate: "Diciembre 14, 2003",
@@ -19614,7 +19614,7 @@ export const animeData = [
           "Con los cuatro sacerdotes derrotados, Enel elimina al resto de los combatientes, dejando solo a cinco supervivientes para enfrentarlo a él.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 180,
         title:
           "¡Confrontación en las ruinas antiguas! El objetivo del Dios Enel",
@@ -19627,7 +19627,7 @@ export const animeData = [
           "Enel revela su plan: usar el arca Maxim para destruir Skypiea y dirigirse a la 'Tierra Infinita', la luna.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 181,
         title: "¡Ambición por el Fairy Vearth! ¡El arca Maxim!",
         releaseDate: "Diciembre 28, 2003",
@@ -19639,7 +19639,7 @@ export const animeData = [
           "Wiper, Zoro y Gan Fall intentan detener a Enel, pero su poder de rayo es demasiado para ellos.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 182,
         title: "¡Finalmente se enfrentan! ¡El pirata Luffy vs. el Dios Enel!",
         releaseDate: "Enero 11, 2004",
@@ -19651,7 +19651,7 @@ export const animeData = [
           "Luffy finalmente sale de la serpiente y se enfrenta a Enel. Para sorpresa de todos, los ataques eléctricos de Enel no tienen efecto en el cuerpo de goma de Luffy.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 183,
         title: "¡El Maxim emerge! ¡Que comience la Despiea!",
         releaseDate: "Enero 18, 2004",
@@ -19663,7 +19663,7 @@ export const animeData = [
           "A pesar de la inmunidad de Luffy, Enel usa su poder para mover el arca y se escapa, dejando a Luffy atrás.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 184,
         title: "¡Luffy cae! ¡El juicio de Dios y el deseo de Nami!",
         releaseDate: "Enero 25, 2004",
@@ -19675,7 +19675,7 @@ export const animeData = [
           "Nami y Usopp usan el Waver para llegar al arca Maxim. Nami intenta robar el tesoro mientras lucha por ayudar a Luffy.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 185,
         title:
           "¡Dos personas despiertan! ¡Al rescate en un frente de amor ardiente!",
@@ -19688,7 +19688,7 @@ export const animeData = [
           "Sanji y Usopp se recuperan y se infiltran en el arca Maxim para sabotearla y rescatar a Nami.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 186,
         title:
           "El capriccio de la destrucción. ¡La inminente desaparición de la Isla del Cielo!",
@@ -19701,7 +19701,7 @@ export const animeData = [
           "Enel comienza a destruir Skypiea con su ataque 'Raigo'. La única esperanza es hacer sonar la Campana de Oro.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 187,
         title:
           "¡Guiados por el sonido de la campana! La historia del gran guerrero y el explorador",
@@ -19714,7 +19714,7 @@ export const animeData = [
           "Se revela la historia completa de la amistad entre el guerrero shandian Calgara y el explorador Montblanc Norland.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 188,
         title:
           "¡Liberados de la maldición! ¡Las lágrimas que derramó el gran guerrero!",
@@ -19727,7 +19727,7 @@ export const animeData = [
           "Norland fue ejecutado como mentiroso porque la mitad de Jaya fue lanzada al cielo. Wiper se da cuenta de que la historia era real.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 189,
         title:
           "¡Amigos para siempre! La campana del juramento que resuena en el gran océano",
@@ -19740,7 +19740,7 @@ export const animeData = [
           "Con la ayuda de Wiper, Luffy intenta derribar el Giant Jack para poder alcanzar a Enel y hacer sonar la campana.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 190,
         title:
           "¡La desaparición de la Isla de los Ángeles! El terror del advenimiento de Raigo",
@@ -19753,7 +19753,7 @@ export const animeData = [
           "Enel crea una esfera de rayos masiva para aniquilar Skypiea por completo. Nami usa el Waver para darle a Luffy un último impulso.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 191,
         title: "¡Derribar el Giant Jack! La última esperanza de huida",
         releaseDate: "Marzo 21, 2004",
@@ -19765,7 +19765,7 @@ export const animeData = [
           "Wiper y Zoro trabajan juntos para derribar el tallo de frijol gigante, creando un camino para que Luffy llegue al arca.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 192,
         title:
           "¡Milagro en la Tierra de Dios! Una canción de amor que oyeron los ángeles",
@@ -19778,7 +19778,7 @@ export const animeData = [
           "Luffy, con una gigantesca bola de oro en su puño, choca contra el Raigo de Enel y finalmente hace sonar la Campana de Oro.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 193,
         title:
           "¡El final de la lucha! El eco del orgullo de Shandora resuena a lo lejos",
@@ -19791,7 +19791,7 @@ export const animeData = [
           "El sonido de la campana llega al Mar Azul, demostrando a Cricket que la ciudad de oro era real. Shandians y Skypieans celebran juntos la paz.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 194,
         title: "¡Vine aquí! ¡Lo que tejen los Poneglyphs!",
         releaseDate: "Junio 6, 2004",
@@ -19804,7 +19804,7 @@ export const animeData = [
       },
       // ... (El resto de los episodios de Skypiea y G-8 hasta el 206)
       {
-        season: 3,
+        season: "Temporada 3",
         number: 195,
         title: "¡Regreso al Mar Azul! ¡El final tejido por los pensamientos!",
         releaseDate: "Junio 13, 2004",
@@ -19816,7 +19816,7 @@ export const animeData = [
           "Con la paz restaurada en Skypiea, los Sombrero de Paja se despiden de sus nuevos amigos y regresan al Mar Azul con una gran cantidad de oro.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 196,
         title:
           "¡Se declara el estado de emergencia! ¡La notoria infiltración de un barco pirata!",
@@ -19829,7 +19829,7 @@ export const animeData = [
           "Comienza el arco de relleno de G-8. Al caer del cielo, el Going Merry aterriza en medio de una inexpugnable base de la Marina.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 197,
         title:
           "¡Sanji, el cocinero! ¡Demostrando su valía en el comedor de la Marina!",
@@ -19842,7 +19842,7 @@ export const animeData = [
           "La tripulación se separa. Sanji y Luffy se infiltran en la cocina de la base y demuestran sus habilidades culinarias.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 198,
         title: "¡Zoro capturado y la operación de emergencia de Chopper!",
         releaseDate: "Julio 11, 2004",
@@ -19854,7 +19854,7 @@ export const animeData = [
           "Zoro es capturado mientras exploraba la base. Chopper intenta rescatarlo mientras se hace pasar por el médico del barco.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 199,
         title:
           "¡La red de búsqueda de la Marina se acerca! ¡El segundo miembro capturado!",
@@ -19867,7 +19867,7 @@ export const animeData = [
           "El Comandante Jonathan, un estratega brillante, comienza a cerrar el cerco sobre los Sombrero de Paja.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 200,
         title:
           "¡La crucial decisión de Luffy y Sanji! ¡La gran maniobra de escape!",
@@ -19880,7 +19880,7 @@ export const animeData = [
           "Luffy y Sanji idean un plan para crear una distracción y permitir que el resto de la tripulación escape de la base.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 201,
         title:
           "¡La participación de la Unidad Especial de Sangre Caliente! ¡Batalla en el puente!",
@@ -19893,7 +19893,7 @@ export const animeData = [
           "La tripulación se enfrenta a los mejores soldados de la base en su intento de llegar al Going Merry.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 202,
         title: "¡Atravesando el cerco! La recuperación del Going Merry",
         releaseDate: "Agosto 15, 2004",
@@ -19905,7 +19905,7 @@ export const animeData = [
           "Nami usa su ingenio y el conocimiento del clima para ayudar a la tripulación a recuperar su barco.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 203,
         title:
           "¡El barco pirata desaparecido! ¡La segunda ronda del asalto a la fortaleza!",
@@ -19918,7 +19918,7 @@ export const animeData = [
           "Justo cuando creen que han escapado, se dan cuenta de que el oro de Skypiea no está en el barco.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 204,
         title:
           "¡El plan para recuperar el oro y el plan para recuperar el Waver!",
@@ -19931,7 +19931,7 @@ export const animeData = [
           "El grupo se infiltra de nuevo en la base para recuperar su tesoro y el Waver de Nami.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 205,
         title:
           "¡Atraparlos a todos en una red! ¡El astuto plan secreto de Jonathan!",
@@ -19944,7 +19944,7 @@ export const animeData = [
           "El Comandante Jonathan anticipa sus movimientos y les tiende una última trampa.",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 206,
         title:
           "¡Adiós, fortaleza de la Marina! La batalla final por la libertad",
@@ -19958,7 +19958,7 @@ export const animeData = [
       },
       // ... Water 7 desde 207-325)
       {
-        season: 4,
+        season: "Temporada 4",
         number: 207,
         title: "¡Gran aventura en Long Ring Long Land!",
         releaseDate: "Octubre 3, 2004",
@@ -19970,7 +19970,7 @@ export const animeData = [
           "La tripulación aterriza en una extraña isla donde todos los animales y plantas son largos. Allí se encuentran con los Piratas de Foxy.",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 207,
         title: "¡Gran aventura en Long Ring Long Land!",
         duration: "24 min",
@@ -19982,7 +19982,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/207.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 208,
         title: "¡Los Piratas de Foxy y el Davy Back!",
         duration: "24 min",
@@ -19994,7 +19994,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/208.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 209,
         title: "¡La primera ronda! La Donut Race",
         duration: "24 min",
@@ -20006,7 +20006,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/209.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 210,
         title: "¡Foxy, el Zorro Plateado! Una violenta interferencia",
         duration: "24 min",
@@ -20018,7 +20018,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/210.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 211,
         title: "¡Segunda ronda! ¡El Groggy Ring!",
         duration: "24 min",
@@ -20030,7 +20030,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/211.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 212,
         title: "¡Tarjetas rojas consecutivas! El Groggy Ring",
         duration: "24 min",
@@ -20042,7 +20042,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/212.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 213,
         title: "¡Tercera ronda! ¡La vuelta a la pista en el Roller Race!",
         duration: "24 min",
@@ -20054,7 +20054,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/213.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 214,
         title:
           "¡El clímax de la carrera explosiva! ¡Adentrándose en la ronda final!",
@@ -20067,7 +20067,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/214.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 215,
         title: "¡El veloz servicio! ¡La Dodgeball pirata!",
         duration: "24 min",
@@ -20079,7 +20079,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/215.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 216,
         title: "¡Batalla decisiva en el acantilado! ¡Daruma-san ga koronda!",
         duration: "24 min",
@@ -20091,7 +20091,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/216.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 217,
         title: "¡Confrontación de capitanes! ¡La ronda final: Combat!",
         duration: "24 min",
@@ -20103,7 +20103,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/217.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 218,
         title: "¡El rayo Noro Noro vs. el invulnerable Luffy!",
         duration: "24 min",
@@ -20115,7 +20115,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/218.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 219,
         title: "¡La heroica y feroz batalla! El final decisivo",
         duration: "24 min",
@@ -20127,7 +20127,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/219.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 220,
         title: "¡¿Perdiste la memoria?! ¡Te la quitaron! ¿Quiénes sois?",
         duration: "24 min",
@@ -20139,7 +20139,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/220.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 221,
         title: "¡El misterioso muchacho del silbato y la suposición de Robin!",
         duration: "24 min",
@@ -20151,7 +20151,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/221.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 222,
         title: "¡Recuperemos los recuerdos! ¡Los piratas desembarcan!",
         duration: "24 min",
@@ -20163,7 +20163,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/222.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 223,
         title: "¡Zoro enseña los colmillos! ¡La lucha de una bestia salvaje!",
         duration: "24 min",
@@ -20175,7 +20175,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/223.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 224,
         title: "¡El contraataque final del ladrón de recuerdos!",
         duration: "24 min",
@@ -20187,7 +20187,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/224.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 225,
         title: "¡El hombre de un orgullo increíble! ¡Foxy, el Zorro Plateado!",
         duration: "24 min",
@@ -20199,7 +20199,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/225.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 226,
         title: "¡Un poder cercano al invencible! ¡Un hombre muy peligroso!",
         duration: "24 min",
@@ -20211,7 +20211,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/226.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 227,
         title:
           "¡Almirante de la Sede de la Marina, Aokiji! ¡La amenaza del mayor poder!",
@@ -20224,7 +20224,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/227.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 228,
         title: "¡Goma vs. hielo! ¡Luffy vs. Aokiji!",
         duration: "24 min",
@@ -20236,7 +20236,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/228.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 229,
         title: "El veloz Umi Ressha. La Capital de Agua, Water 7",
         duration: "24 min",
@@ -20248,7 +20248,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/229.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 230,
         title: "¡Aventura en la Ciudad del Agua! Rumbo al gran astillero",
         duration: "24 min",
@@ -20260,7 +20260,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/230.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 231,
         title: "¡La Franky Family e Iceburg-san!",
         duration: "24 min",
@@ -20272,7 +20272,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/231.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 232,
         title: "¡Galley-La Company! El magnífico Muelle 1",
         duration: "24 min",
@@ -20284,7 +20284,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/232.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 233,
         title: "El secuestro del pirata. El barco pirata que espera su final",
         duration: "24 min",
@@ -20296,7 +20296,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/233.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 234,
         title: "¡Rescatar a un nakama! El asalto a la Franky House",
         duration: "24 min",
@@ -20308,7 +20308,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/234.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 235,
         title:
           "¡Gran pelea bajo la luna! La bandera pirata que ondea con tristeza",
@@ -20321,7 +20321,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/235.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 236,
         title: "¡Luffy vs. Usopp! El espíritu del enfrentamiento entre hombres",
         duration: "24 min",
@@ -20333,7 +20333,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/236.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 237,
         title: "¡La ciudad del agua tiembla! ¡Iceburg es el objetivo!",
         duration: "24 min",
@@ -20345,7 +20345,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/237.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 238,
         title: "¡El hombre de goma vs. el cyborg escupe-fuego!",
         duration: "24 min",
@@ -20357,7 +20357,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/238.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 239,
         title:
           "¡¿Los criminales son los del Sombrero de Paja?! Los guardianes de la Ciudad del Agua",
@@ -20370,7 +20370,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/239.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 240,
         title:
           "¡Una despedida eterna! La mujer que atrae a la oscuridad, Nico Robin",
@@ -20383,7 +20383,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/240.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 241,
         title:
           "¡Hay que atrapar a Robin! La decisión de los del Sombrero de Paja",
@@ -20396,7 +20396,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/241.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 242,
         title: "¡La señal es el cañonazo! El CP9 se pone en marcha",
         duration: "24 min",
@@ -20408,7 +20408,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/242.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 243,
         title: "¡El CP9 desenmascarado! Sus sorprendentes caras",
         duration: "24 min",
@@ -20420,7 +20420,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/243.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 244,
         title: "¡El vínculo secreto! Iceburg y Franky",
         duration: "24 min",
@@ -20432,7 +20432,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/244.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 245,
         title: "¡Vuelve, Robin! ¡La confrontación con el CP9!",
         duration: "24 min",
@@ -20444,7 +20444,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/245.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 246,
         title:
           "¡¿Aniquilación de los piratas de Sombrero de Paja?! ¡El terror del Modelo Leopardo!",
@@ -20457,7 +20457,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/246.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 247,
         title: "¡El hombre que ama su barco! ¡Las lágrimas de Usopp!",
         duration: "24 min",
@@ -20469,7 +20469,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/247.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 248,
         title: "¡El pasado de Franky! El día que el Umi Ressha zarpó",
         duration: "24 min",
@@ -20481,7 +20481,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/248.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 249,
         title: "¡La conspiración de Spandam! El día que el Umi Ressha tembló",
         duration: "24 min",
@@ -20493,7 +20493,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/249.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 250,
         title:
           "¡El final de un hombre legendario! El día que el Umi Ressha lloró",
@@ -20506,7 +20506,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/250.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 251,
         title: "¡La verdad tras la traición! ¡La dolorosa decisión de Robin!",
         duration: "24 min",
@@ -20518,7 +20518,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/251.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 252,
         title:
           "¡El silbato de vapor separa a los nakama! El Umi Ressha se pone en marcha",
@@ -20531,7 +20531,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/252.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 253,
         title: "¡Sanji irrumpe! ¡Batalla en el Umi Ressha bajo la tormenta!",
         duration: "24 min",
@@ -20543,7 +20543,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/253.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 254,
         title:
           "¡El grito del alma de Nami! ¡El regreso de Luffy Sombrero de Paja!",
@@ -20556,7 +20556,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/254.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 255,
         title: "¡¿Otro Umi Ressha?! El viaje del Rocket Man",
         duration: "24 min",
@@ -20568,7 +20568,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/255.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 256,
         title:
           "¡Rescatar a nuestros nakama! ¡El juramento que une a los enemigos!",
@@ -20581,7 +20581,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/256.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 257,
         title: "¡Romper la ola! El combo más fuerte de Luffy y Zoro",
         duration: "24 min",
@@ -20593,7 +20593,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/257.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 258,
         title: "¡¿Aparece un hombre misterioso?! ¡Su nombre es Sogeking!",
         duration: "24 min",
@@ -20605,7 +20605,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/258.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 259,
         title: "¡Duelo de cocineros! ¡Sanji vs. Ramen Kenpo!",
         duration: "24 min",
@@ -20617,7 +20617,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/259.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 260,
         title: "¡Duelo en el techo! ¡Franky vs. Nero!",
         duration: "24 min",
@@ -20629,7 +20629,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/260.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 261,
         title: "¡Choque! ¡Zoro, el corta acero, vs. T-Bone, el corta barcos!",
         duration: "24 min",
@@ -20641,7 +20641,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/261.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 262,
         title: "¡La lucha de Robin! ¡El ingenioso plan de Sogeking!",
         duration: "24 min",
@@ -20653,7 +20653,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/262.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 263,
         title: "¡La isla judicial! ¡El cuadro completo de Enies Lobby!",
         duration: "24 min",
@@ -20665,7 +20665,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T4/263.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 264,
         title:
           "¡Comienza la operación de desembarco! ¡Los Sombrero de Paja irrumpen!",
@@ -20678,7 +20678,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/264.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 265,
         title: "¡Luffy a la carga! ¡Gran batalla decisiva en la Isla Judicial!",
         duration: "24 min",
@@ -20690,7 +20690,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/265.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 266,
         title: "¡Batalla contra los gigantes! ¡Abriendo la segunda puerta!",
         duration: "24 min",
@@ -20702,7 +20702,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/266.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 267,
         title: "¡Abran paso! El Rocket Man vuela por los aires",
         duration: "24 min",
@@ -20714,7 +20714,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/267.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 268,
         title: "¡Alcancemos a Luffy! La guerra total de los Sombrero de Paja",
         duration: "24 min",
@@ -20726,7 +20726,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/268.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 269,
         title:
           "¡Robin ha sido traicionada! ¡Las expectativas del Gobierno Mundial!",
@@ -20739,7 +20739,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/269.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 270,
         title: "¡Devuélvannos a Robin! ¡Luffy vs. Blueno!",
         duration: "24 min",
@@ -20751,7 +20751,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/270.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 271,
         title: "¡No nos detengan! ¡Lancemos la señal del contraataque!",
         duration: "24 min",
@@ -20763,7 +20763,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/271.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 272,
         title:
           "¡Luffy a la vista! ¡Reunión en la plaza del Palacio de Justicia!",
@@ -20776,7 +20776,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/272.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 273,
         title: "¡Todo por proteger a mis nakama! ¡El Gear Second en marcha!",
         duration: "24 min",
@@ -20788,7 +20788,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/273.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 274,
         title: "¡Responde, Robin! ¡El grito de los Sombrero de Paja!",
         duration: "24 min",
@@ -20800,7 +20800,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/274.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 275,
         title: "¡El pasado de Robin! ¡La niña a la que llamaban demonio!",
         duration: "24 min",
@@ -20812,7 +20812,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/275.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 276,
         title: "¡Destino de madre e hija! El nombre de la madre es Olvia",
         duration: "24 min",
@@ -20824,7 +20824,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/276.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 277,
         title: "¡La tragedia de Ohara! El terror de la Buster Call",
         duration: "24 min",
@@ -20836,7 +20836,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/277.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 278,
         title: "¡Di que quieres vivir! ¡Somos nakama!",
         duration: "24 min",
@@ -20848,7 +20848,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/278.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 279,
         title: "¡Salten a las cataratas! ¡Los sentimientos de Luffy!",
         duration: "24 min",
@@ -20860,7 +20860,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/279.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 280,
         title:
           "¡La forma de vida de un hombre! Las técnicas de Zoro, el sueño de Usopp",
@@ -20873,7 +20873,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/280.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 281,
         title:
           "¡Las lágrimas que tejieron el vínculo de los nakama! El mapamundi de Nami",
@@ -20886,7 +20886,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/281.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 282,
         title: "¡La separación pule a un hombre! ¡Sanji y Chopper!",
         duration: "24 min",
@@ -20898,7 +20898,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/282.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 283,
         title: "¡Todo por una nakama! ¡La oscuridad que emana de Robin!",
         duration: "24 min",
@@ -20910,7 +20910,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/283.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 284,
         title: "¡Los planos no se confían! La decisión de Franky",
         duration: "24 min",
@@ -20922,7 +20922,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/284.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 285,
         title: "¡Recuperar las 5 llaves! ¡Los Sombrero de Paja vs. el CP9!",
         duration: "24 min",
@@ -20934,7 +20934,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/285.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 286,
         title:
           "¡El poder de las Frutas del Diablo! ¡Las transformaciones de Kaku y Jabra!",
@@ -20947,7 +20947,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/286.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 287,
         title:
           "¡Aunque por ello muera, no pienso pegarte! La caballerosidad de Sanji",
@@ -20960,7 +20960,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/287.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 288,
         title: "¡El error de Fukurou! Mi cola es el agua de la vida",
         duration: "24 min",
@@ -20972,7 +20972,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/288.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 289,
         title:
           "¡Explota la nueva técnica de Zoro! ¿El nombre de la espada es Sogeking?",
@@ -20985,7 +20985,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/289.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 290,
         title: "¡Incontrolable! La Rumble Ball prohibida de Chopper",
         duration: "24 min",
@@ -20997,7 +20997,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/290.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 291,
         title:
           "¡El regreso del jefe Luffy! Un sueño, una realidad o una lotería",
@@ -21010,7 +21010,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/291.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 292,
         title:
           "¡La gran carrera de mochis en el castillo! La conspiración de la nariz roja",
@@ -21023,7 +21023,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/292.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 293,
         title:
           "¡Kalifa, la maestra de las burbujas! Nami se adentra en una trampa de jabón",
@@ -21036,7 +21036,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/293.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 294,
         title: "¡Las resonantes malas noticias! ¡La Buster Call es invocada!",
         duration: "24 min",
@@ -21048,7 +21048,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/294.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 295,
         title: "¡¿Cinco Namis?! ¡El contraataque es con un espejismo!",
         duration: "24 min",
@@ -21060,7 +21060,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/295.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 296,
         title: "¡La decisión de Nami! ¡Atacar al incontrolable Chopper!",
         duration: "24 min",
@@ -21072,7 +21072,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/296.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 297,
         title: "¡¿Aparece el cazador Sanji?! Una elegía para el lobo mentiroso",
         duration: "24 min",
@@ -21084,7 +21084,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/297.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 298,
         title:
           "¡La patada abrasadora! El juego de piernas de Sanji a toda potencia",
@@ -21097,7 +21097,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/298.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 299,
         title:
           "¡El fiero ataque de las espadas desenvainadas! ¡Zoro vs. Kaku, el poderoso duelo de espadachines!",
@@ -21110,7 +21110,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/299.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 300,
         title:
           "¡Zoro, el dios feroz! ¡La encarnación de Asura revelada por su alma!",
@@ -21123,7 +21123,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/300.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 301,
         title:
           "¡Spandam se sorprende! El héroe que permanece en la Torre de la Justicia",
@@ -21136,7 +21136,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/301.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 302,
         title:
           "¡Robin liberada! ¡Luffy vs. Lucci, la cumbre de la batalla decisiva!",
@@ -21149,7 +21149,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/302.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 303,
         title:
           "¡¿El criminal es el jefe Luffy?! La persecución del gran cerezo en flor desaparecido",
@@ -21162,7 +21162,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/303.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 304,
         title:
           "¡Si no gano, no puedo proteger a nadie! El Gear Third se activa",
@@ -21175,7 +21175,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/304.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 305,
         title: "¡El aterrador pasado! La justicia desde la sombra y Rob Lucci",
         duration: "24 min",
@@ -21187,7 +21187,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/305.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 306,
         title:
           "¡¿Una sirena espejismo?! A medida que la conciencia se desvanece",
@@ -21200,7 +21200,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/306.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 307,
         title:
           "¡La isla que se hunde bajo el fuego! El grito de lamento de Franky",
@@ -21213,7 +21213,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/307.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 308,
         title:
           "¡Esperar a Luffy! ¡Lucha a muerte en el Puente de la Vacilación!",
@@ -21226,7 +21226,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/308.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 309,
         title:
           "¡Los sentimientos mostrados con los puños! El Gatling de Luffy a máxima potencia",
@@ -21239,7 +21239,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/309.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 310,
         title:
           "¡Un amigo viene del mar! El lazo más fuerte de los Sombrero de Paja",
@@ -21252,7 +21252,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T5/310.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 311,
         title:
           "¡La gran huida de toda la banda! El camino a la victoria es para los piratas",
@@ -21265,7 +21265,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T6/311.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 312,
         title: "¡Gracias, Merry! La nieve cae sobre el mar de las despedidas",
         duration: "24 min",
@@ -21277,7 +21277,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T6/312.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 313,
         title:
           "¡La paz ha sido perturbada! El vicealmirante de la Marina con el Puño del Amor",
@@ -21290,7 +21290,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T6/313.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 314,
         title:
           "¡El linaje familiar más fuerte! ¡Se revela la identidad del padre de Luffy!",
@@ -21303,7 +21303,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T6/314.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 315,
         title:
           "Su nombre es 'Nuevo Mundo'. La zona más lejana de la Grand Line",
@@ -21318,7 +21318,7 @@ export const animeData = [
 
       // Temporada 21: Egghead (Episodios 1089 - Presente)
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1089,
         title: "¡Comienza un nuevo capítulo! ¡Los caminos de Luffy y Sabo!",
         duration: "23 min",
@@ -21330,7 +21330,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T14/1089.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1090,
         title: "¡Una nueva isla! Egghead, la isla del futuro",
         duration: "23 min",
@@ -21342,7 +21342,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T14/1090.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1091,
         title: "¡Repleto de futuro! ¡Aventura en la isla de la ciencia!",
         duration: "23 min",
@@ -21354,7 +21354,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T14/1091.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1092,
         title: "¡La tristeza de Bonney! La oscuridad de la isla del futuro",
         duration: "23 min",
@@ -21367,7 +21367,7 @@ export const animeData = [
       },
       // ... (La lista continúa con todos los episodios de Egghead hasta el más reciente)
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1111,
         title: "¡El segundo Ohara! ¡La ambición del cerebro!",
         duration: "23 min",
@@ -21379,7 +21379,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/T21/1111.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1112,
         title: "¡Combate! Shanks contra Eustass Kid",
         duration: "23 min",
@@ -21392,7 +21392,7 @@ export const animeData = [
       },
       // ... (Y así sucesivamente hasta el episodio 1123)
       {
-        season: 21,
+        season: "T21: Egghead",
         number: "SP14",
         title: "E-Recap Resumen especial de Egghead",
         duration: "23 min",
@@ -21405,7 +21405,7 @@ export const animeData = [
         votes: { likes: 1223, dislikes: 47 },
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1123,
         title: "¡Tiembla el mundo! El secuestro de los Sombrero de Paja",
         duration: "23 min",
@@ -21418,7 +21418,7 @@ export const animeData = [
         votes: { likes: 1723, dislikes: 23 },
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1124,
         title: "¡Totalmente rodeados! La operación para huir de Egghead",
         duration: "23 min",
@@ -21428,10 +21428,9 @@ export const animeData = [
         releaseDate: "Abril 6, 2025",
         language: "Subtitulado",
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1124.html",
-        votes: { likes: 1331, dislikes: 13 },
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1125,
         title: "¡Choque de voluntades! Kizaru y Sentomaru",
         duration: "23 min",
@@ -21443,7 +21442,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1125.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1126,
         title: "¡Desesperación inminente! La deprimente misión de Kizaru",
         duration: "23 min",
@@ -21455,7 +21454,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1126.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1127,
         title: "¡Luffy contra Kizaru! Una dura batalla kaleidoscópica",
         duration: "23 min",
@@ -21467,7 +21466,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1127.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1128,
         title: "El pasado de Kuma. Es mejor estar muerto en este mundo.",
         duration: "23 min",
@@ -21479,7 +21478,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1128.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: "SP17",
         title: "El chequeo del doctor Chopper. La balada de un padre y su hija",
         duration: "23 min",
@@ -21491,7 +21490,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Especial/17.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1129,
         title: "El pasado de Kuma. Es mejor estar muerto en este mundo.",
         duration: "23 min",
@@ -21503,7 +21502,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1129.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1130,
         title: "¡Una historia borrada! La desesperanza de God Valley",
         duration: "23 min",
@@ -21515,7 +21514,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1130.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1131,
         title: "Un momento fugaz de felicidad. Kumachi y Ginny.",
         duration: "23 min",
@@ -21527,7 +21526,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1131.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1132,
         title: "La promesa con Ginny. Kuma se vuelve padre.",
         duration: "23 min",
@@ -21539,7 +21538,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1132.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1133,
         title: "Para salvar a Bonney. Kuma, el pacifista tímido.",
         duration: "23 min",
@@ -21551,7 +21550,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1133.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: "SP18",
         title:
           "El chequeo del doctor Chopper. Buenos amigos en una encrucijada.",
@@ -21564,7 +21563,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Especial/18.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1134,
         title: "Un destino cruel. La decisión de Kuma como padre.",
         duration: "23 min",
@@ -21576,7 +21575,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1134.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1135,
         title: "¡Al mar donde está mi padre! El futuro que elige Bonney",
         duration: "23 min",
@@ -21588,7 +21587,7 @@ export const animeData = [
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1135.html",
       },
       {
-        season: 21,
+        season: "T21: Egghead",
         number: 1136,
         title: "La vida de Kuma",
         duration: "23 min",
@@ -21631,7 +21630,7 @@ export const animeData = [
     contentWarning: "+7 Para todos los públicos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "del principio.",
         duration: "24m",
@@ -21643,7 +21642,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "del principio, parte 2.",
         duration: "24m",
@@ -21655,7 +21654,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "con Sprigatito.",
         duration: "24m",
@@ -21667,7 +21666,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "arrastrado por la marea.",
         duration: "24m",
@@ -21679,7 +21678,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Te  Fuecoco.",
         duration: "24m",
@@ -21691,7 +21690,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "antigua.",
         duration: "24m",
@@ -21703,7 +21702,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "¡Entrenamiento  Capitán Pikachu.",
         duration: "24m",
@@ -21715,7 +21714,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "de la puerta que no se abre.",
         duration: "24m",
@@ -21727,7 +21726,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Paldea!.",
         duration: "24m",
@@ -21739,7 +21738,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Brassius.",
         duration: "24m",
@@ -21751,7 +21750,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El Bosque de Arboliva.",
         duration: "24m",
@@ -21763,7 +21762,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "El futuro que elijo.",
         duration: "24m",
@@ -21775,7 +21774,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Un picnic repentino.",
         duration: "24m",
@@ -21787,7 +21786,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "¡Vuela! ¡¡Wattrel!!.",
         duration: "24m",
@@ -21799,7 +21798,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "¡Alguien a quién no podemos ver! ¿Quién podrá ser?.",
         duration: "24m",
@@ -21811,7 +21810,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Mientras esté con Quaxly.",
         duration: "24m",
@@ -21823,7 +21822,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "¡Wattrel y Fuecoco: Entrenamiento secreto!.",
         duration: "24m",
@@ -21835,7 +21834,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "¡Vuela alto Pikachu, el cielo es el límite!.",
         duration: "24m",
@@ -21847,7 +21846,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "La verdad sobre Alcremie.",
         duration: "24m",
@@ -21859,7 +21858,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Batalla de entrenamiento con Kabu-san.",
         duration: "24m",
@@ -21871,7 +21870,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "¡La Hatenna que está sola!.",
         duration: "24m",
@@ -21883,7 +21882,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "¡Choque en las minas de Galar!.",
         duration: "24m",
@@ -21895,7 +21894,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "¡El ardiente Moltres de Galar!.",
         duration: "24m",
@@ -21907,7 +21906,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Reunión en el antiguo castillo.",
         duration: "24m",
@@ -21919,7 +21918,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "¡Rivales en la noche oscura!.",
         duration: "24m",
@@ -21931,7 +21930,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/25.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 26,
         title: "La aventura de Terapagos.",
         duration: "24m",
@@ -21943,7 +21942,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/26.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 27,
         title: "Mientras esté con mis amigos.",
         duration: "24m",
@@ -21955,7 +21954,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/27.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 28,
         title: "Mientras esté con mis amigos.",
         duration: "24m",
@@ -21967,7 +21966,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/28.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 29,
         title: "Orio y la artesana de Monster Ball.",
         duration: "24m",
@@ -21979,7 +21978,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/29.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 30,
         title: "¡¿El Pokémon misterioso que sorbe y aplasta?!.",
         duration: "24m",
@@ -21991,7 +21990,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/30.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 31,
         title: "La canción en la niebla.",
         duration: "24m",
@@ -22003,7 +22002,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/31.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 32,
         title: "¡Los sentimientos de Lapras por sus amigos!.",
         duration: "24m",
@@ -22015,7 +22014,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/32.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 33,
         title: "El rugiente Rayquaza negro.",
         duration: "24m",
@@ -22027,7 +22026,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/33.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 34,
         title: "¡Cada quien por su camino!.",
         duration: "24m",
@@ -22039,7 +22038,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/34.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 35,
         title: "Un dúo en el desierto: Friede y Cap.",
         duration: "24m",
@@ -22051,7 +22050,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/35.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 36,
         title: "Operación ¡Amistad Oinkologne!.",
         duration: "24m",
@@ -22063,7 +22062,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/36.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 37,
         title: "¿Fuecoco se convierte en un chico malo?.",
         duration: "24m",
@@ -22075,7 +22074,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/37.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 38,
         title: "¿Un SOS de Tandemaus?.",
         duration: "24m",
@@ -22087,7 +22086,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/38.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 39,
         title: "¡Tinkatink y el martillo de sus obsesiones!.",
         duration: "24m",
@@ -22099,7 +22098,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/39.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 40,
         title: "¿Adiós, Sprigatito?.",
         duration: "24m",
@@ -22113,7 +22112,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/40.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 41,
         title: "¡Aparece la mamá intensa!.",
         duration: "24m",
@@ -22123,7 +22122,7 @@ export const animeData = [
         releaseDate: "02/03/24",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 42,
         title: "El futuro que elijo.",
         duration: "24m",
@@ -22135,7 +22134,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/42.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 43,
         title: "El desafio de los exploradores.",
         duration: "24m",
@@ -22147,7 +22146,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/43.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 44,
         title: "¡El plan para capturar a Rayquaza!.",
         duration: "24m",
@@ -22159,7 +22158,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/44.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 45,
         title: "Muy, muy lejos.",
         duration: "24m",
@@ -22171,7 +22170,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/45.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 46,
         title: "¡La emocionante Academia Naranja!.",
         duration: "24m",
@@ -22183,7 +22182,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/46.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 47,
         title: "¡Liko y Floragato, con todo el corazón!.",
         duration: "24m",
@@ -22195,7 +22194,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/47.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 48,
         title: "¡Brilla! ¡El destello del fuego y el arte!.",
         duration: "24m",
@@ -22207,7 +22206,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/48.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 49,
         title: "Dot y Gurumin.",
         duration: "24m",
@@ -22219,7 +22218,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/49.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 50,
         title: "¡Deslumbra, Teracristalización! ¡¡Baila, Baila, Quaxly!!.",
         duration: "24m",
@@ -22231,7 +22230,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/50.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 51,
         title: "¡¿Un Floragato espinoso?! El misterioso pilar de flores.",
         duration: "24m",
@@ -22243,7 +22242,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/51.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 52,
         title: "¡Wattrel, alerta de huracán!.",
         duration: "24m",
@@ -22255,7 +22254,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/52.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 53,
         title: "Hatenna y el que no es de este mundo.",
         duration: "24m",
@@ -22267,7 +22266,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/53.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 54,
         title: "Bendición eterna.",
         duration: "24m",
@@ -22279,7 +22278,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/54.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 55,
         title: "¡Enfrentamiento! La Élite Cuatro de Paldea.",
         duration: "24m",
@@ -22291,7 +22290,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/55.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 56,
         title: "¡Liko VS Chili! Más allá de la batalla.",
         duration: "24m",
@@ -22303,7 +22302,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/56.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 57,
         title: "Un Terapagos que no conocía.",
         duration: "24m",
@@ -22315,7 +22314,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/57.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 58,
         title: "¡¿El Pokémon mascota es Kingambit?!.",
         duration: "24m",
@@ -22327,7 +22326,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/58.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 59,
         title: "¡Baila, Quaxly! ¡¡El paso azul de Champuru!!.",
         duration: "24m",
@@ -22339,7 +22338,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/59.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 60,
         title: "¡Nuestra primera nevada! ¡Ho-ho-ge!!.",
         duration: "24m",
@@ -22351,7 +22350,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/60.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 61,
         title: "¡Resuena, alma mía! ¡El desafío de Rhyme!.",
         duration: "24m",
@@ -22363,7 +22362,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/61.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 62,
         title: "¡La canción de Fuecoco y yo!.",
         duration: "24m",
@@ -22375,7 +22374,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/62.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 63,
         title: "¡La batalla de hielo! ¡Grusha de los ojos fríos!.",
         duration: "24m",
@@ -22387,7 +22386,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/63.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 64,
         title: "El monte Nappe y las sombras sigilosas.",
         duration: "24m",
@@ -22399,7 +22398,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/64.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 65,
         title: "¡Liko y Amenthio!.",
         duration: "24m",
@@ -22411,7 +22410,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/65.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 66,
         title: "¡Ruptura del sistema! ¡¡Crisis en la Academia Naranja!!.",
         duration: "24m",
@@ -22423,7 +22422,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/66.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 67,
         title: "¡¡Brilla, Teracristalización!! ¡Liko VS Roy!.",
         duration: "24m",
@@ -22435,7 +22434,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/67.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 68,
         title: "¡Hacia un Nuevo Cielo! ¡¡El Valiente Asagi!!.",
         duration: "24m",
@@ -22447,7 +22446,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/68.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 69,
         title: "¡¿Yo soy un Pokémon y tú eres yo?!.",
         duration: "24m",
@@ -22459,7 +22458,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/69.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 70,
         title: "¡El martillo de Tinkatink no se construyó en un día!.",
         duration: "24m",
@@ -22471,7 +22470,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/70.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 71,
         title: "Encuentro en el Lago Cristalino.",
         duration: "24m",
@@ -22483,7 +22482,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/71.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 72,
         title: "¡Persecución! ¡¡Encuentren a Kleavor!!.",
         duration: "24m",
@@ -22495,7 +22494,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/72.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 73,
         title: "Kleavor, el guerrero solitario.",
         duration: "24m",
@@ -22507,7 +22506,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/73.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 74,
         title: "Los tres Exploradores.",
         duration: "24m",
@@ -22519,7 +22518,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/74.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 75,
         title: "El futuro que se nos ha confiado, el brillo de este mundo.",
         duration: "24m",
@@ -22531,7 +22530,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/75.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 76,
         title: "¿Sonano? ¡Sodayo!.",
         duration: "24m",
@@ -22543,7 +22542,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/76.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 77,
         title: "Randou regresa a su ciudad natal.",
         duration: "24m",
@@ -22555,7 +22554,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/77.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 78,
         title: "¡Feroz batalla con Entei! ¡¡Rugido de Fuego!!.",
         duration: "24m",
@@ -22567,7 +22566,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/78.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 79,
         title: "Más allá de la cima.",
         duration: "24m",
@@ -22579,7 +22578,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/79.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 80,
         title: "¡¿Pokémon asombrosos en el Área Cero?!.",
         duration: "24m",
@@ -22591,7 +22590,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/80.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 81,
         title: "¡Una gran batalla! ¡El fuego que arrasa la tierra!.",
         duration: "24m",
@@ -22603,7 +22602,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/81.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 82,
         title: "¡Al final de un arcoíris brillante!.",
         duration: "24m",
@@ -22615,7 +22614,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/82.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 83,
         title: "¿La verdad es revelada? ¡La determinación de Amethio!.",
         duration: "24m",
@@ -22627,7 +22626,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/83.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 84,
         title: "¡El lugar donde el cielo y la tierra se encuentran!.",
         duration: "24m",
@@ -22639,7 +22638,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/84.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 85,
         title: "¡Llegamos! ¡El paraíso, Rakua!.",
         duration: "24m",
@@ -22651,7 +22650,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/85.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 86,
         title: "¡Los Tacleada de Voltios en ascenso VS los Exploradores!.",
         duration: "24m",
@@ -22663,7 +22662,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/86.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 87,
         title: "La guía del Rayquaza negro.",
         duration: "24m",
@@ -22675,7 +22674,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/87.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 88,
         title: "El Zygarde Blanco que sacude la tierra.",
         duration: "24m",
@@ -22687,7 +22686,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/88.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 89,
         title: "¡Más allá de la aventura!.",
         duration: "24m",
@@ -22699,7 +22698,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/89.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 90,
         title: "Hacia el gran cielo, de nuevo Parte 1.",
         duration: "24m",
@@ -22711,7 +22710,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/90.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 91,
         title: "Hacia el gran cielo, de nuevo Parte 2.",
         duration: "24m",
@@ -22723,7 +22722,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/91.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 92,
         title: "Siguiendo las señales del Rakurium.",
         duration: "24m",
@@ -22735,7 +22734,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/92.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 93,
         title: "¡¿Un apoyo total?! ¡¡Enfrentamiento de fans de Gurumin!!.",
         duration: "24m",
@@ -22747,7 +22746,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/93.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 94,
         title: "¡La señorita del Centro Pokémon!.",
         duration: "24m",
@@ -22760,7 +22759,7 @@ export const animeData = [
         votes: { likes: 587, dislikes: 9 },
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 95,
         title: "¡Esfera Fuerte!.",
         duration: "24m",
@@ -22773,7 +22772,7 @@ export const animeData = [
         votes: { likes: 907, dislikes: 4 },
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 96,
         title: "¡Colisión! La Banda Dragón Explosiva.",
         duration: "24m",
@@ -22785,7 +22784,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/96.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 97,
         title: "¿La encantadora sonrisa del bromista Stunfisk?.",
         duration: "24m",
@@ -22797,7 +22796,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/97.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 98,
         title: "¡Reencuentro en Pueblo Cercle!",
         duration: "24m",
@@ -22809,7 +22808,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/98.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 99,
         title: "¡Una Orio que no puede volar y...!.",
         duration: "24m",
@@ -22821,7 +22820,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/99.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 100,
         title: "¡Somos los Tacleada de Voltios en ascenso!",
         duration: "24m",
@@ -22833,7 +22832,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/100.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 101,
         title: "¡Pelea! ¡¡Teracristalización contra Mega Evolución!!",
         duration: "24m",
@@ -22845,7 +22844,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/101.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 102,
         title: "El caballero encontrado en las ruinas",
         duration: "24m",
@@ -22857,7 +22856,7 @@ export const animeData = [
         videoUrl: "frame/Pokemon-horizons/T1/102.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 103,
         title: "¡Quema con fuerza, amor de Gurumin!",
         duration: "24m",
@@ -22932,7 +22931,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Suicidio",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El regalo del ángel.",
         duration: "22 min",
@@ -22944,7 +22943,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El héroe de la justicia.",
         duration: "22 min",
@@ -22956,7 +22955,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El amor de mi vida.",
         duration: "22 min",
@@ -22968,7 +22967,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "La hora de la reunión.",
         duration: "22 min",
@@ -22980,7 +22979,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Pena de muerte.",
         duration: "22 min",
@@ -22992,7 +22991,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Dos luces dolorosas.",
         duration: "22 min",
@@ -23004,7 +23003,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "La torre de pesadilla.",
         duration: "22 min",
@@ -23016,7 +23015,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Símbolo de promesa.",
         duration: "22 min",
@@ -23028,7 +23027,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El rostro de un asesino.",
         duration: "22 min",
@@ -23040,7 +23039,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Donde las lágrimas van.",
         duration: "22 min",
@@ -23052,7 +23051,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Tu propio valor.",
         duration: "22 min",
@@ -23064,7 +23063,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Una promesa en el papel.",
         duration: "22 min",
@@ -23076,7 +23075,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "El mejor del mundo.",
         duration: "23 min",
@@ -23088,7 +23087,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Dos luces.",
         duration: "23 min",
@@ -23100,7 +23099,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Poder difundido.",
         duration: "23 min",
@@ -23112,7 +23111,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "El mayor asesino.",
         duration: "23 min",
@@ -23124,7 +23123,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Los otros cinco.",
         duration: "23 min",
@@ -23136,7 +23135,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "El último recurso.",
         duration: "23 min",
@@ -23148,7 +23147,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "El futuro de la humanidad.",
         duration: "23 min",
@@ -23160,7 +23159,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "El precio del honor.",
         duration: "23 min",
@@ -23172,7 +23171,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "La hora de la verdad.",
         duration: "23 min",
@@ -23184,7 +23183,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Las alas de la determinación.",
         duration: "23 min",
@@ -23196,7 +23195,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "La flecha del valor.",
         duration: "23 min",
@@ -23208,7 +23207,7 @@ export const animeData = [
         videoUrl: "frame/Platinum-end/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "El fin de la promesa.",
         duration: "23 min",
@@ -23257,7 +23256,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Lenguaje",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Episodio 1.",
         duration: "71 min",
@@ -23269,7 +23268,7 @@ export const animeData = [
         videoUrl: "frame/Pluto/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Episodio 2.",
         duration: "58 min",
@@ -23281,7 +23280,7 @@ export const animeData = [
         videoUrl: "frame/Pluto/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Episodio 3.",
         duration: "63 min",
@@ -23293,7 +23292,7 @@ export const animeData = [
         videoUrl: "frame/Pluto/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Episodio 4.",
         duration: "59 min",
@@ -23305,7 +23304,7 @@ export const animeData = [
         videoUrl: "frame/Pluto/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Episodio 5.",
         duration: "60 min",
@@ -23317,7 +23316,7 @@ export const animeData = [
         videoUrl: "frame/Pluto/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Episodio 6.",
         duration: "60 min",
@@ -23329,7 +23328,7 @@ export const animeData = [
         videoUrl: "frame/Pluto/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Episodio 7.",
         duration: "56 min",
@@ -23341,7 +23340,7 @@ export const animeData = [
         videoUrl: "frame/Pluto/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Episodio 8.",
         duration: "68 min",
@@ -23386,7 +23385,7 @@ export const animeData = [
     contentWarning: "+13",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Nikola, la sirvienta",
         duration: "24 min",
@@ -23398,7 +23397,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Makoto Haga",
         duration: "24 min",
@@ -23410,7 +23409,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Tesla",
         duration: "24 min",
@@ -23422,7 +23421,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Isora Amano",
         duration: "24 min",
@@ -23434,7 +23433,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Infiltración",
         duration: "24 min",
@@ -23446,7 +23445,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El rey loco",
         duration: "24 min",
@@ -23458,7 +23457,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El jefe",
         duration: "24 min",
@@ -23470,7 +23469,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Consola de comandos",
         duration: "24 min",
@@ -23482,7 +23481,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Akira Kagami",
         duration: "24 min",
@@ -23494,7 +23493,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Gaydle y Yamanaka",
         duration: "24 min",
@@ -23506,7 +23505,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Alba",
         duration: "24 min",
@@ -23518,7 +23517,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "El Diamante",
         duration: "24 min",
@@ -23530,7 +23529,7 @@ export const animeData = [
         videoUrl: "frame/Quality-Assurance-in-Another-World/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Silence",
         duration: "24 min",
@@ -23574,7 +23573,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Gore",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El día en que nació el dios de la muerte",
         duration: "47 min",
@@ -23586,7 +23585,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La historia comienza",
         duration: "24 min",
@@ -23598,7 +23597,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Incentivo",
         duration: "24 min",
@@ -23610,7 +23609,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Batalla final",
         duration: "24 min",
@@ -23622,7 +23621,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Alas",
         duration: "24 min",
@@ -23634,7 +23633,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Reunión",
         duration: "24 min",
@@ -23646,7 +23645,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Acción y remordimiento",
         duration: "24 min",
@@ -23658,7 +23657,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Un doloroso golpe a la capital del rey",
         duration: "24 min",
@@ -23670,7 +23669,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Negociación y verdadera naturaleza",
         duration: "24 min",
@@ -23682,7 +23681,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Intereses y cooperación",
         duration: "24 min",
@@ -23694,7 +23693,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Operaciones y percepciones",
         duration: "24 min",
@@ -23706,7 +23705,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Voluntad y determinación",
         duration: "24 min",
@@ -23718,7 +23717,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "El primer papel",
         duration: "24 min",
@@ -23730,7 +23729,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Impaciencia y cautela",
         duration: "24 min",
@@ -23742,7 +23741,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Despertar potencial",
         duration: "24 min",
@@ -23754,7 +23753,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Voluntad de resistir",
         duration: "24 min",
@@ -23766,7 +23765,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Compañero de armas",
         duration: "24 min",
@@ -23778,7 +23777,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "El fin de la lucha a muerte",
         duration: "24 min",
@@ -23790,7 +23789,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Razones para luchar",
         duration: "24 min",
@@ -23802,7 +23801,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Vigílame",
         duration: "24 min",
@@ -23814,7 +23813,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "No necesito palabras",
         duration: "24 min",
@@ -23826,7 +23825,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Rey de las alas",
         duration: "24 min",
@@ -23838,7 +23837,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Dios del trueno",
         duration: "24 min",
@@ -23850,7 +23849,7 @@ export const animeData = [
         videoUrl: "frame/Ragna-Crimson/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Ligero",
         duration: "24 min",
@@ -23895,7 +23894,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "¡Somos justicia! ¡Gerente de Dragón Ryujin Senai!",
         duration: "23 min",
@@ -23907,7 +23906,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "¡Continua! ¡Guerrero D!",
         duration: "23 min",
@@ -23919,7 +23918,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Nuestro mal algún día florecerá",
         duration: "23 min",
@@ -23931,7 +23930,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "¡El soldado con amor, Hibiki!",
         duration: "23 min",
@@ -23943,7 +23942,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Fighter D, como parte de 'Ranger Force'",
         duration: "23 min",
@@ -23955,7 +23954,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "1 más 2 es igual a... ¡amenaza!",
         duration: "23 min",
@@ -23967,7 +23966,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "¡El camino en zigzag hacia el examen final!",
         duration: "23 min",
@@ -23979,7 +23978,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "¡Griten en voz alta, cadetes!",
         duration: "23 min",
@@ -23991,7 +23990,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "¡Batalla! ¡Fiebre! ¡Fighter D!",
         duration: "23 min",
@@ -24003,7 +24002,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "¡Es hora del espectáculo para Blue Keeper!",
         duration: "23 min",
@@ -24015,7 +24014,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "¡En el camino hacia mi justicia!",
         duration: "23 min",
@@ -24027,7 +24026,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "¡No te rindas D!",
         duration: "23 min",
@@ -24040,7 +24039,7 @@ export const animeData = [
       },
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "¡Miren! ¡Los Guardianes del Dragón!",
         duration: "23 min",
@@ -24052,7 +24051,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Para esta escuela, en este momento",
         duration: "23 min",
@@ -24064,7 +24063,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Recuerdos perdidos",
         duration: "23 min",
@@ -24076,7 +24075,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "¡El soldado con amor, Hibiki!",
         duration: "23 min",
@@ -24088,7 +24087,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "La llegada del verde ~La fuerza Maji Tsuyo~",
         duration: "23 min",
@@ -24100,7 +24099,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Perdido en la confusión... En serio",
         duration: "23 min",
@@ -24112,7 +24111,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Somos la Sociedad Protectora de Monstruos",
         duration: "23 min",
@@ -24124,7 +24123,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Ven y únete a los Monstruos",
         duration: "23 min",
@@ -24136,7 +24135,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "¡Aquí llega Fighter D!",
         duration: "23 min",
@@ -24148,7 +24147,7 @@ export const animeData = [
         videoUrl: "frame/Ranger-reject/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "Un vínculo especial: Hibiki y Sesera",
         duration: "23 min",
@@ -24190,7 +24189,7 @@ export const animeData = [
     contentWarning: "+13",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Ranma esta aquí.",
         duration: "24 min",
@@ -24202,7 +24201,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "¡Odio a los hombres!.",
         duration: "24 min",
@@ -24214,7 +24213,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Porque a él le gusta alguien.",
         duration: "24 min",
@@ -24226,7 +24225,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El cazador.",
         duration: "24 min",
@@ -24238,7 +24237,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "¿Quién dice que eres linda?.",
         duration: "24 min",
@@ -24250,7 +24249,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Kodachi, la Rosa Negra.",
         duration: "24 min",
@@ -24262,7 +24261,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Competición intensa.",
         duration: "24 min",
@@ -24274,7 +24273,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Querida Charlotte.",
         duration: "24 min",
@@ -24286,7 +24285,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Nunca te soltaré.",
         duration: "24 min",
@@ -24298,7 +24297,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Beso de la muerte.",
         duration: "24 min",
@@ -24310,7 +24309,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "A ti te amo.",
         duration: "24 min",
@@ -24322,7 +24321,7 @@ export const animeData = [
         videoUrl: "frame/Ranma-1-2-2024/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Champú especial.",
         duration: "24 min",
@@ -24368,7 +24367,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Ragnarok.",
         duration: "24 min",
@@ -24380,7 +24379,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Un oponente digno.",
         duration: "24 min",
@@ -24392,7 +24391,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Movimiento letal.",
         duration: "24 min",
@@ -24404,7 +24403,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Júbilo.",
         duration: "24 min",
@@ -24416,7 +24415,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Archivo N.º 00000000001.",
         duration: "24 min",
@@ -24428,7 +24427,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El gran émulo.",
         duration: "24 min",
@@ -24440,7 +24439,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Expulsado del paraíso.",
         duration: "24 min",
@@ -24452,7 +24451,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Gracia desbordante.",
         duration: "24 min",
@@ -24464,7 +24463,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El tirano del océano.",
         duration: "24 min",
@@ -24476,7 +24475,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "El mejor perdedor.",
         duration: "24 min",
@@ -24488,7 +24487,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El abismo.",
         duration: "24 min",
@@ -24500,7 +24499,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Y el Ragnarok continúa.",
         duration: "24 min",
@@ -24514,7 +24513,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "El bien contra el mal.",
         duration: "24 min",
@@ -24526,7 +24525,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "El farol inagotable.",
         duration: "24 min",
@@ -24538,7 +24537,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "El nacimiento de un monstruo.",
         duration: "24 min",
@@ -24550,7 +24549,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "El último trabajo.",
         duration: "24 min",
@@ -24562,7 +24561,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Réquiem.",
         duration: "24 min",
@@ -24574,7 +24573,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Conflicto de opiniones.",
         duration: "24 min",
@@ -24586,7 +24585,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Cien sellos.",
         duration: "24 min",
@@ -24598,7 +24597,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "La cima de la India.",
         duration: "24 min",
@@ -24610,7 +24609,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Resonancia.",
         duration: "24 min",
@@ -24622,7 +24621,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "Apostarlo todo.",
         duration: "24 min",
@@ -24634,7 +24633,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Round 6.",
         duration: "24 min",
@@ -24646,7 +24645,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Cero.",
         duration: "24 min",
@@ -24658,7 +24657,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "El rey del inframundo.",
         duration: "24 min",
@@ -24670,7 +24669,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "El nuevo dios.",
         duration: "24 min",
@@ -24682,7 +24681,7 @@ export const animeData = [
         videoUrl: "frame/Record-of-ragnarok/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "El camino de la luz.",
         duration: "24 min",
@@ -24724,7 +24723,7 @@ export const animeData = [
     contentWarning: "+14 Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Kenshin es Battosai Himura.",
         duration: "22 min",
@@ -24736,7 +24735,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Yahiko Myojin, samurái de la prefectura de Tokio.",
         duration: "22 min",
@@ -24748,7 +24747,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "La escuela Kamiya Kasshin reinicia operaciones.",
         duration: "22 min",
@@ -24760,7 +24759,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Sanosuke Sagara, el hombre de las peleas.",
         duration: "22 min",
@@ -24772,7 +24771,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Se nos une un nuevo amigo.",
         duration: "22 min",
@@ -24784,7 +24783,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El sombrero negro.",
         duration: "22 min",
@@ -24796,7 +24795,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Dos Hitokiris.",
         duration: "22 min",
@@ -24808,7 +24807,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "La hermosa fugitiva.",
         duration: "22 min",
@@ -24820,7 +24819,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El ataque de los oniwaban.",
         duration: "22 min",
@@ -24832,7 +24831,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Un motivo para actuar.",
         duration: "23 min",
@@ -24844,7 +24843,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La valentía de Hannya y las cicatrices de Shikiyo.",
         duration: "23 min",
@@ -24856,7 +24855,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "El capitán Aoshi Shinomori.",
         duration: "23 min",
@@ -24868,7 +24867,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Después del duelo a muerte.",
         duration: "22 min",
@@ -24880,7 +24879,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "La lucha de Yahiko.",
         duration: "22 min",
@@ -24892,7 +24891,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Ese hombre se llama Raijuta.",
         duration: "22 min",
@@ -24904,7 +24903,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Ese hombre se llama Raijuta.",
         duration: "22 min",
@@ -24916,7 +24915,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "La conclusión del duelo.",
         duration: "22 min",
@@ -24928,7 +24927,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Sanosuke y el nishiki-e.",
         duration: "22 min",
@@ -24940,7 +24939,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Tsunan y el nishiki-e.",
         duration: "22 min",
@@ -24952,7 +24951,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Epopeya de un espadachín en la era Meiji. Acto 0 parte 1.",
         duration: "22 min",
@@ -24964,7 +24963,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Epopeya de un espadachín en la era Meiji. Acto cero, parte 2.",
         duration: "22 min",
@@ -24976,7 +24975,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Renace el lobo.",
         duration: "22 min",
@@ -24988,7 +24987,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "El lobo muestra sus colmillos.",
         duration: "22 min",
@@ -25000,7 +24999,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "14 de mayo del año 11 de la era Meiji",
         duration: "22 min",
@@ -25014,7 +25013,7 @@ export const animeData = [
 
       // Temporada 2: Kioto
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Rumbo a Kioto.",
         duration: "23 min",
@@ -25026,7 +25025,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/25.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "En la carretera de Tokai de la era Meiji.",
         duration: "23 min",
@@ -25038,7 +25037,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/26.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "La aldea abandonada.",
         duration: "23 min",
@@ -25050,7 +25049,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/27.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "El retrato de la ambición.",
         duration: "23 min",
@@ -25062,7 +25061,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/28.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "El retrato de la ambición.",
         duration: "23 min",
@@ -25074,7 +25073,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/29.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Encuentro en el bosque.",
         duration: "23 min",
@@ -25086,7 +25085,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/30.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Llegada a Kioto.",
         duration: "23 min",
@@ -25098,7 +25097,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/31.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Cho de las Diez Espadas.",
         duration: "23 min",
@@ -25110,7 +25109,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/32.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "La prohibición de desenvainar.",
         duration: "23 min",
@@ -25122,7 +25121,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/33.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "El primer golpe de la espada inversa.",
         duration: "23 min",
@@ -25134,7 +25133,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/34.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Seijuro Hiko.",
         duration: "23 min",
@@ -25146,7 +25145,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/35.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Reunión de demonios violentos.",
         duration: "23 min",
@@ -25158,7 +25157,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/36.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Aoshi contra Okina.",
         duration: "23 min",
@@ -25170,7 +25169,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/37.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "La decisión de Misao.",
         duration: "23 min",
@@ -25182,7 +25181,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/38.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Entre la vida y la muerte.",
         duration: "23 min",
@@ -25194,7 +25193,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/39.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Se reúnen las Diez Espadas.",
         duration: "23 min",
@@ -25206,7 +25205,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/40.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "El otro objetivo.",
         duration: "23 min",
@@ -25218,7 +25217,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/41.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Vuela como el viento.",
         duration: "23 min",
@@ -25230,7 +25229,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/42.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "El Gran Fuego de Kioto, parte 1.",
         duration: "23 min",
@@ -25242,7 +25241,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/43.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "El Gran Fuego de Kioto, parte 2.",
         duration: "23 min",
@@ -25254,7 +25253,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/44.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "El Gran Fuego de Kioto, parte 3.",
         duration: "23 min",
@@ -25266,7 +25265,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/45.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Lágrimas.",
         duration: "23 min",
@@ -25278,7 +25277,7 @@ export const animeData = [
         videoUrl: "frame/Rurouni-Kenshin-2023/T2/46.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Una gran noche.",
         duration: "23 min",
@@ -25323,7 +25322,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El asesino legendario.",
         duration: "25 min",
@@ -25335,7 +25334,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Contra Son Hee y Bacho.",
         duration: "25 min",
@@ -25347,7 +25346,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Bienvenidos a Sugar Park.",
         duration: "25 min",
@@ -25359,7 +25358,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Boiled, el duro.",
         duration: "25 min",
@@ -25371,7 +25370,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "La fuente de la fuerza",
         duration: "25 min",
@@ -25383,7 +25382,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Heisuke Mashimo",
         duration: "25 min",
@@ -25395,7 +25394,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Bastardo jurásico",
         duration: "25 min",
@@ -25407,7 +25406,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Sakamoto vs. el laboratorio",
         duration: "25 min",
@@ -25419,7 +25418,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Todos a bordo",
         duration: "25 min",
@@ -25431,7 +25430,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Modo de baños termales",
         duration: "25 min",
@@ -25443,7 +25442,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Batalla en el casino.",
         duration: "25 min",
@@ -25456,7 +25455,7 @@ export const animeData = [
       },
       //Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "La Fuente de la Fuerza",
         duration: "25 min",
@@ -25468,7 +25467,7 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "El pasado revelado",
         duration: "25 min",
@@ -25510,7 +25509,7 @@ export const animeData = [
     contentWarning: "+13 Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Comienza el viaje entre demonios y humanos.",
         duration: "24 min",
@@ -25522,7 +25521,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Secretos del ejército real.",
         duration: "24 min",
@@ -25534,7 +25533,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El hombre es conocido como una leyenda.",
         duration: "23 min",
@@ -25546,7 +25545,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Fuera de la tormenta de arena.",
         duration: "23 min",
@@ -25558,7 +25557,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Insectos aterradores.",
         duration: "23 min",
@@ -25570,7 +25569,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Satanás Belcebú.",
         duration: "23 min",
@@ -25582,7 +25581,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Rumbo a una nueva aventura.",
         duration: "23 min",
@@ -25594,7 +25593,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "¡Operación secreta!.",
         duration: "23 min",
@@ -25606,7 +25605,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El poder del mal.",
         duration: "23 min",
@@ -25618,7 +25617,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Jarrón Mounir.",
         duration: "23 min",
@@ -25630,7 +25629,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Fortaleza Celestial de Garama.",
         duration: "23 min",
@@ -25642,7 +25641,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "¡La batalla final!.",
         duration: "23 min",
@@ -25654,7 +25653,7 @@ export const animeData = [
         videoUrl: "frame/Sand-Land/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Al final de la batalla.",
         duration: "23 min",
@@ -25696,7 +25695,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Gore",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Estoy acostumbrado",
         duration: "23 min",
@@ -25709,7 +25708,7 @@ export const animeData = [
         votes: { likes: 1205, dislikes: 15 },
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Si tuviera una oportunidad más",
         duration: "23 min",
@@ -25721,7 +25720,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Es como un videojuego",
         duration: "24 min",
@@ -25733,7 +25732,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Tengo que hacerme más fuerte",
         duration: "24 min",
@@ -25745,7 +25744,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Un muy buen trato",
         duration: "24 min",
@@ -25757,7 +25756,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Comienza la verdadera caza",
         duration: "24 min",
@@ -25769,7 +25768,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Veamos hasta dónde puedo llegar",
         duration: "24 min",
@@ -25781,7 +25780,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7.5,
         title: "Episodio especial",
         duration: "24 min",
@@ -25792,7 +25791,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/1.html.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Esto es frustrante",
         duration: "24 min",
@@ -25804,7 +25803,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Has estado ocultando tus habilidades",
         duration: "24 min",
@@ -25816,7 +25815,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "¿Qué es esto, un pícnic?",
         duration: "24 min",
@@ -25828,7 +25827,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Un caballero defendiendo un trono vacío",
         duration: "24 min",
@@ -25840,7 +25839,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Surge",
         duration: "24 min",
@@ -25853,7 +25852,7 @@ export const animeData = [
       },
       // Temporada 2 (Arise from the Shadow) - Las fechas son especulativas basadas en el archivo
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Tú no eres nivel E, ¿verdad?.",
         duration: "23m",
@@ -25865,7 +25864,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Parece que tú mismo no lo sabes.",
         duration: "23m",
@@ -25877,7 +25876,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Aún queda mucho camino.",
         duration: "23m",
@@ -25889,7 +25888,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Tengo que dejar de fingir.",
         duration: "23m",
@@ -25901,7 +25900,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "Estamos entrenados para esto.",
         duration: "23m",
@@ -25913,7 +25912,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "No menosprecies a los míos.",
         duration: "23m",
@@ -25925,7 +25924,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "El décimo Cazador de rango S.",
         duration: "23m",
@@ -25937,7 +25936,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Mirar hacia arriba me estaba cansando.",
         duration: "23m",
@@ -25949,7 +25948,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "Valió la pena.",
         duration: "23m",
@@ -25961,7 +25960,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Necesitamos un héroe.",
         duration: "23m",
@@ -25973,7 +25972,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Se va a poner aún más intenso.",
         duration: "23m",
@@ -25985,7 +25984,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/23.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "¿Eres el rey de los humanos?.",
         duration: "23m",
@@ -25997,7 +25996,7 @@ export const animeData = [
         videoUrl: "frame/Solo-Leveling/T2/24.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 25,
         title: "Al siguiente objetivo.",
         duration: "23m",
@@ -26039,7 +26038,7 @@ export const animeData = [
     contentWarning: "+13 Violencia, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title:
           "Resonancia del alma: ¿Se convertirá Soul Eater en una guadaña mortal?.",
@@ -26052,7 +26051,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "¡Yo soy la estrella! ¿El gran jefe aparecerá aquí?.",
         duration: "23 min",
@@ -26064,7 +26063,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El chico perfecto: ¿La magnífica misión de Muerte the Kid?.",
         duration: "23 min",
@@ -26076,7 +26075,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title:
           "¡Invocando al caza-brujas! ¿La emocionante clase de refuerzo en el cementerio?.",
@@ -26089,7 +26088,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Forma de alma: ¿Entra el máximo maestro Stein?.",
         duration: "23 min",
@@ -26101,7 +26100,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "¡El novato del que tanto se habla!.",
         duration: "23 min",
@@ -26113,7 +26112,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title:
           "La terrorífica sangre negra ¿Crona tiene una arma en su interior?.",
@@ -26126,7 +26125,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "La bruja Medusa ¿Y su imparable arma demoníaca?.",
         duration: "23 min",
@@ -26138,7 +26137,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "La leyenda de la espada sagrada.",
         duration: "23 min",
@@ -26150,7 +26149,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Masamune, la espada demoníaca.",
         duration: "23 min",
@@ -26162,7 +26161,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La flor de la Camelia ¿Qué se esconde bajo la tristeza?.",
         duration: "23 min",
@@ -26174,7 +26173,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title:
           "El valor para afrontar el miedo, ¿La gran decisión de Maka Albarn?.",
@@ -26187,7 +26186,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title:
           "El ojo del demonio ¿Soul, Maka y el abismo entre la frecuencia de sus almas?.",
@@ -26200,7 +26199,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title:
           "Super-examen escrito ¿Ansiedad, temblores, nervios y mentiras?.",
@@ -26213,7 +26212,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "¡El dragón negro que come almas!.",
         duration: "23 min",
@@ -26225,7 +26224,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "¡Duelo en el barco fantasma!.",
         duration: "23 min",
@@ -26237,7 +26236,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "La leyenda de la espada sagrada II.",
         duration: "23 min",
@@ -26249,7 +26248,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Pesadilla antes del festival ¿Y se levantó el telón?.",
         duration: "23 min",
@@ -26261,7 +26260,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title:
           "Empieza la lucha bajo tierra. ¿Medusa irrumpe con su Vector Arrow?.",
@@ -26274,7 +26273,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "La guerra del eco de la sangre negra.",
         duration: "23 min",
@@ -26286,7 +26285,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title:
           "Alcánzala, alma mía ¿Un corazon sediento en una insoportable soledad?.",
@@ -26299,7 +26298,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "El santuario del sello ¿La trampa del hombre inmortal?.",
         duration: "23 min",
@@ -26311,7 +26310,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title:
           "¡Vivo o muerto! ¿El abismo entre la resurrección y la alucinación?.",
@@ -26324,7 +26323,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Combate entre dioses ¿Death City en peligro de derrumbe?.",
         duration: "23 min",
@@ -26336,7 +26335,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Reunión de Guadañas Mortales.",
         duration: "23 min",
@@ -26348,7 +26347,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/25.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 26,
         title: "¡La emocionante y vergonzante inscripción a la prueba!.",
         duration: "23 min",
@@ -26360,7 +26359,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/26.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 27,
         title: "800 años deseando matar ¿El descenso de la bruja hereje?.",
         duration: "23 min",
@@ -26372,7 +26371,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/27.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 28,
         title: "Aparece el dios de la espada.",
         duration: "23 min",
@@ -26384,7 +26383,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/28.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 29,
         title:
           "¡Medusa resucita! ¿Encuentro predestinado entre la araña y la serpiente?.",
@@ -26397,7 +26396,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/29.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 30,
         title: "El abrasador y desbocado tren expreso.",
         duration: "23 min",
@@ -26409,7 +26408,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/30.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 31,
         title:
           "Se acaba la felicidad ¿De quién son las lagrimas que brillan a la luz de la luna?.",
@@ -26422,7 +26421,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/31.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 32,
         title:
           "La leyenda de la espada sagrada 3 ¿La historia del pandillero del Shibusen?.",
@@ -26435,7 +26434,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/32.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 33,
         title: "Eco en cadena ¿Tocando la melodía de las almas?.",
         duration: "23 min",
@@ -26447,7 +26446,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/33.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 34,
         title: "¡La disputa por Brew! ¿Duelo entre el Shibusen y Aracnofobia?.",
         duration: "23 min",
@@ -26459,7 +26458,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/34.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 35,
         title:
           "¡El tormentoso Mosquito! ¿El tiempo límite en el mundo del pasado es de 10 minutos?.",
@@ -26472,7 +26471,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/35.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 36,
         title:
           "¡Liberación! ¡El eco en cadena con 7 personas! ¿Un concierto de creación y destrucción?.",
@@ -26485,7 +26484,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/36.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 37,
         title:
           "El primer caso de un gran detective. ¿Kid descubre el secreto del Shibusen?.",
@@ -26498,7 +26497,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/37.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 38,
         title: "Incitado a luchar. ¿El incontrolable enfado del gran hombre?.",
         duration: "23 min",
@@ -26510,7 +26509,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/38.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 39,
         title: "Crona se escapa. ¿Me sonríes, por favor?.",
         duration: "23 min",
@@ -26522,7 +26521,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/39.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 40,
         title: "Cartas barajadas. ¿Medusa se entrega al Shibusen?.",
         duration: "23 min",
@@ -26534,7 +26533,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/40.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 41,
         title: "Gira, gira y gira. El doctor baila. ¿Un nuevo mundo?.",
         duration: "23 min",
@@ -26546,7 +26545,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/41.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 42,
         title:
           "¡Al ataque! El castillo de Baba Yaga. ¿No creéis que hay gato encerrado?.",
@@ -26559,7 +26558,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/42.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 43,
         title:
           "La última herramienta demoníaca. ¿La misión imposible de un Kid indefenso?.",
@@ -26572,7 +26571,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/43.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 44,
         title:
           "La determinación de la débil Crona. ¿Por ti, que siempre has estado a mi lado?.",
@@ -26585,7 +26584,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/44.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 45,
         title:
           "La frecuencia anti-demoníaca. Ataque feroz. ¿El colérico Caza-demonios?.",
@@ -26598,7 +26597,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/45.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 46,
         title:
           "¿Arte marcial o matanza? El combate decisivo, ¿Mifune vs. Black Star?.",
@@ -26611,7 +26610,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/46.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 47,
         title:
           "Un milagroso cambio de tornas. ¡Vuela! ¿Nuestro robot Death City?.",
@@ -26624,7 +26623,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/47.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 48,
         title:
           "La Guadaña Mortal que tenía Shinigami-sama. ¿Un futuro inmediato lleno de oscuridad?.",
@@ -26637,7 +26636,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/48.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 49,
         title: "El despertar de Asura. ¿Hacia el fin del mundo?.",
         duration: "23 min",
@@ -26649,7 +26648,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/49.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 50,
         title:
           "¡¿Salir a flote o hundirse?! ¿Los hombres que van a superar a Dios?.",
@@ -26662,7 +26661,7 @@ export const animeData = [
         videoUrl: "frame/Soul-Eater/T1/50.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 51,
         title: "¡La palabra es valentía!.",
         duration: "23 min",
@@ -26706,7 +26705,7 @@ export const animeData = [
     contentWarning: "+13 Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El chico que baila con fantasmas.",
         duration: "24 min",
@@ -26718,7 +26717,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Otro chamán.",
         duration: "24 min",
@@ -26730,7 +26729,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Anna y Jun Tao.",
         duration: "24 min",
@@ -26742,7 +26741,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El mejor lugar.",
         duration: "24 min",
@@ -26754,7 +26753,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Posesión de objetos.",
         duration: "24 min",
@@ -26766,7 +26765,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Yoh vs. Horohoro.",
         duration: "24 min",
@@ -26778,7 +26777,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Un lugar para pertenecer.",
         duration: "24 min",
@@ -26790,7 +26789,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Evolución.",
         duration: "24 min",
@@ -26802,7 +26801,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Yoh vs. Ren de nuevo.",
         duration: "24 min",
@@ -26814,7 +26813,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Noche de llamas.",
         duration: "25 min",
@@ -26826,7 +26825,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La historia de dos hombres.",
         duration: "24 min",
@@ -26838,7 +26837,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Ren vs. En: el fin del Tao.",
         duration: "24 min",
@@ -26850,7 +26849,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Yoh vs. Ren: el poder de la amistad.",
         duration: "24 min",
@@ -26862,7 +26861,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Lyserg, el vengador.",
         duration: "24 min",
@@ -26874,7 +26873,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Cuando las piezas encajan.",
         duration: "24 min",
@@ -26886,7 +26885,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "La llegada de los X-Laws.",
         duration: "24 min",
@@ -26898,7 +26897,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Ángeles justicieros.",
         duration: "24 min",
@@ -26910,7 +26909,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "El Gran Espíritu y mi equipo.",
         duration: "24 min",
@@ -26922,7 +26921,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Jaguar.",
         duration: "24 min",
@@ -26934,7 +26933,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "El Jizō y los dos hombres.",
         duration: "24 min",
@@ -26946,7 +26945,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Iron Maiden Jeanne.",
         duration: "24 min",
@@ -26958,7 +26957,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Contigo a donde sea.",
         duration: "24 min",
@@ -26970,7 +26969,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "El poder de Yoh.",
         duration: "24 min",
@@ -26982,7 +26981,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Sin confianza.",
         duration: "24 min",
@@ -26994,7 +26993,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "El gran Onmyoji, Hao Asakura.",
         duration: "24 min",
@@ -27006,7 +27005,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/25.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 26,
         title: "El Tifón Mikihisa.",
         duration: "24 min",
@@ -27018,7 +27017,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/26.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 27,
         title: "Adiós para siempre.",
         duration: "24 min",
@@ -27030,7 +27029,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/27.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 28,
         title: "La verdad de Hao.",
         duration: "24 min",
@@ -27042,7 +27041,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/28.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 29,
         title: "A quemarropa.",
         duration: "24 min",
@@ -27054,7 +27053,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/29.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 30,
         title: "El monte Osore Le Voile (Parte 1).",
         duration: "24 min",
@@ -27066,7 +27065,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/30.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 31,
         title: "El monte Osore Le Voile (Parte 2).",
         duration: "24 min",
@@ -27078,7 +27077,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/31.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 32,
         title: "El monte Osore Le Voile (Parte 3).",
         duration: "24 min",
@@ -27090,7 +27089,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/32.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 33,
         title: "El monte Osore Le Voile (Parte 4).",
         duration: "24 min",
@@ -27102,7 +27101,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/33.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 34,
         title: "Ser rey.",
         duration: "24 min",
@@ -27114,7 +27113,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/34.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 35,
         title: "Reunión.",
         duration: "24 min",
@@ -27126,7 +27125,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/35.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 36,
         title: "Ren y la justicia.",
         duration: "24 min",
@@ -27138,7 +27137,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/36.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 37,
         title: "Vientos de risa.",
         duration: "24 min",
@@ -27150,7 +27149,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/37.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 38,
         title: "El Gran Espíritu.",
         duration: "24 min",
@@ -27162,7 +27161,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/38.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 39,
         title: "La Cumbre.",
         duration: "24 min",
@@ -27174,7 +27173,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/39.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 40,
         title: "Humildad.",
         duration: "24 min",
@@ -27186,7 +27185,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/40.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 41,
         title: "Encuentros en el Infierno.",
         duration: "24 min",
@@ -27198,7 +27197,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/41.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 42,
         title: "La Gran Prueba.",
         duration: "24 min",
@@ -27210,7 +27209,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/42.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 43,
         title: "El fin de un sueño.",
         duration: "24 min",
@@ -27222,7 +27221,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/43.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 44,
         title: "Hablar con calma.",
         duration: "24 min",
@@ -27234,7 +27233,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/44.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 45,
         title: "La primera y la última vez.",
         duration: "24 min",
@@ -27246,7 +27245,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/45.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 46,
         title: "Verdad.",
         duration: "24 min",
@@ -27258,7 +27257,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/46.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 47,
         title: "Las plantas.",
         duration: "24 min",
@@ -27270,7 +27269,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/47.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 48,
         title: "Hasta el final.",
         duration: "24 min",
@@ -27282,7 +27281,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/48.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 49,
         title: "Buenas noches.",
         duration: "24 min",
@@ -27294,7 +27293,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/49.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 50,
         title: "La caída de un Asakura.",
         duration: "24 min",
@@ -27306,7 +27305,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/50.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 51,
         title: "La última prueba del Torneo de Chamanes.",
         duration: "24 min",
@@ -27318,7 +27317,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-remake/T1/51.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 52,
         title: "El fin del sueño.",
         duration: "24 min",
@@ -27360,7 +27359,7 @@ export const animeData = [
     contentWarning: "+13 Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Asakura vs Ura Asakura.",
         duration: "23 min",
@@ -27372,7 +27371,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Festival de Onomatopeyas de Tokio Oeste.",
         duration: "23 min",
@@ -27384,7 +27383,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Vuelve el Shamán.",
         duration: "23 min",
@@ -27396,7 +27395,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "La llegada de un Shamán.",
         duration: "23 min",
@@ -27408,7 +27407,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Conmoción en el centro comercial.",
         duration: "23 min",
@@ -27420,7 +27419,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Demonio, tumbado en la orilla del río.",
         duration: "23 min",
@@ -27432,7 +27431,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Demonios, sonando.",
         duration: "23 min",
@@ -27444,7 +27443,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Flor de lo que sea.",
         duration: "23 min",
@@ -27456,7 +27455,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "La misma edad - yo, mi padre y mi tío.",
         duration: "23 min",
@@ -27468,7 +27467,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "La isla de los ceros muertos.",
         duration: "23 min",
@@ -27480,7 +27479,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La Doncella Negra.",
         duration: "23 min",
@@ -27492,7 +27491,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "¿Asi?.",
         duration: "23 min",
@@ -27504,7 +27503,7 @@ export const animeData = [
         videoUrl: "frame/Shaman-king-flowers/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "¡Esto es amor!.",
         duration: "23 min",
@@ -27547,7 +27546,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "¿Tú para qué juegas?.",
         duration: "25 min",
@@ -27559,7 +27558,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Aquel que se vuelve peculiar.",
         duration: "25 min",
@@ -27571,7 +27570,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El ataque nocturno del lobo negro.",
         duration: "25 min",
@@ -27583,7 +27582,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Los valores inútiles se quitan con juegos basura.",
         duration: "23 min",
@@ -27595,7 +27594,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Al final, fuiste acorralado por la lanza de la revuelta.",
         duration: "23 min",
@@ -27607,7 +27606,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "La reina de los caballeros de papelería.",
         duration: "23 min",
@@ -27619,7 +27618,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Restos de la Era de los Dioses y un perdedor con convicción.",
         duration: "23 min",
@@ -27631,7 +27630,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El caprichoso límite de 300.",
         duration: "23 min",
@@ -27643,7 +27642,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El gran y florido bosque frondoso.",
         duration: "23 min",
@@ -27655,7 +27654,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "¡Todos listos para saquear tumbas!.",
         duration: "23 min",
@@ -27667,7 +27666,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El verdadero resplandor.",
         duration: "23 min",
@@ -27679,7 +27678,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "No tiene caso arrepentirse del pasado.",
         duration: "23 min",
@@ -27691,7 +27690,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Solo me queda arrepentimiento.",
         duration: "23 min",
@@ -27703,7 +27702,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "La uva murió aplastada.",
         duration: "23 min",
@@ -27715,7 +27714,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Con cariño, para Setsuna, parte 1.",
         duration: "24 min",
@@ -27727,7 +27726,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Con cariño, para Setsuna, parte 2.",
         duration: "24 min",
@@ -27739,7 +27738,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Con cariño, para Setsuna, parte 3.",
         duration: "24 min",
@@ -27751,7 +27750,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Con cariño, para Setsuna, parte 4.",
         duration: "24 min",
@@ -27763,7 +27762,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "El mundo avanza y aparecen nuevos héroes.",
         duration: "24 min",
@@ -27775,7 +27774,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "El presente y la siguiente acción de cada uno.",
         duration: "24 min",
@@ -27787,7 +27786,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Mandados, formación y conquista.",
         duration: "24 min",
@@ -27799,7 +27798,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "El purificador de aire ambulante.",
         duration: "24 min",
@@ -27811,7 +27810,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "El pájaro y los conejos contra el coro calavera.",
         duration: "24 min",
@@ -27823,7 +27822,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Los ítems raros valen más que la vida.",
         duration: "26 min",
@@ -27835,7 +27834,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Aquellos que iluminan la oscuridad del mundo.",
         duration: "26 min",
@@ -27848,7 +27847,7 @@ export const animeData = [
       },
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 26,
         title:
           "El pajarraco medio desnudo y sus valientes compañeros en el paraíso de los golems.",
@@ -27861,7 +27860,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 27,
         title: "El portero carente de versatilidad.",
         duration: "23 min",
@@ -27873,7 +27872,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 28,
         title:
           "Las ambiciones e intenciones de todos se intensifican en la reunión.",
@@ -27886,7 +27885,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 29,
         title:
           "La gente sueña con cosas imposibles, como caminar por el cielo.",
@@ -27899,7 +27898,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 30,
         title: "Ese impulso es apetito; esa perseverancia, un deseo obsesivo.",
         duration: "23 min",
@@ -27911,7 +27910,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 31,
         title: "Desesperación al final del duelo.",
         duration: "23 min",
@@ -27923,7 +27922,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 32,
         title: "Choque de alas gemelas.",
         duration: "23 min",
@@ -27935,7 +27934,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 33,
         title:
           "El león usa todas sus fuerzas para cazar al conejo, mientras que el cangrejo enfrenta al fénix con un cortador de pizza.",
@@ -27948,7 +27947,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 34,
         title: "Corre usando la ansiedad como tu combustible.",
         duration: "23 min",
@@ -27960,7 +27959,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 35,
         title: "Sigue su olor como un perro de caza.",
         duration: "23 min",
@@ -27972,7 +27971,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 36,
         title: "Lleva contigo la flama de la gran ambición: Parte 1.",
         duration: "23 min",
@@ -27984,7 +27983,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 37,
         title: "Lleva contigo la flama de la gran ambición: Parte 2.",
         duration: "23 min",
@@ -27996,7 +27995,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 38,
         title: "Lleva contigo la flama de la gran ambición: Parte 3.",
         duration: "23 min",
@@ -28008,7 +28007,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/13.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 39,
         title: "Lleva contigo la flama de la gran ambición: Parte 4.",
         duration: "23 min",
@@ -28020,7 +28019,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/14.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 40,
         title: "Lleva contigo la flama de la gran ambición: Parte 5.",
         duration: "23 min",
@@ -28032,7 +28031,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/15.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 41,
         title: "¿Para qué juegas videojuegos? Esta es su respuesta.",
         duration: "23 min",
@@ -28044,7 +28043,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 42,
         title: "Escalera de color con comodín.",
         duration: "23 min",
@@ -28056,7 +28055,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 43,
         title: "La Ballena Roja contra los peces monstruosos.",
         duration: "23 min",
@@ -28068,7 +28067,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 44,
         title: "La tranquilidad termina en las ruinas de la ciudad.",
         duration: "23 min",
@@ -28080,7 +28079,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 45,
         title: "Y la Banda del Lobo va del mar a los rascacielos.",
         duration: "23 min",
@@ -28092,7 +28091,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 46,
         title: "La luz milagrosa estalla en gloria por un momento.",
         duration: "23 min",
@@ -28104,7 +28103,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 47,
         title: "Asesinato a cien metros por segundo.",
         duration: "23 min",
@@ -28116,7 +28115,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 48,
         title: "Monarca de las profundidades, prepárate a caer.",
         duration: "23 min",
@@ -28128,7 +28127,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/23.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 49,
         title: "La loca Brigada A (de anónimo) enfrenta una crisis.",
         duration: "23 min",
@@ -28140,7 +28139,7 @@ export const animeData = [
         videoUrl: "frame/Shangri-La-Frontier/T2/24.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 50,
         title: "La loca Brigada A (de anónimo) enfrenta una crisis.",
         duration: "23 min",
@@ -28185,7 +28184,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title:
           "Para ti, 2000 años en el futuro: la caída de Shiganshina, parte 1.",
@@ -28198,7 +28197,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Aquel día: la caída de Shiganshina, parte 2.",
         duration: "24 min",
@@ -28210,7 +28209,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title:
           "Una luz que se apaga en la desesperación: la humanidad se levanta, parte 1.",
@@ -28223,7 +28222,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title:
           "La noche de la ceremonia de graduación: la humanidad se levanta, parte 2.",
@@ -28236,7 +28235,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Primera batalla: asalto al distrito Trost, parte 1.",
         duration: "24 min",
@@ -28248,7 +28247,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El mundo que ella vio: asalto al distrito Trost, parte 2.",
         duration: "24 min",
@@ -28260,7 +28259,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Una pequeña cuchilla: asalto al distrito Trost, parte 3.",
         duration: "24 min",
@@ -28272,7 +28271,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Oigo un latido: asalto al distrito Trost, parte 4.",
         duration: "24 min",
@@ -28284,7 +28283,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title:
           "¿Dónde está el brazo izquierdo?: asalto al distrito Trost, parte 5.",
@@ -28297,7 +28296,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Respuesta: asalto al distrito Trost, parte 6.",
         duration: "24 min",
@@ -28309,7 +28308,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Ídolo: asalto al distrito Trost, parte 7.",
         duration: "24 min",
@@ -28321,7 +28320,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Herida: asalto al distrito Trost, parte 8.",
         duration: "24 min",
@@ -28333,7 +28332,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Deseo primitivo: asalto al distrito Trost, parte 9.",
         duration: "24 min",
@@ -28345,7 +28344,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Todavía no puedo ver: la víspera del contraataque, parte 1.",
         duration: "24 min",
@@ -28357,7 +28356,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title:
           "La unidad de operaciones especiales: la víspera del contraataque, parte 2.",
@@ -28370,7 +28369,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Qué podemos hacer ahora: la víspera del contraataque, parte 3.",
         duration: "24 min",
@@ -28382,7 +28381,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title:
           "La titán hembra: la 57.ª expedición más allá de los muros, parte 1.",
@@ -28395,7 +28394,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title:
           "El bosque de los árboles gigantes: la 57.ª expedición más allá de los muros, parte 2.",
@@ -28408,7 +28407,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Mordisco: la 57.ª expedición más allá de los muros, parte 3.",
         duration: "24 min",
@@ -28420,7 +28419,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title:
           "Erwin Smith: la 57.ª expedición más allá de los muros, parte 4.",
@@ -28433,7 +28432,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title:
           "Golpe aplastante: la 57.ª expedición más allá de los muros, parte 5.",
@@ -28446,7 +28445,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title:
           "Los vencidos: la 57.ª expedición más allá de los muros, parte 6.",
@@ -28459,7 +28458,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Sonrisa: asalto al distrito Stohess, parte 1.",
         duration: "24 min",
@@ -28471,7 +28470,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "El muro: asalto al distrito Stohess, parte 3.",
         duration: "24 min",
@@ -28485,7 +28484,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "El titán bestia.",
         duration: "24 min",
@@ -28497,7 +28496,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Estoy en casa.",
         duration: "24 min",
@@ -28509,7 +28508,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Hacia el suroeste.",
         duration: "24 min",
@@ -28521,7 +28520,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Soldado.",
         duration: "24 min",
@@ -28533,7 +28532,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Historia.",
         duration: "24 min",
@@ -28545,7 +28544,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Guerrero.",
         duration: "24 min",
@@ -28557,7 +28556,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Golpear, lanzar, someter.",
         duration: "24 min",
@@ -28569,7 +28568,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Perseguidores.",
         duration: "24 min",
@@ -28581,7 +28580,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Apertura.",
         duration: "24 min",
@@ -28593,7 +28592,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "Niños.",
         duration: "24 min",
@@ -28605,7 +28604,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "Ataque.",
         duration: "24 min",
@@ -28617,7 +28616,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Grito.",
         duration: "24 min",
@@ -28631,7 +28630,7 @@ export const animeData = [
 
       // Temporada 3
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "Señal de humo.",
         duration: "24 min",
@@ -28643,7 +28642,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "Señal de humo.",
         duration: "24 min",
@@ -28655,7 +28654,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title: "Dolor.",
         duration: "24 min",
@@ -28667,7 +28666,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "Viejos anhelos.",
         duration: "24 min",
@@ -28679,7 +28678,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "Confianza.",
         duration: "24 min",
@@ -28691,7 +28690,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "Respuesta.",
         duration: "24 min",
@@ -28703,7 +28702,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "Pecado.",
         duration: "24 min",
@@ -28715,7 +28714,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "Deseo.",
         duration: "24 min",
@@ -28727,7 +28726,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "Muro exterior del distrito Orvud.",
         duration: "24 min",
@@ -28739,7 +28738,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "Gobernante del muro.",
         duration: "24 min",
@@ -28751,7 +28750,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "Amigos.",
         duration: "24 min",
@@ -28763,7 +28762,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/10.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 11,
         title: "Espectador.",
         duration: "24 min",
@@ -28775,7 +28774,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/11.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 12,
         title: "La noche antes de la batalla.",
         duration: "24 min",
@@ -28787,7 +28786,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/12.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 13,
         title: "La ciudad donde todo comenzó.",
         duration: "24 min",
@@ -28799,7 +28798,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/13.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 14,
         title: "Lanza de trueno.",
         duration: "24 min",
@@ -28811,7 +28810,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/14.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 15,
         title: "Descenso.",
         duration: "24 min",
@@ -28823,7 +28822,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/15.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 16,
         title: "Juego perfecto.",
         duration: "24 min",
@@ -28835,7 +28834,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/16.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 17,
         title: "Héroe.",
         duration: "24 min",
@@ -28847,7 +28846,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/17.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 18,
         title: "Sol de medianoche.",
         duration: "24 min",
@@ -28859,7 +28858,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/18.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 19,
         title: "El sótano.",
         duration: "24 min",
@@ -28871,7 +28870,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/19.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 20,
         title: "Aquel día.",
         duration: "24 min",
@@ -28883,7 +28882,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/20.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 21,
         title: "El titán de ataque.",
         duration: "24 min",
@@ -28895,7 +28894,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T3/21.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 22,
         title: "Al otro lado del muro.",
         duration: "24 min",
@@ -28909,7 +28908,7 @@ export const animeData = [
 
       // Temporada 4: The Final Season
       {
-        season: 4,
+        season: "Temporada 4",
         number: 1,
         title: "Al otro lado del mar.",
         duration: "24 min",
@@ -28921,7 +28920,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/1.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 2,
         title: "El tren de medianoche.",
         duration: "24 min",
@@ -28933,7 +28932,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/2.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 3,
         title: "La puerta de la esperanza.",
         duration: "24 min",
@@ -28945,7 +28944,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/3.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 4,
         title: "De mano en mano.",
         duration: "24 min",
@@ -28957,7 +28956,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/4.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 5,
         title: "Declaración de guerra.",
         duration: "24 min",
@@ -28969,7 +28968,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/5.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 6,
         title: "El titán martillo de guerra.",
         duration: "24 min",
@@ -28981,7 +28980,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/6.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 7,
         title: "Asalto.",
         duration: "24 min",
@@ -28993,7 +28992,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/7.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 8,
         title: "Bala asesina.",
         duration: "24 min",
@@ -29005,7 +29004,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/8.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 9,
         title: "Voluntarios.",
         duration: "24 min",
@@ -29017,7 +29016,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/9.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 10,
         title: "Argumentos sólidos.",
         duration: "24 min",
@@ -29029,7 +29028,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/10.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 11,
         title: "Farsantes.",
         duration: "24 min",
@@ -29041,7 +29040,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/11.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 12,
         title: "Guía.",
         duration: "24 min",
@@ -29053,7 +29052,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/12.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 13,
         title: "Niños del bosque.",
         duration: "24 min",
@@ -29065,7 +29064,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/13.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 14,
         title: "Violencia desmedida.",
         duration: "24 min",
@@ -29077,7 +29076,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/14.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 15,
         title: "La única salvación.",
         duration: "24 min",
@@ -29089,7 +29088,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/15.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 16,
         title: "Cielo y tierra.",
         duration: "24 min",
@@ -29101,7 +29100,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/16.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 17,
         title: "Juicio.",
         duration: "24 min",
@@ -29113,7 +29112,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/17.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 18,
         title: "Engaño.",
         duration: "24 min",
@@ -29125,7 +29124,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/18.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 19,
         title: "Dos hermanos.",
         duration: "24 min",
@@ -29137,7 +29136,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/19.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 20,
         title: "Recuerdos del futuro.",
         duration: "24 min",
@@ -29149,7 +29148,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/20.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 21,
         title: "De ti, hace 2000 años.",
         duration: "24 min",
@@ -29161,7 +29160,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/21.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 22,
         title: "Deshielo.",
         duration: "24 min",
@@ -29173,7 +29172,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/22.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 23,
         title: "Atardecer.",
         duration: "24 min",
@@ -29185,7 +29184,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/23.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 24,
         title: "Orgullo.",
         duration: "24 min",
@@ -29197,7 +29196,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/24.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 25,
         title: "La noche del fin.",
         duration: "24 min",
@@ -29209,7 +29208,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/25.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 26,
         title: "Traidores.",
         duration: "24 min",
@@ -29221,7 +29220,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/26.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 27,
         title: "Retrospección.",
         duration: "24 min",
@@ -29233,7 +29232,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/27.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 28,
         title: "El amanecer de la humanidad.",
         duration: "24 min",
@@ -29247,7 +29246,7 @@ export const animeData = [
 
       // Temporada 4: The Final Chapters
       {
-        season: 4,
+        season: "Temporada 4",
         number: 29,
         title: "El Retumbar.",
         duration: "61 min",
@@ -29259,7 +29258,7 @@ export const animeData = [
         videoUrl: "frame/Shingeki-no-kyojin/T4/29.html",
       },
       {
-        season: 4,
+        season: "Temporada 4",
         number: 30,
         title: "Hacia el árbol de aquella colina.",
         duration: "85 min",
@@ -29303,7 +29302,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Operación 'strix'.",
         duration: "24 min",
@@ -29315,7 +29314,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Objetivo: conseguir esposa.",
         duration: "24 min",
@@ -29327,7 +29326,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Objetivo: entrar a Edén.",
         duration: "24 min",
@@ -29339,7 +29338,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Objetivo: pasar la entrevista.",
         duration: "24 min",
@@ -29351,7 +29350,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El resultado.",
         duration: "24 min",
@@ -29363,7 +29362,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Objetivo: hacer amigos.",
         duration: "24 min",
@@ -29375,7 +29374,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El segundo hijo del objetivo.",
         duration: "24 min",
@@ -29387,7 +29386,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Plan de camuflaje contra la policía secreta.",
         duration: "24 min",
@@ -29399,7 +29398,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Demostraremos que estamos acaramelados.",
         duration: "24 min",
@@ -29411,7 +29410,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Operación Quemados.",
         duration: "24 min",
@@ -29423,7 +29422,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Stella.",
         duration: "24 min",
@@ -29435,7 +29434,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Penguin Park.",
         duration: "24 min",
@@ -29448,7 +29447,7 @@ export const animeData = [
       },
       // Temporada 1 - Parte 2
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Proyecto Apple.",
         duration: "24 min",
@@ -29460,7 +29459,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Objetivo: desactivar la bomba.",
         duration: "24 min",
@@ -29472,7 +29471,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Una nueva familia.",
         duration: "24 min",
@@ -29484,7 +29483,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "La cocina de Yor / Amor de informante.",
         duration: "24 min",
@@ -29496,7 +29495,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Operación Grifo.",
         duration: "24 min",
@@ -29508,7 +29507,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "El tío profesor particular.",
         duration: "24 min",
@@ -29520,7 +29519,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Vengarse de Desmond / Mamá vuela como el viento.",
         duration: "24 min",
@@ -29532,7 +29531,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Investigar el hospital.",
         duration: "24 min",
@@ -29544,7 +29543,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Nightfall.",
         duration: "24 min",
@@ -29556,7 +29555,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "El torneo de tenis.",
         duration: "24 min",
@@ -29568,7 +29567,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Trayectoria perfecta.",
         duration: "24 min",
@@ -29580,7 +29579,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "El papel de una madre y esposa.",
         duration: "24 min",
@@ -29592,7 +29591,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Primer contacto.",
         duration: "24 min",
@@ -29605,7 +29604,7 @@ export const animeData = [
       },
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 26,
         title: "Seguiré a papi y a mami.",
         duration: "23 min",
@@ -29617,7 +29616,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/26.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 27,
         title:
           "La estrategia de Bond para seguir vivo / El viaje de investigación de Damian.",
@@ -29630,7 +29629,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/27.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 28,
         title: "Misión y familia / El elegante Bondman.",
         duration: "23 min",
@@ -29642,7 +29641,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/28.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 29,
         title: "Inteligencia y dulzura / El amor de mi vida.",
         duration: "23 min",
@@ -29654,7 +29653,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/29.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 30,
         title: "El plan para cruzar la frontera.",
         duration: "23 min",
@@ -29666,7 +29665,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/30.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 31,
         title: "El estremecedor crucero de lujo.",
         duration: "23 min",
@@ -29678,7 +29677,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/31.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 32,
         title: "¿Para quién es esta misión?.",
         duration: "23 min",
@@ -29690,7 +29689,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/32.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 33,
         title: "La sinfonía en el barco / El té de hierbas de la hermana.",
         duration: "23 min",
@@ -29702,7 +29701,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/33.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 34,
         title: "La mano que conecta con el futuro.",
         duration: "23 min",
@@ -29714,7 +29713,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/34.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 35,
         title:
           "Disfrutando del resort al máximo / Presumiendo de las vacaciones.",
@@ -29727,7 +29726,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/35.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 36,
         title: "Amor en Berlint / La vida diaria de Nightfall.",
         duration: "23 min",
@@ -29739,7 +29738,7 @@ export const animeData = [
         videoUrl: "frame/Spy-x-family/T2/36.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 37,
         title: "Parte de la familia.",
         duration: "23 min",
@@ -29781,7 +29780,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Adiós día de verano.",
         duration: "25 min",
@@ -29793,7 +29792,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Sombra.",
         duration: "25 min",
@@ -29805,7 +29804,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Lavando en tierra.",
         duration: "25 min",
@@ -29817,7 +29816,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Jamais Vus.",
         duration: "25 min",
@@ -29829,7 +29828,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Remolino.",
         duration: "25 min",
@@ -29841,7 +29840,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Resonancia de lanzamiento.",
         duration: "25 min",
@@ -29853,7 +29852,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Enemigo.",
         duration: "25 min",
@@ -29865,7 +29864,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Memento.",
         duration: "25 min",
@@ -29877,7 +29876,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Deja que las lágrimas fluyan.",
         duration: "25 min",
@@ -29889,7 +29888,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Enemigo.",
         duration: "25 min",
@@ -29901,7 +29900,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Hora de comer.",
         duration: "25 min",
@@ -29913,7 +29912,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Noche sangrienta.",
         duration: "25 min",
@@ -29925,7 +29924,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Amigo.",
         duration: "25 min",
@@ -29937,7 +29936,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Ser o no ser.",
         duration: "25 min",
@@ -29949,7 +29948,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Luces, cámara, acción.",
         duration: "25 min",
@@ -29961,7 +29960,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Original.",
         duration: "25 min",
@@ -29973,7 +29972,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Determinación.",
         duration: "25 min",
@@ -29985,7 +29984,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Cara a cara.",
         duration: "25 min",
@@ -29997,7 +29996,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Fábrica en negro.",
         duration: "25 min",
@@ -30009,7 +30008,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "(No) todo está perdido.",
         duration: "25 min",
@@ -30021,7 +30020,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "El día más largo de Ajiro Shinpei.",
         duration: "25 min",
@@ -30033,7 +30032,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "De regreso.",
         duration: "25 min",
@@ -30045,7 +30044,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Noche eterna.",
         duration: "25 min",
@@ -30057,7 +30056,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Summertime Re-Rendering.",
         duration: "25 min",
@@ -30069,7 +30068,7 @@ export const animeData = [
         videoUrl: "frame/Summer-time-render/T1/24.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 25,
         title: "Estoy en casa.",
         duration: "25 min",
@@ -30113,7 +30112,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Fantasmas y personas.",
         duration: "53 min",
@@ -30125,7 +30124,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La hija del demonio.",
         duration: "23 min",
@@ -30137,7 +30136,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Glotonerías (parte 1).",
         duration: "23 min",
@@ -30149,7 +30148,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Glotonerías (parte 2).",
         duration: "23 min",
@@ -30161,7 +30160,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El jardín de la dicha (1ª parte).",
         duration: "23 min",
@@ -30173,7 +30172,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El jardín de la dicha (2ª parte).",
         duration: "23 min",
@@ -30185,7 +30184,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "La noche maldita de Kudanzaka.",
         duration: "23 min",
@@ -30197,7 +30196,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Bajo el cerezo nocturno (parte 1).",
         duration: "23 min",
@@ -30209,7 +30208,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Bajo el cerezo nocturno (parte 2).",
         duration: "23 min",
@@ -30221,7 +30220,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Yotaka en la lluvia.",
         duration: "23 min",
@@ -30233,7 +30232,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Sueños ebrios de nieve persistente (Part 1).",
         duration: "23 min",
@@ -30245,7 +30244,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Sueños ebrios de nieve persistente (Part 2).",
         duration: "23 min",
@@ -30257,7 +30256,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Sueños ebrios de nieve persistente (Part 3).",
         duration: "23 min",
@@ -30269,7 +30268,7 @@ export const animeData = [
         videoUrl: "frame/Kijin-gentoushou/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "La aparición del corazón celoso.",
         duration: "23 min",
@@ -30314,7 +30313,7 @@ export const animeData = [
     contentWarning: "+16 Temas para adultos, Suicidio, Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Para ti en 2016",
         duration: "37 min",
@@ -30326,7 +30325,7 @@ export const animeData = [
         videoUrl: "frame/Takopis-Original-Sin/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Takopi al rescate",
         duration: "21 min",
@@ -30338,7 +30337,7 @@ export const animeData = [
         videoUrl: "frame/Takopis-Original-Sin/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "La confesión de Takopi",
         duration: "26 min",
@@ -30350,7 +30349,7 @@ export const animeData = [
         videoUrl: "frame/Takopis-Original-Sin/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Azuma al rescate",
         duration: "23 min",
@@ -30395,7 +30394,7 @@ export const animeData = [
       "+14 Luces intermitentes, Lenguaje ofensivo, Tabaquismo, Suicidio, Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Nice",
         duration: "23 min",
@@ -30407,7 +30406,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Moon",
         duration: "23 min",
@@ -30419,7 +30418,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El hombre que se mantiene firme",
         duration: "23 min",
@@ -30431,7 +30430,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El héroe del pueblo",
         duration: "23 min",
@@ -30443,7 +30442,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Un actor",
         duration: "23 min",
@@ -30455,7 +30454,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Episodio 6",
         duration: "23 min",
@@ -30467,7 +30466,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Tres asientos",
         duration: "23 min",
@@ -30479,7 +30478,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "La chica cian",
         duration: "23 min",
@@ -30491,7 +30490,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Perder y ganar",
         duration: "23 min",
@@ -30503,7 +30502,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "La verdad detrás de la suerte",
         duration: "23 min",
@@ -30515,7 +30514,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-x/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El camino hacia la corona",
         duration: "24 min",
@@ -30527,7 +30526,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-X/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "La caída de una estrella",
         duration: "24 min",
@@ -30539,7 +30538,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-X/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Una chica dura",
         duration: "24 min",
@@ -30551,7 +30550,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-X/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Contraataque improvisado",
         duration: "24 min",
@@ -30563,7 +30562,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-X/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Trastorno afectivo",
         duration: "24 min",
@@ -30575,7 +30574,7 @@ export const animeData = [
         videoUrl: "frame/To-be-hero-X/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "La cura",
         duration: "23 min",
@@ -30619,7 +30618,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Sangre de Oni",
         duration: "24 min",
@@ -30631,7 +30630,7 @@ export const animeData = [
         videoUrl: "frame/Tougen-anki/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Si quieres lograrlo, sigue ganando",
         duration: "24 min",
@@ -30674,7 +30673,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Renacer.",
         duration: "23 min",
@@ -30686,7 +30685,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Resistencia.",
         duration: "23 min",
@@ -30698,7 +30697,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Determinación.",
         duration: "23 min",
@@ -30710,7 +30709,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Regreso.",
         duration: "23 min",
@@ -30722,7 +30721,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Liberar.",
         duration: "23 min",
@@ -30734,7 +30733,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Arrepentimiento.",
         duration: "23 min",
@@ -30746,7 +30745,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Revancha.",
         duration: "23 min",
@@ -30758,7 +30757,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Reinicio.",
         duration: "23 min",
@@ -30770,7 +30769,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Rebelión.",
         duration: "23 min",
@@ -30782,7 +30781,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Despertar.",
         duration: "23 min",
@@ -30794,7 +30793,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Respeto.",
         duration: "23 min",
@@ -30806,7 +30805,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Venganza.",
         duration: "23 min",
@@ -30818,7 +30817,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Probabilidades y finales.",
         duration: "23 min",
@@ -30830,7 +30829,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Romper.",
         duration: "23 min",
@@ -30842,7 +30841,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "No hay dolor, no hay ganancia.",
         duration: "23 min",
@@ -30854,7 +30853,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Una vez en la vida.",
         duration: "23 min",
@@ -30866,7 +30865,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "No hay salida.",
         duration: "23 min",
@@ -30878,7 +30877,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Abrir fuego.",
         duration: "23 min",
@@ -30890,7 +30889,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Girar.",
         duration: "23 min",
@@ -30902,7 +30901,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Muerto o vivo.",
         duration: "23 min",
@@ -30914,7 +30913,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Uno para todos.",
         duration: "23 min",
@@ -30926,7 +30925,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Un solo defecto.",
         duration: "23 min",
@@ -30938,7 +30937,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Fin de la guerra.",
         duration: "23 min",
@@ -30950,7 +30949,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Un grito.",
         duration: "23 min",
@@ -30964,7 +30963,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 1,
         title: "Es lo que es.",
         duration: "23 min",
@@ -30976,7 +30975,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 2,
         title: "Debo irme.",
         duration: "23 min",
@@ -30988,7 +30987,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 3,
         title: "Debo irme.",
         duration: "23 min",
@@ -31000,7 +30999,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 4,
         title: "Lazos familiares.",
         duration: "23 min",
@@ -31012,7 +31011,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 5,
         title: "Nochebuena.",
         duration: "23 min",
@@ -31024,7 +31023,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 6,
         title: "Levantar la moral.",
         duration: "23 min",
@@ -31036,7 +31035,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 7,
         title: "Rivalidad entre hermanos.",
         duration: "23 min",
@@ -31048,7 +31047,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 8,
         title: "Esforzándonos juntos.",
         duration: "23 min",
@@ -31060,7 +31059,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 9,
         title: "Amanecer de una nueva era.",
         duration: "23 min",
@@ -31072,7 +31071,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 10,
         title: "La luz de mi vida.",
         duration: "23 min",
@@ -31084,7 +31083,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 11,
         title: "De camino a casa.",
         duration: "23 min",
@@ -31096,7 +31095,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/11.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 12,
         title: "Último pedido.",
         duration: "23 min",
@@ -31108,7 +31107,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 13,
         title: "Cuando llueve, diluvia.",
         duration: "23 min",
@@ -31122,7 +31121,7 @@ export const animeData = [
 
       // Temporada 3
       {
-        season: 3,
+        season: "Temporada 3",
         number: 1,
         title: "El día más largo.",
         duration: "23 min",
@@ -31134,7 +31133,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/1.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 2,
         title: "Enemigo mortal.",
         duration: "23 min",
@@ -31146,7 +31145,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/2.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 3,
         title: "Se agota la paciencia.",
         duration: "23 min",
@@ -31158,7 +31157,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/3.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 4,
         title: "Se agota la paciencia.",
         duration: "23 min",
@@ -31170,7 +31169,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/4.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 5,
         title: "Una mala corazonada.",
         duration: "23 min",
@@ -31182,7 +31181,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/5.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 6,
         title: "Rebelión.",
         duration: "23 min",
@@ -31194,7 +31193,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/6.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 7,
         title: "Invertir la tendencia.",
         duration: "23 min",
@@ -31206,7 +31205,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/7.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 8,
         title: "Lo sé dentro de mí.",
         duration: "23 min",
@@ -31218,7 +31217,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/8.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 9,
         title: "El ogro azul.",
         duration: "23 min",
@@ -31230,7 +31229,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/9.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 10,
         title: "Corazón valiente.",
         duration: "23 min",
@@ -31242,7 +31241,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/10.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 11,
         title: "No queda nada.",
         duration: "23 min",
@@ -31254,7 +31253,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/11.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 12,
         title: "El paraíso perdido.",
         duration: "23 min",
@@ -31266,7 +31265,7 @@ export const animeData = [
         videoUrl: "frame/Tokyo-revengers/T3/12.html",
       },
       {
-        season: 3,
+        season: "Temporada 3",
         number: 13,
         title: "Conoce su destino.",
         duration: "23 min",
@@ -31309,7 +31308,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "BALL.",
         duration: "25 min",
@@ -31321,7 +31320,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La puerta que no se abre.",
         duration: "25 min",
@@ -31333,7 +31332,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "La respuesta correcta.",
         duration: "25 min",
@@ -31345,7 +31344,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El Monstruo Verde.",
         duration: "25 min",
@@ -31357,7 +31356,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "La Corona del Rey.",
         duration: "25 min",
@@ -31369,7 +31368,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "La prueba de posición.",
         duration: "25 min",
@@ -31381,7 +31380,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "El almuerzo y el escondite.",
         duration: "25 min",
@@ -31393,7 +31392,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Los trucos de Khun.",
         duration: "25 min",
@@ -31405,7 +31404,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El ogro con un cuerno.",
         duration: "25 min",
@@ -31417,7 +31416,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Más allá de la tristeza.",
         duration: "25 min",
@@ -31429,7 +31428,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La pesca submarina (Parte 1).",
         duration: "25 min",
@@ -31441,7 +31440,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "La pesca submarina (Parte 2).",
         duration: "25 min",
@@ -31453,7 +31452,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "La Torre de Dios.",
         duration: "25 min",
@@ -31467,7 +31466,7 @@ export const animeData = [
 
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Última oportunidad.",
         duration: "23 min",
@@ -31479,7 +31478,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "El regular más fuerte.",
         duration: "23 min",
@@ -31491,7 +31490,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Vigesimoquinto Bam.",
         duration: "23 min",
@@ -31503,7 +31502,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/16.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "¡Funky!.",
         duration: "23 min",
@@ -31515,7 +31514,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/17.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "El perro rabioso y la lagartija.",
         duration: "23 min",
@@ -31527,7 +31526,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/18.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "All In.",
         duration: "23 min",
@@ -31539,7 +31538,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/19.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "Pendiendo de un hilo.",
         duration: "23 min",
@@ -31551,7 +31550,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/20.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "El inicio del amanecer.",
         duration: "23 min",
@@ -31563,7 +31562,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/21.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "Auge y caída.",
         duration: "23 min",
@@ -31575,7 +31574,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/22.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "El final del amanecer.",
         duration: "23 min",
@@ -31587,7 +31586,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/23.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "El precio de la batalla.",
         duration: "23 min",
@@ -31599,7 +31598,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/24.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 25,
         title: "El retorno del rey.",
         duration: "23 min",
@@ -31611,7 +31610,7 @@ export const animeData = [
         videoUrl: "frame/Tower-of-god/T2/12.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 26,
         title: "El amanecer de una partida.",
         duration: "23 min",
@@ -31653,7 +31652,7 @@ export const animeData = [
     contentWarning: "+14",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El renacimiento del rey.",
         duration: "24 min",
@@ -31665,7 +31664,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Atacan al rey.",
         duration: "24 min",
@@ -31677,7 +31676,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Encuentro con el rey.",
         duration: "24 min",
@@ -31689,7 +31688,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Salvada por el rey.",
         duration: "24 min",
@@ -31701,7 +31700,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "La prueba del rey.",
         duration: "24 min",
@@ -31713,7 +31712,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El entrenamiento del rey.",
         duration: "24 min",
@@ -31725,7 +31724,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "La despedida del rey.",
         duration: "23 min",
@@ -31737,7 +31736,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Reunidos con el rey.",
         duration: "23 min",
@@ -31749,7 +31748,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Las enseñanzas del rey.",
         duration: "23 min",
@@ -31761,7 +31760,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "La oposición del rey.",
         duration: "23 min",
@@ -31773,7 +31772,7 @@ export const animeData = [
         videoUrl: "frame/The-beginning-after-the-end/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La decisión del rey.",
         duration: "23 min",
@@ -31815,7 +31814,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Estofado / Tarta.",
         duration: "27 min",
@@ -31827,7 +31826,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Basilisco asado / Omelet / Kakiage.",
         duration: "27 min",
@@ -31839,7 +31838,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Armadura viviente.",
         duration: "25 min",
@@ -31851,7 +31850,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Estofado de col / Orcos.",
         duration: "27 min",
@@ -31863,7 +31862,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Bocadillos / Sorbete.",
         duration: "26 min",
@@ -31875,7 +31874,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Cocina de la corte / Mimético hervido.",
         duration: "25 min",
@@ -31887,7 +31886,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Kelpie / Papilla de cebada / Parásito asado con salsa.",
         duration: "28 min",
@@ -31899,7 +31898,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Frambuesas / Carne asada.",
         duration: "25 min",
@@ -31911,7 +31910,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Tentáculos / Estofado.",
         duration: "28 min",
@@ -31923,7 +31922,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Sapos gigantes / Sobre la tierra.",
         duration: "26 min",
@@ -31935,7 +31934,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Dragón rojo (Parte 1).",
         duration: "25 min",
@@ -31947,7 +31946,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Dragón rojo (Parte 2).",
         duration: "25 min",
@@ -31959,7 +31958,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Dragón rojo (Parte 3) / Medicina de orcos.",
         duration: "25 min",
@@ -31971,7 +31970,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Serpiente marina.",
         duration: "26 min",
@@ -31983,7 +31982,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Dríada / Cocatriz.",
         duration: "27 min",
@@ -31995,7 +31994,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Comida a la piedra / Cocina oriental.",
         duration: "27 min",
@@ -32007,7 +32006,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "Arpía / Quimera.",
         duration: "27 min",
@@ -32019,7 +32018,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Copias.",
         duration: "25 min",
@@ -32031,7 +32030,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Bestia de papel / Pesadilla.",
         duration: "27 min",
@@ -32043,7 +32042,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Gólem de hielo / Barometz.",
         duration: "26 min",
@@ -32055,7 +32054,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "Huevos / El Reino Dorado.",
         duration: "28 min",
@@ -32067,7 +32066,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Grifo / Bestias invocadas.",
         duration: "25 min",
@@ -32079,7 +32078,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Sopa de grifo / Dumplings (1).",
         duration: "29 min",
@@ -32091,7 +32090,7 @@ export const animeData = [
         videoUrl: "frame/Tragones-y-mazmorras/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Dumplings (2) / Tocino y huevos.",
         duration: "26 min",
@@ -32135,7 +32134,7 @@ export const animeData = [
     contentWarning: "+14",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "¿Ciclo Ultra A? ¡La Diosa me lo confesó!.",
         duration: "21 min",
@@ -32147,7 +32146,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "¡Actualización! ¿Batalla 5? ¡No es de temer!.",
         duration: "19 min",
@@ -32159,7 +32158,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "¡Melee! ¿Wang Xiaoxiu sigue siendo humano?.",
         duration: "19 min",
@@ -32171,7 +32170,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "¿Secuestro? ¡Demonio presente!.",
         duration: "19 min",
@@ -32183,7 +32182,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "G.I. Joe Tower Climb: Rueda de la Fortuna.",
         duration: "19 min",
@@ -32195,7 +32194,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "G.I. Joe Tower Climb: Monster Girl.",
         duration: "19 min",
@@ -32207,7 +32206,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title:
           "El héroe escala la torre alta: el combate con presupuesto explosivo.",
@@ -32220,7 +32219,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title:
           "Engañado por un intermediario sin escrúpulos para trabajar como guardaespaldas.",
@@ -32233,7 +32232,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El banquete de Rudra: Guerreros y campanas doradas.",
         duration: "19 min",
@@ -32245,7 +32244,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title:
           "¡Bestia Biogenética Derrotada y Asalto al Laboratorio con Nuevo Aliado!.",
@@ -32258,7 +32257,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El banquete de Rudra: El poder de la gran dama.",
         duration: "19 min",
@@ -32270,7 +32269,7 @@ export const animeData = [
         videoUrl: "frame/The-super-cube/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Banquete de Rudra: Brazo de Hierro Leika.",
         duration: "19 min",
@@ -32315,7 +32314,7 @@ export const animeData = [
     contentWarning: "+14 Violencia, Lenguaje",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Tierra de nadie.",
         duration: "23 min",
@@ -32327,7 +32326,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Hombre a la fuga.",
         duration: "23 min",
@@ -32339,7 +32338,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Potente luz, ilumina la oscuridad.",
         duration: "23 min",
@@ -32351,7 +32350,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "HUNGRY!.",
         duration: "23 min",
@@ -32363,7 +32362,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Hijo de la bendición.",
         duration: "23 min",
@@ -32375,7 +32374,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Érase una vez en la tierra de la esperanza.",
         duration: "23 min",
@@ -32387,7 +32386,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Wolfwood.",
         duration: "23 min",
@@ -32399,7 +32398,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Hogar.",
         duration: "23 min",
@@ -32411,7 +32410,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Millions Knives.",
         duration: "23 min",
@@ -32423,7 +32422,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Humanidad.",
         duration: "23 min",
@@ -32435,7 +32434,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Hacia un nuevo mundo.",
         duration: "23 min",
@@ -32447,7 +32446,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Mediodía en Julio.",
         duration: "23 min",
@@ -32490,7 +32489,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Lanza una piedra y le darás a un ninja.",
         duration: "24 min",
@@ -32502,7 +32501,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Me he convertido en un ninja como soñaba.",
         duration: "24 min",
@@ -32514,7 +32513,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Pechos: tan cerca y, al mismo tiempo, tan lejos.",
         duration: "24 min",
@@ -32526,7 +32525,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "¿Sabes lo que dice el código shinobi?.",
         duration: "24 min",
@@ -32538,7 +32537,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title:
           "Kumogakure es uno de los diez apellidos más comunes de Japón (mentiras).",
@@ -32551,7 +32550,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Han destapado esta olla infernal.",
         duration: "24 min",
@@ -32563,7 +32562,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Miau, miau, ¿miau, miau, miau?.",
         duration: "24 min",
@@ -32575,7 +32574,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Aniquilaremos a todos los ninjas del planeta.",
         duration: "24 min",
@@ -32587,7 +32586,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Pasaré a la historia como shinobi.",
         duration: "24 min",
@@ -32599,7 +32598,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "El pecho de una chica es muy importante.",
         duration: "24 min",
@@ -32611,7 +32610,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Kuro por fin empuña una espada.",
         duration: "24 min",
@@ -32623,7 +32622,7 @@ export const animeData = [
         videoUrl: "frame/Under-ninja/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Lo de siempre, sin cabos sueltos.",
         duration: "24 min",
@@ -32667,7 +32666,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Inmortalidad y mala suerte",
         duration: "24 min",
@@ -32679,7 +32678,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Reunión",
         duration: "24 min",
@@ -32691,7 +32690,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Cómo utilizar mi mala suerte",
         duration: "24 min",
@@ -32703,7 +32702,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "¿Amas el cambio en mí?",
         duration: "24 min",
@@ -32715,7 +32714,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Unidos negamos",
         duration: "24 min",
@@ -32727,7 +32726,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Spoil",
         duration: "24 min",
@@ -32739,7 +32738,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Sueño",
         duration: "24 min",
@@ -32751,7 +32750,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Victhor",
         duration: "24 min",
@@ -32763,7 +32762,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Regreso",
         duration: "24 min",
@@ -32775,7 +32774,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Result",
         duration: "24 min",
@@ -32787,7 +32786,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Rio de Janeiro",
         duration: "24 min",
@@ -32799,7 +32798,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Activación",
         duration: "24 min",
@@ -32811,7 +32810,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Tatiana",
         duration: "24 min",
@@ -32823,7 +32822,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "Bala carmesí",
         duration: "24 min",
@@ -32835,7 +32834,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "Under",
         duration: "24 min",
@@ -32847,7 +32846,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/15.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 16,
         title: "Revolución",
         duration: "24 min",
@@ -32859,7 +32858,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/16.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 17,
         title: "OUTSMART",
         duration: "24 min",
@@ -32871,7 +32870,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/17.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 18,
         title: "Llanto a la luna",
         duration: "24 min",
@@ -32883,7 +32882,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/18.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 19,
         title: "Antedo + Anrakku",
         duration: "24 min",
@@ -32895,7 +32894,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/19.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 20,
         title: "Nube durante la estación lluviosa",
         duration: "24 min",
@@ -32907,7 +32906,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/20.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 21,
         title: "MEMENTO Mori",
         duration: "24 min",
@@ -32919,7 +32918,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/21.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 22,
         title: "Perfil",
         duration: "24 min",
@@ -32931,7 +32930,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/22.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 23,
         title: "Historias que no conozco",
         duration: "24 min",
@@ -32943,7 +32942,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/23.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 24,
         title: "Para ti, de mí",
         duration: "24 min",
@@ -32987,7 +32986,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Desnudos",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "El cazador de monstruos.",
         duration: "23 min",
@@ -32999,7 +32998,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "El vampiro.",
         duration: "23 min",
@@ -33011,7 +33010,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Vida inmortal y bosque.",
         duration: "23 min",
@@ -33023,7 +33022,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El fantasma de la ópera.",
         duration: "23 min",
@@ -33035,7 +33034,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "El ladrón fantasma.",
         duration: "23 min",
@@ -33047,7 +33046,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El ladrón y el detective.",
         duration: "23 min",
@@ -33059,7 +33058,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Juego de lobos.",
         duration: "23 min",
@@ -33071,7 +33070,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Noche de monstruos.",
         duration: "23 min",
@@ -33083,7 +33082,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Werewolf.",
         duration: "23 min",
@@ -33095,7 +33094,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Niebla en el Támesis.",
         duration: "23 min",
@@ -33107,7 +33106,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "El último hombre lobo.",
         duration: "23 min",
@@ -33119,7 +33118,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "La tendencia del río.",
         duration: "23 min",
@@ -33131,7 +33130,7 @@ export const animeData = [
         videoUrl: "frame/Undead-Murder-Farce/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "El nombre del culpable.",
         duration: "23 min",
@@ -33175,7 +33174,7 @@ export const animeData = [
     contentWarning: "+16 Horror, Violencia",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Episodio 1.",
         duration: "22 min",
@@ -33187,7 +33186,7 @@ export const animeData = [
         videoUrl: "frame/Uzumaki/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Episodio 2.",
         duration: "22 min",
@@ -33199,7 +33198,7 @@ export const animeData = [
         videoUrl: "frame/Uzumaki/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Episodio 3.",
         duration: "22 min",
@@ -33211,7 +33210,7 @@ export const animeData = [
         videoUrl: "frame/Uzumaki/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Episodio 4.",
         duration: "22 min",
@@ -33256,7 +33255,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Lenguaje",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Primer post.",
         duration: "22 min",
@@ -33268,7 +33267,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Tengo que ser más fuerte.",
         duration: "22 min",
@@ -33280,7 +33279,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "La cita.",
         duration: "22 min",
@@ -33292,7 +33291,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Humillación.",
         duration: "22 min",
@@ -33304,7 +33303,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Amigos.",
         duration: "22 min",
@@ -33316,7 +33315,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El Diablo.",
         duration: "22 min",
@@ -33328,7 +33327,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Entrenamiento especial.",
         duration: "22 min",
@@ -33340,7 +33339,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Una pelea de verdad.",
         duration: "22 min",
@@ -33352,7 +33351,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Compañeros.",
         duration: "22 min",
@@ -33364,7 +33363,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Un nuevo contrincante.",
         duration: "22 min",
@@ -33376,7 +33375,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Un nudo en el pecho.",
         duration: "22 min",
@@ -33388,7 +33387,7 @@ export const animeData = [
         videoUrl: "frame/Viral-Hit/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Felicidad.",
         duration: "22 min",
@@ -33432,7 +33431,7 @@ export const animeData = [
     episodes: [
       // Temporada 1
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Sakura y la Furin.",
         duration: "23 min",
@@ -33444,7 +33443,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Los héroes idolatrados.",
         duration: "23 min",
@@ -33456,7 +33455,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El hombre en la cima.",
         duration: "23 min",
@@ -33468,7 +33467,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Enfrentamiento.",
         duration: "23 min",
@@ -33480,7 +33479,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Un buen hombre.",
         duration: "23 min",
@@ -33492,7 +33491,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Persiguiendo esa espalda.",
         duration: "23 min",
@@ -33504,7 +33503,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Una pelea que no puedo perder.",
         duration: "23 min",
@@ -33516,7 +33515,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Heredando sentimientos.",
         duration: "23 min",
@@ -33528,7 +33527,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El método de Umemiya.",
         duration: "23 min",
@@ -33540,7 +33539,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Diálogo.",
         duration: "23 min",
@@ -33552,7 +33551,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Nuevos amigos.",
         duration: "23 min",
@@ -33564,7 +33563,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Alguien de confianza.",
         duration: "23 min",
@@ -33576,7 +33575,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "Por un amigo.",
         duration: "23 min",
@@ -33589,7 +33588,7 @@ export const animeData = [
       },
       // Temporada 2
       {
-        season: 2,
+        season: "Temporada 2",
         number: 14,
         title: "Furia.",
         duration: "23 min",
@@ -33601,7 +33600,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/1.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 15,
         title: "Resolución.",
         duration: "23 min",
@@ -33613,7 +33612,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/2.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 16,
         title: "Volver a empezar.",
         duration: "23 min",
@@ -33625,7 +33624,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/3.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 17,
         title: "Las enseñanzas de los mayores.",
         duration: "23 min",
@@ -33637,7 +33636,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/4.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 18,
         title: "Mi lugar.",
         duration: "23 min",
@@ -33649,7 +33648,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/5.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 19,
         title: "Sentimientos reservados.",
         duration: "23 min",
@@ -33661,7 +33660,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/6.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 20,
         title: "El barrio nocturno.",
         duration: "23 min",
@@ -33673,7 +33672,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/7.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 21,
         title: "Frente unido.",
         duration: "23 min",
@@ -33685,7 +33684,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/8.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 22,
         title: "¿Bailamos?.",
         duration: "23 min",
@@ -33697,7 +33696,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/9.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 23,
         title: "Tender la mano.",
         duration: "23 min",
@@ -33709,7 +33708,7 @@ export const animeData = [
         videoUrl: "frame/Wind-Breaker/T2/10.html",
       },
       {
-        season: 2,
+        season: "Temporada 2",
         number: 24,
         title: "Después de la tormenta.",
         duration: "23 min",
@@ -33751,7 +33750,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Como una espada solitaria.",
         duration: "23 min",
@@ -33763,7 +33762,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Como si no importara nada.",
         duration: "23 min",
@@ -33775,7 +33774,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Order & Watcher.",
         duration: "23 min",
@@ -33787,7 +33786,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "La víspera del Gran Festival.",
         duration: "23 min",
@@ -33799,7 +33798,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Da el pistoletazo de salida.",
         duration: "23 min",
@@ -33811,7 +33810,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "Entre la ira y la pasión.",
         duration: "23 min",
@@ -33823,7 +33822,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Al final todo salió bien.",
         duration: "23 min",
@@ -33835,7 +33834,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Aldoron, the Wood Dragon God.",
         duration: "23 min",
@@ -33847,7 +33846,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "Resplandor Blanco.",
         duration: "23 min",
@@ -33859,7 +33858,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Nuevos asesinos.",
         duration: "23 min",
@@ -33871,7 +33870,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Wraith, Dragón Fantasma.",
         duration: "23 min",
@@ -33883,7 +33882,7 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Varita y espada.",
         duration: "23 min",
@@ -33928,7 +33927,7 @@ export const animeData = [
     contentWarning: "+13",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Conozcan a Yaiba.",
         duration: "23 min",
@@ -33940,7 +33939,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "Fujinken renacido.",
         duration: "23 min",
@@ -33952,7 +33951,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "Otro maken.",
         duration: "23 min",
@@ -33964,7 +33963,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "El Ataque de los Ocho Ogros.",
         duration: "23 min",
@@ -33976,7 +33975,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Diversión en las Termas.",
         duration: "23 min",
@@ -33988,7 +33987,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "El Inesperado Señor Murciélago.",
         duration: "23 min",
@@ -34000,7 +33999,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Kojiro Resucitado.",
         duration: "23 min",
@@ -34012,7 +34011,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "El Duelo en la Isla Ganryu.",
         duration: "23 min",
@@ -34024,7 +34023,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "El origen del Corte Relámpago.",
         duration: "23 min",
@@ -34036,7 +34035,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "Los Reyes Demonios de Onimaru.",
         duration: "23 min",
@@ -34048,7 +34047,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "Raijinken vs. Fujinken",
         duration: "23 min",
@@ -34060,7 +34059,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "Nadeshiko Yamato llama",
         duration: "23 min",
@@ -34072,7 +34071,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/12.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 13,
         title: "La Búsqueda del Orbe del Dios Dragón",
         duration: "23 min",
@@ -34084,7 +34083,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/13.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 14,
         title: "¡El ascenso del ninja Kotaro!",
         duration: "23 min",
@@ -34096,7 +34095,7 @@ export const animeData = [
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/14.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 15,
         title: "¡Duelo! ¡Brujo vs. Yaiba!",
         duration: "23 min",
@@ -34141,7 +34140,7 @@ export const animeData = [
     contentWarning: "+16 Violencia, Gore",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "Akira de los muertos.",
         duration: "24 min",
@@ -34153,7 +34152,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/1.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 2,
         title: "La lista de la muerte.",
         duration: "24 min",
@@ -34165,7 +34164,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/2.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 3,
         title: "El mejor amigo de los muertos.",
         duration: "24 min",
@@ -34177,7 +34176,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/3.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 4,
         title: "Auxiliar de vuelo de los muertos.",
         duration: "24 min",
@@ -34189,7 +34188,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/4.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 5,
         title: "Héroe de los muertos.",
         duration: "24 min",
@@ -34201,7 +34200,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/5.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 6,
         title: "La caravana de los muertos.",
         duration: "24 min",
@@ -34213,7 +34212,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/6.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 7,
         title: "Parada de camiones de los muertos.",
         duration: "24 min",
@@ -34225,7 +34224,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/7.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 8,
         title: "Sushi y aguas termales de los muertos.",
         duration: "24 min",
@@ -34237,7 +34236,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/8.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 9,
         title: "La casa del árbol de los muertos.",
         duration: "24 min",
@@ -34249,7 +34248,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/9.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 10,
         title: "La cuna de la muerte, parte I.",
         duration: "24 min",
@@ -34261,7 +34260,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/10.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 11,
         title: "La cuna de la muerte, parte II.",
         duration: "24 min",
@@ -34273,7 +34272,7 @@ export const animeData = [
         videoUrl: "frame/Zom-100-The-Bucket-List-of-the-Dead/T1/11.html",
       },
       {
-        season: 1,
+        season: "Temporada 1",
         number: 12,
         title: "La cuna de la muerte, parte III.",
         duration: "24 min",
@@ -34318,7 +34317,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "La Espada del Rey Mago.",
         duration: "1h 50 min",
@@ -34360,7 +34359,7 @@ export const animeData = [
     contentWarning: "+13",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "The Beginning.",
         duration: "2 hrs",
@@ -34404,7 +34403,7 @@ export const animeData = [
     contentWarning: "+12",
     episodes: [
       {
-        season: 1,
+        season: "Temporada 1",
         number: 1,
         title: "The First Slam Dunk.",
         duration: "1h 59 min",
