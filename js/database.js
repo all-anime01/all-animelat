@@ -8969,12 +8969,12 @@ export const animeData = [
       {
         season: "Especial Ryusui",
         number: 1,
-        title: "Ryuusui",
+        title: "Dr. STONE Special Episode – RYUSUI",
         duration: "54 min",
         description:
-          "Para navegar por los mares, Senku revive a Ryusui Nanami, un codicioso pero brillante capitán de barco, para que los guíe en su nueva aventura para descubrir el origen de la petrificación.",
-        img: "/image/Dr-Stone-Ryusui/1.jpg",
-        releaseDate: "Julio 10, 2022",
+          "Tras todo lo ocurrido Senku tiene claro su nuevo objetivo: descubrir qué fue lo que generó el rayo que convirtió a la humanidad en piedra. Para ello tiene que viajar al otro lado del planeta, y con los medios de la nueva era de piedra, solo puede hacerlo con barco. Es hora de buscar a un buen navegante que pueda llevarles hasta su destino.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3db5cb5828101210b5f1e39360e2eb8b.jpg",
+        releaseDate: "Agosto 31, 2022",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/Especial-Ryusui/1.html",
       },
@@ -12985,6 +12985,18 @@ export const animeData = [
         releaseDate: "Marzo 27, 2021",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T1/24.html",
+      },
+      {
+        season: "Jujutsu Kaisen 0",
+        number: 1,
+        title: "Jujutsu Kaisen 0: La película",
+        duration: "1h 44min",
+        description:
+          "Cuando apenas eran unos niños, Rika Orimoto murió en un accidente de tráfico justo ante los ojos de su buen amigo Yuka Okkotsu. 'Es una promesa. Cuando seamos grandes, nos casaremos'.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/319c0629e4e3368a7cab59b49569ed88.jpg",
+        releaseDate: "Septiembre 21, 2021",
+        language: "Sub | Dob",
+        videoUrl: "frame/Jujutsu-kaisen/Peliculas/0.html",
       },
       {
         season: "Temporada 2",
