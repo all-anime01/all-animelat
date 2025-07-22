@@ -7735,7 +7735,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Maru y Kiruko llegan a una ciudad fortificada que parece ser un refugio seguro, pero pronto descubren que sus habitantes ocultan un oscuro secreto.",
-        img: "v",
+        img: "https://image.tmdb.org/t/p/w300/dmNnuDGKWLiS25ZF4GBLkNIdbvI.jpg",
         releaseDate: "Junio 3, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Tengoku-daimakyou/T1/10.html",
@@ -11963,7 +11963,7 @@ export const animeData = [
       },
     ],
   },
-  //K
+  //letra K
   {
     id: "kinnikuman-perfect-origin-arc",
     title: "Kinnikuman Perfect Origin Arc",
@@ -12269,7 +12269,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kinnikuman debe defender su título contra un nuevo y ambicioso Chojin que busca destronarlo y convertirse en el nuevo rey.",
-        img: "/image/Kinnikuman-Perfect-Origin-Arc/T2/23.jpg",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_c5a53ce3d8fd935f744e24f0ba232e13.jpg",
         releaseDate: "Marzo 30, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Kinnikuman-Perfect-Origin-Arc/T2/22.html",
