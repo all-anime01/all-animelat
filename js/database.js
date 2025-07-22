@@ -11229,7 +11229,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1100)), // Calculado desde el 11/12/20
+    dateAdded: new Date(), // Calculado desde el 11/12/20
     audio: "Sub | Dob",
     creator: "Atsushi Ōkubo",
     contentWarning: "+16 Violencia, Desnudos",
@@ -11958,7 +11958,7 @@ export const animeData = [
           "Sho se enfrenta a Faerie tras abandonar su cometido y Shinra visita el pasado junto a Inca.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1e471b8ed579ee8a99daf9cec6e3df65.jpg",
         releaseDate: "Junio 20, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Fire-force/T3/12.html",
       },
     ],
