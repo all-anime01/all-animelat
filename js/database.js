@@ -13648,11 +13648,13 @@ export const animeData = [
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/e0585c8ccca90394e03d7ee4e7b597db.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GEXH3W2EZ-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/64fbff488d22ec2162135780f31a293e.jpg",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GEXH3W2EZ-title_logo-en-us",
     imgMobile:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GEXH3W2EZ-backdrop_wide",
-    trailerUrl: "https://www.youtube.com/embed/D1MojtykOOQ?si=2feDCu92lXOq6dJr",
+    trailerUrl: "https://www.youtube.com/embed/a8p-l75icsA?si=M9ASVXE44jRA2Ia4",
     description:
       "En un mundo victoriano de vapor, barcos de guerra y horrores ocultos, Zhou Mingrui despierta como Klein Moretti. Transita entre la luz y la oscuridad, enzarzado con Iglesias en guerra. Esta es la leyenda de un potencial ilimitado... y de un peligro indescriptible.",
     genres: ["Acción", "Fantasía", "Misterio", "Suspenso", "Drama"],
@@ -13661,7 +13663,7 @@ export const animeData = [
     episodesTotal: 3,
     status: "En emisión",
     year: 2025,
-    type: "ONA",
+    type: "Donghua",
     quality: "1080p",
     tags: ["agregado"],
     dateAdded: new Date(), // Hace 1 días
@@ -25513,6 +25515,7 @@ export const animeData = [
           "Minimalist estaba intimidando a Aoi para encontrar al Sr. Sakamoto, pero se asombró y descubrió que era Nagumo disfrazado. Heisuke vio a Apart y trató de sacarlo, pero se dio cuenta de que Apart era fuerte. Casi muere, Heisuke fue salvado por el Sr. Sakamoto.",
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753133181/cyomopyc8p77_mifnr3.jpg",
         releaseDate: "Julio 21, 2025",
+        releaseTime: "13:30",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T2/3.html",
       },
@@ -30326,6 +30329,7 @@ export const animeData = [
           "Cuando un demonio revela una profecía que predice un destino ligado al “Dios Demonio” y a un futuro distante, Jinta inicia un viaje trascendental. La narrativa se convierte en una odisea que abarca siglos, desde la era Edo hasta la era Heisei, mientras Jinta busca entender el significado profundo de empuñar su espada y cuestiona su rol como cazador de demonios.",
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753128830/dyaghc79702g_tbygr7.jpg",
         releaseDate: "Julio 21, 2025",
+        releaseTime: "10:30",
         language: "Subtitulado",
         videoUrl: "frame/Kijin-gentoushou/T1/15.html",
       },
@@ -30434,7 +30438,7 @@ export const animeData = [
     episodesTotal: 1,
     status: "En Emisión",
     year: 2025,
-    type: "Anime",
+    type: "Donghua",
     quality: "1080p",
     tags: ["agregado", "doblaje"],
     dateAdded: new Date(),

@@ -361,16 +361,12 @@ $(document).ready(function () {
                 <div class="episode-thumbnail">
                     <img src="${initialImage}" alt="${anime.title} Cover" loading="lazy">
                     <div class="play-icon"><i class="fas fa-play"></i></div>
-                    <span class="release-time">${
-                      episode.releaseTime || ""
-                    }</span>
                 </div>
                 <div class="episode-details">
                     <p class="episode-title">${anime.title}</p>
-                    <p class="episode-meta">Episodio ${
-                      episode.number
-                    } • ${episode.language}</p>
+                    <p class="episode-meta">${episode.language}</p>
                 </div>
+                <span class="release-time">${episode.releaseTime || ""}</span>
             </a>
         </li>`;
   }
@@ -491,12 +487,12 @@ $(document).ready(function () {
       episodesListAyer.empty();
       const yesterdayContainer = $("#yesterday-episodes-container");
       if (yesterdayEpisodes.length > 0) {
+        yesterdayContainer.show();
         yesterdayEpisodes.forEach((item) =>
           episodesListAyer.append(
             createDynamicEpisodeItem(item.episode, item.anime)
           )
         );
-        yesterdayContainer.show();
         $("#show-more-episodes").show();
       } else {
         yesterdayContainer.hide();
@@ -706,7 +702,6 @@ $(document).ready(function () {
       seasons.forEach((s) =>
         seasonSelect.append(`<option value="${s}">${s}</option>`)
       );
-      // CORRECCIÓN: Seleccionar la última temporada por defecto
       seasonSelect.val(seasons[seasons.length - 1]);
     }
 
