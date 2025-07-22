@@ -12452,7 +12452,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Gabimaru, un ninja condenado a muerte, sobrevive a todos los intentos de ejecución. Sagiri, una verdugo del clan Yamada Asaemon, le ofrece una oportunidad de perdón si encuentra el Elixir de la Vida.",
-        img: "/image/Hells-paradise/1.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2d49e002fbb304905dd932667e9f1fec.jpg",
         releaseDate: "Abril 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/1.html",
@@ -12464,7 +12464,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Gabimaru, junto con otros criminales condenados a muerte, es reunido para competir por el derecho a ir a la misteriosa isla Shinsenkyo en busca del elixir.",
-        img: "/image/Hells-paradise/2.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5bc649225615703b5ddb2454ab14a986.jpg",
         releaseDate: "Abril 8, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/2.html",
@@ -12476,7 +12476,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Los criminales y sus verdugos llegan a la isla, pero pronto descubren que está llena de criaturas monstruosas y una naturaleza mortal que los pone a prueba desde el primer momento.",
-        img: "/image/Hells-paradise/3.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e72c7e4d8b9954fb19ba2c1b730c28ec.jpg",
         releaseDate: "Abril 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/3.html",
@@ -12488,7 +12488,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El grupo se encuentra con los Tensen, los gobernantes inmortales de la isla. Su poder abrumador demuestra que la misión es más peligrosa de lo que jamás imaginaron.",
-        img: "/image/Hells-paradise/4.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/340f39acb4c5c41a49fa0dcfbb9c4670.jpg",
         releaseDate: "Abril 22, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/4.html",
@@ -12500,7 +12500,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Sagiri reflexiona sobre su papel como verdugo y su propia fuerza, mientras el grupo intenta reagruparse tras el primer y devastador encuentro con un Tensen.",
-        img: "/image/Hells-paradise/5.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d1adf5cf4faa432f01f7d7f6261e506d.jpg",
         releaseDate: "Abril 29, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/5.html",
@@ -12512,7 +12512,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Gabimaru y su grupo se topan con una misteriosa niña llamada Mei. Mientras, otros equipos de criminales y verdugos también luchan por sobrevivir en la isla.",
-        img: "/image/Hells-paradise/6.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/44100a608d0ac67affaad078961efb8a.jpg",
         releaseDate: "Mayo 6, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/6.html",
@@ -12524,7 +12524,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El grupo explora las ruinas de una aldea y descubre más sobre la naturaleza de la isla y el Tao, la energía que parece gobernar todo en Shinsenkyo.",
-        img: "/image/Hells-paradise/7.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/cac9672ebb249b09fa4e458dde96127a.jpg",
         releaseDate: "Mayo 13, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/7.html",
@@ -12536,7 +12536,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Tenza y su maestro Shion se enfrentan a un Tensen. La batalla pone a prueba su vínculo y los obliga a tomar una decisión desesperada para sobrevivir.",
-        img: "/image/Hells-paradise/8.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/56a66d753f7ede05ff7593edd60eb092.jpg",
         releaseDate: "Mayo 20, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/8.html",
@@ -12548,7 +12548,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Gabimaru y Gantetsusai se enfrentan a un Tensen. La abrumadora diferencia de poder los obliga a trabajar juntos y a entender la naturaleza del Tao para poder luchar.",
-        img: "/image/Hells-paradise/9.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/869b9a66c25575a65929241481073547.jpg",
         releaseDate: "Junio 3, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/9.html",
@@ -12560,7 +12560,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras Gabimaru se recupera, se explora el concepto del Tao y su dualidad. La clave para derrotar a los Tensen podría estar en el equilibrio de esta energía.",
-        img: "/image/Hells-paradise/10.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0a9a623fd26ffa31fda0e8c869364a48.jpg",
         releaseDate: "Junio 10, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/10.html",
@@ -12572,7 +12572,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Chobe Aza, uno de los criminales más salvajes, muestra su increíble capacidad de adaptación y supervivencia al enfrentarse a uno de los Tensen en una batalla brutal.",
-        img: "/image/Hells-paradise/11.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/082998aaeb34718b7a1c29aa5a72e208.jpg",
         releaseDate: "Junio 17, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/11.html",
@@ -12584,7 +12584,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "El pasado de Shion y su conexión con el arte del verdugo se revelan mientras se prepara para el inevitable enfrentamiento contra las fuerzas de la isla.",
-        img: "/image/Hells-paradise/12.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/bcfd2e8faf127b8d857332d1cd84320a.jpg",
         releaseDate: "Junio 24, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/12.html",
@@ -12596,7 +12596,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Gabimaru finalmente domina el Tao y desata todo su poder en un enfrentamiento final que decidirá el destino de los supervivientes en la isla.",
-        img: "/image/Hells-paradise/13.jpe",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/652f3503700f1f12fb907ed6e2a0398e.jpg",
         releaseDate: "Julio 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/13.html",
