@@ -13649,7 +13649,7 @@ export const animeData = [
     episodesTotal: 3,
     status: "En emisión",
     year: 2025,
-    type: "TV",
+    type: "ONA",
     quality: "1080p",
     tags: ["agregado"],
     dateAdded: new Date(), // Hace 1 días
