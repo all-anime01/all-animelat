@@ -963,7 +963,7 @@ $(document).ready(function () {
     const totalSlides = slides.length;
 
     const updateArrows = () => {
-      prevArrow.toggle(currentSlide > 0);
+      prevArrow.toggleClass("hidden", currentSlide === 0);
     };
 
     const showSlide = (index) => {
