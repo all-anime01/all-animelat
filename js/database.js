@@ -12435,6 +12435,7 @@ export const animeData = [
           "Katsuya encuentra una extraña cantidad de dinero en un antiguo santuario y decide usarlo para ayudar a su hermana Manami… pero todo es parte de una trampa tendida por el siniestro Hatamonba, un yōkai especialista en maldiciones que acecha a quienes incurren en el pecado de la codicia.",
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753309607/c8n7lv73lejk_kc5cod.jpg",
         releaseDate: "Julio 23, 2025",
+        releaseTime: "16:30",
         language: "Subtitulado",
         videoUrl: "frame/Hell-teacher-nube/T1/5.html",
       },
