@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("body").css("overflow", "hidden");
     setTimeout(() => {
       $("body").css("overflow", "");
-    }, 5000);
+    }, 3000);
     sessionStorage.setItem("loaderShown", "true");
   } else {
     $(".loader-wrapper").hide();
@@ -361,16 +361,12 @@ $(document).ready(function () {
                 <div class="episode-thumbnail">
                     <img src="${initialImage}" alt="${anime.title} Cover" loading="lazy">
                     <div class="play-icon"><i class="fas fa-play"></i></div>
-                    <span class="release-time">${
-                      episode.releaseTime || ""
-                    }</span>
                 </div>
                 <div class="episode-details">
                     <p class="episode-title">${anime.title}</p>
-                    <p class="episode-meta">Episodio ${
-                      episode.number
-                    } • ${episode.language}</p>
+                    <p class="episode-meta">${episode.language}</p>
                 </div>
+                <span class="release-time">${episode.releaseTime || ""}</span>
             </a>
         </li>`;
   }
