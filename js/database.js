@@ -7317,7 +7317,7 @@ export const animeData = [
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G8DHV78ZM-backdrop_wide",
     fonImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/b50abe60a559f3790081deed844567cc.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=320,height=180/catalog/crunchyroll/b50abe60a559f3790081deed844567cc.jpg",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G8DHV78ZM-title_logo-en-us",
     imgMobile:
@@ -7349,7 +7349,7 @@ export const animeData = [
           "El sueño de Alicia es derrotar las bestias mágicas para expandir el mundo, pero Clevatess tiene otra idea.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/65831d2a7f0025cfd52cc710d68b6d98.jpg",
         releaseDate: "Julio 2, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Clevatess/T1/1.html",
       },
       {
@@ -7361,7 +7361,7 @@ export const animeData = [
           "Bandidos capturan a Alicia, Luna y Clevatess, quien busca ahí en su campamento a una nodriza para el bebé.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d1cd149cfb0b0b93d7f24c230c4a8c01.jpg",
         releaseDate: "Julio 9, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Clevatess/T1/2.html",
       },
       {
@@ -7373,8 +7373,20 @@ export const animeData = [
           "Para conseguir una nodriza, Clevatess le ordena a Alicia exterminar a la banda de bandidos. ¿Podrá lograrlo?",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3be504d1d54a5f1f7ddae6d43f0e881e.jpg",
         releaseDate: "Julio 16, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Clevatess/T1/3.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 4,
+        title: "-",
+        duration: "23 min",
+        description: "-",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2c8441df958963af02acc7b467f5d16b.jpg",
+        releaseDate: "Julio 23, 2025",
+        releaseTime: "14:47",
+        language: "Sub | Dob",
+        videoUrl: "frame/Clevatess/T1/4.html",
       },
     ],
   },
@@ -17819,9 +17831,11 @@ export const animeData = [
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/One%20Piece%20/SEASON%2021%20-%20EGGHEAD%20ISLAND/ULTRA-WIDE/OP-Egghead-KV2-UW-LTR.png",
     fonImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/a249096c7812deb8c3c2c907173f3774.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=320,height=180/catalog/crunchyroll/a249096c7812deb8c3c2c907173f3774.jpg",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/2f0f479f-e18f-4947-baa1-2cbf45cdda6d.png",
+    imgMobile:
+      "https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/757bae5a21039bac6ebace5de9affcd8.jpe",
     trailerUrl: "https://www.youtube.com/embed/NEkjydqQ3LU?si=CHWCC7eA5tY3z7zJ",
     description:
       "Una historia épica de piratas, donde narra la historia de Monkey D. Luffy quien, cuando tenía 7 años, comió accidentalmente una 'Akuma no mi' (Fruta del diablo), la cual le dio poderes de goma. Por otra parte, Gol D. Roger, conocido como 'El rey de los Piratas', quien fuera ejecutado por la Marine, habló antes de morir acerca de su famoso tesoro 'One Piece'. Esta noticia desató la gran era de la piratas, lanzando a incontables piratas a ese lugar en busca del tesoro perdido. Diez años después, Luffy, inspirado en Gol D. Roger y un pirata de nombre Shanks, se convierte en pirata deseando ser el próximo 'Rey de los Piratas' y zarpa para conocer amigos y tener aventuras con ellos, teniendo como meta encontrar el 'One Piece'.",
@@ -30827,7 +30841,7 @@ export const animeData = [
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GQWH0M1J3-backdrop_wide",
     fonImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/7766a2c277658d82e55b57f4ee02a305.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=320,height=180/catalog/crunchyroll/7766a2c277658d82e55b57f4ee02a305.jpg",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GQWH0M1J3-title_logo-en-us",
     imgMobile:
