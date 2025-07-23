@@ -210,7 +210,7 @@ body.red-theme header.scrolled {
 }
 
 body.red-theme header {
-    background-image: linear-gradient(to bottom, rgba(202, 48, 48, 0.1), transparent);
+    background-image: linear-gradient(to bottom, rgba(202, 48, 48, 0.7), transparent);
 }
 
 /* --- Estilos de Buscador --- */
@@ -421,6 +421,47 @@ body.red-theme header {
     gap: 0.8rem;
     z-index: 3;
 }
+
+/* INICIO: Estilos para las Flechas de Navegación del Héroe */
+.hero-arrows {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Permite hacer clic a través de las flechas */
+    z-index: 4;
+}
+
+.hero-arrow {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 50px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    pointer-events: all;
+    /* Hace que solo los botones sean clickeables */
+}
+
+.hero-arrow:hover {
+    transform: scale(1.2);
+}
+
+.hero-arrow i {
+    font-size: 4rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+/* FIN: Estilos para las Flechas */
 
 .nav-thumb {
     width: 50px;

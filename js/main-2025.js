@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("body").css("overflow", "hidden");
     setTimeout(() => {
       $("body").css("overflow", "");
-    }, 3000);
+    }, 5000);
     sessionStorage.setItem("loaderShown", "true");
   } else {
     $(".loader-wrapper").hide();
@@ -953,32 +953,79 @@ $(document).ready(function () {
     $(this).toggleClass("fa-times");
     $(".navbar").toggleClass("nav-toggle");
   });
+
+  // CORRECCIÓN DEL CARRUSEL DE HÉROE
   if ($(".hero-section").length) {
     const slides = $(".hero-slide");
+    const prevArrow = $("#hero-prev");
+    const nextArrow = $("#hero-next");
     let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    const updateArrows = () => {
+      prevArrow.toggle(currentSlide > 0);
+    };
+
     const showSlide = (index) => {
       slides.removeClass("active").eq(index).addClass("active");
       $(".nav-thumb").removeClass("active").eq(index).addClass("active");
       currentSlide = index;
+      updateArrows();
     };
-    let slideInterval = setInterval(
-      () => showSlide((currentSlide + 1) % slides.length),
-      7000
-    );
-    slides.each((index) =>
+
+    let slideInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }, 7000);
+
+    slides.each((index) => {
       $(".hero-navigation").append(
         $("<div>").addClass("nav-thumb").data("index", index)
-      )
-    );
-    $(".nav-thumb").first().addClass("active");
-    $(".nav-thumb").click(function () {
-      clearInterval(slideInterval);
-      showSlide($(this).data("index"));
-      slideInterval = setInterval(
-        () => showSlide((currentSlide + 1) % slides.length),
-        7000
       );
     });
+    $(".nav-thumb").first().addClass("active");
+
+    const resetInterval = () => {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }, 7000);
+    };
+
+    $(".nav-thumb").click(function () {
+      showSlide($(this).data("index"));
+      resetInterval();
+    });
+
+    nextArrow.click(function () {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+      resetInterval();
+    });
+
+    prevArrow.click(function () {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(currentSlide);
+      resetInterval();
+    });
+
+    const setHeroImages = () => {
+      slides.each(function () {
+        const slide = $(this);
+        const desktopImg = slide.data("desktop-img");
+        const mobileImg = slide.data("mobile-img");
+        if (window.innerWidth <= 768 && mobileImg) {
+          slide.css("background-image", `url('${mobileImg}')`);
+        } else {
+          slide.css("background-image", `url('${desktopImg}')`);
+        }
+      });
+    };
+
+    setHeroImages();
+    updateArrows();
+    $(window).resize(debounce(setHeroImages, 200));
   }
 
   // CORRECCIÓN DEL BOTÓN MOSTRAR MÁS

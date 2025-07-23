@@ -7585,7 +7585,8 @@ export const animeData = [
         description:
           "Negándose a dejar atrás a Jiji, Okarun ayuda a Momo a escapar hacia la superficie. Luego, Momo traza un plan para exponer al Gusano de la Muerte a la luz del sol.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ed0cef3e966b0d5fd5e2d4112827fde9.jpg",
-        releaseDate: "Julio 17, 2025",
+        releaseDate: "Julio 23, 2025",
+        releaseTime: "00:00",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T2/15.html",
       },
