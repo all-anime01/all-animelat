@@ -7609,7 +7609,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras el volcán de la región hace erupción, Momo tiene que enfrentar a la familia Kito y Mal de Ojo.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ed0cef3e966b0d5fd5e2d4112827fde9.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0c09a38b4014fe2a51ab56f29a29dcc5.jpg",
         releaseDate: "Julio 24, 2025",
         releaseTime: "15:05",
         language: "Sub | Dob",
@@ -9439,6 +9439,18 @@ export const animeData = [
         releaseDate: "Julio 17, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/14.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 15,
+        title: "El escape",
+        duration: "24 min",
+        description:
+          "Senku y su equipo, ya con la firme intención de alcanzar Sudamérica —el origen del rayo de petrificación— reciben a la brillante geógrafa Chelsea, quien los guiará por la ruta más eficiente a través de la selva amazónica. Ante la urgencia de encontrar caucho para construir un mecanismo de transporte ideal, deciden montar una estrategia de distracción para ganar tiempo mientras Stanley y su grupo los rodean.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1e26af0d155b1ab5c3cc4e5789efab9f.jpg",
+        releaseDate: "Julio 24, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dr-stone/T4/15.html",
       },
     ],
   },
