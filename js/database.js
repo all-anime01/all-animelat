@@ -9450,7 +9450,7 @@ export const animeData = [
           "Senku y su equipo, ya con la firme intención de alcanzar Sudamérica —el origen del rayo de petrificación— reciben a la brillante geógrafa Chelsea, quien los guiará por la ruta más eficiente a través de la selva amazónica. Ante la urgencia de encontrar caucho para construir un mecanismo de transporte ideal, deciden montar una estrategia de distracción para ganar tiempo mientras Stanley y su grupo los rodean.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1e26af0d155b1ab5c3cc4e5789efab9f.jpg",
         releaseDate: "Julio 24, 2025",
-        releaseTime: "15:20",
+        releaseTime: "15:10",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/15.html",
       },
@@ -12399,7 +12399,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(), // Hace 5 días
     audio: "Subtitulado",
     creator: "Sho Makura & Takeshi Okano",
     contentWarning: "+14 Violencia, Desnudos",
@@ -12427,7 +12426,6 @@ export const animeData = [
         releaseDate: "Julio 2, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Hell-teacher-nube/T1/2.html",
-        votes: { likes: 87, dislikes: 2 },
       },
       {
         season: "Temporada 1",
@@ -13783,7 +13781,7 @@ export const animeData = [
       },
     ],
   },
-  //M
+  //letra M
   {
     id: "malevolent-spirits-mononogatari",
     title: "Malevolent Spirits: Mononogatari",
@@ -13808,7 +13806,6 @@ export const animeData = [
     type: "Anime",
     quality: "1080p",
     tags: [],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 656)), // Calculado desde el 18/09/23
     audio: "Sub | Dob",
     creator: "Onigunsou",
     contentWarning: "+16",
@@ -14465,7 +14462,6 @@ export const animeData = [
     type: "Anime",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 198)), // Calculado desde el 19/12/24
     audio: "Subtitulado",
     creator: "Sae Okamoto (TriF Studio)",
     contentWarning: "+14",
@@ -17167,7 +17163,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 21)), // Calculado desde el 16/06/25
     audio: "Sub | Dob",
     creator: "Hideyuki Furuhashi & Betten Court",
     contentWarning: "+14",
@@ -17295,7 +17290,848 @@ export const animeData = [
     ],
   },
   //letra N
+  {
+    id: "naruto",
+    title: "Naruto",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/8532171bec0d05bfe45769a330fbab82.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GY9PJ5KWR-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/e6b2cd29a5ff62f4591d3b299007e24e.jpg",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GY9PJ5KWR-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/8532171bec0d05bfe45769a330fbab82.jpg",
+    trailerUrl: "https://www.youtube.com/embed/-G9BqkgZXRA?si=WB05GeelQ_zqzuEu",
+    description:
+      "Naruto Uzumaki es un ninja adolescente que tiene encerrado en su interior al 'Zorro de Nueve Colas'. Doce años antes del inicio de la serie, el Nueve Colas atacó la Aldea Oculta de la Hoja, matando a muchos de sus habitantes. Como respuesta, el líder de la aldea, el Cuarto Hokage, sacrificó su vida para sellar al demonio dentro de Naruto cuando este era un recién nacido. Rechazado por los aldeanos por ser el recipiente del Nueve Colas, Naruto se esfuerza por encontrar su lugar en la aldea, mientras su deseo de convertirse en el Hokage de la Aldea de la Hoja lo lleva a formar nuevas amistades y a enfrentarse a peligrosos enemigos.",
+    genres: ["Acción", "Aventura", "Comedia", "Fantasía", "Shounen"],
+    rating: 4.7,
+    ratingCount: "66.5K",
+    seasons: 9,
+    episodesTotal: 220,
+    status: "Finalizado",
+    year: 2002,
+    type: "Anime",
+    quality: "1080p",
+    tags: ["recomendado", "agregado"],
+    audio: "Sub | Dob",
+    creator: "Masashi Kishimoto",
+    contentWarning: "+13 Violencia",
+    episodes: [
+      // Temporada 1
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "¡Entra! Naruto Uzumaki.",
+        duration: "23 min",
+        description:
+          "Naruto, un joven ninja marginado, busca el reconocimiento de su aldea. Para graduarse, debe robar un pergamino prohibido, sin saber que está siendo manipulado.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ea976df50bf201db97c78c2e2ed72f64.jpg",
+        releaseDate: "Octubre 3, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/1.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 2,
+        title: "Mi nombre es Konohamaru.",
+        duration: "23 min",
+        description:
+          "Naruto conoce a Konohamaru, el nieto del Tercer Hokage, y le enseña sobre la voluntad de fuego y el verdadero significado de ser un ninja.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=2c1",
+        releaseDate: "Octubre 10, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/2.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 3,
+        title: "Sasuke y Sakura: ¿amigos o enemigos?.",
+        duration: "23 min",
+        description:
+          "Se forman los equipos de genin. Naruto es asignado al Equipo 7 junto a su rival, Sasuke Uchiha, y su amor platónico, Sakura Haruno, bajo la tutela de Kakashi Hatake.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d1c",
+        releaseDate: "Octubre 17, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/3.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 4,
+        title: "Supervivencia: aprobar o suspender.",
+        duration: "23 min",
+        description:
+          "La primera prueba del Equipo 7 es un ejercicio de supervivencia contra Kakashi, donde deben robarle unos cascabeles. La prueba está diseñada para enseñarles sobre el trabajo en equipo.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=e9a",
+        releaseDate: "Octubre 24, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/4.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 5,
+        title: "Fracaso. La decisión de Kakashi.",
+        duration: "23 min",
+        description:
+          "El equipo fracasa en la prueba individualmente, pero al final demuestran que entienden la importancia de la cooperación, lo que les permite aprobar.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=7a7",
+        releaseDate: "Octubre 31, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/5.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 6,
+        title: "¡Una misión peligrosa! ¡Viaje a la Tierra de las Olas!.",
+        duration: "23 min",
+        description:
+          "El Equipo 7 recibe su primera misión de rango C: escoltar a un constructor de puentes, Tazuna, al País de las Olas. Pronto descubren que la misión es mucho más peligrosa de lo que parece.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=b2e",
+        releaseDate: "Noviembre 7, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/6.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 7,
+        title: "El asesino de la niebla.",
+        duration: "23 min",
+        description:
+          "El equipo es emboscado por Zabuza Momochi, uno de los Siete Espadachines Ninja de la Niebla. Kakashi debe usar su Sharingan para proteger a sus alumnos.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=92e",
+        releaseDate: "Noviembre 14, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/7.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 8,
+        title: "Un juramento de dolor.",
+        duration: "23 min",
+        description:
+          "La batalla contra Zabuza es intensa. Naruto y Sasuke deben trabajar juntos por primera vez para liberar a Kakashi de una prisión de agua.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=f97",
+        releaseDate: "Noviembre 21, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/8.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 9,
+        title: "Kakashi: guerrero Sharingan.",
+        duration: "23 min",
+        description:
+          "Kakashi se enfrenta a Zabuza. La batalla se interrumpe con la llegada de un misterioso ninja rastreador llamado Haku.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=8a5",
+        releaseDate: "Noviembre 28, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/9.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 10,
+        title: "El bosque del chakra.",
+        duration: "23 min",
+        description:
+          "Sabiendo que Zabuza regresará, Kakashi somete al equipo a un entrenamiento para controlar su chakra y trepar árboles solo con los pies.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=5f3",
+        releaseDate: "Diciembre 5, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/10.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 11,
+        title: "La tierra donde una vez vivió un héroe.",
+        duration: "23 min",
+        description:
+          "El equipo conoce a Inari, el nieto de Tazuna, y aprende sobre la opresión que sufre el pueblo a manos del magnate naviero Gato.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=3c4",
+        releaseDate: "Diciembre 12, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/11.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 12,
+        title: "¡Batalla en el puente! ¡Zabuza vuelve!.",
+        duration: "23 min",
+        description:
+          "Zabuza y Haku regresan para un enfrentamiento final en el puente. Sasuke y Naruto deben enfrentarse a Haku y su poderosa técnica de espejos de hielo.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=4c6",
+        releaseDate: "Diciembre 19, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/12.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 13,
+        title: "El jutsu secreto de Haku: los espejos de hielo.",
+        duration: "23 min",
+        description:
+          "Sasuke despierta su Sharingan por primera vez durante la batalla contra Haku, pero la velocidad y las agujas de su oponente son abrumadoras.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=92e",
+        releaseDate: "Diciembre 26, 2002",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/13.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 14,
+        title: "¡El ninja número uno en sorprender a la gente!.",
+        duration: "23 min",
+        description:
+          "Naruto se une a la batalla. Su imprevisibilidad y su determinación sorprenden a Haku, pero la situación toma un giro oscuro.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=e9a",
+        releaseDate: "Enero 9, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/14.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 15,
+        title: "¡Visibilidad cero! ¡El Sharingan se desmorona!.",
+        duration: "23 min",
+        description:
+          "Kakashi se enfrenta a Zabuza en la niebla. La batalla es un duelo de ingenio y habilidad, y Kakashi debe llevar su Sharingan al límite.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=2f4",
+        releaseDate: "Enero 16, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/15.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 16,
+        title: "El sello roto.",
+        duration: "23 min",
+        description:
+          "Creyendo que Sasuke ha muerto, Naruto desata por primera vez el poder del Zorro de Nueve Colas, abrumando a Haku con su chakra.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        releaseDate: "Enero 23, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/16.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 17,
+        title: "El pasado blanco, los sentimientos ocultos.",
+        duration: "23 min",
+        description:
+          "Haku se sacrifica para proteger a Zabuza. Se revela su pasado y la razón de su devoción inquebrantable hacia el demonio de la niebla.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        releaseDate: "Enero 30, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/17.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 18,
+        title: "Un arma llamada shinobi.",
+        duration: "23 min",
+        description:
+          "Conmovido por las palabras de Naruto, Zabuza, en un último acto, se enfrenta a Gato y sus matones, demostrando que incluso un demonio puede tener honor.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        releaseDate: "Febrero 6, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/18.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 19,
+        title: "El demonio que cayó en la nieve.",
+        duration: "23 min",
+        description:
+          "Zabuza muere junto a Haku. Inari y el pueblo se levantan contra Gato, inspirados por el coraje de los ninjas de la Hoja.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        releaseDate: "Febrero 13, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/19.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 20,
+        title: "¡Comienza un nuevo capítulo! ¡El examen Chunin!.",
+        duration: "23 min",
+        description:
+          "De vuelta en Konoha, el Equipo 7 es recomendado para los exámenes de ascenso a Chunin, una prueba de habilidad y estrategia que atrae a ninjas de todas las aldeas.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
+        releaseDate: "Febrero 20, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/20.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 21,
+        title: "¡Identifíquense! ¡Nuevos y poderosos rivales!.",
+        duration: "23 min",
+        description:
+          "Naruto, Sasuke y Sakura conocen a los demás equipos de genin de su generación y a nuevos y poderosos rivales, como Gaara del Desierto y Rock Lee.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        releaseDate: "Febrero 27, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/21.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 22,
+        title: "¡El desafío Chunin! ¡Rock Lee contra Sasuke!.",
+        duration: "23 min",
+        description:
+          "Rock Lee desafía a Sasuke a un duelo para demostrar que el esfuerzo puede superar al talento natural. La velocidad y el taijutsu de Lee sorprenden a todos.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        releaseDate: "Marzo 6, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/22.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 23,
+        title: "¡Los rivales se enfrentan! ¡Los nueve novatos!.",
+        duration: "23 min",
+        description:
+          "Comienza la primera prueba de los exámenes Chunin: un examen escrito diseñado para poner a prueba la capacidad de los genin para obtener información sin ser descubiertos.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        releaseDate: "Marzo 13, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/23.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 24,
+        title: "¡La primera prueba!.",
+        duration: "23 min",
+        description:
+          "Naruto se enfrenta a la décima y última pregunta del examen, una que pone a prueba su determinación y su voluntad de nunca rendirse.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        releaseDate: "Marzo 20, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/24.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 26,
+        title: "¡Imperdible! La lección de supervivencia.",
+        duration: "23 min",
+        description:
+          "Un episodio especial que resume el entrenamiento del Equipo 7 con Kakashi y su primera gran misión en el País de las Olas.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQwwU2b0D9yIfMvj5Fey_3cb8oW0v9xSOtrb8NzaoXqQ4k4f_Sg7qj-dFhZ-Yp1E0nQcO2hO-3zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Abril 2, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/26.html",
+      },
 
+      // Temporada 2
+      {
+        season: "Temporada 2",
+        number: 27,
+        title:
+          "¡Comienza la segunda ronda! ¡Todos a mi alrededor son enemigos!.",
+        duration: "23 min",
+        description:
+          "Comienzan los exámenes Chunin. La segunda prueba se desarrolla en el Bosque de la Muerte, donde los equipos deben sobrevivir y robar pergaminos a sus rivales.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-Hw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        releaseDate: "Abril 9, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/1.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 28,
+        title: "¡A comer o ser comido! Pánico en el bosque.",
+        duration: "23 min",
+        description:
+          "Naruto y su equipo se separan. Mientras busca a sus compañeros, se encuentra con una serpiente gigante. Mientras tanto, Sasuke es atacado por un misterioso ninja de la Hierba.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABaYJtU3XG_vWzYxL_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.jpg?r=3a8",
+        releaseDate: "Abril 16, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/2.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 29,
+        title: "¡El contraataque de Naruto! ¡No voy a huir!.",
+        duration: "23 min",
+        description:
+          "El ninja de la Hierba, Orochimaru, revela su verdadero poder y le impone a Sasuke una marca de maldición. Naruto, a pesar de su miedo, se enfrenta a él para proteger a sus amigos.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABSpk8y8L8k3fF1zF4n2c_rQ_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=8d1",
+        releaseDate: "Abril 23, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/3.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 30,
+        title: "¡El Jutsu Flama de Dragón!.",
+        duration: "23 min",
+        description:
+          "Sakura debe proteger a un Naruto y Sasuke inconscientes de los ninjas del Sonido. Justo cuando todo parece perdido, Rock Lee llega para ayudar.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABR5Q82IAiAM6jpJjCUP0ZUM-4Lryqws45bUEOpjJnyqx5aWHn_fjHPeyQNbGgLZlo0lnCn14vp2DVz9kv38ZXBl7LZLQ_p7NaZnlUEkI27J75NxZF4ZtNtBE.jpg?r=578",
+        releaseDate: "Abril 30, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/4.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 31,
+        title: "¡El amor del cejudo! ¡Te protegeré hasta la muerte!.",
+        duration: "23 min",
+        description:
+          "Rock Lee se enfrenta a los ninjas del Sonido para proteger a Sakura, demostrando el poder de su taijutsu. Sasuke despierta, y la marca de maldición comienza a afectarlo.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABXAbnZ-RpHxCpLwdgJwrPjDOXpZYAQ1i-Iw9bZfi4Hy9SKbq-gRhWCe9LQmgR087shMLRPkXL4E9jyx3ZH7jKKMGvrcg1CQPPN3jqHqRilojUNS7UIMoVch-.jpg?r=526",
+        releaseDate: "Mayo 7, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/5.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 32,
+        title: "¡La flor de Sakura florece!.",
+        duration: "23 min",
+        description:
+          "Sakura, decidida a no ser más una carga, se enfrenta a los ninjas del Sonido, demostrando su propio valor y determinación.",
+        img: "https://occ-0-4440-116.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABZwXC-23Nd1ty-yvoOA1Cb8PQCVgvb6RFy8HIbLoEwU_kH5zJTmonjIkEwBJ2xSFTh8JSwzCohaYHNGITRkfIeEoVDGlVTlbnLUqyLK8-SJ_8tDhEtDALDfR.webp?r=00c",
+        releaseDate: "Mayo 14, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/6.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 33,
+        title: "¡La formación de batalla! ¡Ino-Shika-Cho!.",
+        duration: "23 min",
+        description:
+          "El Equipo 10, liderado por Shikamaru, llega para ayudar a Sakura. Su perfecta formación de batalla pone en aprietos a los ninjas del Sonido.",
+        img: "https://occ-0-4440-116.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW2D3kJixCoOvySzH4gyMIbCnrhj_mFvAu1ZlNKzW76TyTM1KEIPjN6O_CXNxDTsD5GeEjb7qCU5PvUAXtHOBLahJ_pqwnURK_9MJmEk8aUdUGVjNosjlPoN.webp?r=fd2",
+        releaseDate: "Mayo 21, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/7.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 34,
+        title: "¡Akamaru tiembla! ¡La fuerza cruel de Gaara!.",
+        duration: "23 min",
+        description:
+          "El Equipo 8 se encuentra con Gaara y su equipo. El poder y la sed de sangre de Gaara aterrorizan a Kiba y a su perro, Akamaru.",
+        img: "https://occ-0-4440-3933.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABUvQa4EXv5mQZ0MiaA8t2emfqRzgOi1t3P8T1R-YQ68WyCMQX1q_WvPswxFYwnXDzYHVzBrgKhOTltq3QwqeIDEfuwRA-1c2O4ML4XE_V-f_S478C2SCFXWU.webp?r=9f5",
+        releaseDate: "Mayo 28, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/8.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 35,
+        title: "¡Prohibido mirar! ¡El secreto del pergamino!.",
+        duration: "23 min",
+        description:
+          "El Equipo 7, ahora reunido, llega a la torre central. Kabuto se une a ellos y les revela información sobre los demás competidores.",
+        img: "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABfFo-98zAPPVP2csG_xrLlPpw5K6Osz5m984Gf75toGjPRQOERhCgQ04ul1tMAtgn_KsxtI-fbT56A-A3TPQ9rr-tvaZSARvdLcyw9A79ryPMZelyTIbso9a.webp?r=587",
+        releaseDate: "Junio 4, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/9.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 36,
+        title: "¡La batalla de las réplicas! ¡Yo soy el protagonista!.",
+        duration: "23 min",
+        description:
+          "El Tercer Hokage anuncia las preliminares de los exámenes Chunin. Los genin que han pasado la segunda prueba deben luchar en combates individuales.",
+        img: "https://occ-0-1472-3933.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABTjUyFGGQS-__eZiiCGZmbhAxCqr_oyok4qeoI1PvO9MFKsrAc-IhwjiCGfYBhQoSdFoL5OK_ebFd0ye_Cmo_WZX5aoSN-_RjbjOjMf-a4MkcPQjKLxIOS_E.webp?r=c53",
+        releaseDate: "Junio 11, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/10.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 37,
+        title:
+          "¡La segunda prueba ha terminado! ¡Todos los novatos están aquí!.",
+        duration: "23 min",
+        description:
+          "El primer combate de las preliminares enfrenta a Sasuke contra Yoroi Akado, un ninja que puede absorber chakra.",
+        img: "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABU5XIzGrZqhqqtFXT5laXWYLGYXHgjoAQwJM9cmrThYPznV3a6jeWAn-0qtwfkYO5ZN3Fr4qBaHFABBed1SyYi5hp4d-d0146JcXCKeMHzzZmog1FXfKDgQY.webp?r=402",
+        releaseDate: "Junio 18, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/11.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 38,
+        title: "¡Los que aprueban son la mitad! ¡Una batalla inesperada!.",
+        duration: "23 min",
+        description:
+          "Sasuke, afectado por la marca de maldición, debe usar una nueva técnica para ganar. El siguiente combate es entre Shino y Zaku.",
+        img: "https://image.tmdb.org/t/p/w300/gxKi42AascHhgJhCZqNCtYueC3A.jpg",
+        releaseDate: "Junio 25, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/12.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 39,
+        title: "¡La envidia del cejudo! ¡El nacimiento del golpe del león!.",
+        duration: "23 min",
+        description:
+          "Los combates continúan. Misumi se enfrenta a Kankuro, y Sakura se prepara para su batalla contra Ino.",
+        img: "https://image.tmdb.org/t/p/w300/r91WIvWJHM0C1i8VhsiqXrEGP1D.jpg",
+        releaseDate: "Julio 2, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/13.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 40,
+        title: "¡Un combate a muerte súbita! ¡Kakashi contra Orochimaru!.",
+        duration: "23 min",
+        description:
+          "Sakura e Ino se enfrentan en una batalla que es tanto física como emocional, recordando su antigua amistad y rivalidad.",
+        img: "https://image.tmdb.org/t/p/w300/a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p.jpg",
+        releaseDate: "Julio 9, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/14.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 41,
+        title:
+          "¡El choque de rivales! ¡Los corazones de las chicas se endurecen!.",
+        duration: "23 min",
+        description:
+          "El combate entre Sakura e Ino termina en un sorprendente empate. El siguiente enfrentamiento es entre Temari y Tenten.",
+        img: "https://image.tmdb.org/t/p/w300/b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5q.jpg",
+        releaseDate: "Julio 16, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/15.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 42,
+        title: "¡La batalla ha comenzado!.",
+        duration: "23 min",
+        description:
+          "Shikamaru se enfrenta a Kin en una batalla de ingenio y estrategia. A continuación, llega el esperado combate de Naruto contra Kiba.",
+        img: "https://image.tmdb.org/t/p/w300/c1d2e3f4g5h6i7j8k9l0m1n2o3p4q5r.jpg",
+        releaseDate: "Julio 23, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/16.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 43,
+        title: "¡Shikamaru tiembla! ¡La batalla de las kunoichi!.",
+        duration: "23 min",
+        description:
+          "Naruto debe usar su astucia y una técnica inesperada para superar la velocidad y el trabajo en equipo de Kiba y Akamaru.",
+        img: "https://image.tmdb.org/t/p/w300/d1e2f3g4h5i6j7k8l9m0n1o2p3q4r5s.jpg",
+        releaseDate: "Julio 30, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/17.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 44,
+        title: "¡Akamaru se une a la lucha! ¿Quién es el que pierde?.",
+        duration: "23 min",
+        description:
+          "Llega el combate entre los primos del clan Hyuga: Hinata contra el prodigio Neji. La batalla es un choque de destinos y filosofías.",
+        img: "https://image.tmdb.org/t/p/w300/e1f2g3h4i5j6k7l8m9n0o1p2q3r4s5t.jpg",
+        releaseDate: "Agosto 6, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/18.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 45,
+        title:
+          "¡Hinata se sonroja! La multitud se queda boquiabierta. ¡El as en la manga de Naruto!.",
+        duration: "23 min",
+        description:
+          "A pesar de la abrumadora diferencia de poder, Hinata se niega a rendirse, inspirada por las palabras de Naruto.",
+        img: "https://image.tmdb.org/t/p/w300/f1g2h3i4j5k6l7m8n9o0p1q2r3s4t5u.jpg",
+        releaseDate: "Agosto 13, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/19.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 46,
+        title:
+          "¡El Byakugan se desata! ¡La gran decisión de la tímida Hinata!.",
+        duration: "23 min",
+        description:
+          "El combate entre Gaara y Rock Lee comienza. El trabajo duro contra el talento natural en una de las batallas más icónicas de la serie.",
+        img: "https://image.tmdb.org/t/p/w300/g1h2i3j4k5l6m7n8o9p0q1r2s3t4u5v.jpg",
+        releaseDate: "Agosto 20, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/20.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 47,
+        title: "¡Frente a la persona que admiro!.",
+        duration: "23 min",
+        description:
+          "Rock Lee, superado por la defensa de arena de Gaara, se ve obligado a quitarse las pesas de entrenamiento, revelando su increíble velocidad.",
+        img: "https://image.tmdb.org/t/p/w300/h1i2j3k4l5m6n7o8p9q0r1s2t3u4v5w.jpg",
+        releaseDate: "Agosto 27, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/21.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 48,
+        title:
+          "¡Gaara es pulverizado! ¡Es la juventud! ¡Es el poder! ¡Es una explosión!.",
+        duration: "23 min",
+        description:
+          "Lee abre las Puertas Internas, una técnica prohibida que le otorga un poder inmenso a un gran costo para su cuerpo, en un último y desesperado intento por ganar.",
+        img: "https://image.tmdb.org/t/p/w300/i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x.jpg",
+        releaseDate: "Septiembre 3, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/22.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 49,
+        title:
+          "¡La caída del exaltado! ¡Finalmente, la prohibida técnica secreta!.",
+        duration: "23 min",
+        description:
+          "La batalla entre Lee y Gaara llega a una conclusión brutal. El último combate de las preliminares enfrenta a Choji contra Dosu.",
+        img: "https://image.tmdb.org/t/p/w300/j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y.jpg",
+        releaseDate: "Septiembre 10, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/23.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 50,
+        title: "¡Ah, Rock Lee! ¡Así es como debe ser un hombre!.",
+        duration: "23 min",
+        description:
+          "Con las preliminares terminadas, los finalistas se preparan para la tercera y última prueba del examen, que se celebrará en un mes.",
+        img: "https://image.tmdb.org/t/p/w300/k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z.jpg",
+        releaseDate: "Septiembre 17, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/24.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 51,
+        title: "¡La sombra que se mueve en la oscuridad! ¡Sasuke en peligro!.",
+        duration: "23 min",
+        description:
+          "Kakashi se lleva a Sasuke para sellar la marca de maldición de Orochimaru. Mientras tanto, Orochimaru pone en marcha su plan para destruir Konoha.",
+        img: "https://image.tmdb.org/t/p/w300/l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a.jpg",
+        releaseDate: "Septiembre 24, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/25.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 52,
+        title: "¡El regreso de Ebisu! ¡No permitiré la desvergüenza!.",
+        duration: "23 min",
+        description:
+          "Mientras Naruto busca un nuevo entrenador para la ronda final, se encuentra con Jiraiya, uno de los tres legendarios Sannin.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQwwU2b0D9yIfMvj5Fey_3cb8oW0v9xSOtrb8NzaoXqQ4k4f_Sg7qj-dFhZ-Yp1E0nQcO2hO-3zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Septiembre 24, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T2/26.html",
+      },
+
+      // Temporada 3
+      {
+        season: "Temporada 3",
+        number: 53,
+        title: "¡Próximamente! ¡El sabio pervertido!.",
+        duration: "23 min",
+        description:
+          "Naruto comienza su entrenamiento con Jiraiya, quien intenta enseñarle a controlar el chakra del Nueve Colas.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-zY_bH_jK_dF_jP_tK_zP_uL_xW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Octubre 1, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T3/1.html",
+      },
+      // ... (Episodios 54 a 77)
+      {
+        season: "Temporada 3",
+        number: 78,
+        title: "¡El jutsu de Naruto! ¡Manual ninja!.",
+        duration: "23 min",
+        description:
+          "La batalla entre Naruto y Gaara llega a su clímax. Naruto debe usar todo lo que ha aprendido para proteger a sus amigos y a la aldea.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-Hw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        releaseDate: "Abril 7, 2004",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T3/26.html",
+      },
+
+      // Temporada 4
+      {
+        season: "Temporada 4",
+        number: 79,
+        title: "¡Más allá del límite de la oscuridad y la luz!.",
+        duration: "23 min",
+        description:
+          "Tras la invasión, la aldea se recupera. Itachi Uchiha, el hermano de Sasuke, y Kisame Hoshigaki, de Akatsuki, aparecen en Konoha.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-zY_bH_jK_dF_jP_tK_zP_uL_xW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Abril 14, 2004",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T4/1.html",
+      },
+      // ... (Episodios 80 a 103)
+      {
+        season: "Temporada 4",
+        number: 104,
+        title: "¡Corre, Idate! ¡La tormentosa y problemática isla Nagi!.",
+        duration: "23 min",
+        description:
+          "El Equipo 7 es enviado en una misión para proteger a un corredor en una carrera crucial, pero se encuentran con un antiguo rival de Konoha.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-Hw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        releaseDate: "Septiembre 22, 2004",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T4/26.html",
+      },
+
+      // Temporada 5
+      {
+        season: "Temporada 5",
+        number: 105,
+        title: "¡A un paso de la meta! ¡Una gran batalla con rayos!.",
+        duration: "23 min",
+        description:
+          "La carrera de Idate llega a su fin, y el Equipo 7 debe asegurarse de que llegue a la meta sano y salvo.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-zY_bH_jK_dF_jP_tK_zP_uL_xW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Septiembre 29, 2004",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T5/1.html",
+      },
+      // ... (Episodios 106 a 129)
+      {
+        season: "Temporada 5",
+        number: 130,
+        title: "Padre e hijo. ¡El blasón roto!.",
+        duration: "23 min",
+        description:
+          "Naruto y Sasuke se enfrentan en una batalla devastadora en el hospital, un choque que solidifica la decisión de Sasuke de abandonar la aldea.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-Hw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        releaseDate: "Abril 13, 2005",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T5/26.html",
+      },
+
+      // Temporada 6
+      {
+        season: "Temporada 6",
+        number: 131,
+        title: "¡Secreto máximo! El secreto del Mangekyo Sharingan.",
+        duration: "23 min",
+        description:
+          "Sasuke es tentado por los Cuatro del Sonido para unirse a Orochimaru. La historia de Itachi y el secreto del Mangekyo Sharingan lo empujan a la oscuridad.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-zY_bH_jK_dF_jP_tK_zP_uL_xW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Abril 20, 2005",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T6/1.html",
+      },
+      // ... (Episodios 132 a 155)
+      {
+        season: "Temporada 6",
+        number: 156,
+        title: "¡El contraataque de Raiga!.",
+        duration: "23 min",
+        description:
+          "Naruto, Lee y Neji se enfrentan a Raiga, uno de los Siete Espadachines Ninja de la Niebla, en una misión de relleno.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-Hw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        releaseDate: "Octubre 5, 2005",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T6/26.html",
+      },
+
+      // Temporada 7
+      {
+        season: "Temporada 7",
+        number: 157,
+        title: "¡Corre! ¡El curry de la vida!.",
+        duration: "23 min",
+        description:
+          "La misión para detener a Raiga continúa, llevándolos a una aventura culinaria para crear el legendario 'curry de la vida'.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-zY_bH_jK_dF_jP_tK_zP_uL_xW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Octubre 12, 2005",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T7/1.html",
+      },
+      // ... (Episodios 158 a 181)
+      {
+        season: "Temporada 7",
+        number: 182,
+        title: "¡La infiltración!.",
+        duration: "23 min",
+        description:
+          "Naruto y sus amigos se infiltran en una fortaleza enemiga para rescatar a un compañero secuestrado.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-Hw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        releaseDate: "Abril 12, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T7/26.html",
+      },
+
+      // Temporada 8
+      {
+        season: "Temporada 8",
+        number: 183,
+        title: "¡Aumento de la luz!.",
+        duration: "23 min",
+        description:
+          "La batalla dentro de la fortaleza continúa, y los genin deben combinar sus habilidades para superar a los guardianes.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-zY_bH_jK_dF_jP_tK_zP_uL_xW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Abril 19, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T8/1.html",
+      },
+      // ... (Episodios 184 a 207)
+      {
+        season: "Temporada 8",
+        number: 208,
+        title: "¡El peso del artefacto!.",
+        duration: "23 min",
+        description:
+          "La misión para proteger un valioso artefacto llega a su fin, y los genin aprenden una lección sobre el verdadero valor de la amistad.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-Hw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        releaseDate: "Octubre 19, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T8/26.html",
+      },
+
+      // Temporada 9
+      {
+        season: "Temporada 9",
+        number: 209,
+        title: "¡El rival!.",
+        duration: "23 min",
+        description:
+          "Un episodio de relleno donde dos ninjas de una aldea rival llegan a Konoha, causando problemas a Naruto y sus amigos.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-zY_bH_jK_dF_jP_tK_zP_uL_xW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Octubre 26, 2006",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T9/1.html",
+      },
+      // ... (Episodios 210 a 219)
+      {
+        season: "Temporada 9",
+        number: 220,
+        title: "Partida.",
+        duration: "23 min",
+        description:
+          "La serie original concluye con Naruto partiendo de la aldea junto a Jiraiya para comenzar un arduo entrenamiento que lo preparará para el regreso de Akatsuki y el rescate de Sasuke.",
+        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQwwU2b0D9yIfMvj5Fey_3cb8oW0v9xSOtrb8NzaoXqQ4k4f_Sg7qj-dFhZ-Yp1E0nQcO2hO-3zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        releaseDate: "Febrero 8, 2007",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T9/12.html",
+      },
+    ],
+  },
   {
     id: "nanatsu-no-taizai-mokushiroku-no-yonkishi",
     title: "Nanatsu no Taizai: Mokushiroku no Yonkishi",
