@@ -15417,7 +15417,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Eva contrata a un guardaespaldas para protegerse, pero pronto descubre que el mundo en el que se ha metido es mucho más oscuro y peligroso de lo que imaginaba.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_f4be00279ee2e0a53eafdaa94a151e2c.jpg",
         releaseDate: "Septiembre 14, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/24.html",
@@ -15429,7 +15429,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Un niño llamado Dieter, que sufre abusos, es ayudado por Tenma. La historia del niño se entrelaza con la búsqueda del Dr. Reichwein de la verdad.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_37f0e884fbad9667e38940169d0a3c95.jpg",
         releaseDate: "Septiembre 21, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/25.html",
@@ -15441,7 +15441,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma y Dieter viajan juntos, siguiendo una nueva pista que los lleva a un bosque donde se rumorea que se esconde un antiguo secreto.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_d64a340bcb633f536d56e51874281454.jpg",
         releaseDate: "Septiembre 28, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Monster/T1/26.html",
@@ -15453,7 +15453,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El exsoldado que entrenó a Tenma es capturado y torturado por neonazis que buscan a Johan. Tenma debe decidir si intervenir.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_0fcbc61acd0479dc77e3cccc0f5ffca7.jpg",
         releaseDate: "Octubre 5, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/27.html",
@@ -15465,7 +15465,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Un abogado idealista intenta defender a un hombre acusado de un asesinato que parece estar conectado con la red de Johan.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_298f95e1bf9136124592c8d4825a06fc.jpg",
         releaseDate: "Octubre 12, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/28.html",
@@ -15477,7 +15477,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El abogado se acerca demasiado a la verdad, convirtiéndose en el próximo objetivo de la conspiración de Johan.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_df877f3865752637daa540ea9cbc474f.jpg",
         releaseDate: "Octubre 19, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/29.html",
@@ -15489,7 +15489,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma, ahora más decidido que nunca, se prepara para su próximo movimiento, sabiendo que para detener a un monstruo, podría tener que convertirse en uno.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_c399862d3b9d6b76c8436e924a68c45b.jpg",
         releaseDate: "Octubre 26, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/30.html",
@@ -15501,7 +15501,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma viaja a Praga en busca de pistas sobre un libro de cuentos que parece ser la clave del pasado de Johan. Su búsqueda lo lleva a una misteriosa mansión.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=3c4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_33e8075e9970de0cfea955afd4644bb2.jpg",
         releaseDate: "Noviembre 2, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/31.html",
@@ -15513,7 +15513,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Nina también llega a Praga, y sus recuerdos reprimidos comienzan a emerger con más fuerza, llevándola a un estado de angustia.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=92e",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_65658fde58ab3c2b6e5132a39fae7cb9.jpg",
         releaseDate: "Noviembre 9, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/32.html",
@@ -15525,7 +15525,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Dieter se escapa para buscar a Tenma. En su viaje, se encuentra con un amable anciano que le enseña una valiosa lección sobre la vida.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_5ea1649a31336092c05438df996a3e59.jpg",
         releaseDate: "Noviembre 16, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/33.html",
@@ -15537,7 +15537,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El Dr. Reichwein, investigando por su cuenta, se da cuenta de que Johan está manipulando a la gente a su alrededor, incluso a sus pacientes.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=2f4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_7bcdf75ad237b8e02e301f4091fb6bc8.jpg",
         releaseDate: "Noviembre 23, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/34.html",
@@ -15549,7 +15549,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El libro de cuentos 'El Monstruo Sin Nombre' es leído, revelando una historia aterradora que parece reflejar la propia psicología de Johan.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_5737034557ef5b8c02c0e46513b98f90.jpg",
         releaseDate: "Noviembre 30, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/35.html",
@@ -15561,7 +15561,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma conoce a un joven estudiante de criminología, Wolfgang Grimmer, quien también investiga los experimentos del Kinderheim 511.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_9b72e31dac81715466cd580a448cf823.jpg",
         releaseDate: "Diciembre 7, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/36.html",
@@ -15573,7 +15573,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "La investigación revela que el libro de cuentos fue escrito por Franz Bonaparta, un autor checo cuya obra parece estar en el centro de la conspiración.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_16c222aa19898e5058938167c8ab6c57.jpg",
         releaseDate: "Diciembre 14, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/37.html",
@@ -15585,7 +15585,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Grimmer recuerda su propio y traumático pasado en el Kinderheim 511, y cómo los experimentos lo dejaron incapaz de sentir emociones.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_7dcd340d84f762eba80aa538b0c527f7.jpg",
         releaseDate: "Diciembre 21, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/38.html",
@@ -15597,7 +15597,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma y Grimmer se enfrentan a los vestigios de la policía secreta de Alemania del Este, quienes también están interesados en el 'experimento' de Johan.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_81448138f5f163ccdba4acc69819f280.jpg",
         releaseDate: "Diciembre 28, 2004",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/39.html",
@@ -15609,7 +15609,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "La confrontación llega a su clímax. Grimmer, para proteger a los niños, desata a su propio 'monstruo' interior, 'El Magnífico Steiner'.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_97e8527feaf77a97fc38f34216141515.jpg",
         releaseDate: "Enero 4, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/40.html",
@@ -15743,7 +15743,7 @@ export const animeData = [
           "Eva Heinemann, ahora sola y sin rumbo, reflexiona sobre su vida y su obsesión con Tenma, comenzando un doloroso camino hacia la redención.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
         releaseDate: "Marzo 22, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/51.html",
       },
       {
@@ -15755,7 +15755,7 @@ export const animeData = [
           "Tenma se encuentra con un abogado que está investigando los crímenes de un cliente rico, crímenes que parecen estar conectados con la red de Johan.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
         releaseDate: "Marzo 29, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/52.html",
       },
       {
@@ -15767,7 +15767,7 @@ export const animeData = [
           "El abogado se acerca demasiado a la verdad y se convierte en un objetivo. Tenma debe protegerlo, reafirmando su juramento de salvar vidas.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
         releaseDate: "Abril 5, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/53.html",
       },
       {
@@ -15779,7 +15779,7 @@ export const animeData = [
           "Lunge, ahora dudando de la culpabilidad de Tenma, continúa su propia investigación, que lo lleva a los secretos más oscuros de la antigua Checoslovaquia.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
         releaseDate: "Abril 12, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/54.html",
       },
       {
@@ -15791,7 +15791,7 @@ export const animeData = [
           "La búsqueda del autor Franz Bonaparta se intensifica. Tenma y Nina descubren que su influencia y sus experimentos se extienden mucho más allá de lo que imaginaban.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Abril 19, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/55.html",
       },
       {
@@ -15803,7 +15803,7 @@ export const animeData = [
           "Eva Heinemann, ahora protegida por un guardaespaldas contratado por Tenma, se enfrenta a su pasado y a las consecuencias de sus acciones.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABSpk8y8L8k3fF1zF4n2c_rQ_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=8d1",
         releaseDate: "Abril 26, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/56.html",
       },
       {
@@ -15815,7 +15815,7 @@ export const animeData = [
           "La investigación de Lunge lo lleva a un callejón sin salida, obligándolo a reconsiderar toda su teoría sobre Tenma y la existencia de Johan.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABR5Q82IAiAM6jpJjCUP0ZUM-4Lryqws45bUEOpjJnyqx5aWHn_fjHPeyQNbGgLZlo0lnCn14vp2DVz9kv38ZXBl7LZLQ_p7NaZnlUEkI27J75NxZF4ZtNtBE.jpg?r=578",
         releaseDate: "Mayo 3, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/57.html",
       },
       {
@@ -15827,7 +15827,7 @@ export const animeData = [
           "Tenma y Nina descubren que el objetivo final de Johan es crear un 'paisaje del fin', un mundo desprovisto de recuerdos y emociones.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABXAbnZ-RpHxCpLwdgJwrPjDOXpZYAQ1i-Iw9bZfi4Hy9SKbq-gRhWCe9LQmgR087shMLRPkXL4E9jyx3ZH7jKKMGvrcg1CQPPN3jqHqRilojUNS7UIMoVch-.jpg?r=526",
         releaseDate: "Mayo 10, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/58.html",
       },
       {
@@ -15839,7 +15839,7 @@ export const animeData = [
           "Un antiguo amigo de un hombre asesinado por Johan busca venganza, y su camino se cruza con el de Tenma.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABbwqF5Fp-7iO9xHw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
         releaseDate: "Mayo 17, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/59.html",
       },
       {
@@ -15851,7 +15851,7 @@ export const animeData = [
           "Nina viaja sola, intentando reconstruir los fragmentos de su memoria y encontrar la paz interior.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=2c1",
         releaseDate: "Mayo 24, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/60.html",
       },
       {
@@ -15863,7 +15863,7 @@ export const animeData = [
           "El Dr. Gillen, un psicólogo criminal, ayuda a Nina a enfrentarse a sus recuerdos reprimidos, llevándola de vuelta a la Mansión de las Rosas Rojas.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d1c",
         releaseDate: "Mayo 31, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/61.html",
       },
       {
@@ -15875,7 +15875,7 @@ export const animeData = [
           "Lunge finalmente acepta la existencia de Johan y se une a la caza, utilizando sus increíbles habilidades de deducción para seguir su rastro.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=e9a",
         releaseDate: "Junio 7, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/62.html",
       },
       {
@@ -15887,7 +15887,7 @@ export const animeData = [
           "El detective Jan Suk, que investiga a la policía secreta checa, descubre una conspiración que lo conecta con Franz Bonaparta y el origen de Johan.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Junio 14, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/63.html",
       },
       {
@@ -15899,7 +15899,7 @@ export const animeData = [
           "La madre de los gemelos es finalmente encontrada, pero su memoria está fragmentada. Sus recuerdos son la clave final para entender el pasado de Johan y Anna.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
         releaseDate: "Junio 21, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/64.html",
       },
       {
@@ -15911,7 +15911,7 @@ export const animeData = [
           "Todos los caminos llevan a Ruhenheim, un tranquilo pueblo en las montañas, donde Johan planea su acto final: el suicidio perfecto.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
         releaseDate: "Junio 28, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/65.html",
       },
       {
@@ -15923,7 +15923,7 @@ export const animeData = [
           "Tenma llega a Ruhenheim y se encuentra con Franz Bonaparta. La confrontación final entre el creador y su monstruo es inminente.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
         releaseDate: "Julio 5, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/66.html",
       },
       {
@@ -15935,7 +15935,7 @@ export const animeData = [
           "Johan llega a Ruhenheim y comienza a manipular a los habitantes, convirtiendo el idílico pueblo en un escenario de masacre.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
         releaseDate: "Julio 12, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/67.html",
       },
       {
@@ -15947,7 +15947,7 @@ export const animeData = [
           "Tenma y los demás deben proteger a los pocos supervivientes de la locura desatada por Johan.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Julio 19, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/68.html",
       },
       {
@@ -15959,7 +15959,7 @@ export const animeData = [
           "Grimmer, en un último acto heroico, salva a los niños de Ruhenheim, encontrando finalmente la paz que tanto anhelaba.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
         releaseDate: "Julio 26, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/69.html",
       },
       {
@@ -15971,7 +15971,7 @@ export const animeData = [
           "Tenma finalmente se enfrenta a Johan, listo para apretar el gatillo y terminar con la pesadilla.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
         releaseDate: "Agosto 2, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/70.html",
       },
       {
@@ -15983,7 +15983,7 @@ export const animeData = [
           "La confrontación es interrumpida por un personaje inesperado, cuyo acto final cambia el curso de los acontecimientos.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
         releaseDate: "Agosto 16, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/71.html",
       },
       {
@@ -15995,7 +15995,7 @@ export const animeData = [
           "Tenma se enfrenta a su dilema final: salvar la vida de Johan una vez más, manteniéndose fiel a su juramento como médico.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
         releaseDate: "Agosto 23, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/72.html",
       },
       {
@@ -16007,7 +16007,7 @@ export const animeData = [
           "Con Johan en coma, Tenma es exonerado de todos los cargos. La historia llega a un final ambiguo y reflexivo sobre la naturaleza del bien y el mal.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Septiembre 20, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/73.html",
       },
       {
@@ -16019,7 +16019,7 @@ export const animeData = [
           "La confrontación final en Ruhenheim. Tenma finalmente se encuentra cara a cara con Johan, y la verdad detrás de todo el misterio sale a la luz en un clímax impactante.",
         img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABbQ6rFLG9Etm0Wff8LV_miNdsUsjjCXXOtUJTzj_5ln4xpCGUYDj4W02Hf2CqZ4X38fAHLX6UFSdBLkOcxut36MSWh8B5H216JcIfVIXflIcrxZVqvDHNvhe.webp?r=fd3",
         releaseDate: "Septiembre 27, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/74.html",
       },
     ],
