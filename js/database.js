@@ -15621,7 +15621,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma se entera de que los eventos del Kinderheim 511 fueron orquestados para crear a Johan, el 'fantasma' perfecto.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d24",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_647bba344396e7c8170902bcf2e15551.jpg",
         releaseDate: "Enero 11, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/41.html",
@@ -15633,7 +15633,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Un episodio que explora la dualidad de Grimmer a través de su alter ego, 'El Magnífico Steiner', un héroe de televisión que representa las emociones que él no puede sentir.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_ed265bc903a5a097f61d3ec064d96d2e.jpg",
         releaseDate: "Enero 18, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/42.html",
@@ -15645,7 +15645,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El inspector Lunge, obsesionado con el caso, comienza a perder el contacto con la realidad y con su propia familia, consumido por su búsqueda de Tenma.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_c75b6f114c23a4d7ea11331e7c00e73c.jpg",
         releaseDate: "Enero 25, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/43.html",
@@ -15657,7 +15657,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Nina se encuentra con un terapeuta que intenta ayudarla a desbloquear sus recuerdos, pero el proceso la pone en un gran peligro.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=2f4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_8d34201a5b85900908db6cae92723617.jpg",
         releaseDate: "Febrero 1, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/44.html",
@@ -15669,7 +15669,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma y Nina siguen rastros separados de Johan, ambos convergiendo en la ciudad de Frankfurt, donde Johan planea su próximo movimiento.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_ccb1d45fb76f7c5a0bf619f979c6cf36.jpg",
         releaseDate: "Febrero 8, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/45.html",
@@ -15681,7 +15681,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Johan manipula a un poderoso magnate de los negocios para que lo ayude en su plan. Tenma debe infiltrarse en un evento de élite para detenerlo.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_01f78be6f7cad02658508fe4616098a9.jpg",
         releaseDate: "Febrero 15, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/46.html",
@@ -15693,7 +15693,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El plan de Johan se desvela: un incendio masivo en una biblioteca que contiene secretos sobre su pasado, diseñado para atraer a todos sus enemigos a una trampa mortal.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_7f24d240521d99071c93af3917215ef7.jpg",
         releaseDate: "Febrero 22, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/47.html",
@@ -15705,7 +15705,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "En medio del caos del incendio, Tenma, Lunge y Eva se encuentran cara a cara con Johan. La confrontación es tanto psicológica como física.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_94c7bb58efc3b337800875b5d382a072.jpg",
         releaseDate: "Marzo 1, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/48.html",
@@ -15717,7 +15717,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Johan revela que su verdadero objetivo no es la destrucción, sino la soledad perfecta, un 'paisaje del fin' donde él sea el último hombre en pie.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_f387624df552cea2f369918c5e1e12bc.jpg",
         releaseDate: "Marzo 8, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/49.html",
@@ -15729,7 +15729,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma escapa una vez más. Su viaje lo lleva de nuevo a la República Checa, en busca del autor del libro de cuentos, Franz Bonaparta.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_5e388103a391daabe3de1d76a6739ccd.jpg",
         releaseDate: "Marzo 15, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/50.html",
