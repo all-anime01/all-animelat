@@ -7312,7 +7312,7 @@ export const animeData = [
   },
   {
     id: "clevatess",
-    title: "Clevatess: Clevatess Majuu no Ou to Akago to Kabane no Yuusha",
+    title: "Clevatess: Clevatess: Majuu no Ou to Akago to Kabane no Yuusha",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/dd71fcce5a6f3a5e84cf33d3c9a8830a.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G8DHV78ZM-backdrop_wide",
@@ -7379,9 +7379,10 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 4,
-        title: "-",
+        title: "Talento mágico",
         duration: "23 min",
-        description: "-",
+        description:
+          "Cuando Alicia busca la legendaria espada “Takiwari”, se esconde en un barril que la sumerge en el pozo vertical dentro de la mina de Elbe.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2c8441df958963af02acc7b467f5d16b.jpg",
         releaseDate: "Julio 23, 2025",
         releaseTime: "14:47",
@@ -9449,6 +9450,7 @@ export const animeData = [
           "Senku y su equipo, ya con la firme intención de alcanzar Sudamérica —el origen del rayo de petrificación— reciben a la brillante geógrafa Chelsea, quien los guiará por la ruta más eficiente a través de la selva amazónica. Ante la urgencia de encontrar caucho para construir un mecanismo de transporte ideal, deciden montar una estrategia de distracción para ganar tiempo mientras Stanley y su grupo los rodean.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1e26af0d155b1ab5c3cc4e5789efab9f.jpg",
         releaseDate: "Julio 24, 2025",
+        releaseTime: "15:20",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/15.html",
       },
@@ -15826,7 +15828,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Eva Heinemann, ahora protegida por un guardaespaldas contratado por Tenma, se enfrenta a su pasado y a las consecuencias de sus acciones.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABSpk8y8L8k3fF1zF4n2c_rQ_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=8d1",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_a9a6653e48976138166de32772b1bf40.jpg",
         releaseDate: "Abril 26, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/56.html",
@@ -15838,7 +15840,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "La investigación de Lunge lo lleva a un callejón sin salida, obligándolo a reconsiderar toda su teoría sobre Tenma y la existencia de Johan.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABR5Q82IAiAM6jpJjCUP0ZUM-4Lryqws45bUEOpjJnyqx5aWHn_fjHPeyQNbGgLZlo0lnCn14vp2DVz9kv38ZXBl7LZLQ_p7NaZnlUEkI27J75NxZF4ZtNtBE.jpg?r=578",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_58ae749f25eded36f486bc85feb3f0ab.jpg",
         releaseDate: "Mayo 3, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/57.html",
@@ -15850,7 +15852,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma y Nina descubren que el objetivo final de Johan es crear un 'paisaje del fin', un mundo desprovisto de recuerdos y emociones.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABXAbnZ-RpHxCpLwdgJwrPjDOXpZYAQ1i-Iw9bZfi4Hy9SKbq-gRhWCe9LQmgR087shMLRPkXL4E9jyx3ZH7jKKMGvrcg1CQPPN3jqHqRilojUNS7UIMoVch-.jpg?r=526",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_4e4b5fbbbb602b6d35bea8460aa8f8e5.jpg",
         releaseDate: "Mayo 10, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/58.html",
@@ -15862,7 +15864,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Un antiguo amigo de un hombre asesinado por Johan busca venganza, y su camino se cruza con el de Tenma.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABbwqF5Fp-7iO9xHw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_8eefcfdf5990e441f0fb6f3fad709e21.jpg",
         releaseDate: "Mayo 17, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/59.html",
@@ -15874,7 +15876,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Nina viaja sola, intentando reconstruir los fragmentos de su memoria y encontrar la paz interior.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=2c1",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_1728efbda81692282ba642aafd57be3a.jpg",
         releaseDate: "Mayo 24, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/60.html",
@@ -15886,7 +15888,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El Dr. Gillen, un psicólogo criminal, ayuda a Nina a enfrentarse a sus recuerdos reprimidos, llevándola de vuelta a la Mansión de las Rosas Rojas.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_cbcb58ac2e496207586df2854b17995f.jpg",
         releaseDate: "Mayo 31, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/61.html",
@@ -15898,7 +15900,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Lunge finalmente acepta la existencia de Johan y se une a la caza, utilizando sus increíbles habilidades de deducción para seguir su rastro.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_db85e2590b6109813dafa101ceb2faeb.jpg",
         releaseDate: "Junio 7, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/62.html",
@@ -15910,7 +15912,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El detective Jan Suk, que investiga a la policía secreta checa, descubre una conspiración que lo conecta con Franz Bonaparta y el origen de Johan.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_99c5e07b4d5de9d18c350cdf64c5aa3d.jpg",
         releaseDate: "Junio 14, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/63.html",
@@ -15922,7 +15924,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "La madre de los gemelos es finalmente encontrada, pero su memoria está fragmentada. Sus recuerdos son la clave final para entender el pasado de Johan y Anna.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_dd458505749b2941217ddd59394240e8.jpg",
         releaseDate: "Junio 21, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/64.html",
@@ -15934,7 +15936,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Todos los caminos llevan a Ruhenheim, un tranquilo pueblo en las montañas, donde Johan planea su acto final: el suicidio perfecto.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_8b16ebc056e613024c057be590b542eb.jpg",
         releaseDate: "Junio 28, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/65.html",
@@ -15946,7 +15948,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma llega a Ruhenheim y se encuentra con Franz Bonaparta. La confrontación final entre el creador y su monstruo es inminente.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_a86c450b76fb8c371afead6410d55534.jpg",
         releaseDate: "Julio 5, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/66.html",
@@ -15958,7 +15960,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Johan llega a Ruhenheim y comienza a manipular a los habitantes, convirtiendo el idílico pueblo en un escenario de masacre.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_c9892a989183de32e976c6f04e700201.jpg",
         releaseDate: "Julio 12, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/67.html",
@@ -15970,7 +15972,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma y los demás deben proteger a los pocos supervivientes de la locura desatada por Johan.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_e6b4b2a746ed40e1af829d1fa82daa10.jpg",
         releaseDate: "Julio 19, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/68.html",
@@ -15982,7 +15984,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Grimmer, en un último acto heroico, salva a los niños de Ruhenheim, encontrando finalmente la paz que tanto anhelaba.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_e5f6ad6ce374177eef023bf5d0c018b6.jpg",
         releaseDate: "Julio 26, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/69.html",
@@ -15994,7 +15996,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma finalmente se enfrenta a Johan, listo para apretar el gatillo y terminar con la pesadilla.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_f0e52b27a7a5d6a1a87373dffa53dbe5.jpg",
         releaseDate: "Agosto 2, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/70.html",
@@ -16006,7 +16008,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "La confrontación es interrumpida por un personaje inesperado, cuyo acto final cambia el curso de los acontecimientos.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_ffeabd223de0d4eacb9a3e6e53e5448d.jpg",
         releaseDate: "Agosto 16, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/71.html",
@@ -16018,7 +16020,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma se enfrenta a su dilema final: salvar la vida de Johan una vez más, manteniéndose fiel a su juramento como médico.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_a7aeed74714116f3b292a982238f83d2.jpg",
         releaseDate: "Agosto 23, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/72.html",
@@ -16030,7 +16032,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Con Johan en coma, Tenma es exonerado de todos los cargos. La historia llega a un final ambiguo y reflexivo sobre la naturaleza del bien y el mal.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_fde9264cf376fffe2ee4ddf4a988880d.jpg",
         releaseDate: "Septiembre 20, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/73.html",
@@ -16042,7 +16044,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La confrontación final en Ruhenheim. Tenma finalmente se encuentra cara a cara con Johan, y la verdad detrás de todo el misterio sale a la luz en un clímax impactante.",
-        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABbQ6rFLG9Etm0Wff8LV_miNdsUsjjCXXOtUJTzj_5ln4xpCGUYDj4W02Hf2CqZ4X38fAHLX6UFSdBLkOcxut36MSWh8B5H216JcIfVIXflIcrxZVqvDHNvhe.webp?r=fd3",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_a8849b052492b5106526b2331e526138.jpg",
         releaseDate: "Septiembre 27, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/74.html",
