@@ -15503,7 +15503,7 @@ export const animeData = [
           "Tenma viaja a Praga en busca de pistas sobre un libro de cuentos que parece ser la clave del pasado de Johan. Su búsqueda lo lleva a una misteriosa mansión.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=3c4",
         releaseDate: "Noviembre 2, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/31.html",
       },
       {
@@ -15515,7 +15515,7 @@ export const animeData = [
           "Nina también llega a Praga, y sus recuerdos reprimidos comienzan a emerger con más fuerza, llevándola a un estado de angustia.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=92e",
         releaseDate: "Noviembre 9, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/32.html",
       },
       {
@@ -15527,7 +15527,7 @@ export const animeData = [
           "Dieter se escapa para buscar a Tenma. En su viaje, se encuentra con un amable anciano que le enseña una valiosa lección sobre la vida.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=e9a",
         releaseDate: "Noviembre 16, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/33.html",
       },
       {
@@ -15539,7 +15539,7 @@ export const animeData = [
           "El Dr. Reichwein, investigando por su cuenta, se da cuenta de que Johan está manipulando a la gente a su alrededor, incluso a sus pacientes.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=2f4",
         releaseDate: "Noviembre 23, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/34.html",
       },
       {
@@ -15551,7 +15551,7 @@ export const animeData = [
           "El libro de cuentos 'El Monstruo Sin Nombre' es leído, revelando una historia aterradora que parece reflejar la propia psicología de Johan.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Noviembre 30, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/35.html",
       },
       {
@@ -15563,7 +15563,7 @@ export const animeData = [
           "Tenma conoce a un joven estudiante de criminología, Wolfgang Grimmer, quien también investiga los experimentos del Kinderheim 511.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
         releaseDate: "Diciembre 7, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/36.html",
       },
       {
@@ -15575,7 +15575,7 @@ export const animeData = [
           "La investigación revela que el libro de cuentos fue escrito por Franz Bonaparta, un autor checo cuya obra parece estar en el centro de la conspiración.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
         releaseDate: "Diciembre 14, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/37.html",
       },
       {
@@ -15587,7 +15587,7 @@ export const animeData = [
           "Grimmer recuerda su propio y traumático pasado en el Kinderheim 511, y cómo los experimentos lo dejaron incapaz de sentir emociones.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
         releaseDate: "Diciembre 21, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/38.html",
       },
       {
@@ -15599,7 +15599,7 @@ export const animeData = [
           "Tenma y Grimmer se enfrentan a los vestigios de la policía secreta de Alemania del Este, quienes también están interesados en el 'experimento' de Johan.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
         releaseDate: "Diciembre 28, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/39.html",
       },
       {
@@ -15611,7 +15611,7 @@ export const animeData = [
           "La confrontación llega a su clímax. Grimmer, para proteger a los niños, desata a su propio 'monstruo' interior, 'El Magnífico Steiner'.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Enero 4, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/40.html",
       },
       {
@@ -15623,7 +15623,7 @@ export const animeData = [
           "Tenma se entera de que los eventos del Kinderheim 511 fueron orquestados para crear a Johan, el 'fantasma' perfecto.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d24",
         releaseDate: "Enero 11, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/41.html",
       },
       {
@@ -15635,7 +15635,7 @@ export const animeData = [
           "Un episodio que explora la dualidad de Grimmer a través de su alter ego, 'El Magnífico Steiner', un héroe de televisión que representa las emociones que él no puede sentir.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d1c",
         releaseDate: "Enero 18, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/42.html",
       },
       {
@@ -15647,7 +15647,7 @@ export const animeData = [
           "El inspector Lunge, obsesionado con el caso, comienza a perder el contacto con la realidad y con su propia familia, consumido por su búsqueda de Tenma.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
         releaseDate: "Enero 25, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/43.html",
       },
       {
@@ -15659,7 +15659,7 @@ export const animeData = [
           "Nina se encuentra con un terapeuta que intenta ayudarla a desbloquear sus recuerdos, pero el proceso la pone en un gran peligro.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=2f4",
         releaseDate: "Febrero 1, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/44.html",
       },
       {
@@ -15671,7 +15671,7 @@ export const animeData = [
           "Tenma y Nina siguen rastros separados de Johan, ambos convergiendo en la ciudad de Frankfurt, donde Johan planea su próximo movimiento.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Febrero 8, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/45.html",
       },
       {
@@ -15683,7 +15683,7 @@ export const animeData = [
           "Johan manipula a un poderoso magnate de los negocios para que lo ayude en su plan. Tenma debe infiltrarse en un evento de élite para detenerlo.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
         releaseDate: "Febrero 15, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/46.html",
       },
       {
@@ -15695,7 +15695,7 @@ export const animeData = [
           "El plan de Johan se desvela: un incendio masivo en una biblioteca que contiene secretos sobre su pasado, diseñado para atraer a todos sus enemigos a una trampa mortal.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
         releaseDate: "Febrero 22, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/47.html",
       },
       {
@@ -15707,7 +15707,7 @@ export const animeData = [
           "En medio del caos del incendio, Tenma, Lunge y Eva se encuentran cara a cara con Johan. La confrontación es tanto psicológica como física.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
         releaseDate: "Marzo 1, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/48.html",
       },
       {
@@ -15719,7 +15719,7 @@ export const animeData = [
           "Johan revela que su verdadero objetivo no es la destrucción, sino la soledad perfecta, un 'paisaje del fin' donde él sea el último hombre en pie.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
         releaseDate: "Marzo 8, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/49.html",
       },
       {
@@ -15731,7 +15731,7 @@ export const animeData = [
           "Tenma escapa una vez más. Su viaje lo lleva de nuevo a la República Checa, en busca del autor del libro de cuentos, Franz Bonaparta.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Marzo 15, 2005",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/50.html",
       },
       {
@@ -35334,13 +35334,15 @@ export const animeData = [
   {
     id: "digimon-adventure-02-the-beginning",
     title: "Digimon Adventure 02: The Beginning",
-    img: "https://a.storyblok.com/f/178900/900x1272/c465eca008/digimon-adventure-02-the-beginning-character-poster.jpg/m/filters:quality(95)format(webp)",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753318234/bb47b2ef6dab5846d8db4955474939e46b6867960fc9736f7e7ea8cc76f3eb48_vfxoxo.jpg",
     heroImg:
-      "https://revistayume.com/wp-content/uploads/2023/10/digimon-adventure-02-the-beginning-llegara-a-cines.webp",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753318200/digimon2movie_enonmn.jpg",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753318355/5ca45949a78071609828fa0fbde080c0a4f6580cfc19ca0ff6d5dd10f5b276c1_mnpw6l.jpg",
     logoImg:
       "https://www.selecta-vision.com/sites/wp-content/uploads/2023/11/digimon-02-logo.png",
     imgMobile:
-      "https://revistayume.com/wp-content/uploads/2023/10/digimon-adventure-02-the-beginning-llegara-a-cines.webp",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753318409/81nhgZ-T6lL._UF894_1000_QL80__ejabqa.jpg",
     trailerUrl: "https://www.youtube.com/embed/qc5grmiZmIE?si=cw9TDrqLijNHCUH1",
     description:
       "Se desvela el secreto del nacimiento de “los DigiDestinados”. Estamos en 2012, diez años después de que tuvieran lugar las aventuras entre Odaiba y el Mundo Digital. Aunque han emprendido sus propios caminos, Daisuke y los demás “DigiDestinados” y sus Digimon compañeros siguen unidos por el mismo vínculo. Entonces, un día, un Digitama gigante aparece de repente en el cielo sobre la Torre de Tokio, enviando un mensaje al mundo: “Que todos en el mundo tengan amigos. Que cada uno de ellos tenga un Digimon”. Mientras el mundo observa, un joven llamado Oowada Rui aparece ante Daisuke y sus amigos con un DIGIVICIO agrietado. Detrás del nacimiento de “los DigiDestinados” está el único deseo oculto de Lui…",
