@@ -15299,7 +15299,7 @@ export const animeData = [
           "Eva Heinemann, la ex-prometida de Tenma, ahoga sus penas en el alcohol. Su deseo de venganza la lleva a colaborar con la investigación de Lunge.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_ebd9629fc3ae5e9f6611e2ee05a31cef.jpg",
         releaseDate: "Julio 6, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/14.html",
       },
       {
@@ -15311,7 +15311,7 @@ export const animeData = [
           "La investigación de Lunge lo lleva a un caso cerrado que podría tener una conexión sorprendente con Johan y los asesinatos en serie.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_63538fe6ef330c13a05a3ed7e599d5f7.jpg",
         releaseDate: "Julio 13, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/15.html",
       },
       {
@@ -15323,7 +15323,7 @@ export const animeData = [
           "Tenma encuentra a un antiguo general que formó parte de un complot para encontrar un sucesor para Hitler, y que podría saber el paradero de Johan.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_cf67355a3333e6e143439161adc2d82e.jpg",
         releaseDate: "Julio 20, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/16.html",
       },
       {
@@ -15335,7 +15335,7 @@ export const animeData = [
           "Nina (Anna) se inscribe en la universidad de Múnich. Allí, se encuentra con un grupo de estudiantes que parecen estar bajo la influencia de Johan.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_07563a3fe3bbe7e3ba84431ad9d055af.jpg",
         releaseDate: "Julio 27, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/17.html",
       },
       {
@@ -15347,7 +15347,7 @@ export const animeData = [
           "Un joven y rico estudiante llamado Karl se enamora de una chica misteriosa. Sin saberlo, se ve envuelto en la red de manipulación de Johan.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_53fde96fcc4b4ce72d7739202324cd49.jpg",
         releaseDate: "Agosto 3, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/18.html",
       },
       {
@@ -15359,7 +15359,7 @@ export const animeData = [
           "El plan de Johan en Múnich comienza a tomar forma, involucrando a la élite de la ciudad y a un incendio provocado en la biblioteca de la universidad.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_2bb232c0b13c774965ef8558f0fbd615.jpg",
         releaseDate: "Agosto 10, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/19.html",
       },
       {
@@ -15371,7 +15371,7 @@ export const animeData = [
           "Tenma sigue una nueva pista que lo lleva a Freinheim, donde un detective privado también está investigando a Johan y su conexión con un libro de cuentos checo.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_ba2fd310dcaa8781a9a652a31baf3c68.jpg",
         releaseDate: "Agosto 17, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/20.html",
       },
       {
@@ -15383,7 +15383,7 @@ export const animeData = [
           "Nina se toma un descanso de su búsqueda y pasa tiempo con un grupo de estudiantes, pero incluso en la tranquilidad, la sombra de su pasado la persigue.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_69421f032498c97020180038fddb8e24.jpg",
         releaseDate: "Agosto 24, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/21.html",
       },
       {
@@ -15395,7 +15395,7 @@ export const animeData = [
           "El inspector Lunge, convencido de la culpabilidad de Tenma, le tiende una trampa para capturarlo de una vez por todas.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_85422afb467e9456013a2a51d4dff702.jpg",
         releaseDate: "Agosto 31, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/22.html",
       },
       {
@@ -15407,7 +15407,7 @@ export const animeData = [
           "Eva Heinemann, en un intento de recuperar su antigua vida, le da a Lunge una pista crucial, pero sus propias mentiras comienzan a desmoronarse.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_13f320e7b5ead1024ac95c3b208610db.jpg",
         releaseDate: "Septiembre 7, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/23.html",
       },
       {
@@ -15419,7 +15419,7 @@ export const animeData = [
           "Eva contrata a un guardaespaldas para protegerse, pero pronto descubre que el mundo en el que se ha metido es mucho más oscuro y peligroso de lo que imaginaba.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
         releaseDate: "Septiembre 14, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/24.html",
       },
       {
@@ -15431,7 +15431,7 @@ export const animeData = [
           "Un niño llamado Dieter, que sufre abusos, es ayudado por Tenma. La historia del niño se entrelaza con la búsqueda del Dr. Reichwein de la verdad.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
         releaseDate: "Septiembre 21, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/25.html",
       },
       {
@@ -15455,7 +15455,7 @@ export const animeData = [
           "El exsoldado que entrenó a Tenma es capturado y torturado por neonazis que buscan a Johan. Tenma debe decidir si intervenir.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
         releaseDate: "Octubre 5, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/27.html",
       },
       {
@@ -15467,7 +15467,7 @@ export const animeData = [
           "Un abogado idealista intenta defender a un hombre acusado de un asesinato que parece estar conectado con la red de Johan.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
         releaseDate: "Octubre 12, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/28.html",
       },
       {
@@ -15479,7 +15479,7 @@ export const animeData = [
           "El abogado se acerca demasiado a la verdad, convirtiéndose en el próximo objetivo de la conspiración de Johan.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
         releaseDate: "Octubre 19, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/29.html",
       },
       {
@@ -15491,7 +15491,7 @@ export const animeData = [
           "Tenma, ahora más decidido que nunca, se prepara para su próximo movimiento, sabiendo que para detener a un monstruo, podría tener que convertirse en uno.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
         releaseDate: "Octubre 26, 2004",
-        language: "Sub | Dob",
+        language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/30.html",
       },
       {
