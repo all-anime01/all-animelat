@@ -7602,6 +7602,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T2/15.html",
       },
+      {
+        season: "Temporada 2",
+        number: 16,
+        title: "La cosa se puso demasiado escabrosa",
+        duration: "24 min",
+        description:
+          "Mientras el volcán de la región hace erupción, Momo tiene que enfrentar a la familia Kito y Mal de Ojo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ed0cef3e966b0d5fd5e2d4112827fde9.jpg",
+        releaseDate: "Julio 24, 2025",
+        releaseTime: "15:05",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dandadan/T2/16.html",
+      },
     ],
   },
   {
@@ -15741,7 +15754,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Eva Heinemann, ahora sola y sin rumbo, reflexiona sobre su vida y su obsesión con Tenma, comenzando un doloroso camino hacia la redención.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_15de21c670ae7c3f6f3f1f37029303c9.jpg",
         releaseDate: "Marzo 22, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/51.html",
@@ -15753,7 +15766,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Tenma se encuentra con un abogado que está investigando los crímenes de un cliente rico, crímenes que parecen estar conectados con la red de Johan.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_11b921ef080f7736089c757404650e40.jpg",
         releaseDate: "Marzo 29, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/52.html",
@@ -15765,7 +15778,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "El abogado se acerca demasiado a la verdad y se convierte en un objetivo. Tenma debe protegerlo, reafirmando su juramento de salvar vidas.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_6e2713a6efee97bacb63e52c54f0ada0.jpg",
         releaseDate: "Abril 5, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/53.html",
@@ -15777,7 +15790,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Lunge, ahora dudando de la culpabilidad de Tenma, continúa su propia investigación, que lo lleva a los secretos más oscuros de la antigua Checoslovaquia.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_1bb91f73e9d31ea2830a5e73ce3ed328.jpg",
         releaseDate: "Abril 12, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/54.html",
@@ -15789,7 +15802,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "La búsqueda del autor Franz Bonaparta se intensifica. Tenma y Nina descubren que su influencia y sus experimentos se extienden mucho más allá de lo que imaginaban.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://cdn.jkdesu.com/assets/images/animes/video/image_thumb/jkvideo_3a0772443a0739141292a5429b952fe6.jpg",
         releaseDate: "Abril 19, 2005",
         language: "Sub | Cas",
         videoUrl: "frame/Monster/T1/55.html",
