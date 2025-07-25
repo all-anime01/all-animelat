@@ -818,7 +818,7 @@ $(document).ready(function () {
         if (view === "carousel")
           episodesContainer.slick({
             infinite: false,
-            slidesToShow: 3,
+            slidesToShow: 5,
             slidesToScroll: 1,
             responsive: [
               { breakpoint: 1024, settings: { slidesToShow: 2 } },
