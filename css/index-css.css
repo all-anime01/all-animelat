@@ -1173,6 +1173,11 @@ body.red-theme header {
     font-weight: 500;
 }
 
+.custom-select-wrapper select option {
+    background: var(--card-bg);
+    color: var(--light-text);
+}
+
 .episode-search-wrapper {
     position: relative;
 }
