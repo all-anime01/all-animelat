@@ -13728,7 +13728,7 @@ export const animeData = [
           "Zhou Mingrui despierta en el cuerpo de Klein Moretti con recuerdos de sus últimos días antes de darse un tiro.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a30bbcef8b9b9b149d7aabd5750ffdf7.jpg",
         releaseDate: "Junio 27, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Lord-of-mysteries/T1/1.html",
       },
       {
@@ -13740,7 +13740,7 @@ export const animeData = [
           "Klein Moretti se une a los Halcones Nocturnos, lo que lo hace descubrir una pista sobre su cuaderno perdido.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e4046c9d54735a0be9307564b2fcf39a.jpg",
         releaseDate: "Junio 27, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Lord-of-mysteries/T1/2.html",
       },
       {
@@ -13778,6 +13778,18 @@ export const animeData = [
         releaseDate: "Julio 18, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/5.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 6,
+        title: "El profesor",
+        duration: "36 min",
+        description:
+          "Tras una misión a unas ruinas malditas, Klein descubre algo inesperado relacionado con el profesor Azik.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7021df1baa8bb0f86c56ac12beae73c6.jpg",
+        releaseDate: "Julio 25, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Lord-of-mysteries/T1/6.html",
       },
     ],
   },
