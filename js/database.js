@@ -13752,7 +13752,7 @@ export const animeData = [
           "Para recuperar el códice del clan Antigonus, los Halcones Nocturnos deberán enfrentarse a un poderoso enemigo.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fd6367f33ad5e77c099f3eefae0bd00f.jpg",
         releaseDate: "Julio 4, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Lord-of-mysteries/T1/3.html",
       },
       {
@@ -13788,6 +13788,7 @@ export const animeData = [
           "Tras una misión a unas ruinas malditas, Klein descubre algo inesperado relacionado con el profesor Azik.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7021df1baa8bb0f86c56ac12beae73c6.jpg",
         releaseDate: "Julio 25, 2025",
+        releaseTime: "23:50",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/6.html",
       },

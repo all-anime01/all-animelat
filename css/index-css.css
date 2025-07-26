@@ -433,7 +433,6 @@ body.red-theme header {
     padding: 0 2rem;
     transform: translateY(-50%);
     pointer-events: none;
-    /* Permite hacer clic a través de las flechas */
     z-index: 4;
 }
 
@@ -447,9 +446,10 @@ body.red-theme header {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
     pointer-events: all;
-    /* Hace que solo los botones sean clickeables */
+    opacity: 1;
+    visibility: visible;
 }
 
 .hero-arrow:hover {
@@ -462,7 +462,9 @@ body.red-theme header {
 }
 
 .hero-arrow.hidden {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* FIN: Estilos para las Flechas */
