@@ -758,8 +758,9 @@ $(document).ready(function () {
                     </a>
                 </div>`);
       });
-      if (episodesContainer.hasClass("carousel"))
-        $("#carousel-view-btn").trigger("click");
+
+      const savedView = localStorage.getItem("episodeViewPreference") || "grid";
+      $(`#${savedView}-view-btn`).trigger("click");
     }
 
     const debouncedRender = debounce(
@@ -774,6 +775,34 @@ $(document).ready(function () {
     seasonSelect.on("change", debouncedRender);
     $("#episode-search").on("input", debouncedRender);
     $("#sort-episodes").on("change", debouncedRender);
+
+    $("#grid-view-btn, #list-view-btn, #carousel-view-btn").on(
+      "click",
+      function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        const view = $(this).attr("id").split("-")[0];
+        localStorage.setItem("episodeViewPreference", view); // Guardar preferencia
+        if (episodesContainer.hasClass("slick-initialized"))
+          episodesContainer.slick("unslick");
+        episodesContainer.removeClass("grid list carousel").addClass(view);
+        if (view === "carousel") {
+          episodesContainer.slick({
+            infinite: false,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            responsive: [
+              { breakpoint: 1024, settings: { slidesToShow: 2 } },
+              { breakpoint: 768, settings: { slidesToShow: 1, arrows: false } },
+            ],
+          });
+        }
+      }
+    );
+
+    if (seasons.length > 0) {
+      renderEpisodes(seasonSelect.val());
+    }
+
     $("#modal-video-container").html(
       `<iframe width="560" height="315" src="${anime.trailerUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
     );
@@ -807,27 +836,6 @@ $(document).ready(function () {
         (e.target === e.currentTarget || $(e.target).hasClass("close-modal")) &&
         $("#trailer-modal").fadeOut()
     );
-    $("#grid-view-btn, #list-view-btn, #carousel-view-btn").on(
-      "click",
-      function () {
-        $(this).addClass("active").siblings().removeClass("active");
-        const view = $(this).attr("id").split("-")[0];
-        if (episodesContainer.hasClass("slick-initialized"))
-          episodesContainer.slick("unslick");
-        episodesContainer.removeClass("grid list carousel").addClass(view);
-        if (view === "carousel")
-          episodesContainer.slick({
-            infinite: false,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            responsive: [
-              { breakpoint: 1024, settings: { slidesToShow: 2 } },
-              { breakpoint: 768, settings: { slidesToShow: 1, arrows: false } },
-            ],
-          });
-      }
-    );
-    if (seasons.length > 0) debouncedRender();
 
     $(document).on("click", ".open-player-from-details", function (e) {
       e.preventDefault();
