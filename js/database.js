@@ -13327,7 +13327,7 @@ export const animeData = [
       },
     ],
   },
-  //K
+  //letra K
   {
     id: "kaiju-no-8",
     title: "Kaiju No. 8",
@@ -13539,6 +13539,19 @@ export const animeData = [
         releaseDate: "Julio 19, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T2/13.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 14,
+        title: "La prueba de la siguiente generación",
+        duration: "23 min",
+        description:
+          "Una gigantesca cráter aparece inesperadamente en Shinagawa, de donde emergen numerosos kaiju tipo hormiga de gran tamaño. Para enfrentarlos, se despliega el Primer Escuadrón, con Kafka Hibino y Kikoru Shinomiya al frente bajo el mando de Gen Narumi.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d6a59602ced0f8c828a00e1dc64223cc.jpg",
+        releaseDate: "Julio 26, 2025",
+        releaseTime: "11:35",
+        language: "Sub | Dob",
+        videoUrl: "frame/Kaiju-No-8/T2/14.html",
       },
     ],
   },
@@ -38488,6 +38501,19 @@ export const animeData = [
         releaseDate: "Julio 19, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/15.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 16,
+        title: "Gran Batalla",
+        duration: "23 min",
+        description:
+          "Tras obtener la Esfera de Fuego en Kyūshū, Yaiba y sus compañeros llegan a Nara en busca de la siguiente joya. Allí conocen a Ishida Rokuemon, un guerrero que les pide unirse a su misión tras escuchar noticias sobre sus hazañas.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753550843/6uax5vailw6g_ov9eia.jpg",
+        releaseDate: "Julio 26, 2025",
+        releaseTime: "11:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/16.html",
       },
     ],
   },
