@@ -12720,9 +12720,21 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/3.html",
       },
+      {
+        season: "Temporada 1",
+        number: 4,
+        title: "Festival de verano",
+        duration: "23 min",
+        description:
+          "Mientras Yoshiki va al festival de verano con Hikaru, los ancianos del pueblo entran en pánico por una muerte reciente. Tanaka tiene más preguntas que respuestas.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753559688/3pyxg9s5z2jg_ngcwdi.jpg",
+        releaseDate: "Julio 26, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/4.html",
+      },
     ],
   },
-  //J
+  //letra J
   {
     id: "jujutsu-kaisen",
     title: "Jujutsu Kaisen",
@@ -13360,18 +13372,6 @@ export const animeData = [
       "+14 Sangre/Gore, Luces intermitentes, Tabaquismo, Violencia",
     episodes: [
       {
-        season: 0,
-        number: 1,
-        title: "Kaiju Nº 8: Misión de Reconocimiento",
-        duration: "1h 59m",
-        description:
-          "Kafka Hibino aspira a unirse al Cuerpo de Defensa que luchan contra los Kaiju, pero se convertirá en uno.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ccf01d3a8402d46b3cd1c9ff552103be.jpg",
-        releaseDate: "Julio 12, 2025",
-        language: "Sub | Dob",
-        videoUrl: "frame/Kaiju-No-8/Especiales-peliculas/1.html",
-      },
-      {
         season: "Temporada 1",
         number: 1,
         title: "El hombre que se convirtió en kaiju",
@@ -13406,7 +13406,6 @@ export const animeData = [
         releaseDate: "Abril 27, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/3.html",
-        votes: { likes: 387, dislikes: 5 },
       },
       {
         season: "Temporada 1",
@@ -13515,6 +13514,18 @@ export const animeData = [
         releaseDate: "Junio 29, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T1/12.html",
+      },
+      {
+        season: "Misión de reconocimiento",
+        number: 1,
+        title: "Kaiju Nº 8: Misión de Reconocimiento",
+        duration: "1h 59m",
+        description:
+          "Kafka Hibino aspira a unirse al Cuerpo de Defensa que luchan contra los Kaiju, pero se convertirá en uno.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ccf01d3a8402d46b3cd1c9ff552103be.jpg",
+        releaseDate: "Julio 12, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Kaiju-No-8/Especiales-peliculas/1.html",
       },
       {
         season: "Temporada 2",
