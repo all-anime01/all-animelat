@@ -12729,6 +12729,7 @@ export const animeData = [
           "Mientras Yoshiki va al festival de verano con Hikaru, los ancianos del pueblo entran en pánico por una muerte reciente. Tanaka tiene más preguntas que respuestas.",
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753559688/3pyxg9s5z2jg_ngcwdi.jpg",
         releaseDate: "Julio 26, 2025",
+        releaseTime: "14:50",
         language: "Subtitulado",
         videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/4.html",
       },
