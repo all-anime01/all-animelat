@@ -17485,7 +17485,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El equipo conoce a Inari, el nieto de Tazuna, y aprende sobre la opresión que sufre el pueblo a manos del magnate naviero Gato.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=3c4",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3bd485e2707578b2e69be7f159676859.jpg",
         releaseDate: "Diciembre 12, 2002",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/11.html",
@@ -17497,7 +17497,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Zabuza y Haku regresan para un enfrentamiento final en el puente. Sasuke y Naruto deben enfrentarse a Haku y su poderosa técnica de espejos de hielo.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=4c6",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1d671253e8b8674463fca562ee3dbf53.jpg",
         releaseDate: "Diciembre 19, 2002",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/12.html",
@@ -17509,7 +17509,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Sasuke despierta su Sharingan por primera vez durante la batalla contra Haku, pero la velocidad y las agujas de su oponente son abrumadoras.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=92e",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9c8627b71df02dcc7e5647fbb51ef667.jpg",
         releaseDate: "Diciembre 26, 2002",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/13.html",
@@ -17521,7 +17521,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Naruto se une a la batalla. Su imprevisibilidad y su determinación sorprenden a Haku, pero la situación toma un giro oscuro.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=e9a",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/cb90198f0ed1df5cb0bf36828a07891b.jpg",
         releaseDate: "Enero 9, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/14.html",
@@ -17533,7 +17533,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kakashi se enfrenta a Zabuza en la niebla. La batalla es un duelo de ingenio y habilidad, y Kakashi debe llevar su Sharingan al límite.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=2f4",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b6fce9d24590fef7edda662a52648bbf.jpg",
         releaseDate: "Enero 16, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/15.html",
@@ -17545,7 +17545,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Creyendo que Sasuke ha muerto, Naruto desata por primera vez el poder del Zorro de Nueve Colas, abrumando a Haku con su chakra.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2f4f04fe9370de2432301b558e479d8a.jpg",
         releaseDate: "Enero 23, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/16.html",
@@ -17557,7 +17557,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Haku se sacrifica para proteger a Zabuza. Se revela su pasado y la razón de su devoción inquebrantable hacia el demonio de la niebla.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/cead3f1685a32f7d28fd539f6773831d.jpg",
         releaseDate: "Enero 30, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/17.html",
@@ -17569,7 +17569,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Conmovido por las palabras de Naruto, Zabuza, en un último acto, se enfrenta a Gato y sus matones, demostrando que incluso un demonio puede tener honor.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b480b0c71b50dd1490bb03b14ac70ba3.jpg",
         releaseDate: "Febrero 6, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/18.html",
@@ -17581,7 +17581,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Zabuza muere junto a Haku. Inari y el pueblo se levantan contra Gato, inspirados por el coraje de los ninjas de la Hoja.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/90ea795e3acb23a8f0a1b48f3b6f98f6.jpg",
         releaseDate: "Febrero 13, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/19.html",
@@ -17593,7 +17593,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "De vuelta en Konoha, el Equipo 7 es recomendado para los exámenes de ascenso a Chunin, una prueba de habilidad y estrategia que atrae a ninjas de todas las aldeas.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=2f4",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/f3404b85d3d49679ce3f5d00bc616739.jpg",
         releaseDate: "Febrero 20, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/20.html",
@@ -17605,7 +17605,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Naruto, Sasuke y Sakura conocen a los demás equipos de genin de su generación y a nuevos y poderosos rivales, como Gaara del Desierto y Rock Lee.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=f97",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/01d92833730507a6883770cd547a7364.jpg",
         releaseDate: "Febrero 27, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/21.html",
@@ -17617,7 +17617,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Rock Lee desafía a Sasuke a un duelo para demostrar que el esfuerzo puede superar al talento natural. La velocidad y el taijutsu de Lee sorprenden a todos.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABV_wG_hK_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_x.webp?r=d24",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/64a13c04ae1dffb1dfc91ce87777beed.jpg",
         releaseDate: "Marzo 6, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/22.html",
@@ -17629,7 +17629,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Comienza la primera prueba de los exámenes Chunin: un examen escrito diseñado para poner a prueba la capacidad de los genin para obtener información sin ser descubiertos.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW_iH_gZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.webp?r=d1c",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ae3db32043055f3a1c0f85d76e62773c.jpg",
         releaseDate: "Marzo 13, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/23.html",
@@ -17641,10 +17641,22 @@ export const animeData = [
         duration: "23 min",
         description:
           "Naruto se enfrenta a la décima y última pregunta del examen, una que pone a prueba su determinación y su voluntad de nunca rendirse.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABY_eK_gH_kZ_jF_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=e9a",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/215e74fe403867e351e3ad12ddde881e.jpg",
         releaseDate: "Marzo 20, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/24.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 25,
+        title: "¡Por todas! A darlo todo en la décima pregunta.",
+        duration: "23 min",
+        description:
+          "El examen escrito está siendo una verdadera tortura para Naruto, que no sabe responderá a las preguntas. Si eso fuera poco, el examinador les dirá cuál es la décima pregunta.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b98f7b16bf95310f399a81e00be45995.jpg",
+        releaseDate: "Marzo 27, 2003",
+        language: "Sub | Dob",
+        videoUrl: "frame/Naruto/T1/25.html",
       },
       {
         season: "Temporada 1",
@@ -17653,7 +17665,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Un episodio especial que resume el entrenamiento del Equipo 7 con Kakashi y su primera gran misión en el País de las Olas.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQwwU2b0D9yIfMvj5Fey_3cb8oW0v9xSOtrb8NzaoXqQ4k4f_Sg7qj-dFhZ-Yp1E0nQcO2hO-3zY_bH_jK_dF_jP_tK_zP_uL_xW_i.jpg?r=2a2",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/4602dbfcd777f038fde7abefcd854309.jpg",
         releaseDate: "Abril 2, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T1/26.html",
