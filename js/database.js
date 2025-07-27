@@ -12370,9 +12370,22 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/2.html",
       },
+      {
+        season: "Temporada 1",
+        number: 3,
+        title: "La central de los limpiadores",
+        duration: "23 min",
+        description:
+          "Engine lleva a Ludo a la La central de los limpiadores, donde ve el duro y peligroso trabajo de Riyo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d99a14efe009c965303666b3efbfd750.jpg",
+        releaseDate: "Julio 27, 2025",
+        releaseTime: "12:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Gachiakuta/T1/3.html",
+      },
     ],
   },
-  //H
+  //letra H
   {
     id: "jigoku-sensei-nube-remake-2025",
     title: "Hell Teacher Nube: Jigoku Sensei Nube (2025)",
@@ -34380,6 +34393,19 @@ export const animeData = [
         releaseDate: "Julio 19, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/To-be-hero-X/T1/16.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 17,
+        title: "Flor Susurrante",
+        duration: "23 min",
+        description:
+          "Inicia el arco titulado “The Johnnies”, revelando en detalle el pasado de Little Johnny y acercándonos a su vínculo con Big Johnny, la extraña criatura que adoptó como compañero tras un accidente extraterrestre inesperado.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/4cebad2bfae1c98fb534d0f3437fb517.jpg",
+        releaseDate: "Julio 27, 2025",
+        releaseTime: "13:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/To-be-hero-X/T1/17.html",
       },
     ],
   },
