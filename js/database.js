@@ -25342,9 +25342,22 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1136.html",
       },
+      {
+        season: "T21: Egghead",
+        number: 1137,
+        title: "Lo siento, papá. Las lágrimas de Bonney y el puño de Kuma.",
+        duration: "23 min",
+        description:
+          "La acción nos sitúa con Bonney en las garras de Saturn al borde de morir, pero entonces ocurre algo extraño.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/dc6b2c4a38ea067edf217ad6c3348e91.jpg",
+        releaseDate: "Julio 27, 2025",
+        releaseTime: "11:45",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Arc-Egghead-Island/1137.html",
+      },
     ],
   },
-  //P
+  //letra P
   {
     id: "pokemon-horizons",
     title: "Pokémon: Horizons",
@@ -38339,7 +38352,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(), // Hace 2 días
     audio: "Subtitulado",
     creator: "Gosho Aoyama",
     contentWarning: "+13",
@@ -38515,7 +38527,7 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 15,
-        title: "¡Duelo! ¡Brujo vs. Yaiba!",
+        title: "El mago se enfrenta a Yaiba",
         duration: "23 min",
         description:
           "Yaiba Kurogane y su grupo logran hacerse con una esfera dorada que les permite realizar una transformación —esta vez se convierten en una balsa mágica— con la cual parten rumbo a la isla de Kyūshū.",
@@ -38527,7 +38539,7 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 16,
-        title: "Gran Batalla",
+        title: "El gran enfrentamiento",
         duration: "23 min",
         description:
           "Tras obtener la Esfera de Fuego en Kyūshū, Yaiba y sus compañeros llegan a Nara en busca de la siguiente joya. Allí conocen a Ishida Rokuemon, un guerrero que les pide unirse a su misión tras escuchar noticias sobre sus hazañas.",
