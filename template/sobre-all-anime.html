@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre All-anime</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/logo.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index-css.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+  <header class="scrolled">
+    <a href="/" class="logo">
+      <img src="{{ url_for('static', filename='logo-all-anime.svg') }}" alt="All-Anime Logo" class="logo-desktop">
+      <img src="{{ url_for('static', filename='image/all-anime-logo.png') }}" alt="All-Anime Logo Mobile"
+        class="logo-mobile">
+    </a>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/explorar.html">Explorar</a></li>
+        <li><a href="/peliculas.html">Películas</a></li>
+        <li><a href="/favoritos.html" title="Mis Favoritos"><i class="fas fa-bookmark"></i></a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <div id="menu-icon" class="fas fa-bars"></div>
+    </div>
+  </header>
+
+  <main class="main-content container">
+    <div class="page-header">
+      <h1>Sobre All-anime</h1>
+    </div>
+
+    <section class="text-content-section">
+      <h2>Nuestra Misión</h2>
+      <p>En All-anime, nuestra misión es ser el destino principal para los fanáticos del anime, proporcionando un acceso
+        fácil y rápido a una amplia biblioteca de series y películas. Nos esforzamos por crear una comunidad vibrante y
+        acogedora donde los aficionados puedan descubrir nuevo contenido y compartir su pasión.</p>
+
+      <h2>¿Qué Hacemos?</h2>
+      <p>Somos un directorio de anime que recopila y organiza enlaces a contenido alojado en servidores de terceros.
+        Facilitamos la búsqueda y visualización de tus series favoritas en un solo lugar. Es importante destacar que
+        <strong>All-anime no aloja ningún video en sus servidores</strong>; simplemente actuamos como un índice.</p>
+
+      <h2>Nuestro Compromiso</h2>
+      <p>Estamos comprometidos con la mejora continua de nuestro sitio, asegurando una experiencia de usuario fluida,
+        rápida y agradable. Valoramos los comentarios de nuestra comunidad y trabajamos constantemente para implementar
+        nuevas características y mejorar las existentes.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p><span>Anime HD Online</span> - Ningún vídeo se encuentra alojado en nuestros servidores.</p>
+      <nav class="footer-nav">
+        <a href="/condiciones-de-uso.html">Términos y Condiciones</a>
+        <a href="/politica-de-privacidad.html">Política de Privacidad</a>
+        <a href="/sobre-all-anime.html">Sobre all-anime</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="module" src="{{ url_for('static', filename='js/main-2025.js') }}"></script>
+</body>
+
+</html>

@@ -1752,6 +1752,41 @@ header .logo:hover .logo-desktop {
 
 /* --- FIN: NUEVOS ESTILOS PARA LOGO --- */
 
+/* --- INICIO: Estilos para Páginas de Texto --- */
+.text-content-section {
+    background-color: var(--light-bg);
+    padding: 3rem 4rem;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    line-height: 1.8;
+}
+
+.text-content-section h2 {
+    font-family: var(--font-headings);
+    font-size: 2.4rem;
+    color: var(--primary-color);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.text-content-section h2:first-child {
+    margin-top: 0;
+}
+
+.text-content-section p {
+    margin-bottom: 1.5rem;
+    color: var(--grey-text);
+}
+
+.text-content-section strong {
+    color: var(--light-text);
+}
+
+/* --- FIN: Estilos para Páginas de Texto --- */
+
+/* ... (El resto del CSS es igual hasta el final) ... */
 
 /* --- Diseño Responsivo --- */
 @media (max-width: 1200px) {

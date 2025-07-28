@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Condiciones de Uso - All-anime</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/logo.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index-css.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+  <header class="scrolled">
+    <a href="/" class="logo">
+      <img src="{{ url_for('static', filename='logo-all-anime.svg') }}" alt="All-Anime Logo" class="logo-desktop">
+      <img src="{{ url_for('static', filename='image/all-anime-logo.png') }}" alt="All-Anime Logo Mobile"
+        class="logo-mobile">
+    </a>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/explorar.html">Explorar</a></li>
+        <li><a href="/peliculas.html">Películas</a></li>
+        <li><a href="/favoritos.html" title="Mis Favoritos"><i class="fas fa-bookmark"></i></a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <div id="menu-icon" class="fas fa-bars"></div>
+    </div>
+  </header>
+
+  <main class="main-content container">
+    <div class="page-header">
+      <h1>Términos y Condiciones de Uso</h1>
+    </div>
+
+    <section class="text-content-section">
+      <p><strong>Última actualización: 22 de julio de 2025</strong></p>
+
+      <h2>1. Aceptación de los Términos</h2>
+      <p>Al acceder y utilizar All-anime (en adelante, "el Sitio"), usted acepta cumplir y estar sujeto a los siguientes
+        términos y condiciones. Si no está de acuerdo con estos términos, no debe utilizar el Sitio.</p>
+
+      <h2>2. Descripción del Servicio</h2>
+      <p>All-anime es una plataforma en línea que proporciona enlaces a contenido de anime alojado en servidores de
+        terceros. El Sitio no aloja ningún contenido de video en sus propios servidores.</p>
+
+      <h2>3. Responsabilidad del Contenido</h2>
+      <p>Todo el contenido accesible a través de All-anime es proporcionado por terceros. No tenemos control sobre dicho
+        contenido y no asumimos ninguna responsabilidad por su exactitud, legalidad o decencia.</p>
+
+      <h2>4. Uso Aceptable</h2>
+      <p>Usted se compromete a no utilizar el Sitio para ningún propósito ilegal o no autorizado. Se prohíbe cualquier
+        forma de acoso, difamación o violación de los derechos de otros usuarios.</p>
+
+      <h2>5. Propiedad Intelectual</h2>
+      <p>Las marcas comerciales, logotipos y contenido original del Sitio son propiedad de All-anime. El contenido de
+        anime enlazado es propiedad de sus respectivos dueños de derechos de autor.</p>
+
+      <h2>6. Limitación de Responsabilidad</h2>
+      <p>El uso del Sitio es bajo su propio riesgo. All-anime no será responsable de ningún daño directo, indirecto,
+        incidental o consecuente que resulte del uso o la imposibilidad de usar el servicio.</p>
+
+      <h2>7. Modificaciones a los Términos</h2>
+      <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Se le notificará de cualquier
+        cambio a través de una actualización en el Sitio. Su uso continuado del Sitio constituirá su aceptación de los
+        nuevos términos.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p><span>Anime HD Online</span> - Ningún vídeo se encuentra alojado en nuestros servidores.</p>
+      <nav class="footer-nav">
+        <a href="/condiciones-de-uso.html">Términos y Condiciones</a>
+        <a href="/politica-de-privacidad.html">Política de Privacidad</a>
+        <a href="/sobre-all-anime.html">Sobre all-anime</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="module" src="{{ url_for('static', filename='js/main-2025.js') }}"></script>
+</body>
+
+</html>

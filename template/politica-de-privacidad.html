@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad - All-anime</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/logo.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index-css.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+  <header class="scrolled">
+    <a href="/" class="logo">
+      <img src="{{ url_for('static', filename='logo-all-anime.svg') }}" alt="All-Anime Logo" class="logo-desktop">
+      <img src="{{ url_for('static', filename='image/all-anime-logo.png') }}" alt="All-Anime Logo Mobile"
+        class="logo-mobile">
+    </a>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/explorar.html">Explorar</a></li>
+        <li><a href="/peliculas.html">Películas</a></li>
+        <li><a href="/favoritos.html" title="Mis Favoritos"><i class="fas fa-bookmark"></i></a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <div id="menu-icon" class="fas fa-bars"></div>
+    </div>
+  </header>
+
+  <main class="main-content container">
+    <div class="page-header">
+      <h1>Política de Privacidad</h1>
+    </div>
+
+    <section class="text-content-section">
+      <p><strong>Última actualización: 22 de julio de 2025</strong></p>
+
+      <h2>1. Información que Recopilamos</h2>
+      <p>No recopilamos información de identificación personal como su nombre, dirección o correo electrónico. Podemos
+        recopilar datos anónimos sobre el uso del sitio, como las páginas visitadas y el tiempo de permanencia, para
+        mejorar nuestros servicios.</p>
+
+      <h2>2. Cookies</h2>
+      <p>Utilizamos cookies para mejorar la experiencia del usuario, como recordar sus preferencias de tema
+        (claro/oscuro). No utilizamos cookies para rastrear su actividad en otros sitios web.</p>
+
+      <h2>3. Enlaces a Terceros</h2>
+      <p>El Sitio contiene enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de
+        estos otros sitios. Le recomendamos que lea sus políticas de privacidad.</p>
+
+      <h2>4. Seguridad</h2>
+      <p>Tomamos medidas razonables para proteger la información anónima que recopilamos, pero ninguna transmisión por
+        Internet es 100% segura.</p>
+
+      <h2>5. Cambios en la Política de Privacidad</h2>
+      <p>Nos reservamos el derecho de actualizar esta política de privacidad en cualquier momento. Los cambios se
+        publicarán en esta página.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p><span>Anime HD Online</span> - Ningún vídeo se encuentra alojado en nuestros servidores.</p>
+      <nav class="footer-nav">
+        <a href="/condiciones-de-uso.html">Términos y Condiciones</a>
+        <a href="/politica-de-privacidad.html">Política de Privacidad</a>
+        <a href="/sobre-all-anime.html">Sobre all-anime</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="module" src="{{ url_for('static', filename='js/main-2025.js') }}"></script>
+</body>
+
+</html>
