@@ -29226,7 +29226,7 @@ export const animeData = [
       //Temporada 2
       {
         season: "Temporada 2",
-        number: 1,
+        number: 12,
         title: "La Fuente de la Fuerza",
         duration: "25 min",
         description:
@@ -29238,7 +29238,7 @@ export const animeData = [
       },
       {
         season: "Temporada 2",
-        number: 2,
+        number: 13,
         title: "El pasado revelado",
         duration: "25 min",
         description:
@@ -29250,7 +29250,7 @@ export const animeData = [
       },
       {
         season: "Temporada 2",
-        number: 3,
+        number: 14,
         title: "Fuerte asalto",
         duration: "25 min",
         description:
@@ -29260,6 +29260,19 @@ export const animeData = [
         releaseTime: "13:30",
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T2/3.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 15,
+        title: "Alrededor de la torre",
+        duration: "25 min",
+        description:
+          "El confrontamiento entre Sakamoto (y su equipo) y Slur, o el inicio de infiltración dentro del JCC.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753733131/t515pkve1d2z_uzpxxf.jpg",
+        releaseDate: "Julio 28, 2025",
+        releaseTime: "15:05",
+        language: "Sub | Dob",
+        videoUrl: "frame/Sakamoto-days/T2/4.html",
       },
     ],
   },
@@ -34074,6 +34087,19 @@ export const animeData = [
         releaseTime: "10:30",
         language: "Subtitulado",
         videoUrl: "frame/Kijin-gentoushou/T1/15.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 16,
+        title: "La lógica de los Amanojaku",
+        duration: "25 min",
+        description:
+          "Existe la posibilidad de revelar más sobre la profecía del “Dios Demonio” y cómo el protagonista confronta su destino, con pistas dejadas en episodios previos",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753734467/vvxev430brxw_ic5uqb.jpg",
+        releaseDate: "Julio 28, 2025",
+        releaseTime: "15:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/16.html",
       },
     ],
   },
