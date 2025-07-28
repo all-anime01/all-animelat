@@ -17691,7 +17691,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Comienzan los exámenes Chunin. La segunda prueba se desarrolla en el Bosque de la Muerte, donde los equipos deben sobrevivir y robar pergaminos a sus rivales.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ-Hw3V3U9c1_vC8kX0wHlGkP_jF5c7qK_zY_bH_jK_dF_jP_tK_zP_uL_xW_i.webp?r=4c6",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/cf438e0c95d3bf057e11ea4eb6c0369e.jpg",
         releaseDate: "Abril 9, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/1.html",
@@ -17703,7 +17703,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Naruto y su equipo se separan. Mientras busca a sus compañeros, se encuentra con una serpiente gigante. Mientras tanto, Sasuke es atacado por un misterioso ninja de la Hierba.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABaYJtU3XG_vWzYxL_uE_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL_xW.jpg?r=3a8",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ba03bc92cd607d26cb677e07ae3b0c95.jpg",
         releaseDate: "Abril 16, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/2.html",
@@ -17715,7 +17715,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El ninja de la Hierba, Orochimaru, revela su verdadero poder y le impone a Sasuke una marca de maldición. Naruto, a pesar de su miedo, se enfrenta a él para proteger a sus amigos.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABSpk8y8L8k3fF1zF4n2c_rQ_xP_oI_sY_jC_kH_gK_oK_rY_bM_fW_iO_fX_w_jK_dC_uX_zY_bH_jK_dF_jP_tK_zP_uL.webp?r=8d1",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e4c03f57358fb81796d16a3a8d994876.jpg",
         releaseDate: "Abril 23, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/3.html",
@@ -17727,7 +17727,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Sakura debe proteger a un Naruto y Sasuke inconscientes de los ninjas del Sonido. Justo cuando todo parece perdido, Rock Lee llega para ayudar.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABR5Q82IAiAM6jpJjCUP0ZUM-4Lryqws45bUEOpjJnyqx5aWHn_fjHPeyQNbGgLZlo0lnCn14vp2DVz9kv38ZXBl7LZLQ_p7NaZnlUEkI27J75NxZF4ZtNtBE.jpg?r=578",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d618913edbcc68720399f63250bb16b4.jpg",
         releaseDate: "Abril 30, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/4.html",
