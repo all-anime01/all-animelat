@@ -17739,7 +17739,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Rock Lee se enfrenta a los ninjas del Sonido para proteger a Sakura, demostrando el poder de su taijutsu. Sasuke despierta, y la marca de maldición comienza a afectarlo.",
-        img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABXAbnZ-RpHxCpLwdgJwrPjDOXpZYAQ1i-Iw9bZfi4Hy9SKbq-gRhWCe9LQmgR087shMLRPkXL4E9jyx3ZH7jKKMGvrcg1CQPPN3jqHqRilojUNS7UIMoVch-.jpg?r=526",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fd5fff7f6186f279ae04dd63ea93819b.jpg",
         releaseDate: "Mayo 7, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/5.html",
@@ -17751,7 +17751,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Sakura, decidida a no ser más una carga, se enfrenta a los ninjas del Sonido, demostrando su propio valor y determinación.",
-        img: "https://occ-0-4440-116.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABZwXC-23Nd1ty-yvoOA1Cb8PQCVgvb6RFy8HIbLoEwU_kH5zJTmonjIkEwBJ2xSFTh8JSwzCohaYHNGITRkfIeEoVDGlVTlbnLUqyLK8-SJ_8tDhEtDALDfR.webp?r=00c",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e8bd44f39c9d53d9e1279c2777e6bd34.jpg",
         releaseDate: "Mayo 14, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/6.html",
@@ -17763,7 +17763,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El Equipo 10, liderado por Shikamaru, llega para ayudar a Sakura. Su perfecta formación de batalla pone en aprietos a los ninjas del Sonido.",
-        img: "https://occ-0-4440-116.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABW2D3kJixCoOvySzH4gyMIbCnrhj_mFvAu1ZlNKzW76TyTM1KEIPjN6O_CXNxDTsD5GeEjb7qCU5PvUAXtHOBLahJ_pqwnURK_9MJmEk8aUdUGVjNosjlPoN.webp?r=fd2",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8aedc0c1acfdf1430bdbb4d12429339c.jpg",
         releaseDate: "Mayo 21, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/7.html",
@@ -17775,7 +17775,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El Equipo 8 se encuentra con Gaara y su equipo. El poder y la sed de sangre de Gaara aterrorizan a Kiba y a su perro, Akamaru.",
-        img: "https://occ-0-4440-3933.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABUvQa4EXv5mQZ0MiaA8t2emfqRzgOi1t3P8T1R-YQ68WyCMQX1q_WvPswxFYwnXDzYHVzBrgKhOTltq3QwqeIDEfuwRA-1c2O4ML4XE_V-f_S478C2SCFXWU.webp?r=9f5",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/f90a4bc5ecd1ca433dcd79ad4d62f10e.jpg",
         releaseDate: "Mayo 28, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/8.html",
@@ -17787,7 +17787,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El Equipo 7, ahora reunido, llega a la torre central. Kabuto se une a ellos y les revela información sobre los demás competidores.",
-        img: "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABfFo-98zAPPVP2csG_xrLlPpw5K6Osz5m984Gf75toGjPRQOERhCgQ04ul1tMAtgn_KsxtI-fbT56A-A3TPQ9rr-tvaZSARvdLcyw9A79ryPMZelyTIbso9a.webp?r=587",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9ca044aa18b5add3983a223b44864e52.jpg",
         releaseDate: "Junio 4, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/9.html",
@@ -17799,7 +17799,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El Tercer Hokage anuncia las preliminares de los exámenes Chunin. Los genin que han pasado la segunda prueba deben luchar en combates individuales.",
-        img: "https://occ-0-1472-3933.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABTjUyFGGQS-__eZiiCGZmbhAxCqr_oyok4qeoI1PvO9MFKsrAc-IhwjiCGfYBhQoSdFoL5OK_ebFd0ye_Cmo_WZX5aoSN-_RjbjOjMf-a4MkcPQjKLxIOS_E.webp?r=c53",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a00048465d6613569d405987cfc650ab.jpg",
         releaseDate: "Junio 11, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/10.html",
@@ -17812,7 +17812,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El primer combate de las preliminares enfrenta a Sasuke contra Yoroi Akado, un ninja que puede absorber chakra.",
-        img: "https://occ-0-4440-3934.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABU5XIzGrZqhqqtFXT5laXWYLGYXHgjoAQwJM9cmrThYPznV3a6jeWAn-0qtwfkYO5ZN3Fr4qBaHFABBed1SyYi5hp4d-d0146JcXCKeMHzzZmog1FXfKDgQY.webp?r=402",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a660f84480d0f6fafcd173d59293c77c.jpg",
         releaseDate: "Junio 18, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/11.html",
@@ -17824,7 +17824,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Sasuke, afectado por la marca de maldición, debe usar una nueva técnica para ganar. El siguiente combate es entre Shino y Zaku.",
-        img: "https://image.tmdb.org/t/p/w300/gxKi42AascHhgJhCZqNCtYueC3A.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a7b99941dc742eb7dcc9dd59c32eba60.jpg",
         releaseDate: "Junio 25, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/12.html",
@@ -17836,7 +17836,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Los combates continúan. Misumi se enfrenta a Kankuro, y Sakura se prepara para su batalla contra Ino.",
-        img: "https://image.tmdb.org/t/p/w300/r91WIvWJHM0C1i8VhsiqXrEGP1D.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7536f9a5d75e60bee0469914d4910db9.jpg",
         releaseDate: "Julio 2, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/13.html",
@@ -17848,7 +17848,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Sakura e Ino se enfrentan en una batalla que es tanto física como emocional, recordando su antigua amistad y rivalidad.",
-        img: "https://image.tmdb.org/t/p/w300/a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/039266d56f2c25cca8df5d32730e5901.jpg",
         releaseDate: "Julio 9, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Naruto/T2/14.html",
