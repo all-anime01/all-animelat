@@ -7378,15 +7378,29 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 4,
-        title: "Talento mágico",
+        title: "Aptitud para la hechicería",
         duration: "23 min",
         description:
-          "Cuando Alicia busca la legendaria espada “Takiwari”, se esconde en un barril que la sumerge en el pozo vertical dentro de la mina de Elbe.",
+          "Una bestia mágica colosal aparece en la mina de los bandidos, mientras que el jefe pone en apuros a Clen.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2c8441df958963af02acc7b467f5d16b.jpg",
         releaseDate: "Julio 23, 2025",
         releaseTime: "14:47",
         language: "Sub | Dob",
         videoUrl: "frame/Clevatess/T1/4.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 5,
+        title: "El avance del ejército de Bowrett",
+        duration: "23 min",
+        description:
+          "Clen y Alicia conocen a una bestia mágica que habla de cambios en el oeste. Y en el mundo humano hay guerra.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d41991aa9da518a3e216364c1a45496f.jpg",
+        releaseDate: "Julio 30, 2025",
+        releaseTime: "16:50",
+        language: "Sub | Dob",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474706/b1f0b97d-095d-42ad-9563-23b322902e0a", // clevatess/5
       },
     ],
   },
@@ -17379,7 +17393,8 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ea976df50bf201db97c78c2e2ed72f64.jpg",
         releaseDate: "Octubre 3, 2002",
         language: "Sub | Dob",
-        videoUrl: "frame/Naruto/T1/1.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474684/d249438a-bd54-4171-8c65-44f1c89d6773?aspectRatio=16:9",
       },
       {
         season: "Temporada 1",
@@ -17391,7 +17406,8 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1e6648f8636de8fd224e3aa9b1901f3e.jpg",
         releaseDate: "Octubre 10, 2002",
         language: "Sub | Dob",
-        videoUrl: "frame/Naruto/T1/2.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474684/cd0b6d0b-c7d8-4c14-b2fc-02ec2f31c250",
       },
       {
         season: "Temporada 1",
@@ -17403,7 +17419,8 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/732076f3b53c9eecc4e21002c1668a1f.jpg",
         releaseDate: "Octubre 17, 2002",
         language: "Sub | Dob",
-        videoUrl: "frame/Naruto/T1/3.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474684/2be94920-d1a2-4f96-a600-d8d253051e86",
       },
       {
         season: "Temporada 1",
