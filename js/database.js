@@ -9406,7 +9406,7 @@ export const animeData = [
         description:
           "La batalla concluye y todos vuelven a casa de Momo, pero el problema del Mal de Ojo sigue presente.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/26cf61beea38f75cd93ff55069905885.jpg",
-        releaseDate: "Julio 24, 2025",
+        releaseDate: "Julio 31, 2025",
         releaseTime: "14:10",
         language: "Sub | Dob",
         videoUrl:
