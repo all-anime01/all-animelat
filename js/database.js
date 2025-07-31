@@ -11240,10 +11240,10 @@ export const animeData = [
       {
         season: "Temporada 4",
         number: 15,
-        title: "El escape",
+        title: "Zafarse de un asedio",
         duration: "24 min",
         description:
-          "Senku y su equipo, ya con la firme intención de alcanzar Sudamérica —el origen del rayo de petrificación— reciben a la brillante geógrafa Chelsea, quien los guiará por la ruta más eficiente a través de la selva amazónica. Ante la urgencia de encontrar caucho para construir un mecanismo de transporte ideal, deciden montar una estrategia de distracción para ganar tiempo mientras Stanley y su grupo los rodean.",
+          "Con el barco de Stanley pisándoles los talones, ¿podrá la ciencia ayudar a Senku y compañía a escapar?",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1e26af0d155b1ab5c3cc4e5789efab9f.jpg",
         releaseDate: "Julio 24, 2025",
         releaseTime: "15:10",
@@ -11253,16 +11253,16 @@ export const animeData = [
       {
         season: "Temporada 4",
         number: 16,
-        title: "El escape",
+        title: "Mecanismo de Medusa",
         duration: "24 min",
         description:
-          "Senku y su equipo, ya con la firme intención de alcanzar Sudamérica —el origen del rayo de petrificación— reciben a la brillante geógrafa Chelsea, quien los guiará por la ruta más eficiente a través de la selva amazónica. Ante la urgencia de encontrar caucho para construir un mecanismo de transporte ideal, deciden montar una estrategia de distracción para ganar tiempo mientras Stanley y su grupo los rodean.",
+          "Senku y su equipo han avanzado por Sudamérica en busca del origen del dispositivo de petrificación. Con Stanley Snyder pisándoles los talones, idean un plan inteligente para ganar tiempo: fabrican seis motocicletas improvisadas utilizando caucho recién extraído y un vehículo laboratorio como señuelo.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5abae0cbb61be9f818c868e88ee8c0b0.jpg",
         releaseDate: "Julio 31, 2025",
         releaseTime: "14:30",
         language: "Sub | Dob",
         videoUrl:
-          "https://iframe.mediadelivery.net/embed/475093/da65cd85-588a-4fff-a7e7-0f26c5d333ea",
+          "https://iframe.mediadelivery.net/embed/475093/61668ad2-25b9-4c18-954c-6788d0ca4ba9",
       },
     ],
   },
