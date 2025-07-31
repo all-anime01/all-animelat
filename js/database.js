@@ -9200,7 +9200,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(), // Hace 2 días
     audio: "Sub | Dob",
     creator: "Yukinobu Tatsu",
     contentWarning: "+16 Violencia, Lenguaje",
@@ -9398,6 +9397,20 @@ export const animeData = [
         releaseTime: "15:05",
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T2/16.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 17,
+        title: "Hagamos una pijamada",
+        duration: "24 min",
+        description:
+          "La batalla concluye y todos vuelven a casa de Momo, pero el problema del Mal de Ojo sigue presente.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/26cf61beea38f75cd93ff55069905885.jpg",
+        releaseDate: "Julio 24, 2025",
+        releaseTime: "14:10",
+        language: "Sub | Dob",
+        videoUrl:
+          "https://iframe.mediadelivery.net/play/475084/4f794dca-0f1a-42c4-adbb-fc9abcc76700",
       },
     ],
   },
