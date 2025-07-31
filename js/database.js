@@ -4449,15 +4449,15 @@ export const animeData = [
       "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/35f419cb-56bc-4829-9b4b-650bfa2d31d1/compose?format=webp",
     imgMobile:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751791297/p_un2zry.jpg",
-    trailerUrl: "https://www.youtube.com/watch?v=HRsU8w00k54",
+    trailerUrl: "https://www.youtube.com/embed/oZ67d9XSjFs?si=NbiXMKXRhnwwv--c",
     description:
       "Ichigo Kurosaki es un adolescente que tiene la habilidad de ver fantasmas. Su vida cambia drásticamente cuando conoce a Rukia Kuchiki, una Shinigami (Segadora de Almas) que se sorprende de que pueda verla. Durante una batalla con un 'Hollow', un espíritu maligno, Rukia resulta herida y transfiere sus poderes a Ichigo. Ahora, como un Shinigami sustituto, Ichigo debe proteger a los inocentes, guiar a las almas perdidas a la otra vida y enfrentarse a las amenazas tanto del mundo humano como de la misteriosa Sociedad de Almas.",
     genres: ["Acción", "Aventura", "Shounen", "Sobrenatural", "Fantasía"],
     rating: 8.7,
     ratingCount: "198K",
-    seasons: 18,
-    episodesTotal: 392,
-    status: "Finlaizado",
+    seasons: 16,
+    episodesTotal: 366,
+    status: "Finalizado",
     year: 2004,
     type: "TV",
     quality: "1080p",
@@ -32257,9 +32257,9 @@ export const animeData = [
     title: "Ragna Crimson",
     img: "https://cdn.anisabi.com/assets/anime/ragna-crimson/ragna-crimson-1696133427.jpg?t=4.0.11",
     heroImg:
-      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751818323/1734428577717-i_ebciag.webp",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754003502/1734428577717-i_ebciag_3840x2160_aam1oa.png",
     fonImg:
-      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751817792/poster-1_lrdgyu.jpg",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754003571/poster-1_lrdgyu_852x480_gbjays.jpg",
     logoImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751948201/6fUJr08Iv6EtR61kkeyCtVZEL5r_w8tkzt.webp",
     imgMobile:
