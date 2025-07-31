@@ -4487,7 +4487,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo aprende que ser un Shinigami sustituto implica más que solo luchar contra Hollows. Mientras tanto, Rukia se inscribe en su clase para vigilarlo.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214486/S01E02_g3p6za.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753942617/thumbnail_1_gquitd.jpg",
         releaseDate: "Octubre 12, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4501,7 +4501,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Orihime Inoue, una compañera de clase de Ichigo, es perseguida por el espíritu de su hermano, que se ha convertido en un Hollow debido a sus emociones no resueltas.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214486/S01E03_uujmsi.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753942681/thumbnail_xsrb0v.jpg",
         releaseDate: "Octubre 19, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4515,11 +4515,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "El amigo de Ichigo, Yasutora 'Chad' Sado, adopta un periquito maldito que contiene el alma de un niño atormentado por un Hollow.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E04_j1yq4v.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753942756/thumbnail_zygcqf.jpg",
         releaseDate: "Octubre 26, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/4.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/8a1f2d6f-7c80-4e1b-a5cc-04d14be368d5",
       },
       {
         season: "Temporada 1",
@@ -4528,11 +4529,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo se enfrenta a un Hollow que puede controlar a otros espíritus, mientras Rukia intenta enseñarle sobre los 'Kido', los hechizos de los Shinigami.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E05_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753942850/thumbnail_1_oygkwy.jpg",
         releaseDate: "Noviembre 2, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/5.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/60f7f3e0-c1a0-4d87-b09a-171061996bef",
       },
       {
         season: "Temporada 1",
@@ -4541,11 +4543,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "Un 'Mod-Soul', un alma modificada diseñada para el combate, toma el control del cuerpo de Ichigo, lo que lleva a una caótica confrontación entre el alma de Ichigo y su propio cuerpo.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E06_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753942958/thumbnail_3_uezggw.jpg",
         releaseDate: "Noviembre 9, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/6.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/7422b66e-3b7b-43b0-857c-99b6254ba4aa",
       },
       {
         season: "Temporada 1",
@@ -4554,11 +4557,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "El Mod-Soul es colocado en un oso de peluche y se nombra a sí mismo 'Kon'. Ichigo y Rukia deben lidiar con su personalidad extrovertida y enérgica.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E07_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753943047/thumbnail_1_rob5wi.jpg",
         releaseDate: "Noviembre 16, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/7.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/b66868c2-08ff-45b3-aff8-14f0a7f08ac5",
       },
       {
         season: "Temporada 1",
@@ -5290,6 +5294,218 @@ export const animeData = [
         releaseTime: "N/A",
         language: "Sub | Dob",
         videoUrl: "frame/Bleach/T3/22.html",
+      },
+      // Temporada 4 - Bount Arc
+      {
+        season: "Temporada 4",
+        number: 64,
+        title: "Nuevo semestre, ¿¡Renji ha venido al mundo material!?",
+        duration: "24 min",
+        description:
+          "Ichigo y sus amigos regresan a su vida normal en la escuela, pero su paz es interrumpida por la llegada inesperada de Renji Abarai, quien tiene una nueva misión.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Enero 17, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/1.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 65,
+        title: "¡Terror que se arrastra, la segunda víctima!",
+        duration: "24 min",
+        description:
+          "Una nueva y misteriosa amenaza aparece en la ciudad de Karakura. Unos humanos con habilidades extrañas, conocidos como Bounts, comienzan a atacar a personas con alto poder espiritual.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Enero 24, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/2.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 66,
+        title: "¡Atraviesa! La trampa oculta en el laberinto",
+        duration: "24 min",
+        description:
+          "Ichigo, Rukia y Renji investigan la desaparición de almas y son atraídos a una mansión controlada por los Bounts, donde deben navegar por un laberinto mortal.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Enero 31, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/3.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 67,
+        title: "¡Juego mortal! El compañero de clase desaparecido",
+        duration: "24 min",
+        description:
+          "Los Bounts, liderados por el carismático Jin Kariya, continúan con su plan. Ichigo debe proteger a sus amigos, que se convierten en objetivos debido a su poder espiritual.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Febrero 7, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/4.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 68,
+        title: "La verdadera identidad del demonio, el secreto revelado",
+        duration: "24 min",
+        description:
+          "Se revela la naturaleza de los Bounts: son una raza de humanos inmortales que se alimentan de almas para sobrevivir. Kisuke Urahara envía a tres almas modificadas para ayudar a Ichigo.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Febrero 14, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/5.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 69,
+        title: "¡Bounts! ¡Los cazadores de almas!",
+        duration: "24 min",
+        description:
+          "Ichigo y sus nuevos aliados Mod-Souls se enfrentan directamente a dos Bounts, Ryo Utagawa y Hō, y descubren el poder de sus 'Dolls', las armas que controlan.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Febrero 21, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/6.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 70,
+        title: "¡El regreso de Rukia! La resurrección del equipo sustituto",
+        duration: "24 min",
+        description:
+          "Rukia regresa al mundo humano con sus poderes de Shinigami completamente restaurados, justo a tiempo para ayudar a un Ichigo en aprietos.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Febrero 28, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/7.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 71,
+        title:
+          "¡El momento de la colisión! Una mano malvada se acerca al Quincy",
+        duration: "24 min",
+        description:
+          "Uryū Ishida se convierte en el objetivo principal de los Bounts debido a su naturaleza Quincy. Un Bount llamado Yoshi intenta capturarlo.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Marzo 7, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/8.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 72,
+        title: "¡Asalto de agua! Escape del hospital cerrado",
+        duration: "24 min",
+        description:
+          "Atrapados en un hospital, Ichigo y los demás deben enfrentarse a los Bounts gemelos Hō y Ban, cuyas Dolls pueden controlar el agua.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Marzo 14, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/9.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 73,
+        title: "¡Reunión de los Bounts! El hombre que hace su movimiento",
+        duration: "24 min",
+        description:
+          "Los Bounts se reagrupan para discutir su próximo movimiento. Mientras tanto, Uryū es rescatado por Yoshino Sōma, una Bount que se opone a los planes de Kariya.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Marzo 28, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/10.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 74,
+        title: "Recuerdos de un clan que vive eternamente",
+        duration: "24 min",
+        description:
+          "Yoshino le cuenta a Uryū la trágica historia de los Bounts, creados por un accidente en un experimento de la Sociedad de Almas, y su posterior persecución.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Abril 4, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/11.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 75,
+        title:
+          "¡Evento estremecedor en el 11vo escuadrón! El Shinigami que se alza de nuevo",
+        duration: "24 min",
+        description:
+          "Ichigo y Renji se enfrentan al Bount Koga Gō y su Doll metálica, Dalk. La batalla resulta ser extremadamente difícil.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Abril 11, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/12.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 76,
+        title: "¡Fuerza que choca! Fried vs. Zangetsu",
+        duration: "24 min",
+        description:
+          "La batalla continúa, y Utagawa, habiendo traicionado a Kariya, intenta robar su poder pero es rápidamente eliminado, mostrando la crueldad de Kariya.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Abril 18, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/13.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 77,
+        title: "¡Rencor que no desaparece! El Shinigami que asesinó Kenpachi",
+        duration: "24 min",
+        description:
+          "Se revela que el antiguo Capitán Kenpachi fue asesinado por otro Shinigami. Mientras tanto, Ichigo y los demás se enfrentan a un nuevo y poderoso Bount, Mabashi.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Mayo 2, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/14.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 78,
+        title:
+          "¡Revelaciones impactantes para el Gotei 13! La verdad enterrada en la historia",
+        duration: "24 min",
+        description:
+          "En la Sociedad de Almas, el Capitán Mayuri Kurotsuchi investiga a los Bounts y descubre el verdadero propósito del plan de Kariya: invadir la Sociedad de Almas y vengarse.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Mayo 9, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/15.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 79,
+        title: "La decisión de morir de Yoshino",
+        duration: "24 min",
+        description:
+          "Kariya captura a Yoshino, planeando usarla en un ritual para crear una nueva generación de Bounts. Uryū e Ichigo intentan rescatarla desesperadamente.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214490/S04_placeholder.webp",
+        releaseDate: "Mayo 16, 2006",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Bleach/T4/16.html",
       },
     ],
   },
@@ -28487,7 +28703,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/jViLlcN9z8WW3iiqfrxiKg1SkoL.jpg",
         releaseDate: "Febrero 24, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/19.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/c100e0ce-3164-4123-8da1-e9f639cd790e",
       },
       {
         season: "Temporada 1",
@@ -28499,7 +28716,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/tIBCIaAvShS6MlW6kqsYohklyQO.jpg",
         releaseDate: "Marzo 2, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/20.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/23590989-75aa-4430-8086-f0855f111be3",
       },
       {
         season: "Temporada 1",
