@@ -9410,7 +9410,7 @@ export const animeData = [
         releaseTime: "14:10",
         language: "Sub | Dob",
         videoUrl:
-          "https://iframe.mediadelivery.net/play/475084/4f794dca-0f1a-42c4-adbb-fc9abcc76700",
+          "https://iframe.mediadelivery.net/embed/475084/4f794dca-0f1a-42c4-adbb-fc9abcc76700",
       },
     ],
   },
@@ -11249,6 +11249,20 @@ export const animeData = [
         releaseTime: "15:10",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/15.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 16,
+        title: "El escape",
+        duration: "24 min",
+        description:
+          "Senku y su equipo, ya con la firme intención de alcanzar Sudamérica —el origen del rayo de petrificación— reciben a la brillante geógrafa Chelsea, quien los guiará por la ruta más eficiente a través de la selva amazónica. Ante la urgencia de encontrar caucho para construir un mecanismo de transporte ideal, deciden montar una estrategia de distracción para ganar tiempo mientras Stanley y su grupo los rodean.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5abae0cbb61be9f818c868e88ee8c0b0.jpg",
+        releaseDate: "Julio 31, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475093/da65cd85-588a-4fff-a7e7-0f26c5d333ea",
       },
     ],
   },
