@@ -18205,6 +18205,45 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia-Vigilantes/T1/10.html",
       },
+      {
+        season: "Temporada 1",
+        number: 11,
+        title: "El día del evento",
+        duration: "23 min",
+        description:
+          "Pop y Koichi van a conocer al resto de los participantes y se preparan para el evento del centro comercial.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/cc451227f2dffb1aeaafeeced56a6646.jpg",
+        releaseDate: "Junio 16, 2025",
+        language: "Sub | Dob",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474806/2aed318a-6e1f-45a0-a1e7-939ca3592e24",
+      },
+      {
+        season: "Temporada 1",
+        number: 12,
+        title: "Adiós, papá",
+        duration: "23 min",
+        description:
+          "Mientras Pop entretiene al público del festival, Knuckleduster se enfrenta a Hachisuka.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7170bd286d193c0688239637c9c6835e.jpg",
+        releaseDate: "Junio 23, 2025",
+        language: "Sub | Dob",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474806/5c90316b-cc11-48d4-a1ad-9815eefeb7c1",
+      },
+      {
+        season: "Temporada 1",
+        number: 12,
+        title: "Lo que toma un hombre en sus manos",
+        duration: "23 min",
+        description:
+          "Héroes y vigilantes continúan enfrentándose a los Villanos, pero Knuckleduster parece haber dejado las armas.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/56d67b2ce2a69f0135b4664b1ab1f772.jpg",
+        releaseDate: "Junio 30, 2025",
+        language: "Sub | Dob",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474806/c58278fa-dd41-432a-b5e3-59050812b6b9",
+      },
     ],
   },
   //letra N
@@ -26238,7 +26277,8 @@ export const animeData = [
         releaseDate: "Julio 27, 2025",
         releaseTime: "11:45",
         language: "Subtitulado",
-        videoUrl: "frame/One-piece/Arc-Egghead-Island/1137.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474798/241b4dcf-b8f1-4290-af7b-14911809e6a3",
       },
     ],
   },
@@ -28209,7 +28249,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado"],
-    dateAdded: new Date(), // Calculado desde el 30/03/24
     audio: "Subtitulado",
     creator: "Daiki Kobayashi",
     contentWarning: "+16 Violencia, Gore",
@@ -28344,7 +28383,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/1ZRKfFHNWwmtHZ1KPConEwyPw6r.jpg",
         releaseDate: "Diciembre 9, 2023",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/11.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/d6a6ca36-a8ac-4318-bc3c-ae95976a99ac",
       },
       {
         season: "Temporada 1",
@@ -28356,7 +28396,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/yaZMp4HKtlgS5ouVJ7gKIUeoGV6.jpg",
         releaseDate: "Diciembre 16, 2023",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/12.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/33e634bd-3398-4400-9dc1-3954d9159d28",
       },
       {
         season: "Temporada 1",
@@ -28368,7 +28409,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/hOtUT29knFaS6iEpT8KDv2Olj4Q.jpg",
         releaseDate: "Enero 13, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/13.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/c75a2464-e8e1-4ff9-b713-df60371f9f12",
       },
       {
         season: "Temporada 1",
@@ -28380,7 +28422,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/bMYpMDSbJUGu6rZvuN4PDFHZaT4.jpg",
         releaseDate: "Enero 20, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/14.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/4aa9867f-31bd-4619-93f0-489987ef5cb2",
       },
       {
         season: "Temporada 1",
@@ -28392,7 +28435,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/2uojrFyOEQoe4P7SQ6eaqK49VoG.jpg",
         releaseDate: "Enero 27, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/15.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/fe90aad6-4e29-4e87-8c0b-8204ce956f02",
       },
       {
         season: "Temporada 1",
@@ -28404,7 +28448,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/rhhTchWGZMNHrM5iXTVHo4hunOZ.jpg",
         releaseDate: "Febrero 3, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/16.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/5495d698-096a-46d4-b5ea-695f402ffbdb",
       },
       {
         season: "Temporada 1",
@@ -28416,7 +28461,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/7JgPXqBH13LZJOWcbOw3lxPzGZp.jpg",
         releaseDate: "Febrero 10, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/17.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/26096685-34ab-4dde-ab55-ba83791118cf",
       },
       {
         season: "Temporada 1",
@@ -28428,7 +28474,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/rkJqo3ouvFzL3HJ9q55K12p50FQ.jpg",
         releaseDate: "Febrero 17, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/18.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/acf9816d-da54-46c9-b83e-ae0e9a414d58",
       },
       {
         season: "Temporada 1",
