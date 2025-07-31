@@ -28729,7 +28729,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/krj5RPWibgMXf7BNfIS4BwnVZnr.jpg",
         releaseDate: "Marzo 9, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/21.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/2762e97f-3820-462d-9f98-6c069711ed83",
       },
       {
         season: "Temporada 1",
@@ -28741,7 +28742,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/dVKkHqC6CajIJoALABVIceWKqgK.jpg",
         releaseDate: "Marzo 16, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/22.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/7c9ce372-e55c-419b-859f-48687d8f2f5f",
       },
       {
         season: "Temporada 1",
@@ -28753,7 +28755,8 @@ export const animeData = [
         img: "https://image.tmdb.org/t/p/w300/iQeSJvTSXIqMBlGAdsqLEY3Jzgl.jpg",
         releaseDate: "Marzo 23, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/23.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/a760c473-b649-46d6-845b-fa81f18773a2",
       },
       {
         season: "Temporada 1",
@@ -28765,7 +28768,8 @@ export const animeData = [
         img: "https://m.media-amazon.com/images/S/pv-target-images/3afcee86388eb5b124115617e6dfc86ad61bf5fdbf2c36cbd7312451d2bb3a82._AC_SX720_FMjpg_.jpg",
         releaseDate: "Marzo 30, 2024",
         language: "Subtitulado",
-        videoUrl: "frame/Ragna-Crimson/T1/24.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474754/0aab3883-e20c-4195-9bf3-09e31f3f68ca",
       },
     ],
   },
