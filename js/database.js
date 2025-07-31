@@ -4575,7 +4575,8 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/8.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/49ab5cc5-7dcb-4a06-a129-72a4441c665b",
       },
       {
         season: "Temporada 1",
@@ -4588,7 +4589,8 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/9.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/dcb8477e-9768-4330-8ac9-a6fd9e2ee441",
       },
       {
         season: "Temporada 1",
@@ -4601,7 +4603,8 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/10.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/d3e7489b-b431-4b03-8907-7debaebd8f25",
       },
       {
         season: "Temporada 1",
@@ -4614,7 +4617,8 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/11.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/d3e7489b-b431-4b03-8907-7debaebd8f25",
       },
       {
         season: "Temporada 1",
@@ -4627,7 +4631,8 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/12.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/d5e9a4e0-8f27-4037-8cfc-1274fc909286",
       },
       {
         season: "Temporada 1",
@@ -4640,7 +4645,8 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/13.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/31efcc9f-51b5-4928-ac3f-270276de4ad7",
       },
       {
         season: "Temporada 1",
@@ -4653,7 +4659,8 @@ export const animeData = [
         releaseDate: "Enero 11, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/14.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/73971d1e-7f3b-47ec-b90e-5241e7d9049c",
       },
       {
         season: "Temporada 1",
@@ -4666,7 +4673,8 @@ export const animeData = [
         releaseDate: "Enero 18, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/15.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/53293b06-afec-4ebf-8bd3-71b54df12a62",
       },
       {
         season: "Temporada 1",
@@ -4679,7 +4687,8 @@ export const animeData = [
         releaseDate: "Enero 25, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/16.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/cb0f371c-ff4e-4b16-8c87-0664b5761df2",
       },
       {
         season: "Temporada 1",
@@ -4692,7 +4701,8 @@ export const animeData = [
         releaseDate: "Febrero 1, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/17.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/b89e747e-63c4-4d44-b853-69fb24dde762",
       },
       {
         season: "Temporada 1",
@@ -4705,7 +4715,8 @@ export const animeData = [
         releaseDate: "Febrero 8, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/18.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/f5e1a3bd-6946-4da6-b1ce-70757edbb23b",
       },
       {
         season: "Temporada 1",
@@ -4718,7 +4729,8 @@ export const animeData = [
         releaseDate: "Febrero 15, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/19.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/7991d53f-f99b-494a-8d79-23c643148952",
       },
       {
         season: "Temporada 1",
@@ -4731,7 +4743,8 @@ export const animeData = [
         releaseDate: "Febrero 22, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T1/20.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/e5d7350a-544c-4ec3-b941-60a3aedab525",
       },
       // Temporada 2
       {
