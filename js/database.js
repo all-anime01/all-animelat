@@ -17003,11 +17003,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "Para el cumpleaños de Stark, Frieren y Fern buscan un regalo. Frieren recuerda cómo Himmel siempre encontraba la manera de hacer felices a los demás con pequeños gestos.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=54f76274-13c5-4375-802c-566ca7e9e710&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8f58dbe3742e24df5cfcb34e966343cb.jpg",
         releaseDate: "Octubre 13, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/6.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/333f9672-a48d-4d7c-b996-a76c32c84ddc",
       },
       {
         season: "Temporada 1",
@@ -17016,11 +17017,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "El grupo se encuentra con el Conde Granat, quien les prohíbe el paso al norte. Frieren recuerda una batalla contra un demonio que manipulaba a los humanos con ilusiones.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=a31b672a-6091-4e78-becc-8e9a25b39414&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7415f048b9950f447fe53daf052b8351.jpg",
         releaseDate: "Octubre 20, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/7.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/d2911ca3-e34a-4219-bcc5-4275fe090ba4",
       },
       {
         season: "Temporada 1",
@@ -17029,11 +17031,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "Draht, un sirviente del demonio Aura, ataca al grupo. Frieren debe usar su inmenso poder, oculto durante décadas, para proteger a sus compañeros.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=84d7a8d5-334d-49d7-ae25-f938a42e71ed&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b4c1b2828197930c28e7222c8674f7db.jpg",
         releaseDate: "Octubre 27, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/8.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/a012737e-deca-4619-be0a-3d408815ceb4",
       },
       {
         season: "Temporada 1",
@@ -17042,11 +17045,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "Frieren se enfrenta a Aura la Guillotina, una poderosa demonio que puede controlar a los muertos con su balanza mágica. La batalla es una de ingenio y poder mágico.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=42b7dd8b-f472-4649-8c46-7649591465e9&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/011eed937d57541a48b41654aa7196f4.jpg",
         releaseDate: "Noviembre 3, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/9.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/c5b82ba3-0d38-411d-98f7-b1d74255e18e",
       },
       {
         season: "Temporada 1",
@@ -17055,11 +17059,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con la amenaza de Aura eliminada, Frieren recuerda a su propia maestra, Flamme, la legendaria maga humana que le enseñó a ocultar su maná y a sobrevivir.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=240742f1-62ad-4d40-b30f-b2512f43708a&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/71a64490900288c051509d5ead8078c8.jpg",
         releaseDate: "Noviembre 10, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/10.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/c89cee01-bb08-44db-9734-70e6a9a30d11",
       },
       {
         season: "Temporada 1",
@@ -17068,11 +17073,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "El grupo debe pasar el invierno en un refugio de montaña. Durante este tiempo, Frieren y sus compañeros fortalecen sus lazos a través de la vida cotidiana.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=22ab35c4-72c0-482a-9e79-50953a9e334e&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1d362c34b136f3d7dae0f8e2483d292c.jpg",
         releaseDate: "Noviembre 17, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/11.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/011b5f60-2bfa-45e4-92e6-a3d3cd9bd9e3",
       },
       {
         season: "Temporada 1",
@@ -17081,11 +17087,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "El grupo se encuentra con un elfo guerrero llamado Voll, que ha estado protegiendo un pueblo durante siglos, esperando el regreso de su esposa.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=3cf5be0b-6a16-43c2-b50a-f119098d62ee&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a4fb43dd94ffef24c89c737cb582d9d7.jpg",
         releaseDate: "Noviembre 24, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/12.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/970b2367-aefb-4483-970d-261e37fb7e04",
       },
       {
         season: "Temporada 1",
