@@ -16951,7 +16951,8 @@ export const animeData = [
         releaseDate: "Septiembre 29, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/2.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/3e87be34-2085-4ee9-b002-ca75bfcfd18b",
       },
       {
         season: "Temporada 1",
@@ -16964,7 +16965,8 @@ export const animeData = [
         releaseDate: "Septiembre 29, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/3.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/c2d74643-c744-4e56-9864-6e8892ad7125",
       },
       {
         season: "Temporada 1",
@@ -16977,7 +16979,8 @@ export const animeData = [
         releaseDate: "Septiembre 29, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/4.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/f36654b3-0ba7-4efb-8e04-ce60a1d065b8",
       },
       {
         season: "Temporada 1",
@@ -16990,7 +16993,8 @@ export const animeData = [
         releaseDate: "Octubre 6, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Frieren/T1/5.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/475243/36375f5e-efc4-41f9-8a36-954cc759404c",
       },
       {
         season: "Temporada 1",
