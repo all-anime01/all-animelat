@@ -4571,7 +4571,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "En el aniversario de la muerte de su madre, Ichigo es atormentado por los recuerdos y la culpa. La familia Kurosaki visita su tumba, sin saber que un poderoso Hollow los acecha.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E08_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754029235/thumbnail_2_acqr8p.jpg",
         releaseDate: "Noviembre 23, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4585,7 +4585,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo se enfrenta a 'Grand Fisher', el Hollow responsable de la muerte de su madre. La batalla revela la verdad detrás de la tragedia.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E09_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754029349/thumbnail_1_wxnq9q.jpg",
         releaseDate: "Noviembre 30, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4599,7 +4599,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La estrella de televisión y médium Don Kanonji realiza un exorcismo en un hospital abandonado, pero accidentalmente convierte a un espíritu en un Hollow.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E10_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754029437/thumbnail_4_r1ztty.jpg",
         releaseDate: "Diciembre 7, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4613,7 +4613,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Uryu Ishida, un compañero de clase de Ichigo, se revela como un Quincy, un clan de cazadores de Hollows que fueron exterminados por los Shinigami.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E11_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754029759/thumbnail_3_hfjsik.jpg",
         releaseDate: "Diciembre 14, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4627,7 +4627,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Uryu desafía a Ichigo a una competencia para ver quién puede exterminar más Hollows, atrayendo a una horda masiva a la ciudad de Karakura.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E12_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754029812/thumbnail_1_cbwkoq.jpg",
         releaseDate: "Diciembre 21, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4641,7 +4641,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras el desafío continúa, los amigos de Ichigo, Orihime y Chad, descubren sus propios poderes espirituales al intentar proteger a otros de los Hollows.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E13_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754029961/thumbnail_1_ts10ap.jpg",
         releaseDate: "Diciembre 28, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4655,7 +4655,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo y Uryu deben dejar de lado sus diferencias y luchar juntos para derrotar a un 'Menos Grande', un tipo de Hollow inmensamente poderoso.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E14_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030071/thumbnail_3_kimtoh.jpg",
         releaseDate: "Enero 11, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4669,7 +4669,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras Ichigo se recupera, Kon se escapa en busca de popularidad y aventura, pero termina causando más problemas de los que esperaba.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E15_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030210/thumbnail_3_yaiqog.jpg",
         releaseDate: "Enero 18, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4683,7 +4683,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Dos Shinigami de alto rango, Renji Abarai y Byakuya Kuchiki (el hermano de Rukia), llegan al mundo humano para arrestar a Rukia por transferir sus poderes.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E16_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030239/thumbnail_3_lc2ig8.jpg",
         releaseDate: "Enero 25, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4697,7 +4697,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo intenta defender a Rukia, pero es derrotado sin esfuerzo por el Capitán Byakuya Kuchiki, quien le arrebata sus poderes de Shinigami.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E17_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030327/thumbnail_3_bpu8db.jpg",
         releaseDate: "Febrero 1, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4711,7 +4711,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo, al borde de la muerte, es rescatado por Kisuke Urahara, un misterioso comerciante que promete ayudarlo a recuperar sus poderes para salvar a Rukia.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E18_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030339/thumbnail_3_iiknko.jpg",
         releaseDate: "Febrero 8, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4725,7 +4725,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Para recuperar sus poderes, Ichigo debe someterse a un peligroso entrenamiento con Urahara que lo obliga a enfrentarse a su propio espíritu y lo pone en riesgo de convertirse en un Hollow.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E19_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030365/thumbnail_3_rydbqz.jpg",
         releaseDate: "Febrero 15, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4739,7 +4739,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con sus poderes restaurados y su propia Zanpakuto, Ichigo se prepara para ir a la Sociedad de Almas. Mientras tanto, en el Seireitei, el Capitán Gin Ichimaru muestra sus intenciones sospechosas.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214487/S01E20_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030451/thumbnail_4_vt0mta.jpg",
         releaseDate: "Febrero 22, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -4754,11 +4754,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "Ichigo y sus amigos, guiados por Yoruichi, usan la puerta de Urahara para viajar a la Sociedad de Almas. Deben encontrar una manera de entrar en el Seireitei para rescatar a Rukia.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214488/S02_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030878/thumbnail_2_wy8l9z.jpg",
         releaseDate: "Marzo 1, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T2/1.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/2ff211b0-b703-443f-a976-56be077bb73d",
       },
       {
         season: "Temporada 2",
@@ -4767,11 +4768,12 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras intentan atravesar el Rukongai, el grupo se encuentra con Jidanbo, un guardián gigante que protege una de las puertas del Seireitei.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214488/S02_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754030955/thumbnail_4_jtlkqh.jpg",
         releaseDate: "Marzo 8, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T2/2.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/08d70c7b-4f57-4963-9170-3173d8c464f3",
       },
       {
         season: "Temporada 2",
@@ -4784,7 +4786,8 @@ export const animeData = [
         releaseDate: "Marzo 15, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T2/3.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/f769a26f-506f-4371-996f-3677f04ce0ed",
       },
       {
         season: "Temporada 2",
@@ -4797,7 +4800,8 @@ export const animeData = [
         releaseDate: "Marzo 22, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T2/4.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/c9c81478-0dfb-44d7-8d52-3591479f439b",
       },
       {
         season: "Temporada 2",
@@ -4810,7 +4814,8 @@ export const animeData = [
         releaseDate: "Marzo 29, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T2/5.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/6a2963ef-cb34-42dc-9888-974e014d8211",
       },
       {
         season: "Temporada 2",
@@ -4823,7 +4828,8 @@ export const animeData = [
         releaseDate: "Abril 5, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl: "frame/Bleach/T2/6.html",
+        videoUrl:
+          "https://iframe.mediadelivery.net/embed/474732/78e79c23-6784-4ffd-917c-c5211c37b949",
       },
       {
         season: "Temporada 2",
