@@ -4444,7 +4444,7 @@ export const animeData = [
     heroImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753921206/b_3600x1890_xhodpa.jpg",
     fonImg:
-      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751791306/bleach-2022-background_zlxuoa.jpg",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754114331/562ee9eb-adb5-43ab-b974-52ddfebee9c8_lgiobg.webp",
     logoImg:
       "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/35f419cb-56bc-4829-9b4b-650bfa2d31d1/compose?format=webp",
     imgMobile:
@@ -4477,8 +4477,7 @@ export const animeData = [
         releaseDate: "Octubre 5, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/0e366352-6ba0-4107-a0d0-b8fe76ef419d",
+        videoUrl: "frame/Bleach/T1/1.html",
       },
       {
         season: "Temporada 1",
@@ -4491,8 +4490,7 @@ export const animeData = [
         releaseDate: "Octubre 12, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/dafa4cf9-b97a-45bc-88b1-d2fb10b227e5",
+        videoUrl: "frame/Bleach/T1/2.html",
       },
       {
         season: "Temporada 1",
@@ -4505,8 +4503,7 @@ export const animeData = [
         releaseDate: "Octubre 19, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/234cc55f-9f81-47aa-952d-4924b6e02eef",
+        videoUrl: "frame/Bleach/T1/3.html",
       },
       {
         season: "Temporada 1",
@@ -4519,8 +4516,7 @@ export const animeData = [
         releaseDate: "Octubre 26, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/8a1f2d6f-7c80-4e1b-a5cc-04d14be368d5",
+        videoUrl: "frame/Bleach/T1/4.html",
       },
       {
         season: "Temporada 1",
@@ -4533,8 +4529,7 @@ export const animeData = [
         releaseDate: "Noviembre 2, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/60f7f3e0-c1a0-4d87-b09a-171061996bef",
+        videoUrl: "frame/Bleach/T1/5.html",
       },
       {
         season: "Temporada 1",
@@ -4547,8 +4542,7 @@ export const animeData = [
         releaseDate: "Noviembre 9, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/7422b66e-3b7b-43b0-857c-99b6254ba4aa",
+        videoUrl: "frame/Bleach/T1/6.html",
       },
       {
         season: "Temporada 1",
@@ -4561,8 +4555,7 @@ export const animeData = [
         releaseDate: "Noviembre 16, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/b66868c2-08ff-45b3-aff8-14f0a7f08ac5",
+        videoUrl: "frame/Bleach/T1/7.html",
       },
       {
         season: "Temporada 1",
@@ -9227,7 +9220,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Los Capitanes y Tenientes llegan para luchar contra los miembros de Xcution, revelando el verdadero propósito de la insignia de Shinigami Sustituto.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214502/S16_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754118351/oj6bv08027sc_tbuwvn.jpg",
         releaseDate: "Febrero 21, 2012",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -9240,7 +9233,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Las batallas entre los Shinigami y los Fullbringers se desatan. Ginjō revela que también puede usar Bankai.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214502/S16_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754117958/2wyvp7pkheg9_n7lyvk.jpg",
         releaseDate: "Febrero 28, 2012",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -9253,7 +9246,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Byakuya, Kenpachi, Hitsugaya y los demás demuestran la superioridad del Gotei 13 al derrotar a los miembros de Xcution.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214502/S16_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754118031/8gu9w3zmmsey_gvjjva.jpg",
         releaseDate: "Marzo 6, 2012",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -9266,7 +9259,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Rukia derrota al Fullbringer Riruka, mientras Byakuya termina su batalla contra Tsukishima de una manera contundente.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214502/S16_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754117732/ndj9vpbgt4lv_xjiwo2.jpg",
         releaseDate: "Marzo 13, 2012",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -9279,7 +9272,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "La batalla final entre los dos Shinigami Sustitutos llega a su clímax. Ichigo debe aceptar la verdad sobre Ginjō y tomar una decisión.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214502/S16_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754117362/rytjaimxmyf3_gsfmsc.jpg",
         releaseDate: "Marzo 20, 2012",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -9292,7 +9285,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Con Ginjō derrotado, Ichigo regresa a la Sociedad de Almas, donde es recibido como un verdadero héroe. Finalmente acepta su rol como Shinigami Sustituto.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214502/S16_placeholder.webp",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754116903/jcmrvr4vdhtk_hr2aty.jpg",
         releaseDate: "Marzo 27, 2012",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -45795,7 +45788,6 @@ export const animeData = [
     type: "Película",
     quality: "1080p",
     tags: [],
-    dateAdded: new Date(),
     audio: "Sub | Dob",
     creator: "Makoto Shinkai",
     contentWarning: "+13",
