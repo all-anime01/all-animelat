@@ -4568,8 +4568,7 @@ export const animeData = [
         releaseDate: "Noviembre 23, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/49ab5cc5-7dcb-4a06-a129-72a4441c665b",
+        videoUrl: "frame/Bleach/T1/8.html",
       },
       {
         season: "Temporada 1",
@@ -4582,8 +4581,7 @@ export const animeData = [
         releaseDate: "Noviembre 30, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/dcb8477e-9768-4330-8ac9-a6fd9e2ee441",
+        videoUrl: "frame/Bleach/T1/9.html",
       },
       {
         season: "Temporada 1",
@@ -4596,8 +4594,7 @@ export const animeData = [
         releaseDate: "Diciembre 7, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/d3e7489b-b431-4b03-8907-7debaebd8f25",
+        videoUrl: "frame/Bleach/T1/10.html",
       },
       {
         season: "Temporada 1",
@@ -4610,8 +4607,7 @@ export const animeData = [
         releaseDate: "Diciembre 14, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/d3e7489b-b431-4b03-8907-7debaebd8f25",
+        videoUrl: "frame/Bleach/T1/11.html",
       },
       {
         season: "Temporada 1",
@@ -4624,8 +4620,7 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/d5e9a4e0-8f27-4037-8cfc-1274fc909286",
+        videoUrl: "frame/Bleach/T1/12.html",
       },
       {
         season: "Temporada 1",
@@ -4638,8 +4633,7 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2004",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/31efcc9f-51b5-4928-ac3f-270276de4ad7",
+        videoUrl: "frame/Bleach/T1/13.html",
       },
       {
         season: "Temporada 1",
@@ -18667,13 +18661,12 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "254.9K",
     seasons: 2,
-    episodesTotal: 15,
+    episodesTotal: 16,
     status: "En emisión",
     year: 2024,
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 1)), // ayer
     audio: "Sub | Dob",
     creator: "Naoya Matsumoto",
     contentWarning:
@@ -18865,12 +18858,25 @@ export const animeData = [
         title: "La prueba de la siguiente generación",
         duration: "23 min",
         description:
-          "Una gigantesca cráter aparece inesperadamente en Shinagawa, de donde emergen numerosos kaiju tipo hormiga de gran tamaño. Para enfrentarlos, se despliega el Primer Escuadrón, con Kafka Hibino y Kikoru Shinomiya al frente bajo el mando de Gen Narumi.",
+          "Todos los novatos de la División de Defensa son transferidos a nuevas bases, incluido Kafka Hibino.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d6a59602ced0f8c828a00e1dc64223cc.jpg",
         releaseDate: "Julio 26, 2025",
         releaseTime: "11:35",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T2/14.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 15,
+        title: "El escuadrón más poderoso",
+        duration: "23 min",
+        description:
+          "La fuerza Titan del Cuarto Escuadrón, liderada por Gen Narumi, responde a un alarmante ataque coordinado de kaiju numerados (11 a 15). Mientras la ciudad sufre bajo su embestida, Kafka Hibino se incorpora al combate para apoyar a su unidad.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d6a59602ced0f8c828a00e1dc64223cc.jpg",
+        releaseDate: "Agosto 2, 2025",
+        releaseTime: "12:20",
+        language: "Sub | Dob",
+        videoUrl: "frame/Kaiju-No-8/T2/15.html",
       },
     ],
   },
