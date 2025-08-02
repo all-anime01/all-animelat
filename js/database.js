@@ -4646,8 +4646,7 @@ export const animeData = [
         releaseDate: "Enero 11, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/73971d1e-7f3b-47ec-b90e-5241e7d9049c",
+        videoUrl: "frame/Bleach/T1/14.html",
       },
       {
         season: "Temporada 1",
@@ -4660,8 +4659,7 @@ export const animeData = [
         releaseDate: "Enero 18, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/53293b06-afec-4ebf-8bd3-71b54df12a62",
+        videoUrl: "frame/Bleach/T1/15.html",
       },
       {
         season: "Temporada 1",
@@ -4674,8 +4672,7 @@ export const animeData = [
         releaseDate: "Enero 25, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/cb0f371c-ff4e-4b16-8c87-0664b5761df2",
+        videoUrl: "frame/Bleach/T1/16.html",
       },
       {
         season: "Temporada 1",
@@ -4688,8 +4685,7 @@ export const animeData = [
         releaseDate: "Febrero 1, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/b89e747e-63c4-4d44-b853-69fb24dde762",
+        videoUrl: "frame/Bleach/T1/17.html",
       },
       {
         season: "Temporada 1",
@@ -4702,8 +4698,7 @@ export const animeData = [
         releaseDate: "Febrero 8, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/f5e1a3bd-6946-4da6-b1ce-70757edbb23b",
+        videoUrl: "frame/Bleach/T1/18.html",
       },
       {
         season: "Temporada 1",
@@ -4716,8 +4711,7 @@ export const animeData = [
         releaseDate: "Febrero 15, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/7991d53f-f99b-494a-8d79-23c643148952",
+        videoUrl: "frame/Bleach/T1/19.html",
       },
       {
         season: "Temporada 1",
@@ -4730,8 +4724,7 @@ export const animeData = [
         releaseDate: "Febrero 22, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/e5d7350a-544c-4ec3-b941-60a3aedab525",
+        videoUrl: "frame/Bleach/T1/20.html",
       },
       // Temporada 2
       {
@@ -18872,7 +18865,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La fuerza Titan del Cuarto Escuadrón, liderada por Gen Narumi, responde a un alarmante ataque coordinado de kaiju numerados (11 a 15). Mientras la ciudad sufre bajo su embestida, Kafka Hibino se incorpora al combate para apoyar a su unidad.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d6a59602ced0f8c828a00e1dc64223cc.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a5aa9406108e9b971156842aeebe4030.jpg",
         releaseDate: "Agosto 2, 2025",
         releaseTime: "12:20",
         language: "Sub | Dob",
@@ -18880,7 +18873,7 @@ export const animeData = [
       },
     ],
   },
-  //L
+  //letra L
   {
     id: "lazarus",
     title: "Lazarus",
@@ -19102,7 +19095,7 @@ export const animeData = [
           "Klein acude al maestro Neil para aprender magia ritual... que deberá poner pronto en práctica.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7ce2222251eac950e0717eebd550c40d.jpg",
         releaseDate: "Julio 11, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Lord-of-mysteries/T1/4.html",
       },
       {
@@ -30731,6 +30724,8 @@ export const animeData = [
     img: "https://a.storyblok.com/f/178900/750x1061/6ccbcbf59b/pokemonhorizons_megavoltagekv.png/m/filters:quality(95)format(webp)",
     heroImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751857668/pokemon-horizons-mega-voltage-teaser-image_fpzjhq.avif",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754163096/image_j6qrik.png",
     logoImg:
       "https://upload.wikimedia.org/wikipedia/commons/e/e8/Pok%C3%A9mon_Horizons_The_Series_Logo.png",
     imgMobile:
@@ -30742,13 +30737,12 @@ export const animeData = [
     rating: 4.7,
     ratingCount: "112.1K",
     seasons: 1,
-    episodesTotal: 99,
+    episodesTotal: 104,
     status: "En Emisión",
     year: 2023,
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 8)),
     audio: "Sub | Dob",
     creator: "Satoshi Tajiri",
     contentWarning: "+7 Para todos los públicos",
@@ -31990,6 +31984,19 @@ export const animeData = [
         releaseDate: "Julio 19, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/103.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 104,
+        title: "¡El deseo de Charcadet!",
+        duration: "24m",
+        description:
+          "Liko, Zir y Conia llegan finalmente a la casa familiar de Amethio, cuya búsqueda ha sido larga y tortuosa.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754162721/5lamff355r1v_y9cauf.jpg",
+        releaseDate: "Agosto 2, 2025",
+        releaseTime: "00:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Pokemon-horizons/T1/104.html",
       },
     ],
   },
