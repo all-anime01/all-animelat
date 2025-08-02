@@ -4738,8 +4738,7 @@ export const animeData = [
         releaseDate: "Marzo 1, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/2ff211b0-b703-443f-a976-56be077bb73d",
+        videoUrl: "frame/Bleach/T2/21.html",
       },
       {
         season: "Temporada 2",
@@ -4752,8 +4751,7 @@ export const animeData = [
         releaseDate: "Marzo 8, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/08d70c7b-4f57-4963-9170-3173d8c464f3",
+        videoUrl: "frame/Bleach/T2/22.html",
       },
       {
         season: "Temporada 2",
@@ -4766,8 +4764,7 @@ export const animeData = [
         releaseDate: "Marzo 15, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/f769a26f-506f-4371-996f-3677f04ce0ed",
+        videoUrl: "frame/Bleach/T2/23.html",
       },
       {
         season: "Temporada 2",
@@ -4780,8 +4777,7 @@ export const animeData = [
         releaseDate: "Marzo 22, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/c9c81478-0dfb-44d7-8d52-3591479f439b",
+        videoUrl: "frame/Bleach/T2/24.html",
       },
       {
         season: "Temporada 2",
@@ -4794,8 +4790,7 @@ export const animeData = [
         releaseDate: "Marzo 29, 2005",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/474732/6a2963ef-cb34-42dc-9888-974e014d8211",
+        videoUrl: "frame/Bleach/T2/25.html",
       },
       {
         season: "Temporada 2",
