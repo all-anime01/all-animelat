@@ -19124,6 +19124,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/6.html",
       },
+      {
+        season: "Temporada 1",
+        number: 7,
+        title: "Coincidencias",
+        duration: "36 min",
+        description:
+          "Para y dar respuesta a sus preguntas, Klein deberá ir encajando las piezas de un perverso rompecabezas.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d2e37dcc9404595ea347febafcb06d77.jpg",
+        releaseDate: "Agosto 1, 2025",
+        releaseTime: "23:50",
+        language: "Subtitulado",
+        videoUrl: "frame/Lord-of-mysteries/T1/7.html",
+      },
     ],
   },
   //letra M
