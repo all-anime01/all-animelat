@@ -40966,15 +40966,28 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 17,
-        title: "Flor Susurrante",
+        title: "Lirios blancos",
         duration: "23 min",
         description:
-          "Inicia el arco titulado “The Johnnies”, revelando en detalle el pasado de Little Johnny y acercándonos a su vínculo con Big Johnny, la extraña criatura que adoptó como compañero tras un accidente extraterrestre inesperado.",
+          "La infancia de Little Johnny no fue fácil, pero al menos nunca estuvo solo.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/4cebad2bfae1c98fb534d0f3437fb517.jpg",
-        releaseDate: "Julio 27, 2025",
-        releaseTime: "13:00",
+        releaseDate: "Julio 26, 2025",
+        releaseTime: "23:30",
         language: "Sub | Dob",
         videoUrl: "frame/To-be-hero-X/T1/17.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 18,
+        title: "Llama extinta",
+        duration: "23 min",
+        description:
+          "Little Johnny ha vivido luchando por una respuesta. Mientras, el miedo despierta la atención de más de uno.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/39374a7b08541160db20a70cf719c237.jpg",
+        releaseDate: "Agosto 2, 2025",
+        releaseTime: "23:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/To-be-hero-X/T1/18.html",
       },
     ],
   },
@@ -40985,7 +40998,7 @@ export const animeData = [
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/e0b2a13efabc6c589810a29931da4ebf.jpg",
     fonImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/e0b2a13efabc6c589810a29931da4ebf.jpg",
+      "https://m.media-amazon.com/images/S/pv-target-images/cc483e853d57ccfdfe4ed51917789c4b51aefc1f850e073add38c697520ca619.jpg",
     logoImg:
       "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABYQRECVuKUEK7cf89qsAFewtfrfyxpjKPwdWDB1UsAMSVW3SKZI919o2e3BS6qejAwmvFIWRhpfHTe2Tthcv3_EysT9WSl3glA.webp?r=a91",
     imgMobile:
@@ -46886,7 +46899,7 @@ export const animeData = [
     contentWarning: "+16",
     episodes: [
       {
-        season: "Temporada 1",
+        season: "Película",
         number: 1,
         title: "La Espada del Rey Mago.",
         duration: "1h 50 min",
@@ -46896,6 +46909,50 @@ export const animeData = [
         releaseDate: "Junio 16, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Black-clover-la-espada-del-rey-mago/1.html",
+      },
+    ],
+  },
+  {
+    id: "dragon-ball-super-super-hero",
+    title: "Dragon Ball Super: Super Hero",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754199076/6acfd744468f57a798a002caabbc1d4daf91859f22f5d28c0c908ace31bcd7aa_y7f7cs.png",
+    heroImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754199133/fdb46ea630f8b6cc94dfc4a52ff7e72775640f595f128cc739e413b1af625086._SX1080_FMpng__2160x1216-1_mcxrlj.png",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752215467/dbs_super_hero_fon_wnaqg2.jpg",
+    logoImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754198459/Dragon_Ball_Super_Super_Hero_Logo_zpjq7o.png",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754198569/5147637_a9qihr.webp",
+    trailerUrl: "https://www.youtube.com/watch?v=5hszXBmzLjY6",
+    description:
+      "Goku destruyó en su momento al Ejército Red Ribbon. Ahora, ciertos individuos han decidido continuar con su legado y han creado a los androides definitivos: Gamma 1 y Gamma 2. Estos dos androides se autoproclaman 'superhéroes' y deciden atacar a Piccolo y a Gohan. ¿Cuál es el objetivo del Nuevo Ejército Red Ribbon? Ante un peligro inminente, ¡llega el momento del despertar del Superhéroe!",
+    genres: ["Acción", "Comedia", "Artes Marciales", "Shounen", "Superpoderes"],
+    rating: 4.9,
+    ratingCount: "8.7K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "Finalizado",
+    year: 2022,
+    type: "Película",
+    quality: "1080p",
+    tags: ["agregado"],
+    audio: "Sub | Dob",
+    creator: "Akira Toriyama",
+    contentWarning: "+13 Acción, Violencia de fantasía",
+    episodes: [
+      {
+        season: "Pelicula",
+        number: 1,
+        title: "Dragon Ball Super: Super Hero",
+        duration: "99m",
+        description:
+          "El Ejército Red Ribbon regresa con dos nuevos androides, Gamma 1 y Gamma 2, que se autoproclaman superhéroes. Con Goku y Vegeta fuera del planeta, Gohan y Piccolo deben unirse para enfrentar esta nueva y poderosa amenaza.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/4bb3d0230bd91a69a81c479dea9dfebb.jpg",
+        releaseDate: "Junio 11, 2022",
+        releaseTime: "N/A",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dragon-ball-Super-super-hero/1.html",
       },
     ],
   },
@@ -46924,13 +46981,12 @@ export const animeData = [
     type: "Película",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 577)), // Calculado desde el 08/12/23
     audio: "Sub | Dob",
     creator: "Akiyoshi Hongo",
     contentWarning: "+13",
     episodes: [
       {
-        season: "Temporada 1",
+        season: "Película",
         number: 1,
         title: "The Beginning.",
         duration: "2 hrs",
@@ -46967,14 +47023,13 @@ export const animeData = [
     year: 2022,
     type: "Película",
     quality: "1080p",
-    tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 948)), // Calculado desde el 03/12/22
+    tags: ["recomendado"],
     audio: "Sub | Dob",
     creator: "Takehiko Inoue",
     contentWarning: "+12",
     episodes: [
       {
-        season: "Temporada 1",
+        season: "Película",
         number: 1,
         title: "The First Slam Dunk.",
         duration: "1h 59 min",
