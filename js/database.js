@@ -19269,8 +19269,7 @@ export const animeData = [
         releaseDate: "Septiembre 29, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/f36654b3-0ba7-4efb-8e04-ce60a1d065b8",
+        videoUrl: "frame/Frieren/T1/4.html",
       },
       {
         season: "Temporada 1",
@@ -19283,8 +19282,7 @@ export const animeData = [
         releaseDate: "Octubre 6, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/36375f5e-efc4-41f9-8a36-954cc759404c",
+        videoUrl: "frame/Frieren/T1/5.html",
       },
       {
         season: "Temporada 1",
@@ -19297,8 +19295,7 @@ export const animeData = [
         releaseDate: "Octubre 13, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/333f9672-a48d-4d7c-b996-a76c32c84ddc",
+        videoUrl: "frame/Frieren/T1/6.html",
       },
       {
         season: "Temporada 1",
@@ -19311,8 +19308,7 @@ export const animeData = [
         releaseDate: "Octubre 20, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/d2911ca3-e34a-4219-bcc5-4275fe090ba4",
+        videoUrl: "frame/Frieren/T1/7.html",
       },
       {
         season: "Temporada 1",
@@ -19325,8 +19321,7 @@ export const animeData = [
         releaseDate: "Octubre 27, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/a012737e-deca-4619-be0a-3d408815ceb4",
+        videoUrl: "frame/Frieren/T1/8.html",
       },
       {
         season: "Temporada 1",
@@ -19339,8 +19334,7 @@ export const animeData = [
         releaseDate: "Noviembre 3, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/c5b82ba3-0d38-411d-98f7-b1d74255e18e",
+        videoUrl: "frame/Frieren/T1/9.html",
       },
       {
         season: "Temporada 1",
@@ -19353,8 +19347,7 @@ export const animeData = [
         releaseDate: "Noviembre 10, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/c89cee01-bb08-44db-9734-70e6a9a30d11",
+        videoUrl: "frame/Frieren/T1/10.html",
       },
       {
         season: "Temporada 1",
@@ -19367,8 +19360,7 @@ export const animeData = [
         releaseDate: "Noviembre 17, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/011b5f60-2bfa-45e4-92e6-a3d3cd9bd9e3",
+        videoUrl: "frame/Frieren/T1/11.html",
       },
       {
         season: "Temporada 1",
@@ -19381,8 +19373,7 @@ export const animeData = [
         releaseDate: "Noviembre 24, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
-        videoUrl:
-          "https://iframe.mediadelivery.net/embed/475243/970b2367-aefb-4483-970d-261e37fb7e04",
+        videoUrl: "frame/Frieren/T1/12.html",
       },
       {
         season: "Temporada 1",
@@ -19391,7 +19382,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Frieren recuerda una misión en la que tuvo que trabajar con otro elfo, Kraft, y reflexiona sobre su propia soledad y la naturaleza de su especie.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=f976077c-a455-4424-a212-fc8e3bd26388&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/daec8c87d3d141cb4db3862d6dbce8e6.jpg",
         releaseDate: "Diciembre 1, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -19404,7 +19395,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Stark es confundido con el hijo de un lord local, lo que lleva al grupo a una situación incómoda pero cómica en la que deben mantener las apariencias.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=19f077c8-07e5-4e78-832a-590b0754cae8&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/571e40382b362b8e079a1c1105f9aa12.jpg",
         releaseDate: "Diciembre 8, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
@@ -19972,6 +19963,19 @@ export const animeData = [
         releaseTime: "12:30",
         language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/3.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 4,
+        title: "La central de los limpiadores",
+        duration: "23 min",
+        description:
+          "Rudo es llevado al cuartel general de los Cleaner, donde espera reunirse con el jefe que supuestamente conoce la forma de regresar al Cielo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1793442c6ffe4dbdb352dd98c431c23d.jpg",
+        releaseDate: "Agosto 3, 2025",
+        releaseTime: "14:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/Gachiakuta/T1/4.html",
       },
     ],
   },
