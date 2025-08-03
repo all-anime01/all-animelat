@@ -1127,7 +1127,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 667)), // Calculado desde el 20/09/23
     audio: "Sub | Dob",
     creator: "Kafka Asagiri & Sango Harukawa",
     contentWarning: "+16 Violencia",
