@@ -1,4 +1,4 @@
-// --- FUNCIÓN MODIFICADA PARA CARGA DE 3 SEGUNDOS ---
+// --- FUNCIÓN MODIFICADA PARA CARGA DE 4 SEGUNDOS ---
 function go_to_player(url) {
   const playerDisplay = document.getElementById("PlayerDisplay");
   const displayVideo = document.querySelector(".DisplayVideo");
@@ -20,8 +20,8 @@ function go_to_player(url) {
     displayVideo.style.zIndex = "9999";
   }
 
-  // Lógica para asegurar 3 segundos de carga
-  const timerPromise = new Promise((resolve) => setTimeout(resolve, 3000));
+  // Lógica para asegurar 4 segundos de carga
+  const timerPromise = new Promise((resolve) => setTimeout(resolve, 4000));
   const iframeLoadPromise = new Promise((resolve) => {
     displayVideo.innerHTML = `
       <span id="backToPlayers" onclick="listPlayer();"></span>
