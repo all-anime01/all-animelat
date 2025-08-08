@@ -43420,7 +43420,7 @@ export const animeData = [
     title: "Tougen Anki",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/8d489640820a6d7b253bb8da9d5682c1.jpg",
     heroImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/e0b2a13efabc6c589810a29931da4ebf.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GP5HJ84D2-backdrop_wide",
     fonImg:
       "https://m.media-amazon.com/images/S/pv-target-images/cc483e853d57ccfdfe4ed51917789c4b51aefc1f850e073add38c697520ca619.jpg",
     logoImg:
@@ -43440,7 +43440,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado", "doblaje"],
-    dateAdded: new Date(),
     audio: "Sub | Dob",
     creator: "Yura Urushibara",
     contentWarning: "+16",
@@ -43485,15 +43484,28 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 4,
-        title: "Colabora conmigo",
+        title: "Coopera conmigo",
         duration: "24 min",
         description:
-          "Es el primer día en la Academia Rasetsu. Shiki Ichinose y sus nuevos compañeros deben participar en un juego de etiqueta bajo reglas estrictas: ser atrapado significa ser expulsado. Jin Kougasaki, del grupo 1, reta a Shiki desde el principio provocando el enfrentamiento.",
+          "Si quieren pasar la prueba que les puso su profesor, los alumnos deben colaborar entre ellos.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/f51cb97a1c1292a3d6c0e7b77e97ec3e.jpg",
         releaseDate: "Agosto 1, 2025",
         releaseTime: "14:30",
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/4.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 5,
+        title: "Un tipo peligroso",
+        duration: "24 min",
+        description:
+          "Los estudiantes llegan al subsuelo de Kioto y descubren nuevas cosas sobre la guerra en la que están metidos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/bd7b37946212a33834a18e2dcf05a3c2.jpg",
+        releaseDate: "Agosto 8, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/5.html",
       },
     ],
   },
