@@ -47948,19 +47948,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/17.html",
       },
-      // {
-      //   season: "Temporada 1",
-      //   number: 18,
-      //   title: "Crisis en Kawanakajima",
-      //   duration: "23 min",
-      //   description:
-      //     "Tras obtener la Esfera de Fuego en Kyūshū, Yaiba y sus compañeros llegan a Nara en busca de la siguiente joya. Allí conocen a Ishida Rokuemon, un guerrero que les pide unirse a su misión tras escuchar noticias sobre sus hazañas.",
-      //   img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754145438/oufmponzvfgo_k7tss5.jpg",
-      //   releaseDate: "Agosto 9, 2025",
-      //   releaseTime: "9:15",
-      //   language: "Subtitulado",
-      //   videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/18.html",
-      // },
+      {
+        season: "Temporada 1",
+        number: 18,
+        title: "Crisis en Kawanakajima",
+        duration: "23 min",
+        description:
+          "Yaiba y su equipo, reforzados con la presencia de Yagyū Jūbei y Miyoshi, se dirigen a Kawanakajima para recuperar una joya robada. Al llegar, son emboscados por Gōemon, quien estaba oculto.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754145438/oufmponzvfgo_k7tss5.jpg",
+        releaseDate: "Agosto 9, 2025",
+        releaseTime: "9:15",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/18.html",
+      },
     ],
   },
   {
