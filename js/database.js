@@ -19937,7 +19937,7 @@ export const animeData = [
   },
   {
     id: "konjiki-no-gash-bell",
-    title: "Konjiki no Gash Bell!!",
+    title: "Zatchbell: Konjiki no Gash Bell!!",
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754721413/flat_750x_075_f-pad_750x1000_f8f8f8_lbp0rl.jpg",
     heroImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754721869/489365021_18451090237079492_6571239401317584428_n_lu84fn.jpg",
@@ -20032,7 +20032,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El libro de Zatch desaparece, dejándolo indefenso. Kiyomaro debe encontrarlo antes de que otro mamodo lo haga y queme el libro, lo que enviaría a Zatch de vuelta al mundo mamodo.",
-        img: "https://i.ytimg.com/vi/y3V34L0jUzg/hqdefault.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754854856/88sgk8tm43fq_mljohj.jpg",
         releaseDate: "Mayo 11, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/6.html",
@@ -20044,7 +20044,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kiyomaro y Zatch se enfrentan a un mamodo que controla las plantas. La batalla tiene lugar en un jardín botánico, donde el enemigo tiene una ventaja abrumadora.",
-        img: "https://i.ytimg.com/vi/x9QG_jG4V3c/hqdefault.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754854859/0lk9crmno4ww_hfhrzs.jpg",
         releaseDate: "Mayo 18, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/7.html",
@@ -20347,19 +20347,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/4.html",
       },
-      {
-        season: "Temporada 1",
-        number: 5,
-        title: "Raiders",
-        duration: "23 min",
-        description:
-          "Ludo y Zanka van a una misión donde quizá haya pistas de un esferino, pero unos bandidos aparecen.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fee7f1577f0666adb8336d7e0f68b04e.jpg",
-        releaseDate: "Agosto 10, 2025",
-        releaseTime: "14:00",
-        language: "Sub | Dob",
-        videoUrl: "frame/Gachiakuta/T1/5.html",
-      },
+      // {
+      //   season: "Temporada 1",
+      //   number: 5,
+      //   title: "Raiders",
+      //   duration: "23 min",
+      //   description:
+      //     "Ludo y Zanka van a una misión donde quizá haya pistas de un esferino, pero unos bandidos aparecen.",
+      //   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fee7f1577f0666adb8336d7e0f68b04e.jpg",
+      //   releaseDate: "Agosto 10, 2025",
+      //   releaseTime: "14:00",
+      //   language: "Sub | Dob",
+      //   videoUrl: "frame/Gachiakuta/T1/5.html",
+      // },
     ],
   },
   //letra H
