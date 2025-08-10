@@ -22014,6 +22014,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T2/15.html",
       },
+      {
+        season: "Temporada 2",
+        number: 16,
+        title: "Un hombre llamado Shinomiya Isao",
+        duration: "23 min",
+        description:
+          "Con las palabras de aliento de Kikoru, Kafka logra transformarse en Kaiju No. 8 y desata todo su poder para confrontar al formidable Kaiju No. 9. Gracias al esfuerzo conjunto de Narumi, Kikoru y Kafka, la Primera División demuestra ser la fuerza más poderosa que el general Isao Shinomiya soñó.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/73c965d669b49d6a9baca6ef8c1eef5c.jpg",
+        releaseDate: "Agosto 9, 2025",
+        releaseTime: "12:20",
+        language: "Sub | Dob",
+        videoUrl: "frame/Kaiju-No-8/T2/16.html",
+      },
     ],
   },
   //letra L
@@ -22598,7 +22611,6 @@ export const animeData = [
     type: "Donghua",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(), // Hace 1 días
     episodes: [
       {
         season: "Temporada 1",
@@ -22657,7 +22669,7 @@ export const animeData = [
           "La tragedia desatada en un barco levanta las sospechas de los Halcones Nocturnos e inician una investigación.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d69698bda377eae7d3ad003f2fd1a2bb.jpg",
         releaseDate: "Julio 18, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Lord-of-mysteries/T1/5.html",
       },
       {
@@ -22685,6 +22697,19 @@ export const animeData = [
         releaseTime: "23:50",
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/7.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 8,
+        title: "Pérdida de control",
+        duration: "36 min",
+        description:
+          "Klein le pide ayuda a Azik para averiguar quién anda detrás de todo, pero un incidente lo complica todo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/06670014857254f2b1d66569ac5f73ef.jpg",
+        releaseDate: "Agosto 8, 2025",
+        releaseTime: "23:50",
+        language: "Subtitulado",
+        videoUrl: "frame/Lord-of-mysteries/T1/8.html",
       },
     ],
   },
