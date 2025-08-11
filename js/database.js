@@ -38612,6 +38612,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T2/5.html",
       },
+      {
+        season: "Temporada 2",
+        number: 17,
+        title: "Que tenga un buen vuelo",
+        duration: "25 min",
+        description:
+          "Sakamoto descubre, gracias a una llamada desde su apartamento, que los prisioneros condenados a muerte fueron utilizados como señuelo para atraer a la organización ORDER. El verdadero objetivo de X (Slur) es destruir completamente la JAA. Al darse cuenta, Sakamoto y sus aliados se dirigen inmediatamente a la filial de la JAA en Kanto, solo para cruzarse con el inicio del ataque coordinado de Slur y su grupo.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754947812/bpyg8l0maw9i_qxowmc.jpg",
+        releaseDate: "Agosto 11, 2025",
+        releaseTime: "15:05",
+        language: "Sub | Dob",
+        videoUrl: "frame/Sakamoto-days/T2/6.html",
+      },
     ],
   },
   {
@@ -39832,7 +39845,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: [],
-    dateAdded: new Date(), // Calculado desde el 21/04/22
     audio: "Sub | Dob",
     creator: "Hiroyuki Takei",
     contentWarning: "+13 Violencia",
@@ -43449,6 +43461,19 @@ export const animeData = [
         releaseTime: "15:30",
         language: "Subtitulado",
         videoUrl: "frame/Kijin-gentoushou/T1/17.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 18,
+        title: "Una charla mientras tomamos el té",
+        duration: "25 min",
+        description:
+          "Akitsu Somegorō hace su aparición nuevamente, llegando desde Kioto para visitar a Jinya y compartir noticias preocupantes sobre la situación política allí.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754951688/qebf56bvhajb_x529pu.jpg",
+        releaseDate: "Agosto 11, 2025",
+        releaseTime: "15:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/18.html",
       },
     ],
   },
