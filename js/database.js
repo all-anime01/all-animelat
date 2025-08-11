@@ -20056,7 +20056,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Conocen a Kolulu, una mamodo amable que no quiere pelear. Sin embargo, cuando su conjuro se activa, se transforma en una máquina de destrucción incontrolable.",
-        img: "https://i.ytimg.com/vi/4_f4P_T9e3s/hqdefault.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754887921/usuyvdmbwmch_balrat.jpg",
         releaseDate: "Mayo 25, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/8.html",
@@ -20068,7 +20068,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Tras la triste experiencia con Kolulu, Zatch y Kiyomaro se deciden a convertirse en un 'rey amable'. Durante una nueva batalla, Kiyomaro descubre el tercer conjuro de Zatch: 'Jikerudo', que magnetiza al oponente.",
-        img: "https://i.ytimg.com/vi/0hE8113XGac/hqdefault.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754888019/6erzgpwv4i1b_av0lg6.jpg",
         releaseDate: "Junio 1, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/9.html",
@@ -20080,7 +20080,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Un mamodo de élite llamado Fein y su compañero Sebe llegan para desafiar a Zatch y Kiyomaro. Su velocidad y poder ponen a prueba las habilidades del dúo.",
-        img: "https://i.ytimg.com/vi/W597B5h1m2Y/hqdefault.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754888067/cos00fq11gn2_josbbq.jpg",
         releaseDate: "Junio 8, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/10.html",
@@ -20092,7 +20092,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Aparece la superestrella de cine Parco Folgore y su compañero mamodo, Kanchomé. Aunque parecen tontos, su determinación es sorprendentemente fuerte.",
-        img: "https://i.ytimg.com/vi/V8r4zQ_b-gI/hqdefault.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754888280/7mum1pb3dsl6_ml3asz.jpg",
         releaseDate: "Junio 15, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/11.html",
@@ -20104,7 +20104,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Se revela el pasado de Sherry y su razón para luchar: rescatar a su mejor amiga, Koko, que está bajo el control de un malvado mamodo llamado Zofis.",
-        img: "https://i.ytimg.com/vi/F-tG1-9jJ8M/hqdefault.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754888284/wajw04zuuu1h_f0zmzm.jpg",
         releaseDate: "Junio 22, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/12.html",
@@ -48019,12 +48019,25 @@ export const animeData = [
         duration: "23 min",
         description:
           "Yaiba y su equipo, reforzados con la presencia de Yagyū Jūbei y Miyoshi, se dirigen a Kawanakajima para recuperar una joya robada. Al llegar, son emboscados por Gōemon, quien estaba oculto.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754145438/oufmponzvfgo_k7tss5.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754754445/i6qujkvh5bwg_yoyqye.jpg",
         releaseDate: "Agosto 9, 2025",
         releaseTime: "9:15",
         language: "Subtitulado",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/18.html",
       },
+      // {
+      //   season: "Temporada 1",
+      //   number: 18,
+      //   title: "Escapemos del Orbe del Crepúsculo",
+      //   duration: "23 min",
+      //   description:
+      //     "Yaiba y su equipo, reforzados con la presencia de Yagyū Jūbei y Miyoshi, se dirigen a Kawanakajima para recuperar una joya robada. Al llegar, son emboscados por Gōemon, quien estaba oculto.",
+      //   img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754754445/i6qujkvh5bwg_yoyqye.jpg",
+      //   releaseDate: "Agosto 16, 2025",
+      //   releaseTime: "9:15",
+      //   language: "Subtitulado",
+      //   videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/18.html",
+      // },
     ],
   },
   {
