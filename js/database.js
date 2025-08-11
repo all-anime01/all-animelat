@@ -20347,19 +20347,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/4.html",
       },
-      // {
-      //   season: "Temporada 1",
-      //   number: 5,
-      //   title: "Raiders",
-      //   duration: "23 min",
-      //   description:
-      //     "Ludo y Zanka van a una misión donde quizá haya pistas de un esferino, pero unos bandidos aparecen.",
-      //   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fee7f1577f0666adb8336d7e0f68b04e.jpg",
-      //   releaseDate: "Agosto 10, 2025",
-      //   releaseTime: "14:00",
-      //   language: "Sub | Dob",
-      //   videoUrl: "frame/Gachiakuta/T1/5.html",
-      // },
+      {
+        season: "Temporada 1",
+        number: 5,
+        title: "Raiders",
+        duration: "23 min",
+        description:
+          "Ludo y Zanka van a una misión donde quizá haya pistas de un esferino, pero unos bandidos aparecen.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fee7f1577f0666adb8336d7e0f68b04e.jpg",
+        releaseDate: "Agosto 10, 2025",
+        releaseTime: "14:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/Gachiakuta/T1/5.html",
+      },
     ],
   },
   //letra H
