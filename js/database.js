@@ -12248,6 +12248,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Clevatess/T1/6.html",
       },
+      {
+        season: "Temporada 1",
+        number: 7,
+        title: "La técnica suprema de la hechicería",
+        duration: "23 min",
+        description:
+          "Mientras Alicia y Nerle escapan de los bichos de Meinard, Rodd trata de detener al gran general Dorrel.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3cbc05521be0042731c8ce6d0b5317ec.jpg",
+        releaseDate: "Agosto 13, 2025",
+        releaseTime: "16:50",
+        language: "Sub | Dob",
+        videoUrl: "frame/Clevatess/T1/7.html",
+      },
     ],
   },
   //letra D
