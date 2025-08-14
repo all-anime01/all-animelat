@@ -21841,6 +21841,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Hell-teacher-nube/T1/6.html",
       },
+      {
+        season: "Temporada 1",
+        number: 7,
+        title: "La mujer de nieve fuera de temporada",
+        duration: "23 min",
+        description:
+          "Domori Town se ve sorprendida por una nieve inusual en pleno verano. Mientras Hiroshi y sus compañeros sospechan de este fenómeno extraño, el profesor Nūbē lo recibe con una extraña serenidad. Conforme la nieve cubre todo a su alrededor, aparece Yukime, una hermosa joven que asegura haber venido para cumplir una promesa hecha con Nūbē hace cinco años.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755208799/dr7rppcv6o5k_q9jqgk.jpg",
+        releaseDate: "Agosto 13, 2025",
+        releaseTime: "16:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Hell-teacher-nube/T1/7.html",
+      },
     ],
   },
   {
