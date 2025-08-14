@@ -16726,7 +16726,7 @@ export const animeData = [
   {
     id: "kimetsu-no-yaiba",
     title: "Demon slayer: Kimetsu no Yaiba",
-    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753126453/kv_1_xnruu8.jpg",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/f78980f72775f60330ddaea975bff904.jpg",
     heroImg:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753127219/demon-slayer-sets-unfortunate-gen-z-record-ahead-of-infinity-castle-anime-release_o4g4ki.avif",
     fonImg:
@@ -17537,7 +17537,7 @@ export const animeData = [
         duration: "2h 32min",
         description:
           "La serie de películas se desarrolla inmediatamente después del final de la cuarta temporada, cuando Muzan Kibutsuji trampas Tanjiro Kamado y sus compañeros del Cuerpo de Cazadores de Demonios dentro de su fortaleza, el 'Castillo del Infinito', donde comienza una batalla decisiva entre los Cazadores de Demonios y los subordinados de Muzan, las Lunas Superiores.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1753420738/siu80qu3wyjq_kk31v4.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5e76a1bcc8f88e99c3a8823af5d9667a.jpg",
         releaseDate: "Julio 18, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Kimetsu-no-yaiba/Castillo-infinito/1.html",
