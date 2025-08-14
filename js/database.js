@@ -20311,10 +20311,10 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kiyomaro y Zatch están de vacaciones en un hotel cuando son atacados por un mamodo que puede teletransportarse a través de los espejos.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755210265/vh6jk8z97j9b_u8unf0.jpg",
         releaseDate: "Septiembre 28, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/26.html",
+        videoUrl: "frame/Zatchbell/T1/26.html",
       },
       {
         season: "Temporada 1",
@@ -20323,10 +20323,10 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kiyomaro y Zatch conocen a Apollo, el heredero de una gran fortuna, y a su mamodo Rops. Apollo vive la vida al máximo y les enseña a Kiyomaro una valiosa lección.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755210272/3wo7kavnqngz_lbwxpa.jpg",
         releaseDate: "Octubre 5, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/27.html",
+        videoUrl: "frame/Zatchbell/T1/27.html",
       },
       {
         season: "Temporada 1",
@@ -20338,7 +20338,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 12, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/28.html",
+        videoUrl: "frame/Zatchbell/T1/28.html",
       },
       {
         season: "Temporada 1",
@@ -20350,7 +20350,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 19, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/29.html",
+        videoUrl: "frame/Zatchbell/T1/29.html",
       },
       {
         season: "Temporada 1",
@@ -20362,7 +20362,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 26, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/30.html",
+        videoUrl: "frame/Zatchbell/T1/30.html",
       },
       {
         season: "Temporada 1",
@@ -20374,7 +20374,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 2, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/31.html",
+        videoUrl: "frame/Zatchbell/T1/31.html",
       },
       {
         season: "Temporada 1",
@@ -20386,7 +20386,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 9, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/32.html",
+        videoUrl: "frame/Zatchbell/T1/32.html",
       },
       {
         season: "Temporada 1",
@@ -20398,7 +20398,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 16, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/33.html",
+        videoUrl: "frame/Zatchbell/T1/33.html",
       },
       {
         season: "Temporada 1",
@@ -20410,7 +20410,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 23, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/34.html",
+        videoUrl: "frame/Zatchbell/T1/34.html",
       },
       {
         season: "Temporada 1",
@@ -20422,7 +20422,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 30, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/35.html",
+        videoUrl: "frame/Zatchbell/T1/35.html",
       },
       {
         season: "Temporada 1",
@@ -20434,7 +20434,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 7, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/36.html",
+        videoUrl: "frame/Zatchbell/T1/36.html",
       },
       {
         season: "Temporada 1",
@@ -20446,7 +20446,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 14, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/37.html",
+        videoUrl: "frame/Zatchbell/T1/37.html",
       },
       {
         season: "Temporada 1",
@@ -20458,7 +20458,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 21, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/38.html",
+        videoUrl: "frame/Zatchbell/T1/38.html",
       },
       {
         season: "Temporada 1",
@@ -20470,7 +20470,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 28, 2003",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/39.html",
+        videoUrl: "frame/Zatchbell/T1/39.html",
       },
       {
         season: "Temporada 1",
@@ -20482,7 +20482,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 11, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/40.html",
+        videoUrl: "frame/Zatchbell/T1/40.html",
       },
       {
         season: "Temporada 1",
@@ -20494,7 +20494,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 18, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/41.html",
+        videoUrl: "frame/Zatchbell/T1/41.html",
       },
       {
         season: "Temporada 1",
@@ -20506,7 +20506,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 25, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/42.html",
+        videoUrl: "frame/Zatchbell/T1/42.html",
       },
       {
         season: "Temporada 1",
@@ -20518,7 +20518,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 1, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/43.html",
+        videoUrl: "frame/Zatchbell/T1/43.html",
       },
       {
         season: "Temporada 1",
@@ -20530,7 +20530,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 8, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/44.html",
+        videoUrl: "frame/Zatchbell/T1/44.html",
       },
       {
         season: "Temporada 1",
@@ -20542,7 +20542,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 15, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/45.html",
+        videoUrl: "frame/Zatchbell/T1/45.html",
       },
       {
         season: "Temporada 1",
@@ -20554,7 +20554,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 22, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/46.html",
+        videoUrl: "frame/Zatchbell/T1/46.html",
       },
       {
         season: "Temporada 1",
@@ -20566,7 +20566,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 29, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/47.html",
+        videoUrl: "frame/Zatchbell/T1/47.html",
       },
       {
         season: "Temporada 1",
@@ -20578,7 +20578,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 7, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/48.html",
+        videoUrl: "frame/Zatchbell/T1/48.html",
       },
       {
         season: "Temporada 1",
@@ -20590,7 +20590,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 21, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/49.html",
+        videoUrl: "frame/Zatchbell/T1/49.html",
       },
       {
         season: "Temporada 1",
@@ -20602,7 +20602,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 28, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T1/50.html",
+        videoUrl: "frame/Zatchbell/T1/50.html",
       },
       {
         season: "Temporada 2",
