@@ -251,6 +251,13 @@ $(document).ready(function () {
     const playerModal = $("#episode-player-modal");
     const episodeId = `${anime.id}::${episode.season}::ep${episode.number}`;
     playerModal.attr("data-episode-id", episodeId);
+
+    // Reset Disqus comments
+    if (window.resetDisqus) {
+        const newUrl = `https://all-anime.net/anime-details.html?id=${anime.id}&season=${encodeURIComponent(episode.season)}&episode=${episode.number}`;
+        window.resetDisqus(episodeId, newUrl);
+    }
+
     const seasonEpisodes = anime.episodes
       .filter((e) => e.season === episode.season)
       .sort((a, b) => a.number - b.number);
@@ -311,6 +318,18 @@ $(document).ready(function () {
 
     playerModal.css("display", "flex").hide().fadeIn();
     $("body").css("overflow", "hidden");
+  }
+
+  function resetDisqus(newIdentifier, newUrl) {
+      if (window.DISQUS) {
+          DISQUS.reset({
+              reload: true,
+              config: function () {
+                  this.page.identifier = newIdentifier;
+                  this.page.url = newUrl;
+              }
+          });
+      }
   }
 
   // --- FUNCIONES PARA RENDERIZAR CONTENIDO DINÁMICO ---
