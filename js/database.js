@@ -44878,6 +44878,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/5.html",
       },
+      {
+        season: "Temporada 1",
+        number: 6,
+        title: "Debe haber un límite hasta para el más despreciable",
+        duration: "24 min",
+        description:
+          "Los muertos vivientes atacan a los alumnos y Shiki se ve forzado a tomar una decisión que cambiará su opinión.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABVbSJzk5Ot-dKUGOvLL31yasjxhVGDayAO51Swdc7dCoD9PdBrhVz4yictNzx0v0tWCfllsjwyPwElGrjWATy9U8nUGikPBkRVfo51xMSbGRC-uoPakbn8yC.webp?r=846",
+        releaseDate: "Agosto 15, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/6.html",
+      },
     ],
   },
   {
