@@ -23005,6 +23005,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T2/16.html",
       },
+      {
+        season: "Temporada 2",
+        number: 17,
+        title: "Quiero ser fuerte",
+        duration: "23 min",
+        description:
+          "Después de absorber al general Isao Shinomiya, equipado con el arma Kaiju número 2, Kaiju No. 9 adquiere el inmenso poder del Kaiju No. 2. Gen Narumi y Kafka Hibino lanzan un asalto desesperado, llegando a acorralar al enemigo, aunque éste logra escapar por poco.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755379653/ms1npad7g18s_zj1jsx.jpg",
+        releaseDate: "Agosto 16, 2025",
+        releaseTime: "12:20",
+        language: "Sub | Dob",
+        videoUrl: "frame/Kaiju-No-8/T2/17.html",
+      },
     ],
   },
   //letra L
