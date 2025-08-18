@@ -24249,7 +24249,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7021df1baa8bb0f86c56ac12beae73c6.jpg",
         releaseDate: "Julio 25, 2025",
         releaseTime: "23:50",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Lord-of-mysteries/T1/6.html",
       },
       {
@@ -40218,6 +40218,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Sakamoto-days/T2/6.html",
       },
+      {
+        season: "Temporada 2",
+        number: 18,
+        title: "Día 18 Kanaguri",
+        duration: "25 min",
+        description:
+          "Sakamoto y Shin se infiltran en el avión donde tienen lugar los exámenes de ingreso al JCC, con la intención de encontrar pistas sobre Slur.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755547731/j5o67uuawvm2_gj6zwf.jpg",
+        releaseDate: "Agosto 18, 2025",
+        releaseTime: "15:05",
+        language: "Sub | Dob",
+        videoUrl: "frame/Sakamoto-days/T2/7.html",
+      },
     ],
   },
   {
@@ -45067,6 +45080,19 @@ export const animeData = [
         releaseTime: "15:30",
         language: "Subtitulado",
         videoUrl: "frame/Kijin-gentoushou/T1/18.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 19,
+        title: "La vida es fugaz",
+        duration: "25 min",
+        description:
+          "En un tranquilo día de otoño en el jardín de la residencia de Miura, Jinya y Naotsugu practican esgrima con espadas de madera, entrenando con la misma intensidad que en un combate real.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755550571/y2vmbiii4fok_h7u2ig.jpg",
+        releaseDate: "Agosto 18, 2025",
+        releaseTime: "15:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/19.html",
       },
     ],
   },
