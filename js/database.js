@@ -20371,7 +20371,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Li-en, una estrella de cine de Hong Kong, y su mamodo Wonrei llegan a Japón. Están en una misión para encontrar algo importante.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755554014/1vkqmr3zr1ui_m0dq44.jpg",
         releaseDate: "Noviembre 2, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/31.html",
@@ -20383,7 +20383,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kiyomaro descubre que Zatch podría ser el príncipe del mundo mamodo, lo que explica por qué tantos enemigos poderosos lo atacan.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755554017/o753p8xgabid_hg5uyw.jpg",
         releaseDate: "Noviembre 9, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/32.html",
