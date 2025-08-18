@@ -49498,7 +49498,7 @@ export const animeData = [
           "Yaiba Kurogane, un joven samurái criado en la selva, llega a la ciudad por primera vez y se encuentra con la familia Mine, desafiando a su rival, Takeshi Onimaru.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABVkUKNZLdAr-nJ317Rg1a83dGCwyNi7p5v092WVVT03KrIpw2B9sG3o9w39oGPRP9GINQFy5br81Vv9fqn9_9_yLME1_MMvTovRKuGl6g3qtKftA_zdggto_.webp?r=9f7",
         releaseDate: "Abril 5, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/1.html",
       },
       {
@@ -49510,7 +49510,7 @@ export const animeData = [
           "Onimaru es poseído por la espada del Dios del Viento, Fujinken, convirtiéndose en un demonio. Yaiba debe encontrar la espada legendaria Raijinken para poder hacerle frente.",
         img: "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABTbvfzXabgWa9saSomc6c7BogMUGh52omM0hZ2rOOZlphURXDGJm-RvWxaM8fqQLMuDYYMM_MZORCqRMj0NYVtiDoQ-DUnHQjtxfTnGrGbaLRfKCneEBR7DP.webp?r=2f0",
         releaseDate: "Abril 12, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/2.html",
       },
       {
