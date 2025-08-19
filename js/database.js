@@ -20395,7 +20395,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Durante una feroz batalla para proteger a sus nuevos amigos, Li-en y Wonrei, Kiyomaro descubre el cuarto conjuro de Zatch, 'Bao Zakeruga'.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755643793/txdve2mbkj0f_irjtpi.jpg",
         releaseDate: "Noviembre 16, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/33.html",
@@ -20407,7 +20407,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Sherry y Brago reaparecen en Japón, esta vez persiguiendo a un mamodo que se esconde en un castillo abandonado.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755643799/iixia5816ykh_mbg4vp.jpg",
         releaseDate: "Noviembre 23, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/34.html",
@@ -20419,7 +20419,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kiyomaro y Zatch se unen a Sherry y Brago para enfrentarse al mamodo del castillo, quien resulta ser más astuto y peligroso de lo que esperaban.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755643806/cg4x6e3rv8um_heghej.jpg",
         releaseDate: "Noviembre 30, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/35.html",
