@@ -39033,7 +39033,7 @@ export const animeData = [
           "Un nuevo villano con la capacidad de alterar los recuerdos ataca, causando caos y desconfianza entre los cadetes.",
         img: "https://image.tmdb.org/t/p/w300/51IvvinVJwiBBVd7C0jZoePOXpu.jpg",
         releaseDate: "Abril 27, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T2/3.html",
       },
       {
@@ -39045,7 +39045,7 @@ export const animeData = [
           "La lealtad de D se pone a prueba cuando debe proteger a uno de sus compañeros Rangers de un ataque sorpresa de los Villanos.",
         img: "https://cdn.jkdesu.com/assets/images/animes/video/image/jkvideo_950841647b51c5dedcb026b896c7e9c8.jpg",
         releaseDate: "Mayo 4, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T2/4.html",
       },
       {
@@ -39057,7 +39057,7 @@ export const animeData = [
           "El Green Keeper, un Ranger con un peculiar sentido de la justicia, llega a la academia y se convierte en un nuevo obstáculo para D.",
         img: "https://image.tmdb.org/t/p/w300/sgycZII78ViAAho1R7myNIC0zE.jpg",
         releaseDate: "Mayo 11, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Ranger-reject/T2/5.html",
       },
       {
@@ -49820,7 +49820,7 @@ export const animeData = [
           "Yaiba y sus amigos se enfrentan al general demonio con forma de babosa en unas aguas termales, donde el vapor y el agua complican la batalla.",
         img: "https://occ-0-4440-116.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABf6o6D88oseVTa4dwBj3Imrc7Jyc7pP8NncJengq3q3Gw_f81QHB9mW5jAGwxkYQ1_IQ2XANjGN6ogjXrmHK_vlC5fg93p88aGDAm1bFeyHazIpvGmpAKTrP.webp?r=c09",
         releaseDate: "Mayo 3, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/5.html",
       },
       {
