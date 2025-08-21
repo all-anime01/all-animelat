@@ -20494,7 +20494,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kido, el mamodo con forma de marioneta, y su compañero, el Dr. Riddles, regresan para ayudar a Zatch y Kiyomaro en su batalla.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755815934/a15nzvymo42t_m2kuj6.jpg",
         releaseDate: "Diciembre 21, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/38.html",
@@ -20506,7 +20506,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Un nuevo enemigo que puede controlar la niebla y volverse invisible ataca al grupo, poniendo a prueba su capacidad para trabajar en equipo.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755815940/0knqegl90j97_u0sifi.jpg",
         releaseDate: "Diciembre 28, 2003",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/39.html",
@@ -20518,7 +20518,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kanchomé finalmente aprende un nuevo conjuro, que le permite crear ilusiones perfectas, demostrando su valía en la batalla.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755815943/lwp42evjd9ep_nzlzr0.jpg",
         releaseDate: "Enero 11, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/40.html",
@@ -20676,7 +20676,7 @@ export const animeData = [
           "Se revela que Zofis, el enemigo jurado de Sherry, es quien está detrás del despertar de los mamodos milenarios.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Abril 18, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/53.html",
       },
       {
@@ -20688,7 +20688,7 @@ export const animeData = [
           "Zatch y sus amigos se enfrentan a un mamodo milenario en un parque de diversiones, y deben proteger a los civiles mientras luchan.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Abril 25, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/54.html",
       },
       {
@@ -20700,7 +20700,7 @@ export const animeData = [
           "Penny regresa para vengarse, mostrando nuevos y poderosos conjuros acuáticos que ponen en serios aprietos a Zatch y Kiyomaro.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Mayo 2, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/55.html",
       },
       {
@@ -20712,7 +20712,7 @@ export const animeData = [
           "Tia y Megumi usan sus conjuros defensivos para proteger a sus amigos, demostrando que la defensa puede ser tan crucial como el ataque.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Mayo 9, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/56.html",
       },
       {
@@ -20724,7 +20724,7 @@ export const animeData = [
           "Los héroes son transportados a una arena desértica para luchar contra dos mamodos milenarios con poderes de tierra y viento.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Mayo 16, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/57.html",
       },
       {
@@ -20736,7 +20736,7 @@ export const animeData = [
           "Kanchomé y Folgore son derrotados, pero su sacrificio inspira a Kiyomaro a encontrar una nueva estrategia para vencer.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Mayo 23, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/58.html",
       },
       {
@@ -20748,7 +20748,7 @@ export const animeData = [
           "Suzy se enamora de un apuesto joven que resulta ser el compañero de un mamodo enemigo, lo que complica la situación.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Mayo 30, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/59.html",
       },
       {
@@ -20760,7 +20760,7 @@ export const animeData = [
           "Wonrei y Li-en se enfrentan a un poderoso enemigo para proteger a una aldea indefensa. Wonrei debe superar sus límites para salvar a Li-en.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Junio 6, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/60.html",
       },
       {
@@ -20772,7 +20772,7 @@ export const animeData = [
           "Zeno, el hermano gemelo de Zatch, aparece y ataca sin piedad. Su poder y crueldad son abrumadores, y revela un oscuro pasado con Zatch.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Junio 13, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/61.html",
       },
       {
@@ -20784,7 +20784,7 @@ export const animeData = [
           "Kido y el Dr. Riddles atrapan a un enemigo en un laberinto lleno de acertijos y trampas, demostrando que el ingenio es un arma poderosa.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Junio 20, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/62.html",
       },
       {
@@ -20796,7 +20796,7 @@ export const animeData = [
           "El grupo investiga un barco fantasma y se encuentra con un mamodo que usa el sonido como arma.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Junio 27, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/63.html",
       },
       {
@@ -20808,7 +20808,7 @@ export const animeData = [
           "Sherry y Brago llegan a las ruinas donde se esconden los mamodos milenarios, listos para un enfrentamiento masivo.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Julio 4, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/64.html",
       },
       {
@@ -20820,7 +20820,7 @@ export const animeData = [
           "Umagon (Ponygon) finalmente encuentra a su compañero de libro, pero él no puede leer los conjuros. Juntos, deben descubrir cómo liberar su verdadero poder.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Julio 11, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/65.html",
       },
       {
@@ -20832,7 +20832,7 @@ export const animeData = [
           "Se revela el secreto de la Piedra de la Luz Lunar, un artefacto que Zofis usa para controlar a los mamodos milenarios.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Julio 18, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/66.html",
       },
       {
@@ -20844,7 +20844,7 @@ export const animeData = [
           "Zofis revela a sus cuatro guerreros más poderosos, cada uno con habilidades aterradoras que pondrán a prueba a los héroes hasta el límite.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Julio 25, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/67.html",
       },
       {
@@ -20856,7 +20856,7 @@ export const animeData = [
           "Sherry finalmente se enfrenta a Zofis y a su amiga controlada, Koko. La verdad detrás del tormento de Koko es revelada.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 1, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/68.html",
       },
       {
@@ -20868,7 +20868,7 @@ export const animeData = [
           "Zofis manipula los sentimientos de sus víctimas, usando el odio y la desesperación para fortalecerse a sí mismo y a sus sirvientes.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 8, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/69.html",
       },
       {
@@ -20880,7 +20880,7 @@ export const animeData = [
           "Kiyomaro y Zatch desatan todo el poder de su conjuro más fuerte, Bao Zakeruga, en un intento desesperado por detener al enemigo.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 15, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/70.html",
       },
       {
@@ -20892,7 +20892,7 @@ export const animeData = [
           "Un poderoso mamodo milenario reflexiona sobre su pasado y su lealtad a un rey amable, cuestionando las órdenes de Zofis.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 22, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/71.html",
       },
       {
@@ -20904,7 +20904,7 @@ export const animeData = [
           "El Dr. Riddles se enfrenta a uno de los cuatro supremos, usando su inteligencia y los conjuros de Kido para contrarrestar la poderosa magia.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 29, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/72.html",
       },
       {
@@ -20916,7 +20916,7 @@ export const animeData = [
           "Brago y Sherry desatan un nuevo y devastador conjuro gravitacional para derrotar a uno de los guerreros más fuertes de Zofis.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Septiembre 5, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/73.html",
       },
       {
@@ -20928,7 +20928,7 @@ export const animeData = [
           "Un mamodo con el poder de borrar memorias se enfrenta a los héroes, obligándolos a luchar sin recordar sus propios conjuros.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Septiembre 12, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/74.html",
       },
       {
@@ -20940,7 +20940,7 @@ export const animeData = [
           "El grupo finalmente encuentra la Piedra de la Luz Lunar. Destruirla es la única forma de liberar a los mamodos milenarios del control de Zofis.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Septiembre 19, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/75.html",
       },
       {
@@ -20952,7 +20952,7 @@ export const animeData = [
           "Los héroes quedan atrapados en un laberinto dimensional creado por uno de los cuatro supremos de Zofis. Deben encontrar la salida antes de que sus fuerzas se agoten.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Septiembre 26, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/76.html",
       },
       {
@@ -20964,7 +20964,7 @@ export const animeData = [
           "La batalla entre Sherry y Zofis alcanza su punto culminante. Sherry debe superar su odio para poder liberar a Koko de una vez por todas.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 3, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/77.html",
       },
       {
@@ -20976,7 +20976,7 @@ export const animeData = [
           "Wonrei y Li-en se enfrentan a un enemigo que usa la oscuridad. Su vínculo y confianza mutua son la clave para superar este desafío.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 10, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/78.html",
       },
       {
@@ -20988,7 +20988,7 @@ export const animeData = [
           "Un poderoso mamodo milenario con una insaciable sed de poder se enfrenta a todos, poniendo en peligro tanto a héroes como a villanos.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 17, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/79.html",
       },
       {
@@ -21000,7 +21000,7 @@ export const animeData = [
           "Zatch y Zeno tienen su inevitable confrontación. Se revelan más detalles sobre su conexión y el porqué del odio de Zeno.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 24, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/80.html",
       },
       {
@@ -21012,7 +21012,7 @@ export const animeData = [
           "Con Kiyomaro gravemente herido, Zatch debe tomar una decisión difícil para proteger a sus amigos, incluso si eso significa luchar solo.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 31, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/81.html",
       },
       {
@@ -21024,7 +21024,7 @@ export const animeData = [
           "Kafk Sunbeam, el compañero de Ponygon (Umagon), finalmente logra leer los conjuros. El verdadero poder de Ponygon, basado en la velocidad y la armadura, se desata.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 7, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/82.html",
       },
       {
@@ -21036,7 +21036,7 @@ export const animeData = [
           "En un momento de desesperación, un nuevo poder surge del libro rojo. Kiyomaro descubre el séptimo conjuro, 'Zagurzem', que carga de energía eléctrica todo lo que toca.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 14, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/83.html",
       },
       {
@@ -21048,7 +21048,7 @@ export const animeData = [
           "Con nuevos poderes y estrategias, el equipo logra derrotar a los restantes miembros de los cuatro supremos de Zofis.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 21, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/84.html",
       },
       {
@@ -21060,7 +21060,7 @@ export const animeData = [
           "Sherry finalmente libera a Koko de la influencia de Zofis, pero la verdad sobre la personalidad de su amiga resulta ser más dolorosa de lo que imaginaba.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 28, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/85.html",
       },
       {
@@ -21072,7 +21072,7 @@ export const animeData = [
           "Brago arrincona a Zofis, quien, sin sus peones, revela su verdadera naturaleza cobarde. Sherry debe decidir el destino de su archienemigo.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 5, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/86.html",
       },
       {
@@ -21084,7 +21084,7 @@ export const animeData = [
           "Tras la intensa batalla en las ruinas, el grupo se toma un merecido descanso. Sin embargo, la amenaza de Zeno y otros mamodos aún persiste.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 12, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/87.html",
       },
       {
@@ -21096,7 +21096,7 @@ export const animeData = [
           "Folgore y Kanchomé regresan a Italia. Folgore debe filmar una nueva película mientras protege a Kanchomé de un mamodo rival que ha aparecido en el set.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 19, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/88.html",
       },
       {
@@ -21108,7 +21108,7 @@ export const animeData = [
           "Una serie de desapariciones llevan a Zatch y Kiyomaro a un bosque donde se encuentran con un mamodo que controla la niebla y las ilusiones.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 26, 2004",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/89.html",
       },
       {
@@ -21120,7 +21120,7 @@ export const animeData = [
           "Kiyomaro cae en una trampa que pone a prueba la confianza de Zatch en su amistad. Zatch debe demostrar su lealtad para salvarlo.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 9, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/90.html",
       },
       {
@@ -21132,7 +21132,7 @@ export const animeData = [
           "Suzy es secuestrada por un mamodo que quiere atraer a Zatch y Kiyomaro a una batalla en su propio terreno: un rascacielos en construcción.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 16, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/91.html",
       },
       {
@@ -21144,7 +21144,7 @@ export const animeData = [
           "Un nuevo enemigo afirma ser invencible, pero Kiyomaro descubre que su poder depende de la falta de confianza de su propio compañero humano.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 23, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/92.html",
       },
       {
@@ -21156,7 +21156,7 @@ export const animeData = [
           "Un mamodo que Zatch conoció brevemente en el mundo mamodo aparece. Sufría de amnesia, y Zatch intenta ayudarlo a recordar quién es.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 30, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/93.html",
       },
       {
@@ -21168,7 +21168,7 @@ export const animeData = [
           "Zatch entra en la mente del mamodo amnésico para ayudarlo a recuperar sus recuerdos, pero debe enfrentarse a los traumas que lo acechan.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 6, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/94.html",
       },
       {
@@ -21180,7 +21180,7 @@ export const animeData = [
           "Wonrei y Li-en se enfrentan a un mamodo que amenaza la seguridad de su aldea, forzando a Wonrei a tomar una decisión difícil sobre su deber.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 13, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/95.html",
       },
       {
@@ -21192,7 +21192,7 @@ export const animeData = [
           "El grupo se toma unas vacaciones en un crucero, pero es una trampa. Múltiples equipos de mamodos los atacan en medio del océano.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 20, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/96.html",
       },
       {
@@ -21204,7 +21204,7 @@ export const animeData = [
           "El Dr. Riddles es desafiado por un viejo rival académico, quien resulta ser el compañero de un mamodo. La batalla es un duelo de intelectos.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 27, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/97.html",
       },
       {
@@ -21216,7 +21216,7 @@ export const animeData = [
           "Folgore y Kanchomé se enfrentan a un mamodo con forma de león cuya arrogancia es su mayor debilidad. Kanchomé usa su ingenio para explotarla.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 6, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/98.html",
       },
       {
@@ -21228,7 +21228,7 @@ export const animeData = [
           "Para prepararse para futuras batallas, Zatch y Kiyomaro se someten a un entrenamiento especial con un aliado inesperado.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 20, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/99.html",
       },
       {
@@ -21240,7 +21240,7 @@ export const animeData = [
           "Folgore le enseña a Kanchomé una lección sobre el coraje y el viento del corazón, dándole la fuerza para enfrentar sus miedos y desbloquear un nuevo poder.",
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 27, 2005",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/100.html",
       },
       {
@@ -21251,7 +21251,7 @@ export const animeData = [
       description: "Una gigantesca y misteriosa estructura con forma de torre, Faudo, aparece en Nueva Zelanda, causando destrucción. Se revela que es un mamodo colosal de una antigua batalla, controlado por un nuevo enemigo.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Abril 3, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/101.html"
     },
     {
@@ -21262,7 +21262,7 @@ export const animeData = [
       description: "Kiyomaro y Zatch conocen a Ted, un mamodo rudo que viaja con su compañero Jido en una motocicleta. Ted está buscando a alguien de su pasado y se muestra hostil al principio.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Abril 10, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/102.html"
     },
     {
@@ -21273,7 +21273,7 @@ export const animeData = [
       description: "Un nuevo grupo de mamodos que sirven a Faudo ataca. Uno de ellos utiliza una canción hipnótica que sume a la gente en una profunda tristeza.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Abril 17, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/103.html"
     },
     {
@@ -21284,7 +21284,7 @@ export const animeData = [
       description: "Kiyomaro busca a Apollo para que lo ayude a desarrollar una nueva habilidad: una capacidad de respuesta instantánea para predecir y reaccionar a los ataques enemigos.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Abril 24, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/104.html"
     },
     {
@@ -21295,7 +21295,7 @@ export const animeData = [
       description: "Durante el entrenamiento, Kiyomaro debe aprender a vaciar su mente y confiar en sus instintos para dominar la 'Respuesta Definitiva'.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Mayo 1, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/105.html"
     },
     {
@@ -21306,7 +21306,7 @@ export const animeData = [
       description: "Un poderoso mamodo llamado Rodeaux y su compañero Chita comienzan a cazar a otros mamodos para fortalecer a Faudo.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Mayo 8, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/106.html"
     },
     {
@@ -21317,7 +21317,7 @@ export const animeData = [
       description: "Aparece un mamodo que utiliza tambores para generar ataques de rayo. Zatch debe demostrar que es el verdadero maestro del trueno.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Mayo 15, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/107.html"
     },
     {
@@ -21328,7 +21328,7 @@ export const animeData = [
       description: "El grupo conoce a Momon, un mamodo tímido con forma de mono que tiene la habilidad de sentir la presencia de otros mamodos, pero que se asusta con facilidad.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Mayo 22, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/108.html"
     },
     {
@@ -21339,7 +21339,7 @@ export const animeData = [
       description: "Con la ayuda de aliados, los héroes se infiltran en Faudo para detenerlo desde adentro. Descubren que la estructura es un laberinto lleno de trampas.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Mayo 29, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/109.html"
     },
     {
@@ -21350,7 +21350,7 @@ export const animeData = [
       description: "Dentro de Faudo, el grupo se enfrenta a Gyaron, un mamodo de armadura pesada que custodia una de las áreas clave.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Junio 5, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/110.html"
     },
     {
@@ -21361,7 +21361,7 @@ export const animeData = [
       description: "Folgore y Kanchomé son separados del grupo y se encuentran en una sala de carnaval controlada por un mamodo payaso sádico.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Junio 12, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/111.html"
     },
     {
@@ -21372,7 +21372,7 @@ export const animeData = [
       description: "Kanchomé debe superar sus miedos para proteger a Folgore. Desbloquea un nuevo conjuro que le permite crear una copia perfecta de sí mismo con mente propia.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Junio 19, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/112.html"
     },
     {
@@ -21383,7 +21383,7 @@ export const animeData = [
       description: "Mientras avanzan, los héroes se enteran de que deben llegar al corazón y al cerebro de Faudo para detener su avance y evitar que llegue a Japón.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Junio 26, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/113.html"
     },
     {
@@ -21394,7 +21394,7 @@ export const animeData = [
       description: "Ted se enfrenta a Cherish, una mamodo de su pasado a la que ha estado buscando. La reunión revela una trágica historia.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Julio 3, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/114.html"
     },
     {
@@ -21405,7 +21405,7 @@ export const animeData = [
       description: "Brago y Sherry aparecen dentro de Faudo y se enfrentan a un mamodo que controla la tierra, causando terremotos dentro de la estructura.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Julio 10, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/115.html"
     },
     {
@@ -21416,7 +21416,7 @@ export const animeData = [
       description: "Kiyomaro usa la 'Respuesta Definitiva' en combate, demostrando una increíble capacidad para liderar y coordinar los ataques de sus aliados.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Julio 17, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/116.html"
     },
     {
@@ -21427,7 +21427,7 @@ export const animeData = [
       description: "Arth, un mamodo con aspecto de caballero, se une al grupo, pero sus lealtades son puestas a prueba cuando se reencuentra con su antiguo amor, Elly.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Julio 24, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/117.html"
     },
     {
@@ -21438,7 +21438,7 @@ export const animeData = [
       description: "Elly, controlada por Faudo, ataca a Arth. Él debe luchar contra la mujer que ama para poder liberarla de su maldición.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Julio 31, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/118.html"
     },
     {
@@ -21449,7 +21449,7 @@ export const animeData = [
       description: "Ponygon (Umagon) y Kafk se enfrentan a un enemigo increíblemente rápido. Para proteger a su amigo, Ponygon desata un nuevo conjuro de armadura que aumenta su poder.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Agosto 7, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/119.html"
     },
     {
@@ -21460,7 +21460,7 @@ export const animeData = [
       description: "Tia y Megumi son atrapadas por un mamodo que controla el hielo, poniendo a prueba su ingenio y el poder de sus conjuros defensivos.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Agosto 14, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/120.html"
     },
     {
@@ -21471,7 +21471,7 @@ export const animeData = [
       description: "Un pequeño mamodo llamado Riya guarda un profundo rencor hacia Zatch por un incidente en el mundo mamodo. Su poder es mucho mayor de lo que aparenta.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Agosto 21, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/121.html"
     },
     {
@@ -21482,7 +21482,7 @@ export const animeData = [
       description: "El grupo llega al dispositivo de control de Faudo, pero es protegido por el más fuerte de sus guardianes, Jedun.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Agosto 28, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/122.html"
     },
     {
@@ -21493,7 +21493,7 @@ export const animeData = [
       description: "Kiyomaro está al borde del colapso por el uso excesivo de la 'Respuesta Definitiva', pero la determinación de sus amigos le da fuerzas para continuar.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Septiembre 4, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/123.html"
     },
     {
@@ -21504,7 +21504,7 @@ export const animeData = [
       description: "Mientras el equipo principal lucha en el interior, en el exterior se desata una batalla bajo la lluvia contra las fuerzas de Faudo que intentan detenerlos.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Septiembre 11, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/124.html"
     },
     {
@@ -21515,7 +21515,7 @@ export const animeData = [
       description: "Finalmente, se revela la identidad del mamodo que controla a Faudo: un ser llamado Riou, que posee un poder abrumador y una conexión con el pasado de Zatch.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Septiembre 18, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/125.html"
     },
     {
@@ -21526,7 +21526,7 @@ export const animeData = [
       description: "Riou revela su poder, derrotando fácilmente a varios de los aliados. El grupo se da cuenta de que para vencerlo, necesitarán un sacrificio.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Septiembre 25, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/126.html"
     },
     {
@@ -21537,7 +21537,7 @@ export const animeData = [
       description: "Para darle una oportunidad a Zatch y Kiyomaro, un aliado se sacrifica para detener a Riou temporalmente, dejando un profundo impacto en el grupo.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Octubre 2, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/127.html"
     },
     {
@@ -21548,7 +21548,7 @@ export const animeData = [
       description: "Mientras el grupo llora su pérdida, una canción de esperanza cantada por Megumi y Tia inspira a todos a seguir luchando.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Octubre 9, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/128.html"
     },
     {
@@ -21559,7 +21559,7 @@ export const animeData = [
       description: "Zatch se enfrenta a Riou, pero es superado. La desesperación y la voluntad de proteger a sus amigos finalmente despiertan el verdadero poder de Bao Zakeruga.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Octubre 16, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/129.html"
     },
     {
@@ -21570,7 +21570,7 @@ export const animeData = [
       description: "El verdadero Bao Zakeruga, un dragón gigantesco y consciente, lucha contra la bestia de Riou en una batalla de proporciones épicas que sacude a Faudo hasta sus cimientos.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Octubre 23, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/130.html"
     },
     {
@@ -21581,7 +21581,7 @@ export const animeData = [
       description: "Tras la derrota de Riou, Zeno aparece para reclamar a Faudo. Secuestra a Dufort, su compañero, y revela la dolorosa razón de su odio hacia Zatch.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Octubre 30, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/131.html"
     },
     {
@@ -21592,7 +21592,7 @@ export const animeData = [
       description: "Zeno hiere mortalmente a Kiyomaro, cuyo corazón se detiene. Para salvarlo, Zatch debe llevarlo al interior de Faudo para un procedimiento peligroso.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Noviembre 6, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/132.html"
     },
     {
@@ -21603,7 +21603,7 @@ export const animeData = [
       description: "Gracias al poder de sus amigos, el corazón de Kiyomaro vuelve a latir. Despierta con un nuevo nivel de poder y determinación para detener a Zeno.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Noviembre 13, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/133.html"
     },
     {
@@ -21614,7 +21614,7 @@ export const animeData = [
       description: "Kiyomaro, ahora más poderoso, se enfrenta a Zeno y Dufort. La batalla se convierte en un choque de voluntades y estrategias.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Noviembre 20, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/134.html"
     },
     {
@@ -21625,7 +21625,7 @@ export const animeData = [
       description: "Zatch finalmente recupera todos sus recuerdos, entendiendo el sacrificio de su padre, el rey, y el origen de Bao Zakeruga.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Noviembre 27, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/135.html"
     },
     {
@@ -21636,7 +21636,7 @@ export const animeData = [
       description: "Dufort, viendo el vínculo entre Zatch y Kiyomaro, comienza a cuestionar sus propias acciones y la naturaleza de Zeno.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Diciembre 4, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/136.html"
     },
     {
@@ -21647,7 +21647,7 @@ export const animeData = [
       description: "La batalla entre Zatch y Zeno alcanza su clímax. El verdadero poder de Zatch, no solo de sus conjuros sino de su corazón, se enfrenta al odio de su hermano.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Diciembre 11, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/137.html"
     },
     {
@@ -21658,7 +21658,7 @@ export const animeData = [
       description: "Zatch derrota a Zeno, no con odio, sino con compasión. Antes de desaparecer, Zeno transfiere sus poderes a Zatch, reconciliándose con su hermano.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Diciembre 18, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/138.html"
     },
     {
@@ -21669,7 +21669,7 @@ export const animeData = [
       description: "Con su amo derrotado, Faudo se descontrola y se dirige a Japón en un curso de colisión suicida. El equipo debe encontrar la manera de enviarlo de vuelta al mundo mamodo.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Diciembre 25, 2005",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/139.html"
     },
     {
@@ -21680,7 +21680,7 @@ export const animeData = [
       description: "Wonrei se sacrifica para proteger el dispositivo de teletransportación de Faudo, asegurando que sus amigos tengan una oportunidad de salvar el mundo.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Enero 8, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/140.html"
     },
     {
@@ -21691,7 +21691,7 @@ export const animeData = [
       description: "Con Faudo de vuelta en el mundo mamodo, los héroes regresan a Japón. Deben lidiar con las secuelas emocionales de la batalla y las pérdidas sufridas.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Enero 15, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/141.html"
     },
     {
@@ -21702,7 +21702,7 @@ export const animeData = [
       description: "La vida vuelve a la normalidad, pero la batalla por el trono aún no ha terminado. Zatch y Kiyomaro se preparan para los desafíos que se avecinan.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Enero 22, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/142.html"
     },
     {
@@ -21713,7 +21713,7 @@ export const animeData = [
       description: "Un mensaje del mundo mamodo llega, anunciando la fase final de la batalla para decidir quién será el rey.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Enero 29, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/143.html"
     },
     {
@@ -21724,7 +21724,7 @@ export const animeData = [
       description: "Tia y Megumi se enfrentan a un poderoso mamodo en una región nevada. Su amistad y trabajo en equipo son su mayor arma.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Febrero 5, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/144.html"
     },
     {
@@ -21735,7 +21735,7 @@ export const animeData = [
       description: "Kanchomé y Folgore se enfrentan a un enemigo que los supera en poder. Para proteger a su amigo, Kanchomé desata un increíble conjuro final.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Febrero 12, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/145.html"
     },
     {
@@ -21746,7 +21746,7 @@ export const animeData = [
       description: "Brago y Sherry se enfrentan a los últimos contendientes poderosos, demostrando por qué son uno de los equipos más temidos.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Febrero 19, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/146.html"
     },
     {
@@ -21757,7 +21757,7 @@ export const animeData = [
       description: "Los diez mamodos finales son transportados a un campo de batalla especial para la lucha final. Zatch debe enfrentarse a sus amigos y rivales.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Febrero 26, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/147.html"
     },
     {
@@ -21768,7 +21768,7 @@ export const animeData = [
       description: "Solo Zatch y Brago quedan en pie. La batalla final para decidir quién se convertirá en el rey del mundo mamodo comienza.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Marzo 5, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/148.html"
     },
     {
@@ -21779,7 +21779,7 @@ export const animeData = [
       description: "Zatch y Kiyomaro utilizan todo lo que han aprendido en una espectacular batalla final contra Brago y Sherry. El deseo de Zatch de ser un rey amable le da una fuerza increíble.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Marzo 19, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/149.html"
     },
     {
@@ -21790,7 +21790,7 @@ export const animeData = [
       description: "La batalla ha terminado y un nuevo rey ha sido coronado. Kiyomaro regresa a su vida normal, pero un día recibe una carta de Zatch, contándole sobre el nuevo mundo mamodo que ha creado.",
       img: "https://i.ytimg.com/vi/placeholder.jpg",
       releaseDate: "Marzo 26, 2006",
-      language: "Sub | Dob",
+      language: "Subtitulado",
       videoUrl: "frame/konjiki-no-gash-bell/T3/150.html"
     },
     ],
