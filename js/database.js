@@ -45858,6 +45858,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/6.html",
       },
+      {
+        season: "Temporada 1",
+        number: 7,
+        title: "La bella es una bestia",
+        duration: "24 min",
+        description:
+          "Yomogi usa su poder para encerrar el lugar y los estudiantes deben luchar para sobrevivir.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755896178/efo4rjl5l0ha_ltoobs.jpg",
+        releaseDate: "Agosto 22, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/7.html",
+      },
     ],
   },
   {
