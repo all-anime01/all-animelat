@@ -22776,6 +22776,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/7.html",
       },
+      {
+        season: "Temporada 1",
+        number: 8,
+        title: "Contacto",
+        duration: "23 min",
+        description:
+          "Yoshiki y Hikaru investigan a Nonuki-sama y su relación con la historia de Kubitachi. Cuando llegan a la biblioteca, reciben información de una fuente inesperada.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755989069/dnf1w7uspryt_gjtjda.jpg",
+        releaseDate: "Agosto 23, 2025",
+        releaseTime: "22:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Hikaru-ga-Shinda-Natsu/T1/8.html",
+      },
     ],
   },
   //letra J
