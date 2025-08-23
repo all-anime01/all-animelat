@@ -23636,7 +23636,7 @@ export const animeData = [
       {
         season: "Temporada 2",
         number: 17,
-        title: "Quiero ser fuerte",
+        title: "Quiero ser más fuerte",
         duration: "23 min",
         description:
           "Después de absorber al general Isao Shinomiya, equipado con el arma Kaiju número 2, Kaiju No. 9 adquiere el inmenso poder del Kaiju No. 2. Gen Narumi y Kafka Hibino lanzan un asalto desesperado, llegando a acorralar al enemigo, aunque éste logra escapar por poco.",
@@ -23645,6 +23645,19 @@ export const animeData = [
         releaseTime: "12:20",
         language: "Sub | Dob",
         videoUrl: "frame/Kaiju-No-8/T2/17.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 18,
+        title: "Espécimen compatible",
+        duration: "23 min",
+        description:
+          "El Kaiju N.° 10 le propone algo a Hoshina. Y los comandantes del este se reúnen para discutir sobre el N.° 9.s",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a141121eab9feb978705b2c4e15f828d.jpg",
+        releaseDate: "Agosto 23, 2025",
+        releaseTime: "12:20",
+        language: "Sub | Dob",
+        videoUrl: "frame/Kaiju-No-8/T2/18.html",
       },
     ],
   },
@@ -50021,6 +50034,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/20.html",
       },
+      // {
+      //   season: "Temporada 1",
+      //   number: 20,
+      //   title: "Misterio en la Cima del Monte Fuji",
+      //   duration: "23 min",
+      //   description:
+      //     "Yaiba y su equipo, reforzados con la presencia de Yagyū Jūbei y Miyoshi, se dirigen a Kawanakajima para recuperar una joya robada. Al llegar, son emboscados por Gōemon, quien estaba oculto.",
+      //   img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755960889/se1k1odsba3c_zloyjk.jpg",
+      //   releaseDate: "Agosto 30, 2025",
+      //   releaseTime: "9:15",
+      //   language: "Subtitulado",
+      //   videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/20.html",
+      // },
     ],
   },
   {
