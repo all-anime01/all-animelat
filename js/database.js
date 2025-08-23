@@ -20530,7 +20530,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kiyomaro cae en una trampa y su corazón es robado por el enemigo. Zatch y sus amigos deben recuperarlo antes de que sea demasiado tarde.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755926506/xbto3uv6krqb_s3rdyr.jpg",
         releaseDate: "Enero 18, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/41.html",
@@ -20542,7 +20542,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Una amable vendedora de flores es en realidad la compañera de un mamodo con poderes sobre las flores venenosas.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755926510/u0wsjolpaoe2_ac8kg6.jpg",
         releaseDate: "Enero 25, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/42.html",
@@ -20554,7 +20554,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Sherry recuerda su promesa de salvar a Koko, lo que le da la fuerza para enfrentarse a un enemigo formidable.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755926515/sedreaadrpxn_h4qbxb.jpg",
         releaseDate: "Febrero 1, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/43.html",
@@ -20566,7 +20566,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Un mamodo crea un muro indestructible que se alimenta de la desesperación. El grupo debe encontrar una manera de superar su propia desesperanza para derribarlo.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755926521/ar35jqjcjjw4_tdmprl.jpg",
         releaseDate: "Febrero 8, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/44.html",
@@ -20578,7 +20578,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "La lucha contra el mamodo del muro llega a su clímax. El trabajo en equipo y la confianza son la clave para la victoria.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755926524/4r3g7ww24xif_yrw8an.jpg",
         releaseDate: "Febrero 15, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/45.html",
