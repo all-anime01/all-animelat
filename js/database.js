@@ -50008,19 +50008,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/19.html",
       },
-      // {
-      //   season: "Temporada 1",
-      //   number: 20,
-      //   title: "El Ardid de Basho, el Mono",
-      //   duration: "23 min",
-      //   description:
-      //     "Yaiba y su equipo, reforzados con la presencia de Yagyū Jūbei y Miyoshi, se dirigen a Kawanakajima para recuperar una joya robada. Al llegar, son emboscados por Gōemon, quien estaba oculto.",
-      //   img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755361400/sul6q07ziydo_z6hscg.jpg",
-      //   releaseDate: "Agosto 23, 2025",
-      //   releaseTime: "9:15",
-      //   language: "Subtitulado",
-      //   videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/20.html",
-      // },
+      {
+        season: "Temporada 1",
+        number: 20,
+        title: "El Ardid de Basho, el Mono",
+        duration: "23 min",
+        description:
+          "Yaiba y su equipo, reforzados con la presencia de Yagyū Jūbei y Miyoshi, se dirigen a Kawanakajima para recuperar una joya robada. Al llegar, son emboscados por Gōemon, quien estaba oculto.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1755960889/se1k1odsba3c_zloyjk.jpg",
+        releaseDate: "Agosto 23, 2025",
+        releaseTime: "9:15",
+        language: "Subtitulado",
+        videoUrl: "frame/Shin-Samurai-den-Yaiba/T1/20.html",
+      },
     ],
   },
   {
