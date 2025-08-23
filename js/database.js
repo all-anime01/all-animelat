@@ -24356,6 +24356,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Lord-of-mysteries/T1/9.html",
       },
+      {
+        season: "Temporada 1",
+        number: 10,
+        title: "Indicios",
+        duration: "36 min",
+        description:
+          "Klein debe sobreponerse a la muerte de su amigo y seguir adelante en su búsqueda de la verdad.s",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/99edb7ad645fea690706bbd9af15fa6f.jpg",
+        releaseDate: "Agosto 22, 2025",
+        releaseTime: "23:50",
+        language: "Subtitulado",
+        videoUrl: "frame/Lord-of-mysteries/T1/10.html",
+      },
     ],
   },
   //letra M
