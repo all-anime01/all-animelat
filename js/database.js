@@ -45829,6 +45829,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/To-be-hero-X/T1/20.html",
       },
+      {
+        season: "Temporada 1",
+        number: 21,
+        title: "Cultivando a un dios",
+        duration: "23 min",
+        description:
+          "Treeman y Mighty Glory están dispuestos a todo para que sus héroes entren en el top 10.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756075293/cnf8h3nm7guy_whsmlv.jpg",
+        releaseDate: "Agosto 23, 2025",
+        releaseTime: "23:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/To-be-hero-X/T1/21.html",
+      },
     ],
   },
   {
