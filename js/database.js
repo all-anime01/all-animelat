@@ -20662,7 +20662,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Penny, una mamodo del pasado de Zatch, llega a la Tierra. Su amor por Zatch se convierte en una furia celosa cuando lo ve con Tia y Megumi.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099788/x9yco52bxcrc_tk13bl.jpg",
         releaseDate: "Abril 11, 2004",
         language: "Sub | Dob",
         videoUrl: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099788/x9yco52bxcrc_tk13bl.jpg",
