@@ -20590,7 +20590,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Zatch tiene un sueño que le revela una pista sobre su pasado y la existencia de un hermano gemelo, Zeno.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099295/ox36udjbqj0m_i7kk9d.jpg",
         releaseDate: "Febrero 22, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/46.html",
@@ -20602,7 +20602,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Siguiendo una pista, el grupo viaja a unas ruinas antiguas donde son emboscados por varios mamodos que trabajan juntos.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099304/teo422ez69gd_zjlfsn.jpg",
         releaseDate: "Febrero 29, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/47.html",
@@ -20614,7 +20614,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El líder de los mamodos de las ruinas revela que fue parte de la batalla de hace mil años y ha estado esperando su venganza.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099312/0gc6mwqa6xpj_lh0qee.jpg",
         releaseDate: "Marzo 7, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/48.html",
@@ -20626,7 +20626,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El Dr. Riddles revela su pasado y por qué decidió participar en la batalla mamodo, mostrando su ingenio y coraje.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099315/mfrgwktv3us6_qtmahc.jpg",
         releaseDate: "Marzo 21, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/49.html",
@@ -20638,7 +20638,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "En el apogeo de la batalla contra el mamodo milenario, Kiyomaro y Zatch desatan un nuevo y poderoso conjuro: 'Rauzaruk'.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099319/1heijoi4mp7y_tvmk0k.jpg",
         releaseDate: "Marzo 28, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/Zatchbell/T1/50.html",
@@ -20650,7 +20650,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Un héroe enmascarado aparece para proteger a los débiles, pero Kiyomaro sospecha que hay algo más detrás de esta misteriosa figura.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099781/t8uam34iz9qi_pyajzp.jpg",
         releaseDate: "Abril 4, 2004",
         language: "Sub | Dob",
         videoUrl: "frame/konjiki-no-gash-bell/T2/51.html",
@@ -20665,7 +20665,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Abril 11, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/52.html",
+        videoUrl: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099788/x9yco52bxcrc_tk13bl.jpg",
       },
       {
         season: "Temporada 2",
@@ -20674,7 +20674,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Se revela que Zofis, el enemigo jurado de Sherry, es quien está detrás del despertar de los mamodos milenarios.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099784/4i3fqzhqv4gk_xhiyw4.jpg",
         releaseDate: "Abril 18, 2004",
         language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/53.html",
@@ -20686,7 +20686,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Zatch y sus amigos se enfrentan a un mamodo milenario en un parque de diversiones, y deben proteger a los civiles mientras luchan.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099839/cpv16krrqbc5_j6vaw6.jpg",
         releaseDate: "Abril 25, 2004",
         language: "Subtitulado",
         videoUrl: "frame/konjiki-no-gash-bell/T2/54.html",
