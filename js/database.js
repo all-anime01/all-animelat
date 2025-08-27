@@ -12274,6 +12274,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Clevatess/T1/8.html",
       },
+      {
+        season: "Temporada 1",
+        number: 9,
+        title: "El campo de batalla de Hiderat",
+        duration: "23 min",
+        description:
+          "Klen, Alicia, Nelluru y Luna llegan a la capital Hiderat, donde el ejército de Drel se enfrenta a los hidens.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756330540/soq78y0q9z8i_dhlmtx.jpg",
+        releaseDate: "Agosto 27, 2025",
+        releaseTime: "16:50",
+        language: "Sub | Dob",
+        videoUrl: "frame/Clevatess/T1/9.html",
+      },
     ],
   },
   //letra D
