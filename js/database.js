@@ -22495,6 +22495,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Hell-teacher-nube/T1/8.html",
       },
+      {
+        season: "Temporada 1",
+        number: 9,
+        title: "La niña que trae felicidad",
+        duration: "23 min",
+        description:
+          "Nube conoce a una pequeña niña llamada Zashiki Warashi, un espíritu que, según la leyenda, trae buena suerte a quienes coexisten con ella.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756332316/kr19w3zqik0h_kgqqzz.jpg",
+        releaseDate: "Agosto 27, 2025",
+        releaseTime: "16:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Hell-teacher-nube/T1/9.html",
+      },
     ],
   },
   {
