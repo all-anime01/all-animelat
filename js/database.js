@@ -12567,7 +12567,7 @@ export const animeData = [
       },
       {
         season: "Temporada 2",
-        number: 20,
+        number: 21,
         title: "A reconstruir la casa",
         duration: "24 min",
         description:
@@ -12576,7 +12576,7 @@ export const animeData = [
         releaseDate: "Agosto 28, 2025",
         releaseTime: "14:10",
         language: "Sub | Dob",
-        videoUrl: "frame/Dandadan/T2/20.html",
+        videoUrl: "frame/Dandadan/T2/21.html",
       },
     ],
   },
