@@ -245,6 +245,38 @@ $(document).ready(function () {
     });
   }
 
+  // --- LÓGICA DE DISQUS ---
+  let disqusLoaded = false;
+
+  function loadDisqus(episodeId, anime, episode) {
+    window.disqus_config = function () {
+      this.page.url = `https://all-anime.net/anime-details.html?id=${anime.id}&season=${encodeURIComponent(episode.season)}&episode=${episode.number}`;
+      this.page.identifier = episodeId;
+    };
+
+    if (!disqusLoaded) {
+      const d = document, s = d.createElement('script');
+      s.src = 'https://all-anime2025.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      disqusLoaded = true;
+    } else {
+      resetDisqus(episodeId, `https://all-anime.net/anime-details.html?id=${anime.id}&season=${encodeURIComponent(episode.season)}&episode=${episode.number}`);
+    }
+  }
+
+  function resetDisqus(newIdentifier, newUrl) {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: function () {
+          this.page.identifier = newIdentifier;
+          this.page.url = newUrl;
+        }
+      });
+    }
+  }
+
   // --- FUNCIÓN PRINCIPAL DEL REPRODUCTOR ---
   function openPlayer(anime, episode) {
     if (!anime || !episode) return;
@@ -252,11 +284,7 @@ $(document).ready(function () {
     const episodeId = `${anime.id}::${episode.season}::ep${episode.number}`;
     playerModal.attr("data-episode-id", episodeId);
 
-    // Reset Disqus comments
-    if (window.resetDisqus) {
-        const newUrl = `https://all-anime.net/anime-details.html?id=${anime.id}&season=${encodeURIComponent(episode.season)}&episode=${episode.number}`;
-        window.resetDisqus(episodeId, newUrl);
-    }
+    loadDisqus(episodeId, anime, episode);
 
     const seasonEpisodes = anime.episodes
       .filter((e) => e.season === episode.season)
@@ -318,18 +346,6 @@ $(document).ready(function () {
 
     playerModal.css("display", "flex").hide().fadeIn();
     $("body").css("overflow", "hidden");
-  }
-
-  function resetDisqus(newIdentifier, newUrl) {
-      if (window.DISQUS) {
-          DISQUS.reset({
-              reload: true,
-              config: function () {
-                  this.page.identifier = newIdentifier;
-                  this.page.url = newUrl;
-              }
-          });
-      }
   }
 
   // --- FUNCIONES PARA RENDERIZAR CONTENIDO DINÁMICO ---
