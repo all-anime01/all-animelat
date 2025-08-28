@@ -40615,7 +40615,7 @@ export const animeData = [
         title: "Examen, etapa tres",
         duration: "25 min",
         description:
-          "Sakamoto y Shin se infiltran en el avión donde tienen lugar los exámenes de ingreso al JCC, con la intención de encontrar pistas sobre Slur.",
+          "Para la tercera etapa, se unen nuevos aspirantes recomendados: Kanaguri, Toramaru y Shinaya, generando una atmósfera tensa desde el inicio.",
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756165219/8tumnioljau7_odgxbt.jpg",
         releaseDate: "Agosto 25, 2025",
         releaseTime: "15:05",
