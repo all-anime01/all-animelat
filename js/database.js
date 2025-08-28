@@ -40612,7 +40612,7 @@ export const animeData = [
       {
         season: "Temporada 2",
         number: 19,
-        title: "Día 18 Kanaguri",
+        title: "Examen, etapa tres",
         duration: "25 min",
         description:
           "Sakamoto y Shin se infiltran en el avión donde tienen lugar los exámenes de ingreso al JCC, con la intención de encontrar pistas sobre Slur.",
