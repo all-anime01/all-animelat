@@ -24405,7 +24405,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d2e37dcc9404595ea347febafcb06d77.jpg",
         releaseDate: "Agosto 1, 2025",
         releaseTime: "23:50",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Lord-of-mysteries/T1/7.html",
       },
       {
@@ -46039,6 +46039,19 @@ export const animeData = [
         releaseTime: "14:30",
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/7.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 8,
+        title: "El héroe poco fiable",
+        duration: "24 min",
+        description:
+          "Kuina libra una batalla contra otro ugly, pero esta vez se encuentra en una situación muy delicada.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756499108/zum0al0i82v0_ouck3s.jpg",
+        releaseDate: "Agosto 29, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/8.html",
       },
     ],
   },
