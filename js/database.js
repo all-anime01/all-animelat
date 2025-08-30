@@ -37987,6 +37987,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/107.html",
       },
+      {
+        season: "Temporada 1",
+        number: 108,
+        title: "¡¡¡¡Diana ha vuelto!!!!",
+        duration: "24m",
+        description:
+          "La abuela de Liko, Diana, regresa por fin al barco tras una larga ausencia, trayendo consigo información crucial que podría ser la clave para erradicar la peligrosa sustancia Laquium.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756594184/qwaobi2sltbt_ydzfhp.jpg",
+        releaseDate: "Agosto 30, 2025",
+        releaseTime: "00:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Pokemon-horizons/T1/108.html",
+      },
     ],
   },
   {
