@@ -36678,6 +36678,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1141.html",
       },
+      {
+        season: "T21: Egghead",
+        number: "SP19",
+        title: "El chequeo del doctor Chopper: El orgulloso sueño de los gigantes",
+        duration: "23 min",
+        description:
+          "Carrot y Chopper repasan a los distintos gigantes que han aparecido en la serie.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/27dd3778ab0a4ca32728f7eea94cd379.jpg",
+        releaseDate: "Agosto 31, 2025",
+        releaseTime: "12:15",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Especiales/19.html",
+      },
     ],
   },
   //letra P
