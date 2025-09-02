@@ -20692,7 +20692,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099781/t8uam34iz9qi_pyajzp.jpg",
         releaseDate: "Abril 4, 2004",
         language: "Sub | Dob",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/51.html",
+        videoUrl: "frame/Zatchbell/T2/51.html",
       },
       {
         season: "Temporada 2",
@@ -20704,7 +20704,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099788/x9yco52bxcrc_tk13bl.jpg",
         releaseDate: "Abril 11, 2004",
         language: "Sub | Dob",
-        videoUrl: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099788/x9yco52bxcrc_tk13bl.jpg",
+        videoUrl: "frame/Zatchbell/T2/52.html",
       },
       {
         season: "Temporada 2",
@@ -20716,7 +20716,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099784/4i3fqzhqv4gk_xhiyw4.jpg",
         releaseDate: "Abril 18, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/53.html",
+        videoUrl: "frame/Zatchbell/T2/53.html",
       },
       {
         season: "Temporada 2",
@@ -20728,7 +20728,7 @@ export const animeData = [
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756099839/cpv16krrqbc5_j6vaw6.jpg",
         releaseDate: "Abril 25, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/54.html",
+        videoUrl: "frame/Zatchbell/T2/54.html",
       },
       {
         season: "Temporada 2",
@@ -20737,10 +20737,10 @@ export const animeData = [
         duration: "23 min",
         description:
           "Penny regresa para vengarse, mostrando nuevos y poderosos conjuros acuáticos que ponen en serios aprietos a Zatch y Kiyomaro.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756788048/wp9mysy7z6n6_x3w3ks.jpg",
         releaseDate: "Mayo 2, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/55.html",
+        videoUrl: "frame/Zatchbell/T2/55.html",
       },
       {
         season: "Temporada 2",
@@ -20749,10 +20749,10 @@ export const animeData = [
         duration: "23 min",
         description:
           "Tia y Megumi usan sus conjuros defensivos para proteger a sus amigos, demostrando que la defensa puede ser tan crucial como el ataque.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756788914/sk6ux6w7mx06_tdsfw2.jpg",
         releaseDate: "Mayo 9, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/56.html",
+        videoUrl: "frame/Zatchbell/T2/56.html",
       },
       {
         season: "Temporada 2",
@@ -20761,10 +20761,10 @@ export const animeData = [
         duration: "23 min",
         description:
           "Los héroes son transportados a una arena desértica para luchar contra dos mamodos milenarios con poderes de tierra y viento.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756789006/v7iikdjer3s5_oz7tob.jpg",
         releaseDate: "Mayo 16, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/57.html",
+        videoUrl: "frame/Zatchbell/T2/57.html",
       },
       {
         season: "Temporada 2",
@@ -20773,10 +20773,10 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kanchomé y Folgore son derrotados, pero su sacrificio inspira a Kiyomaro a encontrar una nueva estrategia para vencer.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756789591/wrcghjabaf97_vl9vb9.jpg",
         releaseDate: "Mayo 23, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/58.html",
+        videoUrl: "frame/Zatchbell/T2/58.html",
       },
       {
         season: "Temporada 2",
@@ -20785,10 +20785,10 @@ export const animeData = [
         duration: "23 min",
         description:
           "Suzy se enamora de un apuesto joven que resulta ser el compañero de un mamodo enemigo, lo que complica la situación.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756789594/fc1jq6l5l15v_pzs3zq.jpg",
         releaseDate: "Mayo 30, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/59.html",
+        videoUrl: "frame/Zatchbell/T2/59.html",
       },
       {
         season: "Temporada 2",
@@ -20797,10 +20797,10 @@ export const animeData = [
         duration: "23 min",
         description:
           "Wonrei y Li-en se enfrentan a un poderoso enemigo para proteger a una aldea indefensa. Wonrei debe superar sus límites para salvar a Li-en.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756789608/pq9z3pnj1oqd_zxtxl2.jpg",
         releaseDate: "Junio 6, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/60.html",
+        videoUrl: "frame/Zatchbell/T2/60.html",
       },
       {
         season: "Temporada 2",
@@ -20812,7 +20812,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Junio 13, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/61.html",
+        videoUrl: "frame/Zatchbell/T2/61.html",
       },
       {
         season: "Temporada 2",
@@ -20824,7 +20824,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Junio 20, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/62.html",
+        videoUrl: "frame/Zatchbell/T2/62.html",
       },
       {
         season: "Temporada 2",
@@ -20836,7 +20836,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Junio 27, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/63.html",
+        videoUrl: "frame/Zatchbell/T2/63.html",
       },
       {
         season: "Temporada 2",
@@ -20848,7 +20848,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Julio 4, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/64.html",
+        videoUrl: "frame/Zatchbell/T2/64.html",
       },
       {
         season: "Temporada 2",
@@ -20860,7 +20860,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Julio 11, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/65.html",
+        videoUrl: "frame/Zatchbell/T2/65.html",
       },
       {
         season: "Temporada 2",
@@ -20872,7 +20872,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Julio 18, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/66.html",
+        videoUrl: "frame/Zatchbell/T2/66.html",
       },
       {
         season: "Temporada 2",
@@ -20884,7 +20884,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Julio 25, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/67.html",
+        videoUrl: "frame/Zatchbell/T2/67.html",
       },
       {
         season: "Temporada 2",
@@ -20896,7 +20896,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 1, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/68.html",
+        videoUrl: "frame/Zatchbell/T2/68.html",
       },
       {
         season: "Temporada 2",
@@ -20908,7 +20908,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 8, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/69.html",
+        videoUrl: "frame/Zatchbell/T2/69.html",
       },
       {
         season: "Temporada 2",
@@ -20920,7 +20920,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 15, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/70.html",
+        videoUrl: "frame/Zatchbell/T2/70.html",
       },
       {
         season: "Temporada 2",
@@ -20932,7 +20932,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 22, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/71.html",
+        videoUrl: "frame/Zatchbell/T2/71.html",
       },
       {
         season: "Temporada 2",
@@ -20944,7 +20944,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Agosto 29, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/72.html",
+        videoUrl: "frame/Zatchbell/T2/72.html",
       },
       {
         season: "Temporada 2",
@@ -20956,7 +20956,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Septiembre 5, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/73.html",
+        videoUrl: "frame/Zatchbell/T2/73.html",
       },
       {
         season: "Temporada 2",
@@ -20968,7 +20968,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Septiembre 12, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/74.html",
+        videoUrl: "frame/Zatchbell/T2/74.html",
       },
       {
         season: "Temporada 2",
@@ -20980,7 +20980,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Septiembre 19, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/75.html",
+        videoUrl: "frame/Zatchbell/T2/75.html",
       },
       {
         season: "Temporada 2",
@@ -20992,7 +20992,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Septiembre 26, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/76.html",
+        videoUrl: "frame/Zatchbell/T2/76.html",
       },
       {
         season: "Temporada 2",
@@ -21004,7 +21004,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 3, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/77.html",
+        videoUrl: "frame/Zatchbell/T2/77.html",
       },
       {
         season: "Temporada 2",
@@ -21016,7 +21016,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 10, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/78.html",
+        videoUrl: "frame/Zatchbell/T2/78.html",
       },
       {
         season: "Temporada 2",
@@ -21028,7 +21028,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 17, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/79.html",
+        videoUrl: "frame/Zatchbell/T2/79.html",
       },
       {
         season: "Temporada 2",
@@ -21040,7 +21040,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 24, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/80.html",
+        videoUrl: "frame/Zatchbell/T2/80.html",
       },
       {
         season: "Temporada 2",
@@ -21052,7 +21052,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Octubre 31, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/81.html",
+        videoUrl: "frame/Zatchbell/T2/81.html",
       },
       {
         season: "Temporada 2",
@@ -21064,7 +21064,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 7, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/82.html",
+        videoUrl: "frame/Zatchbell/T2/82.html",
       },
       {
         season: "Temporada 2",
@@ -21076,7 +21076,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 14, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/83.html",
+        videoUrl: "frame/Zatchbell/T2/83.html",
       },
       {
         season: "Temporada 2",
@@ -21088,7 +21088,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 21, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/84.html",
+        videoUrl: "frame/Zatchbell/T2/84.html",
       },
       {
         season: "Temporada 2",
@@ -21100,7 +21100,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Noviembre 28, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/85.html",
+        videoUrl: "frame/Zatchbell/T2/85.html",
       },
       {
         season: "Temporada 2",
@@ -21112,7 +21112,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 5, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/86.html",
+        videoUrl: "frame/Zatchbell/T2/86.html",
       },
       {
         season: "Temporada 2",
@@ -21124,7 +21124,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 12, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/87.html",
+        videoUrl: "frame/Zatchbell/T2/87.html",
       },
       {
         season: "Temporada 2",
@@ -21136,7 +21136,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 19, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/88.html",
+        videoUrl: "frame/Zatchbell/T2/88.html",
       },
       {
         season: "Temporada 2",
@@ -21148,7 +21148,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Diciembre 26, 2004",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/89.html",
+        videoUrl: "frame/Zatchbell/T2/89.html",
       },
       {
         season: "Temporada 2",
@@ -21160,7 +21160,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 9, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/90.html",
+        videoUrl: "frame/Zatchbell/T2/90.html",
       },
       {
         season: "Temporada 2",
@@ -21172,7 +21172,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 16, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/91.html",
+        videoUrl: "frame/Zatchbell/T2/91.html",
       },
       {
         season: "Temporada 2",
@@ -21184,7 +21184,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 23, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/92.html",
+        videoUrl: "frame/Zatchbell/T2/92.html",
       },
       {
         season: "Temporada 2",
@@ -21196,7 +21196,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Enero 30, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/93.html",
+        videoUrl: "frame/Zatchbell/T2/93.html",
       },
       {
         season: "Temporada 2",
@@ -21208,7 +21208,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 6, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/94.html",
+        videoUrl: "frame/Zatchbell/T2/94.html",
       },
       {
         season: "Temporada 2",
@@ -21220,7 +21220,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 13, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/95.html",
+        videoUrl: "frame/Zatchbell/T2/95.html",
       },
       {
         season: "Temporada 2",
@@ -21232,7 +21232,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 20, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/96.html",
+        videoUrl: "frame/Zatchbell/T2/96.html",
       },
       {
         season: "Temporada 2",
@@ -21244,7 +21244,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Febrero 27, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/97.html",
+        videoUrl: "frame/Zatchbell/T2/97.html",
       },
       {
         season: "Temporada 2",
@@ -21256,7 +21256,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 6, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/98.html",
+        videoUrl: "frame/Zatchbell/T2/98.html",
       },
       {
         season: "Temporada 2",
@@ -21268,7 +21268,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 20, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/99.html",
+        videoUrl: "frame/Zatchbell/T2/99.html",
       },
       {
         season: "Temporada 2",
@@ -21280,7 +21280,7 @@ export const animeData = [
         img: "https://i.ytimg.com/vi/placeholder.jpg",
         releaseDate: "Marzo 27, 2005",
         language: "Subtitulado",
-        videoUrl: "frame/konjiki-no-gash-bell/T2/100.html",
+        videoUrl: "frame/Zatchbell/T2/100.html",
       },
       {
       season: "Temporada 3",
@@ -45579,7 +45579,7 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 19,
-        title: "La vida es fugaz",
+        title: "Cambio",
         duration: "25 min",
         description:
           "En un tranquilo día de otoño en el jardín de la residencia de Miura, Jinya y Naotsugu practican esgrima con espadas de madera, entrenando con la misma intensidad que en un combate real.",
@@ -45592,12 +45592,25 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 20,
-        title: "por confirmar",
+        title: "Deseo (Parte 1)",
         duration: "25 min",
         description:
           "En un enfrentamiento tenso, Jinya combate a Tsuchiura, el leal vasallo de Hatakeyama Yasuhide.",
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756166159/orihx8hmncu3_zqz49i.jpg",
         releaseDate: "Agosto 25, 2025",
+        releaseTime: "15:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Kijin-gentoushou/T1/20.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 20,
+        title: "Deseo (Parte 2)",
+        duration: "25 min",
+        description:
+          "Jinya se enfrenta cara a cara con Tsuchihara, durante este enfrentamiento, ambos revelan y descubren recuerdos compartidos de su pasado.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756787499/4xsc51mi8bha_lwjuqv.jpg",
+        releaseDate: "Septiembre 1, 2025",
         releaseTime: "15:30",
         language: "Subtitulado",
         videoUrl: "frame/Kijin-gentoushou/T1/20.html",
