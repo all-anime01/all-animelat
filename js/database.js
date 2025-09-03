@@ -12287,6 +12287,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Clevatess/T1/9.html",
       },
+      {
+        season: "Temporada 1",
+        number: 10,
+        title: "Margo y Drel",
+        duration: "23 min",
+        description:
+          "Drel le cuenta a Alicia la relación que tenía con Margo. Y Klen encuentra una sorpresa en el horno.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8fc75553d7ffe3bd9539714de2c79164.jpg",
+        releaseDate: "Septiembre 3, 2025",
+        releaseTime: "16:50",
+        language: "Sub | Dob",
+        videoUrl: "frame/Clevatess/T1/10.html",
+      },
     ],
   },
   //letra D
