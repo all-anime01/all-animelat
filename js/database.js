@@ -22560,6 +22560,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Hell-teacher-nube/T1/9.html",
       },
+      {
+        season: "Temporada 1",
+        number: 10,
+        title: "El desfile nocturno de los Yokai",
+        duration: "23 min",
+        description:
+          "Shuichi, quien ha crecido en una familia acomodada y lleva una vida de lujos, suele desechar sin cuidado lo que ya no necesita. Un día encuentra un viejo paraguas amarillo raído, y este objeto aparentemente inofensivo cobra vida por sí mismo como un yokai autónomo que aparece frente a él.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1756938610/4765aitu843t_tkdpa1.jpg",
+        releaseDate: "Septiembre 3, 2025",
+        releaseTime: "16:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Hell-teacher-nube/T1/10.html",
+      },
     ],
   },
   {
