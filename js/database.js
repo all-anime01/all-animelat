@@ -12591,6 +12591,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Dandadan/T2/21.html",
       },
+      {
+        season: "Temporada 2",
+        number: 22,
+        title: "¿Cuál es el secreto para ser popular?",
+        duration: "24 min",
+        description:
+          "Momo y Okarun siguen la pista de la esfera dorada, pero un compañero los sigue y se mete en problemas.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/faff4f5c763b8453a48593b85cc2a765.jpg",
+        releaseDate: "Septiembre 4, 2025",
+        releaseTime: "14:10",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dandadan/T2/22.html",
+      },
     ],
   },
   {
