@@ -16825,6 +16825,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/20.html",
       },
+      {
+        season: "Temporada 4",
+        number: 21,
+        title: "Our Dr. Stone",
+        duration: "24 min",
+        description:
+          "Stanley está muy cerca y Senku y los demás tendrán que luchar por cada segundo que puedan conseguir.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/42a9aa61396242bd646017c6c2dab547.jpg",
+        releaseDate: "Septiembre 4, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dr-stone/T4/21.html",
+      },
     ],
   },
   {
