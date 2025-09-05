@@ -46209,6 +46209,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/8.html",
       },
+      {
+        season: "Temporada 1",
+        number: 9,
+        title: "El alma de Momotaro",
+        duration: "24 min",
+        description:
+          "Los disturbios afectan a la seguridad del templo y los estudiantes deben evacuar a la gente cuanto antes.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1757110937/0qoge7gcd8rs_terl73.jpg",
+        releaseDate: "Septiembre 5, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/9.html",
+      },
     ],
   },
   {
