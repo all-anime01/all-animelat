@@ -12300,6 +12300,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Clevatess/T1/10.html",
       },
+      {
+        season: "Temporada 1",
+        number: 11,
+        title: "El héroe falso",
+        duration: "23 min",
+        description:
+          "Mientras Alicia y Rhode unen fuerzas para detener a Drel, Klen se adentra en los misterios del Horno Real.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1757543810/4pg5c1vao4an_mmltq6.jpg",
+        releaseDate: "Septiembre 10, 2025",
+        releaseTime: "16:50",
+        language: "Sub | Dob",
+        videoUrl: "frame/Clevatess/T1/11.html",
+      },
     ],
   },
   //letra D
