@@ -46391,6 +46391,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/9.html",
       },
+      {
+        season: "Temporada 1",
+        number: 10,
+        title: "Hijos de Kishin",
+        duration: "24 min",
+        description:
+          "Hina comienza en el cuartel general de la agencia Momotaro mientras continúa la batalla de Shiki.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/90bb6d0ddf9b639314f49eb94a1516a4.jpg",
+        releaseDate: "Septiembre 12, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/10.html",
+      },
     ],
   },
   {
