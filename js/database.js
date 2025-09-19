@@ -46559,6 +46559,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/10.html",
       },
+      {
+        season: "Temporada 1",
+        number: 11,
+        title: "¡Gracias!",
+        duration: "24 min",
+        description:
+          "De vuelta en la academia, los estudiantes deben dividirse para compartir habitaciones.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/eaacc9e1d0efa019e222c322196503d5.jpg",
+        releaseDate: "Septiembre 19, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/11.html",
+      },
     ],
   },
   {
