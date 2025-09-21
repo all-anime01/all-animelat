@@ -38350,6 +38350,19 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Pokemon-horizons/T1/110.html",
       },
+      {
+        season: "Temporada 1",
+        number: 111,
+        title: "¡Sé fuerte y apunta a lo más alto!",
+        duration: "24m",
+        description:
+          "Liko y sus amigos logran purificar temporalmente a Lacrium gracias al poder de Pogogo.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1758427858/fmeahk3pa64f_qphy1t.jpg",
+        releaseDate: "Septiembre 20, 2025",
+        releaseTime: "00:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Pokemon-horizons/T1/111.html",
+      },
     ],
   },
   {
