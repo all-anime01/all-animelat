@@ -20925,7 +20925,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Zeno, el hermano gemelo de Zatch, aparece y ataca sin piedad. Su poder y crueldad son abrumadores, y revela un oscuro pasado con Zatch.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1758686390/0wu6ye9ywmwi_pmu6av.jpg",
         releaseDate: "Junio 13, 2004",
         language: "Subtitulado",
         videoUrl: "frame/Zatchbell/T2/61.html",
@@ -20937,7 +20937,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Kido y el Dr. Riddles atrapan a un enemigo en un laberinto lleno de acertijos y trampas, demostrando que el ingenio es un arma poderosa.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1758686402/w37kc9mlhax0_vfvthc.jpg",
         releaseDate: "Junio 20, 2004",
         language: "Subtitulado",
         videoUrl: "frame/Zatchbell/T2/62.html",
@@ -20949,7 +20949,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "El grupo investiga un barco fantasma y se encuentra con un mamodo que usa el sonido como arma.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1758687160/8pp6ajf3h1i6_agnvfn.jpg",
         releaseDate: "Junio 27, 2004",
         language: "Subtitulado",
         videoUrl: "frame/Zatchbell/T2/63.html",
@@ -20961,7 +20961,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Sherry y Brago llegan a las ruinas donde se esconden los mamodos milenarios, listos para un enfrentamiento masivo.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1758687310/o1jkql3ztol8_dpzy9q.jpg",
         releaseDate: "Julio 4, 2004",
         language: "Subtitulado",
         videoUrl: "frame/Zatchbell/T2/64.html",
@@ -20973,7 +20973,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Umagon (Ponygon) finalmente encuentra a su compañero de libro, pero él no puede leer los conjuros. Juntos, deben descubrir cómo liberar su verdadero poder.",
-        img: "https://i.ytimg.com/vi/placeholder.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1758687316/1hr2vpzw0peu_gnmheb.jpg",
         releaseDate: "Julio 11, 2004",
         language: "Subtitulado",
         videoUrl: "frame/Zatchbell/T2/65.html",
