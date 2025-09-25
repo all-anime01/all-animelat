@@ -16915,6 +16915,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/23.html",
       },
+      {
+        season: "Temporada 4",
+        number: 24,
+        title: "Whole New World",
+        duration: "24 min",
+        description:
+          "Gracias a Suika, Senku logra revivir al del grupo, aunque también descubrirá una verdad sobrecogedora.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fad079927af6ce33ef4e7107b450e5d6.jpg",
+        releaseDate: "Septiembre 25, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dr-stone/T4/24.html",
+      },
     ],
   },
   {
