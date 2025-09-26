@@ -46661,6 +46661,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/11.html",
       },
+      {
+        season: "Temporada 1",
+        number: 12,
+        title: "Día de la tormenta",
+        duration: "24 min",
+        description:
+          "Una tormenta pilla por sorpresa a los chicos y deben permanecer encerrados durante una noche.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b91a5c8da13baaf1828477f6d3cb222e.jpg",
+        releaseDate: "Septiembre 26, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/12.html",
+      },
     ],
   },
   {
