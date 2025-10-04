@@ -27955,7 +27955,7 @@ export const animeData = [
     title: "My Hero Academia",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/6e008ad5211c3998b8f3e4bc166821cd.jpg",
     heroImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/cr/landscape_large/72141d3f-edf8-4dc1-83e1-f640743e747c.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/My%20Hero%20Academia%20/SEASON%208/ULTRA-WIDE/MyHeroAcademia-S8C1-KV1-(Character)-UW-LTR.png",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/098a9f59-2fcc-44ca-b49a-07f443dae1fc.png",
     imgMobile:
@@ -27966,8 +27966,8 @@ export const animeData = [
     genres: ["Acción", "Aventuras", "Ciencia Ficción", "Fantasía"],
     rating: 4.7,
     ratingCount: "181.8K",
-    seasons: 7,
-    episodesTotal: 159,
+    seasons: 8,
+    episodesTotal: 160,
     status: "En emisión",
     year: 2016,
     type: "TV",
@@ -27988,7 +27988,7 @@ export const animeData = [
         img: "/image/Boku-no-hero-academia/1.jpg",
         releaseDate: "Abril 3, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/1.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/1.html",
       },
       {
         season: "Temporada 1",
@@ -28000,7 +28000,7 @@ export const animeData = [
         img: "/image/Boku-no-hero-academia/2.jpg",
         releaseDate: "Abril 10, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/2.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/2.html",
       },
       {
         season: "Temporada 1",
@@ -28012,7 +28012,7 @@ export const animeData = [
         img: "/image/Boku-no-hero-academia/3.jpg",
         releaseDate: "Abril 17, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/3.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/3.html",
       },
       {
         season: "Temporada 1",
@@ -28024,7 +28024,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/07044818e38a5b28a2a8848148b1111d.jpe",
         releaseDate: "Abril 24, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/4.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/4.html",
       },
       {
         season: "Temporada 1",
@@ -28036,7 +28036,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/8f77d33b43826027c9f44709d73d9d30.jpe",
         releaseDate: "Mayo 1, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/5.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/5.html",
       },
       {
         season: "Temporada 1",
@@ -28048,7 +28048,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/c6a7e02919d7e35ccb76c8c9a3d4d546.jpe",
         releaseDate: "Mayo 8, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/6.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/6.html",
       },
       {
         season: "Temporada 1",
@@ -28060,7 +28060,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/1de7c71d60061e8093c784f181cc0504.jpe",
         releaseDate: "Mayo 15, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/7.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/7.html",
       },
       {
         season: "Temporada 1",
@@ -28072,7 +28072,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/1a2c3a51f8a84618e7d23d8c114f09d8.jpe",
         releaseDate: "Mayo 22, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/8.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/8.html",
       },
       {
         season: "Temporada 1",
@@ -28084,7 +28084,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/9d187212b1869e83870633b118b62557.jpe",
         releaseDate: "Mayo 29, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/9.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/9.html",
       },
       {
         season: "Temporada 1",
@@ -28096,7 +28096,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e9552d8d0030c5bcecd0d867c12a6573.jpe",
         releaseDate: "Junio 5, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/10.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/10.html",
       },
       {
         season: "Temporada 1",
@@ -28108,7 +28108,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/99acd2fa2db8957f8fb51a7024ebdb5d.jpe",
         releaseDate: "Junio 12, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/11.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/11.html",
       },
       {
         season: "Temporada 1",
@@ -28120,7 +28120,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e116e72ccd7fb4435aeaad5d45a4ae4a.jpe",
         releaseDate: "Junio 19, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/12.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/12.html",
       },
       {
         season: "Temporada 1",
@@ -28132,7 +28132,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e6f1f45618423f03b4aa56b1f2479f64.jpe",
         releaseDate: "Junio 26, 2016",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T1/13.html",
+        videoUrl: "frame/Boku-no-hero-academia/T1/13.html",
       },
 
       // Temporada 2 (25 episodios)
@@ -28146,7 +28146,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/3194cf61c6735eff46c80a42f25f76d4.jpe",
         releaseDate: "Abril 1, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/1.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/1.html",
       },
       {
         season: "Temporada 2",
@@ -28158,7 +28158,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/dd48d3585da657a365e5c4db678ef04a.jpe",
         releaseDate: "Abril 8, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/2.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/2.html",
       },
       {
         season: "Temporada 2",
@@ -28170,7 +28170,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/8d626359f516a5067254d3dfdd83b632.jpe",
         releaseDate: "Abril 15, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/3.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/3.html",
       },
       {
         season: "Temporada 2",
@@ -28182,7 +28182,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/de71120f2e022067527eb5c8b27606e1.jpe",
         releaseDate: "Abril 22, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/4.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/4.html",
       },
       {
         season: "Temporada 2",
@@ -28194,7 +28194,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/f368f5c3629f1b9549f0a9967733221b.jpe",
         releaseDate: "Abril 29, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/5.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/5.html",
       },
       {
         season: "Temporada 2",
@@ -28206,7 +28206,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/c6a7e02919d7e35ccb76c8c9a3d4d546.jpe",
         releaseDate: "Mayo 6, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/6.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/6.html",
       },
       {
         season: "Temporada 2",
@@ -28218,7 +28218,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/1de7c71d60061e8093c784f181cc0504.jpe",
         releaseDate: "Mayo 13, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/7.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/7.html",
       },
       {
         season: "Temporada 2",
@@ -28230,7 +28230,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/1a2c3a51f8a84618e7d23d8c114f09d8.jpe",
         releaseDate: "Mayo 20, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/8.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/8.html",
       },
       {
         season: "Temporada 2",
@@ -28242,7 +28242,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/9d187212b1869e83870633b118b62557.jpe",
         releaseDate: "Mayo 27, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/9.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/9.html",
       },
       {
         season: "Temporada 2",
@@ -28254,7 +28254,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e9552d8d0030c5bcecd0d867c12a6573.jpe",
         releaseDate: "Junio 3, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/10.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/10.html",
       },
       {
         season: "Temporada 2",
@@ -28266,7 +28266,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/99acd2fa2db8957f8fb51a7024ebdb5d.jpe",
         releaseDate: "Junio 10, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/11.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/11.html",
       },
       {
         season: "Temporada 2",
@@ -28278,7 +28278,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e116e72ccd7fb4435aeaad5d45a4ae4a.jpe",
         releaseDate: "Junio 17, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/12.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/12.html",
       },
       {
         season: "Temporada 2",
@@ -28290,7 +28290,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/b533e4f63c8a923577d61245582f3a67.jpe",
         releaseDate: "Junio 24, 2017",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T2/13.html",
+        videoUrl: "frame/Boku-no-hero-academia/T2/13.html",
       },
 
       // Temporada 3 (25 episodios)
@@ -28304,7 +28304,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/e9552d8d0030c5bcecd0d867c12a6573.jpe",
         releaseDate: "Abril 7, 2018",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T3/1.html",
+        videoUrl: "frame/Boku-no-hero-academia/T3/1.html",
       },
       // ... (Episodios 2 a 24)
       {
@@ -28317,7 +28317,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/c6a7e02919d7e35ccb76c8c9a3d4d546.jpe",
         releaseDate: "Septiembre 29, 2018",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T3/25.html",
+        videoUrl: "frame/Boku-no-hero-academia/T3/25.html",
       },
 
       // Temporada 4 (25 episodios)
@@ -28331,7 +28331,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/06fc92ad23598cf0baba61d9e7dcc46e.jpe",
         releaseDate: "Octubre 12, 2019",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T4/1.html",
+        videoUrl: "frame/Boku-no-hero-academia/T4/1.html",
       },
       // ... (Episodios 2 a 24)
       {
@@ -28344,7 +28344,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/96da46a9a83685d26a27e3d1ac2c6b45.jpe",
         releaseDate: "Abril 4, 2020",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T4/25.html",
+        videoUrl: "frame/Boku-no-hero-academia/T4/25.html",
       },
 
       // Temporada 5 (25 episodios)
@@ -28358,7 +28358,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/9f5cc964b5f7db036f82e5b11a9fda35.jpe",
         releaseDate: "Marzo 27, 2021",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T5/1.html",
+        videoUrl: "frame/Boku-no-hero-academia/T5/1.html",
       },
       // ... (Episodios 2 a 24)
       {
@@ -28371,12 +28371,12 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/6908a8a43f80c611488c9f6927a42426.jpe",
         releaseDate: "Septiembre 25, 2021",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T5/25.html",
+        videoUrl: "frame/Boku-no-hero-academia/T5/25.html",
       },
 
       // Temporada 6 (25 episodios)
       {
-        season: 6,
+        season: "Temporada 6",
         number: 1,
         title: "Un tranquilo comienzo",
         duration: "23 min",
@@ -28385,11 +28385,11 @@ export const animeData = [
         img: "/image/Boku-no-hero-academia-season-6/1.png",
         releaseDate: "Octubre 1, 2022",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T6/1.html",
+        videoUrl: "frame/Boku-no-hero-academia/T6/1.html",
       },
       // ... (Episodios 2 a 24)
       {
-        season: 6,
+        season: "Temporada 6",
         number: 25,
         title: "Conectados",
         duration: "23 min",
@@ -28398,12 +28398,12 @@ export const animeData = [
         img: "/image/Boku-no-hero-academia-season-6/25.jpg",
         releaseDate: "Marzo 25, 2023",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T6/25.html",
+        videoUrl: "frame/Boku-no-hero-academia/T6/25.html",
       },
 
       // Temporada 7 (21 episodios)
       {
-        season: 7,
+        season: "Temporada 7",
         number: 1,
         title: "¡Justo a tiempo! Llega toda una perla de Occidente",
         duration: "23 min",
@@ -28412,11 +28412,11 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=320,height=180,quality=70/catalog/crunchyroll/dea3db6993a42fdc04bb28348093f9e9.jpe",
         releaseDate: "Mayo 4, 2024",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T7/1.html",
+        videoUrl: "frame/Boku-no-hero-academia/T7/1.html",
       },
       // ... (Episodios 2 a 20)
       {
-        season: 7,
+        season: "Temporada 7",
         number: 21,
         title: "Combate sin Dones",
         duration: "23 min",
@@ -28425,7 +28425,19 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/6e3a2f0dc647baf6e2e8c1ef09e0d8e3.jpg",
         releaseDate: "Octubre 12, 2024",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia/T7/21.html",
+        videoUrl: "frame/Boku-no-hero-academia/T7/21.html",
+      },
+      {
+        season: "Temporada 8",
+        number: 160,
+        title: "Toshinori Yagi: Rising Origin",
+        duration: "23 min",
+        description:
+          "¿Podrá All Might aguantar en un combate contra All For One solo con su traje?",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/22fbca4b49967f607acf6a2c967e5ed7.jpg",
+        releaseDate: "Octubre 4, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Boku-no-hero-academia/T8/160.html",
       },
     ],
   },
