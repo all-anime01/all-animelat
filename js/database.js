@@ -27953,7 +27953,7 @@ export const animeData = [
   {
     id: "my-hero-academia",
     title: "My Hero Academia",
-    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/6e008ad5211c3998b8f3e4bc166821cd.jpg",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759640965/filters_quality_95_format_webp_evrw9r.webp",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/My%20Hero%20Academia%20/SEASON%208/ULTRA-WIDE/MyHeroAcademia-S8C1-KV1-(Character)-UW-LTR.png",
     logoImg:
@@ -39785,27 +39785,26 @@ export const animeData = [
   {
     id: "ranma-1-2-2024",
     title: "Ranma ½ (2024)",
-    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751818127/p_b1whxe.jpg",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759640891/547390191_1107883321469962_817932416817422978_n_tk9bzb.jpg",
     heroImg:
-      "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABa7_yNmql0EG9wjB5V0uXdIouzrVoh55NLXlkA9_lNFo2iNSOluUhr0VvberI-81CG3tug73EWKZmYOw_Ml04ughO-3h-Z40Wo30.jpg?r=d85",
+      "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABdVmvUbgbNljtKgv3aBl4YB5MS_PeLqgRnKE73MvEOfwXszj0pHdFf47lmzsl32pRnau5f7emRFiwcgEMMuD8BoWhoCey9S7DAz1.webp?r=420",
     logoImg:
       "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABckb-gFRYuCKtkwkSs0yIIxIQ1TT13rLBLVrfQ9a14uRQyOwc0jnj6OG_JEzStJs7kJ7sz9YqtO2zp1FpmglMzomo2XjXkM-NxVmwr8bhTq75Xeo9kLLXSCrOdSe2-8bBrdwIBj-tMc7ELNZbo3soYvmy9kyjTCQxJVmMEBhpqYVOAA7TVVUSQ.png?r=f60",
     imgMobile:
-      "https://occ-0-1472-114.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABa7_yNmql0EG9wjB5V0uXdIouzrVoh55NLXlkA9_lNFo2iNSOluUhr0VvberI-81CG3tug73EWKZmYOw_Ml04ughO-3h-Z40Wo30.jpg?r=d85",
+      "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABX1-NuZBACIzSRqRJZMmao5oy_LKs3YCnbbNptfFoYPGIqi6K_Lp348LhLWa_9In1_BF1IIgydpMorryA64AayhV8ZPWD_kUxlXk.jpg?r=37e",
     trailerUrl: "https://www.youtube.com/embed/aTz3yUoISZA?si=3WsxkqVTFRS3Rh7N",
     description:
       "Ranma Saotome es un chico que sufre una peculiar maldición al caer en unos estanques malditos durante un entrenamiento de artes marciales.",
     genres: ["Comedia", "Acción", "Romance"],
     rating: 4.6,
     ratingCount: "7.6K",
-    seasons: 1,
-    episodesTotal: 12,
-    status: "Finalizado",
+    seasons: 2,
+    episodesTotal: 13,
+    status: "En emisión",
     year: 2024,
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 198)), // Calculado desde el 21/12/24
     audio: "Sub | Dob",
     creator: "Rumiko Takahashi",
     contentWarning: "+13",
@@ -39953,6 +39952,18 @@ export const animeData = [
         releaseDate: "Diciembre 21, 2024",
         language: "Sub | Dob",
         videoUrl: "frame/Ranma-1-2-2024/T1/12.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 13,
+        title: "La debilidad de Ranma",
+        duration: "24 min",
+        description:
+          "Otro pretendiente de Akane, el tranquilo Gosunkugi, comienza a acosar a Ranma para encontrarle una debilidad. ¿Podrá descubrir su secreto?",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABTK0jBKaRtwVDPeaVqwiq6mvmJI-ZtFQwY5FKSqZNohEBLyG9eabEyXmjMRdgF9R4I6-kOqgjOG90NRHMpYwq0vWJ5ceCWFV3V8lgWu8R92uMOzjYxdnos7E.webp?r=9de",
+        releaseDate: "Octubre 4, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Ranma-1-2-2024/T2/13.html",
       },
     ],
   },
@@ -45016,22 +45027,21 @@ export const animeData = [
     logoImg:
       "https://static.crunchyroll.com/fms/logo/d2681064-7b85-4594-8e35-77b4a21b3dbb.png",
     imgMobile:
-      "https://static.crunchyroll.com/fms/landscape_large/94/png/fd4ae1b8-099c-401b-9e31-05cc09383078.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G4PH0WXVJ-backdrop_wide",
     trailerUrl:
-      "https://www.youtube.com/embed/xYJXJMM2KU8?si=of_aOghmgZy-q87B6",
+      "https://www.youtube.com/embed/fqWKCELEdYM?si=GcZ8xCNVXZluAggL",
     description:
       "Todo el mundo tiene una parte de sí mismos que no puede mostrar a los demás. En una era en la que las naciones de todo el mundo se encuentran involucradas en una feroz guerra de información a puerta cerrada, Ostania y Westalis llevan décadas en guerra fría. La División de Inteligencia de Westalis (WISE) envía a su mejor espía, 'Twilight', en una misión ultrasecreta para vigilar los movimientos de Donovan Desmond, quien dirige el Partido Nacional por la Unidad de Ostania, responsable de bombardear los esfuerzos de paz entre ambos países. La misión tiene por nombre 'Operación Strix'. La idea es 'crear una familia en una semana para infiltrarse en las reuniones sociales organizadas por la escuela de élite a la que asiste el hijo de Desmond'. Twilight adopta la identidad del psiquiatra Loid Forger y comienza a buscar miembros para su familia, pero Anya, la hija que adopta, resulta tener la capacidad para leer las mentes a los demás, mientras que su esposa, Yor, es una asesina. Todos mantendrán estos en secreto, pero comenzarán una vida juntos en la que deberán ocultarse sus identidades unos a otros. La paz del mundo está ahora en manos de esta nueva familia mientras se embarcan en una aventura repleta de sorpresas.",
     genres: ["Acción", "Comedia", "Shounen"],
     rating: 4.9,
     ratingCount: "138.6K",
-    seasons: 2,
-    episodesTotal: 37,
-    status: "Finalizado",
+    seasons: 3,
+    episodesTotal: 38,
+    status: "En emisión",
     year: 2022,
     type: "TV",
     quality: "1080p",
-    tags: [],
-    dateAdded: new Date(), // Calculado desde el 23/12/23
+    tags: ["agregado", "reciente"],
     audio: "Sub | Dob",
     creator: "Tatsuya Endo",
     contentWarning: "+13",
@@ -45484,6 +45494,30 @@ export const animeData = [
         releaseDate: "Diciembre 23, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Spy-x-family/T2/37.html",
+      },
+      {
+        season: "CODE: White",
+        number: 1,
+        title: "SPY x FAMILY: Código Blanco",
+        duration: "1h 49m",
+        description:
+          "Él es un espía. Ella una asesina. Sin embargo, su hija adoptiva Anya (una telépata), conoce ambos apasionantes secretos sin que ellos lo sepan. Con el pretexto de llevar a su familia a una escapada de fin de semana de invierno, el intento de Loid de avanzar en su misión actual, Operación Strix, resulta difícil cuando Anya se involucra por error y desencadena eventos que amenazan la paz mundial.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7a8233c7efc42be04273f7457b328b99.jpg",
+        releaseDate: "Septiembre 5, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Spy-x-family/Codigo-Blanco/1.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 38,
+        title: "Pánico en Berlint / El informante y Nightfall",
+        duration: "23 min",
+        description:
+          "Los Forger disfrutan de un día libre y Nightfall contrata a Franky para que la ayude en una misión.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0b84aa48f51a4ca167376eff5cd34ed8.jpg",
+        releaseDate: "Octubre 4, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Spy-x-family/T3/38.html",
       },
     ],
   },
