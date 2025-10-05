@@ -40948,7 +40948,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(), // Calculado desde el 15/03/25
     audio: "Sub | Dob",
     creator: "Yuto Suzuki",
     contentWarning: "+16",
@@ -41228,6 +41227,49 @@ export const animeData = [
         videoUrl: "frame/Sakamoto-days/T2/11.html",
       },
     ],
+  },
+  {
+    id: "sanda",
+    title: "Sanda",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759645586/sanda_xfkjjr.webp",
+    heroImg:
+      "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/2044e352b27a6e9c4c6ea847330c392540d3f025191316d8baa39ddd87eae66c._SX1080_FMjpg_.jpg",
+    fonImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759645584/2f04086273de7079b2101f874770836862dd88860793fd022632d7c1b6d23cc8_j3zifc.jpg",
+    logoImg:
+      "https://m.media-amazon.com/images/S/pv-target-images/d783f6a4e15335e743a4e2e0e8903ae7f6057d625143e52312edbcf8252ab8e9._SX600_FMpng_.png",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759645676/538754207_1226718296153952_3857560427911236500_n_lyfdr4.jpg",
+    trailerUrl: "https://www.youtube.com/embed/FSZcbWzilPo?si=Omy92xqJBQ9_6srq",
+    description:
+      "Japón, un futuro cercano. Con una natalidad muy baja, los niños son atesorados, pero vigilados. Santa está prohibido por considerarse peligroso. En Navidad, Kazushige Sanda, estudiante y descendiente de Santa, es atacado por su compañera Fuyumura, quien quiere que encuentre a su amiga desaparecida, Ono. “Santa, encuéntrala”. Para protegerlos, Sanda se convierte en Santa y enfrenta a los adultos.",
+    genres: ["Drama", "Misterio"],
+    rating: 4.3,
+    ratingCount: "3.7K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "En emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado"],
+    audio: "Sub | Dob",
+    creator: "Paru Itagaki",
+    contentWarning: "+13 Violencia",
+    episodes: [
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "Todo brilla, ¿estaré envejeciendo?",
+        duration: "24 min",
+        description:
+          "El 25 de diciembre, sin Navidad, Sanda es atacado por su compañera Shiori. Confundiéndolo con amor, él espera su confesión, pero escucha otra cosa.",
+        img: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/78baaa5fde77a62cbf7ada0eefad3b517003e42c1de87c5d6263b3b4de796685._BR-6_AC_SX720_FMjpg_.jpg",
+        releaseDate: "Octubre 3, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Sanda/T1/1.html",
+      },
+      ],
   },
   {
     id: "sand-land-the-series",
