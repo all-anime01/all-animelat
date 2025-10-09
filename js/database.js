@@ -47491,6 +47491,50 @@ export const animeData = [
     },
   ],
 },
+{
+    id: "Tojima-Wants-to-Be-a-Kamen-Rider",
+    title: "Tojima Wants to Be a Kamen Rider",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/790284307afc76adc23290696a8dbf30.png",
+    heroImg:
+      "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/d23f718d0173f32c1f61443ecbe88a26b37102862a844552e5d71b94c4d8c231._SX1080_FMjpg_.jpg",
+    fonImg:
+      "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/aa040b131f3bcbd31cee9db617ee74adb8e67aec5b1a64bed305ce1a88be5fcb._UR1920,1080_CLs%7C1920,1080%7C/G/bundle/BottomRightCardGradient16x9.png,/G/01/digital/video/merch/subs/benefit-id/a-f/crunchyrollco/logos/channels-logo-white.png%7C0,0,1920,1080+0,0,1920,1080+1124,885,717,117_kv61da6a69f73c1ab6c04aa808bc6d4762_SX500_FMjpg_.jpg",
+    logoImg:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759990136/Tojima_Tanzaburo_Wants_to_Be_a_Masked_Rider_Anime_Logo_avttx9.webp",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/c0fdf60827aec220c00184fa1e59e509.png",
+    trailerUrl: "https://www.youtube.com/embed/AyyVYTb2kNE?si=Wq09Q0DETGd6SkfI",
+    description:
+      "Incluso después de cumplir 40 años, Tojima Tanzaburo todavía quiere seriamente ser Kamen Rider. Justo cuando parece que su sueño nunca se hará realidad, se ve envuelto en una serie de infames robos inspirados en Shocker... Shibata Yokusaru, autora de Air Master y 81 Diver, presenta una historia sobre adultos que aman demasiado a Kamen Rider y comienzan a jugar a fingir... ¡de verdad!",
+    genres: ["Acción", "Comedia", "Seinen"],
+    rating: 4.8,
+    ratingCount: "2.2K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "En emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado"],
+    audio: "Subtitulado",
+    creator: "Yokusaru Shibata ",
+    contentWarning:
+      "+14 Tabaquismo, Violencia",
+    episodes: [
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "Nice",
+        duration: "23 min",
+        description:
+          "En una sociedad donde el público crea a los héroes, Lin Ling se ve obligado a reemplazar a un popular héroe.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7442d87d348b10093578d1bba38bcb12.png",
+        releaseDate: "Abril 5, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tojima-Wants-to-Be-a-Kamen-Rider/T1/1.html",
+      },
+      ],
+},
   {
     id: "Tougen-anki",
     title: "Tougen Anki",
