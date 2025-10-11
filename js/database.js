@@ -28495,6 +28495,18 @@ export const animeData = [
         language: "Subtitulado",
         videoUrl: "frame/Boku-no-hero-academia/T8/160.html",
       },
+      {
+        season: "Temporada 8",
+        number: 161,
+        title: "The End of An Era, And The Beginning",
+        duration: "23 min",
+        description:
+          "All Might no está dispuesto a rendirse, pero All For One está preparado.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d5e00cf0777da4732a486829c18a1ae2.jpg",
+        releaseDate: "Octubre 11, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Boku-no-hero-academia/T8/161.html",
+      },
     ],
   },
   {
@@ -45465,7 +45477,7 @@ export const animeData = [
     title: "Spy x Family",
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759642839/filters_quality_95_format_webp_cm6pgp.webp",
     heroImg:
-      "https://static.crunchyroll.com/fms/landscape_large/94/png/fd4ae1b8-099c-401b-9e31-05cc09383078.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/SPY%20x%20FAMILY/SEASON%203/ULTRA-WIDE/SxF-S3-KV1-UW-LTR.png",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/d2681064-7b85-4594-8e35-77b4a21b3dbb.png",
     imgMobile:
