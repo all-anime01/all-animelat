@@ -28517,7 +28517,7 @@ export const animeData = [
     ratingCount: "21.2K",
     seasons: 1,
     episodesTotal: 13,
-    status: "En Emisión",
+    status: "Finalizado",
     year: 2025,
     type: "TV",
     quality: "1080p",
@@ -28686,6 +28686,49 @@ export const animeData = [
           "https://iframe.mediadelivery.net/embed/474806/c58278fa-dd41-432a-b5e3-59050812b6b9",
       },
     ],
+  },
+  {
+    id: "my-status-as-an-assassin-obviously-exceeds-the-heros",
+    title: "My status as an assassin obviously exceeds the heros",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/5f0104d91d01e5320cd30ebc865678e1.png",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G0XHWM1JP-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/6bb9f58028cfc9e840a540bdfdafbd2d.png",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G0XHWM1JP-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/5f0104d91d01e5320cd30ebc865678e1.png",
+    trailerUrl: "https://www.youtube.com/embed/gZQjg_YLxPw?si=5-i-HetPF_851flI",
+    description:
+      "¡Akira Oda y sus compañeros de secundaria son convocados a otro mundo! Mientras que a los otros estudiantes se les otorgan habilidades de trampa a través de la invocación, Akira simplemente obtiene las habilidades de un mediocre “asesino” Sin embargo, su estatus pronto supera a “héroe,” la profesión más fuerte. Después de que Akira sospecha del Rey detrás de la citación, lo incriminan falsamente por un crimen y lo obligan a huir.",
+    genres: ["Acción", "Aventura", "Fantasía"],
+    rating: 4.9,
+    ratingCount: "11K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "En Emisión",
+    year: 2025,
+    type: "TV",
+    quality: "1080p",
+    tags: ["recomendado", "agregado"],
+    audio: "Subtitulado",
+    creator: "Matsuri Akai",
+    contentWarning: "+14 Violencia",
+    episodes: [
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "El asesino come pan",
+        duration: "23 min",
+        description:
+          "Akira y su clase llegan a otro mundo. Y descubre que sus parámetros como asesino superan los del héroe.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e4e3978ce1d226e81be1ccea3ac49c74.png",
+        releaseDate: "Octubre 6, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/my-status-as-an-assassin-obviously-exceeds-the-heros/T1/1.html",
+      },
+      ],
   },
   //letra N
   {
@@ -47554,7 +47597,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "1.7K",
     seasons: 1,
-    episodesTotal: 13,
+    episodesTotal: 14,
     status: "En Emisión",
     year: 2025,
     type: "TV",
@@ -47730,6 +47773,19 @@ export const animeData = [
         releaseTime: "14:30",
         language: "Sub | Dob",
         videoUrl: "frame/Tougen-anki/T1/13.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 14,
+        title: "Mi regla personal",
+        duration: "24 min",
+        description:
+          "La red de vigilancia de Momotaro detecta lo ocurrido en el centro de la ciudad y responde de inmediato.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d2c8891384417793b0def11ae05549a1.jpg",
+        releaseDate: "Octubre 10, 2025",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tougen-anki/T1/14.html",
       },
     ],
   },
