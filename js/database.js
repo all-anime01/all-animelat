@@ -37553,7 +37553,7 @@ export const animeData = [
       releaseDate: "Octubre 5, 2025",
       releaseTime: "10:15",
       language: "Sub | Dob",
-      videoUrl: "frame/one-punch-man/T3/0.html",
+      videoUrl: "frame/One-punch-man/T3/0.html",
     },
     {
       season: "Temporada 3",
@@ -37565,7 +37565,7 @@ export const animeData = [
       releaseDate: "Octubre 12, 2025",
       releaseTime: "10:15",
       language: "Subtitulado",
-      videoUrl: "frame/one-punch-man/T3/1.html",
+      videoUrl: "frame/One-punch-man/T3/1.html",
     },
   ],
 },
