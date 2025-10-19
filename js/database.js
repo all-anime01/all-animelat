@@ -28037,11 +28037,11 @@ export const animeData = [
     title: "My Hero Academia",
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759640965/filters_quality_95_format_webp_evrw9r.webp",
     heroImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/My%20Hero%20Academia%20/SEASON%208/ULTRA-WIDE/MyHeroAcademia-S8C1-KV1-(Character)-UW-LTR.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G6NQ5DWZ6-backdrop_wide",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/098a9f59-2fcc-44ca-b49a-07f443dae1fc.png",
     imgMobile:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/cr/landscape_large/72141d3f-edf8-4dc1-83e1-f640743e747c.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G6NQ5DWZ6-backdrop_wide",
     trailerUrl: "https://www.youtube.com/embed/IziwkeGaBaA?si=yRAGqZWNkn12XG0W",
     description:
       "En un mundo en el que la mayor parte de la población nace con un Don, una habilidad extraordinaria diferente en cada cual, no tardaron en aparecer tanto villanos como héroes dispuestos a detenerlos. Con el tiempo los héroes pasaron a ser funcionarios del gobierno, estando regulados y viviendo de su trabajo, además de convertirse en objeto de admiración de muchos. Ahora, ser héroe es el sueño de la gran mayoría de niños, que esperan desde muy pequeños a que su Don se manifieste para comenzar a entrenar y soñar con convertirse en los héroes número uno.",
@@ -28049,7 +28049,7 @@ export const animeData = [
     rating: 4.7,
     ratingCount: "181.8K",
     seasons: 8,
-    episodesTotal: 160,
+    episodesTotal: 162,
     status: "En emisión",
     year: 2016,
     type: "TV",
@@ -28532,6 +28532,18 @@ export const animeData = [
         releaseDate: "Octubre 11, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Boku-no-hero-academia/T8/161.html",
+      },
+      {
+        season: "Temporada 8",
+        number: 162,
+        title: "El jefe final",
+        duration: "23 min",
+        description:
+          "El retorno de un inesperado enemigo hace que los planes de All For One se tuerzan aún más.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9ec8cfb857b4b67fb0f4aef2c80e49aa.jpg",
+        releaseDate: "Octubre 18, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/Boku-no-hero-academia/T8/162.html",
       },
     ],
   },
