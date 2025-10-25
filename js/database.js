@@ -47909,7 +47909,7 @@ export const animeData = [
       },
       {
         season: "Temporada 1",
-        number: 3,
+        number: 4,
         title: "¿Quién es el Kamen Rider más fuerte?",
         duration: "23 min",
         description:
@@ -47918,7 +47918,7 @@ export const animeData = [
         releaseDate: "Octubre 25, 2025",
         releaseTime: "13:15",
         language: "Sub | Dob",
-        videoUrl: "frame/Tojima-Wants-to-Be-a-Kamen-Rider/T1/3.html",
+        videoUrl: "frame/Tojima-Wants-to-Be-a-Kamen-Rider/T1/4.html",
       },
       ],
 },
