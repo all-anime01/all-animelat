@@ -48090,7 +48090,7 @@ export const animeData = [
       },
       {
         season: "Temporada 1",
-        number: 14,
+        number: 15,
         title: "Los encontré",
         duration: "24 min",
         description:
@@ -48099,7 +48099,7 @@ export const animeData = [
         releaseDate: "Octubre 24, 2025",
         releaseTime: "14:30",
         language: "Sub | Dob",
-        videoUrl: "frame/Tougen-anki/T1/14.html",
+        videoUrl: "frame/Tougen-anki/T1/15.html",
       },
     ],
   },
