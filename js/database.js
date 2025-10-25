@@ -41887,7 +41887,7 @@ export const animeData = [
       },
       {
         season: "Temporada 1",
-        number: 3,
+        number: 4,
         title: "Zeus, destructor de libros",
         duration: "24 min",
         description:
@@ -41895,7 +41895,7 @@ export const animeData = [
         img: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/37ebcfd213f5a6e917c4af87d3d02e7ccb77da2879d94d0a72b1a6528b889a7a._BR-6_AC_SX720_FMjpg_.jpg",
         releaseDate: "Octubre 24, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/Sanda/T1/3.html",
+        videoUrl: "frame/Sanda/T1/4.html",
       },
       ],
   },
