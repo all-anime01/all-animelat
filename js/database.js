@@ -28061,13 +28061,15 @@ export const animeData = [
   {
     id: "my-hero-academia",
     title: "My Hero Academia",
-    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759640965/filters_quality_95_format_webp_evrw9r.webp",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=240,height=360/catalog/crunchyroll/c2fd326926dcfbb6d830661a92ac56e3.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G6NQ5DWZ6-backdrop_wide",
+      fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=320,height=180/catalog/crunchyroll/5a43f1c60ba21308e63547bf03e48747.jpg",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/098a9f59-2fcc-44ca-b49a-07f443dae1fc.png",
     imgMobile:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G6NQ5DWZ6-backdrop_wide",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=240,height=360/catalog/crunchyroll/c2fd326926dcfbb6d830661a92ac56e3.jpg",
     trailerUrl: "https://www.youtube.com/embed/IziwkeGaBaA?si=yRAGqZWNkn12XG0W",
     description:
       "En un mundo en el que la mayor parte de la población nace con un Don, una habilidad extraordinaria diferente en cada cual, no tardaron en aparecer tanto villanos como héroes dispuestos a detenerlos. Con el tiempo los héroes pasaron a ser funcionarios del gobierno, estando regulados y viviendo de su trabajo, además de convertirse en objeto de admiración de muchos. Ahora, ser héroe es el sueño de la gran mayoría de niños, que esperan desde muy pequeños a que su Don se manifieste para comenzar a entrenar y soñar con convertirse en los héroes número uno.",
@@ -45706,6 +45708,8 @@ export const animeData = [
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759642839/filters_quality_95_format_webp_cm6pgp.webp",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/SPY%20x%20FAMILY/SEASON%203/ULTRA-WIDE/SxF-S3-KV1-UW-LTR.png",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=320,height=180/catalog/crunchyroll/771809abf0d5f34ff83b199f71d6658b.jpg",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/d2681064-7b85-4594-8e35-77b4a21b3dbb.png",
     imgMobile:
@@ -45718,7 +45722,7 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "138.6K",
     seasons: 3,
-    episodesTotal: 40,
+    episodesTotal: 41,
     status: "En emisión",
     year: 2022,
     type: "TV",
@@ -46198,7 +46202,7 @@ export const animeData = [
           "Los Forger disfrutan de un día libre y Nightfall contrata a Franky para que la ayude en una misión.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0b84aa48f51a4ca167376eff5cd34ed8.jpg",
         releaseDate: "Octubre 4, 2025",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Spy-x-family/T3/38.html",
       },
       {
@@ -46210,7 +46214,7 @@ export const animeData = [
           "Anya y sus compañeros deben evitar que les den Tonitrus y vislumbramos el pasado de cierta persona.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1efe7c8dbb689d87de8f00faeb385c61.jpg",
         releaseDate: "Octubre 11, 2025",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Spy-x-family/T3/39.html",
       },
       {
@@ -46222,9 +46226,22 @@ export const animeData = [
           "Aquel a quien conocemos como Loid sigue recordando su pasado.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7502d92dfa97412d0ec1ca306000fb18.jpg",
         releaseDate: "Octubre 18, 2025",
-        releaseTime: "13:30",
-        language: "Sub | Dob",
+        releaseTime: "12:45",
+        language: "Subtitulado",
         videoUrl: "frame/Spy-x-family/T3/40.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 41,
+        title: "Detrás del escándalo / El camino para ser Escolar Imperial",
+        duration: "23 min",
+        description:
+          "Un cantante de ópera es acusado de infidelidad, lo que pone en peligro la paz entre este y oeste.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2fbaadf5d8b578abcda0bb22de7d8fae.jpg",
+        releaseDate: "Octubre 25, 2025",
+        releaseTime: "12:45",
+        language: "Subtitulado",
+        videoUrl: "frame/Spy-x-family/T3/41.html",
       },
     ],
   },
@@ -47841,7 +47858,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "2.2K",
     seasons: 1,
-    episodesTotal: 3,
+    episodesTotal: 4,
     status: "En emisión",
     year: 2025,
     type: "TV",
@@ -47887,6 +47904,19 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d67eb8ba26f254fe86f037cc0bb61a09.png",
         releaseDate: "Octubre 18, 2025",
         releaseTime: "18:10",
+        language: "Sub | Dob",
+        videoUrl: "frame/Tojima-Wants-to-Be-a-Kamen-Rider/T1/3.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 3,
+        title: "¿Quién es el Kamen Rider más fuerte?",
+        duration: "23 min",
+        description:
+          "Tras conocer la realidad sobre Yukarisu, Mitsuba debe enfrentar los hechos y a su hermano mayor Ichiyo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/fbc9c8f8aae4afe3c1132af2068f1f7c.png",
+        releaseDate: "Octubre 25, 2025",
+        releaseTime: "13:15",
         language: "Sub | Dob",
         videoUrl: "frame/Tojima-Wants-to-Be-a-Kamen-Rider/T1/3.html",
       },
