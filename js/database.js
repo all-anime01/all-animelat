@@ -28061,7 +28061,7 @@ export const animeData = [
   {
     id: "my-hero-academia",
     title: "My Hero Academia",
-    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=240,height=360/catalog/crunchyroll/c2fd326926dcfbb6d830661a92ac56e3.jpg",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/c2fd326926dcfbb6d830661a92ac56e3.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G6NQ5DWZ6-backdrop_wide",
       fonImg:
@@ -45705,7 +45705,7 @@ export const animeData = [
   {
     id: "spy-x-family",
     title: "Spy x Family",
-    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1759642839/filters_quality_95_format_webp_cm6pgp.webp",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/daf6e43de4a0cdacdff0dafb5944df65.jpg",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/SPY%20x%20FAMILY/SEASON%203/ULTRA-WIDE/SxF-S3-KV1-UW-LTR.png",
     fonImg:
