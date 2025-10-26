@@ -13032,7 +13032,7 @@ export const animeData = [
     rating: 4.6,
     ratingCount: "1K",
     seasons: 1,
-    episodesTotal: 3,
+    episodesTotal: 4,
     status: "En emisión",
     year: 2025,
     type: "TV",
@@ -13080,6 +13080,19 @@ export const animeData = [
         releaseTime: "22:00",
         language: "Subtitulado",
         videoUrl: "frame/Digimon-beatbreak/T1/3.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 4,
+        title: "Familia",
+        duration: "23m",
+        description:
+          "Tomoro tiene problemas para adaptarse a su nueva vida en Glowing Dawn y rechaza encargos que no le interesan.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/9b6ae0014eb09eb91e05490e14519cf2.png",
+        releaseDate: "Octubre 25, 2025",
+        releaseTime: "22:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Digimon-beatbreak/T1/4.html",
       },
       ],
   },
@@ -22041,7 +22054,7 @@ export const animeData = [
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GP5HJ84P7-backdrop_wide",
     fonImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/d39c5c22fecfcc2cb3ae56092d5b5545.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=320,height=180/catalog/crunchyroll/21f44d6dc9e72efa86dc75f0860376c5.jpg",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GP5HJ84P7-title_logo-en-us",
     imgMobile:
@@ -37379,7 +37392,7 @@ export const animeData = [
   title: "One Punch Man",
   img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/27fbe45b4c24f6c2a690eb89bf68e9ea.png",
   heroImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G63K98PZ6-backdrop_wide",
-  fonImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/a3c042b2aad7d2d742af84dfd223e04b.jpg",
+  fonImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=320,height=180/catalog/crunchyroll/a3d2ad775f8131888d50b41e2124ff8f.png",
   logoImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G63K98PZ6-title_logo-en-us",
   imgMobile: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/27fbe45b4c24f6c2a690eb89bf68e9ea.png",
   trailerUrl: "https://www.youtube.com/embed/eW-nFonrsnA?si=wPfxH6NQH6nKBbfV",
