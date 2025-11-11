@@ -46522,7 +46522,7 @@ export const animeData = [
           "Los Forger disfrutan de un día libre y Nightfall contrata a Franky para que la ayude en una misión.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0b84aa48f51a4ca167376eff5cd34ed8.jpg",
         releaseDate: "Octubre 4, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Spy-x-family/T3/38.html",
       },
       {
@@ -46534,7 +46534,7 @@ export const animeData = [
           "Anya y sus compañeros deben evitar que les den Tonitrus y vislumbramos el pasado de cierta persona.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1efe7c8dbb689d87de8f00faeb385c61.jpg",
         releaseDate: "Octubre 11, 2025",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Spy-x-family/T3/39.html",
       },
       {
@@ -46547,7 +46547,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7502d92dfa97412d0ec1ca306000fb18.jpg",
         releaseDate: "Octubre 18, 2025",
         releaseTime: "12:45",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Spy-x-family/T3/40.html",
       },
       {
