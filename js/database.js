@@ -50462,7 +50462,7 @@ export const animeData = [
         duration: "25 min",
         description:
           "Después de ser obligados a trabajar para Azul Ashengrotto, a quien contrataron para obtener ayuda con los exámenes, Ace, Deuce y Grim se ven atrapados en una situación desesperada.",
-        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1762406167/figsnnvymitj_l3akdo.jpg",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1763155990/1m3foxw9ks7d_w8rrdt.jpg",
         releaseDate: "Noviembre 12, 2025",
         language: "Sub | Dob",
         videoUrl: "frame/Twisted-wonderland-the-animation/T1/3.html",
