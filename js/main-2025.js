@@ -170,23 +170,19 @@ $(document).ready(function () {
             <div class="episode-detail-card">
                 <a href="${link}">
                     <div class="episode-img-container">
-                        <img src="${
-                          episode.img
-                        }" alt="${episode.title}" loading="lazy">
+                        <img src="${episode.img
+      }" alt="${episode.title}" loading="lazy">
                         ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
                         <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
                         <span class="duration-tag">${episode.duration}</span>
                     </div>
                     <div class="episode-card-info">
-                        <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${
-                          anime.title
-                        }</p>
-                        <h5 class="episode-card-title">${
-                          episode.number
-                        }. ${episode.title}</h5>
-                        <p class="episode-card-meta">${
-                          episode.language
-                        } • ${episode.releaseDate}</p>
+                        <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${anime.title
+      }</p>
+                        <h5 class="episode-card-title">${episode.number
+      }. ${episode.title}</h5>
+                        <p class="episode-card-meta">${episode.language
+      } • ${episode.releaseDate}</p>
                     </div>
                 </a>
             </div>`;
@@ -309,18 +305,13 @@ $(document).ready(function () {
     const prevPreviewContainer = $("#player-prev-episode-preview").empty();
     if (prevEpisode) {
       prevPreviewContainer.html(
-        `<h5 class="player-nav-title">EPISODIO ANTERIOR</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${
-          anime.id
+        `<h5 class="player-nav-title">EPISODIO ANTERIOR</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${anime.id
         }" data-season="${encodeURIComponent(
           prevEpisode.season
-        )}" data-episode-number="${
-          prevEpisode.number
-        }"><div class="player-nav-img-wrapper"><img src="${
-          prevEpisode.img
-        }" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${
-          prevEpisode.number
-        } - ${prevEpisode.title}</p><span>${
-          prevEpisode.language
+        )}" data-episode-number="${prevEpisode.number
+        }"><div class="player-nav-img-wrapper"><img src="${prevEpisode.img
+        }" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${prevEpisode.number
+        } - ${prevEpisode.title}</p><span>${prevEpisode.language
         }</span></div></a>`
       );
     }
@@ -328,18 +319,13 @@ $(document).ready(function () {
     const nextPreviewContainer = $("#player-next-episode-preview").empty();
     if (nextEpisode) {
       nextPreviewContainer.html(
-        `<h5 class="player-nav-title">SIGUIENTE EPISODIO</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${
-          anime.id
+        `<h5 class="player-nav-title">SIGUIENTE EPISODIO</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${anime.id
         }" data-season="${encodeURIComponent(
           nextEpisode.season
-        )}" data-episode-number="${
-          nextEpisode.number
-        }"><div class="player-nav-img-wrapper"><img src="${
-          nextEpisode.img
-        }" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${
-          nextEpisode.number
-        } - ${nextEpisode.title}</p><span>${
-          nextEpisode.language
+        )}" data-episode-number="${nextEpisode.number
+        }"><div class="player-nav-img-wrapper"><img src="${nextEpisode.img
+        }" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${nextEpisode.number
+        } - ${nextEpisode.title}</p><span>${nextEpisode.language
         }</span></div></a>`
       );
     }
@@ -361,19 +347,17 @@ $(document).ready(function () {
                              <div class="play-button"><i class="fas fa-play"></i></div>
                             <h3 class="overlay-title">${anime.title}</h3>
                             <div class="overlay-stats">
-                                <span><i class="fas fa-star"></i> ${
-                                  anime.rating
-                                }</span>
+                                <span><i class="fas fa-star"></i> ${anime.rating
+      }</span>
                                 <span>${anime.seasons} Temporada(s)</span>
                             </div>
                             <div class="overlay-genres">
                                 ${anime.genres
-                                  .map((genre) => `<span>${genre}</span>`)
-                                  .join("")}
+        .map((genre) => `<span>${genre}</span>`)
+        .join("")}
                             </div>
-                            <p class="overlay-description">${
-                              anime.description
-                            }</p>
+                            <p class="overlay-description">${anime.description
+      }</p>
                         </div>
                     </div>
                 </div>
@@ -423,23 +407,19 @@ $(document).ready(function () {
         <div class="episode-detail-card">
             <a href="${link}">
                 <div class="episode-img-container">
-                    <img src="${
-                      episode.img
-                    }" alt="${episode.title}" loading="lazy">
+                    <img src="${episode.img
+      }" alt="${episode.title}" loading="lazy">
                     ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
                     <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
                     <span class="duration-tag">${episode.duration}</span>
                 </div>
                 <div class="episode-card-info">
-                    <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${
-                      anime.title
-                    }</p>
-                    <h5 class="episode-card-title">${
-                      episode.number
-                    }. ${episode.title}</h5>
-                    <p class="episode-card-meta">${
-                      episode.language
-                    } • ${episode.releaseDate}</p>
+                    <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${anime.title
+      }</p>
+                    <h5 class="episode-card-title">${episode.number
+      }. ${episode.title}</h5>
+                    <p class="episode-card-meta">${episode.language
+      } • ${episode.releaseDate}</p>
                 </div>
             </a>
         </div>`;
@@ -495,7 +475,7 @@ $(document).ready(function () {
           (item) =>
             item.dateTime.getTime() >= today.getTime() &&
             item.dateTime.getTime() <
-              new Date(today).setDate(today.getDate() + 1)
+            new Date(today).setDate(today.getDate() + 1)
         )
         .sort((a, b) => b.dateTime - a.dateTime);
 
@@ -590,10 +570,10 @@ $(document).ready(function () {
         : "";
       const selectedGenres = genreButtonsContainer.length
         ? $(".genre-btn.active")
-            .map(function () {
-              return $(this).data("genre");
-            })
-            .get()
+          .map(function () {
+            return $(this).data("genre");
+          })
+          .get()
         : [];
       const selectedYear = yearSelect.length ? yearSelect.val() : "all";
       const selectedType = typeSelect.length ? typeSelect.val() : "all";
@@ -699,11 +679,9 @@ $(document).ready(function () {
 
     document.title = `Ver ${anime.title} - All-anime`;
 
-    const styleBlock = `<style id="hero-style"> .anime-detail-hero { background-image: url('${
-      anime.heroImg
-    }'); } @media (max-width: 480px) { .anime-detail-hero { background-image: linear-gradient(to top, rgba(16, 16, 16, 1) 20%, transparent 80%), url('${
-      anime.imgMobile || anime.img
-    }'); background-position: center top; } } </style>`;
+    const styleBlock = `<style id="hero-style"> .anime-detail-hero { background-image: url('${anime.heroImg
+      }'); } @media (max-width: 480px) { .anime-detail-hero { background-image: linear-gradient(to top, rgba(16, 16, 16, 1) 20%, transparent 80%), url('${anime.imgMobile || anime.img
+      }'); background-position: center top; } } </style>`;
     $("#hero-style").remove();
     $("head").append(styleBlock);
 
@@ -774,20 +752,17 @@ $(document).ready(function () {
                 <div class="episode-detail-card" data-episode-index="${index}">
                     <a href="#" class="open-player-from-details" data-episode-index="${index}">
                         <div class="episode-img-container">
-                            <img src="${ep.img}" alt="${
-          ep.title
-        }" loading="lazy">
+                            <img src="${ep.img}" alt="${ep.title
+          }" loading="lazy">
                             ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
                             <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
                             <span class="duration-tag">${ep.duration}</span>
                         </div>
                         <div class="episode-card-info">
-                            <h5 class="episode-card-title">${ep.number}. ${
-          ep.title
-        }</h5>
-                            <p class="episode-card-meta">${ep.language} • ${
-          ep.releaseDate
-        }</p>
+                            <h5 class="episode-card-title">${ep.number}. ${ep.title
+          }</h5>
+                            <p class="episode-card-meta">${ep.language} • ${ep.releaseDate
+          }</p>
                             <p class="episode-card-desc">${ep.description}</p>
                         </div>
                     </a>
@@ -842,24 +817,16 @@ $(document).ready(function () {
       `<iframe width="560" height="315" src="${anime.trailerUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
     );
     $("#modal-info-content").html(
-      `<h3>${anime.title}</h3><p>${
-        anime.description
-      }</p><div class="modal-details-grid">${
-        anime.rating
-          ? `<div><strong>Rating:</strong> <i class="fas fa-star" style="color: #ffc107;"></i> ${
-              anime.rating
-            } ${anime.ratingCount ? `(${anime.ratingCount} votos)` : ""}</div>`
-          : ""
-      }<div><strong>Audio:</strong> ${
-        anime.audio
-      }</div><div><strong>Año:</strong> ${
-        anime.year
-      }</div><div><strong>Estado:</strong> ${
-        anime.status
-      }</div><div><strong>Creador:</strong> ${
-        anime.creator
-      }</div><div><strong>Clasificación:</strong> ${
-        anime.contentWarning
+      `<h3>${anime.title}</h3><p>${anime.description
+      }</p><div class="modal-details-grid">${anime.rating
+        ? `<div><strong>Rating:</strong> <i class="fas fa-star" style="color: #ffc107;"></i> ${anime.rating
+        } ${anime.ratingCount ? `(${anime.ratingCount} votos)` : ""}</div>`
+        : ""
+      }<div><strong>Audio:</strong> ${anime.audio
+      }</div><div><strong>Año:</strong> ${anime.year
+      }</div><div><strong>Estado:</strong> ${anime.status
+      }</div><div><strong>Creador:</strong> ${anime.creator
+      }</div><div><strong>Clasificación:</strong> ${anime.contentWarning
       }</div></div>`
     );
     $("#open-trailer-modal").on("click", () =>

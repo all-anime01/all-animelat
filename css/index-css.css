@@ -533,7 +533,7 @@ body.red-theme header {
 }
 
 .slick-slide {
-    margin: 0 1rem;
+    margin: 0 0.5rem;
 }
 
 .slick-arrow {
@@ -687,12 +687,18 @@ body.red-theme header {
     background: #a52828;
 }
 
+
 /* --- Estilos de Tarjeta de Anime y Grid (Consistente) --- */
 .anime-listing-section {
     margin-bottom: 6rem;
 }
 
-.anime-grid,
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
 #continue-watching-grid,
 #history-episodes-grid {
     display: grid;
