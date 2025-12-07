@@ -38073,7 +38073,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/b79df824404742b6f7bf7611bebada8e.jpg",
         releaseDate: "Octubre 12, 2025",
         releaseTime: "10:15",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/One-punch-man/T3/1.html",
       },
       {
