@@ -41662,6 +41662,42 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Record-of-ragnarok/T3/3.html",
       },
+      {
+        season: "Temporada 3",
+        number: 4,
+        title: "Una promesa y un juramento",
+        duration: "25 min",
+        description:
+          "La infancia de Qin Shi Huang está marcada por la hostilidad. Sin embargo, con el tiempo encuentra felicidad con su estricta cuidadora.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWzS7bo1N9cqEObSGMUxTpSgLFsa-T1MlR2MovUIDOaNX0SYgKfNYmuPtQaq6XkmH_pLBhF2j4ap4leCF9gbRLLgVK25w2GCgMnTVW-yhypTFkCUH1-5HOwn.webp?r=74c",
+        releaseDate: "Diciembre 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Record-of-ragnarok/T3/4.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 5,
+        title: "El orgullo del rey de Helheim",
+        duration: "25 min",
+        description:
+          "A medida que se intensifica el séptimo combate, Hades se arranca el pecho y la sangre que brota hace que su arma divina sea aún más poderosa.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABUwfxyEMMA8qw34ABdLsiv6j-U1MO5ff99ee5Jp8igcsFl2HhoKGk5vDjH8u2_x5qo-ITb6LZaMzF2B2A_UbVWznwpEDpT0TOAG3iDfXa2-yiTzXcRlb6FLt.webp?r=6b8",
+        releaseDate: "Diciembre 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Record-of-ragnarok/T3/5.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 6,
+        title: "El retorno del rey",
+        duration: "25 min",
+        description:
+          "Al borde de la muerte, Qin Shi Huang encuentra fortaleza en Alvitr y usa de nuevo la Fuerza del Fénix. Hades prepara la lanza para el golpe final.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABcuaL6IlHKMnGafcdDel_sfjdliZEpcZ9HTqNONjCBq_pqOqUdYmpDvv1FKmwhz190oeE5_o5O5EUgm1-nCqZV6N9T6aAykAAag--X3eUOO6yFqCU91dK9PL.webp?r=a80",
+        releaseDate: "Diciembre 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Record-of-ragnarok/T3/6.html",
+      },
     ],
   },
   {
