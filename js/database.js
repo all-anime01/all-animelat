@@ -41650,6 +41650,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Record-of-ragnarok/T3/2.html",
       },
+      {
+        season: "Temporada 3",
+        number: 3,
+        title: "Chi You",
+        duration: "25 min",
+        description:
+          "Luego de la unificación de China, Qin Shi Huang asciende solo el monte Tai para probar su valía ante el dios demonio Chi You. Allí, domina el arte marcial definitivo.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABanu5sQ8ugdn9_3NPlsPWp7HkRoPUBkPf1jcsLQKYq1fxaRuZQ-XcU_8fLTJCzR3mZwpvZlbnniye0rLabPEarNGuiarp3oC_UZlKXfYVEJFPDNSC5Hx-oNE.webp?r=df9",
+        releaseDate: "Diciembre 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Record-of-ragnarok/T3/3.html",
+      },
     ],
   },
   {
