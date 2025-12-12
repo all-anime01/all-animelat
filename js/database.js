@@ -41698,6 +41698,30 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Record-of-ragnarok/T3/6.html",
       },
+      {
+        season: "Temporada 3",
+        number: 7,
+        title: "Satanás",
+        duration: "25 min",
+        description:
+          "Para el octavo combate, los dioses eligen a Belcebú, el dios maldito por el mismo Satanás. Aunque todos lo rechazan, alguna vez tuvo tres amigos cercanos que forjaron su destino.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABX9WrdEqGnZMje9CbiJ_dEdjOwAxNuuKiJLhgGr5wvtzs5CAhmrQsAFQkhmGvsgKa5DX8zReL_AHJLdJAp56eAYUmAhVqARwmPYqDF08kpTXlHpVsiR8ZpJA.webp?r=f86",
+        releaseDate: "Diciembre 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Record-of-ragnarok/T3/7.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 8,
+        title: "Luz vs. tinieblas",
+        duration: "25 min",
+        description:
+          "Mientras lucha con los poderes de la oscilación de Belcebú, Tesla reconoce que son un tipo de ciencia y contraataca con toda la fuerza del ingenio humano.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABZEjCx4AmKrZPmUo_2GwG53_Rm92zuR_lGDVkPyZ7VfsT5dPRBGHDEZaYHMu0OmxzQsh8KcrPlJDhy8YSrjeQuJuGKzl9-BTRQk.webp?r=b1d",
+        releaseDate: "Diciembre 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Record-of-ragnarok/T3/8.html",
+      },
     ],
   },
   {
