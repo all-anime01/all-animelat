@@ -41722,6 +41722,30 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Record-of-ragnarok/T3/8.html",
       },
+      {
+        season: "Temporada 3",
+        number: 9,
+        title: "Una maldición y una plegaria",
+        duration: "25 min",
+        description:
+          "Tesla encierra a Belcebú en la zona Gematría y activa el movimiento Tesla, no obstante, su oponente descubre cómo neutralizar el ataque. Los dioses aguardan la victoria, pero…",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQU1ERIdEMXOZ3tH9ujGGnEl9emX2OSxvv79dRlF5wivPU8RdULb9WYPtNz8-phWjW0lpgMogGsQ13iic2neqKDwy8fOv9UsHlUNPTb3O012BI3ySW0AW7rA.webp?r=a29",
+        releaseDate: "Diciembre 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Record-of-ragnarok/T3/9.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 10,
+        title: "Pasar la antorcha",
+        duration: "25 min",
+        description:
+          "Tesla permanece firme, aun cuando Belcebú activa la técnica prohibida de Helheim. Y cuando la batalla alcanza su punto álgido, recuerda la infancia con su hermano.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABSeILr-_gmH3aKh2ujmPfpzSyaAYDqih9x7tw3ZYc3IXmpRjl4U_r7Tx_mxvvD4rMyWnwnKUoDvY5wLbjwrCLwv_vPD_Lo7bTrnrn-KT456dXFr61CAjl2mm.webp?r=766",
+        releaseDate: "Diciembre 10, 2025",
+        language: "Sub | Dob",
+        videoUrl: "frame/Record-of-ragnarok/T3/10.html",
+      },
     ],
   },
   {
