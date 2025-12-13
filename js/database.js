@@ -12141,7 +12141,7 @@ export const animeData = [
       },
       {
         season: "Película: Reze-Hen",
-        number: 12,
+        number: 1,
         title: "Arco de Reze",
         duration: "1h 40min",
         description:
