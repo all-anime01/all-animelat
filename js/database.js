@@ -12149,7 +12149,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3726117863f360f3778fadf98215751f.jpg",
         releaseDate: "Diciembre 13, 2025",
         language: "Sub | Dob",
-        videoUrl: "frame/Chainsaw-man/Pelicula/Rezen-hen.html",
+        videoUrl: "frame/Chainsaw-man/Pelicula/Reze-hen.html",
       },
     ],
   },
