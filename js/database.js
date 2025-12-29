@@ -52237,7 +52237,7 @@ export const animeData = [
         videoUrl: "frame/Undead-unluck/T1/24.html",
       },
       {
-        season: "Temporada 1",
+        season: "Winter-hen",
         number: 1,
         title: "Arco de invierno",
         duration: "48 min",
