@@ -52245,7 +52245,7 @@ export const animeData = [
           "UMA 'Balance', mostrando a Fuuko e Andy colaborando para controlar fenómenos no identificados, enfrentándose a la conspiración y buscando la 'mejor muerte'. ",
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1766978049/t3gygh36sfcu_cvyyrj.jpg",
         releaseDate: "Diciembre 25, 2025",
-        language: "Sub | Dob",
+        language: "Subtitulado",
         videoUrl: "frame/Undead-unluck/Winter-hen/1.html",
       },
     ],
