@@ -37910,7 +37910,7 @@ export const animeData = [
         description:
           "Luffy está devastado por haber fracasado en Egghead, pero Lilith le cuenta una sorprendente noticia.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/efd9314ed75661249b69ae4b868f8b9e.jpg",
-        releaseDate: "Diciembre 21, 2025",
+        releaseDate: "Diciembre 28, 2025",
         releaseTime: "12:15",
         language: "Subtitulado",
         videoUrl: "frame/One-piece/Arc-Egghead-Island/1155.html",
@@ -38356,7 +38356,7 @@ export const animeData = [
         duration: "24 min",
         description: "Los héroes de clase S corren para rescatar a un niño rehén mientras Garou despierta en la guarida de la Asociación de Monstruos.",
         img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1766979623/lut4egooyult_arjvm6.jpg",
-        releaseDate: "Diciembre 21, 2025",
+        releaseDate: "Diciembre 28, 2025",
         releaseTime: "10:15",
         language: "Subtitulado",
         videoUrl: "frame/One-punch-man/T3/12.html",
