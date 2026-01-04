@@ -18938,7 +18938,7 @@ export const animeData = [
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G4PH0WJQZ-title_logo-en-us",
     imgMobile:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/cr/landscape_large/8ebdb253-08b9-401b-ae92-5e638987c1f6.png",
-    trailerUrl: "https://www.youtube.com/embed/E1a5MRYIGUk?si=yKENJiLKzzG98saq",
+    trailerUrl: "https://www.youtube.com/embed/D3ZU1CqKIdM?si=ZFCaWd6XhuWIEwjI",
     description:
       "Una nueva Guerra del Santo Grial se prepara en un pequeño y nuevo país pese a la oposición de los magos, pero es una Guerra del Santo Grial falsa, artificial, cuyo objetivo escapa a los miembros de la Torre del Reloj.",
     genres: ["Acción", "Fantasía", "Drama"],
