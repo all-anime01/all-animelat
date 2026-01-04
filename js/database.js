@@ -13042,7 +13042,7 @@ export const animeData = [
     rating: 4.6,
     ratingCount: "1K",
     seasons: 1,
-    episodesTotal: 12,
+    episodesTotal: 13,
     status: "En emisión",
     year: 2025,
     type: "TV",
@@ -13207,6 +13207,19 @@ export const animeData = [
         releaseTime: "22:00",
         language: "Subtitulado",
         videoUrl: "frame/Digimon-beatbreak/T1/12.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 13,
+        title: "La reunión de las Cinco Estrellas",
+        duration: "23 min",
+        description:
+          "Los miembros de las Cinco Estrellas se reúnen para debatir sobre la situación actual de los Digimon.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/069dddb16b538b225998853675d11925.png",
+        releaseDate: "Enero 3, 2026",
+        releaseTime: "22:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Digimon-beatbreak/T1/13.html",
       },
     ],
   },
@@ -18607,7 +18620,7 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: [],
-    audio: "Sub | Dob",
+    audio: "Subtitulado",
     creator: "Hiro Mashima",
     contentWarning: "+16",
     episodes: [
@@ -18910,6 +18923,63 @@ export const animeData = [
         releaseDate: "Enero 5, 2025",
         language: "Subtitulado",
         videoUrl: "frame/Fairy-tail-100-years-quest/T1/25.html",
+      },
+    ],
+  },
+  {
+    id: "Fate-strange-fake",
+    title: "Fate: Strange Fake",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/84b2e142442892d3adb0b5f0630b1f5e.jpg",
+    heroImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G4PH0WJQZ-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/b8f987ac93dd0df75922743f985dcb2a.jpg",
+    logoImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G4PH0WJQZ-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/cr/landscape_large/8ebdb253-08b9-401b-ae92-5e638987c1f6.png",
+    trailerUrl: "https://www.youtube.com/embed/E1a5MRYIGUk?si=yKENJiLKzzG98saq",
+    description:
+      "Una nueva Guerra del Santo Grial se prepara en un pequeño y nuevo país pese a la oposición de los magos, pero es una Guerra del Santo Grial falsa, artificial, cuyo objetivo escapa a los miembros de la Torre del Reloj.",
+    genres: ["Acción", "Fantasía", "Drama"],
+    rating: 4.8,
+    ratingCount: "12.3K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "Finalizado",
+    year: 2024,
+    type: "TV",
+    quality: "1080p",
+    tags: [],
+    audio: "Subtitulado",
+    creator: "©Ryohgo Narita,TYPE-MOON/KADOKAWA/FSFPC",
+    contentWarning: "+16 Lenguaje ofensivo, Tabaquismo, Violencia",
+    episodes: [
+      {
+        season: "E0",
+        number: 1,
+        title: "Fate/strange Fake -Whispers of Dawn-",
+        duration: "55 min",
+        description:
+          "Una nueva Guerra del Santo Grial se prepara en un pequeño y nuevo país pese a la oposición de los magos, pero es una Guerra del Santo Grial falsa, artificial, cuyo objetivo escapa a los miembros de la Torre del Reloj.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/16a14cb23f4d583c8b5a533e5e594d4d.jpg",
+        releaseDate: "Enero 2, 2026",
+        releaseTime: "16:50",
+        language: "Subtitulado",
+        videoUrl: "frame/Fate-strange-fake/T1/1.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "El incidente del Espíritu Heroico",
+        duration: "24 min",
+        description:
+          "Mientras la Asociación de Magos sigue indagando sobre la Guerra del Santo Grial que está organizando Estados Unidos, un nuevo Sirviente aparece en escena.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5a6d10b5aa7b84927808c09a9ebefb4a.jpg",
+        releaseDate: "Enero 3, 2026",
+        releaseTime: "16:50",
+        language: "Subtitulado",
+        videoUrl: "frame/Fate-strange-fake/T1/1.html",
       },
     ],
   },
@@ -43296,6 +43366,8 @@ export const animeData = [
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/1169f69c318b78796f8b2fff742033ff.png",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GT00356809-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/921e0b895eea91275b43fc321b20cd78.png",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GT00356809-title_logo-en-us",
     imgMobile:
@@ -43326,6 +43398,7 @@ export const animeData = [
           "Xylo y Dotta deben asegurar que los caballeros sagrados regresen con vida, pero estos no se lo pondrán fácil.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/caad4476414b7071549e378e16a71027.png",
         releaseDate: "Enero 3, 2026",
+        releaseTime: "12:50",
         language: "Sub | Dob",
         videoUrl: "frame/Sentenced-to-Be-a-Hero/T1/1.html",
       },
