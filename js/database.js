@@ -23072,7 +23072,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "5.3K",
     seasons: 1,
-    episodesTotal: 13,
+    episodesTotal: 14,
     status: "Finalizado",
     year: 2025,
     type: "TV",
@@ -23246,6 +23246,19 @@ export const animeData = [
         releaseTime: "16:30",
         language: "Subtitulado",
         videoUrl: "frame/Hell-teacher-nube/T1/13.html",
+      },
+      {
+        season: "Temporada 1-P2",
+        number: 14,
+        title: "El Yokai dimensional voltea almohadas",
+        duration: "23 min",
+        description:
+          "Nube y sus alumnos enfrentan un inquietante caso de doppelgänger cuando aparece una segunda versión de Kyōko. A medida que lo paranormal toma forma, Nube debe usar su poder espiritual para descubrir la verdad y proteger a sus estudiantes de la amenaza sobrenatural.",
+        img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1758996178/0r94ro4v6w53_mjkvxj.jpg",
+        releaseDate: "Enero 7, 2026",
+        releaseTime: "16:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Hell-teacher-nube/T1-P2/14.html",
       },
     ],
   },
@@ -23625,24 +23638,27 @@ export const animeData = [
   {
     id: "jujutsu-kaisen",
     title: "Jujutsu Kaisen",
-    img: "https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/ebcd65fa9fb83580062e7052fa6ee5a5.jpe",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/d128baf30c0638fafce3fd4e7c9ff37c.png",
     heroImg:
-      "https://static.crunchyroll.com/fms/landscape_large/94/png/8c566c3c-15e4-4c20-a224-174b0744eaf8.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GRDV0019R-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/ede36e8f3e37587c90dbd8f1216d3022.png",
     logoImg:
-      "https://static.crunchyroll.com/fms/logo/85/png/c1465630-cbe5-45ac-8bcd-62d17d54073e.webp",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GRDV0019R-title_logo-en-us",
+    imgMobile:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/d128baf30c0638fafce3fd4e7c9ff37c.png",
     trailerUrl: "https://www.youtube.com/embed/O6qVieflwqs",
     description:
       "Yuji Itadori se traga un dedo maldito para salvar a alguien de su clase y ahora Ryomen Sukuna, un poderoso hechicero malvado conocido como el Rey de las Maldiciones, vive en su alma. Las maldiciones son seres sobrenaturales creadas a partir de las emociones negativas de los humanos. Esta energía maldita puede usarse como fuente de poder por parte de los hechiceros y de los espíritus malditos.",
     genres: ["Acción", "Shounen", "Sobrenatural"],
     rating: 4.9,
-    seasons: 2,
-    episodesTotal: 47,
-    status: "Finalizado",
+    seasons: 3,
+    episodesTotal: 49,
+    status: "En emisión",
     year: 2020,
     type: "TV",
     quality: "1080p",
-    tags: ["recomendado"],
-    dateAdded: new Date(), // new Date().setDate(new Date().getDate() - 553)
+    tags: ["agregado", "recomendado"],
     episodes: [
       {
         season: "Temporada 1",
@@ -24223,6 +24239,32 @@ export const animeData = [
         releaseDate: "Diciembre 28, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T2/23.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 48,
+        title: "Ejecución",
+        duration: "23 min",
+        description:
+          "Hay caos en el clan Zen'in ante el más que posible cambio de liderazgo en favor de Megumi.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/55a0779ac886623210cba7ea54ed4380.png",
+        releaseDate: "Enero 8, 2026",
+        releaseTime: "16:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Jujutsu-kaisen/T3/1.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 49,
+        title: "De nuevo",
+        duration: "23 min",
+        description:
+          "Yuta encuentra a Yuji y empieza a luchar contra él para cumplir con su objetivo designado de ser su verdugo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/591c74756efdc2d61f4d139db84eeffd.png",
+        releaseDate: "Enero 8, 2026",
+        releaseTime: "16:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Jujutsu-kaisen/T3/2.html",
       },
     ],
   },
