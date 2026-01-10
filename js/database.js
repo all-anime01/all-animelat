@@ -29296,7 +29296,7 @@ export const animeData = [
       },
       {
         season: "Temporada 2",
-        number: 11,
+        number: 1,
         title: "¡Viaje de negocios a Osaka!",
         duration: "23 min",
         description:
@@ -29304,7 +29304,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0ac82c188c358048c5d3624a4a23eb3f.png",
         releaseDate: "Enero 5, 2026",
         language: "Sub | Dob",
-        videoUrl: "frame/My-hero-academia-Vigilantes/T2/11.html",
+        videoUrl: "frame/My-hero-academia-Vigilantes/T2/1.html",
       },
     ],
   },
