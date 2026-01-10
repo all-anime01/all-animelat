@@ -23261,7 +23261,7 @@ export const animeData = [
         videoUrl: "frame/Hell-teacher-nube/T1/13.html",
       },
       {
-        season: "Temporada 1-P2",
+        season: "Temporada 1",
         number: 14,
         title: "El Yokai dimensional voltea almohadas",
         duration: "23 min",
