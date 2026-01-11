@@ -23495,7 +23495,7 @@ export const animeData = [
         description:
           "Un nuevo grupo de Yamada Asaemon y ninjas se dirigen a la isla. Y Gabimaru combate brutalmente con Chobee.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c83ec09138d0afb8f2ea62a96d128786.png",
-        releaseDate: "Enero 10, 2026",
+        releaseDate: "Enero 11, 2026",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T2/14.html",
       },
