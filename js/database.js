@@ -13042,7 +13042,7 @@ export const animeData = [
     rating: 4.6,
     ratingCount: "1K",
     seasons: 1,
-    episodesTotal: 13,
+    episodesTotal: 14,
     status: "En emisión",
     year: 2025,
     type: "TV",
@@ -13220,6 +13220,19 @@ export const animeData = [
         releaseTime: "22:00",
         language: "Subtitulado",
         videoUrl: "frame/Digimon-beatbreak/T1/13.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 14,
+        title: "Tactics",
+        duration: "23 min",
+        description:
+          "Tomoro y compañía conocen a los miembros del Equipo Siete de Tactics y ya surgen los conflictos entre ellos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a0287652a87024812e2c2ccf693af98e.png",
+        releaseDate: "Enero 10, 2026",
+        releaseTime: "22:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Digimon-beatbreak/T1/14.html",
       },
     ],
   },
@@ -18937,7 +18950,7 @@ export const animeData = [
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G4PH0WJQZ-title_logo-en-us",
     imgMobile:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/cr/landscape_large/8ebdb253-08b9-401b-ae92-5e638987c1f6.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/84b2e142442892d3adb0b5f0630b1f5e.jpg",
     trailerUrl: "https://www.youtube.com/embed/D3ZU1CqKIdM?si=ZFCaWd6XhuWIEwjI",
     description:
       "Una nueva Guerra del Santo Grial se prepara en un pequeño y nuevo país pese a la oposición de los magos, pero es una Guerra del Santo Grial falsa, artificial, cuyo objetivo escapa a los miembros de la Torre del Reloj.",
@@ -23291,23 +23304,23 @@ export const animeData = [
   {
     id: "hells-paradise-jigokuraku",
     title: "Hell's Paradise: Jigokuraku",
-    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/dc8eccaf8d0729a43d4d35549f923877.jpg",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/d0e301af2d2589ca633a0acf43216311.png",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GJ0H7Q5ZJ-backdrop_wide",
     fonImg:
-      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751947953/4d79ae401c93ecfef612a5f0bb0928f3_vpbwig.avif",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/cc2423b3265c06f13b482b7cdf111918.png",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GJ0H7Q5ZJ-title_logo-en-us",
     imgMobile:
-      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751948092/Hells-Paradise-Jigokuraku-image-teaser-scaled_nhfucm.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/d0e301af2d2589ca633a0acf43216311.png",
     trailerUrl: "https://www.youtube.com/embed/Sz6oWpSgQ5Y?si=JFTx8WamuYvWmR4V",
     description:
       "Gabimaru el Vacío, un notorio ninja de la aldea de Iwagakure, es condenado a muerte por desertarla, pero, por mucho que sus verdugos lo intenten, no 'puede' morir… hasta que llega una misteriosa enviada del shogunato.",
     genres: ["Acción", "Fantasía", "Gore", "Shounen", "Histórico"],
     rating: 4.9,
-    ratingCount: "176.7K",
-    seasons: 1,
-    episodesTotal: 13,
+    ratingCount: "203.1K",
+    seasons: 2,
+    episodesTotal: 14,
     status: "Finalizado",
     year: 2023,
     type: "TV",
@@ -23473,6 +23486,18 @@ export const animeData = [
         releaseDate: "Julio 1, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Hells-paradise/T1/13.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 14,
+        title: "Episodio 1",
+        duration: "24 min",
+        description:
+          "Un nuevo grupo de Yamada Asaemon y ninjas se dirigen a la isla. Y Gabimaru combate brutalmente con Chobee.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c83ec09138d0afb8f2ea62a96d128786.png",
+        releaseDate: "Enero 10, 2026",
+        language: "Sub | Dob",
+        videoUrl: "frame/Hells-paradise/T2/14.html",
       },
     ],
   },
@@ -48924,7 +48949,7 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "151K",
     seasons: 3,
-    episodesTotal: 52,
+    episodesTotal: 53,
     status: "En emisión",
     year: 2021,
     type: "TV",
@@ -49528,6 +49553,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/to-your-eternity/T3/13.html",
       },
+      {
+        season: "Temporada 3",
+        number: 14,
+        title: "Lo primero",
+        duration: "24 min",
+        description: "Inmo toma la apariencia de Funa para ayudar a Mizuha. Además, no puede creer lo que ve cuando vuelve a casa.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/4c7a50f9930ccc31eb82d043fc528108.png",
+        releaseDate: "Diciembre 10, 2025",
+        releaseTime: "13:50",
+        language: "Sub | Dob",
+        videoUrl: "frame/to-your-eternity/T3/14.html",
+      },
     ],
   },
   {
@@ -49549,7 +49586,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "2.2K",
     seasons: 1,
-    episodesTotal: 13,
+    episodesTotal: 14,
     status: "En emisión",
     year: 2025,
     type: "TV",
@@ -49727,6 +49764,19 @@ export const animeData = [
         releaseTime: "13:15",
         language: "Subtitulado",
         videoUrl: "frame/Tojima-Wants-to-Be-a-Kamen-Rider/T1/13.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 14,
+        title: "Quiero conocer mejor a los humanos",
+        duration: "23 min",
+        description:
+          "Futaba se enfrenta a Kumota y descubre algo que le cambiará la vida para siempre.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3df9f9faaf7c7047db51b4c3765a1637.png",
+        releaseDate: "Enero 10, 2026",
+        releaseTime: "13:15",
+        language: "Subtitulado",
+        videoUrl: "frame/Tojima-Wants-to-Be-a-Kamen-Rider/T1/14.html",
       },
     ],
   },
@@ -51708,9 +51758,9 @@ export const animeData = [
   {
     id: "trigun-stampede",
     title: "Trigun Stampede",
-    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751872576/p_oevcpn.jpg",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1768170816/filters_quality_95_format_webp_vsdon9.webp",
     heroImg:
-      "https://i.redd.it/i-edited-the-trigun-stampede-poster-feel-free-to-use-as-a-v0-kkn1xnazzxda1.jpg?width=4096&format=pjpg&auto=webp&s=70e35edb194b3973dd9e27a6f0570d2867fa54f2",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GXJHM3PK5-backdrop_wide",
     fonImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/1e70f22065449404cc8498e759ed5541.jpg",
     logoImg:
@@ -51718,15 +51768,15 @@ export const animeData = [
     imgMobile:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751872789/GXJHM3PK5-backdrop_wide_kegqou.avif",
     trailerUrl:
-      "https://www.youtube.com/embed/xZ0aLMfvYvs?si=SDK7013UdOoP1sxj5",
+      "https://www.youtube.com/embed/2X23aw8qUOk?si=4Wp-sCfWCnYiqWY-",
     description:
       "Una joven periodista parte junto a un compañero veterano a un encargo de su editorial: encontrar a Vash Estampida, el Huracán Humano. ¿De verdad existe alguien así, que lleva el caos y el desastre allá por dónde pasa?.",
     genres: ["Acción", "Aventura", "Ciencia Ficción"],
     rating: 4.5,
     ratingCount: "28.2K",
-    seasons: 1,
-    episodesTotal: 12,
-    status: "Finalizado",
+    seasons: 2,
+    episodesTotal: 13,
+    status: "En emisión ",
     year: 2023,
     type: "TV",
     quality: "1080p",
@@ -51736,7 +51786,7 @@ export const animeData = [
     contentWarning: "+14 Violencia, Lenguaje",
     episodes: [
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 1,
         title: "Tierra de nadie.",
         duration: "23 min",
@@ -51748,7 +51798,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/1.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 2,
         title: "Hombre a la fuga.",
         duration: "23 min",
@@ -51760,7 +51810,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/2.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 3,
         title: "Potente luz, ilumina la oscuridad.",
         duration: "23 min",
@@ -51772,7 +51822,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/3.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 4,
         title: "HUNGRY!.",
         duration: "23 min",
@@ -51784,7 +51834,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/4.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 5,
         title: "Hijo de la bendición.",
         duration: "23 min",
@@ -51796,7 +51846,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/5.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 6,
         title: "Érase una vez en la tierra de la esperanza.",
         duration: "23 min",
@@ -51808,7 +51858,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/6.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 7,
         title: "Wolfwood.",
         duration: "23 min",
@@ -51820,7 +51870,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/7.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 8,
         title: "Hogar.",
         duration: "23 min",
@@ -51832,7 +51882,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/8.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 9,
         title: "Millions Knives.",
         duration: "23 min",
@@ -51844,7 +51894,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/9.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 10,
         title: "Humanidad.",
         duration: "23 min",
@@ -51856,7 +51906,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/10.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 11,
         title: "Hacia un nuevo mundo.",
         duration: "23 min",
@@ -51868,7 +51918,7 @@ export const animeData = [
         videoUrl: "frame/Trigun-stampede/T1/11.html",
       },
       {
-        season: "Temporada 1",
+        season: "Stampede",
         number: 12,
         title: "Mediodía en Julio.",
         duration: "23 min",
@@ -51878,6 +51928,18 @@ export const animeData = [
         releaseDate: "Abril 15, 2023",
         language: "Sub | Dob",
         videoUrl: "frame/Trigun-stampede/T1/12.html",
+      },
+      {
+        season: "Stargaze",
+        number: 13,
+        title: "Wandering Days (Días a la deriva)",
+        duration: "23 min",
+        description:
+          "Vash sigue desaparecido desde Lost JuLai, y Meryl, junto a Milly, viaja investigando nuevos robos de Plantas.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/f04d669af80760fe17f3296d754f7d88.jpg",
+        releaseDate: "Enero 10, 2026",
+        language: "Sub | Dob",
+        videoUrl: "frame/Trigun-stampede/T2/13.html",
       },
     ],
   },
