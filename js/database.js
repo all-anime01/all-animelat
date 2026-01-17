@@ -19869,9 +19869,9 @@ export const animeData = [
     genres: ["Aventura", "Drama", "Fantasía"],
     rating: 9.4,
     ratingCount: "95K",
-    seasons: 1,
-    episodesTotal: 28,
-    status: "Finalizado",
+    seasons: 2,
+    episodesTotal: 29,
+    status: "En emisión",
     year: 2023,
     type: "TV",
     quality: "1080p",
@@ -51913,7 +51913,7 @@ export const animeData = [
     fonImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/1e70f22065449404cc8498e759ed5541.jpg",
     logoImg:
-      "https://preview.redd.it/i-cant-find-the-font-they-use-in-the-trigun-stampede-logo-v0-om8vfjglg68c1.png?auto=webp&s=088493403ff3aaf747106ff22f46c7ee9e0dc022",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GXJHM3PK5-title_logo-en-us",
     imgMobile:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751872789/GXJHM3PK5-backdrop_wide_kegqou.avif",
     trailerUrl:
@@ -52090,6 +52090,19 @@ export const animeData = [
         releaseTime: "10:00",
         language: "Subtitulado",
         videoUrl: "frame/Trigun-stampede/T2/13.html",
+      },
+      {
+        season: "Stargaze",
+        number: 14,
+        title: "Unforgiven (Sin perdón)",
+        duration: "23 min",
+        description:
+          "Un ataque en Home hace que envíen a una jovencita a buscar al ¿amnésico? Vash.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e440c1a0976db81db8df6c1f33acd2ef.jpg",
+        releaseDate: "Enero 17, 2026",
+        releaseTime: "10:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Trigun-stampede/T2/14.html",
       },
     ],
   },
