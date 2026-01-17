@@ -18609,6 +18609,64 @@ export const animeData = [
       },
     ],
   },
+  {
+    id: "El-Incidente-Darwin",
+    title: "El Incidente Darwin",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1768667427/el-incidente-darwin_cva1eo.jpg",
+    heroImg:
+      "https://m.media-amazon.com/images/S/pv-target-images/669fdcb21d4d9aa7990fe8894d3b349a45bb7151d12f75c83e4532fb97af73c6._SX1080_FMjpg_.jpg",
+    fonImg:
+      "https://m.media-amazon.com/images/S/pv-target-images/2ccdd5feb1e79d471ab12843d52bd7945e61c82e145c0924bb1985d846665844.jpg",
+    logoImg:
+      "https://m.media-amazon.com/images/S/pv-target-images/14058cb3f266e7a40c4d245ec35e24959f6e7c514a38d0c96170bcc12c0d9768._BR-6_AC_SX600_FMpng_.png",
+    imgMobile:
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1768667141/610682271_18503021689079456_2221534867221684386_n_pufmet.jpg",
+    trailerUrl: "https://www.youtube.com/embed/7roJU6N6pP4?si=2M01-4xjktlP2b-4",
+    description:
+      "Charlie es único. Es el humancé, un híbrido entre humano y chimpancé con una inteligencia y fuerza impresionantes.Por eso, la Alianza de Liberación Animal, una organización terrorista, quiere reclutarlo.Y recurrirán a medidas extremas para lograrlo, pero Charlie está decidido a luchar para proteger a sus seres queridos.",
+    genres: ["Aventura", "Ciencia Ficción", "Acción", "Espacial", "Shounen"],
+    rating: 4.7,
+    ratingCount: "4K",
+    seasons: 1,
+    episodesTotal: 2,
+    status: "En emisión",
+    year: 2026,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado", "recomendado"],
+    audio: "Sub | Dob",
+    creator: "Darwin Jihen",
+    contentWarning: "+13 violencia",
+    episodes: [
+      // Temporada 1
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "Humancé",
+        duration: "24 min",
+        description:
+          "La Alianza de Liberación Animal, una organización terrorista, ataca un laboratorio y se lleva a una chimpancé embarazada.Quince años después, Charlie, el humancé que nació esa noche (un híbrido entre humano y chimpancé) comienza el instituto. Allí se hace amigo de Lucy, aunque ambos ignoran lo efímera que es su aparente tranquilidad.",
+        img: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/3dd482b9a90edbc133624887d93cbe02df1c356a661559e716553f5e137c4f7e._BR-6_AC_SX720_FMjpg_.jpg",
+        releaseDate: "Enero 6, 2026",
+        releaseTime: "10:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/El-Incidente-Darwin/T1/1.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 2,
+        title: "ALA (Alianza de Liberación Animal)",
+        duration: "24 min",
+        description:
+          "Muchas personas mueren en un atentado de la ALA en Nueva York. Cuando sale a la luz el vínculo de Charlie con la ALA en el pasado, todos sospechan de sus conexiones terroristas.Impasible, Charlie asiste al instituto como siempre, sin saber lo que la ALA le tiene preparado, mientras un misterioso hombre se acerca a Lucy.",
+        img: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/d429dd111fce15d78729548a367f90f09ffa8179e658230acc7301cd4cc4b727._BR-6_AC_SX720_FMjpg_.jpg",
+        releaseDate: "Enero 13, 2026",
+        releaseTime: "10:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/El-Incidente-Darwin/T1/2.html",
+      },
+    ],
+  },
   //letra F
   {
     id: "fairy-tail-100-years-quest",
@@ -19778,6 +19836,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Fire-force/T3/13.html",
       },
+      {
+        season: "Temporada 3",
+        number: 14,
+        title: "Con el sol a la espalda",
+        duration: "24 min",
+        description:
+          "Benimaru deberá enfrentarse al Doppelgänger de su predecesor en el escuadrón de Asakusa.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/52714091190160c77cad1640d7c3dada.jpg",
+        releaseDate: "Enero 16, 2026",
+        releaseTime: "11:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Fire-force/T3/14.html",
+      },
     ],
   },
   {
@@ -20172,6 +20243,19 @@ export const animeData = [
         releaseTime: "N/A",
         language: "Sub | Dob",
         videoUrl: "frame/Frieren/T1/28.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 29,
+        title: "¿Nos vamos?",
+        duration: "24 min",
+        description:
+          "Frieren, Fern y Stark prosiguen su viaje hacia Ende.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c438e1cac4a058fde005adebc2c6b742.jpg",
+        releaseDate: "Enero 16, 2026",
+        releaseTime: "10:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Frieren/T2/1.html",
       },
     ],
   },
