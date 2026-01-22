@@ -24527,7 +24527,7 @@ export const animeData = [
           "Maki va a la residencia de los Zen'in buscando herramientas de hechicería y venganza.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/7ecf1a3f532476e03000441b1c8038c3.png",
         releaseDate: "Enero 22, 2026",
-        releaseTime: "16:30",
+        releaseTime: "13:30",
         language: "Subtitulado",
         videoUrl: "frame/Jujutsu-kaisen/T3/4.html",
       },
