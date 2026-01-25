@@ -20147,7 +20147,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Mientras esperan que comience el examen de magos, Frieren ayuda a un anciano a cumplir el último deseo de su difunta esposa, recordando una vez más el valor de los recuerdos.",
-        img: "https://img1.hulu.com/user/v3/artwork/47ce1583-1954-474c-8f9f-e613b5e43c8a?base_image_bucket_name=image_manager&base_image=d151121d-91b6-45ef-86a0-54e60155b118&size=1600x900&format=jpeg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/089ef00e4cd07c88f94f19cc748bcb99.jpg",
         releaseDate: "Diciembre 22, 2023",
         releaseTime: "N/A",
         language: "Sub | Dob",
