@@ -22664,7 +22664,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/f54dcdfd6d9c806dc9e1ee3299115f10.jpg",
         releaseDate: "Octubre 26, 2025",
         releaseTime: "14:00",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/16.html",
       },
       {
@@ -22677,7 +22677,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a1af01c86e903bb58bed9ed23c80a892.jpg",
         releaseDate: "Noviembre 2, 2025",
         releaseTime: "14:00",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/17.html",
       },
       {
@@ -22690,7 +22690,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/d780e14aeb86a3adcd087fcea94f6caa.jpg",
         releaseDate: "Noviembre 9, 2025",
         releaseTime: "14:00",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/18.html",
       },
       {
