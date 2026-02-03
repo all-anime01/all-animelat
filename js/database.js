@@ -29541,7 +29541,7 @@ export const animeData = [
   {
     id: "my-hero-academia-vigilantes",
     title: "My Hero Academia: Vigilantes",
-    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/aaddcbe723d430e97bed8c1b133de38f.jpg",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/7394de4b8a8d59242d80727e8009aea2.png",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G79H23ZQ3-backdrop_wide",
     fonImg:
