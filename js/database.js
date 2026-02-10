@@ -22872,7 +22872,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/62ca73b7ec627fe64f64372244557101.png",
         releaseDate: "Noviembre 30, 2025",
         releaseTime: "14:00",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Gachiakuta/T1/21.html",
       },
       {
