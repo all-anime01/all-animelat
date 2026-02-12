@@ -24797,7 +24797,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/55a0779ac886623210cba7ea54ed4380.png",
         releaseDate: "Enero 8, 2026",
         releaseTime: "16:30",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T3/1.html",
       },
       {
@@ -24810,7 +24810,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/591c74756efdc2d61f4d139db84eeffd.png",
         releaseDate: "Enero 8, 2026",
         releaseTime: "16:30",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T3/2.html",
       },
       {
@@ -24823,7 +24823,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5f0d0ecf49c131d71729a27d7d587da7.png",
         releaseDate: "Enero 15, 2026",
         releaseTime: "16:30",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T3/3.html",
       },
       {
@@ -24868,7 +24868,7 @@ export const animeData = [
       {
         season: "Temporada 3",
         number: 54,
-        title: "EColonia n.° 1 de Tokio, parte 1",
+        title: "Colonia n.° 1 de Tokio, parte 1",
         duration: "23 min",
         description:
           "Yuji y Megumi entran a una colonia en busca de puntos para agregar una regla al Viaje a la Extinción.",
