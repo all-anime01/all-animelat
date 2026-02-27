@@ -23918,7 +23918,7 @@ export const animeData = [
         duration: "23 min",
         description: "Mamoru Kazama es un alumno de 5° B que es amigo de Hiroshi en la clase de fútbol. Tras presenciar una sombra misteriosa bailando en el techo, su salud comienza a deteriorarse de repente. Asustado, recurre a Nube en lugar de su profesora, Ritsuko, quien se indigna por ello. Sin embargo, cuando Ritsuko decide ir a visitar a Mamoru al hospital, presencia algo horrorizante...",
         img: "https://m.media-amazon.com/images/S/pv-target-images/37e99c94489470bd16649e6eefe46015dfbba065694b5a4c326ac7517d57c64f._BR-6_AC_SX720_FMjpg_.jpg",
-        releaseDate: "Febrero 26, 2026",
+        releaseDate: "Febrero 24, 2026",
         releaseTime: "16:30",
         language: "Subtitulado",
         videoUrl: "frame/Hell-teacher-nube/T1/21.html",
