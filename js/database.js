@@ -23913,7 +23913,7 @@ export const animeData = [
       },
       {
         season: "Temporada 1",
-        number: 20,
+        number: 21,
         title: "El Yokai Shokera espía por la ventana",
         duration: "23 min",
         description: "Mamoru Kazama es un alumno de 5° B que es amigo de Hiroshi en la clase de fútbol. Tras presenciar una sombra misteriosa bailando en el techo, su salud comienza a deteriorarse de repente. Asustado, recurre a Nube en lugar de su profesora, Ritsuko, quien se indigna por ello. Sin embargo, cuando Ritsuko decide ir a visitar a Mamoru al hospital, presencia algo horrorizante...",
