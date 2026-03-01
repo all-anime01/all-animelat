@@ -23677,6 +23677,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Hanma-Baki-Son-of-Ogre/T3/2.html",
       },
+      {
+        season: "El Samurái invencible",
+        number: 42,
+        title: "El semblante de Musashi",
+        duration: "26 min",
+        description: "Mientras el Dr. John acepta los métodos arcanos de Sabuko en contra de cualquier razonamiento científico, Hanayama se prepara para luchar contra Yujiro en las calles de Tokio.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABSucBEPPExlQ2h9ykrV3uBm1kFAlkRLKQrT-9JHfuydcTj4PJE4QX-WIxcoW_YquuMwGl5lhr-htNz7lkZQFy8SDfAmIUDJKxuGHyl3prR6aNlo2uznSD78U.jpg?r=1a6",
+        releaseDate: "Febrero 26, 2026",
+        releaseTime: "12:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Hanma-Baki-Son-of-Ogre/T3/3.html",
+      },
     ],
   },
   {
