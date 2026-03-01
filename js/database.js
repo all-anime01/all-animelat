@@ -23226,11 +23226,11 @@ export const animeData = [
     title: "Hanma Baki: Son of Ogre",
     img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754191303/Baki_Hanma_Serie_de_TV-969727790-large_cbe8uh.jpg",
     heroImg:
-      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754191729/pxgiX_5120x2880_odbcx9.jpg",
+      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1772340560/Baki-dou-1_qvc0qf.avif",
     fonImg:
-      "https://res.cloudinary.com/drvdc5bhz/image/upload/v1752214984/hanma_baki_fon_z2y7k8.jpg",
+      "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABTfsRrNMxEVDu8brLru1XLWMiRG8P66-eZ-UOiPGG7ukRX6bpXBH85bSHrMa1QpIDqnm-dU_KpU6Unzy05x0URYMP9GoF59i6n5rDMu4ksrrkQAor08agGbtsuWTHaO0t_vUWY-8yx-vAOO6xFiPzLcMyvGw_VsyyWsbPdnU66wtfGINt-wMXPX-W-mPfxUYig5-6UzLXBfjZq27lmIkFclwpfB5F87oEFade_ZSyw.jpg?r=694",
     logoImg:
-      "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABW1B_RMMSefvD8PSYOOv95eVmen7jKH4M2jR-LVKHKPh2V_DtXV9hFSS1CMd5-PvFIlXUIMZgxkOvLzYdrCn8li7Q39BcYgsgQ.webp?r=2ee",
+      "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/beuYL-MTCxPyt5oTOhVnWNGfZug/AAAABbINFhp9pKqzIwMKNcY1cwEpF0j5j3uIS8VYicl0FkBIROFtpjLJRl5hQeBdo0WUFt29nH9H75NRiMu_sMscRhKmemjgN5BlADP2m1XNUiJROit_lQa3wWdhusnD9hdIH1nmEESxBKhO69mtCDFjUVINSK-uvjod7892xJovtrsP8UdZXZUr.webp?r=6f5",
     imgMobile:
       "https://res.cloudinary.com/drvdc5bhz/image/upload/v1754191303/Baki_Hanma_Serie_de_TV-969727790-large_cbe8uh.jpg",
     trailerUrl: "https://www.youtube.com/embed/SDOdIjgevrk",
@@ -23654,6 +23654,18 @@ export const animeData = [
         releaseTime: "N/A",
         language: "Sub | Dob",
         videoUrl: "frame/Hanma-Baki-Son-of-Ogre/T2/27.html",
+      },
+      {
+        season: "El Samurái invencible",
+        number: 40,
+        title: "El bostezo imparable",
+        duration: "26 min",
+        description: "Una vez concluida la más grande batalla en el mundo entre padre e hijo, Baki vive un abrumador aburrimiento. Mientras tanto, Tokugawa progresa en su innovador experimento.",
+        img: "https://occ-0-4440-114.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABelU8Tr-LiyMrE8gOqabJ-U3weivNYgX-iebVBlkDs7ELqNndUdEdhEsFgxq1BxLwARVRTFRSaDsLYmkpesvKOS4TCrW4gOMBlteFtFrOORcWs9aZT6k7cHn.jpg?r=cc3",
+        releaseDate: "Febrero 26, 2025",
+        releaseTime: "12:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Hanma-Baki-Son-of-Ogre/T3/1.html",
       },
     ],
   },
