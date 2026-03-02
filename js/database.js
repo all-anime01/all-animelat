@@ -24004,7 +24004,7 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "203.1K",
     seasons: 2,
-    episodesTotal: 20,
+    episodesTotal: 21,
     status: "En emisión",
     year: 2023,
     type: "TV",
@@ -24251,7 +24251,7 @@ export const animeData = [
       {
         season: "Temporada 2",
         number: 20,
-        title: "Episodio 20",
+        title: "Dos personas y una persona",
         duration: "24 min",
         description:
           "Gabimaru llega al castillo de Tensen en busca del elixir mientras Yamada Asaemon Shugen aterriza en Shinsenkyo.",
@@ -24260,6 +24260,19 @@ export const animeData = [
         releaseTime: "10:15",
         language: "Subtitulado",
         videoUrl: "frame/Hells-paradise/T2/20.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 21,
+        title: "Crisantemo y durazno",
+        duration: "24 min",
+        description:
+          "Gantetsusai y Fuchi parecen por fin imponerse a Tao Fa, pero Ju Fa acude en su ayuda.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/718591b4f6be0bae1bba2d4d2430e714.png",
+        releaseDate: "Marzo 1, 2026",
+        releaseTime: "10:15",
+        language: "Subtitulado",
+        videoUrl: "frame/Hells-paradise/T2/21.html",
       },
     ],
   },
