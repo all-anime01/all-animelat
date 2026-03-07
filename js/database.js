@@ -25241,7 +25241,7 @@ export const animeData = [
         duration: "23 min",
         description:
           "Vemos el pasado de Higuruma como abogado hasta que se vuelve un jugador del Viaje a la Extinción.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a83b3c7e9c1c9c82b576fa55e1f6fb80.png",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a313e4c5539f3b6767f40c0e291bdc6a.png",
         releaseDate: "Febrero 26, 2026",
         releaseTime: "13:30",
         language: "Subtitulado",
