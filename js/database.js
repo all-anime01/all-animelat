@@ -50877,7 +50877,7 @@ export const animeData = [
         number: 18,
         title: "La voluntad de creer",
         duration: "24 min",
-        description: "v",
+        description: "Mientras las chicas siguen luchando en la escuela, Inmo continúa peleando bajo tierra.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8b4600530a319223fbc1e6d7151124fa.png",
         releaseDate: "Marzo 7, 2026",
         releaseTime: "13:50",
