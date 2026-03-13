@@ -18841,7 +18841,7 @@ export const animeData = [
         duration: "24 min",
         description:
           "Lucy le dice la verdad al sheriff Phil acerca del incidente en la piscina de hace diez años. Mientras Phil pone en duda su percepción de Charlie, Hannah siente que algo cambió en su hijo adoptivo. Esa noche, Lucy y Charlie intercambian mensajes como siempre, pero las extrañas respuestas de Lucy despiertan sus sospechas.",
-        img: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/2f973ea6c180321321758fa69e79f08b610ac67852ef23bffb902f9f2f879aec._BR-6_AC_SX720_FMjpg_.jpg",
+        img: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/66c635e82e486b069a4243276d25fb4901573c91e0638c2bbcdfb7e6b3a6b4bf._BR-6_AC_SX720_FMjpg_.jpg",
         releaseDate: "Marzo 3, 2026",
         releaseTime: "10:00",
         language: "Sub | Dob",
