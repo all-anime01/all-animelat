@@ -20746,7 +20746,7 @@ export const animeData = [
         description:
           "Genau y Stark se enfrentan solos a Revolte. En el bosque, las hechiceras se enfrentan a otros dos demonios.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/42034fd19b896891c09fedb01ec4dbed.png",
-        releaseDate: "Marzo 6, 2026",
+        releaseDate: "Marzo 13, 2026",
         releaseTime: "10:00",
         language: "Subtitulado",
         videoUrl: "frame/Frieren/T2/8.html",
