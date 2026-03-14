@@ -25308,7 +25308,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/ffc5fdba05389b4ddbb61d2dfb1d55e3.png",
         releaseDate: "Febrero 5, 2026",
         releaseTime: "13:30",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T3/6.html",
       },
       {
@@ -25321,7 +25321,7 @@ export const animeData = [
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0c95c1ba42a2010fc2b6ec629892992e.png",
         releaseDate: "Febrero 12, 2026",
         releaseTime: "13:30",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Jujutsu-kaisen/T3/7.html",
       },
       {
