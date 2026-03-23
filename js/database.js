@@ -24563,9 +24563,9 @@ export const animeData = [
         title: "La fugacidad y el fuego",
         duration: "24 min",
         description:
-          "Gabimaru recuerda los días que pasó con Yui. ¿Cómo terminará su batalla contra Rien?",
+          "Gabimaru recuerda los días que pasó con Yui. ¿Cómo terminará su batalla contra Rien?.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5a44228951c12d9e969e0f8bb6925deb.png",
-        releaseDate: "Marzo 15, 2026",
+        releaseDate: "Marzo 22, 2026",
         releaseTime: "10:15",
         language: "Subtitulado",
         videoUrl: "frame/Hells-paradise/T2/24.html",
