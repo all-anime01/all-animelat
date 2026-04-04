@@ -25050,7 +25050,7 @@ export const animeData = [
     ratingCount: "203.1K",
     seasons: 2,
     episodesTotal: 25,
-    status: "En emisión",
+    status: "Finalizado",
     year: 2023,
     type: "TV",
     quality: "1080p",
@@ -53947,12 +53947,12 @@ export const animeData = [
       },
       {
         season: "Temporada 2",
-        number: 12,
+        number: 1,
         title: "Las aventuras del rey",
         duration: "23 min",
         description:
           "La batalla final contra el líder enemigo obliga a Arthur a tomar una decisión difícil que podría sacrificar todo lo que ama para salvar el continente.",
-        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3994486a5a04e1eeb1f34951e4ba4981.jpg",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c4b7e1e6651c6dc6e67b06d0e2bd3ae8.png",
         releaseDate: "Abril 1, 2026",
         language: "Subtitulado",
         videoUrl: "frame/The-beginning-after-the-end/T2/1.html",
