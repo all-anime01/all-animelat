@@ -9805,7 +9805,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 468)), // Calculado desde el final de la T3
     episodes: [
       // Temporada 1
       {
@@ -10690,7 +10689,7 @@ export const animeData = [
       },
     ],
   },
-  // C
+  // letra C
   {
     id: "captain-tsubasa-junior-youth-hen",
     title: "Captain Tsubasa",
@@ -10716,7 +10715,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: [],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 370)), // Calculado desde el 30/06/24 hasta el 05/07/25 (simulado)
     audio: "Sub | Dob",
     creator: "Yoichi Takahashi",
     contentWarning: "P.G",
@@ -11816,6 +11814,501 @@ export const animeData = [
         videoUrl: "frame/Captain-Tsubasa/T2/39.html",
       },
     ],
+  },
+  {
+    id: "classroom-of-the-elite",
+    title: "Classroom of the Elite",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/3cfe30b74b8f536931370bcd441c1276.png",
+    heroImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GRVN8MNQY-backdrop_wide",
+    fonImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/8e2ad65e1fd571aabbdcdee99ae0ac8c.png",
+    logoImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GRVN8MNQY-title_logo-en-us",
+    imgMobile: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/3cfe30b74b8f536931370bcd441c1276.png",
+    trailerUrl: "https://www.youtube.com/embed/QtIvKG8q5iM?si=w55IZkDFEBbIP4z8",
+    description: "En la Preparatoria Metropolitana de Fomento Avanzado, los estudiantes gozan de una libertad sin precedentes, pero la realidad es un sistema clasista despiadado. Kiyotaka Ayanokouji, un estudiante que oculta sus verdaderas habilidades, es asignado a la Clase D, el lugar para los 'defectuosos'. A medida que se desarrolla su vida escolar, Ayanokouji deberá manipular a sus compañeros y rivales para ascender en la jerarquía, enfrentando exámenes especiales, traiciones e intrigas psicológicas.",
+    genres: ["Drama", "Psicológico", "Escolar", "Suspenso"],
+    rating: 4.9,
+    ratingCount: "32.5K",
+    seasons: 4,
+    episodesTotal: 54,
+    status: "En Emisión",
+    year: 2017,
+    type: "TV",
+    quality: "1080p",
+    tags: ["Intelectual", "Manipulación", "Misterio", "Supervivencia"],
+    audio: "Sub | Dob",
+    creator: "Shogo Kinugasa",
+    contentWarning: "+13 Violencia moderada y manipulación psicológica",
+    episodes: [
+      // TEMPORADA 1
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "El hombre es un animal que hace tratos.",
+        duration: "24 min",
+        description: "Kiyotaka Ayanokouji ingresa a la Preparatoria de Fomento Avanzado y es asignado a la Clase D. Pronto, los estudiantes descubren que el generoso sistema de puntos de la escuela tiene una trampa oculta.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep1_thumb.jpg",
+        releaseDate: "Julio 12, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/1.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 2,
+        title: "Se necesita un gran talento y habilidad para ocultar el propio talento.",
+        duration: "24 min",
+        description: "Tras descubrir la realidad de su clase, Ayanokouji y Horikita intentan ayudar a los estudiantes con peores notas a aprobar los exámenes parciales para evitar su expulsión.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep2_thumb.jpg",
+        releaseDate: "Julio 19, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/2.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 3,
+        title: "El hombre no es más que un ser que intenta ascender.",
+        duration: "24 min",
+        description: "A pesar de los esfuerzos del grupo de estudio, un estudiante falla en el examen parcial. Horikita y Ayanokouji deben negociar desesperadamente con su profesora para revertir la expulsión.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep3_thumb.jpg",
+        releaseDate: "Julio 26, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/3.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 4,
+        title: "No debemos ofendernos si otros nos ocultan la verdad.",
+        duration: "24 min",
+        description: "Sudou se ve envuelto en una violenta pelea con estudiantes de la Clase C. Si no logran encontrar un testigo que corrobore su versión de defensa propia, será expulsado de la escuela.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep4_thumb.jpg",
+        releaseDate: "Agosto 2, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/4.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 5,
+        title: "El infierno son los otros.",
+        duration: "24 min",
+        description: "Airi Sakura es identificada como la única testigo del altercado de Sudou, pero su timidez y el acoso de un misterioso fanático ponen en peligro el juicio escolar.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep5_thumb.jpg",
+        releaseDate: "Agosto 9, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/5.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 6,
+        title: "Hay dos tipos de mentiras: de hecho y de derecho.",
+        duration: "24 min",
+        description: "El juicio de Sudou comienza. Horikita se enfrenta a las astutas tácticas de Ryuen y la Clase C, mientras Ayanokouji mueve los hilos desde las sombras para forzar un veredicto favorable.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep6_thumb.jpg",
+        releaseDate: "Agosto 16, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/6.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 7,
+        title: "Nada es más peligroso que la ignorancia.",
+        duration: "24 min",
+        description: "Con la llegada del verano, las clases disfrutan de un viaje a la piscina. Sin embargo, tras la fachada de vacaciones, comienzan las maniobras estratégicas entre las clases.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep7_thumb.jpg",
+        releaseDate: "Agosto 23, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/7.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 8,
+        title: "Abandona toda esperanza, tú que entras aquí.",
+        duration: "24 min",
+        description: "El verdadero propósito del viaje de verano se revela: un extenuante Examen Especial de supervivencia en una isla desierta, donde la gestión de puntos es vital.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep8_thumb.jpg",
+        releaseDate: "Agosto 30, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/8.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 9,
+        title: "El hombre está condenado a ser libre.",
+        duration: "24 min",
+        description: "La Clase D intenta establecer una base sólida en la isla, pero las divisiones internas y la falta de comodidades generan tensiones. Mientras, la Clase C adopta una estrategia arriesgada.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep9_thumb.jpg",
+        releaseDate: "Septiembre 6, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/9.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 10,
+        title: "Cada traidor es siempre su peor enemigo.",
+        duration: "24 min",
+        description: "Alguien roba ropa interior del campamento de la Clase D, provocando una cacería de brujas entre los estudiantes. Horikita sospecha de espionaje por parte de las otras clases.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep10_thumb.jpg",
+        releaseDate: "Septiembre 13, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/10.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 11,
+        title: "Lo que la gente comúnmente llama destino es a menudo una conducta estúpida.",
+        duration: "24 min",
+        description: "Con el estado de salud de Horikita deteriorándose, la moral de la Clase D se desploma. Ayanokouji decide intervenir silenciosamente antes de que la identidad de su líder sea descubierta.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep11_thumb.jpg",
+        releaseDate: "Septiembre 20, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/11.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 12,
+        title: "El genio vive a solo un piso de la locura.",
+        duration: "24 min",
+        description: "El Examen Especial de la isla llega a su fin. Ayanokouji revela los resultados de su brillante y despiadado plan maestro, asegurando la victoria de la Clase D y marcando a todos como sus meras herramientas.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s1_ep12_thumb.jpg",
+        releaseDate: "Septiembre 27, 2017",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T1/12.html"
+      },
+
+      // TEMPORADA 2
+      {
+        season: "Temporada 2",
+        number: 1,
+        title: "Recuerda mantener la cabeza despejada en tiempos difíciles.",
+        duration: "24 min",
+        description: "Justo después de la isla, inicia un nuevo Examen Especial en el crucero: la prueba VIP. Los estudiantes son divididos por grupos basados en el zodiaco y deben descubrir al VIP oculto.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep1_thumb.jpg",
+        releaseDate: "Julio 4, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/1.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 2,
+        title: "La impaciencia y la indolencia son la raíz de todos los pecados.",
+        duration: "24 min",
+        description: "En el grupo de Marte, la desconfianza aumenta y comienzan las traiciones. Ayanokouji observa detenidamente el comportamiento oscuro de Karuizawa y su dependencia hacia los demás.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep2_thumb.jpg",
+        releaseDate: "Julio 11, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/2.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 3,
+        title: "Las almas más grandes son capaces de los mayores vicios.",
+        duration: "24 min",
+        description: "Para romper la fachada de Karuizawa, Ayanokouji permite que sea acosada por estudiantes de la Clase C, interviniendo en el último momento para ofrecerle protección a cambio de su lealtad absoluta.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep3_thumb.jpg",
+        releaseDate: "Julio 18, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/3.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 4,
+        title: "El talento debe ser creado.",
+        duration: "24 min",
+        description: "El Examen del Zodiaco concluye con resultados impredecibles. Comienzan los preparativos para el intenso Festival Deportivo, donde las clases son agrupadas en dos grandes equipos rivales.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep4_thumb.jpg",
+        releaseDate: "Julio 25, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/4.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 5,
+        title: "Todo fracaso no es más que un paso hacia el éxito.",
+        duration: "24 min",
+        description: "Ryuen ejecuta tácticas sucias durante el Festival Deportivo, saboteando a la Clase D. Horikita resulta herida e intenta manejar la situación por su cuenta, cayendo en la trampa de Kushida.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep5_thumb.jpg",
+        releaseDate: "Agosto 1, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/5.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 6,
+        title: "La adversidad es el primer camino hacia la verdad.",
+        duration: "24 min",
+        description: "Horikita se rinde ante Ryuen, pero Ayanokouji finalmente demuestra sus capacidades físicas al competir directamente contra el hermano de Horikita en una carrera de relevos.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep6_thumb.jpg",
+        releaseDate: "Agosto 8, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/6.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 7,
+        title: "Dudar de todo o creerlo todo son soluciones convenientes.",
+        duration: "24 min",
+        description: "Comienza el Examen 'Paper Shuffle'. La Clase D debe elaborar un examen para otra clase, mientras estudia intensamente. Ayanokouji investiga los vínculos pasados de Kushida.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep7_thumb.jpg",
+        releaseDate: "Agosto 15, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/7.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 8,
+        title: "La herida late profundamente en el corazón.",
+        duration: "24 min",
+        description: "Se revela la historia oscura de Kushida y por qué busca desesperadamente expulsar a Horikita y Ayanokouji. Hacen una apuesta formal basada en los resultados del examen escrito.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep8_thumb.jpg",
+        releaseDate: "Agosto 22, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/8.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 9,
+        title: "Errar es humano, perdonar es divino.",
+        duration: "24 min",
+        description: "Kushida filtra los exámenes a la Clase C, pero el plan de respaldo de Ayanokouji y Horikita salva a la Clase D de la expulsión y asegura la victoria moral.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep9_thumb.jpg",
+        releaseDate: "Agosto 29, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/9.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 10,
+        title: "La gente a menudo se engaña creyendo que es justa.",
+        duration: "24 min",
+        description: "Ryuen se obsesiona con encontrar a la mente maestra oculta de la Clase D (X). El grupo de estudio de Ayanokouji se fortalece, pero Ryuen comienza a cercar a Karuizawa.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep10_thumb.jpg",
+        releaseDate: "Septiembre 5, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/10.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 11,
+        title: "Aquel que no puede controlarse a sí mismo, debe ser controlado.",
+        duration: "24 min",
+        description: "Ryuen captura a Karuizawa y la tortura para forzarla a revelar la identidad de X. A pesar del sufrimiento, Karuizawa decide no delatar a Ayanokouji.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep11_thumb.jpg",
+        releaseDate: "Septiembre 12, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/11.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 12,
+        title: "La fuerza es la mejor aliada de un hombre fuerte.",
+        duration: "24 min",
+        description: "Ayanokouji se dirige al lugar donde tienen retenida a Karuizawa y desata sus increíbles habilidades marciales, derrotando a Ryuen y a sus secuaces él solo, estableciendo su absoluto dominio.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep12_thumb.jpg",
+        releaseDate: "Septiembre 19, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/12.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 13,
+        title: "La mayor victoria es la que se obtiene sobre uno mismo.",
+        duration: "24 min",
+        description: "Con Ryuen completamente doblegado, Ayanokouji consolida a Karuizawa como un peón esencial. El misterioso Sakayanagi se acerca a Ayanokouji, revelando que sabe sobre la 'Habitación Blanca'.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s2_ep13_thumb.jpg",
+        releaseDate: "Septiembre 26, 2022",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T2/13.html"
+      },
+
+      // TEMPORADA 3
+      {
+        season: "Temporada 3",
+        number: 1,
+        title: "El mayor principio de la justicia es elegir el menor de los males.",
+        duration: "24 min",
+        description: "Comienza el Campamento de Entrenamiento Mixto. Los estudiantes de diferentes clases y años son agrupados y deberán convivir y cooperar si no quieren ser expulsados.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep1_thumb.jpg",
+        releaseDate: "Enero 3, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/1.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 2,
+        title: "El hombre es un lobo para el hombre.",
+        duration: "24 min",
+        description: "Las tensiones en el grupo masculino aumentan. Koenji se rehúsa a cooperar y Ayanokouji debe maniobrar para evitar que su grupo repruebe el campamento.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep2_thumb.jpg",
+        releaseDate: "Enero 10, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/2.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 3,
+        title: "Nunca se olvida si se quiere olvidar.",
+        duration: "24 min",
+        description: "En el tramo final del campamento mixto, los resultados dejan a algunos estudiantes bajo la amenaza de expulsión. Ayanokouji observa las tácticas destructivas que empiezan a surgir.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep3_thumb.jpg",
+        releaseDate: "Enero 17, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/3.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 4,
+        title: "Tienes el derecho de trabajar, pero nunca al fruto del trabajo.",
+        duration: "24 min",
+        description: "De regreso a la escuela, la líder de la Clase A, Sakayanagi, lanza un brutal ataque psicológico para difamar a Ichinose Honami y exponer su mayor secreto.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep4_thumb.jpg",
+        releaseDate: "Enero 24, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/4.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 5,
+        title: "La fortuna favorece a los valientes.",
+        duration: "24 min",
+        description: "Ichinose, acorralada por los rumores, está a punto de derrumbarse. Ayanokouji decide intervenir y la confronta para obligarla a confesar su secreto frente a toda la clase.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep5_thumb.jpg",
+        releaseDate: "Enero 31, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/5.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 6,
+        title: "Es mejor recibir una injusticia que cometerla.",
+        duration: "24 min",
+        description: "Un nuevo Examen Especial sorpresivo es anunciado: El 'Voto de Clase'. Las reglas dictan que cada clase debe votar forzosamente para expulsar a uno de sus propios compañeros.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep6_thumb.jpg",
+        releaseDate: "Febrero 7, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/6.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 7,
+        title: "El mundo no cambiará por un solo ser.",
+        duration: "24 min",
+        description: "El pánico se apodera de la Clase D. Yamauchi, manipulado por Sakayanagi, lidera una campaña secreta para recolectar votos y expulsar a Ayanokouji.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep7_thumb.jpg",
+        releaseDate: "Febrero 14, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/7.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 8,
+        title: "Aquellos incapaces de aprender de la historia, están condenados a repetirla.",
+        duration: "24 min",
+        description: "Horikita toma las riendas y expone públicamente el complot de Yamauchi. La Clase D toma la difícil decisión de expulsarlo. Ryuen regresa al poder en la Clase C para salvar su pellejo.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep8_thumb.jpg",
+        releaseDate: "Febrero 21, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/8.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 9,
+        title: "El derecho extremo es el extremo de la injusticia.",
+        duration: "24 min",
+        description: "Comienza el Examen Especial final del primer año: la Competencia de Eventos. Las clases formulan y proponen pruebas estratégicas para enfrentarse entre sí bajo el mando de sus comandantes.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep9_thumb.jpg",
+        releaseDate: "Febrero 28, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/9.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 10,
+        title: "El primer y único fundamento de la virtud.",
+        duration: "24 min",
+        description: "Sakayanagi y Ayanokouji asumen los roles de comandantes protectores. Se perfila un enfrentamiento intelectual directo, mientras Ryuen ataca ferozmente a la Clase B de Ichinose.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep10_thumb.jpg",
+        releaseDate: "Marzo 6, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/10.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 11,
+        title: "Solo hay una ley en el amor, y es hacer feliz al amado.",
+        duration: "24 min",
+        description: "El enfrentamiento entre la Clase C (Ayanokouji) y la Clase A (Sakayanagi) llega a su clímax durante la partida de ajedrez. La injerencia del director interino Tsukishiro cambia el curso del resultado.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep11_thumb.jpg",
+        releaseDate: "Marzo 13, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/11.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 12,
+        title: "Cambiar mis deseos antes que el orden del mundo.",
+        duration: "24 min",
+        description: "Sakayanagi descubre la trampa de Tsukishiro en el torneo y se reúne con Ayanokouji para discutir la interferencia. El primer año escolar oficial concluye, marcando nuevas alianzas.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep12_thumb.jpg",
+        releaseDate: "Marzo 20, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/12.html"
+      },
+      {
+        season: "Temporada 3",
+        number: 13,
+        title: "El amor es el mejor maestro.",
+        duration: "24 min",
+        description: "Ayanokouji cita a Karuizawa Kei en secreto durante las vacaciones de primavera. En un giro inesperado, cimenta su lealtad no a través del miedo, sino declarando oficialmente una relación amorosa.",
+        img: "https://image.tmdb.org/t/p/w300/cote_s3_ep13_thumb.jpg",
+        releaseDate: "Marzo 27, 2024",
+        language: "Sub | Dob",
+        videoUrl: "frame/Classroom-of-the-elite/T3/13.html"
+      },
+
+      // TEMPORADA 4 (Año 2 - Estreno Simultáneo)
+      {
+        season: "Temporada 4",
+        number: 1,
+        title: "El sicario de la White Room",
+        duration: "23 min",
+        description: "Chabashira presenta una nueva aplicación y un nuevo tipo de prueba ante la clase D.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/36d39f7b37bc1a14d676ec181936fc56.png",
+        releaseDate: "Abril 1, 2026",
+        language: "Subtitulado",
+        videoUrl: "frame/Classroom-of-the-elite/T4/1.html"
+      },
+      {
+        season: "Temporada 4",
+        number: 2,
+        title: "Contrato y premio",
+        duration: "23 min",
+        description: "Todas las clases empiezan a prepararse para la prueba conjunta con los alumnos de primero.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5755a7a6726d354c9156419fd18f43d7.png",
+        releaseDate: "Abril 1, 2026",
+        language: "Subtitulado",
+        videoUrl: "frame/Classroom-of-the-elite/T4/2.html"
+      },
+      {
+        season: "Temporada 4",
+        number: 3,
+        title: "La determinación de un líder",
+        duration: "23 min",
+        description: "Horikita insiste en forjar una relación de confianza y cooperación con la clase D de primero.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/6c7438f8ee332adf66e02e722db3dfa7.png",
+        releaseDate: "Abril 1, 2026",
+        language: "Subtitulado",
+        videoUrl: "frame/Classroom-of-the-elite/T4/3.html"
+      },
+      {
+        season: "Temporada 4",
+        number: 4,
+        title: "A quién apunta la espada",
+        duration: "23 min",
+        description: "Hosen por fin accede a reunirse con los de segundo, aunque tiene sus propios motivos para hacerlo.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a6b8312de78e092ae5ce85105a36047f.png",
+        releaseDate: "Abril 1, 2026",
+        language: "Subtitulado",
+        videoUrl: "frame/Classroom-of-the-elite/T4/4.html"
+      }
+    ]
   },
   {
     id: "cyberpunk-edgerunners",
@@ -53282,9 +53775,11 @@ export const animeData = [
   {
     id: "the-beginning-after-the-end",
     title: "The Beginning After the End",
-    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/6e0a6199a24a6c773d68c54dc5449610.jpg",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/a0c91a42fd3804b47947c35928d13cb3.png",
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G24H1NWKE-backdrop_wide",
+    fonImg:
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/bbe6012b50439a9cd6ee4c40c60900e8.png",
     logoImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/G24H1NWKE-title_logo-en-us",
     imgMobile:
@@ -53295,8 +53790,8 @@ export const animeData = [
     genres: ["Acción", "Fantasía"],
     rating: 4.8,
     ratingCount: "8.8K",
-    seasons: 1,
-    episodesTotal: 11,
+    seasons: 2,
+    episodesTotal: 12,
     status: "En Emisión",
     year: 2025,
     type: "TV",
@@ -53437,6 +53932,30 @@ export const animeData = [
         releaseDate: "Junio 11, 2025",
         language: "Subtitulado",
         videoUrl: "frame/The-beginning-after-the-end/T1/11.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 12,
+        title: "La partida del rey",
+        duration: "23 min",
+        description:
+          "Arthur y Jasmine llegan al Gremio de Aventureros para que evalúen el rango de aventurero de Arthur.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/275ee1e1965dd336f4a4de7d2398d844.png",
+        releaseDate: "Junio 18, 2025",
+        language: "Subtitulado",
+        videoUrl: "frame/The-beginning-after-the-end/T1/12.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 12,
+        title: "Las aventuras del rey",
+        duration: "23 min",
+        description:
+          "La batalla final contra el líder enemigo obliga a Arthur a tomar una decisión difícil que podría sacrificar todo lo que ama para salvar el continente.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3994486a5a04e1eeb1f34951e4ba4981.jpg",
+        releaseDate: "Abril 1, 2026",
+        language: "Subtitulado",
+        videoUrl: "frame/The-beginning-after-the-end/T2/1.html",
       },
     ],
   },
