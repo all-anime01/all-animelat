@@ -14047,7 +14047,7 @@ export const animeData = [
         description: "Risu parte a Berith para buscar la guarida de los maleantes... que resultan vivir de forma bastante modesta.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/eea3133fc11b55bff66a6e870ccb3221.png",
         releaseDate: "Abril 1, 2026",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Dorohedoro/T2/1.html"
       },
       {
@@ -14058,7 +14058,7 @@ export const animeData = [
         description: "Aparece Haru la Demonio, pero ¿qué hace hablando con humanos?",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/bca606780f7cbd6eab070d0238a31da1.png",
         releaseDate: "Abril 1, 2026",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Dorohedoro/T2/2.html"
       },
       {
@@ -14069,7 +14069,7 @@ export const animeData = [
         description: "En está intentando conseguir dinero de nuevo con hongos sospechosos...",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/629fda07a99c01bba970db1af79c9eed.png",
         releaseDate: "Abril 1, 2026",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/Dorohedoro/T2/3.html"
       },
     ],
@@ -17997,7 +17997,7 @@ export const animeData = [
         description:
           "Senku y Xeno colaboran para renovar el Perseo y construir un motor para el cohete.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/735bb47b2c95e785a162064e8cb1bf91.png",
-        releaseDate: "Septiembre 25, 2026",
+        releaseDate: "Abril 2, 2026",
         releaseTime: "14:30",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/25.html",
@@ -20223,7 +20223,7 @@ export const animeData = [
     ratingCount: "103.6K",
     seasons: 3,
     episodesTotal: 70,
-    status: "En emisión",
+    status: "Finalizado",
     year: 2019,
     type: "TV",
     quality: "1080p",
@@ -21117,7 +21117,7 @@ export const animeData = [
       },
       {
         season: "Temporada 3",
-        number: 24,
+        number: 25,
         title: "La historia del héroe",
         duration: "24 min",
         description:
@@ -21126,7 +21126,7 @@ export const animeData = [
         releaseDate: "Abril 3, 2026",
         releaseTime: "11:30",
         language: "Sub | Dob",
-        videoUrl: "frame/Fire-force/T3/24.html",
+        videoUrl: "frame/Fire-force/T3/25.html",
       },
     ],
   },
