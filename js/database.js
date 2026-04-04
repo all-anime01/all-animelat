@@ -12830,7 +12830,7 @@ export const animeData = [
       },
     ],
   },
-  //letra D
+  // letra D
   {
     id: "dandadan",
     title: "Dandadan",
@@ -13159,6 +13159,43 @@ export const animeData = [
         videoUrl: "frame/Dandadan/T2/24.html",
       },
     ],
+  },
+  {
+    id: "daemons-of-the-shadow-realm",
+    title: "Daemons of the Shadow Realm",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/c8835413e0f794fdafa629cc973a273e.png",
+    heroImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GT00371630-backdrop_wide",
+    fonImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/cf01037046bf9885e1ddbc3c1753610e.png",
+    logoImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GT00371630-title_logo-en-us",
+    imgMobile: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/c8835413e0f794fdafa629cc973a273e.png",
+    trailerUrl: "https://www.youtube.com/embed/Nxwbt66cows?si=pVjxyG3UFfWBOVb4",
+    description: "En un mundo donde ciertos humanos controlan poderosos dúos sobrenaturales llamados tsugai, gobernar sobre estas entidades es el derecho de nacimiento de 'los hijos que separan el día y la noche': los gemelos Yoru y Asa. Separados desde pequeños y ajenos a la verdad sobre su origen, hermano y hermana deberán luchar para reencontrarse, reclamar lo que les pertenece y salvar el mundo…",
+    genres: ["Acción", "Aventura", "Shounen", "Sobrenatural"],
+    rating: 4.9,
+    ratingCount: "2.1K",
+    seasons: 1,
+    episodesTotal: 1,
+    status: "En emisión",
+    year: 2026,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado", "recomendado"],
+    audio: "Sub | Dob",
+    creator: "Hiromu Arakawa",
+    contentWarning: "+16 Violencia",
+    episodes: [
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "Asa y Yuru",
+        duration: "23 min",
+        description: "La tranquila vida de los gemelos Asa y Yuru se ve afectada cuando unos desconocidos atacan su aldea.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2bb36091fe7aaa50aff860d9578826a5.png",
+        releaseDate: "Abril 4, 2026",
+        language: "Sub | Dob",
+        videoUrl: "frame/Daemons-of-the-shadow-realm/T1/1.html"
+      }
+    ]
   },
   {
     id: "dark-gathering",
@@ -16911,13 +16948,13 @@ export const animeData = [
   {
     id: "dr-stone",
     title: "Dr. Stone",
-    img: "https://a.storyblok.com/f/178900/960x1357/d42021c586/dr-stone-science-future-kv.jpeg/m/filters:quality(95)format(webp)",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/8c6a480e254bbfe8c30714eb60ff79b2.png",
     heroImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=94,width=1920/CurationAssets/Dr%20STONE%20/SEASON%204/ULTRA-WIDE/DrSTONE-S4-KV1-UW-LTR.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GYEXQKJG6-backdrop_wide",
     fonImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/f3accca2b543e1d3b7b9533ca55d2119.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/11ab8c0484fce91aa628e9d1bfdeb2c0.png",
     logoImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/CurationAssets/Dr%20STONE%20/SEASON%204/ULTRA-WIDE/DrSTONE-S4-KV1-UW-Logo-EN.png",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GYEXQKJG6-title_logo-en-us",
     imgMobile:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GYEXQKJG6-backdrop_wide",
     trailerUrl: "https://www.youtube.com/embed/qbthdPHU8FQ?si=aQOLxhv8mfjDkPD0",
@@ -16925,10 +16962,10 @@ export const animeData = [
       "Senku es un joven extremadamente inteligente con un gran don para la ciencia y una ácida personalidad, y su mejor amigo es Taiju, que es muy buena persona pero más apto para usar los músculos que para pensar. Cuando tras cierto incidente toda la humanidad acaba convertida en piedra, ellos logran despertarse en un mundo miles de años después, con la civilización humana completamente desaparecida y con toda la humanidad congelada en piedra como ellos estuvieron. Ahora es su obligación rescatar a la gente y crear un nuevo mundo.",
     genres: ["Aventuras", "Ciencia Ficción", "Comedia", "Shounen"],
     rating: 4.8,
-    ratingCount: "161.7K",
+    ratingCount: "211.3K",
     seasons: 5,
-    episodesTotal: 71,
-    status: "Finalizado",
+    episodesTotal: 83,
+    status: "En emisión",
     year: 2019,
     type: "TV",
     quality: "1080p",
@@ -17952,6 +17989,19 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/24.html",
       },
+      {
+        season: "Temporada 4",
+        number: 25,
+        title: "Future Engine",
+        duration: "24 min",
+        description:
+          "Senku y Xeno colaboran para renovar el Perseo y construir un motor para el cohete.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/735bb47b2c95e785a162064e8cb1bf91.png",
+        releaseDate: "Septiembre 25, 2026",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dr-stone/T4/25.html",
+      },
     ],
   },
   {
@@ -17979,7 +18029,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado"],
-    dateAdded: new Date(), // Calculado desde el 30/06/24
     audio: "Sub | Dob",
     creator: "Koyoharu Gotouge",
     contentWarning: "+16 Violencia, Gore",
@@ -21062,6 +21111,19 @@ export const animeData = [
           "El mundo ha llegado a su fin. ¿Logrará revertirlo Shinra enfrentándose a Haumea en Adora?",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/f0899d1c1b8eb9d36bc25cc3df34da51.png",
         releaseDate: "Marzo 27, 2026",
+        releaseTime: "11:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Fire-force/T3/24.html",
+      },
+      {
+        season: "Temporada 3",
+        number: 24,
+        title: "La historia del héroe",
+        duration: "24 min",
+        description:
+          "El desenlace del duelo entre la Santa de la desesperación y Shinrabanshoman.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/e73bd84a36fb6bc0ef888b64473492ca.png",
+        releaseDate: "Abril 3, 2026",
         releaseTime: "11:30",
         language: "Sub | Dob",
         videoUrl: "frame/Fire-force/T3/24.html",
@@ -42422,7 +42484,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: [],
-    dateAdded: new Date(), // Calculado desde el 24/03/22
     audio: "Sub | Dob",
     creator: "Tsugumi Ohba & Takeshi Obata",
     contentWarning: "+16 Violencia, Suicidio",
