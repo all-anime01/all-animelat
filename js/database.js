@@ -29970,7 +29970,7 @@ export const animeData = [
     heroImg:
       "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G24H1N3MP-backdrop_wide",
     fonImg:
-      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/6b944913c4e0a705b1fdc0e426e24530.jpg",
+      "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/f383b5cb493803f8672755cc11b4a4f6.png",
     logoImg:
       "https://static.crunchyroll.com/fms/logo/a90be63b-d5a1-4981-ae04-9877d71bc006.png",
     imgMobile:
@@ -35433,7 +35433,44 @@ export const animeData = [
       },
     ],
   },
-  // O
+  {
+    id: "nippon-sangoku",
+    title: "NIPPON SANGOKU: The Three Nations of the Crimson Sun",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751956057/nippon_sangoku_poster.jpg",
+    heroImg: "https://image.tmdb.org/t/p/original/nippon_sangoku_hero.jpg",
+    fonImg: "https://image.tmdb.org/t/p/original/nippon_sangoku_hero.jpg",
+    logoImg: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1751956183/nippon_sangoku_logo.webp",
+    imgMobile: "https://image.tmdb.org/t/p/original/nippon_sangoku_mobile.jpg",
+    trailerUrl: "https://www.youtube.com/embed/placeholder_trailer?si=nipponsangoku",
+    description: "A finales del siglo XXI, Japón ha sufrido un colapso demográfico y social catastrófico que ha devuelto al país a una era de señores de la guerra, dividiendo la nación en tres grandes potencias militares: Yamato, Seikai y Mutsu. En este brutal y despiadado escenario, un joven llamado Ryumon Sankaku, que carece de fuerza física pero está armado con un intelecto brillante y una oratoria inigualable, decide alistarse en el ejército de Yamato. Su máxima ambición: ascender en las filas militares y unificar Japón una vez más a través de la pura estrategia.",
+    genres: ["Seinen", "Acción", "Drama", "Militar", "Política"],
+    rating: 4.7,
+    ratingCount: "1.2K",
+    seasons: 1,
+    episodesTotal: 12,
+    status: "En Emisión",
+    year: 2026,
+    type: "TV",
+    quality: "1080p",
+    tags: ["Guerra", "Estrategia", "Japón Distópico", "Intelectual"],
+    audio: "Sub | Dob",
+    creator: "Matsuki Ikka",
+    contentWarning: "+16 Violencia y Temas Políticos",
+    episodes: [
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "El orador sin espada",
+        duration: "24 min",
+        description: "En un Japón fracturado por la guerra, el ambicioso pero físicamente débil Ryumon Sankaku se presenta ante los reclutadores del ejército de Yamato. Utilizando únicamente su elocuencia y su aguda mente estratégica, debe convencer a los altos mandos de que su valor en el campo de batalla supera al de cualquier guerrero armado.",
+        img: "https://image.tmdb.org/t/p/w300/nippon_sangoku_ep1_thumb.jpg",
+        releaseDate: "Abril 5, 2026",
+        language: "Sub | Dob",
+        videoUrl: "frame/Nippon-sangoku/T1/1.html"
+      }
+    ]
+  },
+  // Letra O
   {
     id: "ousama-ranking",
     title: "Ranking of King: Ousama Ranking",
@@ -50974,7 +51011,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "5.5K",
     seasons: 1,
-    episodesTotal: 3,
+    episodesTotal: 4,
     status: "En Emisión",
     year: 2026,
     type: "TV",
@@ -51020,6 +51057,18 @@ export const animeData = [
         language: "Sub | Dob",
         videoUrl: "frame/Rooster-Fighter/T1/3.html",
       },
+      {
+        season: "Temporada 1",
+        number: 4,
+        title: "Entrando en el deseo",
+        duration: "25 min",
+        description: "El trío llega a una aldea donde los adultos han sido controlados mentalmente por un Kiju.",
+        img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/019c9b5a-218f-7eff-80b1-72cf598f913a/compose?format=webp&label=standard_regular_list_178&width=800",
+        releaseDate: "Abril 4, 2026",
+        releaseTime: "23:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Rooster-Fighter/T1/4.html",
+      },
     ],
   },
   //letra T
@@ -51042,7 +51091,7 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "15.2K",
     seasons: 1,
-    episodesTotal: 3,
+    episodesTotal: 6,
     status: "Finalizado",
     year: 2025,
     type: "TV",
@@ -51133,10 +51182,10 @@ export const animeData = [
     title: "That Time I Got Reincarnated as a Slime",
     img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/73e5f88d8820852b8320290637ab7c49.png",
     heroImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GYZJ43JMR-backdrop_wide",
-    fonImg: "https://image.tmdb.org/t/p/original/slime_hero.jpg",
+    fonImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/7a4cae45857540d3f7ade36ce9fae160.png",
     logoImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GYZJ43JMR-title_logo-en-us",
     imgMobile: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/73e5f88d8820852b8320290637ab7c49.png",
-    trailerUrl: "https://www.youtube.com/embed/VjdEwEebv9M?si=slime",
+    trailerUrl: "https://www.youtube.com/embed/qnFfPdaZJO4?si=_0szMHzprUX64P69",
     description: "Satoru Mikami es un hombre de 37 años que tiene un trabajo que no le gusta, sin salida y que no es feliz con la vida que lleva, pero cuando muere a manos de un ladrón y piensa que es su fin, se despierta descubriendo que se ha reencarnado en un mundo de magia y espada… ¡pero como un slime! Ahora tendrá que acostumbrarse a su nueva vida, aunque por suerte contará con dos habilidades únicas que...",
     genres: ["Isekai", "Fantasía", "Aventura", "Comedia", "Acción"],
     rating: 4.8,
