@@ -13192,6 +13192,7 @@ export const animeData = [
         description: "La tranquila vida de los gemelos Asa y Yuru se ve afectada cuando unos desconocidos atacan su aldea.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/2bb36091fe7aaa50aff860d9578826a5.png",
         releaseDate: "Abril 4, 2026",
+        releaseTime: "12:15",
         language: "Sub | Dob",
         videoUrl: "frame/Daemons-of-the-shadow-realm/T1/1.html"
       }
@@ -35465,6 +35466,7 @@ export const animeData = [
         description: "Aoteru Misumi es un joven que vive en el campo en Ehime, Yamato. Trabaja como funcionario agrícola y vive tranquilamente con su esposa Saki. Un día, los visita una procesión a caballo digna de un rey. El carruaje más extravagante lleva al mismísimo Denki Taira, el señor de asuntos internos y verdadero gobernante de Yamato.",
         img: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/707ca2c89749d7b54d7dede599e1713373d0383791d51f58925f7ed5d9a40fd3._BR-6_AC_SX720_FMpng_.png",
         releaseDate: "Abril 4, 2026",
+        releaseTime: "21:00",
         language: "Sub | Dob",
         videoUrl: "frame/Nippon-sangoku/T1/1.html"
       }
