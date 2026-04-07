@@ -13573,7 +13573,7 @@ export const animeData = [
     rating: 4.6,
     ratingCount: "1K",
     seasons: 1,
-    episodesTotal: 23,
+    episodesTotal: 25,
     status: "En emisión",
     year: 2025,
     type: "TV",
@@ -13872,7 +13872,7 @@ export const animeData = [
       {
         season: "Temporada 1",
         number: 23,
-        title: "Episodio 23",
+        title: "El poder para arrebatar",
         duration: "23 min",
         description:
           "Tomoro Tenma y su Digimon Gekkomon se unen a los cazarrecompensas Golden Dawn para investigar a los Digimon rebeldes.",
@@ -13881,6 +13881,32 @@ export const animeData = [
         releaseTime: "22:00",
         language: "Subtitulado",
         videoUrl: "frame/Digimon-beatbreak/T1/23.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 24,
+        title: "Ritmos entrelazados",
+        duration: "23 min",
+        description:
+          "Tras atacar a Kyo, Klay también ataca a los demás de Glowing Dawn y Tomoro debe enfrentarse solo a él.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/1f808c1ec960c26553ceed60f8a5e447.png",
+        releaseDate: "Marzo 28, 2026",
+        releaseTime: "22:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Digimon-beatbreak/T1/24.html",
+      },
+      {
+        season: "Temporada 1",
+        number: 25,
+        title: "El héroe novato",
+        duration: "23 min",
+        description:
+          "Los miembros de Glowing Dawn regresan en un crucero de lujo, pero no descansarán tranquilos.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/0faa6e602782a56b9c38b7d35e4d5360.png",
+        releaseDate: "Abril 4, 2026",
+        releaseTime: "22:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Digimon-beatbreak/T1/25.html",
       },
     ],
   },
@@ -16522,7 +16548,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["agregado"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 125)), // Calculado desde el 03/04/25
     audio: "Sub | Dob",
     creator: "Hideki Kamiya (Capcom)",
     contentWarning: "+18 Violencia, Gore",
@@ -16650,7 +16675,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: [],
-    dateAdded: new Date(), // Calculado desde el 25/12/23 new Date().setDate(new Date().getDate() - 560)
     audio: "Sub | Dob",
     creator: "Ryohgo Narita & Shinta Fujimoto",
     contentWarning: "+16 Violencia, Gore",
@@ -27477,6 +27501,44 @@ export const animeData = [
     ],
   },
   //letra M
+  {
+    id: "Mao",
+    title: "MAO",
+    img: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1775532875/660618489_1475369374384622_96716597933535045_n_dn96ep.jpg",
+    heroImg: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/019d4a41-6c40-7b11-be1f-9150e21745a6/compose?format=webp&width=1440",
+    fonImg: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/019d4a41-65aa-7f71-a1f6-0317cd1ad7b8/compose?format=webp&label=standard_regular_prompt_178&width=800",
+    logoImg: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/019d4a41-62fa-7934-9feb-8c15c35d1b22/trim?format=webp&max=800%7C300",
+    imgMobile: "https://res.cloudinary.com/drvdc5bhz/image/upload/v1775532875/660618489_1475369374384622_96716597933535045_n_dn96ep.jpg",
+    trailerUrl: "https://www.youtube.com/embed/T8hsY9L-vjQ?si=yb0kvaKWTFC01VVx",
+    description: "Nanoka Kiba es una estudiante de secundaria que lleva una vida normal, a pesar de que sus padres murieron en un misterioso accidente de coche del que ella salió ilesa años atrás. Un día, al pasar cerca del lugar del accidente, se ve transportada a la era Taisho (principios del siglo XX). Allí conoce a Mao, un enigmático onmyoji (exorcista) que parece estar involucrado en el mismo incidente de su pasado y que está maldito con la inmortalidad. Nanoka y Mao deben unir fuerzas para desentrañar los secretos de sus destinos entrelazados, enfrentándose a demonios y otros curse masters mientras buscan la verdad sobre el monstruo que los maldijo a ambos.",
+    genres: ["Acción", "Aventura", "Sobrenatural", "Shounen", "Histórico", "Romance"],
+    rating: 4.8,
+    ratingCount: "12.5K",
+    seasons: 1,
+    episodesTotal: 24, // Asumiendo dos cours consecutivos
+    status: "En Emisión",
+    year: 2026,
+    type: "TV",
+    quality: "1080p",
+    tags: ["agregado", "recomendado"],
+    audio: "Subtitulado",
+    creator: "Rumiko Takahashi",
+    contentWarning: "+14 Violencia y Gore",
+    episodes: [
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "Nanoka y Mao",
+        duration: "26 min",
+        description: "Nanoka es una adolescente moderna. Deambulando por una comercial, descubre un nuevo mundo.",
+        img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/019d4a5e-9190-728d-bf23-570bbec842d2/compose?format=webp&label=standard_regular_list_178&width=800",
+        releaseDate: "Abril 4, 2026",
+        releaseTime: "9:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Mao/T1/1.html"
+      }
+    ]
+  },
   {
     id: "malevolent-spirits-mononogatari",
     title: "Malevolent Spirits: Mononogatari",
@@ -56754,7 +56816,7 @@ export const animeData = [
       },
     ],
   },
-  // W
+  //letra W
   {
     id: "wind-breaker",
     title: "Wind Breaker",
@@ -56778,7 +56840,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado", "agregado", "doblaje"],
-    dateAdded: new Date(new Date().setDate(new Date().getDate() - 375)), // Calculado desde el 27/06/24
     audio: "Sub | Dob",
     creator: "Satoru Nii",
     contentWarning: "+14 Violencia",
@@ -57098,7 +57159,6 @@ export const animeData = [
     type: "TV",
     quality: "1080p",
     tags: ["recomendado"],
-    dateAdded: new Date(), // Calculado desde el 29/09/24
     audio: "Sub | Dob",
     creator: "Fujino Omori",
     contentWarning: "+16",
@@ -57248,6 +57308,56 @@ export const animeData = [
         videoUrl: "frame/Wistoria-Wand-and-Sword/T1/12.html",
       },
     ],
+  },
+  {
+    id: "witch-hat-atelier",
+    title: "Witch Hat Atelier",
+    img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/354514144b82b6950c584f1e84cb49d9.png",
+    heroImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/GT00258001-backdrop_wide",
+    fonImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=640,height=360/catalog/crunchyroll/7384aedb73167f46725a7e5fa978e278.png",
+    logoImg: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480/keyart/GT00258001-title_logo-en-us",
+    imgMobile: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/354514144b82b6950c584f1e84cb49d9.png",
+    trailerUrl: "https://www.youtube.com/embed/RVpuJODP9lY?si=RJkA2LtO5tdkl6sz",
+    description: "En un mundo donde solo las brujas pueden hacer magia, deben evitar ser vistas por la gente común mientras la practican. Mientras Coco realiza sus tareas, sueña despierta con convertirse en bruja. Cuando una joven bruja llamada Qifrey visita su aldea, Coco descubre el 'secreto absoluto', se convierte en su aprendiz y comienza sus estudios. Esta es la historia de niños que se enfrentan a la desesperación, pero que buscan la esperanza.",
+    genres: ["Fantasía", "Aventura", "Seinen"],
+    rating: 4.9,
+    ratingCount: "4.1K",
+    seasons: 1,
+    episodesTotal: 13,
+    status: "En Emisión",
+    year: 2026,
+    type: "TV",
+    quality: "1080p",
+    tags: ["Agregado", "Recomendado", "Doblaje"],
+    audio: "Sub | Dob",
+    creator: "Kamome Shirahama",
+    contentWarning: "+13 Magia y Peligro",
+    episodes: [
+      {
+        season: "Temporada 1",
+        number: 1,
+        title: "El comienzo de la magia",
+        duration: "24 min",
+        description: "Coco descubre el mayor secreto de los brujos: la magia se dibuja. Al intentar replicar un hechizo de un misterioso libro, provoca un desastre que convierte a su madre en piedra. El mago Qifrey llega a la escena y le ofrece una salida a su desesperación.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c22f598190660794c5c2e164ed2a07c4.png",
+        releaseDate: "Abril 6, 2026",
+        releaseTime: "9:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/Witch-hat-atelier/T1/1.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 2,
+        title: "El atelier de las praderas",
+        duration: "24 min",
+        description: "Qifrey lleva a Coco a su Atelier para que comience su aprendizaje. Allí, Coco conoce a las demás aprendices: Tetia, Richeh y Agott, pero no todas están felices con la llegada de una joven que no nació sabiendo sobre magia.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c5a95d920250a8e3701f9754e3b288ba.png",
+        releaseDate: "Abril 6, 2026",
+        releaseTime: "9:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/Witch-hat-atelier/T1/2.html"
+      },
+    ]
   },
   //letra Y
   {
