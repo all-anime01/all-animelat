@@ -11829,7 +11829,7 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "32.5K",
     seasons: 4,
-    episodesTotal: 54,
+    episodesTotal: 55,
     status: "En emisión",
     year: 2017,
     type: "TV",
@@ -12308,6 +12308,18 @@ export const animeData = [
         releaseTime: "11:30",
         language: "Subtitulado",
         videoUrl: "frame/Classroom-of-the-elite/T4/4.html"
+      },
+      {
+        season: "Temporada 4",
+        number: 5,
+        title: "El hombre de 20 millones",
+        duration: "23 min",
+        description: "El examen especial entre cursos ya quedó atrás, pero Ayanokoji revela que alteraba sus calificaciones.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/677d1f070c4c74083f1444ee1f177455.png",
+        releaseDate: "Abril 8, 2026",
+        releaseTime: "11:30",
+        language: "Subtitulado",
+        videoUrl: "frame/Classroom-of-the-elite/T4/5.html"
       }
     ]
   },
@@ -13925,7 +13937,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "15.2K",
     seasons: 2,
-    episodesTotal: 15,
+    episodesTotal: 16,
     status: "En emisión",
     year: 2020,
     type: "TV",
@@ -14100,6 +14112,18 @@ export const animeData = [
         releaseTime: "10:15",
         language: "Sub | Dob",
         videoUrl: "frame/Dorohedoro/T2/3.html"
+      },
+      {
+        season: "Temporada 2",
+        number: 4,
+        title: "Los escarabajos dorados son ricos",
+        duration: "25 min",
+        description: "¡¿Un asesinato que intenta camuflarse como un suicidio?!",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/533a2e468e6d5c0c48d85a14c1368b6d.png",
+        releaseDate: "Abril 8, 2026",
+        releaseTime: "10:15",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dorohedoro/T2/4.html"
       },
     ],
   },
@@ -31577,7 +31601,7 @@ export const animeData = [
           "Mientras sositiene el Sky Egg, Captain Celebrity recuerda cómo conoció a su esposa.",
         img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/a3eb695f6dece02712677d10c0b63bb4.png",
         releaseDate: "Marzo 16, 2026",
-        language: "Subtitulado",
+        language: "Sub | Dob",
         videoUrl: "frame/My-hero-academia-Vigilantes/T2/11.html",
       },
       {
@@ -54126,7 +54150,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "8.8K",
     seasons: 2,
-    episodesTotal: 13,
+    episodesTotal: 14,
     status: "En emisión",
     year: 2025,
     type: "TV",
@@ -54291,6 +54315,18 @@ export const animeData = [
         releaseDate: "Abril 1, 2026",
         language: "Subtitulado",
         videoUrl: "frame/The-beginning-after-the-end/T2/1.html",
+      },
+      {
+        season: "Temporada 2",
+        number: 2,
+        title: "La princesa empieza su aventura",
+        duration: "23 min",
+        description:
+          "Tess, acompañada de Vio y Feyrith, recorre el continente en busca de misiones… y de Arthur.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/8ebbfb6bd8415be7ac0ead170308397b.png",
+        releaseDate: "Abril 8, 2026",
+        language: "Subtitulado",
+        videoUrl: "frame/The-beginning-after-the-end/T2/2.html",
       },
     ],
   },
