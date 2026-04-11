@@ -13187,7 +13187,7 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "2.1K",
     seasons: 1,
-    episodesTotal: 1,
+    episodesTotal: 2,
     status: "En emisión",
     year: 2026,
     type: "TV",
@@ -13208,6 +13208,18 @@ export const animeData = [
         releaseTime: "12:15",
         language: "Sub | Dob",
         videoUrl: "frame/Daemons-of-the-shadow-realm/T1/1.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 2,
+        title: "Izquierda y Derecho",
+        duration: "23 min",
+        description: "Tras la revelación de Asa, Yuru escapa con Dera hacia el mundo inferior junto a sus recién conocidos tsugai.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c9db985dc04f68aa0ed9d9e365a08f04.png",
+        releaseDate: "Abril 11, 2026",
+        releaseTime: "12:15",
+        language: "Sub | Dob",
+        videoUrl: "frame/Daemons-of-the-shadow-realm/T1/2.html"
       }
     ]
   },
@@ -17015,7 +17027,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "211.3K",
     seasons: 5,
-    episodesTotal: 83,
+    episodesTotal: 84,
     status: "En emisión",
     year: 2019,
     type: "TV",
@@ -18052,6 +18064,19 @@ export const animeData = [
         releaseTime: "14:30",
         language: "Sub | Dob",
         videoUrl: "frame/Dr-stone/T4/25.html",
+      },
+      {
+        season: "Temporada 4",
+        number: 26,
+        title: "Fire",
+        duration: "24 min",
+        description:
+          "El equipo de Senku llega a España para obtener dos materiales esencides: fluorita y aceite de oliva",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/339297d05e3a10a2fd03ec74d281f225.png",
+        releaseDate: "Abril 9, 2026",
+        releaseTime: "14:30",
+        language: "Sub | Dob",
+        videoUrl: "frame/Dr-stone/T4/26.html",
       },
     ],
   },
