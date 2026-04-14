@@ -27566,7 +27566,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "12.5K",
     seasons: 1,
-    episodesTotal: 24, // Asumiendo dos cours consecutivos
+    episodesTotal: 2,
     status: "En emisión",
     year: 2026,
     type: "TV",
@@ -27587,7 +27587,19 @@ export const animeData = [
         releaseTime: "9:00",
         language: "Subtitulado",
         videoUrl: "frame/Mao/T1/1.html"
-      }
+      },
+      {
+        season: "Temporada 1",
+        number: 2,
+        title: "La Dama de las Telarañas",
+        duration: "26 min",
+        description: "Nanoka descubre que la galería está conectada a la era Taisho y Mao investiga unos asesinatos.",
+        img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/019d655d-bd02-72e7-b558-54cec16aaa95/compose?format=webp&label=standard_regular_list_178&width=800",
+        releaseDate: "Abril 11, 2026",
+        releaseTime: "9:00",
+        language: "Subtitulado",
+        videoUrl: "frame/Mao/T1/2.html"
+      },
     ]
   },
   {
@@ -36041,7 +36053,7 @@ export const animeData = [
     ],
     rating: 4.9,
     seasons: 21,
-    episodesTotal: 1155,
+    episodesTotal: 1157,
     status: "En emisión",
     year: 1999,
     type: "TV",
@@ -40506,6 +40518,19 @@ export const animeData = [
         releaseTime: "12:15",
         language: "Subtitulado",
         videoUrl: "frame/One-piece/Elbaph/1156.html",
+      },
+      {
+        season: "T21: Elbaph",
+        number: 1157,
+        title: "¡Nami está perpleja! Una aventura en el reino de Block",
+        duration: "23 min",
+        description:
+          "Nami despierta en un sitio desconocido y la atacan animales enormes. Y no tiene a sus compañeros...",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/3c8b6e8262d61ac62f7920a9bf946358.png",
+        releaseDate: "Abril 12, 2026",
+        releaseTime: "12:15",
+        language: "Subtitulado",
+        videoUrl: "frame/One-piece/Elbaph/1157.html",
       },
     ],
   },
@@ -51306,7 +51331,7 @@ export const animeData = [
     rating: 4.8,
     ratingCount: "85.4K",
     seasons: 4,
-    episodesTotal: 73,
+    episodesTotal: 74,
     status: "En emisión",
     year: 2018,
     type: "TV",
@@ -51435,7 +51460,18 @@ export const animeData = [
         releaseDate: "Abril 3, 2026",
         language: "Subtitulado",
         videoUrl: "frame/Tensei-shitara-slime-datta-ken/T4/1.html"
-      }
+      },
+      {
+        season: "Temporada 4",
+        number: 1,
+        title: "La evolución de la mazmorra",
+        duration: "24 min",
+        description: "Rimuru y sus compañeros debaten ideas para mejorar la mazmorra.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/4508b81fc443c8b87271f77361c2c396.png",
+        releaseDate: "Abril 10, 2026",
+        language: "Subtitulado",
+        videoUrl: "frame/Tensei-shitara-slime-datta-ken/T4/1.html"
+      },
     ]
   },
   {
@@ -57386,7 +57422,7 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "4.1K",
     seasons: 1,
-    episodesTotal: 13,
+    episodesTotal: 3,
     status: "En emisión",
     year: 2026,
     type: "TV",
@@ -57419,6 +57455,18 @@ export const animeData = [
         releaseTime: "9:00",
         language: "Sub | Dob",
         videoUrl: "frame/Witch-hat-atelier/T1/2.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 3,
+        title: "El examen en los picos de Dada",
+        duration: "24 min",
+        description: "Agete obliga a Coco a ir sola a los picos de Dada a hacer el examen para convertirse en aprendiz de Qifrey.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/5a37cd7e4337f09f169aef304e1dd876.png",
+        releaseDate: "Abril 13, 2026",
+        releaseTime: "9:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/Witch-hat-atelier/T1/3.html"
       },
     ]
   },
