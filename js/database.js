@@ -57593,7 +57593,7 @@ export const animeData = [
     rating: 4.9,
     ratingCount: "4.1K",
     seasons: 1,
-    episodesTotal: 3,
+    episodesTotal: 4,
     status: "En emisión",
     year: 2026,
     type: "TV",
@@ -57638,6 +57638,18 @@ export const animeData = [
         releaseTime: "9:00",
         language: "Sub | Dob",
         videoUrl: "frame/Witch-hat-atelier/T1/3.html"
+      },
+      {
+        season: "Temporada 1",
+        number: 4,
+        title: "El encuentro en Karoon",
+        duration: "24 min",
+        description: "Qifrey lleva a las niñas a Karoon para comprarle una nueva pluma a Coco. Pero algo sale muy mal.",
+        img: "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=70,width=320,height=180/catalog/crunchyroll/c302ec25df99b0b64a5d72f48f776a60.png",
+        releaseDate: "Abril 20, 2026",
+        releaseTime: "9:00",
+        language: "Sub | Dob",
+        videoUrl: "frame/Witch-hat-atelier/T1/4.html"
       },
     ]
   },
