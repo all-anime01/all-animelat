@@ -1,0 +1,9 @@
+# Dependencias npm (no se usan: Firebase se carga por CDN en el navegador)
+node_modules/
+package.json
+package-lock.json
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi cuenta — All-Anime</title>
+    <link rel="shortcut icon" href="image/logo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ca3030;
+            --dark-bg: #101010;
+            --card-bg: #202020;
+            --light-text: #f0f0f0;
+            --grey-text: #a0a0a0;
+            --border-color: #303030;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Roboto', system-ui, sans-serif;
+            background: radial-gradient(circle at top, #1c1c1c 0%, var(--dark-bg) 60%);
+            color: var(--light-text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+        }
+
+        .auth-logo { text-align: center; margin-bottom: 8px; }
+        .auth-logo img { height: 46px; }
+
+        .auth-sub { text-align: center; color: var(--grey-text); font-size: 14px; margin-bottom: 24px; }
+
+        .tabs { display: flex; margin-bottom: 22px; border-radius: 10px; background: #161616; padding: 4px; }
+        .tab {
+            flex: 1; text-align: center; padding: 10px; cursor: pointer; border-radius: 8px;
+            color: var(--grey-text); font-weight: 600; font-size: 14px; transition: .2s;
+        }
+        .tab.active { background: var(--primary-color); color: #fff; }
+
+        .field { margin-bottom: 16px; }
+        .field label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--grey-text); }
+        .field input {
+            width: 100%; padding: 12px 14px; background: #161616; border: 1px solid var(--border-color);
+            border-radius: 10px; color: var(--light-text); font-size: 15px; outline: none; transition: .2s;
+        }
+        .field input:focus { border-color: var(--primary-color); }
+
+        .btn {
+            width: 100%; padding: 13px; border: none; border-radius: 10px; cursor: pointer;
+            background: var(--primary-color); color: #fff; font-size: 15px; font-weight: 700;
+            margin-top: 6px; transition: .2s;
+        }
+        .btn:hover { filter: brightness(1.1); }
+        .btn:disabled { opacity: .6; cursor: not-allowed; }
+
+        .msg { margin-top: 16px; font-size: 14px; text-align: center; min-height: 18px; }
+        .msg.error { color: #ff6b6b; }
+        .msg.ok { color: #4ade80; }
+
+        .hidden { display: none !important; }
+
+        .back-home { display: block; text-align: center; margin-top: 20px; color: var(--grey-text); text-decoration: none; font-size: 13px; }
+        .back-home:hover { color: var(--light-text); }
+
+        .logged-box { text-align: center; }
+        .logged-box .avatar {
+            width: 64px; height: 64px; border-radius: 50%; background: var(--primary-color);
+            display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-card">
+        <div class="auth-logo"><img src="logo-all-anime.svg" alt="All-Anime"></div>
+
+        <!-- Vista: ya con sesión iniciada -->
+        <div id="logged-view" class="logged-box hidden">
+            <div class="avatar"><i class="fas fa-user"></i></div>
+            <p style="font-size:18px;font-weight:700" id="logged-name">—</p>
+            <p style="color:var(--grey-text);font-size:14px;margin-bottom:20px" id="logged-email">—</p>
+            <a class="btn" href="perfil.html" style="display:block;text-decoration:none;text-align:center;margin-bottom:10px">
+                <i class="fas fa-user-gear"></i> Mi perfil
+            </a>
+            <a id="admin-link" class="btn hidden" href="admin/index.html" style="display:block;text-decoration:none;text-align:center;margin-bottom:10px">
+                <i class="fas fa-gauge-high"></i> Panel de administración
+            </a>
+            <button class="btn" id="logout-btn" style="background:#333"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</button>
+            <a href="index.html" class="back-home">← Volver al inicio</a>
+        </div>
+
+        <!-- Vista: formularios -->
+        <div id="form-view">
+            <p class="auth-sub">Inicia sesión o crea tu cuenta para comentar, dar like y guardar tu progreso.</p>
+
+            <div class="tabs">
+                <div class="tab active" data-tab="login">Iniciar sesión</div>
+                <div class="tab" data-tab="register">Registrarse</div>
+            </div>
+
+            <!-- Login -->
+            <form id="login-form">
+                <div class="field">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="login-email" autocomplete="email" required>
+                </div>
+                <div class="field">
+                    <label>Contraseña</label>
+                    <input type="password" id="login-password" autocomplete="current-password" required>
+                </div>
+                <button class="btn" type="submit" id="login-btn">Entrar</button>
+            </form>
+
+            <!-- Registro -->
+            <form id="register-form" class="hidden">
+                <div class="field">
+                    <label>Nombre de usuario</label>
+                    <input type="text" id="reg-name" autocomplete="nickname" required>
+                </div>
+                <div class="field">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="reg-email" autocomplete="email" required>
+                </div>
+                <div class="field">
+                    <label>Contraseña</label>
+                    <input type="password" id="reg-password" autocomplete="new-password" minlength="6" required>
+                </div>
+                <button class="btn" type="submit" id="reg-btn">Crear cuenta</button>
+            </form>
+
+            <div class="msg" id="msg"></div>
+            <a href="index.html" class="back-home">← Volver al inicio</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { registerUser, loginUser, logoutUser, observeAuth, isAdmin } from "./js/auth.js";
+        import { FIREBASE_CONFIGURED } from "./js/firebase-config.js";
+
+        const $ = (id) => document.getElementById(id);
+        const msg = $("msg");
+        const params = new URLSearchParams(location.search);
+
+        function showMsg(text, type = "error") {
+            msg.textContent = text;
+            msg.className = "msg " + type;
+        }
+
+        if (!FIREBASE_CONFIGURED) {
+            showMsg("⚠ Falta configurar Firebase en js/firebase-config.js", "error");
+        }
+
+        // --- Cambio de pestañas ---
+        document.querySelectorAll(".tab").forEach((tab) => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
+                tab.classList.add("active");
+                const isLogin = tab.dataset.tab === "login";
+                $("login-form").classList.toggle("hidden", !isLogin);
+                $("register-form").classList.toggle("hidden", isLogin);
+                showMsg("");
+            });
+        });
+
+        // --- Redirección tras iniciar sesión ---
+        function redirectAfterAuth(user) {
+            const dest = params.get("redirect");
+            if (dest) { location.href = dest; return; }
+            if (isAdmin(user)) { location.href = "admin/index.html"; return; }
+            location.href = "index.html";
+        }
+
+        // --- Login ---
+        $("login-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const btn = $("login-btn");
+            btn.disabled = true;
+            showMsg("");
+            try {
+                const user = await loginUser({ email: $("login-email").value, password: $("login-password").value });
+                showMsg("¡Bienvenido! Redirigiendo…", "ok");
+                redirectAfterAuth(user);
+            } catch (err) {
+                const { authErrorMessage } = await import("./js/auth.js");
+                showMsg(authErrorMessage(err.code));
+                btn.disabled = false;
+            }
+        });
+
+        // --- Registro ---
+        $("register-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const btn = $("reg-btn");
+            btn.disabled = true;
+            showMsg("");
+            try {
+                const user = await registerUser({
+                    email: $("reg-email").value,
+                    password: $("reg-password").value,
+                    displayName: $("reg-name").value,
+                });
+                showMsg("¡Cuenta creada! 📧 Te enviamos un correo para verificar tu cuenta.", "ok");
+                // Damos un momento para leer el aviso antes de redirigir.
+                setTimeout(() => {
+                    if (params.get("redirect")) { location.href = params.get("redirect"); return; }
+                    location.href = isAdmin(user) ? "admin/index.html" : "perfil.html";
+                }, 1800);
+            } catch (err) {
+                const { authErrorMessage } = await import("./js/auth.js");
+                showMsg(authErrorMessage(err.code));
+                btn.disabled = false;
+            }
+        });
+
+        // --- Estado de sesión ---
+        observeAuth((user) => {
+            const logged = $("logged-view");
+            const forms = $("form-view");
+            if (user) {
+                logged.classList.remove("hidden");
+                forms.classList.add("hidden");
+                $("logged-name").textContent = user.displayName || user.email.split("@")[0];
+                $("logged-email").textContent = user.email;
+                $("admin-link").classList.toggle("hidden", !isAdmin(user));
+            } else {
+                logged.classList.add("hidden");
+                forms.classList.remove("hidden");
+            }
+        });
+
+        $("logout-btn").addEventListener("click", async () => {
+            await logoutUser();
+            showMsg("Sesión cerrada.", "ok");
+        });
+    </script>
+</body>
+
+</html>

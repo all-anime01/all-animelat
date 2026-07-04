@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importar catálogo — All-Anime Admin</title>
+    <link rel="shortcut icon" href="../image/logo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Roboto, system-ui, sans-serif; background: #101010; color: #f0f0f0; padding: 30px 16px; }
+        .wrap { max-width: 720px; margin: 0 auto; }
+        h1 { font-size: 22px; margin-bottom: 6px; }
+        .sub { color: #a0a0a0; font-size: 14px; margin-bottom: 24px; }
+        .box { background: #202020; border: 1px solid #303030; border-radius: 14px; padding: 22px; }
+        .btn { background: #ca3030; color: #fff; border: none; padding: 13px 22px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; }
+        .btn:disabled { opacity: .5; cursor: not-allowed; }
+        .btn.grey { background: #333; }
+        .bar { height: 12px; background: #161616; border-radius: 8px; overflow: hidden; margin: 20px 0 8px; }
+        .bar > div { height: 100%; width: 0; background: linear-gradient(90deg, #ca3030, #ff5c5c); transition: width .3s; }
+        .log { margin-top: 16px; font-family: monospace; font-size: 13px; background: #0c0c0c; border-radius: 10px; padding: 14px; max-height: 260px; overflow-y: auto; white-space: pre-wrap; }
+        .warn { background: #3a2a10; border: 1px solid #6b4d1a; color: #ffcf7a; padding: 12px 14px; border-radius: 10px; font-size: 14px; margin-bottom: 18px; }
+        a { color: #ff6b6b; }
+        .center { text-align: center; padding: 40px 0; }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1><i class="fas fa-database"></i> Importar catálogo a Firebase</h1>
+        <p class="sub">Sube todos los animes y episodios de <code>js/database.js</code> a Firestore. Ejecútalo una vez (o de nuevo para re-sincronizar).</p>
+
+        <div id="gate" class="center">Verificando sesión…</div>
+
+        <div id="panel" class="box" style="display:none">
+            <div class="warn"><i class="fas fa-triangle-exclamation"></i> Esto escribe/actualiza los documentos <code>animes/*</code> y <code>catalog/index</code>. Los likes, comentarios y usuarios NO se tocan.</div>
+            <button class="btn" id="start"><i class="fas fa-cloud-arrow-up"></i> Iniciar importación</button>
+            <a href="index.html" style="margin-left:14px">← Volver al panel</a>
+            <div class="bar"><div id="progress"></div></div>
+            <div id="count" style="font-size:13px;color:#a0a0a0"></div>
+            <div class="log" id="log" style="display:none"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { animeData } from "../js/database.js";
+        import { db, isAdmin } from "../js/firebase-config.js";
+        import { observeAuth } from "../js/auth.js";
+        import { toCatalogCard } from "../js/catalog-utils.js";
+        import { doc, writeBatch, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const $ = (id) => document.getElementById(id);
+        const logEl = $("log");
+        function log(t) { logEl.style.display = "block"; logEl.textContent += t + "\n"; logEl.scrollTop = logEl.scrollHeight; }
+
+        observeAuth((user) => {
+            if (!user) {
+                $("gate").innerHTML = 'Debes iniciar sesión como administrador. <a href="../cuenta.html?redirect=admin/importar.html">Iniciar sesión</a>';
+                return;
+            }
+            if (!isAdmin(user)) {
+                $("gate").innerHTML = 'No tienes permisos de administrador.';
+                return;
+            }
+            $("gate").style.display = "none";
+            $("panel").style.display = "block";
+        });
+
+        $("start").addEventListener("click", async () => {
+            const btn = $("start");
+            btn.disabled = true;
+            const total = animeData.length;
+            let done = 0;
+            const CHUNK = 20; // documentos por lote (evita el límite de tamaño de batch)
+
+            log(`Iniciando importación de ${total} animes…`);
+            try {
+                for (let i = 0; i < animeData.length; i += CHUNK) {
+                    const slice = animeData.slice(i, i + CHUNK);
+                    const batch = writeBatch(db);
+                    for (const anime of slice) {
+                        if (!anime.id) { log(`⚠ Anime sin id omitido: ${anime.title}`); continue; }
+                        batch.set(doc(db, "animes", anime.id), { ...anime, updatedAt: serverTimestamp() });
+                    }
+                    await batch.commit();
+                    done += slice.length;
+                    $("progress").style.width = Math.round((done / total) * 100) + "%";
+                    $("count").textContent = `${done} / ${total} animes subidos`;
+                    log(`Lote ${Math.floor(i / CHUNK) + 1}: ${done}/${total}`);
+                }
+
+                // Índice ligero del catálogo (una sola lectura para los listados).
+                log("Generando índice del catálogo (catalog/index)…");
+                const cards = animeData.filter((a) => a.id).map(toCatalogCard);
+                const version = Date.now();
+                // El doc de índice puede ser grande; se guarda en un único documento.
+                const idxBatch = writeBatch(db);
+                idxBatch.set(doc(db, "catalog", "index"), { items: cards, count: cards.length, version, updatedAt: serverTimestamp() });
+                idxBatch.set(doc(db, "meta", "catalog"), { version, count: cards.length, updatedAt: serverTimestamp() });
+                await idxBatch.commit();
+
+                $("progress").style.width = "100%";
+                log(`✅ Importación completa. ${cards.length} animes en el catálogo.`);
+                $("count").innerHTML = `✅ Listo. <a href="../index.html">Ver el sitio</a> · <a href="index.html">Panel</a>`;
+            } catch (err) {
+                console.error(err);
+                log("❌ Error: " + (err.message || err));
+                if (String(err.code) === "permission-denied") {
+                    log("→ Revisa que publicaste firestore.rules y que iniciaste sesión con el correo admin.");
+                }
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

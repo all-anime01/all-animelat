@@ -1,6 +1,114 @@
-import { animeData } from "./database.js";
+import { getAnimeData } from "./data-provider.js";
+import { initPlayerEngagement, clearAutoplay, getWatchedSet } from "./engagement.js";
+import { episodeId as makeEpId } from "./catalog-utils.js";
+import * as UD from "./user-data.js";
+import { mountRatingWidget } from "./rating-widget.js";
+import { observeAuth, logoutUser } from "./auth.js";
+import { FIREBASE_CONFIGURED } from "./firebase-config.js";
+import { logVisit } from "./analytics.js";
+
+// Registra la visita (una vez por sesión) para la analítica del admin.
+logVisit();
+
+// --- WIDGET DE CUENTA EN EL HEADER (todas las páginas) ---
+function injectAccountWidget() {
+  const host = document.querySelector(".header-right") || document.querySelector("header");
+  if (!host || document.getElementById("acct-widget")) return;
+
+  if (!document.getElementById("acct-widget-styles")) {
+    const s = document.createElement("style");
+    s.id = "acct-widget-styles";
+    s.textContent = `
+    #acct-widget{position:relative;display:inline-flex;align-items:center;margin-left:6px;z-index:1200}
+    .acct-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+      border-radius:30px;padding:4px 10px 4px 4px;cursor:pointer;color:#f0f0f0;font-family:inherit;font-size:1.3rem;line-height:1}
+    .acct-btn:hover{border-color:var(--primary-color,#ca3030)}
+    .acct-btn img,.acct-btn .acct-ph{width:30px;height:30px;border-radius:50%;object-fit:cover;background:#333;flex:none;
+      display:flex;align-items:center;justify-content:center;border:2px solid var(--primary-color,#ca3030)}
+    .acct-btn .acct-nm{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+    .acct-btn .fa-chevron-down{font-size:.9rem;opacity:.7}
+    .acct-login{display:inline-flex;align-items:center;gap:7px;background:var(--primary-color,#ca3030);color:#fff;border-radius:30px;
+      padding:8px 15px;text-decoration:none;font-size:1.3rem;font-weight:600}
+    .acct-menu{position:absolute;top:calc(100% + 10px);right:0;min-width:220px;background:#1b1b1b;border:1px solid #303030;
+      border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.55);overflow:hidden;display:none}
+    .acct-menu.open{display:block}
+    .acct-head{display:flex;align-items:center;gap:11px;padding:14px;border-bottom:1px solid #2a2a2a}
+    .acct-head img,.acct-head .acct-ph{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#333;flex:none;
+      display:flex;align-items:center;justify-content:center;border:2px solid var(--primary-color,#ca3030)}
+    .acct-head b{font-size:1.4rem;display:block;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .acct-head span{font-size:1.15rem;color:#999;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+    .acct-menu a,.acct-menu button{display:flex;align-items:center;gap:11px;width:100%;padding:12px 15px;background:none;border:none;
+      color:#f0f0f0;text-decoration:none;font-size:1.35rem;cursor:pointer;font-family:inherit;text-align:left}
+    .acct-menu a:hover,.acct-menu button:hover{background:#262626}
+    .acct-menu a i,.acct-menu button i{width:18px;text-align:center;color:#bbb}
+    .acct-menu .acct-admin i{color:var(--primary-color,#ca3030)}
+    .acct-menu .sep{height:1px;background:#2a2a2a}
+    .nav-acct{display:none}
+    @media (max-width:768px){
+      #acct-widget .acct-nm,#acct-widget .acct-btn .fa-chevron-down{display:none}
+      #acct-widget .acct-btn{padding:3px}
+      .acct-menu{position:fixed;top:64px;right:12px;left:12px;min-width:0}
+      .navbar ul .nav-acct{display:block;border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:6px}
+    }`;
+    document.head.appendChild(s);
+  }
+  // Accesos de cuenta dentro del menú hamburguesa (solo visibles en móvil).
+  const navUl = document.querySelector(".navbar ul");
+  function renderNavAccount(user) {
+    if (!navUl) return;
+    navUl.querySelectorAll(".nav-acct").forEach((n) => n.remove());
+    const admin = user && (user.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
+    const items = user
+      ? [`<li class="nav-acct"><a href="perfil.html"><i class="fas fa-user-gear"></i> Mi perfil</a></li>`,
+         `<li class="nav-acct"><a href="perfil.html"><i class="fas fa-heart"></i> Mis favoritos</a></li>`,
+         admin ? `<li class="nav-acct"><a href="admin/index.html"><i class="fas fa-gauge-high"></i> Admin</a></li>` : "",
+         `<li class="nav-acct"><a href="#" id="nav-logout"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</a></li>`]
+      : [`<li class="nav-acct"><a href="cuenta.html"><i class="fas fa-user"></i> Iniciar sesión</a></li>`];
+    navUl.insertAdjacentHTML("beforeend", items.join(""));
+    const nl = document.getElementById("nav-logout");
+    if (nl) nl.addEventListener("click", async (e) => { e.preventDefault(); await logoutUser(); location.href = "index.html"; });
+  }
+
+  const w = document.createElement("div");
+  w.id = "acct-widget";
+  host.insertBefore(w, host.querySelector("#menu-icon") || null);
+
+  const renderLoggedOut = () => {
+    w.innerHTML = `<a class="acct-login" href="cuenta.html"><i class="fas fa-user"></i> Entrar</a>`;
+  };
+  renderLoggedOut();
+  renderNavAccount(null);
+  if (!FIREBASE_CONFIGURED) return;
+
+  observeAuth((user) => {
+    renderNavAccount(user);
+    if (!user) { renderLoggedOut(); return; }
+    const admin = (user.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
+    const name = user.displayName || user.email.split("@")[0];
+    const ph = (cls) => user.photoURL
+      ? `<img class="${cls}" src="${user.photoURL}" alt="">`
+      : `<span class="acct-ph ${cls}"><i class="fas fa-user"></i></span>`;
+    w.innerHTML = `
+      <button class="acct-btn" id="acct-toggle" title="${user.email}">
+        ${ph("")}<span class="acct-nm">${name}</span><i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="acct-menu" id="acct-menu">
+        <div class="acct-head">${ph("")}<div><b>${name}</b><span>${user.email}</span></div></div>
+        <a href="perfil.html"><i class="fas fa-user-gear"></i> Mi perfil</a>
+        ${admin ? '<a class="acct-admin" href="admin/index.html"><i class="fas fa-gauge-high"></i> Panel de administración</a>' : ""}
+        <div class="sep"></div>
+        <button id="acct-logout"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</button>
+      </div>`;
+    const menu = w.querySelector("#acct-menu");
+    w.querySelector("#acct-toggle").addEventListener("click", (e) => { e.stopPropagation(); menu.classList.toggle("open"); });
+    document.addEventListener("click", (e) => { if (!w.contains(e.target)) menu.classList.remove("open"); });
+    w.querySelector("#acct-logout").addEventListener("click", async () => { await logoutUser(); location.href = "index.html"; });
+  });
+}
+injectAccountWidget();
 
 $(document).ready(function () {
+  getAnimeData().then(function (animeData) {
   // --- LÓGICA DE ANIMACIÓN DE CARGA ---
   if (window.innerWidth <= 991 && !sessionStorage.getItem("loaderShown")) {
     $("body").css("overflow", "hidden");
@@ -103,35 +211,43 @@ $(document).ready(function () {
     return getFavoriteEpisodes().includes(episodeId);
   }
 
-  function toggleEpisodeFavorite(episodeId) {
-    let favorites = getFavoriteEpisodes();
-    const index = favorites.indexOf(episodeId);
-    if (index > -1) {
-      favorites.splice(index, 1);
-    } else {
-      favorites.push(episodeId);
-    }
-    localStorage.setItem("favoriteEpisodes", JSON.stringify(favorites));
-    updateEpisodeFavoriteButtonState(episodeId);
+  // Anime/episodio abiertos actualmente en el reproductor (para sync con Firestore).
+  let currentPlayerAnime = null;
+  let currentPlayerEpisode = null;
+
+  function setEpisodeFavLocal(episodeId, on) {
+    let f = getFavoriteEpisodes();
+    if (on && !f.includes(episodeId)) f.push(episodeId);
+    if (!on) f = f.filter((x) => x !== episodeId);
+    localStorage.setItem("favoriteEpisodes", JSON.stringify(f));
   }
 
-  function updateEpisodeFavoriteButtonState(episodeId) {
-    const favBtn = $("#player-favorite-btn");
-    if (isEpisodeFavorite(episodeId)) {
-      favBtn
-        .addClass("is-favorite")
-        .attr("title", "Quitar de Favoritos")
-        .find("i")
-        .removeClass("far")
-        .addClass("fas");
-    } else {
-      favBtn
-        .removeClass("is-favorite")
-        .attr("title", "Agregar a Favoritos")
-        .find("i")
-        .removeClass("fas")
-        .addClass("far");
+  function paintEpisodeFav(on) {
+    $("#player-favorite-btn")
+      .toggleClass("is-favorite", on)
+      .attr("title", on ? "Quitar de Favoritos" : "Agregar a Favoritos")
+      .find("i").toggleClass("fas", on).toggleClass("far", !on);
+  }
+
+  async function toggleEpisodeFavorite(episodeId) {
+    if (UD.isLoggedIn() && currentPlayerAnime && currentPlayerEpisode) {
+      try {
+        const on = await UD.toggleFavEpisode(currentPlayerAnime, currentPlayerEpisode);
+        setEpisodeFavLocal(episodeId, on);
+        paintEpisodeFav(on);
+        return;
+      } catch (err) { console.error(err); }
     }
+    const on = !getFavoriteEpisodes().includes(episodeId);
+    setEpisodeFavLocal(episodeId, on);
+    paintEpisodeFav(on);
+  }
+
+  async function updateEpisodeFavoriteButtonState(episodeId) {
+    if (UD.isLoggedIn() && currentPlayerAnime && currentPlayerEpisode) {
+      try { paintEpisodeFav(await UD.isFavEpisode(currentPlayerAnime, currentPlayerEpisode)); return; } catch {}
+    }
+    paintEpisodeFav(isEpisodeFavorite(episodeId));
   }
 
   // --- LÓGICA DE HISTORIAL ---
@@ -276,11 +392,14 @@ $(document).ready(function () {
   // --- FUNCIÓN PRINCIPAL DEL REPRODUCTOR ---
   function openPlayer(anime, episode) {
     if (!anime || !episode) return;
+    currentPlayerAnime = anime;
+    currentPlayerEpisode = episode;
     const playerModal = $("#episode-player-modal");
     const episodeId = `${anime.id}::${episode.season}::ep${episode.number}`;
     playerModal.attr("data-episode-id", episodeId);
 
-    loadDisqus(episodeId, anime, episode);
+    // Comentarios propios (Firestore) en lugar de Disqus. Ver engagement.js.
+    // loadDisqus(episodeId, anime, episode);
 
     const seasonEpisodes = anime.episodes
       .filter((e) => e.season === episode.season)
@@ -329,6 +448,14 @@ $(document).ready(function () {
         }</span></div></a>`
       );
     }
+
+    // --- Engagement: likes, comentarios, visto, siguiente/autoplay ---
+    initPlayerEngagement({
+      anime,
+      episode,
+      nextEpisode,
+      onPlayNext: nextEpisode ? () => openPlayer(anime, nextEpisode) : null,
+    });
 
     playerModal.css("display", "flex").hide().fadeIn();
     $("body").css("overflow", "hidden");
@@ -694,6 +821,7 @@ $(document).ready(function () {
                     <span class="quality-tag-detail">${anime.quality}</span>
                 </div>
                 <p class="anime-description">${anime.description}</p>
+                <div id="anime-rating"></div>
                 <div class="anime-actions">
                     <button class="action-btn play open-player-from-details" data-episode-index="0"><i class="fas fa-play"></i> Play</button>
                     <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> More Info</button>
@@ -701,10 +829,25 @@ $(document).ready(function () {
                 </div>
             </div>`;
     container.html(heroContent);
+    mountRatingWidget(document.getElementById("anime-rating"), anime.id);
 
     const episodesContainer = $("#episodes-list-container");
     const seasonSelect = $("#season-select");
     let currentSeasonEpisodes = [];
+
+    // Marca con badge "VISTO" los episodios ya vistos por el usuario.
+    let watchedSetPromise = null;
+    function applyWatchedBadges() {
+      if (!watchedSetPromise) watchedSetPromise = getWatchedSet(anime.id);
+      watchedSetPromise.then((set) => {
+        if (!set || !set.size) return;
+        currentSeasonEpisodes.forEach((ep, i) => {
+          if (set.has(makeEpId(anime.id, ep))) {
+            $(`.episode-detail-card[data-episode-index="${i}"]`).addClass("is-watched");
+          }
+        });
+      });
+    }
 
     const seasons =
       anime.episodes && anime.episodes.length > 0
@@ -771,6 +914,7 @@ $(document).ready(function () {
 
       const savedView = localStorage.getItem("episodeViewPreference") || "grid";
       $(`#${savedView}-view-btn`).trigger("click");
+      applyWatchedBadges();
     }
 
     const debouncedRender = debounce(
@@ -850,36 +994,37 @@ $(document).ready(function () {
     function getAnimeFavorites() {
       return JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
     }
-    function isAnimeFavorite(id) {
-      return getAnimeFavorites().includes(id);
-    }
-    function toggleAnimeFavorite(id) {
+    function setAnimeFavLocal(id, on) {
       let f = getAnimeFavorites();
-      if (f.includes(id)) f = f.filter((favId) => favId !== id);
-      else f.push(id);
+      if (on && !f.includes(id)) f.push(id);
+      if (!on) f = f.filter((favId) => favId !== id);
       localStorage.setItem("favoriteAnimes", JSON.stringify(f));
-      updateAnimeFavoriteButtonState(id);
     }
-    function updateAnimeFavoriteButtonState(id) {
-      if (isAnimeFavorite(id))
-        favoriteAnimeBtn
-          .addClass("is-favorite")
-          .attr("title", "Quitar de Favoritos")
-          .find("i")
-          .removeClass("far")
-          .addClass("fas");
-      else
-        favoriteAnimeBtn
-          .removeClass("is-favorite")
-          .attr("title", "Agregar a Favoritos")
-          .find("i")
-          .removeClass("fas")
-          .addClass("far");
+    function paintAnimeFav(on) {
+      favoriteAnimeBtn
+        .toggleClass("is-favorite", on)
+        .attr("title", on ? "Quitar de Favoritos" : "Agregar a Favoritos")
+        .find("i").toggleClass("fas", on).toggleClass("far", !on);
     }
-    updateAnimeFavoriteButtonState(animeId);
-    favoriteAnimeBtn.on("click", (e) => {
+    async function refreshAnimeFavState() {
+      if (UD.isLoggedIn()) { try { paintAnimeFav(await UD.isFavAnime(animeId)); return; } catch {} }
+      paintAnimeFav(getAnimeFavorites().includes(animeId));
+    }
+    UD.userReady.then(refreshAnimeFavState);
+    refreshAnimeFavState();
+    favoriteAnimeBtn.on("click", async (e) => {
       e.preventDefault();
-      toggleAnimeFavorite(animeId);
+      if (UD.isLoggedIn()) {
+        try {
+          const on = await UD.toggleFavAnime(anime);
+          setAnimeFavLocal(animeId, on);
+          paintAnimeFav(on);
+        } catch (err) { console.error(err); }
+      } else {
+        const on = !getAnimeFavorites().includes(animeId);
+        setAnimeFavLocal(animeId, on);
+        paintAnimeFav(on);
+      }
     });
 
     const seasonToOpen = urlParams.get("season");
@@ -1112,6 +1257,7 @@ $(document).ready(function () {
   });
 
   $("#close-player-modal").on("click", () => {
+    clearAutoplay();
     const playerModal = $("#episode-player-modal");
     const episodeId = playerModal.attr("data-episode-id");
     if (episodeId) saveToHistory(episodeId);
@@ -1160,4 +1306,5 @@ $(document).ready(function () {
   populateCalendarPage();
   populateContinueWatching();
   populateHistoryPage();
+  }); // fin de getAnimeData().then
 });

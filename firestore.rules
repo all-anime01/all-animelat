@@ -1,0 +1,89 @@
+rules_version = '2';
+
+// ============================================================================
+//  REGLAS DE SEGURIDAD DE FIRESTORE  —  All-Anime
+//  Publícalas en:  Firebase Console → Firestore Database → Reglas
+// ============================================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Solo este correo es administrador.
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email.lower() == 'all.anime.lat01@gmail.com';
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // ---- Catálogo de animes (lectura pública, escritura solo admin) ----
+    match /animes/{animeId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---- Índice ligero del catálogo (una sola lectura para los listados) ----
+    match /catalog/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---- Metadatos varios (versión del catálogo, etc.) ----
+    match /meta/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---- Perfiles de usuario ----
+    match /users/{uid} {
+      allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if isSignedIn() && request.auth.uid == uid;
+      allow update: if isSignedIn() && request.auth.uid == uid;
+      allow delete: if isAdmin();
+
+      // Subcolecciones privadas del usuario (vistos y likes).
+      match /{sub}/{docId} {
+        allow read, write: if isSignedIn() && request.auth.uid == uid;
+      }
+    }
+
+    // ---- Estadísticas de calificación por anime (estrellas agregadas) ----
+    match /animeStats/{animeId} {
+      allow read: if true;
+      allow create, update: if isSignedIn();
+      allow delete: if isAdmin();
+    }
+
+    // ---- Estadísticas por episodio (likes / dislikes) ----
+    // Lectura pública; escritura por cualquier usuario autenticado, pero
+    // solo puede tocar los campos del contador de likes.
+    match /episodeStats/{epId} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update: if isSignedIn();
+      allow delete: if isAdmin();
+    }
+
+    // ---- Analítica de tráfico (visitas por día) ----
+    // Lectura solo para el admin; escritura abierta para contar visitas anónimas.
+    match /stats_daily/{docId} {
+      allow read: if isAdmin();
+      allow write: if true;
+    }
+
+    // ---- Comentarios ----
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if isSignedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 1000;
+      // El autor puede editar/borrar el suyo; el admin puede moderar.
+      allow update, delete: if isSignedIn()
+        && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+  }
+}

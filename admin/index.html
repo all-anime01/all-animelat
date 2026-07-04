@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de administración — All-Anime</title>
+    <link rel="shortcut icon" href="../image/logo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root { --primary: #ca3030; --bg: #0e0e0e; --card: #1c1c1c; --card2: #161616; --text: #f0f0f0; --grey: #9a9a9a; --border: #2c2c2c; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Roboto, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+        .topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 22px; background: #151515; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 20; }
+        .brand { font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .brand i { color: var(--primary); }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-right a, .topbar-right button { color: var(--text); text-decoration: none; background: #262626; border: 1px solid var(--border); cursor: pointer; font-size: 13px; padding: 8px 12px; border-radius: 9px; display: inline-flex; align-items: center; gap: 6px; }
+        .topbar-right a:hover, .topbar-right button:hover { border-color: var(--primary); }
+        .admin-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+        .layout { display: flex; max-width: 1200px; margin: 0 auto; }
+        .sidebar { width: 210px; flex: none; padding: 20px 12px; position: sticky; top: 57px; height: calc(100vh - 57px); }
+        .navbtn { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: none; border: none; color: var(--grey); padding: 12px 14px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; margin-bottom: 4px; font-family: inherit; }
+        .navbtn i { width: 18px; text-align: center; }
+        .navbtn:hover { background: #191919; color: var(--text); }
+        .navbtn.active { background: var(--primary); color: #fff; }
+        .content { flex: 1; min-width: 0; padding: 24px 20px 60px; }
+        .panel { display: none; }
+        .panel.active { display: block; animation: fade .2s; }
+        @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; } }
+        .phead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+        .phead h1 { font-size: 22px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+        h2 { font-size: 17px; margin-bottom: 16px; }
+        .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .field { margin-bottom: 4px; }
+        .field.full { grid-column: 1 / -1; }
+        label { display: block; font-size: 12px; color: var(--grey); margin-bottom: 5px; font-weight: 600; }
+        input, textarea, select { width: 100%; padding: 10px 12px; background: var(--card2); border: 1px solid var(--border); border-radius: 9px; color: var(--text); font-size: 14px; font-family: inherit; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--primary); }
+        textarea { min-height: 70px; resize: vertical; }
+        .btn { background: var(--primary); color: #fff; border: none; padding: 11px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; display: inline-flex; align-items: center; gap: 7px; }
+        .btn.grey { background: #2a2a2a; border: 1px solid var(--border); }
+        .btn.sm { padding: 7px 12px; font-size: 13px; }
+        .btn.danger { background: #7a1f1f; }
+        .btn:disabled { opacity: .5; cursor: not-allowed; }
+        .msg { margin-top: 12px; font-size: 14px; min-height: 18px; }
+        .msg.ok { color: #4ade80; } .msg.error { color: #ff6b6b; }
+        .hint { font-size: 12px; color: #777; margin-top: 4px; }
+        /* chips */
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip { position: relative; }
+        .chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+        .chip span { display: inline-block; padding: 7px 13px; border-radius: 20px; background: var(--card2); border: 1px solid var(--border); font-size: 13px; cursor: pointer; user-select: none; transition: .12s; }
+        .chip input:checked + span { background: var(--primary); border-color: var(--primary); color: #fff; }
+        .tag-func { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; cursor: pointer; }
+        .tag-func input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--primary); flex: none; }
+        .tag-func b { font-size: 14px; } .tag-func p { font-size: 12px; color: var(--grey); }
+        /* catalog grid */
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+        .anime-tile { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .anime-tile img { width: 100%; aspect-ratio: 2/3; object-fit: cover; background: #222; display: block; }
+        .anime-tile .ti { padding: 10px; }
+        .anime-tile h4 { font-size: 13px; line-height: 1.3; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .anime-tile .meta { font-size: 11px; color: var(--grey); margin-bottom: 8px; }
+        .anime-tile .acts { display: flex; gap: 6px; }
+        .anime-tile .acts button { flex: 1; }
+        /* stats */
+        .stat-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-bottom: 22px; }
+        .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+        .stat .n { font-size: 28px; font-weight: 800; }
+        .stat .l { font-size: 12px; color: var(--grey); margin-top: 3px; }
+        .stat .n i { color: var(--primary); }
+        .ep-list { margin-top: 18px; }
+        .ep-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+        .ep-row .n { color: var(--primary); font-weight: 700; min-width: 34px; }
+        .ep-row .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .gate { text-align: center; padding: 90px 20px; }
+        .gate a { color: #ff6b6b; }
+        .search-box { max-width: 320px; }
+        @media (max-width: 820px) {
+            .layout { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: static; display: flex; gap: 6px; overflow-x: auto; padding: 12px; }
+            .navbtn { width: auto; white-space: nowrap; margin-bottom: 0; }
+            .grid2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <span class="brand"><i class="fas fa-gauge-high"></i> All-Anime · Admin</span>
+        <div class="topbar-right">
+            <a href="../perfil.html" id="profile-link"><img class="admin-avatar" id="admin-avatar" alt=""> <span id="admin-name">Perfil</span></a>
+            <a href="../index.html" target="_blank"><i class="fas fa-up-right-from-square"></i> Ver sitio</a>
+            <button id="logout"><i class="fas fa-right-from-bracket"></i></button>
+        </div>
+    </div>
+
+    <div id="gate" class="gate">Verificando sesión…</div>
+
+    <div class="layout" id="app" style="display:none">
+        <nav class="sidebar">
+            <button class="navbtn active" data-tab="catalog"><i class="fas fa-film"></i> Catálogo</button>
+            <button class="navbtn" data-tab="anime"><i class="fas fa-plus"></i> Nuevo anime</button>
+            <button class="navbtn" data-tab="eps"><i class="fas fa-list-ol"></i> Episodios</button>
+            <button class="navbtn" data-tab="stats"><i class="fas fa-chart-line"></i> Estadísticas</button>
+            <button class="navbtn" data-tab="tools"><i class="fas fa-screwdriver-wrench"></i> Herramientas</button>
+        </nav>
+
+        <main class="content">
+            <!-- ============ CATÁLOGO ============ -->
+            <section class="panel active" id="panel-catalog">
+                <div class="phead">
+                    <h1>Catálogo <span id="cat-count" style="color:var(--grey);font-size:15px"></span></h1>
+                    <div style="display:flex;gap:10px">
+                        <input class="search-box" id="cat-search" placeholder="Buscar anime…">
+                        <button class="btn" id="new-from-catalog"><i class="fas fa-plus"></i> Nuevo</button>
+                    </div>
+                </div>
+                <div class="cat-grid" id="cat-grid"><p class="hint">Cargando…</p></div>
+            </section>
+
+            <!-- ============ NUEVO / EDITAR ANIME ============ -->
+            <section class="panel" id="panel-anime">
+                <div class="phead"><h1 id="anime-form-title">Nuevo anime</h1>
+                    <button class="btn grey sm" id="reset-anime"><i class="fas fa-rotate"></i> Limpiar</button>
+                </div>
+                <form id="anime-form" class="card">
+                    <div class="grid2">
+                        <div class="field"><label>Título *</label><input name="title" required></div>
+                        <div class="field"><label>ID <span style="font-weight:400">(auto si lo dejas vacío)</span></label><input name="id" placeholder="jujutsu-kaisen"></div>
+                        <div class="field full"><label>Descripción</label><textarea name="description"></textarea></div>
+                        <div class="field"><label>Imagen tarjeta (vertical)</label><input name="img"></div>
+                        <div class="field"><label>Imagen móvil</label><input name="imgMobile"></div>
+                        <div class="field"><label>Hero / fondo</label><input name="heroImg"></div>
+                        <div class="field"><label>Logo (PNG transparente)</label><input name="logoImg"></div>
+                        <div class="field full"><label>Tráiler (embed de YouTube)</label><input name="trailerUrl"></div>
+                    </div>
+
+                    <div class="field full" style="margin-top:16px"><label>Géneros</label>
+                        <div class="chips" id="genre-chips"></div>
+                    </div>
+
+                    <div class="field full" style="margin-top:16px"><label>Dónde mostrarlo en el inicio</label>
+                        <div id="func-tags"></div>
+                    </div>
+
+                    <div class="field full" style="margin-top:10px"><label>Etiquetas temáticas (opcional)</label>
+                        <div class="chips" id="theme-chips"></div>
+                        <input name="customTags" placeholder="Otras etiquetas separadas por coma" style="margin-top:8px">
+                    </div>
+
+                    <div class="grid2" style="margin-top:16px">
+                        <div class="field"><label>Tipo</label><select name="type" id="sel-type"></select></div>
+                        <div class="field"><label>Estado</label><select name="status" id="sel-status"></select></div>
+                        <div class="field"><label>Audio</label><select name="audio" id="sel-audio"></select></div>
+                        <div class="field"><label>Calidad</label><input name="quality" value="1080p"></div>
+                        <div class="field"><label>Rating (0-5)</label><input name="rating" type="number" step="0.1" value="4.5"></div>
+                        <div class="field"><label>N.º de valoraciones</label><input name="ratingCount" placeholder="1.2K"></div>
+                        <div class="field"><label>Temporadas</label><input name="seasons" type="number" value="1"></div>
+                        <div class="field"><label>Año</label><input name="year" type="number" value="2025"></div>
+                        <div class="field"><label>Clasificación</label><input name="contentWarning" value="+13"></div>
+                        <div class="field"><label>Creador / Estudio</label><input name="creator"></div>
+                    </div>
+
+                    <input type="hidden" name="editingId">
+                    <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
+                        <button class="btn" type="submit" id="save-anime">Guardar anime</button>
+                        <span class="msg" id="anime-msg" style="margin:0"></span>
+                    </div>
+                </form>
+            </section>
+
+            <!-- ============ EPISODIOS ============ -->
+            <section class="panel" id="panel-eps">
+                <div class="phead"><h1>Agregar episodios</h1></div>
+                <div class="card">
+                    <div class="grid2">
+                        <div class="field"><label>Anime *</label><select id="ep-anime"><option value="">Cargando…</option></select></div>
+                        <div class="field"><label>Temporada</label>
+                            <select id="ep-season"><option value="">— elige un anime —</option></select>
+                        </div>
+                    </div>
+                    <div class="field" id="new-season-field" style="display:none;margin-top:6px">
+                        <label>Nombre de la nueva temporada</label>
+                        <input id="new-season-input" placeholder="Temporada 2">
+                    </div>
+
+                    <form id="ep-form" style="margin-top:16px">
+                        <div class="grid2">
+                            <div class="field"><label>Número *</label><input name="number" type="number" required></div>
+                            <div class="field"><label>Idioma</label><select name="language" id="sel-lang"></select></div>
+                            <div class="field full"><label>Título del episodio</label><input name="title"></div>
+                            <div class="field"><label>Duración</label><input name="duration" value="24 min"></div>
+                            <div class="field"><label>Fecha de estreno</label><input name="releaseDate" placeholder="Julio 4, 2026"></div>
+                            <div class="field full"><label>Descripción</label><textarea name="description"></textarea></div>
+                            <div class="field full"><label>Imagen del episodio</label><input name="img"></div>
+                            <div class="field full"><label>Ruta del reproductor (videoUrl) *</label>
+                                <input name="videoUrl" placeholder="frame/Nombre-anime/T1/1.html" required>
+                                <p class="hint">Crea el HTML del reproductor en <code>frame/…</code> como siempre; aquí solo pones su ruta.</p>
+                            </div>
+                        </div>
+                        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+                            <button class="btn" type="submit" id="save-ep">Agregar episodio</button>
+                            <span class="msg" id="ep-msg" style="margin:0"></span>
+                        </div>
+                    </form>
+
+                    <div class="ep-list" id="ep-existing"></div>
+                </div>
+            </section>
+
+            <!-- ============ ESTADÍSTICAS ============ -->
+            <section class="panel" id="panel-stats">
+                <div class="phead"><h1>Estadísticas de tráfico</h1>
+                    <button class="btn grey sm" id="reload-stats"><i class="fas fa-rotate"></i> Actualizar</button>
+                </div>
+                <div class="stat-cards" id="stat-cards"></div>
+                <div class="card">
+                    <h2>Visitas por día (últimos 30 días)</h2>
+                    <div id="chart"><p class="hint">Cargando…</p></div>
+                </div>
+            </section>
+
+            <!-- ============ HERRAMIENTAS ============ -->
+            <section class="panel" id="panel-tools">
+                <div class="phead"><h1>Herramientas</h1></div>
+                <div class="card">
+                    <h2>Importar catálogo</h2>
+                    <p style="color:var(--grey);font-size:14px;margin-bottom:16px">Sube el catálogo completo de <code>js/database.js</code> a Firestore (primera vez o re-sincronizar).</p>
+                    <a class="btn" href="importar.html"><i class="fas fa-cloud-arrow-up"></i> Ir al importador</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module">
+        import { db, isAdmin } from "../js/firebase-config.js";
+        import { observeAuth, logoutUser } from "../js/auth.js";
+        import {
+            saveAnime, addEpisodes, deleteAnime, getCatalogIndex, getAnime,
+            getAnimeSeasons, listEpisodes, deleteEpisode,
+            buildAnimeFromForm, buildEpisodeFromForm,
+        } from "../js/admin.js";
+        import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
+        import { getDailyVisits, getUserCount } from "../js/analytics.js";
+
+        const $ = (id) => document.getElementById(id);
+        const setMsg = (el, t, type) => { el.textContent = t; el.className = "msg " + (type || ""); };
+        let catalogItems = [];
+
+        // ---------- Gate ----------
+        observeAuth((user) => {
+            if (!user) { $("gate").innerHTML = 'Inicia sesión como administrador. <a href="../cuenta.html?redirect=admin/index.html">Ir al login</a>'; $("app").style.display = "none"; return; }
+            if (!isAdmin(user)) { $("gate").innerHTML = 'La cuenta <b>' + user.email + '</b> no es administrador.'; return; }
+            $("gate").style.display = "none";
+            $("app").style.display = "flex";
+            $("admin-name").textContent = user.displayName || "Perfil";
+            $("admin-avatar").src = user.photoURL || "";
+            initForms();
+            loadCatalog();
+            loadAnimeSelect();
+        });
+        $("logout").addEventListener("click", async () => { await logoutUser(); location.href = "../index.html"; });
+
+        // ---------- Tabs ----------
+        document.querySelectorAll(".navbtn").forEach((b) => b.addEventListener("click", () => {
+            document.querySelectorAll(".navbtn").forEach((x) => x.classList.remove("active"));
+            document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
+            b.classList.add("active");
+            $("panel-" + b.dataset.tab).classList.add("active");
+            if (b.dataset.tab === "stats") loadStats();
+        }));
+
+        // ---------- Poblar selects y chips ----------
+        function initForms() {
+            $("genre-chips").innerHTML = GENRES.map((g, i) =>
+                `<label class="chip"><input type="checkbox" value="${g}" data-genre><span>${g}</span></label>`).join("");
+            $("theme-chips").innerHTML = THEME_TAGS.map((t) =>
+                `<label class="chip"><input type="checkbox" value="${t}" data-theme-tag><span>${t}</span></label>`).join("");
+            $("func-tags").innerHTML = FUNCTIONAL_TAGS.map((t) =>
+                `<label class="tag-func"><input type="checkbox" value="${t.value}" data-func-tag><div><b>${t.label}</b><p>${t.help}</p></div></label>`).join("");
+            $("sel-type").innerHTML = TYPES.map((t) => `<option>${t}</option>`).join("");
+            $("sel-status").innerHTML = STATUSES.map((t) => `<option>${t}</option>`).join("");
+            $("sel-audio").innerHTML = AUDIOS.map((t) => `<option>${t}</option>`).join("");
+            $("sel-lang").innerHTML = EPISODE_LANGS.map((t) => `<option>${t}</option>`).join("");
+        }
+
+        // ---------- Catálogo ----------
+        async function loadCatalog() {
+            try {
+                const idx = await getCatalogIndex();
+                catalogItems = (idx.items || []).sort((a, b) => a.title.localeCompare(b.title));
+                $("cat-count").textContent = `(${catalogItems.length})`;
+                renderCatalog("");
+            } catch (e) { $("cat-grid").innerHTML = '<p class="msg error">Error al cargar el catálogo.</p>'; }
+        }
+        function renderCatalog(q) {
+            const term = q.toLowerCase();
+            const items = catalogItems.filter((a) => a.title.toLowerCase().includes(term));
+            if (!items.length) { $("cat-grid").innerHTML = '<p class="hint">Sin resultados.</p>'; return; }
+            $("cat-grid").innerHTML = items.map((a) => `
+                <div class="anime-tile">
+                    <img src="${a.img || a.imgMobile || ""}" loading="lazy" alt="">
+                    <div class="ti">
+                        <h4>${a.title}</h4>
+                        <div class="meta">${a.episodesCount || 0} eps · ${a.year || ""} · ${a.type || ""}</div>
+                        <div class="acts">
+                            <button class="btn grey sm" data-edit="${a.id}"><i class="fas fa-pen"></i></button>
+                            <button class="btn danger sm" data-del="${a.id}" data-title="${a.title.replace(/"/g, "&quot;")}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>`).join("");
+            $("cat-grid").querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => editAnime(b.dataset.edit)));
+            $("cat-grid").querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => removeAnime(b.dataset.del, b.dataset.title)));
+        }
+        $("cat-search").addEventListener("input", (e) => renderCatalog(e.target.value));
+        $("new-from-catalog").addEventListener("click", () => { resetAnimeForm(); gotoTab("anime"); });
+
+        function gotoTab(tab) { document.querySelector(`.navbtn[data-tab="${tab}"]`).click(); }
+
+        // ---------- Nuevo / Editar anime ----------
+        function collectAnime() {
+            const f = Object.fromEntries(new FormData($("anime-form")).entries());
+            const genres = [...document.querySelectorAll("[data-genre]:checked")].map((c) => c.value);
+            const funcTags = [...document.querySelectorAll("[data-func-tag]:checked")].map((c) => c.value);
+            const themeTags = [...document.querySelectorAll("[data-theme-tag]:checked")].map((c) => c.value);
+            const custom = (f.customTags || "").split(",").map((s) => s.trim()).filter(Boolean);
+            const anime = buildAnimeFromForm({ ...f, genres });
+            anime.tags = [...new Set([...funcTags, ...themeTags, ...custom])];
+            return anime;
+        }
+        function resetAnimeForm() {
+            $("anime-form").reset();
+            document.querySelectorAll("#anime-form input[type=checkbox]").forEach((c) => (c.checked = false));
+            $("anime-form").editingId.value = "";
+            $("anime-form-title").textContent = "Nuevo anime";
+            $("save-anime").textContent = "Guardar anime";
+            setMsg($("anime-msg"), "");
+        }
+        $("reset-anime").addEventListener("click", resetAnimeForm);
+
+        async function editAnime(id) {
+            resetAnimeForm();
+            gotoTab("anime");
+            setMsg($("anime-msg"), "Cargando…");
+            const a = await getAnime(id);
+            if (!a) { setMsg($("anime-msg"), "No se encontró el anime.", "error"); return; }
+            const form = $("anime-form");
+            ["title", "id", "description", "img", "imgMobile", "heroImg", "logoImg", "trailerUrl",
+                "quality", "rating", "ratingCount", "seasons", "year", "contentWarning", "creator"].forEach((k) => {
+                    if (form[k] != null) form[k].value = a[k] ?? "";
+                });
+            if (form.type) form.type.value = a.type || "TV";
+            if (form.status) form.status.value = a.status || "En emisión";
+            if (form.audio) form.audio.value = a.audio || "Sub";
+            (a.genres || []).forEach((g) => { const c = document.querySelector(`[data-genre][value="${cssEsc(g)}"]`); if (c) c.checked = true; });
+            const tags = a.tags || [];
+            document.querySelectorAll("[data-func-tag]").forEach((c) => { if (tags.includes(c.value)) c.checked = true; });
+            document.querySelectorAll("[data-theme-tag]").forEach((c) => { if (tags.includes(c.value)) c.checked = true; });
+            const known = new Set([...FUNCTIONAL_TAGS.map((t) => t.value), ...THEME_TAGS]);
+            form.customTags.value = tags.filter((t) => !known.has(t)).join(", ");
+            form.editingId.value = a.id;
+            $("anime-form-title").textContent = "Editar: " + a.title;
+            $("save-anime").textContent = "Actualizar anime";
+            setMsg($("anime-msg"), "");
+        }
+        const cssEsc = (s) => (window.CSS && CSS.escape ? CSS.escape(s) : s.replace(/"/g, '\\"'));
+
+        $("anime-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const btn = $("save-anime"); btn.disabled = true;
+            setMsg($("anime-msg"), "Guardando…");
+            try {
+                const editingId = $("anime-form").editingId.value;
+                const anime = collectAnime();
+                if (editingId) {
+                    anime.id = editingId; // conserva id y episodios existentes
+                    const existing = await getAnime(editingId);
+                    anime.episodes = existing?.episodes || [];
+                }
+                const id = await saveAnime(anime);
+                setMsg($("anime-msg"), `✅ Guardado (id: ${id}).`, "ok");
+                await loadCatalog(); loadAnimeSelect();
+                if (!editingId) resetAnimeForm();
+            } catch (err) {
+                console.error(err);
+                setMsg($("anime-msg"), "❌ " + (err.code === "permission-denied" ? "Sin permisos." : err.message), "error");
+            } finally { btn.disabled = false; }
+        });
+
+        async function removeAnime(id, title) {
+            if (!confirm(`¿Eliminar "${title}" y todos sus episodios? Esta acción no se puede deshacer.`)) return;
+            try { await deleteAnime(id); await loadCatalog(); loadAnimeSelect(); }
+            catch (err) { alert("Error al eliminar: " + err.message); }
+        }
+
+        // ---------- Episodios ----------
+        async function loadAnimeSelect() {
+            try {
+                const idx = await getCatalogIndex();
+                const items = (idx.items || []).sort((a, b) => a.title.localeCompare(b.title));
+                $("ep-anime").innerHTML = '<option value="">— Selecciona un anime —</option>' +
+                    items.map((a) => `<option value="${a.id}">${a.title}</option>`).join("");
+            } catch (e) { $("ep-anime").innerHTML = '<option value="">Error</option>'; }
+        }
+
+        const NEW_SEASON = "__new__";
+        $("ep-anime").addEventListener("change", async (e) => {
+            const id = e.target.value;
+            $("ep-existing").innerHTML = "";
+            if (!id) { $("ep-season").innerHTML = '<option value="">— elige un anime —</option>'; return; }
+            const seasons = await getAnimeSeasons(id);
+            $("ep-season").innerHTML =
+                (seasons.length ? seasons.map((s) => `<option value="${s}">${s}</option>`).join("") : "") +
+                `<option value="${NEW_SEASON}">➕ Nueva temporada…</option>`;
+            $("ep-season").dispatchEvent(new Event("change"));
+        });
+        $("ep-season").addEventListener("change", async () => {
+            const isNew = $("ep-season").value === NEW_SEASON;
+            $("new-season-field").style.display = isNew ? "block" : "none";
+            const animeId = $("ep-anime").value;
+            if (!isNew && animeId && $("ep-season").value) renderExistingEpisodes(animeId, $("ep-season").value);
+            else $("ep-existing").innerHTML = "";
+        });
+
+        async function renderExistingEpisodes(animeId, season) {
+            const eps = await listEpisodes(animeId, season);
+            if (!eps.length) { $("ep-existing").innerHTML = '<p class="hint">Esta temporada aún no tiene episodios.</p>'; return; }
+            $("ep-existing").innerHTML = `<h2 style="margin-top:6px">Episodios de ${season} (${eps.length})</h2>` +
+                eps.map((ep) => `<div class="ep-row"><span class="n">${ep.number}</span><span class="t">${ep.title || "(sin título)"}</span>
+                    <button class="btn danger sm" data-delep="${ep.number}"><i class="fas fa-trash"></i></button></div>`).join("");
+            $("ep-existing").querySelectorAll("[data-delep]").forEach((b) => b.addEventListener("click", async () => {
+                if (!confirm(`¿Eliminar el episodio ${b.dataset.delep} de ${season}?`)) return;
+                try { await deleteEpisode(animeId, season, b.dataset.delep); renderExistingEpisodes(animeId, season); loadCatalog(); }
+                catch (err) { alert("Error: " + err.message); }
+            }));
+        }
+
+        $("ep-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const animeId = $("ep-anime").value;
+            if (!animeId) { setMsg($("ep-msg"), "Selecciona un anime.", "error"); return; }
+            let season = $("ep-season").value;
+            if (season === NEW_SEASON) {
+                season = $("new-season-input").value.trim();
+                if (!season) { setMsg($("ep-msg"), "Escribe el nombre de la nueva temporada.", "error"); return; }
+            }
+            const btn = $("save-ep"); btn.disabled = true;
+            setMsg($("ep-msg"), "Agregando…");
+            try {
+                const f = Object.fromEntries(new FormData(e.target).entries());
+                const ep = buildEpisodeFromForm({ ...f, season });
+                const total = await addEpisodes(animeId, [ep]);
+                setMsg($("ep-msg"), `✅ Episodio agregado (${total} en total).`, "ok");
+                e.target.reset();
+                $("sel-lang").selectedIndex = 0;
+                // Refresca temporadas (por si era nueva) y lista.
+                const cur = $("ep-anime");
+                await cur.dispatchEvent(new Event("change"));
+                $("ep-season").value = season;
+                $("ep-season").dispatchEvent(new Event("change"));
+                loadCatalog();
+            } catch (err) {
+                console.error(err);
+                setMsg($("ep-msg"), "❌ " + (err.code === "permission-denied" ? "Sin permisos." : err.message), "error");
+            } finally { btn.disabled = false; }
+        });
+
+        // ---------- Estadísticas ----------
+        async function loadStats() {
+            $("chart").innerHTML = '<p class="hint">Cargando…</p>';
+            try {
+                const [visits, users] = await Promise.all([getDailyVisits(30), getUserCount()]);
+                const today = visits[visits.length - 1]?.count || 0;
+                const last7 = visits.slice(-7).reduce((s, d) => s + d.count, 0);
+                const last30 = visits.reduce((s, d) => s + d.count, 0);
+                $("stat-cards").innerHTML = `
+                    <div class="stat"><div class="n"><i class="fas fa-users"></i> ${users ?? "—"}</div><div class="l">Usuarios registrados</div></div>
+                    <div class="stat"><div class="n">${today}</div><div class="l">Visitas hoy</div></div>
+                    <div class="stat"><div class="n">${last7}</div><div class="l">Últimos 7 días</div></div>
+                    <div class="stat"><div class="n">${last30}</div><div class="l">Últimos 30 días</div></div>`;
+                renderChart(visits);
+            } catch (err) {
+                console.error(err);
+                $("chart").innerHTML = '<p class="msg error">No se pudieron cargar las estadísticas. ¿Publicaste las reglas actualizadas (stats_daily)?</p>';
+                $("stat-cards").innerHTML = "";
+            }
+        }
+        $("reload-stats").addEventListener("click", loadStats);
+
+        function renderChart(data) {
+            const W = Math.max(data.length * 22, 320), H = 180, pad = 24;
+            const max = Math.max(1, ...data.map((d) => d.count));
+            const bw = (W - pad * 2) / data.length;
+            const bars = data.map((d, i) => {
+                const h = (d.count / max) * (H - pad * 2);
+                const x = pad + i * bw, y = H - pad - h;
+                const label = d.date.slice(5); // MM-DD
+                return `<rect x="${x + 2}" y="${y}" width="${bw - 4}" height="${h}" rx="2" fill="#ca3030"><title>${d.date}: ${d.count} visitas</title></rect>
+                    ${i % 3 === 0 ? `<text x="${x + bw / 2}" y="${H - 8}" font-size="9" fill="#888" text-anchor="middle">${label}</text>` : ""}`;
+            }).join("");
+            $("chart").innerHTML = `<div style="overflow-x:auto"><svg width="${W}" height="${H}" style="min-width:100%">
+                <line x1="${pad}" y1="${H - pad}" x2="${W - pad}" y2="${H - pad}" stroke="#333"/>${bars}</svg></div>`;
+        }
+    </script>
+</body>
+
+</html>
