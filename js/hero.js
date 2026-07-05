@@ -8,6 +8,7 @@ import { db, FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const DELAY_TO_VIDEO = 5000; // ms mostrando la imagen antes de pasar al tráiler
+const IMAGE_DURATION = 6500; // ms que dura un slide SIN video antes de auto-avanzar
 
 // Slides por defecto de la portada (los que trae el sitio de fábrica).
 // El admin los muestra y puede editarlos/guardarlos para tomar control.
@@ -62,8 +63,9 @@ function initCarousel(section) {
   const nextArrow = section.querySelector("#hero-next");
   let current = 0;
   const total = slides.length;
-  let videoTimer = null;
+  let videoTimer = null, imageTimer = null;
   const isMobile = () => window.innerWidth <= 768;
+  const willPlayVideo = (sl) => !!sl.dataset.video && !isMobile();
 
   // Miniaturas de navegación
   if (nav) {
@@ -97,19 +99,22 @@ function initCarousel(section) {
       v.play().then(() => v.classList.add("playing")).catch(() => {});
     }, DELAY_TO_VIDEO);
   }
+  function next() { show((current + 1) % total); }
   function show(i) {
+    clearTimeout(imageTimer);
     if (slides[current]) stopVideo(slides[current]);
     slides.forEach((s) => s.classList.remove("active"));
     if (nav) nav.querySelectorAll(".nav-thumb").forEach((t) => t.classList.remove("active"));
     slides[i].classList.add("active");
     if (nav) nav.querySelectorAll(".nav-thumb")[i]?.classList.add("active");
     current = i;
-    if (prevArrow) prevArrow.classList.toggle("hidden", i === 0);
-    scheduleVideo(slides[i]);
+    if (prevArrow) prevArrow.classList.toggle("hidden", i === 0 && total > 1);
+    // Con video (solo desktop): se reproduce completo, el usuario avanza con flechas.
+    // Sin video (o en móvil): avanza automáticamente al siguiente slide.
+    if (willPlayVideo(slides[i])) scheduleVideo(slides[i]);
+    else if (total > 1) imageTimer = setTimeout(next, IMAGE_DURATION);
   }
-  // El carrusel NO avanza solo: el video se reproduce completo (en bucle) y
-  // el usuario avanza únicamente con las flechas o las miniaturas.
-  if (nextArrow) nextArrow.addEventListener("click", () => show((current + 1) % total));
+  if (nextArrow) nextArrow.addEventListener("click", next);
   if (prevArrow) prevArrow.addEventListener("click", () => show((current - 1 + total) % total));
   let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(setBackgrounds, 200); });
 

@@ -1133,10 +1133,23 @@ $(document).ready(function () {
   $(window).scroll(() =>
     $("header").toggleClass("scrolled", $(window).scrollTop() > 50)
   );
+  // --- Menú móvil (drawer) con backdrop y cierre al tocar enlace/fondo ---
+  const $backdrop = $('<div class="nav-backdrop"></div>').appendTo("body");
+  function closeMobileNav() {
+    $("#menu-icon").removeClass("fa-times");
+    $(".navbar").removeClass("nav-toggle");
+    $backdrop.removeClass("show");
+    $("body").css("overflow", "");
+  }
   $("#menu-icon").click(function () {
-    $(this).toggleClass("fa-times");
-    $(".navbar").toggleClass("nav-toggle");
+    const open = !$(".navbar").hasClass("nav-toggle");
+    $(this).toggleClass("fa-times", open);
+    $(".navbar").toggleClass("nav-toggle", open);
+    $backdrop.toggleClass("show", open);
+    $("body").css("overflow", open ? "hidden" : "");
   });
+  $backdrop.on("click", closeMobileNav);
+  $(".navbar").on("click", "a", closeMobileNav);
 
   // (El hero se monta a nivel superior, no espera al catálogo. Ver setupHero abajo.)
 

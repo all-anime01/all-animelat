@@ -1871,14 +1871,29 @@ header .logo:hover .logo-desktop {
         top: 0;
         left: -100%;
         width: 80%;
-        max-width: 350px;
+        max-width: 330px;
         height: 100vh;
-        background: var(--dark-bg);
-        transition: left 0.3s ease;
-        padding: 8rem 2rem 2rem 2rem;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(180deg, #171717 0%, #0d0d0d 100%);
+        transition: left 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 8.5rem 1.4rem 2rem;
+        box-shadow: 10px 0 45px rgba(0, 0, 0, 0.65);
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
         display: flex;
         flex-direction: column;
+        gap: 0.4rem;
+        z-index: 1100;
+        overflow-y: auto;
+    }
+
+    /* Logo dentro del drawer */
+    header .navbar::before {
+        content: '';
+        position: absolute;
+        top: 2.4rem;
+        left: 1.8rem;
+        width: 130px;
+        height: 34px;
+        background: url('../logo-all-anime.svg') left center / contain no-repeat;
     }
 
     header .navbar.nav-toggle {
@@ -1888,7 +1903,8 @@ header .logo:hover .logo-desktop {
     header .navbar ul {
         flex-direction: column;
         width: 100%;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 0.3rem;
     }
 
     header .navbar ul li {
@@ -1897,14 +1913,62 @@ header .logo:hover .logo-desktop {
     }
 
     header .navbar ul li a {
-        display: block;
-        padding: 1.5rem;
-        font-size: 1.8rem;
-        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+        padding: 1.4rem 1.5rem;
+        font-size: 1.7rem;
+        font-weight: 600;
+        border-radius: 12px;
+        color: var(--light-text);
+        transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    header .navbar ul li a i {
+        width: 2.2rem;
+        text-align: center;
+        font-size: 1.9rem;
+        color: var(--grey-text);
+        transition: color 0.15s ease;
+    }
+
+    header .navbar ul li a:hover,
+    header .navbar ul li a.active {
+        background: rgba(202, 48, 48, 0.16);
+        color: #fff;
+    }
+
+    header .navbar ul li a:hover i,
+    header .navbar ul li a.active i {
+        color: var(--primary-color);
+    }
+
+    /* Backdrop al abrir el menú */
+    .nav-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(2px);
+        z-index: 1050;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .nav-backdrop.show {
+        opacity: 1;
+        visibility: visible;
     }
 
     #menu-icon {
         display: block;
+        z-index: 1200;
+        position: relative;
+        transition: transform 0.2s ease;
+    }
+
+    #menu-icon.fa-times {
+        transform: rotate(90deg);
     }
 
     .hero-section {
