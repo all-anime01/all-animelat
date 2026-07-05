@@ -1943,13 +1943,12 @@ header .logo:hover .logo-desktop {
         color: var(--primary-color);
     }
 
-    /* Backdrop al abrir el menú */
+    /* Backdrop al abrir el menú (debajo del header/drawer para no bloquear los toques) */
     .nav-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(2px);
-        z-index: 1050;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 900;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -2242,3 +2241,30 @@ header .logo:hover .logo-desktop {
   .top10-poster { width: 108px; height: 158px; }
   .top10-nav { display: none; }
 }
+
+/* ===================================================================
+   Resultados de búsqueda (dropdown desktop) — UI mejorada
+   =================================================================== */
+.search-results-dropdown { padding: 0.6rem; }
+.search-results-dropdown a {
+  gap: 1.2rem; padding: 0.9rem 1rem; border-radius: 10px;
+  transition: background 0.15s ease; align-items: center;
+}
+.search-results-dropdown a:hover { background: rgba(202,48,48,0.14); }
+.search-results-dropdown img {
+  width: 44px; height: 62px; border-radius: 7px; margin-right: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.sr-info { display: flex; flex-direction: column; min-width: 0; gap: 0.2rem; }
+.sr-title { font-size: 1.45rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sr-sub { font-size: 1.2rem; color: var(--grey-text); display: flex; align-items: center; gap: 0.7rem; }
+.sr-sub .star { color: #ff3b3b; }
+.sr-sub .dot { opacity: 0.5; }
+.search-results-dropdown .search-feedback { padding: 2.2rem; }
+
+/* Subtítulo en resultados del buscador móvil */
+.msearch-results a { align-items: center; }
+.msr-info { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.msearch-results .t { font-size: 1.6rem; font-weight: 600; }
+.msr-sub { font-size: 1.25rem; color: var(--grey-text); }
+.msr-sub .star, .search-results-dropdown .star { color: #ff3b3b; }

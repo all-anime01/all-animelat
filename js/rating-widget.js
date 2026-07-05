@@ -20,7 +20,11 @@ function injectStyles() {
   .rw-info b{color:#fff;font-size:1.9rem}
   .rw-hint{font-size:1.25rem;color:#999}
   .rw-hint a{color:#ff6b6b}
-  .rw-saved{color:#ff3b3b;font-weight:700}`;
+  .rw-saved{color:#ff3b3b;font-weight:700}
+  .rw-thanks{color:#4ade80;font-weight:700}
+  .rw-count{display:inline-block;font-weight:700;color:#fff}
+  .rw-count.rw-flash{animation:rw-pop .6s ease}
+  @keyframes rw-pop{0%{transform:scale(1)}40%{transform:scale(1.35);color:#ff5c5c}100%{transform:scale(1)}}`;
   document.head.appendChild(s);
 }
 
@@ -47,10 +51,10 @@ export async function mountRatingWidget(container, anime) {
   const paint = (val) => stars.forEach((s) => s.classList.toggle("on", Number(s.dataset.v) <= Math.round(val)));
 
   let state = { avg: seedAvg, count: 0, mine: 0 };
-  const renderInfo = () => {
-    infoEl.innerHTML = `<b>${state.avg.toFixed(1)}</b> / 5 · ${state.count.toLocaleString("es")} voto${state.count === 1 ? "" : "s"}`;
+  const renderInfo = (flash) => {
+    infoEl.innerHTML = `<b>${state.avg.toFixed(1)}</b> / 5 · <span class="rw-count${flash ? " rw-flash" : ""}">${state.count.toLocaleString("es")}</span> voto${state.count === 1 ? "" : "s"}`;
     paint(state.mine || state.avg);
-    hintEl.innerHTML = state.mine ? `<span class="rw-saved">Tu voto: ${state.mine}★</span>` : "";
+    hintEl.innerHTML = state.mine ? `<span class="rw-saved"><i class="fas fa-circle-check"></i> Tu voto: ${state.mine}★</span>` : "";
   };
 
   try { state = await getRatingState(animeId, seedAvg, seedCount); } catch {}
@@ -72,7 +76,9 @@ export async function mountRatingWidget(container, anime) {
       try {
         await setRating(animeId, v);
         state = await getRatingState(animeId, seedAvg, seedCount);
-        renderInfo();
+        renderInfo(true); // con animación en el contador
+        hintEl.innerHTML = `<span class="rw-thanks">🎉 ¡Gracias por calificar! <b>Tu voto: ${v}★</b></span>`;
+        setTimeout(() => { if (state.mine) hintEl.innerHTML = `<span class="rw-saved"><i class="fas fa-circle-check"></i> Tu voto: ${state.mine}★</span>`; }, 2500);
       } catch (err) {
         console.error(err);
         hintEl.innerHTML = `<span style="color:#ff6b6b">No se pudo guardar tu voto (${err.code || err.message}).</span>`;

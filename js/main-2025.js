@@ -1212,7 +1212,7 @@ $(document).ready(function () {
       rememberSearch(q);
       const filtered = animeData.filter((a) => a.title.toLowerCase().includes(q)).slice(0, 30);
       mRes.html(filtered.length
-        ? filtered.map((a) => `<a href="anime-details.html?id=${a.id}"><img src="${a.img}" alt=""><span class="t">${a.title}</span></a>`).join("")
+        ? filtered.map((a) => `<a href="anime-details.html?id=${a.id}"><img src="${a.img}" alt="" loading="lazy"><div class="msr-info"><span class="t">${a.title}</span><span class="msr-sub">${a.year || ""}${a.type ? " · " + a.type : ""}${a.rating ? ' · <span class="star">★ ' + a.rating + "</span>" : ""}</span></div></a>`).join("")
         : '<p class="msearch-empty">No se encontraron resultados.</p>');
     }, 200);
     mInput.on("input", run);
@@ -1246,15 +1246,21 @@ $(document).ready(function () {
       searchResults.empty();
       if (filtered.length > 0)
         filtered
-          .slice(0, 5)
+          .slice(0, 6)
           .forEach((a) =>
             searchResults.append(
-              `<a href="anime-details.html?id=${a.id}"><img src="${a.img}" alt="${a.title}"><span>${a.title}</span></a>`
+              `<a href="anime-details.html?id=${a.id}">
+                 <img src="${a.img}" alt="" loading="lazy">
+                 <div class="sr-info">
+                   <span class="sr-title">${a.title}</span>
+                   <span class="sr-sub">${a.year || ""}${a.type ? `<span class="dot">·</span>${a.type}` : ""}${a.rating ? `<span class="dot">·</span><span class="star">★ ${a.rating}</span>` : ""}</span>
+                 </div>
+               </a>`
             )
           );
       else
         searchResults.html(
-          '<div class="search-feedback">No se encontraron resultados.</div>'
+          '<div class="search-feedback"><i class="fas fa-magnifying-glass" style="opacity:.5;font-size:2rem;display:block;margin-bottom:.8rem"></i>No se encontraron resultados.</div>'
         );
     }, 500);
   }, 300);
