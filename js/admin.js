@@ -9,6 +9,8 @@ import { toCatalogCard, orderedEpisodes, slugify, seasonNumber } from "./catalog
 import {
   doc,
   getDoc,
+  getDocs,
+  collection,
   setDoc,
   updateDoc,
   deleteDoc,
@@ -122,6 +124,37 @@ export async function deleteEpisode(animeId, season, number) {
   await updateDoc(ref, { episodes, episodesTotal: episodes.length, updatedAt: serverTimestamp() });
   await upsertCatalogCard({ ...anime, episodes });
   return episodes.length;
+}
+
+// ---- Importar / Exportar animes (JSON) -------------------------------------
+// Importa un anime desde un objeto JSON (misma estructura que database.js).
+// Preserva TODOS los campos (fonImg, releaseTime, etc.).
+export async function importAnime(obj) {
+  if (!obj || typeof obj !== "object") throw new Error("JSON inválido.");
+  if (!obj.title) throw new Error("El JSON debe incluir al menos 'title'.");
+  if (!obj.id) obj.id = slugify(obj.title);
+  if (!Array.isArray(obj.episodes)) obj.episodes = [];
+  if (obj.episodesTotal == null) obj.episodesTotal = obj.episodes.length;
+  await setDoc(doc(db, "animes", obj.id), { ...obj, updatedAt: serverTimestamp() }, { merge: true });
+  await upsertCatalogCard({ ...obj });
+  return obj.id;
+}
+
+// Importa uno o varios animes (acepta objeto o arreglo). Devuelve resumen.
+export async function importAnimes(data) {
+  const list = Array.isArray(data) ? data : [data];
+  const ok = [], fail = [];
+  for (const item of list) {
+    try { ok.push(await importAnime(item)); }
+    catch (e) { fail.push((item && item.title) || "desconocido"); }
+  }
+  return { ok, fail, total: list.length };
+}
+
+// Exporta todo el catálogo (con episodios) como arreglo de objetos.
+export async function exportAllAnimes() {
+  const snap = await getDocs(collection(db, "animes"));
+  return snap.docs.map((d) => { const { updatedAt, ...rest } = d.data(); return rest; });
 }
 
 // ---- Portada (hero) --------------------------------------------------------

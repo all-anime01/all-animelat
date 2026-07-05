@@ -179,6 +179,19 @@
                 <div class="phead"><h1 id="anime-form-title">Nuevo anime</h1>
                     <button class="btn grey sm" id="reset-anime"><i class="fas fa-rotate"></i> Limpiar</button>
                 </div>
+
+                <!-- Importar / Exportar JSON -->
+                <div class="card" style="margin-bottom:16px">
+                    <h2><i class="fas fa-file-code"></i> Importar / Exportar (JSON)</h2>
+                    <p class="hint" style="margin-bottom:12px">Importa un anime — o varios (arreglo) — desde un archivo <code>.json</code> con la misma estructura de la base de datos (como <code>Black-torch.json</code>). Se cargan al catálogo conservando todos sus campos y episodios.</p>
+                    <input type="file" id="json-file" accept=".json,application/json" style="display:none">
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                        <button class="btn" type="button" id="json-import-btn"><i class="fas fa-upload"></i> Importar desde JSON</button>
+                        <button class="btn grey" type="button" id="json-export-all"><i class="fas fa-download"></i> Exportar catálogo completo</button>
+                        <span class="msg" id="json-msg" style="margin:0"></span>
+                    </div>
+                </div>
+
                 <form id="anime-form" class="card">
                     <div class="grid2">
                         <div class="field"><label>Título *</label><input name="title" required></div>
@@ -298,11 +311,12 @@
         import {
             saveAnime, addEpisodes, deleteAnime, getCatalogIndex, getAnime,
             getAnimeSeasons, listEpisodes, deleteEpisode, setAnimeTag,
-            getHeroSlides, saveHeroSlides,
+            getHeroSlides, saveHeroSlides, importAnimes, exportAllAnimes,
             buildAnimeFromForm, buildEpisodeFromForm,
         } from "../js/admin.js";
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
         import { getDailyVisits, getUserCount } from "../js/analytics.js";
+        import { DEFAULT_HERO_SLIDES } from "../js/hero.js";
 
         const $ = (id) => document.getElementById(id);
         const setMsg = (el, t, type) => { el.textContent = t; el.className = "msg " + (type || ""); };
@@ -341,15 +355,55 @@
             if (b.dataset.tab === "hero") loadHero();
         }));
 
+        // ---------- Importar / Exportar JSON ----------
+        function downloadJSON(filename, data) {
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob); a.download = filename;
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        }
+        $("json-import-btn").addEventListener("click", () => $("json-file").click());
+        $("json-file").addEventListener("change", async (e) => {
+            const file = e.target.files[0]; if (!file) return;
+            setMsg($("json-msg"), "Leyendo…");
+            try {
+                const data = JSON.parse(await file.text());
+                setMsg($("json-msg"), "Importando…");
+                const r = await importAnimes(data);
+                let msg = `✅ ${r.ok.length} anime(s) importado(s).`;
+                if (r.fail.length) msg += ` ⚠ ${r.fail.length} con error: ${r.fail.join(", ")}`;
+                setMsg($("json-msg"), msg, r.fail.length ? "error" : "ok");
+                await loadCatalog(); loadAnimeSelect();
+            } catch (err) {
+                setMsg($("json-msg"), "❌ " + (err.name === "SyntaxError" ? "El archivo no es un JSON válido." : (err.code === "permission-denied" ? "Sin permisos." : err.message)), "error");
+            } finally { e.target.value = ""; }
+        });
+        $("json-export-all").addEventListener("click", async () => {
+            setMsg($("json-msg"), "Preparando exportación…");
+            try {
+                const all = await exportAllAnimes();
+                downloadJSON(`all-anime-catalogo-${new Date().toISOString().slice(0, 10)}.json`, all);
+                setMsg($("json-msg"), `✅ ${all.length} animes exportados.`, "ok");
+            } catch (err) { setMsg($("json-msg"), "❌ " + err.message, "error"); }
+        });
+
         // ---------- Portada (hero) ----------
         let heroSlides = [];
+        let heroIsDefault = false;
         async function loadHero() {
-            try { heroSlides = await getHeroSlides(); renderHeroList(); }
-            catch (e) { $("hero-list").innerHTML = '<p class="msg error">Error al cargar la portada.</p>'; }
+            try {
+                const saved = await getHeroSlides();
+                if (saved.length) { heroSlides = saved; heroIsDefault = false; }
+                else { heroSlides = JSON.parse(JSON.stringify(DEFAULT_HERO_SLIDES)); heroIsDefault = true; }
+                renderHeroList();
+            } catch (e) { $("hero-list").innerHTML = '<p class="msg error">Error al cargar la portada.</p>'; }
         }
         function renderHeroList() {
-            if (!heroSlides.length) { $("hero-list").innerHTML = '<p class="hint">No hay slides. Agrega el primero abajo. (Si dejas la portada vacía, el sitio usa los slides por defecto del HTML.)</p>'; return; }
-            $("hero-list").innerHTML = heroSlides.map((s, i) => `
+            const banner = heroIsDefault
+                ? `<div style="background:#3a2a10;border:1px solid #6b4d1a;color:#ffcf7a;padding:12px 14px;border-radius:10px;margin-bottom:14px;font-size:13.5px"><i class="fas fa-circle-info"></i> Estos son los <b>${heroSlides.length} slides por defecto</b> que se están mostrando ahora en el inicio. Edítalos, reordénalos o elimínalos y se guardarán en tu portada (al guardar el primer cambio tomas el control total).</div>`
+                : `<div style="color:var(--grey);font-size:13.5px;margin-bottom:14px"><i class="fas fa-images"></i> <b>${heroSlides.length} slides activos</b> en la portada del inicio.</div>`;
+            $("hero-list").innerHTML = banner + heroSlides.map((s, i) => `
                 <div class="hero-item">
                     <img src="${s.desktopImg || ""}" alt="">
                     <div class="hero-item-info"><b>${s.title || "(sin título)"}</b><small>${s.video ? '<i class="fas fa-video"></i> con video' : "sin video"} · ${s.link || ""}</small></div>
@@ -365,7 +419,7 @@
             $("hero-list").querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => editHero(+b.dataset.edit)));
             $("hero-list").querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => delHero(+b.dataset.del)));
         }
-        async function persistHero() { await saveHeroSlides(heroSlides); }
+        async function persistHero() { await saveHeroSlides(heroSlides); heroIsDefault = false; }
         async function moveHero(i, dir) {
             const j = i + dir; if (j < 0 || j >= heroSlides.length) return;
             [heroSlides[i], heroSlides[j]] = [heroSlides[j], heroSlides[i]];
@@ -490,13 +544,18 @@
                         <h4>${a.title}</h4>
                         <div class="meta">${a.episodesCount || 0} eps · ${a.year || ""} · ${a.type || ""}</div>
                         <div class="acts">
-                            <button class="btn grey sm" data-edit="${a.id}"><i class="fas fa-pen"></i></button>
-                            <button class="btn danger sm" data-del="${a.id}" data-title="${a.title.replace(/"/g, "&quot;")}"><i class="fas fa-trash"></i></button>
+                            <button class="btn grey sm" data-edit="${a.id}" title="Editar"><i class="fas fa-pen"></i></button>
+                            <button class="btn grey sm" data-exp="${a.id}" title="Exportar JSON"><i class="fas fa-download"></i></button>
+                            <button class="btn danger sm" data-del="${a.id}" data-title="${a.title.replace(/"/g, "&quot;")}" title="Eliminar"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>
                 </div>`).join("");
             $("cat-grid").querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => editAnime(b.dataset.edit)));
             $("cat-grid").querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => removeAnime(b.dataset.del, b.dataset.title)));
+            $("cat-grid").querySelectorAll("[data-exp]").forEach((b) => b.addEventListener("click", async () => {
+                try { const a = await getAnime(b.dataset.exp); if (a) { const { updatedAt, ...rest } = a; downloadJSON(b.dataset.exp + ".json", rest); } }
+                catch (err) { alert("Error al exportar: " + err.message); }
+            }));
         }
         $("cat-search").addEventListener("input", (e) => renderCatalog(e.target.value));
         $("new-from-catalog").addEventListener("click", () => { resetAnimeForm(); gotoTab("anime"); });

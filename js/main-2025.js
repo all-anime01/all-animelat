@@ -114,6 +114,9 @@ function injectAccountWidget() {
 }
 injectAccountWidget();
 
+// Monta el hero cuanto antes (no depende del catálogo). Ver hero.js
+setupHero();
+
 $(document).ready(function () {
   getAnimeData().then(function (animeData) {
   // --- LÓGICA DE ANIMACIÓN DE CARGA ---
@@ -1135,8 +1138,7 @@ $(document).ready(function () {
     $(".navbar").toggleClass("nav-toggle");
   });
 
-  // HERO / PORTADA (dinámico desde el admin + video estilo Netflix). Ver hero.js
-  setupHero();
+  // (El hero se monta a nivel superior, no espera al catálogo. Ver setupHero abajo.)
 
   // CORRECCIÓN DEL BOTÓN MOSTRAR MÁS
   $("#show-more-episodes").on("click", function () {
