@@ -12,6 +12,10 @@ import {
   onAuthStateChanged,
   updateProfile,
   sendEmailVerification,
+  sendPasswordResetEmail,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
   doc,
@@ -79,6 +83,20 @@ export async function reloadUser() {
   if (!auth.currentUser) return null;
   await auth.currentUser.reload();
   return auth.currentUser;
+}
+
+// Envía un correo para restablecer la contraseña.
+export async function sendReset(email) {
+  await sendPasswordResetEmail(auth, email.trim());
+}
+
+// Cambia la contraseña del usuario actual (re-autentica con la actual).
+export async function changePassword(currentPassword, newPassword) {
+  const user = auth.currentUser;
+  if (!user) throw new Error("No hay sesión.");
+  const cred = EmailAuthProvider.credential(user.email, currentPassword);
+  await reauthenticateWithCredential(user, cred); // valida la contraseña actual
+  await updatePassword(user, newPassword);
 }
 
 // Actualiza el perfil (nombre y/o avatar) en Auth y en Firestore.

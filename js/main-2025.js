@@ -54,25 +54,8 @@ function injectAccountWidget() {
     }`;
     document.head.appendChild(s);
   }
-  // Accesos de cuenta dentro del menú hamburguesa (solo visibles en móvil).
-  const navUl = document.querySelector(".navbar ul");
-  function renderNavAccount(user) {
-    if (!navUl) return;
-    navUl.querySelectorAll(".nav-acct").forEach((n) => n.remove());
-    const admin = user && (user.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
-    const items = user
-      ? [`<li class="nav-acct"><a href="perfil.html"><i class="fas fa-user-gear"></i> Mi perfil</a></li>`,
-         `<li class="nav-acct"><a href="mis-favoritos.html"><i class="fas fa-heart"></i> Mis favoritos</a></li>`,
-         `<li class="nav-acct"><a href="historial.html"><i class="fas fa-clock-rotate-left"></i> Historial</a></li>`,
-         `<li class="nav-acct"><a href="notificaciones.html"><i class="fas fa-bell"></i> Notificaciones</a></li>`,
-         admin ? `<li class="nav-acct"><a href="admin/index.html"><i class="fas fa-user-shield"></i> Admin</a></li>` : "",
-         `<li class="nav-acct"><a href="#" id="nav-logout"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</a></li>`]
-      : [`<li class="nav-acct"><a href="cuenta.html"><i class="fas fa-user"></i> Iniciar sesión</a></li>`];
-    navUl.insertAdjacentHTML("beforeend", items.join(""));
-    const nl = document.getElementById("nav-logout");
-    if (nl) nl.addEventListener("click", async (e) => { e.preventDefault(); await logoutUser(); location.href = "index.html"; });
-  }
-
+  // La cuenta (perfil, favoritos, historial, etc.) se accede desde el botón
+  // de perfil del header (menú desplegable), no desde el drawer.
   const w = document.createElement("div");
   w.id = "acct-widget";
   host.insertBefore(w, host.querySelector("#menu-icon") || null);
@@ -81,11 +64,9 @@ function injectAccountWidget() {
     w.innerHTML = `<a class="acct-login" href="cuenta.html"><i class="fas fa-user"></i> Entrar</a>`;
   };
   renderLoggedOut();
-  renderNavAccount(null);
   if (!FIREBASE_CONFIGURED) return;
 
   observeAuth((user) => {
-    renderNavAccount(user);
     if (!user) { renderLoggedOut(); return; }
     const admin = (user.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
     const name = user.displayName || user.email.split("@")[0];

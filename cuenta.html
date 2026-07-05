@@ -59,6 +59,12 @@
             border-radius: 10px; color: var(--light-text); font-size: 15px; outline: none; transition: .2s;
         }
         .field input:focus { border-color: var(--primary-color); }
+        .pw-wrap { position: relative; }
+        .pw-wrap input { padding-right: 46px; }
+        .pw-toggle { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--grey-text); cursor: pointer; font-size: 15px; padding: 8px; }
+        .pw-toggle:hover { color: var(--light-text); }
+        .forgot { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--grey-text); text-decoration: none; }
+        .forgot:hover { color: #ff6b6b; }
 
         .btn {
             width: 100%; padding: 13px; border: none; border-radius: 10px; cursor: pointer;
@@ -121,7 +127,8 @@
                 </div>
                 <div class="field">
                     <label>Contraseña</label>
-                    <input type="password" id="login-password" autocomplete="current-password" required>
+                    <div class="pw-wrap"><input type="password" id="login-password" autocomplete="current-password" required><button type="button" class="pw-toggle" data-for="login-password" title="Ver contraseña"><i class="fas fa-eye"></i></button></div>
+                    <a href="#" id="forgot-link" class="forgot">¿Olvidaste tu contraseña?</a>
                 </div>
                 <button class="btn" type="submit" id="login-btn">Entrar</button>
             </form>
@@ -138,7 +145,7 @@
                 </div>
                 <div class="field">
                     <label>Contraseña</label>
-                    <input type="password" id="reg-password" autocomplete="new-password" minlength="6" required>
+                    <div class="pw-wrap"><input type="password" id="reg-password" autocomplete="new-password" minlength="6" required><button type="button" class="pw-toggle" data-for="reg-password" title="Ver contraseña"><i class="fas fa-eye"></i></button></div>
                 </div>
                 <button class="btn" type="submit" id="reg-btn">Crear cuenta</button>
             </form>
@@ -149,10 +156,18 @@
     </div>
 
     <script type="module">
-        import { registerUser, loginUser, logoutUser, observeAuth, isAdmin } from "./js/auth.js";
+        import { registerUser, loginUser, logoutUser, observeAuth, isAdmin, sendReset } from "./js/auth.js";
         import { FIREBASE_CONFIGURED } from "./js/firebase-config.js";
 
         const $ = (id) => document.getElementById(id);
+
+        // Ver / ocultar contraseña
+        document.querySelectorAll(".pw-toggle").forEach((b) => b.addEventListener("click", () => {
+            const inp = document.getElementById(b.dataset.for);
+            const show = inp.type === "password";
+            inp.type = show ? "text" : "password";
+            b.querySelector("i").className = show ? "fas fa-eye-slash" : "fas fa-eye";
+        }));
         const msg = $("msg");
         const params = new URLSearchParams(location.search);
 
@@ -164,6 +179,20 @@
         if (!FIREBASE_CONFIGURED) {
             showMsg("⚠ Falta configurar Firebase en js/firebase-config.js", "error");
         }
+
+        // --- ¿Olvidaste tu contraseña? ---
+        $("forgot-link").addEventListener("click", async (e) => {
+            e.preventDefault();
+            const email = $("login-email").value.trim();
+            if (!email) { showMsg("Escribe tu correo arriba y vuelve a tocar el enlace."); $("login-email").focus(); return; }
+            try {
+                await sendReset(email);
+                showMsg("📧 Te enviamos un correo para restablecer tu contraseña. Revisa tu bandeja (y spam).", "ok");
+            } catch (err) {
+                const { authErrorMessage } = await import("./js/auth.js");
+                showMsg(authErrorMessage(err.code));
+            }
+        });
 
         // --- Cambio de pestañas ---
         document.querySelectorAll(".tab").forEach((tab) => {

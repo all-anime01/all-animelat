@@ -31,8 +31,12 @@
         .avatar-grid img.selected { border-color: var(--primary); }
         .field { margin-bottom: 14px; }
         label { display: block; font-size: 13px; color: var(--grey); margin-bottom: 6px; }
-        input[type=text] { width: 100%; padding: 11px 13px; background: #161616; border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; }
+        input[type=text], input[type=password] { width: 100%; padding: 11px 13px; background: #161616; border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; }
         input:focus { outline: none; border-color: var(--primary); }
+        .pw-wrap { position: relative; }
+        .pw-wrap input { padding-right: 44px; }
+        .pw-toggle { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--grey); cursor: pointer; font-size: 15px; padding: 8px; }
+        .pw-toggle:hover { color: var(--text); }
         .btn { background: var(--primary); color: #fff; border: none; padding: 11px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; }
         .btn.grey { background: #333; }
         .btn:disabled { opacity: .5; cursor: not-allowed; }
@@ -112,6 +116,22 @@
             <div class="msg" id="profile-msg"></div>
         </div>
 
+        <!-- Cambiar contraseña -->
+        <div class="card">
+            <h3><i class="fas fa-lock"></i> Cambiar contraseña</h3>
+            <div class="field"><label>Contraseña actual</label>
+                <div class="pw-wrap"><input type="password" id="cur-pass" autocomplete="current-password"><button type="button" class="pw-toggle" data-for="cur-pass" title="Ver"><i class="fas fa-eye"></i></button></div>
+            </div>
+            <div class="field"><label>Nueva contraseña</label>
+                <div class="pw-wrap"><input type="password" id="new-pass" minlength="6" autocomplete="new-password" placeholder="Mínimo 6 caracteres"><button type="button" class="pw-toggle" data-for="new-pass" title="Ver"><i class="fas fa-eye"></i></button></div>
+            </div>
+            <div class="field"><label>Repite la nueva contraseña</label>
+                <div class="pw-wrap"><input type="password" id="new-pass2" autocomplete="new-password"><button type="button" class="pw-toggle" data-for="new-pass2" title="Ver"><i class="fas fa-eye"></i></button></div>
+            </div>
+            <button class="btn" id="save-pass">Actualizar contraseña</button>
+            <div class="msg" id="pass-msg"></div>
+        </div>
+
         <!-- Configuración -->
         <div class="card">
             <h3><i class="fas fa-gear"></i> Configuración</h3>
@@ -134,7 +154,7 @@
     </div>
 
     <script type="module">
-        import { observeAuth, logoutUser, updateUserProfile, resendVerification, isAdmin, reloadUser } from "./js/auth.js";
+        import { observeAuth, logoutUser, updateUserProfile, resendVerification, isAdmin, reloadUser, changePassword } from "./js/auth.js";
         import { AVATARS } from "./js/avatars.js";
         import { FIREBASE_CONFIGURED } from "./js/firebase-config.js";
 
@@ -246,6 +266,33 @@
         });
 
         $("logout-btn").addEventListener("click", async () => { await logoutUser(); location.href = "index.html"; });
+
+        // ---- Ver / ocultar contraseña ----
+        document.querySelectorAll(".pw-toggle").forEach((b) => b.addEventListener("click", () => {
+            const inp = document.getElementById(b.dataset.for);
+            const show = inp.type === "password";
+            inp.type = show ? "text" : "password";
+            b.querySelector("i").className = show ? "fas fa-eye-slash" : "fas fa-eye";
+        }));
+
+        // ---- Cambiar contraseña ----
+        $("save-pass").addEventListener("click", async () => {
+            const cur = $("cur-pass").value, np = $("new-pass").value, np2 = $("new-pass2").value;
+            const msg = $("pass-msg");
+            const set = (t, type) => { msg.textContent = t; msg.className = "msg " + (type || ""); };
+            if (!cur || !np) { set("Completa los campos.", "error"); return; }
+            if (np.length < 6) { set("La nueva contraseña debe tener al menos 6 caracteres.", "error"); return; }
+            if (np !== np2) { set("Las contraseñas nuevas no coinciden.", "error"); return; }
+            const btn = $("save-pass"); btn.disabled = true; set("Guardando…");
+            try {
+                await changePassword(cur, np);
+                set("✅ Contraseña actualizada.", "ok");
+                $("cur-pass").value = $("new-pass").value = $("new-pass2").value = "";
+            } catch (e) {
+                const map = { "auth/wrong-password": "La contraseña actual es incorrecta.", "auth/invalid-credential": "La contraseña actual es incorrecta.", "auth/weak-password": "La nueva contraseña es muy débil.", "auth/requires-recent-login": "Vuelve a iniciar sesión e inténtalo de nuevo." };
+                set("❌ " + (map[e.code] || e.message), "error");
+            } finally { btn.disabled = false; }
+        });
     </script>
 </body>
 
