@@ -7,8 +7,7 @@
 import { db, FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const DELAY_TO_VIDEO = 6000; // ms mostrando la imagen antes de pasar al tráiler
-const SLIDE_INTERVAL = 9000;
+const DELAY_TO_VIDEO = 5000; // ms mostrando la imagen antes de pasar al tráiler
 
 // Slides por defecto de la portada (los que trae el sitio de fábrica).
 // El admin los muestra y puede editarlos/guardarlos para tomar control.
@@ -63,7 +62,7 @@ function initCarousel(section) {
   const nextArrow = section.querySelector("#hero-next");
   let current = 0;
   const total = slides.length;
-  let interval = null, videoTimer = null;
+  let videoTimer = null;
   const isMobile = () => window.innerWidth <= 768;
 
   // Miniaturas de navegación
@@ -72,7 +71,7 @@ function initCarousel(section) {
     slides.forEach((_, i) => {
       const t = document.createElement("div");
       t.className = "nav-thumb" + (i === 0 ? " active" : "");
-      t.addEventListener("click", () => { show(i); reset(); });
+      t.addEventListener("click", () => show(i));
       nav.appendChild(t);
     });
   }
@@ -108,16 +107,14 @@ function initCarousel(section) {
     if (prevArrow) prevArrow.classList.toggle("hidden", i === 0);
     scheduleVideo(slides[i]);
   }
-  const next = () => show((current + 1) % total);
-  function reset() { clearInterval(interval); interval = setInterval(next, SLIDE_INTERVAL); }
-
-  if (nextArrow) nextArrow.addEventListener("click", () => { next(); reset(); });
-  if (prevArrow) prevArrow.addEventListener("click", () => { show((current - 1 + total) % total); reset(); });
+  // El carrusel NO avanza solo: el video se reproduce completo (en bucle) y
+  // el usuario avanza únicamente con las flechas o las miniaturas.
+  if (nextArrow) nextArrow.addEventListener("click", () => show((current + 1) % total));
+  if (prevArrow) prevArrow.addEventListener("click", () => show((current - 1 + total) % total));
   let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(setBackgrounds, 200); });
 
   setBackgrounds();
   show(0);
-  interval = setInterval(next, SLIDE_INTERVAL);
 }
 
 // Punto de entrada: monta el hero (dinámico desde Firestore o el del HTML).

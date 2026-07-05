@@ -105,7 +105,7 @@
         <span class="brand"><img src="../image/all-anime-logo.png" alt="All-Anime" style="height:26px"><span style="opacity:.6;font-weight:500;margin-left:2px">/ Admin</span></span>
         <div class="topbar-right">
             <a href="../perfil.html" id="profile-link"><img class="admin-avatar" id="admin-avatar" alt=""> <span id="admin-name">Perfil</span></a>
-            <a href="../index.html" target="_blank"><i class="fas fa-up-right-from-square"></i> Ver sitio</a>
+            <a href="../index.html"><i class="fas fa-house"></i> Ver sitio</a>
             <button id="logout"><i class="fas fa-right-from-bracket"></i></button>
         </div>
     </div>
@@ -271,8 +271,10 @@
                                 <p class="hint">Crea el HTML del reproductor en <code>frame/…</code> como siempre; aquí solo pones su ruta.</p>
                             </div>
                         </div>
+                        <input type="hidden" name="editEpSeason"><input type="hidden" name="editEpNumber">
                         <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
                             <button class="btn" type="submit" id="save-ep">Agregar episodio</button>
+                            <button class="btn grey sm" type="button" id="cancel-ep" style="display:none"><i class="fas fa-xmark"></i> Cancelar edición</button>
                             <span class="msg" id="ep-msg" style="margin:0"></span>
                         </div>
                     </form>
@@ -310,7 +312,7 @@
         import { observeAuth, logoutUser } from "../js/auth.js";
         import {
             saveAnime, addEpisodes, deleteAnime, getCatalogIndex, getAnime,
-            getAnimeSeasons, listEpisodes, deleteEpisode, setAnimeTag,
+            getAnimeSeasons, listEpisodes, deleteEpisode, updateEpisode, setAnimeTag,
             getHeroSlides, saveHeroSlides, importAnimes, exportAllAnimes,
             buildAnimeFromForm, buildEpisodeFromForm,
         } from "../js/admin.js";
@@ -668,18 +670,47 @@
             else $("ep-existing").innerHTML = "";
         });
 
+        let currentEps = [];
         async function renderExistingEpisodes(animeId, season) {
-            const eps = await listEpisodes(animeId, season);
-            if (!eps.length) { $("ep-existing").innerHTML = '<p class="hint">Esta temporada aún no tiene episodios.</p>'; return; }
-            $("ep-existing").innerHTML = `<h2 style="margin-top:6px">Episodios de ${season} (${eps.length})</h2>` +
-                eps.map((ep) => `<div class="ep-row"><span class="n">${ep.number}</span><span class="t">${ep.title || "(sin título)"}</span>
-                    <button class="btn danger sm" data-delep="${ep.number}"><i class="fas fa-trash"></i></button></div>`).join("");
+            currentEps = await listEpisodes(animeId, season);
+            if (!currentEps.length) { $("ep-existing").innerHTML = '<p class="hint">Esta temporada aún no tiene episodios.</p>'; return; }
+            $("ep-existing").innerHTML = `<h2 style="margin-top:6px">Episodios de ${season} (${currentEps.length})</h2>` +
+                currentEps.map((ep) => `<div class="ep-row"><span class="n">${ep.number}</span><span class="t">${ep.title || "(sin título)"}</span>
+                    <button class="btn grey sm" data-editep="${ep.number}" title="Editar"><i class="fas fa-pen"></i></button>
+                    <button class="btn danger sm" data-delep="${ep.number}" title="Eliminar"><i class="fas fa-trash"></i></button></div>`).join("");
+            $("ep-existing").querySelectorAll("[data-editep]").forEach((b) => b.addEventListener("click", () => editEpisode(season, +b.dataset.editep)));
             $("ep-existing").querySelectorAll("[data-delep]").forEach((b) => b.addEventListener("click", async () => {
                 if (!confirm(`¿Eliminar el episodio ${b.dataset.delep} de ${season}?`)) return;
-                try { await deleteEpisode(animeId, season, b.dataset.delep); renderExistingEpisodes(animeId, season); loadCatalog(); }
+                try { await deleteEpisode(animeId, season, b.dataset.delep); resetEpForm(); renderExistingEpisodes(animeId, season); loadCatalog(); }
                 catch (err) { alert("Error: " + err.message); }
             }));
         }
+
+        function editEpisode(season, number) {
+            const ep = currentEps.find((e) => Number(e.number) === Number(number));
+            if (!ep) return;
+            const f = $("ep-form");
+            ["number", "title", "duration", "releaseDate", "description", "img", "videoUrl"].forEach((k) => { if (f[k]) f[k].value = ep[k] ?? ""; });
+            if (f.language) f.language.value = ep.language || "Sub";
+            // Asegura que el selector de temporada apunte a la del episodio.
+            if ([...$("ep-season").options].some((o) => o.value === season)) $("ep-season").value = season;
+            $("new-season-field").style.display = "none";
+            f.editEpSeason.value = season;
+            f.editEpNumber.value = number;
+            $("save-ep").innerHTML = '<i class="fas fa-save"></i> Guardar cambios';
+            $("cancel-ep").style.display = "inline-flex";
+            setMsg($("ep-msg"), `Editando E${number} de ${season}`, "");
+            $("ep-form").scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        function resetEpForm() {
+            $("ep-form").reset();
+            $("ep-form").editEpSeason.value = "";
+            $("ep-form").editEpNumber.value = "";
+            $("sel-lang").selectedIndex = 0;
+            $("save-ep").innerHTML = "Agregar episodio";
+            $("cancel-ep").style.display = "none";
+        }
+        $("cancel-ep").addEventListener("click", () => { resetEpForm(); setMsg($("ep-msg"), ""); });
 
         $("ep-form").addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -690,20 +721,27 @@
                 season = $("new-season-input").value.trim();
                 if (!season) { setMsg($("ep-msg"), "Escribe el nombre de la nueva temporada.", "error"); return; }
             }
+            const f = Object.fromEntries(new FormData(e.target).entries());
+            const editSeason = f.editEpSeason, editNumber = f.editEpNumber;
+            const editing = editSeason !== "" && editNumber !== "";
             const btn = $("save-ep"); btn.disabled = true;
-            setMsg($("ep-msg"), "Agregando…");
+            setMsg($("ep-msg"), editing ? "Guardando cambios…" : "Agregando…");
             try {
-                const f = Object.fromEntries(new FormData(e.target).entries());
                 const ep = buildEpisodeFromForm({ ...f, season });
-                const total = await addEpisodes(animeId, [ep]);
-                setMsg($("ep-msg"), `✅ Episodio agregado (${total} en total).`, "ok");
-                e.target.reset();
-                $("sel-lang").selectedIndex = 0;
-                // Refresca temporadas (por si era nueva) y lista.
-                const cur = $("ep-anime");
-                await cur.dispatchEvent(new Event("change"));
-                $("ep-season").value = season;
-                $("ep-season").dispatchEvent(new Event("change"));
+                if (editing) {
+                    await updateEpisode(animeId, editSeason, editNumber, ep);
+                    setMsg($("ep-msg"), `✅ Episodio actualizado.`, "ok");
+                } else {
+                    const total = await addEpisodes(animeId, [ep]);
+                    setMsg($("ep-msg"), `✅ Episodio agregado (${total} en total).`, "ok");
+                }
+                resetEpForm();
+                // Refresca temporadas (por si era nueva) y la lista.
+                await $("ep-anime").dispatchEvent(new Event("change"));
+                if ([...$("ep-season").options].some((o) => o.value === season)) {
+                    $("ep-season").value = season;
+                    $("ep-season").dispatchEvent(new Event("change"));
+                }
                 loadCatalog();
             } catch (err) {
                 console.error(err);

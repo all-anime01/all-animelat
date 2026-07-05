@@ -112,6 +112,29 @@ export async function listEpisodes(animeId, season) {
   return orderedEpisodes(anime).filter((e) => e.season === season);
 }
 
+// Edita un episodio existente (identificado por su temporada + número originales).
+export async function updateEpisode(animeId, origSeason, origNumber, newEp) {
+  const ref = doc(db, "animes", animeId);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) throw new Error("El anime no existe.");
+  const anime = snap.data();
+  const episodes = Array.isArray(anime.episodes) ? [...anime.episodes] : [];
+  const idx = episodes.findIndex(
+    (e) => String(e.season) === String(origSeason) && Number(e.number) === Number(origNumber)
+  );
+  if (idx < 0) throw new Error("No se encontró el episodio a editar.");
+  // Si cambia temporada+número, evita chocar con otro episodio existente.
+  const dup = episodes.some(
+    (e, i) => i !== idx && String(e.season) === String(newEp.season) && Number(e.number) === Number(newEp.number)
+  );
+  if (dup) throw new Error(`Ya existe ${newEp.season} episodio ${newEp.number}.`);
+  episodes[idx] = { ...episodes[idx], ...newEp };
+  const sorted = orderedEpisodes({ episodes });
+  await updateDoc(ref, { episodes: sorted, episodesTotal: sorted.length, updatedAt: serverTimestamp() });
+  await upsertCatalogCard({ ...anime, episodes: sorted });
+  return sorted.length;
+}
+
 // Elimina un episodio (por temporada + número).
 export async function deleteEpisode(animeId, season, number) {
   const ref = doc(db, "animes", animeId);
