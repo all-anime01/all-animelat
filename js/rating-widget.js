@@ -68,11 +68,15 @@ export async function mountRatingWidget(container, anime) {
     s.addEventListener("click", async () => {
       const v = Number(s.dataset.v);
       paint(v);
+      hintEl.innerHTML = "Guardando…";
       try {
         await setRating(animeId, v);
         state = await getRatingState(animeId, seedAvg, seedCount);
         renderInfo();
-      } catch (err) { console.error(err); }
+      } catch (err) {
+        console.error(err);
+        hintEl.innerHTML = `<span style="color:#ff6b6b">No se pudo guardar tu voto (${err.code || err.message}).</span>`;
+      }
     });
   });
   starsEl.addEventListener("mouseleave", () => paint(state.mine || state.avg));
