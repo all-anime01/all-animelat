@@ -275,7 +275,7 @@ body.red-theme header {
     top: calc(100% + 10px);
     right: 0;
     display: none;
-    width: 280px;
+    width: 250px;
     background-color: var(--card-bg);
     border-radius: 8px;
     max-height: 400px;
@@ -356,14 +356,41 @@ body.red-theme header {
     left: 0;
     width: 100%;
     height: 80%;
+    z-index: 2;
     background: linear-gradient(to top, rgba(16, 16, 16, 1) 15%, rgba(16, 16, 16, 0.8) 35%, transparent 100%);
+}
+
+/* Video del hero (tráiler de Cloudinary) — aparece sobre la imagen */
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.hero-video.playing {
+    opacity: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     padding: 6rem 5%;
     max-width: 700px;
+}
+
+.hero-logo-text {
+    font-family: var(--font-headings), sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .6);
 }
 
 .hero-logo {
@@ -2104,3 +2131,50 @@ header .logo:hover .logo-desktop {
 .msearch-results img { width: 46px; height: 64px; object-fit: cover; border-radius: 6px; background: #222; flex: none; }
 .msearch-results .t { font-size: 1.5rem; }
 .msearch-empty { color: #888; text-align: center; padding: 3rem; font-size: 1.5rem; }
+
+/* ===================================================================
+   Filas horizontales (Recomendado para ti / Favoritos del público)
+   =================================================================== */
+.hrow { display: flex; gap: 1.4rem; overflow-x: auto; padding: 0.5rem 0 1.5rem; scroll-snap-type: x proximity; }
+.hrow::-webkit-scrollbar { height: 8px; }
+.hrow::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+.hrow .anime-card { flex: 0 0 auto; width: 180px; scroll-snap-align: start; }
+@media (max-width: 768px) { .hrow .anime-card { width: 140px; } }
+
+/* ===================================================================
+   Top 10 en Colombia — estilo Netflix (número gigante + póster)
+   =================================================================== */
+.top10-section { margin-bottom: 5rem; }
+.top10-wrap { position: relative; }
+.top10-carousel {
+  display: flex; align-items: center; gap: 0; overflow-x: auto; overflow-y: hidden;
+  padding: 1rem 0 2rem 2.5rem; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;
+}
+.top10-carousel::-webkit-scrollbar { display: none; }
+.top10-item {
+  flex: 0 0 auto; display: flex; align-items: flex-end; text-decoration: none;
+  padding-right: 1rem; transition: transform .2s ease;
+}
+.top10-item:hover { transform: scale(1.03); }
+.top10-rank {
+  font-family: var(--font-headings), sans-serif; font-weight: 900; font-size: 19rem; line-height: .72;
+  color: #1b1b1b; -webkit-text-stroke: 3px #737373; text-stroke: 3px #737373;
+  letter-spacing: -1rem; margin-right: 0; user-select: none; flex: none; transition: -webkit-text-stroke-color .2s;
+}
+.top10-item:hover .top10-rank { -webkit-text-stroke-color: var(--primary-color); }
+.top10-poster { width: 150px; height: 220px; object-fit: cover; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,.55); flex: none; margin-left: -2.2rem; }
+/* Flechas de navegación (aparecen al pasar el cursor) */
+.top10-nav {
+  position: absolute; top: 1rem; bottom: 3rem; width: 55px; z-index: 5; cursor: pointer;
+  background: rgba(16,16,16,.55); color: #fff; border: none; font-size: 3.2rem; line-height: 1;
+  opacity: 0; transition: opacity .2s ease; display: flex; align-items: center; justify-content: center;
+}
+.top10-wrap:hover .top10-nav { opacity: 1; }
+.top10-nav:hover { background: rgba(16,16,16,.85); }
+.top10-nav.prev { left: 0; border-radius: 0 6px 6px 0; }
+.top10-nav.next { right: 0; border-radius: 6px 0 0 6px; }
+@media (max-width: 768px) {
+  .top10-rank { font-size: 11rem; letter-spacing: -.8rem; -webkit-text-stroke-width: 2px; }
+  .top10-poster { width: 108px; height: 158px; }
+  .top10-nav { display: none; }
+}

@@ -74,6 +74,13 @@ export async function resendVerification() {
   await sendEmailVerification(auth.currentUser);
 }
 
+// Recarga el usuario desde el servidor (para detectar si ya verificó su correo).
+export async function reloadUser() {
+  if (!auth.currentUser) return null;
+  await auth.currentUser.reload();
+  return auth.currentUser;
+}
+
 // Actualiza el perfil (nombre y/o avatar) en Auth y en Firestore.
 export async function updateUserProfile({ displayName, photoURL }) {
   const user = auth.currentUser;

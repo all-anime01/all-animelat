@@ -9,7 +9,7 @@ import { observeAuth } from "./auth.js";
 import { episodeId as makeEpId } from "./catalog-utils.js";
 import {
   doc, getDoc, getDocs, setDoc, deleteDoc, collection, query, orderBy, limit,
-  serverTimestamp, runTransaction,
+  serverTimestamp, runTransaction, increment,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 let currentUser = null;
@@ -91,13 +91,28 @@ export async function recordHistory(anime, episode) {
   if (!currentUser) return;
   const epId = makeEpId(anime.id, episode);
   try {
-    await setDoc(historyRef(currentUser.uid, epId), {
+    const ref = historyRef(currentUser.uid, epId);
+    const existed = (await getDoc(ref)).exists();
+    await setDoc(ref, {
       epId, animeId: anime.id, animeTitle: anime.title,
       img: episode.img || anime.img || "", season: episode.season, number: episode.number,
       title: episode.title || "", language: episode.language || "",
       videoUrl: episode.videoUrl || "", at: serverTimestamp(),
     }, { merge: true });
+    // Primera vez que ve este episodio → suma a la popularidad pública del anime.
+    if (!existed) {
+      await setDoc(doc(db, "animeStats", anime.id), { viewCount: increment(1) }, { merge: true });
+    }
   } catch (e) { /* no crítico */ }
+}
+
+// Animes más vistos por la comunidad (para "favoritos del público" y Top 10).
+export async function getPopularAnimes(max = 20) {
+  try {
+    const q = query(collection(db, "animeStats"), orderBy("viewCount", "desc"), limit(max));
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => ({ id: d.id, viewCount: d.data().viewCount || 0 })).filter((x) => x.viewCount > 0);
+  } catch (e) { return []; }
 }
 
 // Lista el historial (más reciente primero). Sirve para "seguir viendo" e historial.

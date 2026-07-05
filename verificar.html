@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación — All-Anime</title>
+    <link rel="shortcut icon" href="image/logo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root { --primary: #ca3030; --bg: #101010; --card: #202020; --text: #f0f0f0; --grey: #a0a0a0; --border: #303030; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Roboto, system-ui, sans-serif; background: radial-gradient(circle at top, #1c1c1c 0%, var(--bg) 60%); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .card { width: 100%; max-width: 440px; background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 40px 30px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+        .logo { height: 44px; margin-bottom: 26px; }
+        .icon { width: 84px; height: 84px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; font-size: 40px; }
+        .icon.ok { background: rgba(0,170,80,.15); color: #4ade80; }
+        .icon.err { background: rgba(202,48,48,.15); color: #ff6b6b; }
+        .icon.load { background: #161616; color: var(--primary); }
+        .spin { animation: spin 1s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
+        h1 { font-size: 22px; margin-bottom: 10px; }
+        p { color: var(--grey); font-size: 15px; line-height: 1.5; margin-bottom: 24px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; text-decoration: none; border: none; padding: 13px 26px; border-radius: 11px; font-weight: 700; font-size: 15px; cursor: pointer; transition: .15s; }
+        .btn:hover { filter: brightness(1.1); }
+        .btn.grey { background: #333; }
+        .field { text-align: left; margin: 14px 0; }
+        .field label { display: block; font-size: 13px; color: var(--grey); margin-bottom: 6px; }
+        .field input { width: 100%; padding: 12px 14px; background: #161616; border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; }
+        .field input:focus { outline: none; border-color: var(--primary); }
+        .msg { font-size: 14px; margin-top: 12px; min-height: 18px; }
+        .msg.error { color: #ff6b6b; } .msg.ok { color: #4ade80; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="logo-all-anime.svg" alt="All-Anime" class="logo">
+        <div id="view">
+            <div class="icon load"><i class="fas fa-circle-notch spin"></i></div>
+            <h1>Procesando…</h1>
+            <p>Un momento por favor.</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth } from "./js/firebase-config.js";
+        import {
+            applyActionCode, checkActionCode, verifyPasswordResetCode, confirmPasswordReset,
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        const view = document.getElementById("view");
+        const params = new URLSearchParams(location.search);
+        const mode = params.get("mode");
+        const oobCode = params.get("oobCode");
+
+        const render = (html) => (view.innerHTML = html);
+        const success = (title, text, btns) => render(`
+            <div class="icon ok"><i class="fas fa-circle-check"></i></div>
+            <h1>${title}</h1><p>${text}</p>${btns}`);
+        const failure = (title, text) => render(`
+            <div class="icon err"><i class="fas fa-circle-exclamation"></i></div>
+            <h1>${title}</h1><p>${text}</p>
+            <a class="btn" href="cuenta.html">Volver a iniciar sesión</a>`);
+
+        const goButtons = `
+            <a class="btn" href="perfil.html"><i class="fas fa-user"></i> Ir a mi perfil</a>
+            <a class="btn grey" href="index.html" style="margin-left:8px">Inicio</a>`;
+
+        async function run() {
+            if (!mode || !oobCode) { failure("Enlace inválido", "Este enlace no es válido o ya fue usado."); return; }
+            try {
+                if (mode === "verifyEmail" || mode === "recoverEmail") {
+                    await applyActionCode(auth, oobCode);
+                    // Si hay sesión abierta, refréscala para reflejar el estado verificado.
+                    try { await auth.currentUser?.reload(); } catch (e) {}
+                    success("¡Correo verificado! 🎉", "Tu cuenta de All-Anime ya está verificada. Disfruta de todo el catálogo.", goButtons);
+                } else if (mode === "resetPassword") {
+                    const email = await verifyPasswordResetCode(auth, oobCode);
+                    renderResetForm(email);
+                } else {
+                    failure("Acción no reconocida", "No pudimos procesar este enlace.");
+                }
+            } catch (err) {
+                const map = {
+                    "auth/expired-action-code": "El enlace expiró. Solicita uno nuevo desde tu perfil.",
+                    "auth/invalid-action-code": "El enlace no es válido o ya fue utilizado.",
+                    "auth/user-disabled": "Esta cuenta fue deshabilitada.",
+                    "auth/user-not-found": "No encontramos la cuenta asociada.",
+                };
+                failure("No se pudo completar", map[err.code] || "Ocurrió un error. Inténtalo de nuevo.");
+            }
+        }
+
+        function renderResetForm(email) {
+            render(`
+                <div class="icon load"><i class="fas fa-key"></i></div>
+                <h1>Nueva contraseña</h1>
+                <p>Para <b style="color:var(--text)">${email}</b></p>
+                <div class="field"><label>Contraseña nueva</label><input type="password" id="np" minlength="6" placeholder="Mínimo 6 caracteres"></div>
+                <div class="field"><label>Repite la contraseña</label><input type="password" id="np2"></div>
+                <button class="btn" id="save" style="width:100%;justify-content:center">Guardar contraseña</button>
+                <div class="msg" id="m"></div>`);
+            document.getElementById("save").addEventListener("click", async () => {
+                const p = document.getElementById("np").value, p2 = document.getElementById("np2").value;
+                const m = document.getElementById("m");
+                if (p.length < 6) { m.textContent = "La contraseña debe tener al menos 6 caracteres."; m.className = "msg error"; return; }
+                if (p !== p2) { m.textContent = "Las contraseñas no coinciden."; m.className = "msg error"; return; }
+                try {
+                    await confirmPasswordReset(auth, oobCode, p);
+                    success("¡Contraseña actualizada!", "Ya puedes iniciar sesión con tu nueva contraseña.",
+                        '<a class="btn" href="cuenta.html">Iniciar sesión</a>');
+                } catch (e) { m.textContent = "No se pudo guardar. El enlace pudo expirar."; m.className = "msg error"; }
+            });
+        }
+
+        run();
+    </script>
+</body>
+
+</html>

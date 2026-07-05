@@ -58,6 +58,10 @@
         .fav-empty { color: var(--grey); font-size: 14px; padding: 8px 0; }
         .notif-count { background: var(--primary); color: #fff; font-size: 12px; padding: 1px 9px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
         .notif-new { background: var(--primary); color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 4px; margin-left: 8px; font-weight: 700; letter-spacing: .5px; }
+        .quick-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .quick-links a { flex: 1; min-width: 140px; display: flex; align-items: center; gap: 10px; justify-content: center; background: var(--card2, #161616); border: 1px solid var(--border); border-radius: 12px; padding: 16px; color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; transition: .15s; }
+        .quick-links a:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .quick-links a i { color: var(--primary); }
         .gate { text-align: center; padding: 90px 20px; }
         .gate a { color: #ff6b6b; }
         .admin-link { display: inline-flex; align-items: center; gap: 8px; }
@@ -85,27 +89,13 @@
             </div>
         </div>
 
-        <!-- Mis favoritos -->
+        <!-- Accesos rápidos (favoritos, historial, notificaciones ahora en su propia página) -->
         <div class="card">
-            <h3><i class="fas fa-heart"></i> Mis favoritos</h3>
-            <div class="fav-tabs">
-                <button class="fav-tab active" data-fav="animes">Animes</button>
-                <button class="fav-tab" data-fav="episodes">Episodios</button>
+            <div class="quick-links">
+                <a href="mis-favoritos.html"><i class="fas fa-heart"></i> Mis favoritos</a>
+                <a href="historial.html"><i class="fas fa-clock-rotate-left"></i> Historial</a>
+                <a href="notificaciones.html"><i class="fas fa-bell"></i> Notificaciones</a>
             </div>
-            <div id="fav-animes" class="fav-panel"></div>
-            <div id="fav-episodes" class="fav-panel" style="display:none"></div>
-        </div>
-
-        <!-- Historial -->
-        <div class="card">
-            <h3><i class="fas fa-clock-rotate-left"></i> Historial</h3>
-            <div id="history-list"><p class="fav-empty">Cargando…</p></div>
-        </div>
-
-        <!-- Notificaciones -->
-        <div class="card">
-            <h3><i class="fas fa-bell"></i> Notificaciones <span id="notif-count" class="notif-count"></span></h3>
-            <div id="notif-list"><p class="fav-empty">Cargando…</p></div>
         </div>
 
         <!-- Avatar -->
@@ -133,7 +123,7 @@
                 </div>
             </div>
             <div class="settings-row" id="admin-row" style="display:none">
-                <span><i class="fas fa-gauge-high"></i> Panel de administración</span>
+                <span><i class="fas fa-user-shield"></i> Panel de administración</span>
                 <a class="btn admin-link" href="admin/index.html">Abrir</a>
             </div>
             <div class="settings-row">
@@ -144,11 +134,9 @@
     </div>
 
     <script type="module">
-        import { observeAuth, logoutUser, updateUserProfile, resendVerification, isAdmin } from "./js/auth.js";
+        import { observeAuth, logoutUser, updateUserProfile, resendVerification, isAdmin, reloadUser } from "./js/auth.js";
         import { AVATARS } from "./js/avatars.js";
         import { FIREBASE_CONFIGURED } from "./js/firebase-config.js";
-        import { listFavAnimes, listFavEpisodes, listHistory } from "./js/user-data.js";
-        import { getAnimeData } from "./js/data-provider.js";
 
         const $ = (id) => document.getElementById(id);
         let currentUser = null;
@@ -184,21 +172,34 @@
                 i.classList.toggle("selected", i.dataset.url === url));
         }
 
+        let verifyPoll = null;
         function renderVerify(user) {
             const box = $("verify-box");
             if (user.emailVerified) {
+                if (verifyPoll) { clearInterval(verifyPoll); verifyPoll = null; }
                 box.innerHTML = '<span class="badge ok"><i class="fas fa-circle-check"></i> Correo verificado</span>';
-            } else {
-                box.innerHTML = `<span class="badge no"><i class="fas fa-circle-exclamation"></i> Correo sin verificar</span>
-                    <div class="row" style="margin-top:8px">
-                        <button class="btn grey" id="resend-btn" style="padding:7px 12px;font-size:13px">Reenviar correo</button>
-                        <button class="btn grey" id="reload-btn" style="padding:7px 12px;font-size:13px">Ya verifiqué</button>
-                    </div><div class="msg" id="verify-msg"></div>`;
-                $("resend-btn").addEventListener("click", async () => {
-                    try { await resendVerification(); $("verify-msg").textContent = "✅ Correo de verificación enviado."; $("verify-msg").className = "msg ok"; }
-                    catch (e) { $("verify-msg").textContent = "❌ " + e.message; $("verify-msg").className = "msg error"; }
-                });
-                $("reload-btn").addEventListener("click", () => location.reload());
+                return;
+            }
+            box.innerHTML = `<span class="badge no"><i class="fas fa-circle-exclamation"></i> Correo sin verificar</span>
+                <div class="row" style="margin-top:8px">
+                    <button class="btn grey" id="resend-btn" style="padding:7px 12px;font-size:13px">Reenviar correo</button>
+                    <span style="font-size:12px;color:var(--grey);align-self:center"><i class="fas fa-circle-notch fa-spin"></i> Esperando verificación…</span>
+                </div><div class="msg" id="verify-msg"></div>`;
+            $("resend-btn").addEventListener("click", async () => {
+                try { await resendVerification(); $("verify-msg").textContent = "✅ Correo de verificación enviado. Revisa tu bandeja (y spam)."; $("verify-msg").className = "msg ok"; }
+                catch (e) { $("verify-msg").textContent = "❌ " + e.message; $("verify-msg").className = "msg error"; }
+            });
+            // Detecta automáticamente cuando el usuario verifica su correo (sin recargar).
+            if (!verifyPoll) {
+                verifyPoll = setInterval(async () => {
+                    try {
+                        const u = await reloadUser();
+                        if (u && u.emailVerified) {
+                            renderVerify(u);
+                            $("verify-msg") && ($("verify-msg").textContent = "🎉 ¡Correo verificado!");
+                        }
+                    } catch (e) {}
+                }, 4000);
             }
         }
 
@@ -226,80 +227,7 @@
             markSelected(url);
             renderVerify(user);
             $("admin-row").style.display = isAdmin(user) ? "flex" : "none";
-            loadFavorites();
-            loadHistory();
-            loadNotifications();
         });
-
-        // ---- Historial ----
-        function epLink(it) {
-            return `anime-details.html?id=${it.animeId}&season=${encodeURIComponent(it.season)}&episode=${it.number}`;
-        }
-        async function loadHistory() {
-            try {
-                const hist = await listHistory(60);
-                $("history-list").innerHTML = hist.length ? hist.map((e) =>
-                    `<a class="fav-ep" href="${epLink(e)}"><img src="${e.img}" loading="lazy" alt="">
-                        <div><b>${e.animeTitle}</b><br><small>${e.season} · E${e.number} ${e.title || ""}</small></div></a>`).join("")
-                    : '<p class="fav-empty">Aún no has visto ningún episodio.</p>';
-            } catch (e) { console.error(e); $("history-list").innerHTML = '<p class="fav-empty">No se pudo cargar el historial.</p>'; }
-        }
-
-        // ---- Notificaciones (episodios nuevos de animes que sigues/ves) ----
-        const MONTHS = { enero:0, febrero:1, marzo:2, abril:3, mayo:4, junio:5, julio:6, agosto:7, septiembre:8, octubre:9, noviembre:10, diciembre:11 };
-        function parseRelease(str) {
-            if (!str) return null;
-            const p = String(str).replace(",", "").toLowerCase().split(/\s+/);
-            if (p.length === 3 && MONTHS.hasOwnProperty(p[0])) return new Date(+p[2], MONTHS[p[0]], +p[1]);
-            const d = new Date(str); return isNaN(d) ? null : d;
-        }
-        async function loadNotifications() {
-            try {
-                const [animes, favA, hist] = await Promise.all([getAnimeData(), listFavAnimes(), listHistory(200)]);
-                const followed = new Set([...favA.map((a) => a.id), ...hist.map((h) => h.animeId)]);
-                if (!followed.size) {
-                    $("notif-list").innerHTML = '<p class="fav-empty">Sigue o mira animes (❤️/marcador) para recibir avisos de episodios nuevos.</p>';
-                    return;
-                }
-                const cutoff = Date.now() - 30 * 86400000;
-                const notifs = [];
-                animes.filter((a) => followed.has(a.id)).forEach((a) => {
-                    (a.episodes || []).forEach((ep) => {
-                        const dt = parseRelease(ep.releaseDate);
-                        if (dt && dt.getTime() >= cutoff) notifs.push({ animeId: a.id, animeTitle: a.title, img: ep.img || a.img, season: ep.season, number: ep.number, title: ep.title, dt });
-                    });
-                });
-                notifs.sort((x, y) => y.dt - x.dt);
-                const weekAgo = Date.now() - 7 * 86400000;
-                $("notif-count").textContent = notifs.length || "";
-                $("notif-list").innerHTML = notifs.length ? notifs.slice(0, 30).map((n) =>
-                    `<a class="fav-ep" href="${epLink(n)}"><img src="${n.img}" loading="lazy" alt="">
-                        <div><b>${n.animeTitle}</b>${n.dt.getTime() >= weekAgo ? '<span class="notif-new">NUEVO</span>' : ""}<br>
-                        <small>Nuevo episodio · ${n.season} · E${n.number} ${n.title || ""}</small></div></a>`).join("")
-                    : '<p class="fav-empty">Sin novedades recientes de tus animes.</p>';
-            } catch (e) { console.error(e); $("notif-list").innerHTML = '<p class="fav-empty">No se pudieron cargar las notificaciones.</p>'; }
-        }
-
-        // ---- Favoritos ----
-        document.querySelectorAll(".fav-tab").forEach((t) => t.addEventListener("click", () => {
-            document.querySelectorAll(".fav-tab").forEach((x) => x.classList.remove("active"));
-            t.classList.add("active");
-            $("fav-animes").style.display = t.dataset.fav === "animes" ? "block" : "none";
-            $("fav-episodes").style.display = t.dataset.fav === "episodes" ? "block" : "none";
-        }));
-
-        async function loadFavorites() {
-            try {
-                const [animes, eps] = await Promise.all([listFavAnimes(), listFavEpisodes()]);
-                $("fav-animes").innerHTML = animes.length ? `<div class="fav-grid">${animes.map((a) =>
-                    `<a class="fav-a" href="anime-details.html?id=${a.id}"><img src="${a.img || a.imgMobile || ""}" loading="lazy" alt=""><span>${a.title}</span></a>`).join("")}</div>`
-                    : '<p class="fav-empty">Aún no has guardado animes. Usa el botón <i class="far fa-bookmark"></i> en cada anime.</p>';
-                $("fav-episodes").innerHTML = eps.length ? eps.map((e) =>
-                    `<a class="fav-ep" href="anime-details.html?id=${e.animeId}&season=${encodeURIComponent(e.season)}&episode=${e.number}">
-                        <img src="${e.img}" loading="lazy" alt=""><div><b>${e.animeTitle}</b><br><small>${e.season} · E${e.number} ${e.title || ""}</small></div></a>`).join("")
-                    : '<p class="fav-empty">Aún no has guardado episodios. Usa el botón <i class="far fa-bookmark"></i> en el reproductor.</p>';
-            } catch (e) { console.error(e); }
-        }
 
         // ---- Guardar ----
         $("save-profile").addEventListener("click", async () => {

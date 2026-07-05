@@ -56,6 +56,14 @@
         .tag-func { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; cursor: pointer; }
         .tag-func input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--primary); flex: none; }
         .tag-func b { font-size: 14px; } .tag-func p { font-size: 12px; color: var(--grey); }
+        /* hero (portada) list */
+        .hero-item { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px; margin-bottom: 10px; }
+        .hero-item img { width: 120px; height: 62px; object-fit: cover; border-radius: 8px; background: #222; flex: none; }
+        .hero-item-info { flex: 1; min-width: 0; }
+        .hero-item-info b { display: block; font-size: 14px; }
+        .hero-item-info small { color: var(--grey); font-size: 12px; }
+        .hero-item-info small i { color: var(--primary); }
+        .hero-item-acts { display: flex; gap: 6px; flex-wrap: wrap; }
         /* home manager chips */
         .home-chips { display: flex; flex-wrap: wrap; gap: 8px; }
         .home-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--card2); border: 1px solid var(--border); border-radius: 20px; padding: 6px 8px 6px 13px; font-size: 13px; }
@@ -108,6 +116,7 @@
         <nav class="sidebar">
             <button class="navbtn active" data-tab="catalog"><i class="fas fa-film"></i> Catálogo</button>
             <button class="navbtn" data-tab="home"><i class="fas fa-house"></i> Inicio</button>
+            <button class="navbtn" data-tab="hero"><i class="fas fa-image"></i> Portada</button>
             <button class="navbtn" data-tab="anime"><i class="fas fa-plus"></i> Nuevo anime</button>
             <button class="navbtn" data-tab="eps"><i class="fas fa-list-ol"></i> Episodios</button>
             <button class="navbtn" data-tab="stats"><i class="fas fa-chart-line"></i> Estadísticas</button>
@@ -134,6 +143,35 @@
                 </div>
                 <p style="color:var(--grey);font-size:14px;margin:-8px 0 18px">Controla qué animes aparecen en cada carrusel de la página principal. Los cambios se reflejan al instante en el sitio.</p>
                 <div id="home-sections"></div>
+            </section>
+
+            <!-- ============ PORTADA (hero) ============ -->
+            <section class="panel" id="panel-hero">
+                <div class="phead"><h1>Portada (carrusel principal)</h1></div>
+                <p style="color:var(--grey);font-size:14px;margin:-8px 0 18px">Controla los slides del hero de la página de inicio. Cada slide muestra la imagen y, tras unos segundos, reproduce el video (tráiler) estilo Netflix. Sube los videos a <b>Cloudinary</b> y pega aquí su URL (.mp4).</p>
+                <div id="hero-list" style="margin-bottom:22px"></div>
+                <div class="card">
+                    <h2 id="hero-form-title">Agregar slide</h2>
+                    <form id="hero-form">
+                        <div class="grid2">
+                            <div class="field"><label>Título *</label><input name="title" required></div>
+                            <div class="field"><label>Enlace (VER AHORA)</label><input name="link" placeholder="anime-details.html?id=jujutsu-kaisen"></div>
+                            <div class="field full"><label>Logo (PNG del título, opcional)</label><input name="logoImg"></div>
+                            <div class="field"><label>Imagen de fondo (desktop) *</label><input name="desktopImg" required></div>
+                            <div class="field"><label>Imagen de fondo (móvil)</label><input name="mobileImg"></div>
+                            <div class="field full"><label>Video / tráiler (URL de Cloudinary .mp4)</label><input name="video" placeholder="https://res.cloudinary.com/.../trailer.mp4"></div>
+                            <div class="field"><label>Meta (ej. +16 · Sub | Dob)</label><input name="meta" placeholder="+16 · Sub | Dob"></div>
+                            <div class="field"><label></label></div>
+                            <div class="field full"><label>Descripción</label><textarea name="description"></textarea></div>
+                        </div>
+                        <input type="hidden" name="editIndex" value="">
+                        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+                            <button class="btn" type="submit" id="hero-save">Agregar slide</button>
+                            <button class="btn grey sm" type="button" id="hero-reset" style="display:none">Cancelar edición</button>
+                            <span class="msg" id="hero-msg" style="margin:0"></span>
+                        </div>
+                    </form>
+                </div>
             </section>
 
             <!-- ============ NUEVO / EDITAR ANIME ============ -->
@@ -260,6 +298,7 @@
         import {
             saveAnime, addEpisodes, deleteAnime, getCatalogIndex, getAnime,
             getAnimeSeasons, listEpisodes, deleteEpisode, setAnimeTag,
+            getHeroSlides, saveHeroSlides,
             buildAnimeFromForm, buildEpisodeFromForm,
         } from "../js/admin.js";
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
@@ -268,6 +307,14 @@
         const $ = (id) => document.getElementById(id);
         const setMsg = (el, t, type) => { el.textContent = t; el.className = "msg " + (type || ""); };
         let catalogItems = [];
+
+        // Si algo falla, muéstralo en el gate en vez de quedarse en "Verificando…".
+        window.addEventListener("error", (e) => {
+            const g = $("gate"); if (g && g.textContent.includes("Verificando")) g.innerHTML = "⚠ Error: " + (e.message || e.error) + "<br><small>Recarga con Ctrl+Shift+R</small>";
+        });
+        window.addEventListener("unhandledrejection", (e) => {
+            const g = $("gate"); if (g && g.textContent.includes("Verificando")) g.innerHTML = "⚠ Error: " + ((e.reason && e.reason.message) || e.reason);
+        });
 
         // ---------- Gate ----------
         observeAuth((user) => {
@@ -291,7 +338,75 @@
             $("panel-" + b.dataset.tab).classList.add("active");
             if (b.dataset.tab === "stats") loadStats();
             if (b.dataset.tab === "home") renderHome();
+            if (b.dataset.tab === "hero") loadHero();
         }));
+
+        // ---------- Portada (hero) ----------
+        let heroSlides = [];
+        async function loadHero() {
+            try { heroSlides = await getHeroSlides(); renderHeroList(); }
+            catch (e) { $("hero-list").innerHTML = '<p class="msg error">Error al cargar la portada.</p>'; }
+        }
+        function renderHeroList() {
+            if (!heroSlides.length) { $("hero-list").innerHTML = '<p class="hint">No hay slides. Agrega el primero abajo. (Si dejas la portada vacía, el sitio usa los slides por defecto del HTML.)</p>'; return; }
+            $("hero-list").innerHTML = heroSlides.map((s, i) => `
+                <div class="hero-item">
+                    <img src="${s.desktopImg || ""}" alt="">
+                    <div class="hero-item-info"><b>${s.title || "(sin título)"}</b><small>${s.video ? '<i class="fas fa-video"></i> con video' : "sin video"} · ${s.link || ""}</small></div>
+                    <div class="hero-item-acts">
+                        <button class="btn grey sm" data-up="${i}" ${i === 0 ? "disabled" : ""}><i class="fas fa-arrow-up"></i></button>
+                        <button class="btn grey sm" data-down="${i}" ${i === heroSlides.length - 1 ? "disabled" : ""}><i class="fas fa-arrow-down"></i></button>
+                        <button class="btn grey sm" data-edit="${i}"><i class="fas fa-pen"></i></button>
+                        <button class="btn danger sm" data-del="${i}"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>`).join("");
+            $("hero-list").querySelectorAll("[data-up]").forEach((b) => b.addEventListener("click", () => moveHero(+b.dataset.up, -1)));
+            $("hero-list").querySelectorAll("[data-down]").forEach((b) => b.addEventListener("click", () => moveHero(+b.dataset.down, 1)));
+            $("hero-list").querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => editHero(+b.dataset.edit)));
+            $("hero-list").querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => delHero(+b.dataset.del)));
+        }
+        async function persistHero() { await saveHeroSlides(heroSlides); }
+        async function moveHero(i, dir) {
+            const j = i + dir; if (j < 0 || j >= heroSlides.length) return;
+            [heroSlides[i], heroSlides[j]] = [heroSlides[j], heroSlides[i]];
+            await persistHero(); renderHeroList();
+        }
+        async function delHero(i) {
+            if (!confirm("¿Eliminar este slide de la portada?")) return;
+            heroSlides.splice(i, 1); await persistHero(); renderHeroList();
+        }
+        function editHero(i) {
+            const s = heroSlides[i], f = $("hero-form");
+            ["title", "link", "logoImg", "desktopImg", "mobileImg", "video", "meta", "description"].forEach((k) => { if (f[k]) f[k].value = s[k] || ""; });
+            f.editIndex.value = i;
+            $("hero-form-title").textContent = "Editar slide #" + (i + 1);
+            $("hero-save").textContent = "Guardar cambios";
+            $("hero-reset").style.display = "inline-flex";
+            $("panel-hero").scrollIntoView({ behavior: "smooth", block: "end" });
+        }
+        function resetHeroForm() {
+            $("hero-form").reset();
+            $("hero-form").editIndex.value = "";
+            $("hero-form-title").textContent = "Agregar slide";
+            $("hero-save").textContent = "Agregar slide";
+            $("hero-reset").style.display = "none";
+            setMsg($("hero-msg"), "");
+        }
+        $("hero-reset").addEventListener("click", resetHeroForm);
+        $("hero-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const f = Object.fromEntries(new FormData(e.target).entries());
+            const slide = { title: f.title.trim(), link: f.link.trim(), logoImg: f.logoImg.trim(), desktopImg: f.desktopImg.trim(), mobileImg: f.mobileImg.trim(), video: f.video.trim(), meta: f.meta.trim(), description: f.description.trim() };
+            const idx = f.editIndex;
+            $("hero-save").disabled = true; setMsg($("hero-msg"), "Guardando…");
+            try {
+                if (idx === "") heroSlides.push(slide); else heroSlides[+idx] = slide;
+                await persistHero();
+                setMsg($("hero-msg"), "✅ Portada actualizada.", "ok");
+                resetHeroForm(); renderHeroList();
+            } catch (err) { setMsg($("hero-msg"), "❌ " + (err.code === "permission-denied" ? "Sin permisos (¿republicaste las reglas?)." : err.message), "error"); }
+            finally { $("hero-save").disabled = false; }
+        });
 
         // ---------- Inicio: control de carruseles ----------
         const HOME_SECTIONS = [

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial — All-Anime</title>
+    <title>Mis favoritos — All-Anime</title>
     <link rel="shortcut icon" href="image/logo.ico">
     <link rel="stylesheet" href="css/index-css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -41,7 +41,7 @@
     </header>
 
     <main class="main-content container account-main">
-        <h2 class="section-title"><i class="material-icons" style="color:var(--primary-color)">history</i> Historial</h2>
+        <h2 class="section-title"><i class="material-icons" style="color:var(--primary-color)">favorite</i> Mis favoritos</h2>
         <div id="account-gate" class="account-gate">Cargando…</div>
         <div id="account-content"></div>
     </main>
@@ -51,12 +51,12 @@
     <script type="module" src="js/main-2025.js"></script>
     <script type="module">
         import { observeAuth } from "./js/auth.js";
-        import { renderHistory } from "./js/account-views.js";
+        import { renderFavorites } from "./js/account-views.js";
         observeAuth((user) => {
             const gate = document.getElementById("account-gate");
-            if (!user) { gate.innerHTML = 'Inicia sesión para ver tu historial. <a href="cuenta.html?redirect=historial.html">Iniciar sesión</a>'; return; }
+            if (!user) { gate.innerHTML = 'Inicia sesión para ver tus favoritos. <a href="cuenta.html?redirect=mis-favoritos.html">Iniciar sesión</a>'; return; }
             gate.style.display = "none";
-            renderHistory(document.getElementById("account-content"));
+            renderFavorites(document.getElementById("account-content"));
         });
     </script>
 </body>

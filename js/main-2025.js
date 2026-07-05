@@ -3,6 +3,8 @@ import { initPlayerEngagement, clearAutoplay, getWatchedSet } from "./engagement
 import { episodeId as makeEpId } from "./catalog-utils.js";
 import * as UD from "./user-data.js";
 import { mountRatingWidget } from "./rating-widget.js";
+import { recommendForUser, rememberSearch } from "./recommend.js";
+import { setupHero } from "./hero.js";
 import { observeAuth, logoutUser } from "./auth.js";
 import { FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { logVisit } from "./analytics.js";
@@ -60,7 +62,10 @@ function injectAccountWidget() {
     const admin = user && (user.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
     const items = user
       ? [`<li class="nav-acct"><a href="perfil.html"><i class="fas fa-user-gear"></i> Mi perfil</a></li>`,
-         admin ? `<li class="nav-acct"><a href="admin/index.html"><i class="fas fa-gauge-high"></i> Admin</a></li>` : "",
+         `<li class="nav-acct"><a href="mis-favoritos.html"><i class="fas fa-heart"></i> Mis favoritos</a></li>`,
+         `<li class="nav-acct"><a href="historial.html"><i class="fas fa-clock-rotate-left"></i> Historial</a></li>`,
+         `<li class="nav-acct"><a href="notificaciones.html"><i class="fas fa-bell"></i> Notificaciones</a></li>`,
+         admin ? `<li class="nav-acct"><a href="admin/index.html"><i class="fas fa-user-shield"></i> Admin</a></li>` : "",
          `<li class="nav-acct"><a href="#" id="nav-logout"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</a></li>`]
       : [`<li class="nav-acct"><a href="cuenta.html"><i class="fas fa-user"></i> Iniciar sesión</a></li>`];
     navUl.insertAdjacentHTML("beforeend", items.join(""));
@@ -94,7 +99,10 @@ function injectAccountWidget() {
       <div class="acct-menu" id="acct-menu">
         <div class="acct-head">${ph("")}<div><b>${name}</b><span>${user.email}</span></div></div>
         <a href="perfil.html"><i class="fas fa-user-gear"></i> Mi perfil</a>
-        ${admin ? '<a class="acct-admin" href="admin/index.html"><i class="fas fa-gauge-high"></i> Panel de administración</a>' : ""}
+        <a href="mis-favoritos.html"><i class="fas fa-heart"></i> Mis favoritos</a>
+        <a href="historial.html"><i class="fas fa-clock-rotate-left"></i> Historial</a>
+        <a href="notificaciones.html"><i class="fas fa-bell"></i> Notificaciones</a>
+        ${admin ? '<div class="sep"></div><a class="acct-admin" href="admin/index.html"><i class="fas fa-user-shield"></i> Panel de administración</a>' : ""}
         <div class="sep"></div>
         <button id="acct-logout"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</button>
       </div>`;
@@ -1127,79 +1135,8 @@ $(document).ready(function () {
     $(".navbar").toggleClass("nav-toggle");
   });
 
-  // CORRECCIÓN DEL CARRUSEL DE HÉROE
-  if ($(".hero-section").length) {
-    const slides = $(".hero-slide");
-    const prevArrow = $("#hero-prev");
-    const nextArrow = $("#hero-next");
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    const updateArrows = () => {
-      prevArrow.toggleClass("hidden", currentSlide === 0);
-    };
-
-    const showSlide = (index) => {
-      slides.removeClass("active").eq(index).addClass("active");
-      $(".nav-thumb").removeClass("active").eq(index).addClass("active");
-      currentSlide = index;
-      updateArrows();
-    };
-
-    let slideInterval = setInterval(() => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      showSlide(currentSlide);
-    }, 7000);
-
-    slides.each((index) => {
-      $(".hero-navigation").append(
-        $("<div>").addClass("nav-thumb").data("index", index)
-      );
-    });
-    $(".nav-thumb").first().addClass("active");
-
-    const resetInterval = () => {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(() => {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
-      }, 7000);
-    };
-
-    $(".nav-thumb").click(function () {
-      showSlide($(this).data("index"));
-      resetInterval();
-    });
-
-    nextArrow.click(function () {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      showSlide(currentSlide);
-      resetInterval();
-    });
-
-    prevArrow.click(function () {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      showSlide(currentSlide);
-      resetInterval();
-    });
-
-    const setHeroImages = () => {
-      slides.each(function () {
-        const slide = $(this);
-        const desktopImg = slide.data("desktop-img");
-        const mobileImg = slide.data("mobile-img");
-        if (window.innerWidth <= 768 && mobileImg) {
-          slide.css("background-image", `url('${mobileImg}')`);
-        } else {
-          slide.css("background-image", `url('${desktopImg}')`);
-        }
-      });
-    };
-
-    setHeroImages();
-    updateArrows();
-    $(window).resize(debounce(setHeroImages, 200));
-  }
+  // HERO / PORTADA (dinámico desde el admin + video estilo Netflix). Ver hero.js
+  setupHero();
 
   // CORRECCIÓN DEL BOTÓN MOSTRAR MÁS
   $("#show-more-episodes").on("click", function () {
@@ -1257,6 +1194,7 @@ $(document).ready(function () {
     const run = debounce(() => {
       const q = mInput.val().toLowerCase().trim();
       if (q.length < 2) { mRes.html('<p class="msearch-empty">Escribe para buscar…</p>'); return; }
+      rememberSearch(q);
       const filtered = animeData.filter((a) => a.title.toLowerCase().includes(q)).slice(0, 30);
       mRes.html(filtered.length
         ? filtered.map((a) => `<a href="anime-details.html?id=${a.id}"><img src="${a.img}" alt=""><span class="t">${a.title}</span></a>`).join("")
@@ -1283,6 +1221,7 @@ $(document).ready(function () {
       searchResults.empty().hide();
       return;
     }
+    rememberSearch(q);
     searchResults
       .empty()
       .show()
@@ -1351,6 +1290,70 @@ $(document).ready(function () {
     toggleEpisodeFavorite($(this).data("episode-id"));
   });
 
+  // --- DESCUBRIMIENTO: Top 10, favoritos del público y recomendaciones ---
+  function renderCarousel(rowSel, sectionSel, list) {
+    const row = $(rowSel);
+    if (!row.length || !list.length) return;
+    if (row.hasClass("slick-initialized")) row.slick("unslick");
+    row.empty();
+    list.forEach((a) => row.append(createAnimeCard(a)));
+    $(sectionSel).show();
+    row.slick({
+      infinite: false, slidesToShow: 6, slidesToScroll: 2,
+      responsive: [
+        { breakpoint: 1400, settings: { slidesToShow: 5 } },
+        { breakpoint: 1024, settings: { slidesToShow: 4 } },
+        { breakpoint: 768, settings: { slidesToShow: 3, arrows: false } },
+        { breakpoint: 480, settings: { slidesToShow: 2, arrows: false } },
+      ],
+    });
+  }
+  function renderTop10(list) {
+    const row = $("#top10-row");
+    if (!row.length || !list.length) return;
+    row.empty();
+    list.slice(0, 10).forEach((a, i) => row.append(
+      `<a class="top10-item" href="anime-details.html?id=${a.id}" title="${a.title}">
+         <span class="top10-rank">${i + 1}</span>
+         <img class="top10-poster" src="${a.img}" alt="${a.title}" loading="lazy"></a>`
+    ));
+    $("#top10-section").show();
+    const el = row[0];
+    const step = () => Math.max(el.clientWidth * 0.8, 300);
+    $("#top10-prev").off("click").on("click", () => el.scrollBy({ left: -step(), behavior: "smooth" }));
+    $("#top10-next").off("click").on("click", () => el.scrollBy({ left: step(), behavior: "smooth" }));
+  }
+  async function populateDiscovery() {
+    if (!$("#top10-row").length && !$("#for-you-row").length) return; // solo en el inicio
+    const byId = new Map(animeData.map((a) => [a.id, a]));
+    const pop = await UD.getPopularAnimes(20);
+
+    // Top 10 en Colombia (popularidad real; se completa con mejor valorados)
+    let top = pop.map((p) => byId.get(p.id)).filter(Boolean);
+    if (top.length < 10) {
+      const have = new Set(top.map((a) => a.id));
+      const extra = [...animeData]
+        .filter((a) => a.type !== "Película" && !have.has(a.id))
+        .sort((x, y) => (Number(y.rating) || 0) - (Number(x.rating) || 0));
+      top = top.concat(extra).slice(0, 10);
+    }
+    renderTop10(top);
+
+    // Favoritos del público (solo si ya hay datos de vistas)
+    if (pop.length) {
+      renderCarousel("#public-favs-row", "#public-favs-section", pop.map((p) => byId.get(p.id)).filter(Boolean).slice(0, 18));
+    }
+
+    // Recomendado para ti (personalizado, requiere sesión)
+    if (UD.isLoggedIn()) {
+      const [favA, hist] = await Promise.all([UD.listFavAnimes(), UD.listHistory(100)]);
+      const seedIds = new Set([...favA.map((a) => a.id), ...hist.map((h) => h.animeId)]);
+      const seeds = [...seedIds].map((id) => byId.get(id)).filter(Boolean);
+      const recs = recommendForUser(animeData, seeds, [...seedIds], 18);
+      renderCarousel("#for-you-row", "#for-you-section", recs);
+    }
+  }
+
   // --- INICIALIZACIÓN DE PÁGINAS ---
   populateHomePage();
   setupFilterPage("#explore-anime-grid", animeData);
@@ -1363,7 +1366,8 @@ $(document).ready(function () {
   populateCalendarPage();
   populateContinueWatching();
   populateHistoryPage();
-  // Al confirmarse la sesión, recarga "seguir viendo" desde Firestore.
-  UD.userReady.then(() => populateContinueWatching());
+  populateDiscovery();
+  // Al confirmarse la sesión, recarga "seguir viendo" y recomendaciones.
+  UD.userReady.then(() => { populateContinueWatching(); populateDiscovery(); });
   }); // fin de getAnimeData().then
 });

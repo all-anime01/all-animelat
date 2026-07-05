@@ -124,6 +124,15 @@ export async function deleteEpisode(animeId, season, number) {
   return episodes.length;
 }
 
+// ---- Portada (hero) --------------------------------------------------------
+export async function getHeroSlides() {
+  const snap = await getDoc(doc(db, "config", "hero"));
+  return snap.exists() && Array.isArray(snap.data().slides) ? snap.data().slides : [];
+}
+export async function saveHeroSlides(slides) {
+  await setDoc(doc(db, "config", "hero"), { slides, updatedAt: serverTimestamp() }, { merge: true });
+}
+
 // Activa/desactiva una etiqueta (recomendado/doblaje/agregado) en un anime.
 // Controla en qué carrusel del inicio aparece.
 export async function setAnimeTag(animeId, tag, on) {
