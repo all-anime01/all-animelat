@@ -2057,3 +2057,50 @@ header .logo:hover .logo-desktop {
         height: auto;
     }
 }
+/* ===================================================================
+   Ajustes de marca (rojo acorde a la página) — All-Anime
+   =================================================================== */
+.overlay-genres span {
+  background: linear-gradient(135deg, #ca3030, #e23b3b);
+  color: #fff !important;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+.overlay-stats .fa-star { color: #ff3b3b; }
+
+/* Etiquetas de género en la ficha de detalles (mismo estilo de marca) */
+.anime-genre-pills { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.4rem; }
+.anime-genre-pills a {
+  background: linear-gradient(135deg, #ca3030, #e23b3b);
+  color: #fff; text-decoration: none;
+  padding: .35rem .9rem; border-radius: 14px; font-size: 1.2rem; font-weight: 600;
+  transition: transform .12s ease, filter .12s ease;
+}
+.anime-genre-pills a:hover { transform: translateY(-2px); filter: brightness(1.12); }
+
+/* ===================================================================
+   Header móvil + búsqueda dedicada — All-Anime
+   =================================================================== */
+@media (max-width: 768px) {
+  .header-right { gap: .6rem; }
+  /* En móvil no se usa el input inline: se abre un overlay de búsqueda */
+  .search-container #search-input,
+  .search-container.active #search-input { display: none !important; }
+  .search-results-dropdown { display: none !important; }
+  #acct-widget { margin-left: 2px; }
+}
+
+/* Overlay de búsqueda para móvil (estilo Crunchyroll) */
+.msearch-overlay { position: fixed; inset: 0; background: rgba(12,12,12,.98); z-index: 3000; display: none; flex-direction: column; padding: 1.6rem; }
+.msearch-overlay.open { display: flex; animation: msearch-in .18s ease; }
+@keyframes msearch-in { from { opacity: 0; } to { opacity: 1; } }
+.msearch-top { display: flex; align-items: center; gap: 1rem; }
+.msearch-top input { flex: 1; background: #1c1c1c; border: 1px solid #333; border-radius: 12px; padding: 1.4rem 1.6rem; color: #fff; font-size: 1.6rem; outline: none; }
+.msearch-top input:focus { border-color: var(--primary-color); }
+.msearch-top .msearch-close { background: none; border: none; color: #fff; font-size: 2.6rem; cursor: pointer; line-height: 1; padding: 0 .4rem; }
+.msearch-results { margin-top: 1.6rem; overflow-y: auto; flex: 1; }
+.msearch-results a { display: flex; align-items: center; gap: 1.2rem; padding: 1rem; border-radius: 10px; text-decoration: none; color: #f0f0f0; }
+.msearch-results a:active { background: #1e1e1e; }
+.msearch-results img { width: 46px; height: 64px; object-fit: cover; border-radius: 6px; background: #222; flex: none; }
+.msearch-results .t { font-size: 1.5rem; }
+.msearch-empty { color: #888; text-align: center; padding: 3rem; font-size: 1.5rem; }

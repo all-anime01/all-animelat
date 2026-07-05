@@ -1,6 +1,6 @@
 // ============================================================================
 //  WIDGET DE CALIFICACIÓN CON ESTRELLAS  —  All-Anime
-//  Promedio dinámico (entre todos) + calificación personal del usuario.
+//  Promedio dinámico = base del anime (rating/ratingCount) + votos nuevos.
 // ============================================================================
 
 import { getRatingState, setRating, isLoggedIn, userReady } from "./user-data.js";
@@ -11,23 +11,29 @@ function injectStyles() {
   s.id = "rating-widget-styles";
   s.textContent = `
   .rw{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0}
-  .rw-stars{display:inline-flex;gap:4px;font-size:2.2rem;cursor:pointer}
-  .rw-stars i{color:#555;transition:.1s}
-  .rw-stars i.on{color:#ffc107}
+  .rw-stars{display:inline-flex;gap:5px;font-size:2.4rem;cursor:pointer}
+  .rw-stars i{color:#4a4a4a;transition:transform .12s ease,color .12s ease}
+  .rw-stars i.on{color:#ff3b3b;text-shadow:0 0 10px rgba(255,59,59,.45)}
+  .rw-stars:not(.readonly) i:hover{transform:scale(1.22)}
   .rw-stars.readonly{cursor:default}
-  .rw-info{font-size:1.4rem;color:#ccc}
-  .rw-info b{color:#fff;font-size:1.7rem}
-  .rw-hint{font-size:1.2rem;color:#999}
-  .rw-hint a{color:#ff6b6b}`;
+  .rw-info{font-size:1.5rem;color:#ccc}
+  .rw-info b{color:#fff;font-size:1.9rem}
+  .rw-hint{font-size:1.25rem;color:#999}
+  .rw-hint a{color:#ff6b6b}
+  .rw-saved{color:#ff3b3b;font-weight:700}`;
   document.head.appendChild(s);
 }
 
 /**
- * Monta el widget dentro de `container` para el anime `animeId`.
+ * Monta el widget dentro de `container` para `anime` (usa su id, rating y ratingCount).
  */
-export async function mountRatingWidget(container, animeId) {
-  if (!container) return;
+export async function mountRatingWidget(container, anime) {
+  if (!container || !anime) return;
   injectStyles();
+  const animeId = anime.id;
+  const seedAvg = Number(anime.rating) || 0;
+  const seedCount = anime.ratingCount || 0;
+
   container.innerHTML = `<div class="rw">
     <div class="rw-stars" id="rw-stars">${[1,2,3,4,5].map((n)=>`<i class="fas fa-star" data-v="${n}"></i>`).join("")}</div>
     <div class="rw-info" id="rw-info">—</div>
@@ -38,19 +44,16 @@ export async function mountRatingWidget(container, animeId) {
   const infoEl = container.querySelector("#rw-info");
   const hintEl = container.querySelector("#rw-hint");
   const stars = [...starsEl.querySelectorAll("i")];
+  const paint = (val) => stars.forEach((s) => s.classList.toggle("on", Number(s.dataset.v) <= Math.round(val)));
 
-  const paint = (val) => stars.forEach((s) => s.classList.toggle("on", Number(s.dataset.v) <= val));
-
-  let state = { avg: 0, count: 0, mine: 0 };
+  let state = { avg: seedAvg, count: 0, mine: 0 };
   const renderInfo = () => {
-    infoEl.innerHTML = state.count
-      ? `<b>${state.avg.toFixed(1)}</b> / 5 · ${state.count} voto${state.count === 1 ? "" : "s"}`
-      : "Aún sin calificaciones";
-    paint(state.mine || Math.round(state.avg));
-    hintEl.innerHTML = state.mine ? `Tu voto: ${state.mine}★` : "";
+    infoEl.innerHTML = `<b>${state.avg.toFixed(1)}</b> / 5 · ${state.count.toLocaleString("es")} voto${state.count === 1 ? "" : "s"}`;
+    paint(state.mine || state.avg);
+    hintEl.innerHTML = state.mine ? `<span class="rw-saved">Tu voto: ${state.mine}★</span>` : "";
   };
 
-  try { state = await getRatingState(animeId); } catch {}
+  try { state = await getRatingState(animeId, seedAvg, seedCount); } catch {}
   renderInfo();
 
   await userReady;
@@ -60,15 +63,17 @@ export async function mountRatingWidget(container, animeId) {
     return;
   }
 
-  // Interactivo
   stars.forEach((s) => {
     s.addEventListener("mouseenter", () => paint(Number(s.dataset.v)));
     s.addEventListener("click", async () => {
       const v = Number(s.dataset.v);
       paint(v);
-      try { state = await setRating(animeId, v); renderInfo(); }
-      catch (err) { console.error(err); }
+      try {
+        await setRating(animeId, v);
+        state = await getRatingState(animeId, seedAvg, seedCount);
+        renderInfo();
+      } catch (err) { console.error(err); }
     });
   });
-  starsEl.addEventListener("mouseleave", () => paint(state.mine || Math.round(state.avg)));
+  starsEl.addEventListener("mouseleave", () => paint(state.mine || state.avg));
 }

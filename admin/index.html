@@ -56,6 +56,11 @@
         .tag-func { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; cursor: pointer; }
         .tag-func input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--primary); flex: none; }
         .tag-func b { font-size: 14px; } .tag-func p { font-size: 12px; color: var(--grey); }
+        /* home manager chips */
+        .home-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .home-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--card2); border: 1px solid var(--border); border-radius: 20px; padding: 6px 8px 6px 13px; font-size: 13px; }
+        .home-chip button { background: #3a2020; color: #ff8a8a; border: none; width: 20px; height: 20px; border-radius: 50%; cursor: pointer; font-size: 15px; line-height: 1; }
+        .home-chip button:hover { background: var(--primary); color: #fff; }
         /* catalog grid */
         .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
         .anime-tile { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
@@ -89,7 +94,7 @@
 
 <body>
     <div class="topbar">
-        <span class="brand"><i class="fas fa-gauge-high"></i> All-Anime · Admin</span>
+        <span class="brand"><img src="../image/all-anime-logo.png" alt="All-Anime" style="height:26px"><span style="opacity:.6;font-weight:500;margin-left:2px">/ Admin</span></span>
         <div class="topbar-right">
             <a href="../perfil.html" id="profile-link"><img class="admin-avatar" id="admin-avatar" alt=""> <span id="admin-name">Perfil</span></a>
             <a href="../index.html" target="_blank"><i class="fas fa-up-right-from-square"></i> Ver sitio</a>
@@ -102,6 +107,7 @@
     <div class="layout" id="app" style="display:none">
         <nav class="sidebar">
             <button class="navbtn active" data-tab="catalog"><i class="fas fa-film"></i> Catálogo</button>
+            <button class="navbtn" data-tab="home"><i class="fas fa-house"></i> Inicio</button>
             <button class="navbtn" data-tab="anime"><i class="fas fa-plus"></i> Nuevo anime</button>
             <button class="navbtn" data-tab="eps"><i class="fas fa-list-ol"></i> Episodios</button>
             <button class="navbtn" data-tab="stats"><i class="fas fa-chart-line"></i> Estadísticas</button>
@@ -119,6 +125,15 @@
                     </div>
                 </div>
                 <div class="cat-grid" id="cat-grid"><p class="hint">Cargando…</p></div>
+            </section>
+
+            <!-- ============ INICIO (carruseles) ============ -->
+            <section class="panel" id="panel-home">
+                <div class="phead"><h1>Contenido del inicio</h1>
+                    <button class="btn grey sm" id="reload-home"><i class="fas fa-rotate"></i> Actualizar</button>
+                </div>
+                <p style="color:var(--grey);font-size:14px;margin:-8px 0 18px">Controla qué animes aparecen en cada carrusel de la página principal. Los cambios se reflejan al instante en el sitio.</p>
+                <div id="home-sections"></div>
             </section>
 
             <!-- ============ NUEVO / EDITAR ANIME ============ -->
@@ -140,6 +155,10 @@
 
                     <div class="field full" style="margin-top:16px"><label>Géneros</label>
                         <div class="chips" id="genre-chips"></div>
+                        <div style="display:flex;gap:8px;margin-top:10px;max-width:360px">
+                            <input id="new-genre-input" placeholder="Añadir un género nuevo…">
+                            <button type="button" class="btn grey sm" id="add-genre-btn"><i class="fas fa-plus"></i></button>
+                        </div>
                     </div>
 
                     <div class="field full" style="margin-top:16px"><label>Dónde mostrarlo en el inicio</label>
@@ -240,7 +259,7 @@
         import { observeAuth, logoutUser } from "../js/auth.js";
         import {
             saveAnime, addEpisodes, deleteAnime, getCatalogIndex, getAnime,
-            getAnimeSeasons, listEpisodes, deleteEpisode,
+            getAnimeSeasons, listEpisodes, deleteEpisode, setAnimeTag,
             buildAnimeFromForm, buildEpisodeFromForm,
         } from "../js/admin.js";
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
@@ -271,12 +290,61 @@
             b.classList.add("active");
             $("panel-" + b.dataset.tab).classList.add("active");
             if (b.dataset.tab === "stats") loadStats();
+            if (b.dataset.tab === "home") renderHome();
         }));
 
+        // ---------- Inicio: control de carruseles ----------
+        const HOME_SECTIONS = [
+            { tag: "recomendado", label: "Recomendaciones", icon: "fa-star" },
+            { tag: "doblaje", label: "Doblajes", icon: "fa-microphone" },
+            { tag: "agregado", label: "Agregados recientemente", icon: "fa-clock" },
+        ];
+        function renderHome() {
+            const host = $("home-sections");
+            host.innerHTML = HOME_SECTIONS.map((s) => {
+                const inSection = catalogItems.filter((a) => (a.tags || []).includes(s.tag));
+                return `<div class="card" style="margin-bottom:16px">
+                    <h2><i class="fas ${s.icon}"></i> ${s.label} <span style="color:var(--grey);font-size:13px">(${inSection.length})</span></h2>
+                    <div class="home-chips" id="home-${s.tag}">
+                        ${inSection.length ? inSection.map((a) => `<span class="home-chip">${a.title}<button data-remove="${a.id}" data-tag="${s.tag}" title="Quitar">&times;</button></span>`).join("") : '<span style="color:var(--grey);font-size:13px">Vacío</span>'}
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:12px;max-width:420px">
+                        <select class="home-add-sel" data-tag="${s.tag}"><option value="">+ Añadir anime…</option>
+                            ${catalogItems.filter((a) => !(a.tags || []).includes(s.tag)).map((a) => `<option value="${a.id}">${a.title}</option>`).join("")}
+                        </select>
+                    </div>
+                </div>`;
+            }).join("");
+
+            host.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", async () => {
+                b.disabled = true;
+                try { await setAnimeTag(b.dataset.remove, b.dataset.tag, false); await loadCatalog(); renderHome(); }
+                catch (e) { alert("Error: " + e.message); b.disabled = false; }
+            }));
+            host.querySelectorAll(".home-add-sel").forEach((sel) => sel.addEventListener("change", async () => {
+                if (!sel.value) return;
+                sel.disabled = true;
+                try { await setAnimeTag(sel.value, sel.dataset.tag, true); await loadCatalog(); renderHome(); }
+                catch (e) { alert("Error: " + e.message); sel.disabled = false; }
+            }));
+        }
+        $("reload-home").addEventListener("click", async () => { await loadCatalog(); renderHome(); });
+
         // ---------- Poblar selects y chips ----------
+        function genreChip(g, checked) {
+            return `<label class="chip"><input type="checkbox" value="${g}" data-genre ${checked ? "checked" : ""}><span>${g}</span></label>`;
+        }
+        function addGenreChip(value, checked) {
+            const v = value.trim();
+            if (!v) return;
+            const exists = [...document.querySelectorAll("[data-genre]")].some((c) => c.value.toLowerCase() === v.toLowerCase());
+            if (exists) { const c = [...document.querySelectorAll("[data-genre]")].find((x) => x.value.toLowerCase() === v.toLowerCase()); if (checked) c.checked = true; return; }
+            $("genre-chips").insertAdjacentHTML("beforeend", genreChip(v, checked));
+        }
         function initForms() {
-            $("genre-chips").innerHTML = GENRES.map((g, i) =>
-                `<label class="chip"><input type="checkbox" value="${g}" data-genre><span>${g}</span></label>`).join("");
+            $("genre-chips").innerHTML = GENRES.map((g) => genreChip(g, false)).join("");
+            $("add-genre-btn").addEventListener("click", () => { addGenreChip($("new-genre-input").value, true); $("new-genre-input").value = ""; });
+            $("new-genre-input").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("add-genre-btn").click(); } });
             $("theme-chips").innerHTML = THEME_TAGS.map((t) =>
                 `<label class="chip"><input type="checkbox" value="${t}" data-theme-tag><span>${t}</span></label>`).join("");
             $("func-tags").innerHTML = FUNCTIONAL_TAGS.map((t) =>
@@ -333,6 +401,7 @@
         }
         function resetAnimeForm() {
             $("anime-form").reset();
+            $("genre-chips").innerHTML = GENRES.map((g) => genreChip(g, false)).join(""); // quita géneros custom añadidos
             document.querySelectorAll("#anime-form input[type=checkbox]").forEach((c) => (c.checked = false));
             $("anime-form").editingId.value = "";
             $("anime-form-title").textContent = "Nuevo anime";
@@ -355,7 +424,7 @@
             if (form.type) form.type.value = a.type || "TV";
             if (form.status) form.status.value = a.status || "En emisión";
             if (form.audio) form.audio.value = a.audio || "Sub";
-            (a.genres || []).forEach((g) => { const c = document.querySelector(`[data-genre][value="${cssEsc(g)}"]`); if (c) c.checked = true; });
+            (a.genres || []).forEach((g) => { const c = document.querySelector(`[data-genre][value="${cssEsc(g)}"]`); if (c) c.checked = true; else addGenreChip(g, true); });
             const tags = a.tags || [];
             document.querySelectorAll("[data-func-tag]").forEach((c) => { if (tags.includes(c.value)) c.checked = true; });
             document.querySelectorAll("[data-theme-tag]").forEach((c) => { if (tags.includes(c.value)) c.checked = true; });

@@ -3,14 +3,15 @@
 //  Listas para los selectores del panel de administración.
 // ============================================================================
 
+// Géneros REALES presentes en el catálogo (coinciden con los de "Explorar").
+// El admin puede añadir nuevos desde el propio formulario si hace falta.
 export const GENRES = [
-  "Acción", "Artes Marciales", "Aventura", "Ciencia Ficción", "Comedia",
-  "Demonios", "Deportes", "Drama", "Ecchi", "Escolar", "Espacial", "Fantasía",
-  "Gore", "Harem", "Histórico", "Horror", "Infantil", "Isekai", "Josei",
-  "Magia", "Mecha", "Militar", "Misterio", "Mitología", "Música", "Parodia",
-  "Política", "Psicológico", "Recuentos de la vida", "Romance", "Seinen",
-  "Shoujo", "Shounen", "Sobrenatural", "Superhéroes", "Superpoderes",
-  "Suspenso", "Terror", "Vampiros",
+  "Acción", "Artes Marciales", "Aventura", "Aventuras", "Ciencia Ficción",
+  "Comedia", "Demonios", "Deporte", "Drama", "Escolar", "Espacial", "Fantasía",
+  "Gore", "Histórico", "Horror", "Infantil", "Isekai", "Mecha", "Militar",
+  "Misterio", "Mitología", "Parodia", "Política", "Psicológico", "Psíquicos",
+  "Romance", "Seinen", "Shonen", "Shounen", "Sobrenatural", "Superhéroes",
+  "Superpoderes", "Suspenso", "Terror",
 ];
 
 // Tags que CONTROLAN dónde aparece el anime en la página de inicio.
@@ -26,7 +27,7 @@ export const THEME_TAGS = [
   "Monstruos", "Misterio", "Intelectual", "Manipulación", "Viajes en el tiempo",
 ];
 
-export const TYPES = ["TV", "Película", "ONA", "OVA", "Donghua", "Especial"];
+export const TYPES = ["TV", "Película", "ONA", "OVA", "Donghua", "Anime", "Especial"];
 
 export const STATUSES = ["En emisión", "Finalizado", "Próximamente", "Pausado"];
 

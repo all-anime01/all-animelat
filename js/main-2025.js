@@ -60,7 +60,6 @@ function injectAccountWidget() {
     const admin = user && (user.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
     const items = user
       ? [`<li class="nav-acct"><a href="perfil.html"><i class="fas fa-user-gear"></i> Mi perfil</a></li>`,
-         `<li class="nav-acct"><a href="perfil.html"><i class="fas fa-heart"></i> Mis favoritos</a></li>`,
          admin ? `<li class="nav-acct"><a href="admin/index.html"><i class="fas fa-gauge-high"></i> Admin</a></li>` : "",
          `<li class="nav-acct"><a href="#" id="nav-logout"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</a></li>`]
       : [`<li class="nav-acct"><a href="cuenta.html"><i class="fas fa-user"></i> Iniciar sesión</a></li>`];
@@ -304,31 +303,49 @@ $(document).ready(function () {
             </div>`;
   }
 
-  function populateContinueWatching() {
+  // Tarjeta de "seguir viendo"/historial a partir de un item plano.
+  function createHistoryCardFromItem(it) {
+    const link = `anime-details.html?id=${it.animeId}&season=${encodeURIComponent(it.season)}&episode=${it.number}`;
+    return `
+      <div class="episode-detail-card">
+        <a href="${link}">
+          <div class="episode-img-container">
+            <img src="${it.img || ""}" alt="" loading="lazy">
+            <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
+          </div>
+          <div class="episode-card-info">
+            <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${it.animeTitle || ""}</p>
+            <h5 class="episode-card-title">${it.number}. ${it.title || ""}</h5>
+            <p class="episode-card-meta">${it.language || ""}</p>
+          </div>
+        </a>
+      </div>`;
+  }
+
+  // Convierte el historial local (localStorage) a items planos.
+  function localHistoryItems() {
+    return getWatchHistory().map((it) => {
+      const [animeId, seasonStr, episodeStr] = it.id.split("::");
+      const episodeNum = parseFloat(episodeStr.replace("ep", ""));
+      const anime = animeData.find((a) => a.id === animeId);
+      const episode = anime?.episodes?.find((ep) => ep.season === seasonStr && ep.number === episodeNum);
+      return episode ? {
+        animeId, animeTitle: anime.title, img: episode.img, season: episode.season,
+        number: episode.number, title: episode.title, language: episode.language,
+      } : null;
+    }).filter(Boolean);
+  }
+
+  async function populateContinueWatching() {
     const grid = $("#continue-watching-grid");
     const section = $("#continue-watching-section");
     if (!grid.length) return;
-    const history = getWatchHistory();
+    // Firestore si hay sesión (sincronizado entre dispositivos); si no, localStorage.
+    const items = UD.isLoggedIn() ? await UD.listHistory(12) : localHistoryItems();
     grid.empty();
-    if (history.length === 0) {
-      section.hide();
-      return;
-    }
+    if (!items.length) { section.hide(); return; }
     section.show();
-    const itemsToShow = history.slice(0, 6);
-    itemsToShow.forEach((item) => {
-      const [animeId, seasonStr, episodeStr] = item.id.split("::");
-      const episodeNum = parseFloat(episodeStr.replace("ep", ""));
-      const anime = animeData.find((a) => a.id === animeId);
-      if (anime && anime.episodes) {
-        const episode = anime.episodes.find(
-          (ep) => ep.season === seasonStr && ep.number === episodeNum
-        );
-        if (episode) {
-          grid.append(createHistoryEpisodeCard(episode, anime));
-        }
-      }
-    });
+    items.slice(0, 6).forEach((it) => grid.append(createHistoryCardFromItem(it)));
   }
 
   function populateHistoryPage() {
@@ -394,6 +411,7 @@ $(document).ready(function () {
     if (!anime || !episode) return;
     currentPlayerAnime = anime;
     currentPlayerEpisode = episode;
+    UD.recordHistory(anime, episode); // historial sincronizado (si hay sesión)
     const playerModal = $("#episode-player-modal");
     const episodeId = `${anime.id}::${episode.season}::ep${episode.number}`;
     playerModal.attr("data-episode-id", episodeId);
@@ -415,9 +433,8 @@ $(document).ready(function () {
       .text(anime.title);
     $("#player-episode-title").text(`E${episode.number} - ${episode.title}`);
     $("#player-episode-meta").html(
-      `<span>${episode.language}</span> &bull; <span>Lanzado el ${episode.releaseDate}</span><button class="player-action-btn favorite-btn-player" id="player-favorite-btn" data-episode-id="${episodeId}" title="Agregar a Favoritos"><i class="far fa-bookmark"></i></button>`
+      `<span>${episode.language}</span> &bull; <span>Lanzado el ${episode.releaseDate}</span>`
     );
-    updateEpisodeFavoriteButtonState(episodeId);
     $("#player-episode-description").text(episode.description);
     $("#episode-iframe").attr("src", episode.videoUrl || "");
 
@@ -820,6 +837,7 @@ $(document).ready(function () {
                     <span>${anime.seasons} Temporada(s)</span>
                     <span class="quality-tag-detail">${anime.quality}</span>
                 </div>
+                <div class="anime-genre-pills">${(anime.genres || []).map((g) => `<a href="explorar.html">${g}</a>`).join("")}</div>
                 <p class="anime-description">${anime.description}</p>
                 <div id="anime-rating"></div>
                 <div class="anime-actions">
@@ -829,7 +847,7 @@ $(document).ready(function () {
                 </div>
             </div>`;
     container.html(heroContent);
-    mountRatingWidget(document.getElementById("anime-rating"), anime.id);
+    mountRatingWidget(document.getElementById("anime-rating"), anime);
 
     const episodesContainer = $("#episodes-list-container");
     const seasonSelect = $("#season-select");
@@ -1216,10 +1234,49 @@ $(document).ready(function () {
     searchResults = $("#search-results");
   $("#search-icon-toggle").on("click", (e) => {
     e.stopPropagation();
+    if (window.innerWidth <= 768) { openMobileSearch(); return; }
     const c = $(".search-container");
     c.toggleClass("active");
     if (c.hasClass("active")) searchInput.focus();
   });
+
+  // --- Búsqueda dedicada para móvil (overlay a pantalla completa) ---
+  let mSearchBuilt = false;
+  function buildMobileSearch() {
+    if (mSearchBuilt) return;
+    mSearchBuilt = true;
+    $("body").append(`
+      <div class="msearch-overlay" id="msearch-overlay">
+        <div class="msearch-top">
+          <input type="text" id="msearch-input" placeholder="Buscar anime…" autocomplete="off">
+          <button class="msearch-close" id="msearch-close" aria-label="Cerrar">&times;</button>
+        </div>
+        <div class="msearch-results" id="msearch-results"></div>
+      </div>`);
+    const mInput = $("#msearch-input"), mRes = $("#msearch-results");
+    const run = debounce(() => {
+      const q = mInput.val().toLowerCase().trim();
+      if (q.length < 2) { mRes.html('<p class="msearch-empty">Escribe para buscar…</p>'); return; }
+      const filtered = animeData.filter((a) => a.title.toLowerCase().includes(q)).slice(0, 30);
+      mRes.html(filtered.length
+        ? filtered.map((a) => `<a href="anime-details.html?id=${a.id}"><img src="${a.img}" alt=""><span class="t">${a.title}</span></a>`).join("")
+        : '<p class="msearch-empty">No se encontraron resultados.</p>');
+    }, 200);
+    mInput.on("input", run);
+    $("#msearch-close").on("click", closeMobileSearch);
+  }
+  function openMobileSearch() {
+    buildMobileSearch();
+    $("#msearch-overlay").addClass("open");
+    $("body").css("overflow", "hidden");
+    $("#msearch-results").html('<p class="msearch-empty">Escribe para buscar…</p>');
+    setTimeout(() => $("#msearch-input").focus(), 60);
+  }
+  function closeMobileSearch() {
+    $("#msearch-overlay").removeClass("open");
+    $("body").css("overflow", "");
+    $("#msearch-input").val("");
+  }
   const performSearch = debounce(() => {
     const q = searchInput.val().toLowerCase().trim();
     if (q.length < 3) {
@@ -1306,5 +1363,7 @@ $(document).ready(function () {
   populateCalendarPage();
   populateContinueWatching();
   populateHistoryPage();
+  // Al confirmarse la sesión, recarga "seguir viendo" desde Firestore.
+  UD.userReady.then(() => populateContinueWatching());
   }); // fin de getAnimeData().then
 });

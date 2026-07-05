@@ -8,7 +8,7 @@ import { db, FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { observeAuth } from "./auth.js";
 import { episodeId as makeEpId } from "./catalog-utils.js";
 import {
-  doc, getDoc, getDocs, setDoc, deleteDoc, collection,
+  doc, getDoc, getDocs, setDoc, deleteDoc, collection, query, orderBy, limit,
   serverTimestamp, runTransaction,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -82,23 +82,70 @@ export async function listFavEpisodes() {
   return snap.docs.map((d) => d.data()).sort((a, b) => (b.at?.seconds || 0) - (a.at?.seconds || 0));
 }
 
+// ---- HISTORIAL / SEGUIR VIENDO (sincronizado entre dispositivos) -----------
+function historyRef(uid, epId) { return doc(db, "users", uid, "history", epId); }
+
+// Registra que el usuario abrió/vio un episodio (actualiza la fecha).
+export async function recordHistory(anime, episode) {
+  await userReady;
+  if (!currentUser) return;
+  const epId = makeEpId(anime.id, episode);
+  try {
+    await setDoc(historyRef(currentUser.uid, epId), {
+      epId, animeId: anime.id, animeTitle: anime.title,
+      img: episode.img || anime.img || "", season: episode.season, number: episode.number,
+      title: episode.title || "", language: episode.language || "",
+      videoUrl: episode.videoUrl || "", at: serverTimestamp(),
+    }, { merge: true });
+  } catch (e) { /* no crítico */ }
+}
+
+// Lista el historial (más reciente primero). Sirve para "seguir viendo" e historial.
+export async function listHistory(max = 60) {
+  await userReady;
+  if (!currentUser) return [];
+  try {
+    const q = query(collection(db, "users", currentUser.uid, "history"), orderBy("at", "desc"), limit(max));
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => d.data());
+  } catch (e) { return []; }
+}
+
 // ---- CALIFICACIÓN CON ESTRELLAS (agregada entre todos) ----------------------
 // animeStats/{id} = { ratingSum, ratingCount }  →  promedio = sum / count
 function animeStatsRef(id) { return doc(db, "animeStats", id); }
 function myRatingRef(uid, id) { return doc(db, "users", uid, "ratings", id); }
 
-export async function getRatingState(animeId) {
+// Convierte "5.7K" / "1.2K" / "500" a número.
+export function parseCount(v) {
+  if (typeof v === "number") return v;
+  const s = String(v || "").trim().toUpperCase().replace(",", ".");
+  const m = s.match(/^([\d.]+)\s*([KM])?$/);
+  if (!m) return 0;
+  let n = parseFloat(m[1]) || 0;
+  if (m[2] === "K") n *= 1000;
+  if (m[2] === "M") n *= 1e6;
+  return Math.round(n);
+}
+
+// Estado de calificación. Mezcla la base existente del anime (seedAvg con
+// seedCount votos) con los votos nuevos guardados en Firestore.
+export async function getRatingState(animeId, seedAvg = 0, seedCount = 0) {
   await userReady;
-  let sum = 0, count = 0, mine = 0;
+  let fsSum = 0, fsCount = 0, mine = 0;
+  seedAvg = Number(seedAvg) || 0;
+  seedCount = parseCount(seedCount);
   try {
     const s = await getDoc(animeStatsRef(animeId));
-    if (s.exists()) { sum = s.data().ratingSum || 0; count = s.data().ratingCount || 0; }
+    if (s.exists()) { fsSum = s.data().ratingSum || 0; fsCount = s.data().ratingCount || 0; }
     if (currentUser) {
       const r = await getDoc(myRatingRef(currentUser.uid, animeId));
       if (r.exists()) mine = r.data().stars || 0;
     }
   } catch (e) { /* silencioso */ }
-  return { avg: count ? sum / count : 0, count, mine };
+  const totalCount = seedCount + fsCount;
+  const totalSum = seedAvg * seedCount + fsSum;
+  return { avg: totalCount ? totalSum / totalCount : seedAvg, count: totalCount, mine };
 }
 
 // Guarda/actualiza la calificación (1-5) del usuario. Devuelve el nuevo estado.

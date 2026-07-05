@@ -124,6 +124,19 @@ export async function deleteEpisode(animeId, season, number) {
   return episodes.length;
 }
 
+// Activa/desactiva una etiqueta (recomendado/doblaje/agregado) en un anime.
+// Controla en qué carrusel del inicio aparece.
+export async function setAnimeTag(animeId, tag, on) {
+  const anime = await getAnime(animeId);
+  if (!anime) throw new Error("El anime no existe: " + animeId);
+  let tags = Array.isArray(anime.tags) ? [...anime.tags] : [];
+  const has = tags.includes(tag);
+  if (on && !has) tags.push(tag);
+  if (!on && has) tags = tags.filter((t) => t !== tag);
+  await saveAnime({ ...anime, tags });
+  return tags;
+}
+
 // Construye un objeto anime a partir del formulario (mismos campos que database.js).
 export function buildAnimeFromForm(f) {
   const splitList = (v) =>

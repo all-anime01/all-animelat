@@ -56,6 +56,8 @@
         .fav-ep img { width: 92px; height: 52px; object-fit: cover; border-radius: 8px; background: #222; flex: none; }
         .fav-ep b { font-size: 14px; } .fav-ep small { color: var(--grey); font-size: 12px; }
         .fav-empty { color: var(--grey); font-size: 14px; padding: 8px 0; }
+        .notif-count { background: var(--primary); color: #fff; font-size: 12px; padding: 1px 9px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+        .notif-new { background: var(--primary); color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 4px; margin-left: 8px; font-weight: 700; letter-spacing: .5px; }
         .gate { text-align: center; padding: 90px 20px; }
         .gate a { color: #ff6b6b; }
         .admin-link { display: inline-flex; align-items: center; gap: 8px; }
@@ -92,6 +94,18 @@
             </div>
             <div id="fav-animes" class="fav-panel"></div>
             <div id="fav-episodes" class="fav-panel" style="display:none"></div>
+        </div>
+
+        <!-- Historial -->
+        <div class="card">
+            <h3><i class="fas fa-clock-rotate-left"></i> Historial</h3>
+            <div id="history-list"><p class="fav-empty">Cargando…</p></div>
+        </div>
+
+        <!-- Notificaciones -->
+        <div class="card">
+            <h3><i class="fas fa-bell"></i> Notificaciones <span id="notif-count" class="notif-count"></span></h3>
+            <div id="notif-list"><p class="fav-empty">Cargando…</p></div>
         </div>
 
         <!-- Avatar -->
@@ -133,7 +147,8 @@
         import { observeAuth, logoutUser, updateUserProfile, resendVerification, isAdmin } from "./js/auth.js";
         import { AVATARS } from "./js/avatars.js";
         import { FIREBASE_CONFIGURED } from "./js/firebase-config.js";
-        import { listFavAnimes, listFavEpisodes } from "./js/user-data.js";
+        import { listFavAnimes, listFavEpisodes, listHistory } from "./js/user-data.js";
+        import { getAnimeData } from "./js/data-provider.js";
 
         const $ = (id) => document.getElementById(id);
         let currentUser = null;
@@ -212,7 +227,58 @@
             renderVerify(user);
             $("admin-row").style.display = isAdmin(user) ? "flex" : "none";
             loadFavorites();
+            loadHistory();
+            loadNotifications();
         });
+
+        // ---- Historial ----
+        function epLink(it) {
+            return `anime-details.html?id=${it.animeId}&season=${encodeURIComponent(it.season)}&episode=${it.number}`;
+        }
+        async function loadHistory() {
+            try {
+                const hist = await listHistory(60);
+                $("history-list").innerHTML = hist.length ? hist.map((e) =>
+                    `<a class="fav-ep" href="${epLink(e)}"><img src="${e.img}" loading="lazy" alt="">
+                        <div><b>${e.animeTitle}</b><br><small>${e.season} · E${e.number} ${e.title || ""}</small></div></a>`).join("")
+                    : '<p class="fav-empty">Aún no has visto ningún episodio.</p>';
+            } catch (e) { console.error(e); $("history-list").innerHTML = '<p class="fav-empty">No se pudo cargar el historial.</p>'; }
+        }
+
+        // ---- Notificaciones (episodios nuevos de animes que sigues/ves) ----
+        const MONTHS = { enero:0, febrero:1, marzo:2, abril:3, mayo:4, junio:5, julio:6, agosto:7, septiembre:8, octubre:9, noviembre:10, diciembre:11 };
+        function parseRelease(str) {
+            if (!str) return null;
+            const p = String(str).replace(",", "").toLowerCase().split(/\s+/);
+            if (p.length === 3 && MONTHS.hasOwnProperty(p[0])) return new Date(+p[2], MONTHS[p[0]], +p[1]);
+            const d = new Date(str); return isNaN(d) ? null : d;
+        }
+        async function loadNotifications() {
+            try {
+                const [animes, favA, hist] = await Promise.all([getAnimeData(), listFavAnimes(), listHistory(200)]);
+                const followed = new Set([...favA.map((a) => a.id), ...hist.map((h) => h.animeId)]);
+                if (!followed.size) {
+                    $("notif-list").innerHTML = '<p class="fav-empty">Sigue o mira animes (❤️/marcador) para recibir avisos de episodios nuevos.</p>';
+                    return;
+                }
+                const cutoff = Date.now() - 30 * 86400000;
+                const notifs = [];
+                animes.filter((a) => followed.has(a.id)).forEach((a) => {
+                    (a.episodes || []).forEach((ep) => {
+                        const dt = parseRelease(ep.releaseDate);
+                        if (dt && dt.getTime() >= cutoff) notifs.push({ animeId: a.id, animeTitle: a.title, img: ep.img || a.img, season: ep.season, number: ep.number, title: ep.title, dt });
+                    });
+                });
+                notifs.sort((x, y) => y.dt - x.dt);
+                const weekAgo = Date.now() - 7 * 86400000;
+                $("notif-count").textContent = notifs.length || "";
+                $("notif-list").innerHTML = notifs.length ? notifs.slice(0, 30).map((n) =>
+                    `<a class="fav-ep" href="${epLink(n)}"><img src="${n.img}" loading="lazy" alt="">
+                        <div><b>${n.animeTitle}</b>${n.dt.getTime() >= weekAgo ? '<span class="notif-new">NUEVO</span>' : ""}<br>
+                        <small>Nuevo episodio · ${n.season} · E${n.number} ${n.title || ""}</small></div></a>`).join("")
+                    : '<p class="fav-empty">Sin novedades recientes de tus animes.</p>';
+            } catch (e) { console.error(e); $("notif-list").innerHTML = '<p class="fav-empty">No se pudieron cargar las notificaciones.</p>'; }
+        }
 
         // ---- Favoritos ----
         document.querySelectorAll(".fav-tab").forEach((t) => t.addEventListener("click", () => {
