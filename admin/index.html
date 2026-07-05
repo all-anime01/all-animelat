@@ -199,7 +199,8 @@
                         <div class="field full"><label>Descripción</label><textarea name="description"></textarea></div>
                         <div class="field"><label>Imagen tarjeta (vertical)</label><input name="img"></div>
                         <div class="field"><label>Imagen móvil</label><input name="imgMobile"></div>
-                        <div class="field"><label>Hero / fondo</label><input name="heroImg"></div>
+                        <div class="field"><label>Hero / fondo (heroImg)</label><input name="heroImg"></div>
+                        <div class="field"><label>Fondo tarjeta episodios (fonImg)</label><input name="fonImg"></div>
                         <div class="field"><label>Logo (PNG transparente)</label><input name="logoImg"></div>
                         <div class="field full"><label>Tráiler (embed de YouTube)</label><input name="trailerUrl"></div>
                     </div>
@@ -523,7 +524,8 @@
             $("sel-type").innerHTML = TYPES.map((t) => `<option>${t}</option>`).join("");
             $("sel-status").innerHTML = STATUSES.map((t) => `<option>${t}</option>`).join("");
             $("sel-audio").innerHTML = AUDIOS.map((t) => `<option>${t}</option>`).join("");
-            $("sel-lang").innerHTML = EPISODE_LANGS.map((t) => `<option>${t}</option>`).join("");
+            // El idioma de los episodios usa las mismas opciones que "Audio" del anime.
+            $("sel-lang").innerHTML = AUDIOS.map((t) => `<option>${t}</option>`).join("");
         }
 
         // ---------- Catálogo ----------
@@ -593,7 +595,7 @@
             const a = await getAnime(id);
             if (!a) { setMsg($("anime-msg"), "No se encontró el anime.", "error"); return; }
             const form = $("anime-form");
-            ["title", "id", "description", "img", "imgMobile", "heroImg", "logoImg", "trailerUrl",
+            ["title", "id", "description", "img", "imgMobile", "heroImg", "fonImg", "logoImg", "trailerUrl",
                 "quality", "rating", "ratingCount", "seasons", "year", "contentWarning", "creator"].forEach((k) => {
                     if (form[k] != null) form[k].value = a[k] ?? "";
                 });

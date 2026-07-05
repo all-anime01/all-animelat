@@ -211,6 +211,7 @@ export function buildAnimeFromForm(f) {
     title: f.title.trim(),
     img: f.img?.trim() || "",
     heroImg: f.heroImg?.trim() || "",
+    fonImg: f.fonImg?.trim() || "",
     logoImg: f.logoImg?.trim() || "",
     imgMobile: f.imgMobile?.trim() || "",
     trailerUrl: f.trailerUrl?.trim() || "",
