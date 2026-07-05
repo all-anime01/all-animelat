@@ -243,6 +243,7 @@ export function buildEpisodeFromForm(f) {
     description: f.description?.trim() || "",
     img: f.img?.trim() || "",
     releaseDate: f.releaseDate?.trim() || "",
+    releaseTime: f.releaseTime?.trim() || "",
     language: f.language?.trim() || "Sub",
     videoUrl: f.videoUrl?.trim() || "",
   };

@@ -265,6 +265,7 @@
                             <div class="field full"><label>Título del episodio</label><input name="title"></div>
                             <div class="field"><label>Duración</label><input name="duration" value="24 min"></div>
                             <div class="field"><label>Fecha de estreno</label><input name="releaseDate" placeholder="Julio 4, 2026"></div>
+                            <div class="field"><label>Hora de estreno (releaseTime)</label><input name="releaseTime" placeholder="9:00"></div>
                             <div class="field full"><label>Descripción</label><textarea name="description"></textarea></div>
                             <div class="field full"><label>Imagen del episodio</label><input name="img"></div>
                             <div class="field full"><label>Ruta del reproductor (videoUrl) *</label>
@@ -692,7 +693,7 @@
             const ep = currentEps.find((e) => Number(e.number) === Number(number));
             if (!ep) return;
             const f = $("ep-form");
-            ["number", "title", "duration", "releaseDate", "description", "img", "videoUrl"].forEach((k) => { if (f[k]) f[k].value = ep[k] ?? ""; });
+            ["number", "title", "duration", "releaseDate", "releaseTime", "description", "img", "videoUrl"].forEach((k) => { if (f[k]) f[k].value = ep[k] ?? ""; });
             if (f.language) f.language.value = ep.language || "Sub";
             // Asegura que el selector de temporada apunte a la del episodio.
             if ([...$("ep-season").options].some((o) => o.value === season)) $("ep-season").value = season;
