@@ -52,6 +52,9 @@ function renderSlides(section, slides) {
       <button class="hero-arrow prev" id="hero-prev"><i class="fas fa-chevron-left"></i></button>
       <button class="hero-arrow next" id="hero-next"><i class="fas fa-chevron-right"></i></button>
     </div>
+    <button class="hero-mute" id="hero-mute" style="display:none" aria-label="Silenciar">
+      <i class="fas fa-volume-xmark"></i>
+    </button>
     <div class="hero-navigation"></div>`;
 }
 
@@ -61,11 +64,37 @@ function initCarousel(section) {
   const nav = section.querySelector(".hero-navigation");
   const prevArrow = section.querySelector("#hero-prev");
   const nextArrow = section.querySelector("#hero-next");
+  const muteBtn = section.querySelector("#hero-mute");
   let current = 0;
   const total = slides.length;
   let videoTimer = null, imageTimer = null;
   const isMobile = () => window.innerWidth <= 768;
   const willPlayVideo = (sl) => !!sl.dataset.video && !isMobile();
+
+  // Preferencia de sonido del usuario (persistida). Los videos arrancan en
+  // silencio por política de autoplay; el botón permite activar el audio.
+  let soundOn = localStorage.getItem("heroSound") === "1";
+  function updateMuteIcon() {
+    if (!muteBtn) return;
+    muteBtn.querySelector("i").className = soundOn ? "fas fa-volume-high" : "fas fa-volume-xmark";
+    muteBtn.setAttribute("aria-label", soundOn ? "Silenciar" : "Activar sonido");
+  }
+  function activeVideo() {
+    const sl = slides[current];
+    const v = sl && sl.querySelector(".hero-video");
+    return v && v.classList.contains("playing") ? v : null;
+  }
+  function showMute(show) { if (muteBtn) muteBtn.style.display = show ? "flex" : "none"; }
+  if (muteBtn) {
+    updateMuteIcon();
+    muteBtn.addEventListener("click", () => {
+      soundOn = !soundOn;
+      localStorage.setItem("heroSound", soundOn ? "1" : "0");
+      const v = activeVideo();
+      if (v) { v.muted = !soundOn; if (soundOn) v.play().catch(() => {}); }
+      updateMuteIcon();
+    });
+  }
 
   // Miniaturas de navegación
   if (nav) {
@@ -88,6 +117,7 @@ function initCarousel(section) {
     clearTimeout(videoTimer);
     const v = sl.querySelector(".hero-video");
     if (v) { v.classList.remove("playing"); try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {} }
+    showMute(false);
   }
   function scheduleVideo(sl) {
     clearTimeout(videoTimer);
@@ -95,8 +125,17 @@ function initCarousel(section) {
     const url = sl.dataset.video;
     if (!v || !url || isMobile()) return;
     videoTimer = setTimeout(() => {
+      v.muted = !soundOn; // respeta la preferencia del usuario
       v.src = url;
-      v.play().then(() => v.classList.add("playing")).catch(() => {});
+      v.play().then(() => {
+        v.classList.add("playing");
+        showMute(true);
+        updateMuteIcon();
+      }).catch(() => {
+        // Si el navegador bloquea el autoplay con sonido, reintenta en silencio.
+        v.muted = true; soundOn = false;
+        v.play().then(() => { v.classList.add("playing"); showMute(true); updateMuteIcon(); }).catch(() => {});
+      });
     }, DELAY_TO_VIDEO);
   }
   function next() { show((current + 1) % total); }

@@ -644,7 +644,9 @@ $(document).ready(function () {
             createDynamicEpisodeItem(item.episode, item.anime)
           )
         );
-        $("#show-more-episodes").show();
+        // El bloque de "ayer" arranca visible, así que el botón debe reflejar
+        // que se puede ocultar ("Mostrar Menos"). El click lo alterna.
+        $("#show-more-episodes").show().text("Mostrar Menos");
       } else {
         yesterdayContainer.hide();
         $("#show-more-episodes").hide();

@@ -504,6 +504,40 @@ body.red-theme header {
 
 /* FIN: Estilos para las Flechas */
 
+/* Botón de silencio del tráiler del héroe */
+.hero-mute {
+    position: absolute;
+    bottom: 3rem;
+    left: 5%;
+    z-index: 5;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-mute:hover {
+    transform: scale(1.08);
+    background: rgba(0, 0, 0, 0.7);
+    border-color: #fff;
+}
+
+.hero-mute i {
+    font-size: 1.15rem;
+}
+
+@media (max-width: 768px) {
+    .hero-mute { bottom: 1.5rem; left: 4%; width: 40px; height: 40px; }
+}
+
 .nav-thumb {
     width: 50px;
     height: 5px;
