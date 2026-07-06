@@ -507,7 +507,7 @@ body.red-theme header {
 /* Botón de silencio del tráiler del héroe */
 .hero-mute {
     position: absolute;
-    bottom: 5rem;
+    bottom: 6.5rem;
     right: 5%;
     z-index: 5;
     width: 46px;
@@ -535,7 +535,7 @@ body.red-theme header {
 }
 
 @media (max-width: 768px) {
-    .hero-mute { bottom: 4.5rem; right: 4%; width: 40px; height: 40px; }
+    .hero-mute { bottom: 5.5rem; right: 4%; width: 40px; height: 40px; }
 }
 
 .nav-thumb {

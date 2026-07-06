@@ -712,7 +712,8 @@
         }
 
         // ---- Gestor de servidores de video ----
-        const SERVER_LANGS = ["SUB", "LAT", "DOB", "CAS", "ES"];
+        // El idioma por servidor usa las mismas opciones que "Audio / Idioma" del episodio.
+        const SERVER_LANGS = AUDIOS;
         function serverRow(s = {}) {
             const div = document.createElement("div");
             div.className = "srv-row";
@@ -720,7 +721,7 @@
                 <input class="srv-name" placeholder="Servidor (plustream…)" value="${(s.name || "").replace(/"/g, "&quot;")}">
                 <input class="srv-url" placeholder="URL embed del video" value="${(s.url || "").replace(/"/g, "&quot;")}">
                 <input class="srv-desc" placeholder="Calidad/nota (opcional)" value="${(s.desc || s.quality || "").replace(/"/g, "&quot;")}">
-                <select class="srv-lang">${SERVER_LANGS.map((l) => `<option ${((s.lang || "SUB").toUpperCase() === l) ? "selected" : ""}>${l}</option>`).join("")}</select>
+                <select class="srv-lang">${SERVER_LANGS.map((l) => `<option ${((s.lang || SERVER_LANGS[0]).toLowerCase() === l.toLowerCase()) ? "selected" : ""}>${l}</option>`).join("")}</select>
                 <button type="button" class="btn danger sm srv-del" title="Quitar"><i class="fas fa-xmark"></i></button>`;
             div.querySelector(".srv-del").addEventListener("click", () => div.remove());
             return div;

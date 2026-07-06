@@ -96,10 +96,13 @@
             const servers = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url) : [];
             if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video."); document.title = anime.title; return; }
 
-            // Agrupa por idioma
+            // Agrupa por idioma. La etiqueta puede tener espacios o "|"
+            // (p. ej. "Sub | Dob"), así que se usa un slug seguro para la
+            // clase CSS y el id que consume SelLang.
+            const slug = (l) => "L" + String(l).replace(/[^a-z0-9]+/gi, "_");
             const byLang = {};
             servers.forEach((s) => {
-                const lang = (s.lang || "SUB").toUpperCase();
+                const lang = s.lang || "Sub";
                 (byLang[lang] = byLang[lang] || []).push(s);
             });
             const langs = Object.keys(byLang);
@@ -107,13 +110,13 @@
             // Pestañas de idioma (solo si hay más de uno)
             const tabs = document.getElementById("langTabs");
             tabs.innerHTML = langs.length > 1
-                ? langs.map((l, i) => `<li onclick="SelLang(this, '${esc(l)}');" class="${i === 0 ? "SLD_A" : ""}">${esc(l)}</li>`).join("")
+                ? langs.map((l, i) => `<li onclick="SelLang(this, '${esc(slug(l))}');" class="${i === 0 ? "SLD_A" : ""}">${esc(l)}</li>`).join("")
                 : "";
 
             // Contenedores de servidores por idioma
             const cont = document.getElementById("serverContainer");
             cont.innerHTML = langs.map((l, i) => `
-                <div class="OD OD_${esc(l)} ${i === 0 ? "REactiv" : ""}">
+                <div class="OD OD_${esc(slug(l))} ${i === 0 ? "REactiv" : ""}">
                     ${byLang[l].map((s) => `
                         <li onclick="go_to_player('${esc(s.url).replace(/'/g, "\\'")}');">
                             <img class="srv-ico" src="${lockerIcon(s.name)}" alt=""
