@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor</title>
+    <link href="/css/iframe.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <meta name="robots" content="noindex,nofollow">
+    <style>
+        /* --- Mejoras de UI del reproductor genérico --- */
+        #PlayerDisplay { z-index: 99; }
+        .DisplayVideoA { z-index: 9999; }
+        .SelectLangDisp {
+            gap: 10px; padding: 14px 20px 0; z-index: 12;
+        }
+        .SelectLangDisp li {
+            width: auto; height: auto; padding: 8px 20px; border-radius: 30px;
+            background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .12);
+            color: #cbd5e1; font-weight: 700; font-size: 14px; letter-spacing: .5px; text-transform: uppercase;
+            display: flex; align-items: center; gap: 8px; transition: .2s;
+        }
+        .SelectLangDisp li:hover { border-color: #ca3030; color: #fff; }
+        .SelectLangDisp .SLD_A { background: linear-gradient(135deg, #ca3030, #e23b3b); border-color: #ca3030; color: #fff; }
+        .OptionsLangDisp { top: 80px; height: calc(100% - 80px); }
+        .OD { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+        .ODDIV li { background: #171b22; border: 1px solid rgba(255, 255, 255, .08); }
+        .ODDIV li:hover { border-color: #ca3030; background: #20262f; box-shadow: 0 10px 28px rgba(202, 48, 48, .18); }
+        .ODDIV li .srv-ico {
+            width: 46px; height: 46px; border-radius: 8px; margin-right: 14px; flex-shrink: 0;
+            background: #0d1117 center/60% no-repeat; display: flex; align-items: center; justify-content: center;
+            color: #ca3030; font-size: 20px;
+        }
+        .player-title { position: absolute; top: 16px; left: 20px; right: 20px; z-index: 11; color: #fff; pointer-events: none; }
+        .player-title b { font-size: 17px; display: block; text-shadow: 0 2px 8px rgba(0, 0, 0, .8); }
+        .player-title span { font-size: 13px; color: #cbd5e1; }
+        .player-empty { color: #cbd5e1; text-align: center; padding: 40px 20px; grid-column: 1/-1; }
+        .player-empty i { font-size: 34px; color: #ca3030; display: block; margin-bottom: 12px; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="directAc">
+    <div id="msjad" class="msjad" style="display: none;">
+        <div>
+            <p>Los reproductores contienen publicidad y ventanas emergentes ajenas a All-anime. Recomiendo usar el
+                navegador Brave.</p>
+            <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y Continuar</button></p>
+        </div>
+    </div>
+
+    <div id="DisplayContent">
+        <div id="PlayerDisplay">
+            <div class="wpw" id="wpw"></div>
+            <div class="player-title" id="player-title"></div>
+            <div class="SelectLangDisp" id="langTabs"></div>
+            <div class="OptionsLangDisp">
+                <div class="ODDIV" id="serverContainer">
+                    <div class="OD REactiv"><div class="player-empty"><i class="fas fa-circle-notch fa-spin"></i>Cargando servidores…</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="FirstLoad"></div>
+        <div class="BotHumano"></div>
+        <div class="DisplayVideo"></div>
+    </div>
+
+    <script src="/js/iframe.js"></script>
+    <script type="module">
+        import { db } from "/js/firebase-config.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const p = new URLSearchParams(location.search);
+        const animeId = p.get("a");
+        const season = p.get("s");
+        const number = p.get("e");
+
+        const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const lockerIcon = (name) => `https://i0.wp.com/embedsito.net/static/lockers/${encodeURIComponent(String(name).toLowerCase().trim())}.png`;
+
+        function showEmpty(txt) {
+            document.getElementById("serverContainer").innerHTML =
+                `<div class="OD REactiv"><div class="player-empty"><i class="fas fa-circle-exclamation"></i>${esc(txt)}</div></div>`;
+        }
+
+        function render(anime, ep) {
+            // Fondo
+            const bg = ep.img || anime.fonImg || anime.heroImg || anime.img || "";
+            if (bg) document.getElementById("wpw").style.backgroundImage =
+                `linear-gradient(rgba(13,17,23,.72), #0d1117), url('${bg}')`;
+            document.getElementById("wpw").style.backgroundSize = "cover";
+            document.getElementById("player-title").innerHTML =
+                `<b>${esc(anime.title)}</b><span>${esc(ep.season)} · Episodio ${esc(ep.number)} — ${esc(ep.title || "")}</span>`;
+
+            const servers = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url) : [];
+            if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video."); document.title = anime.title; return; }
+
+            // Agrupa por idioma
+            const byLang = {};
+            servers.forEach((s) => {
+                const lang = (s.lang || "SUB").toUpperCase();
+                (byLang[lang] = byLang[lang] || []).push(s);
+            });
+            const langs = Object.keys(byLang);
+
+            // Pestañas de idioma (solo si hay más de uno)
+            const tabs = document.getElementById("langTabs");
+            tabs.innerHTML = langs.length > 1
+                ? langs.map((l, i) => `<li onclick="SelLang(this, '${esc(l)}');" class="${i === 0 ? "SLD_A" : ""}">${esc(l)}</li>`).join("")
+                : "";
+
+            // Contenedores de servidores por idioma
+            const cont = document.getElementById("serverContainer");
+            cont.innerHTML = langs.map((l, i) => `
+                <div class="OD OD_${esc(l)} ${i === 0 ? "REactiv" : ""}">
+                    ${byLang[l].map((s) => `
+                        <li onclick="go_to_player('${esc(s.url).replace(/'/g, "\\'")}');">
+                            <img class="srv-ico" src="${lockerIcon(s.name)}" alt=""
+                                 onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'srv-ico',innerHTML:'<i class=&quot;fas fa-play&quot;></i>'}))">
+                            <div>
+                                <span>${esc(s.name || "Servidor")}</span>
+                                <p>${esc(s.desc || s.quality || "Reproducir")}</p>
+                            </div>
+                        </li>`).join("")}
+                </div>`).join("");
+            document.title = `${anime.title} — E${ep.number}`;
+        }
+
+        (async () => {
+            if (!animeId || !number) { showEmpty("Enlace de reproductor inválido."); return; }
+            try {
+                const snap = await getDoc(doc(db, "animes", animeId));
+                if (!snap.exists()) { showEmpty("No se encontró el contenido."); return; }
+                const anime = snap.data();
+                const ep = (anime.episodes || []).find((e) =>
+                    (!season || String(e.season) === String(season)) && Number(e.number) === Number(number));
+                if (!ep) { showEmpty("No se encontró el episodio."); return; }
+                render(anime, ep);
+            } catch (e) { console.error(e); showEmpty("No se pudieron cargar los servidores."); }
+        })();
+    </script>
+</body>
+
+</html>

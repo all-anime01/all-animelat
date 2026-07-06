@@ -47,6 +47,12 @@
         .msg { margin-top: 12px; font-size: 14px; min-height: 18px; }
         .msg.ok { color: #4ade80; } .msg.error { color: #ff6b6b; }
         .hint { font-size: 12px; color: #777; margin-top: 4px; }
+        /* servidores de video */
+        .srv-row { display: grid; grid-template-columns: 1.1fr 2fr 1.1fr 90px 40px; gap: 8px; align-items: center; margin-bottom: 8px; }
+        .srv-row input, .srv-row select { width: 100%; padding: 9px 10px; background: #161616; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 13px; }
+        .srv-row input:focus, .srv-row select:focus { outline: none; border-color: var(--primary); }
+        .srv-row .srv-del { padding: 8px 0; width: 100%; justify-content: center; }
+        @media (max-width: 640px) { .srv-row { grid-template-columns: 1fr 1fr; } .srv-row .srv-url { grid-column: 1 / -1; } }
         /* chips */
         .chips { display: flex; flex-wrap: wrap; gap: 8px; }
         .chip { position: relative; }
@@ -268,9 +274,15 @@
                             <div class="field"><label>Hora de estreno (releaseTime)</label><input name="releaseTime" placeholder="9:00"></div>
                             <div class="field full"><label>Descripción</label><textarea name="description"></textarea></div>
                             <div class="field full"><label>Imagen del episodio</label><input name="img"></div>
-                            <div class="field full"><label>Ruta del reproductor (videoUrl) *</label>
-                                <input name="videoUrl" placeholder="frame/Nombre-anime/T1/1.html" required>
-                                <p class="hint">Crea el HTML del reproductor en <code>frame/…</code> como siempre; aquí solo pones su ruta.</p>
+                            <div class="field full">
+                                <label><i class="fas fa-server"></i> Servidores de video</label>
+                                <p class="hint" style="margin:0 0 10px">Agrega uno o varios servidores (plustream, streamwish, filemoon, doodstream…). Pega la <b>URL embed</b> de cada uno. El reproductor se genera solo, sin crear archivos. El ícono se detecta por el nombre.</p>
+                                <div id="ep-servers"></div>
+                                <button type="button" class="btn grey sm" id="add-server" style="margin-top:8px"><i class="fas fa-plus"></i> Añadir servidor</button>
+                            </div>
+                            <div class="field full"><label>Ruta manual del reproductor (opcional)</label>
+                                <input name="videoUrl" placeholder="frame/Nombre-anime/T1/1.html">
+                                <p class="hint">Solo si quieres usar un archivo <code>frame/…</code> propio. Déjalo vacío para que el reproductor se genere solo a partir de los servidores de arriba.</p>
                             </div>
                         </div>
                         <input type="hidden" name="editEpSeason"><input type="hidden" name="editEpNumber">
@@ -689,12 +701,41 @@
             }));
         }
 
+        // ---- Gestor de servidores de video ----
+        const SERVER_LANGS = ["SUB", "LAT", "DOB", "CAS", "ES"];
+        function serverRow(s = {}) {
+            const div = document.createElement("div");
+            div.className = "srv-row";
+            div.innerHTML = `
+                <input class="srv-name" placeholder="Servidor (plustream…)" value="${(s.name || "").replace(/"/g, "&quot;")}">
+                <input class="srv-url" placeholder="URL embed del video" value="${(s.url || "").replace(/"/g, "&quot;")}">
+                <input class="srv-desc" placeholder="Calidad/nota (opcional)" value="${(s.desc || s.quality || "").replace(/"/g, "&quot;")}">
+                <select class="srv-lang">${SERVER_LANGS.map((l) => `<option ${((s.lang || "SUB").toUpperCase() === l) ? "selected" : ""}>${l}</option>`).join("")}</select>
+                <button type="button" class="btn danger sm srv-del" title="Quitar"><i class="fas fa-xmark"></i></button>`;
+            div.querySelector(".srv-del").addEventListener("click", () => div.remove());
+            return div;
+        }
+        function setServers(list) {
+            const c = $("ep-servers"); c.innerHTML = "";
+            (list && list.length ? list : []).forEach((s) => c.appendChild(serverRow(s)));
+        }
+        function collectServers() {
+            return [...$("ep-servers").querySelectorAll(".srv-row")].map((r) => ({
+                name: r.querySelector(".srv-name").value.trim(),
+                url: r.querySelector(".srv-url").value.trim(),
+                desc: r.querySelector(".srv-desc").value.trim(),
+                lang: r.querySelector(".srv-lang").value,
+            })).filter((s) => s.url);
+        }
+        $("add-server").addEventListener("click", () => $("ep-servers").appendChild(serverRow()));
+
         function editEpisode(season, number) {
             const ep = currentEps.find((e) => Number(e.number) === Number(number));
             if (!ep) return;
             const f = $("ep-form");
             ["number", "title", "duration", "releaseDate", "releaseTime", "description", "img", "videoUrl"].forEach((k) => { if (f[k]) f[k].value = ep[k] ?? ""; });
             if (f.language) f.language.value = ep.language || "Sub";
+            setServers(ep.servers);
             // Asegura que el selector de temporada apunte a la del episodio.
             if ([...$("ep-season").options].some((o) => o.value === season)) $("ep-season").value = season;
             $("new-season-field").style.display = "none";
@@ -710,6 +751,7 @@
             $("ep-form").editEpSeason.value = "";
             $("ep-form").editEpNumber.value = "";
             $("sel-lang").selectedIndex = 0;
+            setServers([]);
             $("save-ep").innerHTML = "Agregar episodio";
             $("cancel-ep").style.display = "none";
         }
@@ -731,6 +773,15 @@
             setMsg($("ep-msg"), editing ? "Guardando cambios…" : "Agregando…");
             try {
                 const ep = buildEpisodeFromForm({ ...f, season });
+                // Servidores de video → reproductor genérico (sin crear archivos).
+                const servers = collectServers();
+                if (servers.length) {
+                    ep.servers = servers;
+                    // Genera la ruta del reproductor dinámico si no se dio una manual.
+                    if (!ep.videoUrl) ep.videoUrl = `frame/player.html?a=${animeId}&s=${encodeURIComponent(season)}&e=${ep.number}`;
+                } else {
+                    ep.servers = [];
+                }
                 if (editing) {
                     await updateEpisode(animeId, editSeason, editNumber, ep);
                     setMsg($("ep-msg"), `✅ Episodio actualizado.`, "ok");
