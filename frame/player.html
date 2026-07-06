@@ -9,34 +9,106 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
     <meta name="robots" content="noindex,nofollow">
     <style>
-        /* --- Mejoras de UI del reproductor genérico --- */
+        /* ===== Reproductor genérico — estética moderna tipo Crunchyroll 2026 ===== */
+        :root { --acc: #ff5a3c; --acc2: #ff8a4c; }
         #PlayerDisplay { z-index: 99; }
         .DisplayVideoA { z-index: 9999; }
+
+        /* Fondo con la imagen del episodio, difuminado */
+        .wpw::after {
+            content: ""; position: absolute; inset: 0;
+            background: radial-gradient(120% 90% at 50% -10%, rgba(255,90,60,.16), transparent 60%),
+                        linear-gradient(180deg, rgba(13,17,23,.55) 0%, rgba(13,17,23,.86) 45%, #0d1117 100%);
+        }
+
+        /* ---- Cabecera ---- */
+        .player-head {
+            position: absolute; top: 0; left: 0; right: 0; z-index: 12;
+            display: flex; align-items: center; gap: 16px;
+            padding: 20px 24px 16px; pointer-events: none;
+        }
+        .player-head .ph-poster {
+            width: 52px; height: 74px; border-radius: 9px; object-fit: cover; flex-shrink: 0;
+            box-shadow: 0 8px 22px rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.1);
+        }
+        .player-head .ph-txt { min-width: 0; }
+        .player-head .ph-ep { color: var(--acc2); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+        .player-head .ph-title { color: #fff; font-size: 22px; font-weight: 700; line-height: 1.15; margin: 2px 0 3px; text-shadow: 0 2px 10px rgba(0,0,0,.6); }
+        .player-head .ph-sub { color: #b9c2cf; font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        /* ---- Control de idioma (segmentado) ---- */
         .SelectLangDisp {
-            gap: 10px; padding: 14px 20px 0; z-index: 12;
+            position: absolute; top: 108px; left: 0; right: 0; width: auto; margin: 0;
+            display: flex; flex-wrap: wrap; gap: 8px; padding: 0 24px; z-index: 12; text-align: left;
         }
         .SelectLangDisp li {
-            width: auto; height: auto; padding: 8px 20px; border-radius: 30px;
-            background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .12);
-            color: #cbd5e1; font-weight: 700; font-size: 14px; letter-spacing: .5px; text-transform: uppercase;
-            display: flex; align-items: center; gap: 8px; transition: .2s;
+            width: auto; height: auto; margin: 0; padding: 9px 20px; border-radius: 40px; overflow: visible;
+            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); opacity: 1;
+            color: #cbd5e1; font-weight: 700; font-size: 13.5px; letter-spacing: .4px;
+            display: inline-flex; align-items: center; gap: 8px; transition: .2s; text-transform: none;
         }
-        .SelectLangDisp li:hover { border-color: #ca3030; color: #fff; }
-        .SelectLangDisp .SLD_A { background: linear-gradient(135deg, #ca3030, #e23b3b); border-color: #ca3030; color: #fff; }
-        .OptionsLangDisp { top: 80px; height: calc(100% - 80px); }
-        .OD { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-        .ODDIV li { background: #171b22; border: 1px solid rgba(255, 255, 255, .08); }
-        .ODDIV li:hover { border-color: #ca3030; background: #20262f; box-shadow: 0 10px 28px rgba(202, 48, 48, .18); }
+        .SelectLangDisp li:hover { border-color: var(--acc); color: #fff; transform: none; }
+        .SelectLangDisp .SLD_A {
+            opacity: 1; background: linear-gradient(135deg, var(--acc), var(--acc2));
+            border-color: transparent; color: #fff; box-shadow: 0 8px 20px rgba(255,90,60,.32);
+        }
+
+        /* ---- Barra "escudo activo" ---- */
+        .ad-note {
+            position: absolute; top: 108px; right: 24px; z-index: 13;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 14px; border-radius: 40px; font-size: 12.5px; font-weight: 700;
+            color: #37e35f; background: rgba(11,32,17,.7); border: 1px solid rgba(55,227,95,.35);
+            backdrop-filter: blur(6px);
+        }
+        .ad-note svg { width: 15px; height: 15px; }
+
+        /* ---- Rejilla de servidores ---- */
+        .OptionsLangDisp { top: 168px; height: calc(100% - 168px); padding: 6px 24px 24px; }
+        .OD { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+        .ODDIV li {
+            background: rgba(23,27,34,.82); border: 1px solid rgba(255,255,255,.08); border-radius: 14px;
+            padding: 14px 16px; gap: 14px; backdrop-filter: blur(3px);
+        }
+        .ODDIV li::after {
+            content: ""; width: 22px; height: 22px; margin-left: auto; flex-shrink: 0; opacity: .5; transition: .2s;
+            background: center/contain no-repeat url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff7a52"%3E%3Cpath d="M8 5v14l11-7z"/%3E%3C/svg%3E');
+        }
+        .ODDIV li:hover {
+            border-color: var(--acc); background: rgba(38,26,24,.9);
+            box-shadow: 0 14px 34px rgba(255,90,60,.22); transform: translateY(-4px) !important;
+        }
+        .ODDIV li:hover::after { opacity: 1; transform: scale(1.12); }
         .ODDIV li .srv-ico {
-            width: 46px; height: 46px; border-radius: 8px; margin-right: 14px; flex-shrink: 0;
-            background: #0d1117 center/60% no-repeat; display: flex; align-items: center; justify-content: center;
-            color: #ca3030; font-size: 20px;
+            width: 48px; height: 48px; border-radius: 11px; margin: 0; flex-shrink: 0;
+            background: #0d1117 center/58% no-repeat; display: flex; align-items: center; justify-content: center;
+            color: var(--acc); font-size: 20px; border: 1px solid rgba(255,255,255,.08);
         }
-        .player-title { position: absolute; top: 16px; left: 20px; right: 20px; z-index: 11; color: #fff; pointer-events: none; }
-        .player-title b { font-size: 17px; display: block; text-shadow: 0 2px 8px rgba(0, 0, 0, .8); }
-        .player-title span { font-size: 13px; color: #cbd5e1; }
-        .player-empty { color: #cbd5e1; text-align: center; padding: 40px 20px; grid-column: 1/-1; }
-        .player-empty i { font-size: 34px; color: #ca3030; display: block; margin-bottom: 12px; }
+        .ODDIV li .srv-info { min-width: 0; }
+        .ODDIV li span { font-size: 16px; margin-bottom: 5px; text-transform: capitalize; }
+        .ODDIV li .srv-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+        .ODDIV li .srv-badge {
+            font-size: 11px; font-weight: 700; letter-spacing: .3px; padding: 2px 9px; border-radius: 20px;
+            background: rgba(255,90,60,.14); color: var(--acc2); border: 1px solid rgba(255,90,60,.22);
+        }
+        .ODDIV li .srv-badge.q { background: rgba(80,180,255,.14); color: #7cc4ff; border-color: rgba(80,180,255,.22); }
+
+        /* ---- Estados vacíos / skeleton ---- */
+        .player-empty { color: #cbd5e1; text-align: center; padding: 50px 20px; grid-column: 1/-1; }
+        .player-empty svg, .player-empty i { color: var(--acc); display: block; margin: 0 auto 14px; font-size: 34px; }
+        .skl { grid-column: 1/-1; display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+        .skl > div { height: 76px; border-radius: 14px; background: linear-gradient(100deg, #171b22 30%, #222834 50%, #171b22 70%); background-size: 200% 100%; animation: shimmer 1.3s infinite; }
+        @keyframes shimmer { to { background-position: -200% 0; } }
+
+        @media screen and (max-width: 600px) {
+            .player-head { padding: 16px; gap: 12px; }
+            .player-head .ph-poster { width: 42px; height: 60px; }
+            .player-head .ph-title { font-size: 18px; }
+            .SelectLangDisp { top: 96px; padding: 0 16px; }
+            .ad-note { position: static; margin: 10px 16px 0; }
+            .OptionsLangDisp { top: 210px; height: calc(100% - 210px); padding: 6px 16px 20px; }
+            .OD { grid-template-columns: 1fr; }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -44,20 +116,25 @@
 <body class="directAc">
     <div id="msjad" class="msjad" style="display: none;">
         <div>
-            <p>Los reproductores contienen publicidad y ventanas emergentes ajenas a All-anime. Recomiendo usar el
-                navegador Brave.</p>
-            <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y Continuar</button></p>
+            <p>Este reproductor usa servidores externos con publicidad. All-Anime activa un
+                <b>escudo antipublicidad</b> que bloquea ventanas emergentes y redirecciones.
+                Para una experiencia sin anuncios recomendamos el navegador <b>Brave</b>.</p>
+            <p><button onclick="hideMsj(13);" class="btn send-btn accept-risk" type="button">Aceptar y continuar</button></p>
         </div>
     </div>
 
     <div id="DisplayContent">
         <div id="PlayerDisplay">
             <div class="wpw" id="wpw"></div>
-            <div class="player-title" id="player-title"></div>
+            <div class="player-head" id="player-head"></div>
             <div class="SelectLangDisp" id="langTabs"></div>
+            <div class="ad-note" id="ad-note" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                Publicidad bloqueada
+            </div>
             <div class="OptionsLangDisp">
                 <div class="ODDIV" id="serverContainer">
-                    <div class="OD REactiv"><div class="player-empty"><i class="fas fa-circle-notch fa-spin"></i>Cargando servidores…</div></div>
+                    <div class="OD REactiv"><div class="skl"><div></div><div></div><div></div><div></div></div></div>
                 </div>
             </div>
         </div>
@@ -78,54 +155,62 @@
 
         const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
         const lockerIcon = (name) => `https://i0.wp.com/embedsito.net/static/lockers/${encodeURIComponent(String(name).toLowerCase().trim())}.png`;
+        const isQuality = (t) => /\b(360|480|720|1080|2160|4k|hd|fhd|uhd)\b/i.test(String(t));
 
         function showEmpty(txt) {
             document.getElementById("serverContainer").innerHTML =
-                `<div class="OD REactiv"><div class="player-empty"><i class="fas fa-circle-exclamation"></i>${esc(txt)}</div></div>`;
+                `<div class="OD REactiv"><div class="player-empty">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    ${esc(txt)}</div></div>`;
         }
 
         function render(anime, ep) {
-            // Fondo
             const bg = ep.img || anime.fonImg || anime.heroImg || anime.img || "";
-            if (bg) document.getElementById("wpw").style.backgroundImage =
-                `linear-gradient(rgba(13,17,23,.72), #0d1117), url('${bg}')`;
-            document.getElementById("wpw").style.backgroundSize = "cover";
-            document.getElementById("player-title").innerHTML =
-                `<b>${esc(anime.title)}</b><span>${esc(ep.season)} · Episodio ${esc(ep.number)} — ${esc(ep.title || "")}</span>`;
+            const wpw = document.getElementById("wpw");
+            if (bg) { wpw.style.backgroundImage = `url('${bg}')`; wpw.style.backgroundSize = "cover"; }
+
+            const poster = anime.img || anime.imgMobile || ep.img || "";
+            document.getElementById("player-head").innerHTML = `
+                ${poster ? `<img class="ph-poster" src="${esc(poster)}" alt="">` : ""}
+                <div class="ph-txt">
+                    <div class="ph-ep">${esc(ep.season)} · Episodio ${esc(ep.number)}</div>
+                    <div class="ph-title">${esc(anime.title)}</div>
+                    <div class="ph-sub">${esc(ep.title || "Elige un servidor para reproducir")}</div>
+                </div>`;
 
             const servers = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url) : [];
-            if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video."); document.title = anime.title; return; }
+            if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video disponibles."); document.title = anime.title; return; }
 
-            // Agrupa por idioma. La etiqueta puede tener espacios o "|"
-            // (p. ej. "Sub | Dob"), así que se usa un slug seguro para la
-            // clase CSS y el id que consume SelLang.
+            document.getElementById("ad-note").style.display = "inline-flex";
+
+            // Agrupa por idioma. La etiqueta puede tener espacios o "|" (p. ej.
+            // "Sub | Dob"), así que se usa un slug seguro para la clase CSS/SelLang.
             const slug = (l) => "L" + String(l).replace(/[^a-z0-9]+/gi, "_");
             const byLang = {};
-            servers.forEach((s) => {
-                const lang = s.lang || "Sub";
-                (byLang[lang] = byLang[lang] || []).push(s);
-            });
+            servers.forEach((s) => { const lang = s.lang || "Sub"; (byLang[lang] = byLang[lang] || []).push(s); });
             const langs = Object.keys(byLang);
 
-            // Pestañas de idioma (solo si hay más de uno)
             const tabs = document.getElementById("langTabs");
             tabs.innerHTML = langs.length > 1
-                ? langs.map((l, i) => `<li onclick="SelLang(this, '${esc(slug(l))}');" class="${i === 0 ? "SLD_A" : ""}">${esc(l)}</li>`).join("")
+                ? langs.map((l, i) => `<li onclick="SelLang(this, '${esc(slug(l))}');" class="${i === 0 ? "SLD_A" : ""}"><i class="fas fa-closed-captioning"></i>${esc(l)}</li>`).join("")
                 : "";
 
-            // Contenedores de servidores por idioma
             const cont = document.getElementById("serverContainer");
             cont.innerHTML = langs.map((l, i) => `
                 <div class="OD OD_${esc(slug(l))} ${i === 0 ? "REactiv" : ""}">
-                    ${byLang[l].map((s) => `
+                    ${byLang[l].map((s) => {
+                        const note = s.desc || s.quality || "";
+                        const badges = `<span class="srv-badge">${esc(l)}</span>` +
+                            (note ? `<span class="srv-badge ${isQuality(note) ? "q" : ""}">${esc(note)}</span>` : "");
+                        return `
                         <li onclick="go_to_player('${esc(s.url).replace(/'/g, "\\'")}');">
                             <img class="srv-ico" src="${lockerIcon(s.name)}" alt=""
                                  onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'srv-ico',innerHTML:'<i class=&quot;fas fa-play&quot;></i>'}))">
-                            <div>
+                            <div class="srv-info">
                                 <span>${esc(s.name || "Servidor")}</span>
-                                <p>${esc(s.desc || s.quality || "Reproducir")}</p>
+                                <div class="srv-badges">${badges}</div>
                             </div>
-                        </li>`).join("")}
+                        </li>`; }).join("")}
                 </div>`).join("");
             document.title = `${anime.title} — E${ep.number}`;
         }

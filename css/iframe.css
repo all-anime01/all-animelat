@@ -407,6 +407,66 @@ li {
     pointer-events: none;
 }
 
+/* --- Escudo antipublicidad (por video) --- */
+#adShield {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 2147483647;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 16px 0 13px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    color: #fff;
+    background: rgba(31, 41, 55, .72);
+    border: 1px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(6px);
+    transition: background .2s ease, transform .2s ease, opacity .3s ease;
+}
+
+#adShield em {
+    font-style: normal;
+}
+
+#adShield.on {
+    color: #22e04a;
+    border-color: rgba(34, 224, 74, .5);
+    background: rgba(9, 30, 15, .72);
+}
+
+#adShield.on:hover {
+    background: rgba(34, 224, 74, .18);
+}
+
+#adShield.off {
+    color: #f0a020;
+    border-color: rgba(240, 160, 32, .4);
+}
+
+#adShield.off .aa-check {
+    display: none;
+}
+
+#adShield.off:hover {
+    background: rgba(240, 160, 32, .15);
+}
+
+#adShield:hover {
+    transform: translateY(-1px);
+}
+
+#adShield.inactive {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* --- Mejoras Responsivas --- */
 @media screen and (max-width: 600px) {
     .OptionsLangDisp {
@@ -424,5 +484,15 @@ li {
     .SelectLangDisp li {
         width: 50px;
         height: 50px;
+    }
+
+    #adShield em {
+        display: none;
+    }
+
+    #adShield {
+        padding: 0;
+        width: 44px;
+        justify-content: center;
     }
 }

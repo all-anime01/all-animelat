@@ -1,5 +1,48 @@
+// ============================================================================
+//  BLOQUEADOR DE ANUNCIOS (escudo por video)
+//  Los reproductores son de servidores externos (streamwish, filemoon, etc.)
+//  y no podemos tocar su DOM (otro origen). Pero SÍ podemos neutralizar la
+//  publicidad más molesta —popups, popunders y redirecciones— aislando el
+//  iframe con `sandbox` (sin allow-popups ni allow-top-navigation). Un botón
+//  escudo permite activarlo/desactivarlo por si algún servidor lo necesita.
+// ============================================================================
+let AA_currentUrl = null;
+function aaAdBlockOn() { return localStorage.getItem("aaBlockAds") !== "0"; } // por defecto ACTIVO
+const AA_SHIELD_SVG =
+  '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path class="aa-check" d="M9 12l2 2 4-4"></path></svg>';
+
+function aaIframeMarkup(url) {
+  const block = aaAdBlockOn();
+  // allow-scripts+allow-same-origin: el player funciona; se OMITE allow-popups
+  // y allow-top-navigation → no puede abrir pestañas ni redirigir la página.
+  const sandbox = block ? ' sandbox="allow-scripts allow-same-origin allow-forms allow-presentation allow-orientation-lock"' : '';
+  return `
+      <span id="backToPlayers" onclick="listPlayer();"></span>
+      <button id="adShield" class="${block ? "on" : "off"}" onclick="toggleAdShield();"
+              title="${block ? "Publicidad bloqueada — clic para desactivar" : "Bloqueo desactivado — clic para activar"}">
+        ${AA_SHIELD_SVG}<em>${block ? "Anuncios bloqueados" : "Bloqueo desactivado"}</em>
+      </button>
+      <iframe
+          id="IFR"
+          src="${url}"${sandbox}
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          referrerpolicy="no-referrer"
+          frameborder="0"
+          allowfullscreen="true"
+          webkitallowfullscreen="true"
+          mozallowfullscreen="true"
+          onload="this.dataset.loaded = 'true';">
+      </iframe>`;
+}
+
+function toggleAdShield() {
+  localStorage.setItem("aaBlockAds", aaAdBlockOn() ? "0" : "1");
+  if (AA_currentUrl) go_to_player(AA_currentUrl); // recarga el servidor con el nuevo ajuste
+}
+
 // --- FUNCIÓN MODIFICADA PARA CARGA DE 4 SEGUNDOS ---
 function go_to_player(url) {
+  AA_currentUrl = url;
   const playerDisplay = document.getElementById("PlayerDisplay");
   const displayVideo = document.querySelector(".DisplayVideo");
   let loadingOverlay = document.getElementById("loadingOverlay");
@@ -9,7 +52,7 @@ function go_to_player(url) {
     loadingOverlay = document.createElement("div");
     loadingOverlay.id = "loadingOverlay";
     loadingOverlay.className = "loading-overlay";
-    loadingOverlay.innerHTML = `<div class="spinner"></div><p>Cargando servidor...</p>`;
+    loadingOverlay.innerHTML = `<div class="spinner"></div><p>Cargando servidor…</p>`;
     if (playerDisplay) playerDisplay.prepend(loadingOverlay);
   }
 
@@ -23,17 +66,7 @@ function go_to_player(url) {
   // Lógica para asegurar 4 segundos de carga
   const timerPromise = new Promise((resolve) => setTimeout(resolve, 4000));
   const iframeLoadPromise = new Promise((resolve) => {
-    displayVideo.innerHTML = `
-      <span id="backToPlayers" onclick="listPlayer();"></span>
-      <iframe 
-          id="IFR" 
-          src="${url}" 
-          frameborder="0" 
-          allowfullscreen="true" 
-          webkitallowfullscreen="true" 
-          mozallowfullscreen="true"
-          onload="this.dataset.loaded = 'true';">
-      </iframe>`;
+    displayVideo.innerHTML = aaIframeMarkup(url);
 
     // Verificar si el iframe cargó
     const checkIframe = setInterval(() => {
@@ -50,7 +83,7 @@ function go_to_player(url) {
     if (playerDisplay) playerDisplay.classList.remove("is-loading");
   });
 
-  // Lógica para mostrar/ocultar el botón de volver
+  // Lógica para mostrar/ocultar los controles (volver + escudo)
   let idleTimer = null;
   let idleState = false;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -59,16 +92,19 @@ function go_to_player(url) {
   function showFoo(time) {
     const elem = document.getElementById("backToPlayers");
     const ifr = document.getElementById("IFR");
+    const shield = document.getElementById("adShield");
     if (!elem || !ifr) return;
     if (idleState) {
       elem.className = "";
       ifr.className = "";
+      if (shield) shield.classList.remove("inactive");
     }
     clearTimeout(idleTimer);
     idleState = false;
     idleTimer = setTimeout(() => {
       elem.className = "inactive";
       ifr.className = "nopoints";
+      if (shield) shield.classList.add("inactive");
       idleState = true;
     }, time);
   }
