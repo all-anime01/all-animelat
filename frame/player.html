@@ -11,10 +11,16 @@
     <style>
         /* ===== Reproductor genérico — estética moderna tipo Crunchyroll 2026 ===== */
         :root { --acc: #ff5a3c; --acc2: #ff8a4c; }
-        #PlayerDisplay { z-index: 99; }
+        /* Layout en columna flexible: se adapta a cualquier pantalla sin offsets
+           fijos en píxeles (la cabecera y las pestañas pueden crecer/envolver y
+           la lista de servidores ocupa el resto del alto disponible). */
+        #PlayerDisplay {
+            z-index: 99; display: flex; flex-direction: column;
+        }
         .DisplayVideoA { z-index: 9999; }
 
         /* Fondo con la imagen del episodio, difuminado */
+        .wpw { z-index: 0; }
         .wpw::after {
             content: ""; position: absolute; inset: 0;
             background: radial-gradient(120% 90% at 50% -10%, rgba(255,90,60,.16), transparent 60%),
@@ -23,9 +29,9 @@
 
         /* ---- Cabecera ---- */
         .player-head {
-            position: absolute; top: 0; left: 0; right: 0; z-index: 12;
+            position: relative; z-index: 12; flex-shrink: 0;
             display: flex; align-items: center; gap: 16px;
-            padding: 20px 24px 16px; pointer-events: none;
+            padding: 20px 24px 14px; pointer-events: none;
         }
         .player-head .ph-poster {
             width: 52px; height: 74px; border-radius: 9px; object-fit: cover; flex-shrink: 0;
@@ -33,16 +39,22 @@
         }
         .player-head .ph-txt { min-width: 0; }
         .player-head .ph-ep { color: var(--acc2); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
-        .player-head .ph-title { color: #fff; font-size: 22px; font-weight: 700; line-height: 1.15; margin: 2px 0 3px; text-shadow: 0 2px 10px rgba(0,0,0,.6); }
+        .player-head .ph-title { color: #fff; font-size: clamp(17px, 4.6vw, 22px); font-weight: 700; line-height: 1.15; margin: 2px 0 3px; text-shadow: 0 2px 10px rgba(0,0,0,.6); }
         .player-head .ph-sub { color: #b9c2cf; font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        /* ---- Control de idioma (segmentado) ---- */
+        /* ---- Fila de controles: idioma (izq) + escudo (der) ---- */
+        .player-controls {
+            position: relative; z-index: 13; flex-shrink: 0;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+            justify-content: space-between; padding: 0 24px 4px;
+        }
         .SelectLangDisp {
-            position: absolute; top: 108px; left: 0; right: 0; width: auto; margin: 0;
-            display: flex; flex-wrap: wrap; gap: 8px; padding: 0 24px; z-index: 12; text-align: left;
+            position: relative !important; top: auto !important; left: auto; right: auto;
+            width: auto; margin: 0 !important; padding: 0 !important;
+            display: flex; flex-wrap: wrap; gap: 8px; text-align: left; flex: 1 1 240px;
         }
         .SelectLangDisp li {
-            width: auto; height: auto; margin: 0; padding: 9px 20px; border-radius: 40px; overflow: visible;
+            width: auto; height: auto; margin: 0; padding: 9px 18px; border-radius: 40px; overflow: visible;
             background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); opacity: 1;
             color: #cbd5e1; font-weight: 700; font-size: 13.5px; letter-spacing: .4px;
             display: inline-flex; align-items: center; gap: 8px; transition: .2s; text-transform: none;
@@ -53,9 +65,9 @@
             border-color: transparent; color: #fff; box-shadow: 0 8px 20px rgba(255,90,60,.32);
         }
 
-        /* ---- Barra "escudo activo" ---- */
+        /* ---- Chip "escudo activo" ---- */
         .ad-note {
-            position: absolute; top: 108px; right: 24px; z-index: 13;
+            position: relative !important; top: auto !important; right: auto !important; flex-shrink: 0;
             display: inline-flex; align-items: center; gap: 8px;
             padding: 8px 14px; border-radius: 40px; font-size: 12.5px; font-weight: 700;
             color: #37e35f; background: rgba(11,32,17,.7); border: 1px solid rgba(55,227,95,.35);
@@ -63,9 +75,12 @@
         }
         .ad-note svg { width: 15px; height: 15px; }
 
-        /* ---- Rejilla de servidores ---- */
-        .OptionsLangDisp { top: 168px; height: calc(100% - 168px); padding: 6px 24px 24px; }
-        .OD { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+        /* ---- Rejilla de servidores (ocupa el resto del alto y hace scroll) ---- */
+        .OptionsLangDisp {
+            position: relative !important; top: auto !important; height: auto !important;
+            flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 12px 24px 24px;
+        }
+        .OD { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
         .ODDIV li {
             background: rgba(23,27,34,.82); border: 1px solid rgba(255,255,255,.08); border-radius: 14px;
             padding: 14px 16px; gap: 14px; backdrop-filter: blur(3px);
@@ -100,14 +115,41 @@
         .skl > div { height: 76px; border-radius: 14px; background: linear-gradient(100deg, #171b22 30%, #222834 50%, #171b22 70%); background-size: 200% 100%; animation: shimmer 1.3s infinite; }
         @keyframes shimmer { to { background-position: -200% 0; } }
 
-        @media screen and (max-width: 600px) {
-            .player-head { padding: 16px; gap: 12px; }
-            .player-head .ph-poster { width: 42px; height: 60px; }
-            .player-head .ph-title { font-size: 18px; }
-            .SelectLangDisp { top: 96px; padding: 0 16px; }
-            .ad-note { position: static; margin: 10px 16px 0; }
-            .OptionsLangDisp { top: 210px; height: calc(100% - 210px); padding: 6px 16px 20px; }
-            .OD { grid-template-columns: 1fr; }
+        /* Tablet / pantallas medianas */
+        @media screen and (max-width: 820px) {
+            .player-head { padding: 16px 18px 12px; gap: 13px; }
+            .player-controls { padding: 0 18px 4px; }
+            .OptionsLangDisp { padding: 10px 18px 22px; }
+            .OD { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+        }
+
+        /* Móvil */
+        @media screen and (max-width: 560px) {
+            .player-head { padding: 14px 14px 10px; gap: 11px; }
+            .player-head .ph-poster { width: 44px; height: 62px; }
+            .player-head .ph-sub { font-size: 12.5px; }
+            .player-controls { padding: 0 14px 4px; }
+            .SelectLangDisp { flex-basis: 100%; }
+            .SelectLangDisp li { padding: 8px 15px; font-size: 12.5px; }
+            .ad-note { font-size: 11.5px; padding: 7px 12px; }
+            .OptionsLangDisp { padding: 10px 14px 20px; }
+            .OD { grid-template-columns: 1fr; gap: 11px; }
+            .ODDIV li { padding: 12px 13px; gap: 12px; }
+            .ODDIV li .srv-ico { width: 42px; height: 42px; }
+            .ODDIV li span { font-size: 15px; }
+        }
+
+        /* Móvil horizontal / pantallas bajas: cabecera compacta para dar aire
+           a la lista de servidores */
+        @media screen and (max-height: 480px) and (orientation: landscape) {
+            .player-head { padding: 10px 18px 6px; }
+            .player-head .ph-poster { width: 36px; height: 51px; }
+            .player-head .ph-title { font-size: 16px; margin: 1px 0; }
+            .player-head .ph-ep { font-size: 10px; }
+            .player-head .ph-sub { display: none; }
+            .player-controls { padding: 0 18px 2px; }
+            .OptionsLangDisp { padding: 8px 18px 16px; }
+            .OD { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -127,10 +169,12 @@
         <div id="PlayerDisplay">
             <div class="wpw" id="wpw"></div>
             <div class="player-head" id="player-head"></div>
-            <div class="SelectLangDisp" id="langTabs"></div>
-            <div class="ad-note" id="ad-note" style="display:none">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
-                Publicidad bloqueada
+            <div class="player-controls">
+                <div class="SelectLangDisp" id="langTabs"></div>
+                <div class="ad-note" id="ad-note" style="display:none">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                    Publicidad bloqueada
+                </div>
             </div>
             <div class="OptionsLangDisp">
                 <div class="ODDIV" id="serverContainer">
