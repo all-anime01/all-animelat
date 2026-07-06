@@ -282,9 +282,9 @@
                                 <div id="ep-servers"></div>
                                 <button type="button" class="btn grey sm" id="add-server" style="margin-top:8px"><i class="fas fa-plus"></i> Añadir servidor</button>
                             </div>
-                            <div class="field full"><label>Ruta manual del reproductor (opcional)</label>
-                                <input name="videoUrl" placeholder="frame/Nombre-anime/T1/1.html">
-                                <p class="hint">Solo si quieres usar un archivo <code>frame/…</code> propio. Déjalo vacío para que el reproductor se genere solo a partir de los servidores de arriba.</p>
+                            <div class="field full"><label>Ruta manual del reproductor <span style="color:#777;font-weight:400">(avanzado — normalmente déjalo VACÍO)</span></label>
+                                <input name="videoUrl" placeholder="Déjalo vacío: el reproductor se genera solo con los servidores de arriba">
+                                <p class="hint">Solo para casos <b>legado</b>: si ya tienes un archivo <code>frame/…/T1/1.html</code> hecho a mano y quieres apuntar a él. Con los servidores de arriba <b>no hace falta</b>: se usa el reproductor genérico <code>frame/player.html</code> (no se crea ningún archivo por episodio).</p>
                             </div>
                         </div>
                         <input type="hidden" name="editEpSeason"><input type="hidden" name="editEpNumber">
