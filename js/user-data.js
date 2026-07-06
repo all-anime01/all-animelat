@@ -106,6 +106,21 @@ export async function recordHistory(anime, episode) {
   } catch (e) { /* no crítico */ }
 }
 
+// Actualiza el progreso de reproducción de un episodio (para "seguir viendo").
+// No reordena el historial (no toca `at`) para evitar escrituras excesivas.
+export async function updateHistoryProgress(anime, episode, data) {
+  await userReady;
+  if (!currentUser) return;
+  const epId = makeEpId(anime.id, episode);
+  try {
+    await setDoc(historyRef(currentUser.uid, epId), {
+      progress: Math.max(0, Math.min(1, data.progress || 0)),
+      positionSeconds: Math.round(data.positionSeconds || 0),
+      durationSeconds: Math.round(data.durationSeconds || 0),
+    }, { merge: true });
+  } catch (e) { /* no crítico */ }
+}
+
 // Animes más vistos por la comunidad (para "favoritos del público" y Top 10).
 export async function getPopularAnimes(max = 20) {
   try {

@@ -251,14 +251,68 @@ $(document).ready(function () {
     }
   }
 
-  function saveToHistory(episodeId) {
+  function saveToHistory(episodeId, extra) {
     if (!episodeId) return;
     let history = getWatchHistory();
+    const prev = history.find((item) => item.id === episodeId) || {};
     history = history.filter((item) => item.id !== episodeId);
-    history.unshift({ id: episodeId, lastWatched: new Date().toISOString() });
+    history.unshift({
+      id: episodeId,
+      lastWatched: new Date().toISOString(),
+      progress: (extra && extra.progress != null) ? extra.progress : (prev.progress || 0),
+      positionSeconds: (extra && extra.positionSeconds != null) ? extra.positionSeconds : (prev.positionSeconds || 0),
+      durationSeconds: (extra && extra.durationSeconds != null) ? extra.durationSeconds : (prev.durationSeconds || 0),
+    });
     if (history.length > 100) history.pop();
     localStorage.setItem("watchHistory", JSON.stringify(history));
   }
+
+  // --- Seguimiento de progreso de reproducción (heurístico) ------------------
+  // El vídeo vive en un iframe de otro origen: no podemos leer su tiempo. Así
+  // que estimamos el avance por el tiempo real con el reproductor abierto y la
+  // pestaña visible, dividido entre la duración del episodio.
+  let _watch = null;
+  function durationToSeconds(str) {
+    const s = String(str || "");
+    const h = s.match(/(\d+)\s*h/i), m = s.match(/(\d+)\s*m/i);
+    let sec = 0;
+    if (h) sec += parseInt(h[1], 10) * 3600;
+    if (m) sec += parseInt(m[1], 10) * 60;
+    return sec || 1440; // 24 min por defecto
+  }
+  function savedPosition(episodeId) {
+    const it = getWatchHistory().find((x) => x.id === episodeId);
+    // Si ya estaba casi terminado, reinicia para permitir volver a verlo.
+    return it && it.positionSeconds && (it.progress || 0) < 0.95 ? it.positionSeconds : 0;
+  }
+  function persistWatchProgress() {
+    if (!_watch) return;
+    const progress = Math.min(0.99, _watch.elapsed / _watch.duration);
+    const data = { progress, positionSeconds: Math.round(_watch.elapsed), durationSeconds: _watch.duration };
+    saveToHistory(_watch.episodeId, data);
+    if (UD.updateHistoryProgress) UD.updateHistoryProgress(_watch.anime, _watch.episode, data);
+  }
+  function startWatchTracker(anime, episode, episodeId) {
+    stopWatchTracker(true);
+    _watch = {
+      episodeId, anime, episode,
+      elapsed: savedPosition(episodeId),
+      duration: durationToSeconds(episode.duration),
+      timer: setInterval(() => {
+        if (document.visibilityState === "visible") _watch.elapsed = Math.min(_watch.duration, _watch.elapsed + 1);
+      }, 1000),
+      saveTimer: setInterval(persistWatchProgress, 20000),
+    };
+  }
+  function stopWatchTracker(save) {
+    if (!_watch) return;
+    if (save) persistWatchProgress();
+    clearInterval(_watch.timer);
+    clearInterval(_watch.saveTimer);
+    _watch = null;
+  }
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") persistWatchProgress(); });
+  window.addEventListener("beforeunload", persistWatchProgress);
 
   function createHistoryEpisodeCard(episode, anime) {
     const link = `anime-details.html?id=${anime.id}&season=${encodeURIComponent(
@@ -296,19 +350,29 @@ $(document).ready(function () {
   }
 
   // Tarjeta de "seguir viendo"/historial a partir de un item plano.
+  // Muestra dónde iba el usuario en el episodio (barra de progreso + estado).
   function createHistoryCardFromItem(it) {
     const link = `anime-details.html?id=${it.animeId}&season=${encodeURIComponent(it.season)}&episode=${it.number}`;
+    const pct = Math.round(Math.min(1, it.progress || 0) * 100);
+    const dur = it.durationSeconds || 0, pos = it.positionSeconds || 0;
+    const remainMin = dur && pos ? Math.max(1, Math.round((dur - pos) / 60)) : 0;
+    let resume, ico;
+    if (pct >= 95) { resume = "Visto"; ico = "fa-rotate-right"; }
+    else if (pct > 0) { resume = remainMin ? `Faltan ${remainMin} min` : "Continuar"; ico = "fa-play"; }
+    else { resume = "Reproducir"; ico = "fa-play"; }
     return `
-      <div class="episode-detail-card">
+      <div class="episode-detail-card cw-card">
         <a href="${link}">
           <div class="episode-img-container">
             <img src="${it.img || ""}" alt="" loading="lazy">
-            <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
+            <div class="play-icon-overlay"><i class="fas ${ico}"></i></div>
+            <span class="cw-badge"><i class="fas ${ico}"></i> ${resume}</span>
+            ${pct > 0 ? `<div class="cw-bar"><span style="width:${pct}%"></span></div>` : ""}
           </div>
           <div class="episode-card-info">
             <p style="color: var(--light-text); font-size: 1.4rem; margin-bottom: 0.5rem;">${it.animeTitle || ""}</p>
             <h5 class="episode-card-title">${it.number}. ${it.title || ""}</h5>
-            <p class="episode-card-meta">${it.language || ""}</p>
+            <p class="episode-card-meta">${it.language || ""}${pct > 0 ? ` &bull; ${pct >= 95 ? "Completado" : pct + "% visto"}` : ""}</p>
           </div>
         </a>
       </div>`;
@@ -324,6 +388,7 @@ $(document).ready(function () {
       return episode ? {
         animeId, animeTitle: anime.title, img: episode.img, season: episode.season,
         number: episode.number, title: episode.title, language: episode.language,
+        progress: it.progress || 0, positionSeconds: it.positionSeconds || 0, durationSeconds: it.durationSeconds || 0,
       } : null;
     }).filter(Boolean);
   }
@@ -407,6 +472,7 @@ $(document).ready(function () {
     const playerModal = $("#episode-player-modal");
     const episodeId = `${anime.id}::${episode.season}::ep${episode.number}`;
     playerModal.attr("data-episode-id", episodeId);
+    startWatchTracker(anime, episode, episodeId); // seguimiento de "seguir viendo"
 
     // Comentarios propios (Firestore) en lugar de Disqus. Ver engagement.js.
     // loadDisqus(episodeId, anime, episode);
@@ -1260,7 +1326,8 @@ $(document).ready(function () {
     clearAutoplay();
     const playerModal = $("#episode-player-modal");
     const episodeId = playerModal.attr("data-episode-id");
-    if (episodeId) saveToHistory(episodeId);
+    if (_watch) stopWatchTracker(true);
+    else if (episodeId) saveToHistory(episodeId);
     populateContinueWatching();
     playerModal.fadeOut(() => $("#episode-iframe").attr("src", ""));
     $("body").css("overflow", "auto");

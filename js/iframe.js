@@ -26,7 +26,6 @@ function aaIframeMarkup(url) {
           id="IFR"
           src="${url}"${sandbox}
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-          referrerpolicy="no-referrer"
           frameborder="0"
           allowfullscreen="true"
           webkitallowfullscreen="true"
