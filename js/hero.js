@@ -129,4 +129,7 @@ export async function setupHero() {
   const slides = (await getHeroConfig()) || DEFAULT_HERO_SLIDES;
   renderSlides(section, slides);
   initCarousel(section);
+  // Marca el hero como listo: recién aquí se revelan los slides en su orden
+  // real, evitando el parpadeo del primer slide estático del HTML.
+  section.classList.add("is-ready");
 }

@@ -53,6 +53,8 @@
         .srv-row input:focus, .srv-row select:focus { outline: none; border-color: var(--primary); }
         .srv-row .srv-del { padding: 8px 0; width: 100%; justify-content: center; }
         @media (max-width: 640px) { .srv-row { grid-template-columns: 1fr 1fr; } .srv-row .srv-url { grid-column: 1 / -1; } }
+        .srv-badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; background: rgba(74,222,128,.14); color: #4ade80; display: inline-flex; align-items: center; gap: 5px; }
+        .srv-badge.none { background: #2a2a2a; color: #777; }
         /* chips */
         .chips { display: flex; flex-wrap: wrap; gap: 8px; }
         .chip { position: relative; }
@@ -690,9 +692,17 @@
             currentEps = await listEpisodes(animeId, season);
             if (!currentEps.length) { $("ep-existing").innerHTML = '<p class="hint">Esta temporada aún no tiene episodios.</p>'; return; }
             $("ep-existing").innerHTML = `<h2 style="margin-top:6px">Episodios de ${season} (${currentEps.length})</h2>` +
-                currentEps.map((ep) => `<div class="ep-row"><span class="n">${ep.number}</span><span class="t">${ep.title || "(sin título)"}</span>
-                    <button class="btn grey sm" data-editep="${ep.number}" title="Editar"><i class="fas fa-pen"></i></button>
-                    <button class="btn danger sm" data-delep="${ep.number}" title="Eliminar"><i class="fas fa-trash"></i></button></div>`).join("");
+                currentEps.map((ep) => {
+                    const nSrv = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url).length : 0;
+                    const playUrl = ep.videoUrl || (nSrv ? `frame/player.html?a=${animeId}&s=${encodeURIComponent(season)}&e=${ep.number}` : "");
+                    const badge = nSrv
+                        ? `<span class="srv-badge" title="${nSrv} servidor(es)"><i class="fas fa-server"></i> ${nSrv}</span>`
+                        : `<span class="srv-badge none" title="Sin servidores"><i class="fas fa-server"></i> 0</span>`;
+                    const play = playUrl ? `<a class="btn grey sm" href="../${playUrl}" target="_blank" title="Ver reproductor"><i class="fas fa-play"></i></a>` : "";
+                    return `<div class="ep-row"><span class="n">${ep.number}</span><span class="t">${ep.title || "(sin título)"}</span>${badge}
+                    ${play}<button class="btn grey sm" data-editep="${ep.number}" title="Editar"><i class="fas fa-pen"></i></button>
+                    <button class="btn danger sm" data-delep="${ep.number}" title="Eliminar"><i class="fas fa-trash"></i></button></div>`;
+                }).join("");
             $("ep-existing").querySelectorAll("[data-editep]").forEach((b) => b.addEventListener("click", () => editEpisode(season, +b.dataset.editep)));
             $("ep-existing").querySelectorAll("[data-delep]").forEach((b) => b.addEventListener("click", async () => {
                 if (!confirm(`¿Eliminar el episodio ${b.dataset.delep} de ${season}?`)) return;
@@ -782,12 +792,16 @@
                 } else {
                     ep.servers = [];
                 }
+                // Enlace para probar el reproductor generado.
+                const testLink = ep.videoUrl
+                    ? ` — <a href="../${ep.videoUrl}" target="_blank" style="color:#4ade80;text-decoration:underline">Probar reproductor ↗</a>${ep.servers.length ? ` (${ep.servers.length} servidor${ep.servers.length > 1 ? "es" : ""})` : ""}`
+                    : "";
                 if (editing) {
                     await updateEpisode(animeId, editSeason, editNumber, ep);
-                    setMsg($("ep-msg"), `✅ Episodio actualizado.`, "ok");
+                    $("ep-msg").innerHTML = `✅ Episodio actualizado.${testLink}`; $("ep-msg").className = "msg ok";
                 } else {
                     const total = await addEpisodes(animeId, [ep]);
-                    setMsg($("ep-msg"), `✅ Episodio agregado (${total} en total).`, "ok");
+                    $("ep-msg").innerHTML = `✅ Episodio agregado (${total} en total).${testLink}`; $("ep-msg").className = "msg ok";
                 }
                 resetEpForm();
                 // Refresca temporadas (por si era nueva) y la lista.

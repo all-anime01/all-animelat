@@ -327,6 +327,14 @@ body.red-theme header {
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    background: #101010;
+}
+
+/* Evita el "flash" del primer slide estático: hasta que el JS monta el
+   carrusel (y aplica el orden real guardado), no se muestra ningún slide. */
+.hero-section:not(.is-ready) .hero-slide {
+    opacity: 0 !important;
+    visibility: hidden !important;
 }
 
 .hero-slide {
