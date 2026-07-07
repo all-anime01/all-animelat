@@ -406,7 +406,9 @@ $(document).ready(function () {
     const section = $("#continue-watching-section");
     if (!grid.length) return;
     // Firestore si hay sesión (sincronizado entre dispositivos); si no, localStorage.
-    const items = UD.isLoggedIn() ? await UD.listHistory(12) : localHistoryItems();
+    const raw = UD.isLoggedIn() ? await UD.listHistory(40) : localHistoryItems();
+    // Los episodios ya terminados (vistos por completo) desaparecen de aquí.
+    const items = raw.filter((it) => (it.progress || 0) < 0.95);
     grid.empty();
     if (!items.length) { section.hide(); return; }
     section.show();
@@ -1049,6 +1051,16 @@ $(document).ready(function () {
     const seasonSelect = $("#season-select");
     let currentSeasonEpisodes = [];
 
+    // Marca una tarjeta como vista: badge "VISTO" + icono de repetir en el
+    // overlay (igual que en "seguir viendo").
+    function markCardWatched(i, on) {
+      const card = $(`.episode-detail-card[data-episode-index="${i}"]`);
+      card.toggleClass("is-watched", on);
+      card.find(".play-icon-overlay i")
+        .toggleClass("fa-play", !on)
+        .toggleClass("fa-rotate-right", on);
+    }
+
     // Marca con badge "VISTO" los episodios ya vistos por el usuario.
     let watchedSetPromise = null;
     function applyWatchedBadges() {
@@ -1056,9 +1068,7 @@ $(document).ready(function () {
       watchedSetPromise.then((set) => {
         if (!set || !set.size) return;
         currentSeasonEpisodes.forEach((ep, i) => {
-          if (set.has(makeEpId(anime.id, ep))) {
-            $(`.episode-detail-card[data-episode-index="${i}"]`).addClass("is-watched");
-          }
+          if (set.has(makeEpId(anime.id, ep))) markCardWatched(i, true);
         });
       });
     }
@@ -1069,7 +1079,7 @@ $(document).ready(function () {
       const d = e.detail;
       if (!d || d.animeId !== anime.id) return;
       const i = currentSeasonEpisodes.findIndex((ep) => makeEpId(anime.id, ep) === d.epId);
-      if (i >= 0) $(`.episode-detail-card[data-episode-index="${i}"]`).toggleClass("is-watched", !!d.watched);
+      if (i >= 0) markCardWatched(i, !!d.watched);
       // Mantén el set en memoria al día para futuros re-render de temporada.
       if (watchedSetPromise) watchedSetPromise.then((set) => { if (set) { d.watched ? set.add(d.epId) : set.delete(d.epId); } });
     });
