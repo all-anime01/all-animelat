@@ -1190,6 +1190,70 @@ body.red-theme header {
     color: var(--dark-text);
 }
 
+/* Botones "Mi lista" y "Compartir" (con etiqueta) */
+.action-btn.mylist-btn {
+    padding: 1.2rem 2.2rem;
+}
+
+.action-btn.share-btn {
+    background-color: rgba(128, 128, 128, 0.4);
+    color: var(--light-text);
+}
+
+.action-btn.share-btn:hover {
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+/* Póster vertical dentro del modal de episodios */
+.player-poster {
+    float: left;
+    width: 128px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0 2.2rem 1.2rem 0;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #1a1a1a;
+}
+
+/* Póster vertical dentro del modal "más info" */
+.modal-info {
+    display: flex;
+    gap: 2.2rem;
+    align-items: flex-start;
+}
+
+.modal-poster {
+    width: 150px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #1a1a1a;
+}
+
+.modal-info-text {
+    min-width: 0;
+}
+
+@media (max-width: 600px) {
+    .modal-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .modal-poster {
+        width: 120px;
+    }
+    .player-poster {
+        width: 92px;
+        margin: 0 1.4rem 0.8rem 0;
+    }
+}
+
 
 /* --- Estilos de la Sección de Episodios en Detalles --- */
 .episodes-section-detail {
@@ -2161,7 +2225,9 @@ header .logo:hover .logo-desktop {
     }
 
     .player-video-container {
-        height: 45vh;
+        /* Vídeo a lo ancho (16:9) para que se vea grande en móvil */
+        height: 56.25vw;
+        max-height: 70vh;
     }
 }
 
@@ -2237,7 +2303,8 @@ header .logo:hover .logo-desktop {
     }
 
     .player-video-container {
-        height: auto;
+        height: 56.25vw;
+        max-height: 65vh;
     }
 }
 /* ===================================================================

@@ -38,7 +38,7 @@ function renderSlides(section, slides) {
   const html = slides.map((s, i) => `
     <div class="hero-slide${i === 0 ? " active" : ""}" data-desktop-img="${esc(s.desktopImg)}" data-mobile-img="${esc(s.mobileImg || s.desktopImg)}" data-video="${esc(s.video || "")}"
          style="background-image:url('${esc(s.desktopImg)}')">
-      <video class="hero-video" muted loop playsinline preload="none"></video>
+      <video class="hero-video" muted playsinline preload="none"></video>
       <div class="hero-content">
         ${s.logoImg ? `<img src="${esc(s.logoImg)}" alt="${esc(s.title)}" class="hero-logo">`
                     : `<h1 class="hero-logo-text">${esc(s.title)}</h1>`}
@@ -124,6 +124,12 @@ function initCarousel(section) {
     const v = sl.querySelector(".hero-video");
     const url = sl.dataset.video;
     if (!v || !url || isMobile()) return;
+    // Al terminar el tráiler, vuelve a la imagen del slide y continúa el carrusel.
+    v.onended = () => {
+      v.classList.remove("playing");
+      showMute(false);
+      if (total > 1) { clearTimeout(imageTimer); imageTimer = setTimeout(next, 1500); }
+    };
     videoTimer = setTimeout(() => {
       v.muted = !soundOn; // respeta la preferencia del usuario
       v.src = url;

@@ -80,7 +80,7 @@ function injectAccountWidget() {
       <div class="acct-menu" id="acct-menu">
         <div class="acct-head">${ph("")}<div><b>${name}</b><span>${user.email}</span></div></div>
         <a href="perfil.html"><i class="fas fa-user-gear"></i> Mi perfil</a>
-        <a href="mis-favoritos.html"><i class="fas fa-heart"></i> Mis favoritos</a>
+        <a href="mis-favoritos.html"><i class="fas fa-bookmark"></i> Mi lista</a>
         <a href="historial.html"><i class="fas fa-clock-rotate-left"></i> Historial</a>
         <a href="notificaciones.html"><i class="fas fa-bell"></i> Notificaciones</a>
         ${admin ? '<div class="sep"></div><a class="acct-admin" href="admin/index.html"><i class="fas fa-user-shield"></i> Panel de administración</a>' : ""}
@@ -486,6 +486,7 @@ $(document).ready(function () {
     const prevEpisode = seasonEpisodes[currentEpisodeIndex - 1];
     const nextEpisode = seasonEpisodes[currentEpisodeIndex + 1];
 
+    $("#player-poster").attr("src", anime.img || anime.imgMobile || episode.img || "");
     $("#player-anime-link")
       .attr("href", `anime-details.html?id=${anime.id}`)
       .text(anime.title);
@@ -901,13 +902,95 @@ $(document).ready(function () {
                 <p class="anime-description">${anime.description}</p>
                 <div id="anime-rating"></div>
                 <div class="anime-actions">
-                    <button class="action-btn play open-player-from-details" data-episode-index="0"><i class="fas fa-play"></i> Play</button>
-                    <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> More Info</button>
-                    <button class="action-btn favorite-btn" id="favorite-anime-btn" title="Agregar Anime a Favoritos"><i class="far fa-bookmark"></i></button>
+                    <button class="action-btn play" id="hero-play-btn"><i class="fas fa-play"></i> <span id="hero-play-label">Reproducir</span></button>
+                    <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> Más info</button>
+                    <button class="action-btn mylist-btn favorite-btn" id="favorite-anime-btn" title="Añadir a Mi lista"><i class="far fa-bookmark"></i> <span class="mylist-label">Mi lista</span></button>
+                    <button class="action-btn share-btn" id="share-anime-btn" title="Compartir"><i class="fas fa-share-nodes"></i> Compartir</button>
                 </div>
             </div>`;
     container.html(heroContent);
     mountRatingWidget(document.getElementById("anime-rating"), anime);
+
+    // --- Botón de reproducción dinámico: Reproducir / Continuar viendo / Repetir ---
+    function orderedEpisodesFlat(a) {
+      return (a.episodes || []).slice().sort((x, y) => {
+        const s = String(x.season).localeCompare(String(y.season), undefined, { numeric: true });
+        return s !== 0 ? s : (x.number - y.number);
+      });
+    }
+    async function computeResume(a) {
+      const eps = orderedEpisodesFlat(a);
+      if (!eps.length) return null;
+      const byKey = {};
+      const put = (h) => {
+        if (h.animeId !== a.id) return;
+        const k = `${h.season}::${h.number}`;
+        const t = h.lastWatched ? Date.parse(h.lastWatched) : (h.at && h.at.seconds ? h.at.seconds * 1000 : 0);
+        if (!byKey[k] || (h.progress || 0) >= (byKey[k].progress || 0) || t >= (byKey[k]._t || 0)) byKey[k] = { ...h, _t: t };
+      };
+      // localStorage
+      getWatchHistory().forEach((it) => {
+        const [aid, season, epStr] = String(it.id).split("::");
+        if (aid === a.id) put({ animeId: aid, season, number: parseFloat(String(epStr).replace("ep", "")), progress: it.progress || 0, lastWatched: it.lastWatched });
+      });
+      // Firestore (si hay sesión)
+      if (UD.isLoggedIn()) { try { (await UD.listHistory(200)).forEach(put); } catch { } }
+
+      const keys = Object.keys(byKey);
+      if (!keys.length) return { ep: eps[0], label: "Reproducir", mode: "play" };
+      const prog = (ep) => (byKey[`${ep.season}::${ep.number}`] || {}).progress || 0;
+      if (eps.every((ep) => prog(ep) >= 0.9)) return { ep: eps[0], label: `Repetir E${eps[0].number}`, mode: "repeat" };
+      // último episodio visto por fecha
+      let last = null;
+      keys.forEach((k) => { if (!last || (byKey[k]._t || 0) >= (last._t || 0)) last = byKey[k]; });
+      const idx = eps.findIndex((ep) => String(ep.season) === String(last.season) && Number(ep.number) === Number(last.number));
+      let target;
+      if (idx >= 0 && (last.progress || 0) < 0.9) target = eps[idx];
+      else if (idx >= 0 && idx + 1 < eps.length) target = eps[idx + 1];
+      else target = eps[0];
+      return { ep: target, label: `Continuar viendo E${target.number}`, mode: "continue" };
+    }
+    function resetEpisodeProgress(a, ep) {
+      const localId = `${a.id}::${ep.season}::ep${ep.number}`;
+      saveToHistory(localId, { progress: 0, positionSeconds: 0, durationSeconds: 0 });
+      if (UD.updateHistoryProgress) UD.updateHistoryProgress(a, ep, { progress: 0, positionSeconds: 0, durationSeconds: 0 });
+    }
+    async function setupHeroPlay() {
+      const btn = document.getElementById("hero-play-btn");
+      if (!btn) return;
+      const flat = orderedEpisodesFlat(anime);
+      let r = { ep: flat[0] || null, label: "Reproducir", mode: "play" };
+      const apply = () => {
+        const lbl = btn.querySelector("#hero-play-label");
+        if (lbl) lbl.textContent = r.label;
+        const ic = btn.querySelector("i");
+        if (ic) ic.className = r.mode === "repeat" ? "fas fa-rotate-right" : "fas fa-play";
+      };
+      btn.onclick = () => {
+        if (!r.ep) return;
+        if (r.mode === "repeat") resetEpisodeProgress(anime, r.ep);
+        openPlayer(anime, r.ep);
+      };
+      apply();
+      try { const rr = await computeResume(anime); if (rr) { r = rr; apply(); } } catch { }
+    }
+    UD.userReady.then(setupHeroPlay);
+    setupHeroPlay();
+
+    // --- Compartir ---
+    document.getElementById("share-anime-btn")?.addEventListener("click", async (e) => {
+      const btn = e.currentTarget;
+      const url = `${location.origin}${location.pathname}?id=${anime.id}`;
+      const data = { title: anime.title, text: `Mira ${anime.title} en All-Anime`, url };
+      try {
+        if (navigator.share) { await navigator.share(data); return; }
+        await navigator.clipboard.writeText(url);
+        const lbl = btn.querySelector("span") || btn;
+        const prevHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> ¡Enlace copiado!';
+        setTimeout(() => { btn.innerHTML = prevHTML; }, 1800);
+      } catch { }
+    });
 
     const episodesContainer = $("#episodes-list-container");
     const seasonSelect = $("#season-select");
@@ -1039,7 +1122,8 @@ $(document).ready(function () {
       `<iframe width="560" height="315" src="${anime.trailerUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
     );
     $("#modal-info-content").html(
-      `<h3>${anime.title}</h3><p>${anime.description
+      `<img class="modal-poster" src="${anime.img || anime.imgMobile || ""}" alt="${anime.title}" loading="lazy">
+      <div class="modal-info-text"><h3>${anime.title}</h3><p>${anime.description
       }</p><div class="modal-details-grid">${anime.rating
         ? `<div><strong>Rating:</strong> <i class="fas fa-star" style="color: #ffc107;"></i> ${anime.rating
         } ${anime.ratingCount ? `(${anime.ratingCount} votos)` : ""}</div>`
@@ -1049,7 +1133,7 @@ $(document).ready(function () {
       }</div><div><strong>Estado:</strong> ${anime.status
       }</div><div><strong>Creador:</strong> ${anime.creator
       }</div><div><strong>Clasificación:</strong> ${anime.contentWarning
-      }</div></div>`
+      }</div></div></div>`
     );
     $("#open-trailer-modal").on("click", () =>
       $("#trailer-modal").css("display", "flex").hide().fadeIn()
@@ -1081,8 +1165,9 @@ $(document).ready(function () {
     function paintAnimeFav(on) {
       favoriteAnimeBtn
         .toggleClass("is-favorite", on)
-        .attr("title", on ? "Quitar de Favoritos" : "Agregar a Favoritos")
+        .attr("title", on ? "Quitar de Mi lista" : "Añadir a Mi lista")
         .find("i").toggleClass("fas", on).toggleClass("far", !on);
+      favoriteAnimeBtn.find(".mylist-label").text(on ? "En Mi lista" : "Mi lista");
     }
     async function refreshAnimeFavState() {
       if (UD.isLoggedIn()) { try { paintAnimeFav(await UD.isFavAnime(animeId)); return; } catch {} }
