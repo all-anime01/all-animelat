@@ -504,23 +504,40 @@ $(document).ready(function () {
     $("#player-episode-description").text(episode.description);
     $("#episode-iframe").attr("src", episode.videoUrl || "");
 
-    const prevPreviewContainer = $("#player-prev-episode-preview").empty();
-    if (prevEpisode) {
-      prevPreviewContainer.html(
-        `<h5 class="player-nav-title">EPISODIO ANTERIOR</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${anime.id
-        }" data-season="${encodeURIComponent(
-          prevEpisode.season
-        )}" data-episode-number="${prevEpisode.number
-        }"><div class="player-nav-img-wrapper"><img src="${prevEpisode.img
-        }" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${prevEpisode.number
-        } - ${prevEpisode.title}</p><span>${prevEpisode.language
-        }</span></div></a>`
-      );
-    }
+    // Navegación de episodios en el modal (siguiente/anterior) con miniatura,
+    // badge de duración o "restantes" y barra de progreso de "seguir viendo".
+    const episodeProgressInfo = (a, ep) => {
+      const localId = `${a.id}::${ep.season}::ep${ep.number}`;
+      const it = getWatchHistory().find((x) => x.id === localId);
+      const durS = (it && it.durationSeconds) || durationToSeconds(ep.duration);
+      const posS = (it && it.positionSeconds) || 0;
+      return { progress: it ? (it.progress || 0) : 0, remainMin: Math.max(1, Math.round((durS - posS) / 60)), durMin: Math.round(durS / 60) };
+    };
+    const navPreviewHtml = (label, ep) => {
+      const info = episodeProgressInfo(anime, ep);
+      const pct = Math.round(Math.min(1, info.progress) * 100);
+      const inProgress = info.progress > 0.02 && info.progress < 0.95;
+      const badge = inProgress ? `${info.remainMin}m restantes` : (ep.duration || `${info.durMin}m`);
+      return `<h5 class="player-nav-title">${label}</h5>
+        <a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${anime.id}" data-season="${encodeURIComponent(ep.season)}" data-episode-number="${ep.number}">
+          <div class="player-nav-img-wrapper">
+            <img src="${ep.img || ""}" alt="" loading="lazy">
+            <div class="player-nav-play-icon"><i class="fas fa-play"></i></div>
+            <span class="player-nav-badge">${badge}</span>
+            ${pct > 0 ? `<div class="player-nav-bar"><span style="width:${pct}%"></span></div>` : ""}
+          </div>
+          <div class="player-nav-info"><p>E${ep.number} - ${ep.title || ""}</p><span>${ep.language || ""}</span></div>
+        </a>`;
+    };
+    $("#player-next-episode-preview").html(nextEpisode ? navPreviewHtml("SIGUIENTE EPISODIO", nextEpisode) : "");
+    $("#player-prev-episode-preview").html(prevEpisode ? navPreviewHtml("EPISODIO ANTERIOR", prevEpisode) : "");
 
-    // El "siguiente episodio" se elige desde la lista de episodios; aquí solo
-    // queda el autoplay automático al terminar. Se limpia cualquier preview.
-    $("#player-next-episode-preview").empty();
+    // Botón "Ver más episodios": cierra el modal y baja a la lista completa.
+    $("#player-see-episodes").off("click").on("click", () => {
+      $("#close-player-modal").click();
+      const list = document.getElementById("episodes-list-container") || document.getElementById("season-select");
+      if (list) setTimeout(() => list.scrollIntoView({ behavior: "smooth", block: "center" }), 350);
+    });
 
     // Seguimiento de reproducción + detección de fin (misma heurística que
     // "seguir viendo"): al terminar marca visto y lanza el autoplay.
