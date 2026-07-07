@@ -30,6 +30,7 @@ const userReady = new Promise((resolve) => {
 
 let activeCtx = null;
 let commentsUnsub = null;
+let autoWatchedListener = null;
 let endTimer = null;       // temporizador de fin de episodio (auto-visto + autoplay)
 let countdownTimer = null;
 
@@ -96,7 +97,8 @@ function injectStyles() {
   .eng-cd-go{background:linear-gradient(135deg,#ca3030,#e23b3b);color:#fff}
   .eng-cd-cancel{background:#333;color:#fff}
 
-  .episode-detail-card.is-watched .episode-img-container::after{content:"\\2713 VISTO";font-weight:700;position:absolute;top:8px;left:8px;background:rgba(0,170,80,.92);color:#fff;font-size:11px;padding:3px 7px;border-radius:6px;z-index:3;letter-spacing:.5px}
+  /* VISTO va a la derecha para no chocar con la etiqueta "NUEVO" (izquierda), incluso en móvil */
+  .episode-detail-card.is-watched .episode-img-container::after{content:"\\2713 VISTO";font-weight:700;position:absolute;top:8px;right:8px;background:rgba(0,170,80,.92);color:#fff;font-size:11px;padding:3px 7px;border-radius:6px;z-index:4;letter-spacing:.5px}
   `;
   const s = document.createElement("style");
   s.id = "engagement-styles";
@@ -117,15 +119,29 @@ export function clearAutoplay() {
   document.querySelector(".eng-countdown")?.remove();
 }
 
-// Programa lo que ocurre al terminar la duración del episodio:
-//  1) marcar como visto (automático)  2) si autoplay: cuenta regresiva de 7s.
-function armEndOfEpisode({ episode, nextEpisode, onPlayNext, epId, anime, user, onWatched }) {
-  clearAutoplay();
-  const ms = durationToMs(episode);
-  endTimer = setTimeout(async () => {
-    if (user) { try { await markWatched(epId, anime, episode, user); onWatched?.(); } catch (e) {} }
-    if (autoplayEnabled() && nextEpisode && onPlayNext) startCountdown(7, nextEpisode, onPlayNext);
-  }, ms);
+// Notifica a la UI (tarjetas de la lista y botón del modal) que un episodio
+// cambió su estado de "visto", para reflejarlo al instante.
+function dispatchWatched(epId, animeId, on) {
+  document.dispatchEvent(new CustomEvent("episode-watched", { detail: { epId, animeId, watched: on } }));
+}
+
+// Marca un episodio como visto (Firestore) y avisa a la UI. La invoca el
+// tracker de reproducción cuando detecta el fin del vídeo (misma heurística
+// que "seguir viendo").
+export async function markEpisodeWatched(anime, episode) {
+  await userReady;
+  if (!currentUser) return false;
+  const epId = makeEpId(anime.id, episode);
+  try {
+    await markWatched(epId, anime, episode, currentUser);
+    dispatchWatched(epId, anime.id, true);
+    return true;
+  } catch (e) { return false; }
+}
+
+// Cuenta regresiva de autoplay hacia el siguiente episodio (estilo Netflix).
+export function startAutoplayCountdown(nextEpisode, onPlayNext) {
+  if (nextEpisode && onPlayNext) startCountdown(7, nextEpisode, onPlayNext);
 }
 
 function startCountdown(seconds, nextEpisode, onPlayNext) {
@@ -280,7 +296,6 @@ export async function initPlayerEngagement(ctx) {
         <i class="fas fa-check"></i> <span class="eng-w-txt">${watched ? "Visto" : "Marcar visto"}</span>
       </button>
       <label class="eng-autoplay" title="Reproducir el siguiente automáticamente"><input type="checkbox" class="eng-ap" ${autoplayEnabled() ? "checked" : ""}> Autoplay</label>
-      <button class="eng-btn eng-next" ${nextEpisode ? "" : "disabled"}>Siguiente <i class="fas fa-forward"></i></button>
     `;
 
     const likeBtn = actionsEl.querySelector(".eng-like");
@@ -320,20 +335,19 @@ export async function initPlayerEngagement(ctx) {
     watchedBtn.addEventListener("click", async () => {
       if (!user) return;
       try {
-        if (watchedBtn.classList.contains("active")) { await deleteDoc(watchedRef(user, epId)); setWatchedUI(false); }
-        else { await markWatched(epId, anime, episode, user); setWatchedUI(true); }
+        if (watchedBtn.classList.contains("active")) { await deleteDoc(watchedRef(user, epId)); setWatchedUI(false); dispatchWatched(epId, anime.id, false); }
+        else { await markWatched(epId, anime, episode, user); setWatchedUI(true); dispatchWatched(epId, anime.id, true); }
       } catch (err) { console.error(err); }
     });
 
-    actionsEl.querySelector(".eng-ap").addEventListener("change", (e) => setAutoplay(e.target.checked));
-    actionsEl.querySelector(".eng-next").addEventListener("click", () => {
-      if (nextEpisode && onPlayNext) { clearAutoplay(); onPlayNext(); }
-    });
+    // Refleja al instante el "visto" automático (disparado por el tracker) en
+    // el botón del modal de este mismo episodio. Se reemplaza el anterior para
+    // no acumular listeners entre aperturas.
+    if (autoWatchedListener) document.removeEventListener("episode-watched", autoWatchedListener);
+    autoWatchedListener = (e) => { if (e.detail && e.detail.epId === epId && e.detail.watched) setWatchedUI(true); };
+    document.addEventListener("episode-watched", autoWatchedListener);
 
-    // Programa auto-visto + autoplay al cumplirse la duración del episodio.
-    armEndOfEpisode({ episode, nextEpisode, onPlayNext, epId, anime, user, onWatched: () => setWatchedUI(true) });
-  } else {
-    armEndOfEpisode({ episode, nextEpisode, onPlayNext, epId, anime, user });
+    actionsEl.querySelector(".eng-ap").addEventListener("change", (e) => setAutoplay(e.target.checked));
   }
 
   // ---- Comentarios ----

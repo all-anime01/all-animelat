@@ -1,5 +1,5 @@
 import { getAnimeData } from "./data-provider.js";
-import { initPlayerEngagement, clearAutoplay, getWatchedSet } from "./engagement.js";
+import { initPlayerEngagement, clearAutoplay, getWatchedSet, markEpisodeWatched, autoplayEnabled, startAutoplayCountdown } from "./engagement.js";
 import { episodeId as makeEpId } from "./catalog-utils.js";
 import * as UD from "./user-data.js";
 import { mountRatingWidget } from "./rating-widget.js";
@@ -292,14 +292,22 @@ $(document).ready(function () {
     saveToHistory(_watch.episodeId, data);
     if (UD.updateHistoryProgress) UD.updateHistoryProgress(_watch.anime, _watch.episode, data);
   }
-  function startWatchTracker(anime, episode, episodeId) {
+  function startWatchTracker(anime, episode, episodeId, onFinish) {
     stopWatchTracker(true);
     _watch = {
-      episodeId, anime, episode,
+      episodeId, anime, episode, onFinish, finished: false,
       elapsed: savedPosition(episodeId),
       duration: durationToSeconds(episode.duration),
       timer: setInterval(() => {
-        if (document.visibilityState === "visible") _watch.elapsed = Math.min(_watch.duration, _watch.elapsed + 1);
+        if (document.visibilityState !== "visible") return;
+        _watch.elapsed = Math.min(_watch.duration, _watch.elapsed + 1);
+        // Detecta el fin del episodio igual que "seguir viendo": cuando el
+        // tiempo visto alcanza (casi) la duración, marca visto + autoplay.
+        if (!_watch.finished && _watch.elapsed >= _watch.duration - 1) {
+          _watch.finished = true;
+          persistWatchProgress();
+          try { _watch.onFinish && _watch.onFinish(); } catch (e) { console.error(e); }
+        }
       }, 1000),
       saveTimer: setInterval(persistWatchProgress, 20000),
     };
@@ -472,7 +480,6 @@ $(document).ready(function () {
     const playerModal = $("#episode-player-modal");
     const episodeId = `${anime.id}::${episode.season}::ep${episode.number}`;
     playerModal.attr("data-episode-id", episodeId);
-    startWatchTracker(anime, episode, episodeId); // seguimiento de "seguir viendo"
 
     // Comentarios propios (Firestore) en lugar de Disqus. Ver engagement.js.
     // loadDisqus(episodeId, anime, episode);
@@ -511,21 +518,21 @@ $(document).ready(function () {
       );
     }
 
-    const nextPreviewContainer = $("#player-next-episode-preview").empty();
-    if (nextEpisode) {
-      nextPreviewContainer.html(
-        `<h5 class="player-nav-title">SIGUIENTE EPISODIO</h5><a href="#" class="player-nav-card open-player-from-modal" data-anime-id="${anime.id
-        }" data-season="${encodeURIComponent(
-          nextEpisode.season
-        )}" data-episode-number="${nextEpisode.number
-        }"><div class="player-nav-img-wrapper"><img src="${nextEpisode.img
-        }" alt=""><div class="player-nav-play-icon"><i class="fas fa-play"></i></div></div><div class="player-nav-info"><p>E${nextEpisode.number
-        } - ${nextEpisode.title}</p><span>${nextEpisode.language
-        }</span></div></a>`
-      );
-    }
+    // El "siguiente episodio" se elige desde la lista de episodios; aquí solo
+    // queda el autoplay automático al terminar. Se limpia cualquier preview.
+    $("#player-next-episode-preview").empty();
 
-    // --- Engagement: likes, comentarios, visto, siguiente/autoplay ---
+    // Seguimiento de reproducción + detección de fin (misma heurística que
+    // "seguir viendo"): al terminar marca visto y lanza el autoplay.
+    const onFinishEpisode = () => {
+      markEpisodeWatched(anime, episode);
+      const wb = document.querySelector(".eng-watched");
+      if (wb) { wb.classList.add("active"); const t = wb.querySelector(".eng-w-txt"); if (t) t.textContent = "Visto"; }
+      if (autoplayEnabled() && nextEpisode) startAutoplayCountdown(nextEpisode, () => openPlayer(anime, nextEpisode));
+    };
+    startWatchTracker(anime, episode, episodeId, onFinishEpisode);
+
+    // --- Engagement: likes, comentarios, visto, autoplay ---
     initPlayerEngagement({
       anime,
       episode,
@@ -1009,6 +1016,17 @@ $(document).ready(function () {
         });
       });
     }
+
+    // Refleja al instante en las tarjetas de la lista cuando un episodio se
+    // marca (o desmarca) como visto —automático al terminar o manual—.
+    document.addEventListener("episode-watched", (e) => {
+      const d = e.detail;
+      if (!d || d.animeId !== anime.id) return;
+      const i = currentSeasonEpisodes.findIndex((ep) => makeEpId(anime.id, ep) === d.epId);
+      if (i >= 0) $(`.episode-detail-card[data-episode-index="${i}"]`).toggleClass("is-watched", !!d.watched);
+      // Mantén el set en memoria al día para futuros re-render de temporada.
+      if (watchedSetPromise) watchedSetPromise.then((set) => { if (set) { d.watched ? set.add(d.epId) : set.delete(d.epId); } });
+    });
 
     const seasons =
       anime.episodes && anime.episodes.length > 0
