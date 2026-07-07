@@ -532,11 +532,40 @@ $(document).ready(function () {
     $("#player-next-episode-preview").html(nextEpisode ? navPreviewHtml("SIGUIENTE EPISODIO", nextEpisode) : "");
     $("#player-prev-episode-preview").html(prevEpisode ? navPreviewHtml("EPISODIO ANTERIOR", prevEpisode) : "");
 
-    // Botón "Ver más episodios": cierra el modal y baja a la lista completa.
-    $("#player-see-episodes").off("click").on("click", () => {
-      $("#close-player-modal").click();
-      const list = document.getElementById("episodes-list-container") || document.getElementById("season-select");
-      if (list) setTimeout(() => list.scrollIntoView({ behavior: "smooth", block: "center" }), 350);
+    // "Ver más episodios": despliega la lista completa de esta temporada dentro
+    // del modal (dinámica, con progreso y el episodio actual resaltado).
+    const listPanel = document.getElementById("player-episode-list-panel");
+    if (listPanel) {
+      const items = seasonEpisodes.map((ep) => {
+        const info = episodeProgressInfo(anime, ep);
+        const pct = Math.round(Math.min(1, info.progress) * 100);
+        const isCur = String(ep.number) === String(episode.number);
+        const done = info.progress >= 0.95;
+        return `<a href="#" class="player-ep-item open-player-from-modal ${isCur ? "current" : ""}" data-anime-id="${anime.id}" data-season="${encodeURIComponent(ep.season)}" data-episode-number="${ep.number}">
+            <div class="player-ep-thumb">
+              <img src="${ep.img || ""}" loading="lazy" alt="">
+              <span class="player-ep-ico"><i class="fas ${isCur ? "fa-volume-high" : "fa-play"}"></i></span>
+              ${done ? '<span class="player-ep-seen"><i class="fas fa-check"></i></span>' : ""}
+              ${pct > 0 && !done ? `<div class="player-nav-bar"><span style="width:${pct}%"></span></div>` : ""}
+            </div>
+            <div class="player-ep-meta"><b>E${ep.number}</b><span>${ep.title || ""}</span></div>
+          </a>`;
+      }).join("");
+      listPanel.innerHTML = `<div class="player-eplist-head">${episode.season} · ${seasonEpisodes.length} episodios</div><div class="player-eplist-scroll">${items}</div>`;
+      listPanel.setAttribute("hidden", "");
+    }
+    $("#player-see-episodes").off("click").on("click", function () {
+      const panel = document.getElementById("player-episode-list-panel");
+      if (!panel) return;
+      const opening = panel.hasAttribute("hidden");
+      if (opening) {
+        panel.removeAttribute("hidden");
+        this.innerHTML = '<i class="fas fa-chevron-up"></i> Ocultar episodios';
+        panel.querySelector(".current")?.scrollIntoView({ block: "nearest" });
+      } else {
+        panel.setAttribute("hidden", "");
+        this.innerHTML = '<i class="fas fa-layer-group"></i> Ver más episodios';
+      }
     });
 
     // Seguimiento de reproducción + detección de fin (misma heurística que

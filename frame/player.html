@@ -107,6 +107,31 @@
             background: rgba(255,90,60,.14); color: var(--acc2); border: 1px solid rgba(255,90,60,.22);
         }
         .ODDIV li .srv-badge.q { background: rgba(80,180,255,.14); color: #7cc4ff; border-color: rgba(80,180,255,.22); }
+        /* Badge de latencia por servidor */
+        .ODDIV li .srv-speed:empty { display: none; }
+        .ODDIV li .srv-speed {
+            font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 20px;
+            display: inline-flex; align-items: center; gap: 5px; border: 1px solid transparent;
+        }
+        .ODDIV li .srv-speed.fast { background: rgba(55,227,95,.16); color: #37e35f; border-color: rgba(55,227,95,.3); }
+        .ODDIV li .srv-speed.mid  { background: rgba(255,193,74,.16); color: #ffc14a; border-color: rgba(255,193,74,.3); }
+        .ODDIV li .srv-speed.slow { background: rgba(255,90,60,.16); color: #ff7a52; border-color: rgba(255,90,60,.3); }
+        /* Servidor recomendado (más rápido) */
+        .ODDIV li.is-fast { border-color: #37e35f !important; box-shadow: 0 0 0 1px rgba(55,227,95,.35), 0 12px 30px rgba(55,227,95,.14) !important; }
+        .ODDIV li.is-fast .srv-info > span::after {
+            content: "⚡ Más rápido"; margin-left: 8px; font-size: 10px; font-weight: 700;
+            color: #37e35f; background: rgba(55,227,95,.14); padding: 2px 7px; border-radius: 20px; vertical-align: middle;
+        }
+        /* Fila de controles a la derecha (escudo + probar velocidad) */
+        .ctrl-right { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .speed-btn {
+            display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+            padding: 8px 14px; border-radius: 40px; font-size: 12.5px; font-weight: 700; font-family: inherit;
+            color: #ffd24a; background: rgba(40,32,8,.72); border: 1px solid rgba(255,210,74,.4);
+            backdrop-filter: blur(6px); transition: background .2s ease, transform .15s ease;
+        }
+        .speed-btn:hover { background: rgba(255,210,74,.16); transform: translateY(-1px); }
+        .speed-btn:disabled { opacity: .7; cursor: default; }
 
         /* ---- Estados vacíos / skeleton ---- */
         .player-empty { color: #cbd5e1; text-align: center; padding: 50px 20px; grid-column: 1/-1; }
@@ -171,9 +196,14 @@
             <div class="player-head" id="player-head"></div>
             <div class="player-controls">
                 <div class="SelectLangDisp" id="langTabs"></div>
-                <div class="ad-note" id="ad-note" style="display:none">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
-                    Publicidad bloqueada
+                <div class="ctrl-right">
+                    <button class="speed-btn" id="speed-btn" type="button" style="display:none" title="Mide la latencia y recomienda el servidor más rápido">
+                        <i class="fas fa-bolt"></i> Probar velocidad
+                    </button>
+                    <div class="ad-note" id="ad-note" style="display:none">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                        Publicidad bloqueada
+                    </div>
                 </div>
             </div>
             <div class="OptionsLangDisp">
@@ -245,9 +275,10 @@
                     ${byLang[l].map((s) => {
                         const note = s.desc || s.quality || "";
                         const badges = `<span class="srv-badge">${esc(l)}</span>` +
-                            (note ? `<span class="srv-badge ${isQuality(note) ? "q" : ""}">${esc(note)}</span>` : "");
+                            (note ? `<span class="srv-badge ${isQuality(note) ? "q" : ""}">${esc(note)}</span>` : "") +
+                            `<span class="srv-speed"></span>`;
                         return `
-                        <li onclick="go_to_player('${esc(s.url).replace(/'/g, "\\'")}');">
+                        <li data-url="${esc(s.url)}" onclick="go_to_player('${esc(s.url).replace(/'/g, "\\'")}');">
                             <img class="srv-ico" src="${lockerIcon(s.name)}" alt=""
                                  onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'srv-ico',innerHTML:'<i class=&quot;fas fa-play&quot;></i>'}))">
                             <div class="srv-info">
@@ -257,6 +288,60 @@
                         </li>`; }).join("")}
                 </div>`).join("");
             document.title = `${anime.title} — E${ep.number}`;
+            initConnectionTools(servers);
+        }
+
+        // ===== Herramienta de conexión: acelera la carga del vídeo =====
+        // 1) Precalienta la conexión (DNS + TCP + TLS) al host de cada servidor
+        //    ANTES de que el usuario haga clic, para que el iframe cargue más
+        //    rápido. 2) Mide la latencia de cada servidor y recomienda el más
+        //    veloz. (No podemos leer el vídeo de otro origen, pero sí adelantar
+        //    el "apretón de manos" de red y medir tiempos de respuesta.)
+        const _pre = new Set();
+        const hostOf = (u) => { try { return new URL(u, location.href).origin; } catch { return null; } };
+        function preconnect(origin) {
+            if (!origin || _pre.has(origin)) return; _pre.add(origin);
+            // Sin crossorigin: la carga del iframe es una navegación con
+            // credenciales y así reutiliza la conexión precalentada.
+            const l = document.createElement("link"); l.rel = "preconnect"; l.href = origin; document.head.appendChild(l);
+            const d = document.createElement("link"); d.rel = "dns-prefetch"; d.href = origin; document.head.appendChild(d);
+        }
+        function initConnectionTools(servers) {
+            servers.forEach((s) => preconnect(hostOf(s.url)));            // precalienta todos
+            document.querySelectorAll(".ODDIV li[data-url]").forEach((c) => {
+                c.addEventListener("mouseenter", () => preconnect(hostOf(c.dataset.url)), { passive: true });
+                c.addEventListener("touchstart", () => preconnect(hostOf(c.dataset.url)), { passive: true });
+            });
+            const btn = document.getElementById("speed-btn");
+            if (btn) { btn.style.display = "inline-flex"; btn.onclick = probeAll; }
+        }
+        function probe(origin) {
+            return new Promise((res) => {
+                const t0 = performance.now(); let done = false;
+                const finish = () => { if (!done) { done = true; res(Math.round(performance.now() - t0)); } };
+                fetch(origin + "/favicon.ico?_=" + Date.now(), { mode: "no-cors", cache: "no-store" }).then(finish).catch(finish);
+                setTimeout(() => { if (!done) { done = true; res(9999); } }, 4000);
+            });
+        }
+        async function probeAll() {
+            const btn = document.getElementById("speed-btn");
+            if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Midiendo…'; }
+            const cards = [...document.querySelectorAll(".ODDIV li[data-url]")];
+            const byHost = new Map(); // mide cada host una sola vez
+            const results = [];
+            for (const c of cards) {
+                const origin = hostOf(c.dataset.url);
+                const sp = c.querySelector(".srv-speed");
+                if (sp) sp.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                let ms = byHost.get(origin);
+                if (ms == null) { ms = await probe(origin); byHost.set(origin, ms); }
+                if (sp) { sp.className = "srv-speed " + (ms < 400 ? "fast" : ms < 900 ? "mid" : "slow"); sp.textContent = ms >= 9999 ? "sin respuesta" : ms + " ms"; }
+                c.classList.remove("is-fast");
+                results.push({ c, ms });
+            }
+            const best = results.filter((r) => r.ms < 9999).sort((a, b) => a.ms - b.ms)[0];
+            if (best) best.c.classList.add("is-fast");
+            if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-bolt"></i> Probar velocidad'; }
         }
 
         (async () => {

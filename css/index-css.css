@@ -1960,6 +1960,124 @@ h5.player-nav-title {
     font-size: 1.5rem;
 }
 
+/* Lista completa de la temporada desplegable dentro del modal */
+.player-eplist {
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.25);
+    animation: eplist-in 0.25s ease;
+}
+
+@keyframes eplist-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.player-eplist-head {
+    padding: 1rem 1.4rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--grey-text);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.player-eplist-scroll {
+    max-height: 46vh;
+    overflow-y: auto;
+}
+
+.player-ep-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 0.9rem 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.15s ease;
+}
+
+.player-ep-item:last-child { border-bottom: none; }
+
+.player-ep-item:hover { background: rgba(255, 255, 255, 0.06); }
+
+.player-ep-item.current {
+    background: rgba(255, 90, 60, 0.12);
+    box-shadow: inset 3px 0 0 var(--primary-color, #ff5a3c);
+}
+
+.player-ep-thumb {
+    position: relative;
+    width: 96px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #1a1a1a;
+}
+
+.player-ep-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.player-ep-ico {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 1.3rem;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.player-ep-item:hover .player-ep-ico,
+.player-ep-item.current .player-ep-ico { opacity: 1; }
+
+.player-ep-item.current .player-ep-ico { color: var(--primary-color, #ff5a3c); }
+
+.player-ep-seen {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0, 170, 80, 0.95);
+    color: #fff;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-ep-meta {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.player-ep-meta b { font-size: 1.35rem; color: var(--primary-color, #ff5a3c); }
+
+.player-ep-meta span {
+    font-size: 1.3rem;
+    color: #d0d0d0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.player-ep-item.current .player-ep-meta b { color: #fff; }
+
 /* --- Loader --- */
 .loader {
     border: 4px solid var(--border-color);
