@@ -301,9 +301,9 @@ $(document).ready(function () {
       timer: setInterval(() => {
         if (document.visibilityState !== "visible") return;
         _watch.elapsed = Math.min(_watch.duration, _watch.elapsed + 1);
-        // Detecta el fin del episodio igual que "seguir viendo": cuando el
-        // tiempo visto alcanza (casi) la duración, marca visto + autoplay.
-        if (!_watch.finished && _watch.elapsed >= _watch.duration - 1) {
+        // Cuando el episodio está por terminar (heurística de tiempo visto, ~5s
+        // antes del final) marca visto y lanza la cuenta regresiva de autoplay.
+        if (!_watch.finished && _watch.elapsed >= _watch.duration - 5) {
           _watch.finished = true;
           persistWatchProgress();
           try { _watch.onFinish && _watch.onFinish(); } catch (e) { console.error(e); }

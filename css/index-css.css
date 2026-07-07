@@ -1441,6 +1441,44 @@ body.red-theme header {
     opacity: 1;
 }
 
+/* --- Episodio VISTO: badge permanente + icono de repetir siempre visible --- */
+/* (va en el CSS global para que se muestre aunque no se abra el reproductor) */
+.episode-detail-card.is-watched .episode-img-container::after {
+    content: "\2713 VISTO";
+    font-weight: 700;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 170, 80, 0.95);
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+    z-index: 4;
+    letter-spacing: 0.5px;
+}
+
+.episode-detail-card.is-watched .play-icon-overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.episode-detail-card.is-watched .play-icon-overlay i {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+.episode-detail-card.is-watched a:hover .play-icon-overlay {
+    background: rgba(0, 0, 0, 0.55);
+}
+
 /* --- "Seguir viendo": barra de progreso + estado por episodio --- */
 .cw-bar {
     position: absolute;

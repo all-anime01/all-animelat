@@ -97,8 +97,6 @@ function injectStyles() {
   .eng-cd-go{background:linear-gradient(135deg,#ca3030,#e23b3b);color:#fff}
   .eng-cd-cancel{background:#333;color:#fff}
 
-  /* VISTO va a la derecha para no chocar con la etiqueta "NUEVO" (izquierda), incluso en móvil */
-  .episode-detail-card.is-watched .episode-img-container::after{content:"\\2713 VISTO";font-weight:700;position:absolute;top:8px;right:8px;background:rgba(0,170,80,.92);color:#fff;font-size:11px;padding:3px 7px;border-radius:6px;z-index:4;letter-spacing:.5px}
   `;
   const s = document.createElement("style");
   s.id = "engagement-styles";
@@ -139,9 +137,9 @@ export async function markEpisodeWatched(anime, episode) {
   } catch (e) { return false; }
 }
 
-// Cuenta regresiva de autoplay hacia el siguiente episodio (estilo Netflix).
+// Cuenta regresiva de autoplay hacia el siguiente episodio (estilo Netflix, 5s).
 export function startAutoplayCountdown(nextEpisode, onPlayNext) {
-  if (nextEpisode && onPlayNext) startCountdown(7, nextEpisode, onPlayNext);
+  if (nextEpisode && onPlayNext) startCountdown(5, nextEpisode, onPlayNext);
 }
 
 function startCountdown(seconds, nextEpisode, onPlayNext) {
