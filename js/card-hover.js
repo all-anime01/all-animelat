@@ -40,28 +40,32 @@ function onCardLeave() { closeTimer = setTimeout(removePreview, 160); }
 function showPreview(card) {
   removePreview();
   activeCard = card;
-  // El panel cubre exactamente la tarjeta y luego se amplía (scale) para
-  // taparla por completo como Netflix.
+  // Panel ampliado y expandido en horizontal (más ancho que la tarjeta), estilo
+  // Netflix: tráiler 16:9 con el logo + info debajo. Centrado sobre la tarjeta.
   const r = card.getBoundingClientRect();
+  const pw = Math.min(Math.max(r.width * 1.8, 300), 400);
+  const cx = r.left + r.width / 2;
+  const left = Math.max(8, Math.min(cx - pw / 2, window.innerWidth - pw - 8));
+  const top = Math.max(8, r.top - 26);
+
   pv = document.createElement("div");
   pv.className = "card-preview";
-  pv.style.cssText = `left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;`;
+  pv.style.cssText = `left:${left}px;top:${top}px;width:${pw}px;`;
   const logo = card.dataset.logo;
   pv.innerHTML = `
     <a class="cardpv-media-wrap" href="${card.dataset.href}" aria-label="${card.dataset.title || ""}">
       ${mediaHtml(card)}
       <div class="cardpv-catch"></div>
       <div class="cardpv-grad"></div>
-      <div class="cardpv-bottom">
-        ${logo
-          ? `<img class="cardpv-logo" src="${logo}" alt="${card.dataset.title || ""}">`
-          : `<div class="cardpv-title">${card.dataset.title || ""}</div>`}
-        <div class="cardpv-row">
-          <span class="cardpv-play"><i class="fas fa-play"></i></span>
-          <span class="cardpv-meta">${card.dataset.meta || ""}</span>
-        </div>
-      </div>
-    </a>`;
+      ${logo
+        ? `<img class="cardpv-logo" src="${logo}" alt="${card.dataset.title || ""}">`
+        : `<div class="cardpv-title">${card.dataset.title || ""}</div>`}
+    </a>
+    <div class="cardpv-info">
+      <a class="cardpv-play" href="${card.dataset.href}"><i class="fas fa-play"></i> Ver ahora</a>
+      <div class="cardpv-meta">${card.dataset.meta || ""}</div>
+      ${card.dataset.genres ? `<div class="cardpv-genres">${card.dataset.genres}</div>` : ""}
+    </div>`;
   document.body.appendChild(pv);
   requestAnimationFrame(() => pv.classList.add("show"));
 
