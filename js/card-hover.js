@@ -17,14 +17,16 @@ const ytId = (u) => {
 function mediaHtml(card) {
   const { video, trailer, img } = card.dataset;
   if (video) {
-    return `<video class="cardpv-media" autoplay muted loop playsinline poster="${img || ""}"><source src="${video}"></video>`;
+    return `<video class="cardpv-media vid" autoplay muted loop playsinline poster="${img || ""}"><source src="${video}"></video>`;
   }
   const id = ytId(trailer);
   if (id) {
-    const src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1`;
-    return `<iframe class="cardpv-media" src="${src}" allow="autoplay; encrypted-media" frameborder="0" scrolling="no"></iframe>`;
+    // controls=0 + sin interacción (pointer-events) + recorte por CSS → sin
+    // título, botones ni marca de YouTube.
+    const src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&fs=0`;
+    return `<iframe class="cardpv-media yt" src="${src}" allow="autoplay; encrypted-media" frameborder="0" scrolling="no"></iframe>`;
   }
-  return `<img class="cardpv-media" src="${img || ""}" alt="">`;
+  return `<img class="cardpv-media vid" src="${img || ""}" alt="">`;
 }
 
 function removePreview() {
@@ -38,29 +40,28 @@ function onCardLeave() { closeTimer = setTimeout(removePreview, 160); }
 function showPreview(card) {
   removePreview();
   activeCard = card;
+  // El panel cubre exactamente la tarjeta y luego se amplía (scale) para
+  // taparla por completo como Netflix.
   const r = card.getBoundingClientRect();
-  const pw = Math.min(Math.max(r.width * 1.6, 250), 340);
-  const cx = r.left + r.width / 2;
-  let left = Math.max(8, Math.min(cx - pw / 2, window.innerWidth - pw - 8));
-  let top = Math.max(8, r.top - 34);
-
   pv = document.createElement("div");
   pv.className = "card-preview";
-  pv.style.cssText = `left:${left}px;top:${top}px;width:${pw}px;`;
+  pv.style.cssText = `left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;`;
   const logo = card.dataset.logo;
   pv.innerHTML = `
-    <a class="cardpv-media-wrap" href="${card.dataset.href}">
+    <a class="cardpv-media-wrap" href="${card.dataset.href}" aria-label="${card.dataset.title || ""}">
       ${mediaHtml(card)}
+      <div class="cardpv-catch"></div>
       <div class="cardpv-grad"></div>
-      ${logo
-        ? `<img class="cardpv-logo" src="${logo}" alt="${card.dataset.title || ""}">`
-        : `<div class="cardpv-title">${card.dataset.title || ""}</div>`}
-    </a>
-    <div class="cardpv-info">
-      <a class="cardpv-play" href="${card.dataset.href}"><i class="fas fa-play"></i> Ver ahora</a>
-      <div class="cardpv-meta">${card.dataset.meta || ""}</div>
-      ${card.dataset.genres ? `<div class="cardpv-genres">${card.dataset.genres}</div>` : ""}
-    </div>`;
+      <div class="cardpv-bottom">
+        ${logo
+          ? `<img class="cardpv-logo" src="${logo}" alt="${card.dataset.title || ""}">`
+          : `<div class="cardpv-title">${card.dataset.title || ""}</div>`}
+        <div class="cardpv-row">
+          <span class="cardpv-play"><i class="fas fa-play"></i></span>
+          <span class="cardpv-meta">${card.dataset.meta || ""}</span>
+        </div>
+      </div>
+    </a>`;
   document.body.appendChild(pv);
   requestAnimationFrame(() => pv.classList.add("show"));
 

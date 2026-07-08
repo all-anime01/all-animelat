@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin conexión — All-Anime</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, sans-serif; background: radial-gradient(circle at top, #1c1c1c, #0d1117 60%); color: #f0f0f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+        .box { max-width: 420px; }
+        img { width: 88px; margin-bottom: 22px; opacity: .9; }
+        h1 { font-size: 24px; margin-bottom: 12px; }
+        p { color: #a0a0a0; line-height: 1.6; margin-bottom: 24px; }
+        button { background: #ca3030; color: #fff; border: none; padding: 13px 28px; border-radius: 11px; font-weight: 700; font-size: 15px; cursor: pointer; }
+        button:hover { filter: brightness(1.1); }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="/image/logo.png" alt="All-Anime">
+        <h1>Sin conexión</h1>
+        <p>Parece que no tienes internet. Revisa tu conexión y vuelve a intentarlo para seguir disfrutando de tu anime.</p>
+        <button onclick="location.reload()">Reintentar</button>
+    </div>
+</body>
+
+</html>

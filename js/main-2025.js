@@ -10,6 +10,7 @@ import { FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { logVisit } from "./analytics.js";
 import { initAds } from "./ads.js";
 import { initCardHover } from "./card-hover.js";
+import { initPWA } from "./pwa.js";
 
 // Registra la visita (una vez por sesión) para la analítica del admin.
 logVisit();
@@ -17,6 +18,8 @@ logVisit();
 initAds();
 // Vista previa con tráiler estilo Netflix al pasar el cursor por las tarjetas.
 initCardHover();
+// PWA: instalable como app, service worker y botón de instalación.
+initPWA();
 
 // --- WIDGET DE CUENTA EN EL HEADER (todas las páginas) ---
 function injectAccountWidget() {

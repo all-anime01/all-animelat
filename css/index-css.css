@@ -1442,108 +1442,127 @@ body.red-theme header {
 }
 
 /* --- Vista previa estilo Netflix al pasar el cursor por las tarjetas --- */
+/* El panel cubre toda la tarjeta y se amplía un poco (scale) tapándola por
+   completo; el tráiler llena el fondo y el chrome de YouTube queda recortado. */
 .card-preview {
     position: fixed;
     z-index: 4000;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
-    background: #141414;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    background: #0b0b0b;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.8);
     opacity: 0;
-    transform: scale(0.9);
-    transform-origin: center top;
-    transition: opacity 0.18s ease, transform 0.18s ease;
+    transform: scale(0.96);
+    transform-origin: center center;
+    transition: opacity 0.18s ease, transform 0.2s ease;
     will-change: transform, opacity;
     cursor: pointer;
 }
 
 .card-preview.show {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.12);
 }
 
 .cardpv-media-wrap {
-    position: relative;
+    position: absolute;
+    inset: 0;
     display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
     overflow: hidden;
+    text-decoration: none;
+    background: #000;
 }
 
 .cardpv-media {
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border: 0;
+}
+
+/* Vídeo/imagen: cubre el panel completo */
+.cardpv-media.vid {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: none;
+}
+
+/* YouTube: se sobredimensiona y escala para llenar el retrato y recortar el
+   título/controles/marca de YouTube que salen en los bordes del vídeo 16:9. */
+.cardpv-media.yt {
+    width: 285%;
+    aspect-ratio: 16 / 9;
+    transform: translate(-50%, -50%) scale(1.38);
+}
+
+/* Capa que intercepta el clic (evita interactuar con el reproductor de YT) */
+.cardpv-catch {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
 }
 
 .cardpv-grad {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(20, 20, 20, 0.95) 2%, transparent 45%);
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.15) 45%, transparent 70%);
+    pointer-events: none;
+}
+
+.cardpv-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    padding: 9px 11px 11px;
     pointer-events: none;
 }
 
 .cardpv-logo {
-    position: absolute;
-    left: 14px;
-    bottom: 10px;
-    max-width: 55%;
-    max-height: 38%;
+    display: block;
+    max-width: 72%;
+    max-height: 34px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
-    pointer-events: none;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95));
 }
 
 .cardpv-title {
-    position: absolute;
-    left: 14px;
-    bottom: 10px;
-    right: 14px;
     color: #fff;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
-    pointer-events: none;
+    text-shadow: 0 2px 6px #000;
+    margin-bottom: 6px;
+    line-height: 1.15;
 }
 
-.cardpv-info {
-    padding: 1.2rem 1.4rem 1.4rem;
+.cardpv-row {
     display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
+    align-items: center;
+    gap: 8px;
 }
 
 .cardpv-play {
-    display: inline-flex;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
-    align-self: flex-start;
-    background: #fff;
-    color: #141414;
-    font-weight: 700;
-    font-size: 1.35rem;
-    padding: 0.7rem 1.6rem;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background 0.15s ease;
+    font-size: 1.05rem;
 }
-
-.cardpv-play:hover { background: var(--primary-color); color: #fff; }
 
 .cardpv-meta {
-    font-size: 1.25rem;
-    color: #d0d0d0;
+    color: #e6e6e6;
+    font-size: 1.15rem;
     font-weight: 600;
-}
-
-.cardpv-genres {
-    font-size: 1.2rem;
-    color: var(--grey-text);
 }
 
 /* --- Espacios publicitarios (AdSense) --- */
