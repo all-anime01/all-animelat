@@ -1457,6 +1457,8 @@ body.red-theme header {
     transition: opacity 0.18s ease, transform 0.2s ease;
     will-change: transform, opacity;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-preview.show {
@@ -1469,6 +1471,7 @@ body.red-theme header {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
+    flex: 0 0 auto;
     background: #000;
     overflow: hidden;
     text-decoration: none;
@@ -1539,6 +1542,7 @@ body.red-theme header {
 }
 
 .cardpv-info {
+    flex: 1 1 auto;
     padding: 1.2rem 1.4rem 1.4rem;
     display: flex;
     flex-direction: column;

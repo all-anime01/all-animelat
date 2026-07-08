@@ -46,11 +46,15 @@ function showPreview(card) {
   const pw = Math.min(Math.max(r.width * 1.8, 300), 400);
   const cx = r.left + r.width / 2;
   const left = Math.max(8, Math.min(cx - pw / 2, window.innerWidth - pw - 8));
-  const top = Math.max(8, r.top - 26);
+  const top = Math.max(8, r.top - 22);
+  // Altura que cubre toda la tarjeta (el tráiler 16:9 arriba y la info debajo
+  // se estiran para tapar el póster por completo).
+  const mediaH = pw * 9 / 16;
+  const coverH = Math.max(r.height + 30, mediaH + 96);
 
   pv = document.createElement("div");
   pv.className = "card-preview";
-  pv.style.cssText = `left:${left}px;top:${top}px;width:${pw}px;`;
+  pv.style.cssText = `left:${left}px;top:${top}px;width:${pw}px;height:${coverH}px;`;
   const logo = card.dataset.logo;
   pv.innerHTML = `
     <a class="cardpv-media-wrap" href="${card.dataset.href}" aria-label="${card.dataset.title || ""}">
