@@ -1441,6 +1441,138 @@ body.red-theme header {
     opacity: 1;
 }
 
+/* --- Vista previa estilo Netflix al pasar el cursor por las tarjetas --- */
+.card-preview {
+    position: fixed;
+    z-index: 4000;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #141414;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: scale(0.9);
+    transform-origin: center top;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    will-change: transform, opacity;
+    cursor: pointer;
+}
+
+.card-preview.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.cardpv-media-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+}
+
+.cardpv-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+}
+
+.cardpv-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(20, 20, 20, 0.95) 2%, transparent 45%);
+    pointer-events: none;
+}
+
+.cardpv-logo {
+    position: absolute;
+    left: 14px;
+    bottom: 10px;
+    max-width: 55%;
+    max-height: 38%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
+    pointer-events: none;
+}
+
+.cardpv-title {
+    position: absolute;
+    left: 14px;
+    bottom: 10px;
+    right: 14px;
+    color: #fff;
+    font-size: 1.7rem;
+    font-weight: 800;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    pointer-events: none;
+}
+
+.cardpv-info {
+    padding: 1.2rem 1.4rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.cardpv-play {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    align-self: flex-start;
+    background: #fff;
+    color: #141414;
+    font-weight: 700;
+    font-size: 1.35rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+
+.cardpv-play:hover { background: var(--primary-color); color: #fff; }
+
+.cardpv-meta {
+    font-size: 1.25rem;
+    color: #d0d0d0;
+    font-weight: 600;
+}
+
+.cardpv-genres {
+    font-size: 1.2rem;
+    color: var(--grey-text);
+}
+
+/* --- Espacios publicitarios (AdSense) --- */
+.ad-container {
+    max-width: 1400px;
+    margin: 3rem auto;
+    padding: 0 4%;
+    text-align: center;
+    min-height: 90px;
+}
+
+.ad-container[data-ad-inactive] { display: none; }
+
+.ad-label {
+    display: block;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--grey-text);
+    margin-bottom: 0.6rem;
+}
+
+.ad-slot {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+    overflow: hidden;
+}
+
 /* --- Episodio VISTO: badge permanente + icono de repetir siempre visible --- */
 /* (va en el CSS global para que se muestre aunque no se abra el reproductor) */
 .episode-detail-card.is-watched .episode-img-container::after {

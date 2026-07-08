@@ -92,6 +92,17 @@
         .stat .n { font-size: 28px; font-weight: 800; }
         .stat .l { font-size: 12px; color: var(--grey); margin-top: 3px; }
         .stat .n i { color: var(--primary); }
+        /* Rankings (animes más vistos / países) */
+        .rank { list-style: none; margin: 6px 0 0; padding: 0; counter-reset: r; }
+        .rank li { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+        .rank li:last-child { border-bottom: none; }
+        .rank li::before { counter-increment: r; content: counter(r); flex: none; width: 22px; height: 22px; border-radius: 50%; background: #2a2a2a; color: var(--grey); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+        .rank li:nth-child(1)::before { background: var(--primary); color: #fff; }
+        .rank .rk-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .rank .rk-val { color: var(--grey); font-size: 12.5px; white-space: nowrap; }
+        .rank .rk-val i { color: var(--primary); }
+        .rank .rk-bar { flex: none; width: 80px; height: 6px; background: #2a2a2a; border-radius: 4px; overflow: hidden; }
+        .rank .rk-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), #e23b3b); }
         .ep-list { margin-top: 18px; }
         .ep-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
         .ep-row .n { color: var(--primary); font-weight: 700; min-width: 34px; }
@@ -309,6 +320,16 @@
                     <h2>Visitas por día (últimos 30 días)</h2>
                     <div id="chart"><p class="hint">Cargando…</p></div>
                 </div>
+                <div class="grid2" style="margin-top:18px">
+                    <div class="card">
+                        <h2><i class="fas fa-fire" style="color:var(--primary)"></i> Animes más vistos</h2>
+                        <div id="top-animes"><p class="hint">Cargando…</p></div>
+                    </div>
+                    <div class="card">
+                        <h2><i class="fas fa-globe" style="color:var(--primary)"></i> Países de los visitantes</h2>
+                        <div id="top-countries"><p class="hint">Cargando…</p></div>
+                    </div>
+                </div>
             </section>
 
             <!-- ============ HERRAMIENTAS ============ -->
@@ -333,7 +354,7 @@
             buildAnimeFromForm, buildEpisodeFromForm,
         } from "../js/admin.js";
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
-        import { getDailyVisits, getUserCount } from "../js/analytics.js";
+        import { getDailyVisits, getUserCount, getCountryStats, getTopAnimes } from "../js/analytics.js";
         import { DEFAULT_HERO_SLIDES } from "../js/hero.js";
 
         const $ = (id) => document.getElementById(id);
@@ -819,22 +840,44 @@
         });
 
         // ---------- Estadísticas ----------
+        const flagEmoji = (code) => {
+            if (!code || code.length !== 2) return "🏳️";
+            return String.fromCodePoint(...[...code.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
+        };
         async function loadStats() {
             $("chart").innerHTML = '<p class="hint">Cargando…</p>';
             try {
-                const [visits, users] = await Promise.all([getDailyVisits(30), getUserCount()]);
+                const [visits, users, countries, topAnimes] = await Promise.all([
+                    getDailyVisits(30), getUserCount(), getCountryStats().catch(() => []), getTopAnimes(10).catch(() => []),
+                ]);
                 const today = visits[visits.length - 1]?.count || 0;
                 const last7 = visits.slice(-7).reduce((s, d) => s + d.count, 0);
                 const last30 = visits.reduce((s, d) => s + d.count, 0);
+                const countriesTotal = countries.reduce((s, c) => s + c.count, 0);
                 $("stat-cards").innerHTML = `
                     <div class="stat"><div class="n"><i class="fas fa-users"></i> ${users ?? "—"}</div><div class="l">Usuarios registrados</div></div>
                     <div class="stat"><div class="n">${today}</div><div class="l">Visitas hoy</div></div>
                     <div class="stat"><div class="n">${last7}</div><div class="l">Últimos 7 días</div></div>
-                    <div class="stat"><div class="n">${last30}</div><div class="l">Últimos 30 días</div></div>`;
+                    <div class="stat"><div class="n">${last30}</div><div class="l">Últimos 30 días</div></div>
+                    <div class="stat"><div class="n"><i class="fas fa-earth-americas"></i> ${countries.length}</div><div class="l">Países alcanzados</div></div>`;
                 renderChart(visits);
+
+                // Animes más vistos → título desde el catálogo.
+                const titleOf = (id) => (catalogItems.find((a) => a.id === id) || {}).title || id;
+                $("top-animes").innerHTML = topAnimes.length
+                    ? `<ol class="rank">${topAnimes.map((a) => `<li><span class="rk-title">${titleOf(a.id)}</span><span class="rk-val">${a.viewCount.toLocaleString()} <i class="fas fa-eye"></i></span></li>`).join("")}</ol>`
+                    : '<p class="hint">Aún no hay reproducciones registradas.</p>';
+
+                // Países de los visitantes con barra proporcional.
+                $("top-countries").innerHTML = countries.length
+                    ? `<ol class="rank">${countries.slice(0, 12).map((c) => {
+                        const pct = countriesTotal ? Math.round((c.count / countriesTotal) * 100) : 0;
+                        return `<li><span class="rk-title">${flagEmoji(c.code)} ${c.name}</span><span class="rk-bar"><span style="width:${pct}%"></span></span><span class="rk-val">${c.count} · ${pct}%</span></li>`;
+                    }).join("")}</ol>`
+                    : '<p class="hint">Aún no hay datos de países (se registran con las nuevas visitas).</p>';
             } catch (err) {
                 console.error(err);
-                $("chart").innerHTML = '<p class="msg error">No se pudieron cargar las estadísticas. ¿Publicaste las reglas actualizadas (stats_daily)?</p>';
+                $("chart").innerHTML = '<p class="msg error">No se pudieron cargar las estadísticas. ¿Publicaste las reglas actualizadas (stats_daily, stats_country)?</p>';
                 $("stat-cards").innerHTML = "";
             }
         }

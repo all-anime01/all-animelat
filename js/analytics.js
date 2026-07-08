@@ -5,13 +5,27 @@
 
 import { db, FIREBASE_CONFIGURED } from "./firebase-config.js";
 import {
-  doc, setDoc, collection, query, orderBy, limit, getDocs,
+  doc, getDoc, setDoc, collection, query, orderBy, limit, getDocs,
   getCountFromServer, increment, serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const todayKey = (d = new Date()) => d.toISOString().slice(0, 10); // YYYY-MM-DD
 
-// Registra una visita (una vez por sesión de navegador).
+// Detecta el país del visitante (una vez por sesión) con un servicio geo-IP
+// gratuito y sin clave. Best-effort: si falla, no pasa nada.
+async function detectCountry() {
+  try {
+    const cached = sessionStorage.getItem("visitCountry");
+    if (cached) return JSON.parse(cached);
+    const r = await fetch("https://get.geojs.io/v1/ip/geo.json");
+    const g = await r.json();
+    const info = { code: (g.country_code || "").toUpperCase(), name: g.country || g.country_code || "" };
+    if (info.code) sessionStorage.setItem("visitCountry", JSON.stringify(info));
+    return info.code ? info : null;
+  } catch (e) { return null; }
+}
+
+// Registra una visita (una vez por sesión de navegador) + el país de origen.
 export async function logVisit() {
   if (!FIREBASE_CONFIGURED) return;
   try {
@@ -23,7 +37,37 @@ export async function logVisit() {
       { date: key, count: increment(1), updatedAt: serverTimestamp() },
       { merge: true }
     );
+    // País del visitante (agregado en stats_country/all).
+    const c = await detectCountry();
+    if (c) {
+      await setDoc(
+        doc(db, "stats_country", "all"),
+        { counts: { [c.code]: increment(1) }, names: { [c.code]: c.name }, updatedAt: serverTimestamp() },
+        { merge: true }
+      );
+    }
   } catch (e) { /* la analítica no es crítica */ }
+}
+
+// Distribución de visitas por país (ordenada de mayor a menor).
+export async function getCountryStats() {
+  try {
+    const snap = await getDoc(doc(db, "stats_country", "all"));
+    if (!snap.exists()) return [];
+    const d = snap.data(), counts = d.counts || {}, names = d.names || {};
+    return Object.entries(counts)
+      .map(([code, count]) => ({ code, name: names[code] || code, count }))
+      .sort((a, b) => b.count - a.count);
+  } catch (e) { return []; }
+}
+
+// Animes más vistos por la comunidad (por número de reproducciones).
+export async function getTopAnimes(max = 10) {
+  try {
+    const q = query(collection(db, "animeStats"), orderBy("viewCount", "desc"), limit(max));
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => ({ id: d.id, viewCount: d.data().viewCount || 0 })).filter((x) => x.viewCount > 0);
+  } catch (e) { return []; }
 }
 
 // Devuelve las visitas de los últimos `days` días (orden ascendente por fecha).

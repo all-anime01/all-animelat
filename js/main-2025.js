@@ -8,9 +8,15 @@ import { setupHero } from "./hero.js";
 import { observeAuth, logoutUser } from "./auth.js";
 import { FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { logVisit } from "./analytics.js";
+import { initAds } from "./ads.js";
+import { initCardHover } from "./card-hover.js";
 
 // Registra la visita (una vez por sesión) para la analítica del admin.
 logVisit();
+// Monta la publicidad (AdSense) si hay un ID de editor configurado en ads.js.
+initAds();
+// Vista previa con tráiler estilo Netflix al pasar el cursor por las tarjetas.
+initCardHover();
 
 // --- WIDGET DE CUENTA EN EL HEADER (todas las páginas) ---
 function injectAccountWidget() {
@@ -594,8 +600,13 @@ $(document).ready(function () {
 
   // --- FUNCIONES PARA RENDERIZAR CONTENIDO DINÁMICO ---
   function createAnimeCard(anime) {
+    const ea = (s) => String(s == null ? "" : s).replace(/"/g, "&quot;");
     return `
-        <div class="anime-card">
+        <div class="anime-card" data-id="${ea(anime.id)}" data-href="anime-details.html?id=${ea(anime.id)}"
+             data-title="${ea(anime.title)}" data-img="${ea(anime.img)}" data-logo="${ea(anime.logoImg)}"
+             data-trailer="${ea(anime.trailerUrl)}" data-video="${ea(anime.video)}"
+             data-meta="${ea([anime.year, anime.rating ? "★ " + anime.rating : "", (anime.seasons ? anime.seasons + " Temp." : "")].filter(Boolean).join(" · "))}"
+             data-genres="${ea((anime.genres || []).slice(0, 3).join(" • "))}">
             <a href="anime-details.html?id=${anime.id}">
                 <div class="card-image-container">
                     <img src="${anime.img}" alt="${anime.title}" loading="lazy">
