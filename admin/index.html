@@ -375,11 +375,15 @@
                     <div class="field full"><label>Lista de episodios</label>
                         <textarea id="imp-text" rows="9" placeholder="S1E1 - Romance Dawn&#10;S1E2 - El gran espadachín aparece&#10;3 | Introduce a Zoro&#10;Temporada 2:&#10;1 - Nuevo comienzo"></textarea>
                     </div>
+                    <input type="file" id="imp-file" accept=".json,application/json" style="display:none">
                     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                        <button class="btn grey sm" type="button" id="imp-file-btn"><i class="fas fa-file-arrow-up"></i> Cargar archivo JSON</button>
+                        <button class="btn grey sm" type="button" id="imp-export"><i class="fas fa-file-arrow-down"></i> Exportar JSON</button>
                         <button class="btn grey sm" type="button" id="imp-preview"><i class="fas fa-eye"></i> Previsualizar</button>
                         <button class="btn" type="button" id="imp-run" disabled><i class="fas fa-file-import"></i> Importar al anime</button>
                         <span class="msg" id="imp-msg" style="margin:0"></span>
                     </div>
+                    <p class="hint" style="margin:8px 0 0">Con <b>Cargar archivo JSON</b> subes un <code>.json</code> con la lista (mismo formato que exporta). <b>Exportar JSON</b> descarga los episodios del anime elegido (para respaldo o mover a otro anime).</p>
                     <div id="imp-preview-box" style="margin-top:12px"></div>
                 </div>
             </section>
@@ -1342,6 +1346,40 @@
                 $("imp-text").value = ""; $("imp-preview-box").innerHTML = ""; impParsed = [];
                 $("ep-anime").dispatchEvent(new Event("change"));   // refresca temporadas/lista
             } catch (e) { setMsg($("imp-msg"), "Error: " + e.message, "err"); $("imp-run").disabled = false; }
+        });
+
+        // Cargar lista desde un archivo .json → al textarea y previsualiza.
+        $("imp-file-btn").addEventListener("click", () => $("imp-file").click());
+        $("imp-file").addEventListener("change", (e) => {
+            const file = e.target.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                $("imp-text").value = reader.result;
+                setMsg($("imp-msg"), `Archivo «${file.name}» cargado. Previsualizando…`, "ok");
+                $("imp-preview").click();
+            };
+            reader.onerror = () => setMsg($("imp-msg"), "No se pudo leer el archivo.", "err");
+            reader.readAsText(file);
+            e.target.value = "";
+        });
+
+        // Exportar los episodios del anime elegido como .json (respaldo / mover).
+        $("imp-export").addEventListener("click", async () => {
+            const animeId = $("ep-anime").value;
+            if (!animeId) { setMsg($("imp-msg"), "Elige un anime arriba primero.", "err"); return; }
+            setMsg($("imp-msg"), "Exportando…", "");
+            try {
+                const anime = await getAnime(animeId);
+                const eps = anime.episodes || [];
+                if (!eps.length) { setMsg($("imp-msg"), "Este anime no tiene episodios que exportar.", "err"); return; }
+                const blob = new Blob([JSON.stringify(eps, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url; a.download = `${animeId}-episodios.json`;
+                document.body.appendChild(a); a.click(); a.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+                setMsg($("imp-msg"), `✓ Exportados ${eps.length} episodios de «${anime.title}».`, "ok");
+            } catch (e) { setMsg($("imp-msg"), "Error: " + e.message, "err"); }
         });
     </script>
 </body>
