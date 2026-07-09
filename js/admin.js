@@ -45,12 +45,23 @@ async function upsertCatalogCard(anime) {
 }
 
 // Crea o actualiza un anime completo (con o sin episodios).
+// IMPORTANTE: al editar desde el formulario (que NO trae episodios) NO se debe
+// pisar los episodios existentes. Si no vienen episodios, se omite el campo para
+// que el merge de Firestore los conserve.
 export async function saveAnime(anime) {
   if (!anime.id) anime.id = slugify(anime.title);
-  if (!Array.isArray(anime.episodes)) anime.episodes = [];
-  anime.episodesTotal = anime.episodes.length || anime.episodesTotal || 0;
-  await setDoc(doc(db, "animes", anime.id), { ...anime, updatedAt: serverTimestamp() }, { merge: true });
-  await upsertCatalogCard({ ...anime });
+  const hasEpisodes = Array.isArray(anime.episodes) && anime.episodes.length > 0;
+  const payload = { ...anime, updatedAt: serverTimestamp() };
+  if (hasEpisodes) payload.episodesTotal = anime.episodes.length;
+  else delete payload.episodes;                    // preserva los episodios existentes
+  await setDoc(doc(db, "animes", anime.id), payload, { merge: true });
+  // La tarjeta del catálogo necesita el conteo REAL de episodios.
+  let cardAnime = anime;
+  if (!hasEpisodes) {
+    const snap = await getDoc(doc(db, "animes", anime.id));
+    cardAnime = { ...anime, episodes: snap.exists() ? (snap.data().episodes || []) : [] };
+  }
+  await upsertCatalogCard(cardAnime);
   return anime.id;
 }
 
@@ -209,6 +220,7 @@ export function buildAnimeFromForm(f) {
   return {
     id: f.id?.trim() || slugify(f.title),
     title: f.title.trim(),
+    altTitles: splitList(f.altTitles),
     img: f.img?.trim() || "",
     heroImg: f.heroImg?.trim() || "",
     fonImg: f.fonImg?.trim() || "",

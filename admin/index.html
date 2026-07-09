@@ -259,6 +259,10 @@
                     <div class="grid2">
                         <div class="field"><label>Título *</label><input name="title" required></div>
                         <div class="field"><label>ID <span style="font-weight:400">(auto si lo dejas vacío)</span></label><input name="id" placeholder="jujutsu-kaisen"></div>
+                        <div class="field full"><label>Títulos alternativos <span style="font-weight:400">(para el buscador, separados por coma)</span></label>
+                            <input name="altTitles" placeholder="Attack on Titan, Ataque a los Titanes, AoT">
+                            <p class="hint" style="margin:6px 0 0">El <b>Título</b> es el que se muestra. Los alternativos NO se ven en la tarjeta: sirven para que el anime aparezca al buscar por cualquiera de sus nombres (japonés/romaji e internacional). Se auto-rellenaron desde AniList; puedes editarlos.</p>
+                        </div>
                         <div class="field full"><label>Descripción</label><textarea name="description"></textarea></div>
                         <div class="field"><label>Imagen tarjeta (vertical)</label><input name="img"></div>
                         <div class="field"><label>Imagen móvil</label><input name="imgMobile"></div>
@@ -778,6 +782,7 @@
                 "quality", "rating", "ratingCount", "seasons", "year", "contentWarning", "creator"].forEach((k) => {
                     if (form[k] != null) form[k].value = a[k] ?? "";
                 });
+            if (form.altTitles) form.altTitles.value = (a.altTitles || []).join(", ");
             if (form.type) form.type.value = a.type || "TV";
             if (form.status) form.status.value = a.status || "En emisión";
             if (form.audio) form.audio.value = a.audio || "Sub";

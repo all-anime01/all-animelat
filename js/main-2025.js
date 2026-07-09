@@ -30,13 +30,16 @@ async function loadPageData() {
   const id = new URLSearchParams(window.location.search).get("id");
   const isDetails = /anime-details\./i.test(window.location.pathname) && id;
   if (!isDetails) return getAnimeData();
-  const [cards, full] = await Promise.all([getCatalogCards(), getFullAnime(id)]);
-  const list = Array.isArray(cards) ? cards.slice() : [];
-  if (full) {
-    const i = list.findIndex((a) => a.id === id);
-    if (i >= 0) list[i] = full; else list.push(full);   // el anime abierto, con episodios
-  }
-  return list;
+  try {
+    const [cards, full] = await Promise.all([getCatalogCards(), getFullAnime(id)]);
+    if (full && Array.isArray(cards) && cards.length) {
+      const list = cards.slice();
+      const i = list.findIndex((a) => a.id === id);
+      if (i >= 0) list[i] = full; else list.push(full);   // el anime abierto, con episodios
+      return list;
+    }
+  } catch (e) { console.warn("[loadPageData] ruta ligera falló; usando carga completa", e); }
+  return getAnimeData();   // fallback robusto: nunca dejar la ficha sin datos
 }
 import { initPWA } from "./pwa.js";
 
