@@ -10,6 +10,17 @@ import { FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { logVisit } from "./analytics.js";
 import { initAds } from "./ads.js";
 import { initCardHover } from "./card-hover.js";
+
+// Coincidencia de búsqueda por el título O cualquier título alternativo
+// (nombre japonés/romaji + internacional + sinónimos). Ej: "Attack on Titan"
+// encuentra "Shingeki no Kyojin" y viceversa.
+function animeMatchesQuery(anime, q) {
+  if (!q) return true;
+  q = q.toLowerCase();
+  if ((anime.title || "").toLowerCase().includes(q)) return true;
+  const alts = anime.altTitles || anime.synonyms || [];
+  return Array.isArray(alts) && alts.some((t) => (t || "").toLowerCase().includes(q));
+}
 import { initPWA } from "./pwa.js";
 
 // Registra la visita (una vez por sesión) para la analítica del admin.
@@ -854,7 +865,7 @@ $(document).ready(function () {
       const selectedStatus = statusSelect.length ? statusSelect.val() : "all";
       const filteredData = sourceData.filter(
         (anime) =>
-          anime.title.toLowerCase().includes(searchQuery) &&
+          animeMatchesQuery(anime, searchQuery) &&
           (selectedGenres.length === 0 ||
             selectedGenres.every((g) => anime.genres.includes(g))) &&
           (!yearSelect.length ||
@@ -1438,7 +1449,7 @@ $(document).ready(function () {
       const q = mInput.val().toLowerCase().trim();
       if (q.length < 2) { mRes.html('<p class="msearch-empty">Escribe para buscar…</p>'); return; }
       rememberSearch(q);
-      const filtered = animeData.filter((a) => a.title.toLowerCase().includes(q)).slice(0, 30);
+      const filtered = animeData.filter((a) => animeMatchesQuery(a, q)).slice(0, 30);
       mRes.html(filtered.length
         ? filtered.map((a) => `<a href="anime-details.html?id=${a.id}"><img src="${a.img}" alt="" loading="lazy"><div class="msr-info"><span class="t">${a.title}</span><span class="msr-sub">${a.year || ""}${a.type ? " · " + a.type : ""}${a.rating ? ' · <span class="star">★ ' + a.rating + "</span>" : ""}</span></div></a>`).join("")
         : '<p class="msearch-empty">No se encontraron resultados.</p>');
@@ -1469,7 +1480,7 @@ $(document).ready(function () {
       .empty()
       .show()
       .html('<div class="search-feedback"><div class="loader"></div></div>');
-    const filtered = animeData.filter((a) => a.title.toLowerCase().includes(q));
+    const filtered = animeData.filter((a) => animeMatchesQuery(a, q));
     setTimeout(() => {
       searchResults.empty();
       if (filtered.length > 0)
