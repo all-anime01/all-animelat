@@ -1145,7 +1145,7 @@ $(document).ready(function () {
                     <a href="#" class="open-player-from-details" data-episode-index="${index}">
                         <div class="episode-img-container">
                             <img src="${ep.img}" alt="${ep.title
-          }" loading="lazy">
+          }" loading="lazy" decoding="async">
                             ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
                             <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
                             <span class="duration-tag">${ep.duration}</span>
@@ -1156,6 +1156,13 @@ $(document).ready(function () {
                             <p class="episode-card-meta">${ep.language} • ${ep.releaseDate
           }</p>
                             <p class="episode-card-desc">${ep.description}</p>
+                        </div>
+                        <div class="ep-hover">
+                            <div class="eph-anime">${anime.title}</div>
+                            <div class="eph-title">E${ep.number} – ${ep.title || ""}</div>
+                            <div class="eph-date"><i class="far fa-calendar"></i> ${ep.releaseDate || ""}</div>
+                            <p class="eph-desc">${ep.description || "Sin descripción disponible."}</p>
+                            <div class="eph-play"><i class="fas fa-play"></i> <span class="eph-verb">VER</span> E${ep.number}</div>
                         </div>
                     </a>
                 </div>`);
