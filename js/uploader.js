@@ -78,6 +78,29 @@ export async function ensureAnimeSeasonFolder(host, key, anime, season) {
   return ensureFolder(host, key, season, animeId);
 }
 
+// Busca una carpeta por nombre bajo parentId (sin crearla). Devuelve fld_id o null.
+export async function findFolder(host, key, name, parentId = 0) {
+  const folders = await listFolders(host, key, parentId);
+  const f = folders.find((x) => String(x.name).trim().toLowerCase() === String(name).trim().toLowerCase());
+  return f ? f.fld_id : null;
+}
+// Lista TODOS los archivos de una carpeta (con paginación).
+export async function listFiles(host, key, fldId) {
+  const h = HOSTS[host];
+  let page = 1, all = [];
+  for (let guard = 0; guard < 60; guard++) {
+    const j = await apiGet(host, "/file/list", { [h.keyParam]: key, fld_id: fldId, per_page: 100, page });
+    const files = (j.result && j.result.files) || [];
+    all.push(...files);
+    const pages = (j.result && j.result.pages) || 1;
+    if (page >= pages || !files.length) break;
+    page++;
+  }
+  return all;
+}
+export const fileCode = (f) => f.file_code || f.filecode || f.code || "";
+export const fileTitle = (f) => f.title || f.name || (f.link ? String(f.link).split("/").pop() : "");
+
 // ---- Subida ----------------------------------------------------------------
 export async function getUploadServer(host, key) {
   const h = HOSTS[host];
@@ -111,9 +134,29 @@ export function uploadFile(host, key, serverUrl, file, fldId, onProgress) {
 
 export const embedUrl = (host, code) => HOSTS[host].embed(code);
 
-// Extrae el número de episodio del nombre de archivo ("08.mp4", "cap 8.mkv"…).
+// Extrae el número de episodio de un nombre de archivo, tolerando nombres
+// sucios ("[locuranime]1080p BlLo-38", "... U-20 Japan - 14 [1080p][A1B2]").
 export function episodeNumberFromName(name) {
-  const base = String(name).replace(/\.[a-z0-9]+$/i, "");
-  const m = base.match(/(\d{1,4})\s*$/) || base.match(/(\d{1,4})/);
-  return m ? parseInt(m[1], 10) : null;
+  let s = String(name).replace(/\.[a-z0-9]{2,4}$/i, "");   // extensión
+  s = s.replace(/\[[^\]]*\]/g, " ").replace(/\([^)]*\)/g, " "); // [tags] (…)
+  s = s.replace(/\b\d{3,4}p\b/gi, " ");                     // 1080p / 720p
+  s = s.replace(/\b(x?26[45]|hevc|hdrip|web[- ]?dl|bluray|dual|latino|sub|cast)\b/gi, " ");
+  // Preferimos la ÚLTIMA marca de episodio ("- 14", "cap 14", "ep 14", "e14").
+  const marks = [...s.matchAll(/(?:-|–|cap(?:[ií]tulo)?|ep(?:isodio)?|\be)\s*0*(\d{1,4})(?!\s*\d)/ig)];
+  if (marks.length) return parseInt(marks[marks.length - 1][1], 10);
+  // Si no, el último número suelto del nombre.
+  const nums = [...s.matchAll(/\b0*(\d{1,4})\b/g)];
+  return nums.length ? parseInt(nums[nums.length - 1][1], 10) : null;
+}
+
+// Encuentra la carpeta de temporada tolerando distintos nombres:
+// "Temporada 2" ↔ "T2" ↔ "Season 2" ↔ "S2" ↔ "2".
+export async function findSeasonFolder(host, key, seasonName, parentId = 0) {
+  const folders = await listFolders(host, key, parentId);
+  const norm = (s) => String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
+  const n = (String(seasonName).match(/\d+/) || [])[0];
+  const cands = new Set([norm(seasonName)]);
+  if (n) ["t" + n, "temporada" + n, "season" + n, "s" + n, n].forEach((c) => cands.add(c));
+  const f = folders.find((x) => cands.has(norm(x.name)));
+  return f ? f.fld_id : null;
 }
