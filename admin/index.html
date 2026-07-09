@@ -55,6 +55,42 @@
         @media (max-width: 640px) { .srv-row { grid-template-columns: 1fr 1fr; } .srv-row .srv-url { grid-column: 1 / -1; } }
         .srv-badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; background: rgba(74,222,128,.14); color: #4ade80; display: inline-flex; align-items: center; gap: 5px; }
         .srv-badge.none { background: #2a2a2a; color: #777; }
+        /* ---- Subir episodios ---- */
+        .up-hosts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+        .up-host { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 13px 14px; }
+        .up-host .top { display: flex; align-items: center; gap: 9px; }
+        .up-host .dot { width: 9px; height: 9px; border-radius: 50%; background: #555; flex: none; }
+        .up-host.on .dot { background: #37e35f; box-shadow: 0 0 8px rgba(55,227,95,.7); }
+        .up-host.off .dot { background: #ffc14a; }
+        .up-host .name { font-weight: 700; font-size: 14px; }
+        .up-host .stat { margin-left: auto; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; background: #2a2a2a; color: var(--grey); }
+        .up-host.on .stat { background: rgba(55,227,95,.14); color: #37e35f; }
+        .up-host.off .stat { background: rgba(255,193,74,.14); color: #ffc14a; }
+        .up-host .meta { margin-top: 8px; font-size: 11.5px; color: var(--grey); }
+        .grid3up { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 14px; }
+        .up-destino { background: #12161d; border: 1px dashed var(--border); border-radius: 10px; padding: 10px 13px; font-size: 13px; color: var(--grey); }
+        .up-destino b { color: var(--text); } .up-destino .p { color: #5aa9ff; font-weight: 700; }
+        .up-targets { display: flex; gap: 10px; flex-wrap: wrap; }
+        .up-chk { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 9px; background: var(--card); border: 1px solid var(--border); cursor: pointer; user-select: none; }
+        .up-chk .box { width: 16px; height: 16px; border-radius: 5px; border: 2px solid #667; display: grid; place-items: center; font-size: 10px; color: transparent; }
+        .up-chk.sel { border-color: var(--primary); background: rgba(202,48,48,.10); }
+        .up-chk.sel .box { background: var(--primary); border-color: var(--primary); color: #fff; }
+        .up-chk.dis { opacity: .45; cursor: not-allowed; }
+        .up-drop { border: 2px dashed var(--border); border-radius: 14px; padding: 24px; text-align: center; margin-top: 16px; transition: .15s; }
+        .up-drop.drag { border-color: var(--primary); background: rgba(202,48,48,.06); }
+        .up-drop h3 { margin: 8px 0 3px; }
+        .up-queue { display: flex; flex-direction: column; gap: 9px; }
+        .up-row { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 11px 13px; display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; align-items: center; }
+        .up-row .fn { font-size: 13.5px; font-weight: 600; }
+        .up-row .fm { font-size: 11.5px; color: var(--grey); display: flex; gap: 8px; align-items: center; margin-top: 2px; }
+        .up-epchip { font-size: 10.5px; font-weight: 800; color: #a98bff; background: rgba(169,139,255,.14); border: 1px solid rgba(169,139,255,.28); padding: 1px 7px; border-radius: 20px; }
+        .up-rstat { font-size: 12px; font-weight: 700; text-align: right; white-space: nowrap; }
+        .up-rstat.ok { color: #37e35f; } .up-rstat.up { color: #5aa9ff; } .up-rstat.err { color: #ff6b6b; } .up-rstat.wait { color: var(--grey); }
+        .up-prog { grid-column: 1/-1; height: 6px; border-radius: 4px; background: rgba(255,255,255,.07); overflow: hidden; }
+        .up-prog span { display: block; height: 100%; background: linear-gradient(90deg,#3d7dff,#5aa9ff); width: 0; transition: width .2s; }
+        .up-embed { grid-column: 1/-1; font-size: 11.5px; color: var(--grey); }
+        .up-embed code { color: #37e35f; background: rgba(55,227,95,.08); padding: 1px 6px; border-radius: 5px; font-size: 11px; }
+        @media (max-width: 720px) { .up-hosts, .grid3up { grid-template-columns: 1fr; } }
         /* chips */
         .chips { display: flex; flex-wrap: wrap; gap: 8px; }
         .chip { position: relative; }
@@ -138,6 +174,7 @@
             <button class="navbtn" data-tab="hero"><i class="fas fa-image"></i> Portada</button>
             <button class="navbtn" data-tab="anime"><i class="fas fa-plus"></i> Nuevo anime</button>
             <button class="navbtn" data-tab="eps"><i class="fas fa-list-ol"></i> Episodios</button>
+            <button class="navbtn" data-tab="upload"><i class="fas fa-cloud-arrow-up"></i> Subir</button>
             <button class="navbtn" data-tab="stats"><i class="fas fa-chart-line"></i> Estadísticas</button>
             <button class="navbtn" data-tab="tools"><i class="fas fa-screwdriver-wrench"></i> Herramientas</button>
         </nav>
@@ -310,6 +347,67 @@
                 </div>
             </section>
 
+            <!-- ============ SUBIR EPISODIOS ============ -->
+            <section class="panel" id="panel-upload">
+                <div class="phead"><h1>Subir episodios a los servidores</h1>
+                    <button class="btn grey sm" id="up-keys-btn"><i class="fas fa-key"></i> Claves API</button>
+                </div>
+
+                <div class="card" id="up-keys-card" style="display:none">
+                    <h2>Claves API de los servidores</h2>
+                    <p class="hint" style="margin-bottom:12px">Se guardan en Firestore (solo el admin puede leerlas), no en el código público.</p>
+                    <div class="grid2">
+                        <div class="field"><label>Filemoon (api.byse.sx)</label><input id="key-filemoon" placeholder="key"></div>
+                        <div class="field"><label>Vidara (api.vidara.so)</label><input id="key-vidara" placeholder="api_key"></div>
+                        <div class="field"><label>Streamwish (streamhgapi.com)</label><input id="key-streamwish" placeholder="key"></div>
+                    </div>
+                    <button class="btn" id="up-keys-save" style="margin-top:12px"><i class="fas fa-floppy-disk"></i> Guardar claves</button>
+                    <span class="msg" id="up-keys-msg" style="margin-left:10px"></span>
+                </div>
+
+                <div class="up-hosts" id="up-hosts"></div>
+
+                <div class="card">
+                    <div class="grid3up">
+                        <div class="field"><label>Anime</label><select id="up-anime"></select></div>
+                        <div class="field"><label>Temporada</label><select id="up-season"></select></div>
+                        <div class="field"><label>Carpeta destino (se crea sola)</label>
+                            <div class="up-destino" id="up-destino">📁 —</div>
+                        </div>
+                    </div>
+                    <div class="field" style="margin-top:6px">
+                        <label>Subir a</label>
+                        <div class="up-targets" id="up-targets"></div>
+                    </div>
+                    <div class="field" style="margin-top:10px">
+                        <label>Carpeta manual (opcional, para mantener orden)</label>
+                        <div style="display:flex;gap:8px">
+                            <input id="up-newfolder" placeholder="Nombre de carpeta a crear dentro del destino">
+                            <button class="btn grey sm" id="up-mkfolder"><i class="fas fa-folder-plus"></i> Crear</button>
+                        </div>
+                    </div>
+
+                    <div class="up-drop" id="up-drop">
+                        <div style="font-size:30px">🎬⬆️</div>
+                        <h3>Arrastra aquí los episodios</h3>
+                        <p class="hint">MP4/MKV/AVI · nómbralos por número (<b>8.mp4</b> → Episodio 8). Se suben por lotes.</p>
+                        <button class="btn" id="up-pick">Seleccionar archivos</button>
+                        <input type="file" id="up-input" accept="video/*" multiple hidden>
+                    </div>
+
+                    <div id="up-queue-wrap" style="display:none;margin-top:16px">
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                            <h2 style="margin:0">Cola de subida</h2>
+                            <span class="hint" id="up-count"></span>
+                            <button class="btn" id="up-start" style="margin-left:auto"><i class="fas fa-cloud-arrow-up"></i> Subir pendientes</button>
+                            <button class="btn grey sm" id="up-clear">Limpiar</button>
+                        </div>
+                        <div class="up-queue" id="up-queue"></div>
+                    </div>
+                    <p class="hint" style="margin-top:12px">Al terminar cada subida, el servidor se <b>agrega solo</b> al episodio correspondiente (no sobrescribe: se añade a los que ya tenga).</p>
+                </div>
+            </section>
+
             <!-- ============ ESTADÍSTICAS ============ -->
             <section class="panel" id="panel-stats">
                 <div class="phead"><h1>Estadísticas de tráfico</h1>
@@ -356,6 +454,7 @@
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
         import { getDailyVisits, getUserCount, getCountryStats, getTopAnimes } from "../js/analytics.js";
         import { DEFAULT_HERO_SLIDES } from "../js/hero.js";
+        import * as UP from "../js/uploader.js";
 
         const $ = (id) => document.getElementById(id);
         const setMsg = (el, t, type) => { el.textContent = t; el.className = "msg " + (type || ""); };
@@ -392,6 +491,7 @@
             if (b.dataset.tab === "stats") loadStats();
             if (b.dataset.tab === "home") renderHome();
             if (b.dataset.tab === "hero") loadHero();
+            if (b.dataset.tab === "upload") loadUpload();
         }));
 
         // ---------- Importar / Exportar JSON ----------
@@ -896,6 +996,154 @@
             }).join("");
             $("chart").innerHTML = `<div style="overflow-x:auto"><svg width="${W}" height="${H}" style="min-width:100%">
                 <line x1="${pad}" y1="${H - pad}" x2="${W - pad}" y2="${H - pad}" stroke="#333"/>${bars}</svg></div>`;
+        }
+
+        // ========================= SUBIR EPISODIOS =========================
+        let upInited = false, upKeys = {}, upQueue = [], upFolderId = 0, upBusy = false;
+        const upHostsSel = () => [...document.querySelectorAll(".up-chk.sel")].map((c) => c.dataset.host);
+
+        async function loadUpload() {
+            // Rellena las claves guardadas en los inputs.
+            upKeys = await UP.loadKeys();
+            ["filemoon", "vidara", "streamwish"].forEach((h) => { if ($("key-" + h)) $("key-" + h).value = upKeys[h] || ""; });
+            // Anime select desde el catálogo.
+            const sel = $("up-anime");
+            if (sel && !sel.options.length) {
+                sel.innerHTML = catalogItems.slice().sort((a, b) => (a.title || "").localeCompare(b.title || ""))
+                    .map((a) => `<option value="${a.id}">${a.title}</option>`).join("");
+            }
+            await upRenderHosts();
+            await upSeasons();
+            if (upInited) return; upInited = true;
+
+            $("up-keys-btn").addEventListener("click", () => { const c = $("up-keys-card"); c.style.display = c.style.display === "none" ? "block" : "none"; });
+            $("up-keys-save").addEventListener("click", async () => {
+                const keys = { filemoon: $("key-filemoon").value.trim(), vidara: $("key-vidara").value.trim(), streamwish: $("key-streamwish").value.trim() };
+                try { await UP.saveKeys(keys); upKeys = keys; setMsg($("up-keys-msg"), "✅ Guardadas", "ok"); upRenderHosts(); }
+                catch (e) { setMsg($("up-keys-msg"), "❌ " + e.message, "error"); }
+            });
+            $("up-anime").addEventListener("change", upSeasons);
+            $("up-season").addEventListener("change", upDestino);
+            $("up-pick").addEventListener("click", () => $("up-input").click());
+            $("up-input").addEventListener("change", (e) => upAddFiles(e.target.files));
+            const dz = $("up-drop");
+            ["dragover", "dragenter"].forEach((ev) => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.add("drag"); }));
+            ["dragleave", "drop"].forEach((ev) => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.remove("drag"); }));
+            dz.addEventListener("drop", (e) => upAddFiles(e.dataTransfer.files));
+            $("up-start").addEventListener("click", upRun);
+            $("up-clear").addEventListener("click", () => { upQueue = []; upRenderQueue(); });
+            $("up-mkfolder").addEventListener("click", upCreateFolder);
+        }
+
+        async function upRenderHosts() {
+            const wrap = $("up-hosts"); if (!wrap) return;
+            wrap.innerHTML = ""; const targets = $("up-targets"); targets.innerHTML = "";
+            for (const h of ["filemoon", "vidara", "streamwish"]) {
+                const cfg = UP.HOSTS[h]; const key = upKeys[h];
+                let on = false, meta = cfg.note || "Sin clave";
+                if (key && cfg.clientSide) {
+                    try { const info = await UP.accountInfo(h, key); if (info && info.status === 200) { on = true; const r = info.result || {}; meta = (r.login || r.username || "cuenta") + (r.files_total || r.videos_total ? " · " + (r.files_total || r.videos_total) + " archivos" : ""); } else meta = "Clave inválida"; }
+                    catch (e) { meta = cfg.clientSide ? "Sin conexión/CORS" : (cfg.note || ""); }
+                } else if (key && !cfg.clientSide) { meta = cfg.note; }
+                wrap.insertAdjacentHTML("beforeend", `<div class="up-host ${on ? "on" : "off"}"><div class="top"><span class="dot"></span><span class="name">${cfg.label}</span><span class="stat">${on ? "Conectado" : "No disponible"}</span></div><div class="meta">${meta}</div></div>`);
+                const dis = !on;
+                targets.insertAdjacentHTML("beforeend", `<span class="up-chk ${!dis && h === "filemoon" ? "sel" : ""} ${dis ? "dis" : ""}" data-host="${h}"><span class="box">✓</span> ${cfg.label}</span>`);
+            }
+            targets.querySelectorAll(".up-chk:not(.dis)").forEach((c) => c.addEventListener("click", () => c.classList.toggle("sel")));
+        }
+
+        async function upSeasons() {
+            const aid = $("up-anime").value; if (!aid) return;
+            try { const seasons = await getAnimeSeasons(aid); $("up-season").innerHTML = seasons.map((s) => `<option>${s}</option>`).join(""); }
+            catch (e) { $("up-season").innerHTML = "<option>Temporada 1</option>"; }
+            upFolderId = 0; upDestino();
+        }
+        function upDestino() {
+            const a = $("up-anime").selectedOptions[0]?.textContent || "—";
+            const s = $("up-season").value || "—";
+            $("up-destino").innerHTML = `📁 <b>${a}</b> / <span class="p">${s}</span>`;
+        }
+
+        function upAddFiles(files) {
+            [...files].forEach((f) => { if (!/video\//.test(f.type) && !/\.(mp4|mkv|avi|mov|webm)$/i.test(f.name)) return; upQueue.push({ file: f, number: UP.episodeNumberFromName(f.name), status: "wait", progress: 0, note: "" }); });
+            upRenderQueue();
+        }
+        function upRenderQueue() {
+            $("up-queue-wrap").style.display = upQueue.length ? "block" : "none";
+            $("up-count").textContent = upQueue.length ? upQueue.length + " archivo(s)" : "";
+            $("up-queue").innerHTML = upQueue.map((q, i) => {
+                const st = q.status;
+                const statTxt = st === "ok" ? "Listo" : st === "err" ? "Error" : st === "up" ? "Subiendo… " + Math.round(q.progress * 100) + "%" : "En cola";
+                return `<div class="up-row">
+                    <div><div class="fn">${q.file.name}</div><div class="fm">${q.number ? `<span class="up-epchip">Episodio ${q.number}</span>` : '<span class="up-epchip" style="color:#ff6b6b;background:rgba(255,107,107,.14);border-color:rgba(255,107,107,.3)">sin nº</span>'}<span>${(q.file.size / 1048576).toFixed(0)} MB</span></div></div>
+                    <div class="up-rstat ${st}">${statTxt}${q.note ? `<div style="font-weight:500;color:#888;font-size:10.5px">${q.note}</div>` : ""}</div>
+                    ${st === "up" || st === "ok" ? `<div class="up-prog"><span style="width:${Math.round(q.progress * 100)}%;${st === "ok" ? "background:linear-gradient(90deg,#2fbf57,#37e35f)" : ""}"></span></div>` : ""}
+                    ${q.embed ? `<div class="up-embed">✔ ${q.embed}</div>` : ""}</div>`;
+            }).join("");
+        }
+
+        async function upCreateFolder() {
+            const name = $("up-newfolder").value.trim(); if (!name) return;
+            const hosts = upHostsSel(); if (!hosts.length) { alert("Selecciona al menos un servidor."); return; }
+            const anime = $("up-anime").selectedOptions[0]?.textContent, season = $("up-season").value;
+            for (const h of hosts) {
+                try { const seasonId = await UP.ensureAnimeSeasonFolder(h, upKeys[h], anime, season); await UP.ensureFolder(h, upKeys[h], name, seasonId); }
+                catch (e) { console.error(h, e); }
+            }
+            $("up-newfolder").value = ""; alert("Carpeta '" + name + "' creada en el destino de los servidores seleccionados.");
+        }
+
+        async function upRun() {
+            if (upBusy) return;
+            const hosts = upHostsSel();
+            if (!hosts.length) { alert("Selecciona al menos un servidor (host)."); return; }
+            const animeId = $("up-anime").value, anime = $("up-anime").selectedOptions[0]?.textContent, season = $("up-season").value;
+            const pending = upQueue.filter((q) => q.status === "wait" && q.number);
+            if (!pending.length) { alert("No hay archivos con número de episodio para subir."); return; }
+            upBusy = true; $("up-start").disabled = true;
+            // Asegura las carpetas Anime/Temporada en cada host (una vez).
+            const folderByHost = {};
+            for (const h of hosts) { try { folderByHost[h] = await UP.ensureAnimeSeasonFolder(h, upKeys[h], anime, season); } catch (e) { folderByHost[h] = 0; } }
+
+            // Cola con concurrencia 2 (por archivo).
+            let idx = 0;
+            const worker = async () => {
+                while (idx < pending.length) {
+                    const q = pending[idx++];
+                    q.status = "up"; q.progress = 0; upRenderQueue();
+                    const codes = [];
+                    for (const h of hosts) {
+                        try {
+                            const srv = await UP.getUploadServer(h, upKeys[h]);
+                            const code = await UP.uploadFile(h, upKeys[h], srv, q.file, folderByHost[h], (p) => { q.progress = p; upRenderQueue(); });
+                            codes.push({ host: h, code });
+                        } catch (e) { q.note = h + ": " + e.message; }
+                    }
+                    if (codes.length) {
+                        try { await attachServers(animeId, season, q.number, codes); q.status = "ok"; q.progress = 1; q.embed = codes.map((c) => UP.HOSTS[c.host].label).join(", ") + " → E" + q.number; }
+                        catch (e) { q.status = "err"; q.note = e.message; }
+                    } else { q.status = "err"; }
+                    upRenderQueue();
+                }
+            };
+            await Promise.all([worker(), worker()]);
+            upBusy = false; $("up-start").disabled = false;
+            loadCatalog();
+        }
+
+        async function attachServers(animeId, season, number, codes) {
+            const anime = await getAnime(animeId);
+            const eps = anime.episodes || [];
+            const i = eps.findIndex((e) => String(e.season) === String(season) && Number(e.number) === Number(number));
+            if (i < 0) throw new Error("Episodio " + number + " no existe en " + season);
+            const ep = eps[i];
+            const servers = Array.isArray(ep.servers) ? [...ep.servers] : [];
+            for (const c of codes) {
+                const url = UP.embedUrl(c.host, c.code);
+                if (!servers.some((s) => s.url === url)) servers.push({ name: UP.HOSTS[c.host].label, url, lang: "Sub", desc: "" });
+            }
+            const vu = (ep.videoUrl && ep.videoUrl.includes("player.html")) ? ep.videoUrl : ("frame/player.html?a=" + animeId + "&s=" + encodeURIComponent(season) + "&e=" + number);
+            await updateEpisode(animeId, season, number, { season, number, servers, videoUrl: vu });
         }
     </script>
 </body>

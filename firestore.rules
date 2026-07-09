@@ -42,6 +42,11 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // ---- Secretos del admin (claves API de subida) — solo admin ----
+    match /admin_secrets/{docId} {
+      allow read, write: if isAdmin();
+    }
+
     // ---- Perfiles de usuario ----
     match /users/{uid} {
       allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
