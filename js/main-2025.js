@@ -26,20 +26,33 @@ function animeMatchesQuery(anime, q) {
 // el catálogo LIGERO (sin episodios) para búsqueda/relacionados. Evita bajar
 // toda la colección con episodios (~MB). La homepage sí necesita todo
 // (carrusel de episodios recientes), así que ahí usa getAnimeData().
+const _path = window.location.pathname;
+const IS_DETAILS_PAGE = /anime-details\./i.test(_path);
+const IS_HOME_PAGE = _path === "/" || _path === "" || /\/index(\.html)?$/i.test(_path);
+
 async function loadPageData() {
   const id = new URLSearchParams(window.location.search).get("id");
-  const isDetails = /anime-details\./i.test(window.location.pathname) && id;
-  if (!isDetails) return getAnimeData();
-  try {
-    const [cards, full] = await Promise.all([getCatalogCards(), getFullAnime(id)]);
-    if (full && Array.isArray(cards) && cards.length) {
-      const list = cards.slice();
-      const i = list.findIndex((a) => a.id === id);
-      if (i >= 0) list[i] = full; else list.push(full);   // el anime abierto, con episodios
-      return list;
-    }
-  } catch (e) { console.warn("[loadPageData] ruta ligera falló; usando carga completa", e); }
-  return getAnimeData();   // fallback robusto: nunca dejar la ficha sin datos
+  // Ficha de anime: solo el anime abierto (con episodios) + catálogo ligero.
+  if (IS_DETAILS_PAGE && id) {
+    try {
+      const [cards, full] = await Promise.all([getCatalogCards(), getFullAnime(id)]);
+      if (full && Array.isArray(cards) && cards.length) {
+        const list = cards.slice();
+        const i = list.findIndex((a) => a.id === id);
+        if (i >= 0) list[i] = full; else list.push(full);   // el anime abierto, con episodios
+        return list;
+      }
+    } catch (e) { console.warn("[loadPageData] ruta ligera falló; usando carga completa", e); }
+    return getAnimeData();   // fallback robusto: nunca dejar la ficha sin datos
+  }
+  // Inicio: render inmediato con tarjetas LIGERAS (sin episodios → ~KB en vez de
+  // MB). Las secciones que necesitan episodios (seguir viendo, recientes) se
+  // rehidratan luego con la carga completa en segundo plano (ver más abajo).
+  if (IS_HOME_PAGE) {
+    try { const cards = await getCatalogCards(); if (Array.isArray(cards) && cards.length) return cards; }
+    catch (e) { console.warn("[loadPageData] inicio ligero falló; usando carga completa", e); }
+  }
+  return getAnimeData();   // otras páginas (explorar, favoritos…) usan todo
 }
 import { initPWA } from "./pwa.js";
 
@@ -728,6 +741,52 @@ $(document).ready(function () {
         </div>`;
   }
 
+  // Episodios de "hoy"/"ayer" del inicio. Idempotente (vacía antes de pintar),
+  // así se puede rehidratar tras la carga completa en segundo plano. Necesita
+  // los episodios (no está en las tarjetas ligeras).
+  function renderRecentEpisodes() {
+    const episodesListHoy = $("#episodes-hoy");
+    const episodesListAyer = $("#episodes-ayer");
+    if (!episodesListHoy.length && !episodesListAyer.length) return;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    let allEpisodes = [];
+    animeData.forEach((anime) => {
+      if (anime.episodes) {
+        anime.episodes.forEach((episode) => {
+          allEpisodes.push({ anime, episode, dateTime: parseCustomDate(episode.releaseDate, episode.releaseTime) });
+        });
+      }
+    });
+
+    const todayEpisodes = allEpisodes
+      .filter((item) => item.dateTime.getTime() >= today.getTime() && item.dateTime.getTime() < new Date(today).setDate(today.getDate() + 1))
+      .sort((a, b) => b.dateTime - a.dateTime);
+    const yesterdayEpisodes = allEpisodes
+      .filter((item) => item.dateTime.getTime() >= yesterday.getTime() && item.dateTime.getTime() < today.getTime())
+      .sort((a, b) => b.dateTime - a.dateTime);
+
+    episodesListHoy.empty();
+    if (todayEpisodes.length > 0)
+      todayEpisodes.forEach((item) => episodesListHoy.append(createDynamicEpisodeItem(item.episode, item.anime)));
+    else
+      episodesListHoy.html('<p class="no-results" style="padding: 2rem 0;">No hay nuevos episodios hoy.</p>');
+
+    episodesListAyer.empty();
+    const yesterdayContainer = $("#yesterday-episodes-container");
+    if (yesterdayEpisodes.length > 0) {
+      yesterdayContainer.show();
+      yesterdayEpisodes.forEach((item) => episodesListAyer.append(createDynamicEpisodeItem(item.episode, item.anime)));
+      $("#show-more-episodes").show().text("Mostrar Menos");
+    } else {
+      yesterdayContainer.hide();
+      $("#show-more-episodes").hide();
+    }
+  }
+
   // --- LÓGICA DE LA PÁGINA DE INICIO ---
   function populateHomePage() {
     const recommendationsCarousel = $("#recommendations-carousel");
@@ -751,74 +810,7 @@ $(document).ready(function () {
         .filter((a) => a.tags.includes("agregado"))
         .forEach((anime) => addedGrid.append(createAnimeCard(anime)));
 
-    if (episodesListHoy.length || episodesListAyer.length) {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const yesterday = new Date(today);
-      yesterday.setDate(today.getDate() - 1);
-
-      let allEpisodes = [];
-      animeData.forEach((anime) => {
-        if (anime.episodes) {
-          anime.episodes.forEach((episode) => {
-            allEpisodes.push({
-              anime,
-              episode,
-              dateTime: parseCustomDate(
-                episode.releaseDate,
-                episode.releaseTime
-              ),
-            });
-          });
-        }
-      });
-
-      const todayEpisodes = allEpisodes
-        .filter(
-          (item) =>
-            item.dateTime.getTime() >= today.getTime() &&
-            item.dateTime.getTime() <
-            new Date(today).setDate(today.getDate() + 1)
-        )
-        .sort((a, b) => b.dateTime - a.dateTime);
-
-      const yesterdayEpisodes = allEpisodes
-        .filter(
-          (item) =>
-            item.dateTime.getTime() >= yesterday.getTime() &&
-            item.dateTime.getTime() < today.getTime()
-        )
-        .sort((a, b) => b.dateTime - a.dateTime);
-
-      episodesListHoy.empty();
-      if (todayEpisodes.length > 0)
-        todayEpisodes.forEach((item) =>
-          episodesListHoy.append(
-            createDynamicEpisodeItem(item.episode, item.anime)
-          )
-        );
-      else
-        episodesListHoy.html(
-          '<p class="no-results" style="padding: 2rem 0;">No hay nuevos episodios hoy.</p>'
-        );
-
-      episodesListAyer.empty();
-      const yesterdayContainer = $("#yesterday-episodes-container");
-      if (yesterdayEpisodes.length > 0) {
-        yesterdayContainer.show();
-        yesterdayEpisodes.forEach((item) =>
-          episodesListAyer.append(
-            createDynamicEpisodeItem(item.episode, item.anime)
-          )
-        );
-        // El bloque de "ayer" arranca visible, así que el botón debe reflejar
-        // que se puede ocultar ("Mostrar Menos"). El click lo alterna.
-        $("#show-more-episodes").show().text("Mostrar Menos");
-      } else {
-        yesterdayContainer.hide();
-        $("#show-more-episodes").hide();
-      }
-    }
+    renderRecentEpisodes();
     if (recommendationsCarousel.length || dubsCarousel.length) {
       $(".card-carousel").slick({
         infinite: false,
@@ -1650,5 +1642,17 @@ $(document).ready(function () {
   populateDiscovery();
   // Al confirmarse la sesión, recarga "seguir viendo" y recomendaciones.
   UD.userReady.then(() => { populateContinueWatching(); populateDiscovery(); });
-  }); // fin de getAnimeData().then
+
+  // Inicio: se pintó con tarjetas LIGERAS (carga instantánea, sin los ~MB de
+  // episodios). Rehidrata en segundo plano, con la colección completa, las
+  // secciones que sí necesitan episodios (recientes + seguir viendo). animeData
+  // es el parámetro reasignable del callback; las funciones lo leen por closure.
+  if (IS_HOME_PAGE && Array.isArray(animeData) && !animeData.some((a) => a && a.episodes)) {
+    getAnimeData().then(function (full) {
+      animeData = full;
+      renderRecentEpisodes();
+      populateContinueWatching();
+    }).catch(function () { });
+  }
+  }); // fin de loadPageData().then
 });
