@@ -120,6 +120,40 @@ export async function getAnimeById(id) {
   return all.find((a) => a.id === id) || null;
 }
 
+// ---- Rendimiento: catálogo LIGERO + un anime completo bajo demanda ---------
+// Evita descargar los ~MB de toda la colección (con episodios) cuando solo se
+// necesita la ficha de un anime. La homepage sí usa getAnimeData() (episodios
+// recientes); anime-details usa estas dos.
+
+/** Tarjetas ligeras del catálogo (catalog/index, SIN episodios). 1 lectura. */
+export async function getCatalogCards() {
+  if (FIREBASE_CONFIGURED) {
+    try {
+      const snap = await getDoc(doc(db, "catalog", "index"));
+      const items = snap.exists() ? snap.data().items : null;
+      if (Array.isArray(items) && items.length) return items;
+    } catch (e) { console.warn("[data-provider] catalog/index no disponible; derivando del bundle", e); }
+  }
+  const bundled = await getBundled();
+  return bundled.map(({ episodes, ...card }) => ({ ...card, episodesCount: Array.isArray(episodes) ? episodes.length : 0 }));
+}
+
+/** Un anime COMPLETO (con episodios) por id — getDoc individual + caché. */
+export async function getFullAnime(id) {
+  if (FIREBASE_CONFIGURED) {
+    try {
+      const snap = await getDoc(doc(db, "animes", id));
+      if (snap.exists()) { const data = snap.data(); idbSet("anime:" + id, { data, ts: Date.now() }); return data; }
+    } catch (e) {
+      const c = await idbGet("anime:" + id);           // sin red → última copia
+      if (c && c.data) return c.data;
+      console.warn("[data-provider] getFullAnime → bundle", e);
+    }
+  }
+  const bundled = await getBundled();
+  return bundled.find((a) => a.id === id) || null;
+}
+
 /** Fuerza recarga del catálogo desde Firestore (ignora la caché). */
 export async function refreshCatalog() {
   const fresh = await fetchFresh();

@@ -1,4 +1,4 @@
-import { getAnimeData } from "./data-provider.js";
+import { getAnimeData, getCatalogCards, getFullAnime } from "./data-provider.js";
 import { initPlayerEngagement, clearAutoplay, getWatchedSet, markEpisodeWatched, autoplayEnabled, startAutoplayCountdown } from "./engagement.js";
 import { episodeId as makeEpId } from "./catalog-utils.js";
 import * as UD from "./user-data.js";
@@ -20,6 +20,23 @@ function animeMatchesQuery(anime, q) {
   if ((anime.title || "").toLowerCase().includes(q)) return true;
   const alts = anime.altTitles || anime.synonyms || [];
   return Array.isArray(alts) && alts.some((t) => (t || "").toLowerCase().includes(q));
+}
+
+// Rendimiento: en anime-details solo hace falta la ficha del anime abierto +
+// el catálogo LIGERO (sin episodios) para búsqueda/relacionados. Evita bajar
+// toda la colección con episodios (~MB). La homepage sí necesita todo
+// (carrusel de episodios recientes), así que ahí usa getAnimeData().
+async function loadPageData() {
+  const id = new URLSearchParams(window.location.search).get("id");
+  const isDetails = /anime-details\./i.test(window.location.pathname) && id;
+  if (!isDetails) return getAnimeData();
+  const [cards, full] = await Promise.all([getCatalogCards(), getFullAnime(id)]);
+  const list = Array.isArray(cards) ? cards.slice() : [];
+  if (full) {
+    const i = list.findIndex((a) => a.id === id);
+    if (i >= 0) list[i] = full; else list.push(full);   // el anime abierto, con episodios
+  }
+  return list;
 }
 import { initPWA } from "./pwa.js";
 
@@ -119,7 +136,7 @@ injectAccountWidget();
 setupHero();
 
 $(document).ready(function () {
-  getAnimeData().then(function (animeData) {
+  loadPageData().then(function (animeData) {
   // --- LÓGICA DE ANIMACIÓN DE CARGA ---
   if (window.innerWidth <= 991 && !sessionStorage.getItem("loaderShown")) {
     $("body").css("overflow", "hidden");

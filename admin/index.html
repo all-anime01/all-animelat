@@ -146,6 +146,10 @@
         .ep-row.just-saved { background: rgba(74, 222, 128, .18); box-shadow: inset 3px 0 0 #4ade80; padding-left: 8px; }
         .ep-row .n { color: var(--primary); font-weight: 700; min-width: 34px; }
         .ep-row .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ep-thumb { width: 64px; height: 36px; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #15151c; border: 1px solid var(--border); }
+        .ep-thumb.ok { border-color: rgba(34, 197, 94, .5); }
+        .ep-thumb.broken { border-color: #ef4444; background: #2a1414; }
+        .ep-thumb.none { display: inline-flex; align-items: center; justify-content: center; color: #667; font-size: 13px; }
         .gate { text-align: center; padding: 90px 20px; }
         .gate a { color: #ff6b6b; }
         .search-box { max-width: 320px; }
@@ -859,7 +863,10 @@
                         ? `<span class="srv-badge" title="${nSrv} servidor(es)"><i class="fas fa-server"></i> ${nSrv}</span>`
                         : `<span class="srv-badge none" title="Sin servidores"><i class="fas fa-server"></i> 0</span>`;
                     const play = playUrl ? `<a class="btn grey sm" href="../${playUrl}" target="_blank" title="Ver reproductor"><i class="fas fa-play"></i></a>` : "";
-                    return `<div class="ep-row" data-epnum="${ep.number}"><span class="n">${ep.number}</span><span class="t">${ep.title || "(sin título)"}</span>${badge}
+                    const thumb = ep.img
+                        ? `<img class="ep-thumb" src="${ep.img}" alt="" loading="lazy" referrerpolicy="no-referrer" title="${ep.img}" onload="this.classList.add('ok')" onerror="this.classList.add('broken')">`
+                        : `<span class="ep-thumb none" title="Sin imagen"><i class="fas fa-image"></i></span>`;
+                    return `<div class="ep-row" data-epnum="${ep.number}"><span class="n">${ep.number}</span>${thumb}<span class="t">${ep.title || "(sin título)"}</span>${badge}
                     ${play}<button class="btn grey sm" data-editep="${ep.number}" title="Editar"><i class="fas fa-pen"></i></button>
                     <button class="btn danger sm" data-delep="${ep.number}" title="Eliminar"><i class="fas fa-trash"></i></button></div>`;
                 }).join("");
