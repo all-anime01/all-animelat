@@ -1578,6 +1578,13 @@ body.red-theme header {
     color: var(--grey-text);
 }
 
+/* --- Rendimiento: no renderizar secciones de rejilla fuera de pantalla --- */
+/* (solo rejillas, no toca los carruseles slick que necesitan medir su ancho) */
+.anime-listing-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+}
+
 /* --- Espacios publicitarios (AdSense) --- */
 .ad-container {
     max-width: 1400px;

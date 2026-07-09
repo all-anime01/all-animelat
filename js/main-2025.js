@@ -612,7 +612,7 @@ $(document).ready(function () {
              data-genres="${ea((anime.genres || []).slice(0, 3).join(" • "))}">
             <a href="anime-details.html?id=${anime.id}">
                 <div class="card-image-container">
-                    <img src="${anime.img}" alt="${anime.title}" loading="lazy">
+                    <img src="${anime.img}" alt="${anime.title}" loading="lazy" decoding="async">
                     <div class="quality-tag">${anime.quality}</div>
                     <div class="card-overlay">
                         <div class="overlay-content">
