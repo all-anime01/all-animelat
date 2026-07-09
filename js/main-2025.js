@@ -1155,7 +1155,6 @@ $(document).ready(function () {
           }</h5>
                             <p class="episode-card-meta">${ep.language} • ${ep.releaseDate
           }</p>
-                            <p class="episode-card-desc">${ep.description}</p>
                         </div>
                         <div class="ep-hover">
                             <div class="eph-anime">${anime.title}</div>

@@ -1614,20 +1614,25 @@ body.red-theme header {
 
 /* --- Episodio VISTO: badge permanente + icono de repetir siempre visible --- */
 /* (va en el CSS global para que se muestre aunque no se abra el reproductor) */
+/* Etiqueta "Visto" estilo Crunchyroll: píldora sutil abajo a la derecha */
 .episode-detail-card.is-watched .episode-img-container::after {
-    content: "\2713 VISTO";
+    content: "\2713  Visto";
     font-weight: 700;
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background: rgba(0, 170, 80, 0.95);
+    bottom: 0.9rem;
+    right: 0.9rem;
+    background: rgba(10, 12, 16, 0.82);
     color: #fff;
-    font-size: 1.1rem;
-    padding: 3px 8px;
-    border-radius: 6px;
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
     z-index: 4;
-    letter-spacing: 0.5px;
+    backdrop-filter: blur(3px);
 }
+/* En un episodio ya visto ocultamos la duración (ese espacio lo usa "Visto") */
+.episode-detail-card.is-watched .duration-tag { display: none; }
 
 .episode-detail-card.is-watched .play-icon-overlay {
     opacity: 1;
@@ -1686,8 +1691,22 @@ body.red-theme header {
 .eph-play i { font-size: 1.6rem; }
 .episode-detail-card:hover .eph-play { filter: brightness(1.15); }
 .episode-detail-card.is-watched .eph-verb::after { content: " DE NUEVO"; }
-/* En vista lista, el hover ocupa toda la fila */
-.episodes-container.list .ep-hover { border-radius: 8px; }
+/* En vista lista la fila es baja y ancha: hover compacto (sin etiqueta de
+   anime ni botón, desc a 2 líneas) para que quepa la info sin desbordar. */
+.episodes-container.list .ep-hover {
+    border-radius: 8px;
+    padding: 10px 16px;
+    gap: 4px;
+    justify-content: center;
+}
+.episodes-container.list .eph-anime,
+.episodes-container.list .eph-play { display: none; }
+.episodes-container.list .eph-title { font-size: 1.45rem; }
+.episodes-container.list .eph-date { font-size: 1.1rem; }
+.episodes-container.list .eph-desc {
+    -webkit-line-clamp: 2; line-clamp: 2;
+    font-size: 1.2rem; line-height: 1.4; margin: 0; flex: 0 1 auto;
+}
 
 /* --- "Seguir viendo": barra de progreso + estado por episodio --- */
 .cw-bar {

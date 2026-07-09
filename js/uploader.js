@@ -72,10 +72,18 @@ export async function ensureFolder(host, key, name, parentId = 0) {
   if (found) return found.fld_id;
   return createFolder(host, key, name, parentId);
 }
-// Crea/obtiene la ruta Anime/Temporada. Devuelve el fld_id de la temporada.
+// Obtiene la ruta Anime/Temporada REUTILIZANDO las carpetas que ya existen en
+// el servidor (match flexible: "Blue lock", "T2"…). Solo crea si no existen, y
+// la temporada la crea con la convención corta "T{n}".
 export async function ensureAnimeSeasonFolder(host, key, anime, season) {
-  const animeId = await ensureFolder(host, key, anime, 0);
-  return ensureFolder(host, key, season, animeId);
+  let animeId = await findFolder(host, key, anime, 0);
+  if (!animeId) animeId = await createFolder(host, key, anime, 0);
+  let seasonId = await findSeasonFolder(host, key, season, animeId);
+  if (!seasonId) {
+    const n = (String(season).match(/\d+/) || [""])[0];
+    seasonId = await createFolder(host, key, n ? "T" + n : season, animeId);
+  }
+  return seasonId;
 }
 
 // Busca una carpeta por nombre bajo parentId (sin crearla). Devuelve fld_id o null.
