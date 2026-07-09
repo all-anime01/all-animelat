@@ -497,7 +497,7 @@
         import { db, isAdmin } from "../js/firebase-config.js";
         import { observeAuth, logoutUser } from "../js/auth.js";
         import {
-            saveAnime, addEpisodes, deleteAnime, getCatalogIndex, getAnime,
+            saveAnime, addEpisodes, importEpisodes, deleteAnime, getCatalogIndex, getAnime,
             getAnimeSeasons, listEpisodes, deleteEpisode, updateEpisode, setAnimeTag,
             getHeroSlides, saveHeroSlides, importAnimes, exportAllAnimes,
             buildAnimeFromForm, buildEpisodeFromForm,
@@ -1335,14 +1335,13 @@
             $("imp-run").disabled = true;
             setMsg($("imp-msg"), `Importando ${impParsed.length} episodios…`, "");
             try {
-                const anime = await getAnime(animeId);
-                const have = new Set((anime.episodes || []).map((e) => String(e.season) + "::" + Number(e.number)));
-                const seen = new Set();
-                const nuevos = impParsed.filter((e) => { const k = String(e.season) + "::" + Number(e.number); if (have.has(k) || seen.has(k)) return false; seen.add(k); return true; });
-                const dup = impParsed.length - nuevos.length;
-                if (!nuevos.length) { setMsg($("imp-msg"), `Todos (${impParsed.length}) ya existían. Nada que importar.`, "err"); return; }
-                const total = await addEpisodes(animeId, nuevos);
-                setMsg($("imp-msg"), `✓ Importados ${nuevos.length}${dup ? ` (${dup} ya existían, omitidos)` : ""}. Total del anime: ${total}.`, "ok");
+                // Upsert: actualiza los que ya existen (aplica los cambios) y agrega los nuevos.
+                const r = await importEpisodes(animeId, impParsed);
+                const partes = [];
+                if (r.added) partes.push(`${r.added} nuevos`);
+                if (r.updated) partes.push(`${r.updated} actualizados`);
+                const resumen = partes.length ? partes.join(" · ") : "sin cambios (ya estaban idénticos)";
+                setMsg($("imp-msg"), `✓ Importación: ${resumen}. Total del anime: ${r.total}.`, "ok");
                 $("imp-text").value = ""; $("imp-preview-box").innerHTML = ""; impParsed = [];
                 $("ep-anime").dispatchEvent(new Event("change"));   // refresca temporadas/lista
             } catch (e) { setMsg($("imp-msg"), "Error: " + e.message, "err"); $("imp-run").disabled = false; }

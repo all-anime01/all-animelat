@@ -92,6 +92,42 @@ export async function addEpisodes(animeId, newEpisodes) {
   return sorted.length;
 }
 
+// Importa episodios con UPSERT: ACTUALIZA los que ya existen (misma temporada +
+// número) y AGREGA los nuevos. Al actualizar, los campos del import mandan, pero
+// se PRESERVAN servers/videoUrl/img existentes si el import no trae valor (para
+// no perder los servidores al reimportar una lista editada solo con títulos).
+export async function importEpisodes(animeId, incoming) {
+  const ref = doc(db, "animes", animeId);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) throw new Error("El anime no existe: " + animeId);
+  const anime = snap.data();
+  const episodes = Array.isArray(anime.episodes) ? anime.episodes.slice() : [];
+  const idx = new Map(episodes.map((e, i) => [String(e.season) + "::" + Number(e.number), i]));
+  let added = 0, updated = 0;
+  const seen = new Set();
+  for (const imp of incoming) {
+    const key = String(imp.season) + "::" + Number(imp.number);
+    if (seen.has(key)) continue; seen.add(key);
+    if (idx.has(key)) {
+      const cur = episodes[idx.get(key)];
+      const merged = { ...cur, ...imp };
+      if (!(Array.isArray(imp.servers) && imp.servers.length)) merged.servers = cur.servers || [];
+      if (!imp.videoUrl) merged.videoUrl = cur.videoUrl || "";
+      if (!imp.img) merged.img = cur.img || "";
+      // ¿de verdad cambió algo? (para el contador)
+      if (JSON.stringify(merged) !== JSON.stringify(cur)) { episodes[idx.get(key)] = merged; updated++; }
+    } else {
+      episodes.push(imp);
+      idx.set(key, episodes.length - 1);
+      added++;
+    }
+  }
+  const sorted = orderedEpisodes({ episodes });
+  await updateDoc(ref, { episodes: sorted, episodesTotal: sorted.length, updatedAt: serverTimestamp() });
+  await upsertCatalogCard({ ...anime, episodes: sorted });
+  return { added, updated, total: sorted.length };
+}
+
 // Elimina un anime del catálogo (documento + índice).
 export async function deleteAnime(animeId) {
   await deleteDoc(doc(db, "animes", animeId));
