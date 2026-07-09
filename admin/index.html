@@ -142,7 +142,8 @@
         .rank .rk-bar { flex: none; width: 80px; height: 6px; background: #2a2a2a; border-radius: 4px; overflow: hidden; }
         .rank .rk-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), #e23b3b); }
         .ep-list { margin-top: 18px; }
-        .ep-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+        .ep-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; border-radius: 6px; transition: background .3s; }
+        .ep-row.just-saved { background: rgba(74, 222, 128, .18); box-shadow: inset 3px 0 0 #4ade80; padding-left: 8px; }
         .ep-row .n { color: var(--primary); font-weight: 700; min-width: 34px; }
         .ep-row .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .gate { text-align: center; padding: 90px 20px; }
@@ -858,7 +859,7 @@
                         ? `<span class="srv-badge" title="${nSrv} servidor(es)"><i class="fas fa-server"></i> ${nSrv}</span>`
                         : `<span class="srv-badge none" title="Sin servidores"><i class="fas fa-server"></i> 0</span>`;
                     const play = playUrl ? `<a class="btn grey sm" href="../${playUrl}" target="_blank" title="Ver reproductor"><i class="fas fa-play"></i></a>` : "";
-                    return `<div class="ep-row"><span class="n">${ep.number}</span><span class="t">${ep.title || "(sin título)"}</span>${badge}
+                    return `<div class="ep-row" data-epnum="${ep.number}"><span class="n">${ep.number}</span><span class="t">${ep.title || "(sin título)"}</span>${badge}
                     ${play}<button class="btn grey sm" data-editep="${ep.number}" title="Editar"><i class="fas fa-pen"></i></button>
                     <button class="btn danger sm" data-delep="${ep.number}" title="Eliminar"><i class="fas fa-trash"></i></button></div>`;
                 }).join("");
@@ -963,12 +964,26 @@
                     const total = await addEpisodes(animeId, [ep]);
                     $("ep-msg").innerHTML = `✅ Episodio agregado (${total} en total).${testLink}`; $("ep-msg").className = "msg ok";
                 }
+                const savedSeason = season, savedNum = Number(ep.number);
                 resetEpForm();
-                // Refresca temporadas (por si era nueva) y la lista.
-                await $("ep-anime").dispatchEvent(new Event("change"));
-                if ([...$("ep-season").options].some((o) => o.value === season)) {
-                    $("ep-season").value = season;
-                    $("ep-season").dispatchEvent(new Event("change"));
+                // Mantener la navegación donde estaba: misma temporada y volver al
+                // episodio guardado (sin re-disparar el cambio de anime, que
+                // reiniciaría la temporada al inicio).
+                const seasonPresent = [...$("ep-season").options].some((o) => o.value === savedSeason);
+                if (!seasonPresent) {
+                    // Temporada nueva: recargar la lista de temporadas del anime.
+                    await $("ep-anime").dispatchEvent(new Event("change"));
+                }
+                if ([...$("ep-season").options].some((o) => o.value === savedSeason)) {
+                    $("ep-season").value = savedSeason;
+                    $("new-season-field").style.display = "none";
+                    await renderExistingEpisodes(animeId, savedSeason);
+                    const row = $("ep-existing").querySelector(`.ep-row[data-epnum="${savedNum}"]`);
+                    if (row) {
+                        row.scrollIntoView({ behavior: "smooth", block: "center" });
+                        row.classList.add("just-saved");
+                        setTimeout(() => row.classList.remove("just-saved"), 1800);
+                    }
                 }
                 loadCatalog();
             } catch (err) {
