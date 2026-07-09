@@ -347,6 +347,32 @@
 
                     <div class="ep-list" id="ep-existing"></div>
                 </div>
+
+                <!-- Importar lista de episodios (bulk) -->
+                <div class="card" id="ep-import-card" style="margin-top:16px">
+                    <h2><i class="fas fa-file-import"></i> Importar lista de episodios</h2>
+                    <p class="hint" style="margin-bottom:6px">Para animes muy extensos (One Piece, etc.). Pega la lista y se crean <b>todos los episodios de una vez</b> en el anime elegido arriba, sin servidores (luego los rellenas con «Subir» o el sanador). Los duplicados (misma temporada + número) se omiten solos. Formatos aceptados:</p>
+                    <ul class="hint" style="margin:0 0 12px 18px">
+                        <li><b>Texto</b>: una línea por episodio — <code>S1E1 - Título</code>, <code>1. Título</code>, <code>1 | Título</code>, o solo <code>Título</code>. Una línea suelta <code>Temporada 2:</code> cambia la temporada a partir de ahí.</li>
+                        <li><b>JSON</b>: un arreglo <code>[{"season":"Temporada 1","number":1,"title":"…"}]</code> (acepta también <code>servers</code>, <code>img</code>, <code>releaseDate</code>…).</li>
+                    </ul>
+                    <div class="grid2">
+                        <div class="field"><label>Temporada por defecto</label><input id="imp-season" value="Temporada 1"></div>
+                        <div class="field"><label>Idioma por defecto</label><input id="imp-lang" value="Sub"></div>
+                        <div class="field"><label>Duración por defecto</label><input id="imp-duration" value="24 min"></div>
+                        <div class="field"><label>Nº inicial (si no hay números)</label><input id="imp-start" type="number" value="1"></div>
+                        <div class="field full"><label>Imagen por defecto (opcional)</label><input id="imp-img" placeholder="Si lo dejas vacío se usa la imagen del anime"></div>
+                    </div>
+                    <div class="field full"><label>Lista de episodios</label>
+                        <textarea id="imp-text" rows="9" placeholder="S1E1 - Romance Dawn&#10;S1E2 - El gran espadachín aparece&#10;3 | Introduce a Zoro&#10;Temporada 2:&#10;1 - Nuevo comienzo"></textarea>
+                    </div>
+                    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                        <button class="btn grey sm" type="button" id="imp-preview"><i class="fas fa-eye"></i> Previsualizar</button>
+                        <button class="btn" type="button" id="imp-run" disabled><i class="fas fa-file-import"></i> Importar al anime</button>
+                        <span class="msg" id="imp-msg" style="margin:0"></span>
+                    </div>
+                    <div id="imp-preview-box" style="margin-top:12px"></div>
+                </div>
             </section>
 
             <!-- ============ SUBIR EPISODIOS ============ -->
@@ -1201,6 +1227,95 @@
             const vu = (ep.videoUrl && ep.videoUrl.includes("player.html")) ? ep.videoUrl : ("frame/player.html?a=" + animeId + "&s=" + encodeURIComponent(season) + "&e=" + number);
             await updateEpisode(animeId, season, number, { season, number, servers, videoUrl: vu });
         }
+
+        // ---------- Importar lista de episodios (bulk) ----------
+        // Convierte texto/JSON en un arreglo de episodios con el esquema de la BD.
+        function parseEpisodeList(text, opts) {
+            text = String(text || "").trim();
+            if (!text) return [];
+            const norm = (e, i) => ({
+                season: (e.season && String(e.season).trim()) || opts.season,
+                number: Number.isFinite(+e.number) && e.number !== "" ? parseInt(e.number, 10) : opts.start + i,
+                title: (e.title || e.name || "").toString().trim(),
+                duration: (e.duration || opts.duration).toString().trim() || "24 min",
+                description: (e.description || "").toString().trim(),
+                img: (e.img || opts.img || "").toString().trim(),
+                releaseDate: (e.releaseDate || "").toString().trim(),
+                releaseTime: (e.releaseTime || "").toString().trim(),
+                language: (e.language || opts.lang).toString().trim() || "Sub",
+                videoUrl: (e.videoUrl || "").toString().trim(),
+                servers: Array.isArray(e.servers) ? e.servers : [],
+            });
+            // JSON (arreglo u objeto)
+            if (text[0] === "[" || text[0] === "{") {
+                let arr = JSON.parse(text);
+                if (!Array.isArray(arr)) arr = arr.episodes && Array.isArray(arr.episodes) ? arr.episodes : [arr];
+                return arr.map(norm);
+            }
+            // Texto: una línea por episodio (+ encabezados "Temporada N:")
+            const out = [];
+            let season = opts.season, auto = opts.start;
+            for (const raw of text.split(/\r?\n/)) {
+                const line = raw.trim();
+                if (!line) continue;
+                const sh = line.match(/^(?:temporada|season|t)\s*(\d+)\s*:?\s*$/i);
+                if (sh) { season = "Temporada " + parseInt(sh[1], 10); continue; }
+                let s = season, num = null, title = line;
+                let m = line.match(/^s?\s*(\d{1,2})\s*[ex]\s*(\d{1,4})\b[\s\-–|.:)]*/i);   // S1E1 / 1x01
+                if (m) { s = "Temporada " + parseInt(m[1], 10); num = parseInt(m[2], 10); title = line.slice(m[0].length); }
+                else if ((m = line.match(/^(\d{1,4})\s*[\-–|.:)\t]+\s*(.*)$/))) { num = parseInt(m[1], 10); title = m[2]; }   // 12. / 12 - / 12 |
+                else if ((m = line.match(/^(\d{1,4})$/))) { num = parseInt(m[1], 10); title = ""; }                          // solo número
+                if (num == null) num = auto;
+                auto = num + 1;
+                title = title.replace(/^[\s\-–|.:)"']+/, "").replace(/["'\s]+$/, "").trim();
+                out.push(norm({ season: s, number: num, title }, out.length));
+            }
+            return out;
+        }
+
+        let impParsed = [];
+        $("imp-preview").addEventListener("click", () => {
+            try {
+                const opts = {
+                    season: $("imp-season").value.trim() || "Temporada 1",
+                    lang: $("imp-lang").value.trim() || "Sub",
+                    duration: $("imp-duration").value.trim() || "24 min",
+                    img: $("imp-img").value.trim(),
+                    start: parseInt($("imp-start").value, 10) || 1,
+                };
+                impParsed = parseEpisodeList($("imp-text").value, opts);
+                if (!impParsed.length) { setMsg($("imp-msg"), "No se detectaron episodios.", "err"); $("imp-run").disabled = true; return; }
+                const bySeason = {};
+                impParsed.forEach((e) => { bySeason[e.season] = (bySeason[e.season] || 0) + 1; });
+                const rows = impParsed.slice(0, 10).map((e) => `<tr><td>${e.season}</td><td style="text-align:center">${e.number}</td><td>${e.title || '<i style="color:#888">(sin título)</i>'}</td></tr>`).join("");
+                $("imp-preview-box").innerHTML =
+                    `<p class="hint">Detectados <b>${impParsed.length}</b> episodios · ${Object.entries(bySeason).map(([s, n]) => `${s}: <b>${n}</b>`).join(" · ")}</p>` +
+                    `<table style="width:100%;border-collapse:collapse;font-size:.92em"><thead><tr style="text-align:left;color:#9aa"><th>Temporada</th><th>Nº</th><th>Título</th></tr></thead><tbody>${rows}</tbody></table>` +
+                    (impParsed.length > 10 ? `<p class="hint">…y ${impParsed.length - 10} más</p>` : "");
+                setMsg($("imp-msg"), "Revisa la vista previa y pulsa «Importar».", "ok");
+                $("imp-run").disabled = false;
+            } catch (e) { setMsg($("imp-msg"), "Error al parsear: " + e.message, "err"); $("imp-run").disabled = true; }
+        });
+
+        $("imp-run").addEventListener("click", async () => {
+            const animeId = $("ep-anime").value;
+            if (!animeId) { setMsg($("imp-msg"), "Elige un anime en el selector de arriba primero.", "err"); return; }
+            if (!impParsed.length) { setMsg($("imp-msg"), "Pulsa «Previsualizar» primero.", "err"); return; }
+            $("imp-run").disabled = true;
+            setMsg($("imp-msg"), `Importando ${impParsed.length} episodios…`, "");
+            try {
+                const anime = await getAnime(animeId);
+                const have = new Set((anime.episodes || []).map((e) => String(e.season) + "::" + Number(e.number)));
+                const seen = new Set();
+                const nuevos = impParsed.filter((e) => { const k = String(e.season) + "::" + Number(e.number); if (have.has(k) || seen.has(k)) return false; seen.add(k); return true; });
+                const dup = impParsed.length - nuevos.length;
+                if (!nuevos.length) { setMsg($("imp-msg"), `Todos (${impParsed.length}) ya existían. Nada que importar.`, "err"); return; }
+                const total = await addEpisodes(animeId, nuevos);
+                setMsg($("imp-msg"), `✓ Importados ${nuevos.length}${dup ? ` (${dup} ya existían, omitidos)` : ""}. Total del anime: ${total}.`, "ok");
+                $("imp-text").value = ""; $("imp-preview-box").innerHTML = ""; impParsed = [];
+                $("ep-anime").dispatchEvent(new Event("change"));   // refresca temporadas/lista
+            } catch (e) { setMsg($("imp-msg"), "Error: " + e.message, "err"); $("imp-run").disabled = false; }
+        });
     </script>
 </body>
 
