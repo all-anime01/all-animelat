@@ -28,7 +28,10 @@ function animeMatchesQuery(anime, q) {
 // toda la colección con episodios (~MB). La homepage sí necesita todo
 // (carrusel de episodios recientes), así que ahí usa getAnimeData().
 const _path = window.location.pathname;
-const IS_DETAILS_PAGE = /anime-details\./i.test(_path);
+// OJO: Firebase cleanUrls sirve la ficha en /anime-details (SIN .html), así que
+// la detección NO debe exigir el punto. Antes /anime-details\./ fallaba en prod
+// → la ficha caía a getAnimeData() (caché) y los cambios de servidores no se veían.
+const IS_DETAILS_PAGE = /(^|\/)anime-details(\.html?)?(\/|\?|$)/i.test(_path);
 const IS_HOME_PAGE = _path === "/" || _path === "" || /\/index(\.html)?$/i.test(_path);
 
 async function loadPageData() {
