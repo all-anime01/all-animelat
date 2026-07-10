@@ -412,7 +412,7 @@
                 <div class="card">
                     <div class="grid3up">
                         <div class="field"><label>Anime</label><select id="up-anime"></select></div>
-                        <div class="field"><label>Temporada</label><input id="up-season" list="up-season-list" placeholder="Temporada 1" autocomplete="off"><datalist id="up-season-list"></datalist></div>
+                        <div class="field"><label>Temporada</label><select id="up-season"></select><input id="up-season-new" placeholder="Nueva temporada (ej. Temporada 3)" autocomplete="off" style="display:none;margin-top:6px"></div>
                         <div class="field"><label>Carpeta destino (se crea sola)</label>
                             <div class="up-destino" id="up-destino">📁 —</div>
                         </div>
@@ -1166,7 +1166,8 @@
                 catch (e) { setMsg($("up-keys-msg"), "❌ " + e.message, "error"); }
             });
             $("up-anime").addEventListener("change", upSeasons);
-            $("up-season").addEventListener("change", upDestino);
+            $("up-season").addEventListener("change", upSeasonChanged);
+            $("up-season-new").addEventListener("input", upDestino);
             $("up-pick").addEventListener("click", () => $("up-input").click());
             $("up-input").addEventListener("change", (e) => upAddFiles(e.target.files));
             const dz = $("up-drop");
@@ -1198,18 +1199,30 @@
 
         async function upSeasons() {
             const aid = $("up-anime").value; if (!aid) return;
+            const NEW_OPT = `<option value="__new__">➕ Nueva temporada…</option>`;
             try {
+                // Lista las temporadas existentes (fácil de elegir) + una opción para
+                // AÑADIR una nueva (ej. "Temporada 3") y subir/sincronizar una que aún no existe.
                 const seasons = await getAnimeSeasons(aid);
-                // Sugiere las temporadas existentes PERO permite escribir una nueva
-                // (ej. "Temporada 3") para subir/sincronizar una temporada que aún no existe.
-                $("up-season-list").innerHTML = seasons.map((s) => `<option value="${s}"></option>`).join("");
-                $("up-season").value = seasons[0] || "Temporada 1";
-            } catch (e) { $("up-season-list").innerHTML = ""; $("up-season").value = "Temporada 1"; }
+                $("up-season").innerHTML = seasons.map((s) => `<option value="${s}">${s}</option>`).join("") + NEW_OPT;
+            } catch (e) { $("up-season").innerHTML = `<option value="Temporada 1">Temporada 1</option>` + NEW_OPT; }
+            $("up-season-new").style.display = "none"; $("up-season-new").value = "";
+            upFolderId = 0; upDestino();
+        }
+        // Resuelve la temporada elegida: la del <select>, o la escrita si se eligió "Nueva temporada".
+        function upSeasonValue() {
+            const sel = $("up-season").value;
+            return sel === "__new__" ? ($("up-season-new").value || "").trim() : sel;
+        }
+        function upSeasonChanged() {
+            const isNew = $("up-season").value === "__new__";
+            $("up-season-new").style.display = isNew ? "block" : "none";
+            if (isNew) $("up-season-new").focus();
             upFolderId = 0; upDestino();
         }
         function upDestino() {
             const a = $("up-anime").selectedOptions[0]?.textContent || "—";
-            const s = $("up-season").value || "—";
+            const s = upSeasonValue() || "—";
             $("up-destino").innerHTML = `📁 <b>${a}</b> / <span class="p">${s}</span>`;
         }
 
@@ -1234,7 +1247,8 @@
         async function upCreateFolder() {
             const name = $("up-newfolder").value.trim(); if (!name) return;
             const hosts = upHostsSel(); if (!hosts.length) { alert("Selecciona al menos un servidor."); return; }
-            const anime = $("up-anime").selectedOptions[0]?.textContent, season = $("up-season").value;
+            const anime = $("up-anime").selectedOptions[0]?.textContent, season = upSeasonValue();
+            if (!season) { alert("Elige o escribe una temporada."); return; }
             for (const h of hosts) {
                 try { const seasonId = await UP.ensureAnimeSeasonFolder(h, upKeys[h], anime, season); await UP.ensureFolder(h, upKeys[h], name, seasonId); }
                 catch (e) { console.error(h, e); }
@@ -1246,7 +1260,8 @@
             if (upBusy) return;
             const hosts = upHostsSel();
             if (!hosts.length) { alert("Selecciona al menos un servidor (host)."); return; }
-            const animeId = $("up-anime").value, anime = $("up-anime").selectedOptions[0]?.textContent, season = $("up-season").value;
+            const animeId = $("up-anime").value, anime = $("up-anime").selectedOptions[0]?.textContent, season = upSeasonValue();
+            if (!season) { alert("Elige o escribe una temporada."); return; }
             const pending = upQueue.filter((q) => q.status === "wait" && q.number);
             if (!pending.length) { alert("No hay archivos con número de episodio para subir."); return; }
             upBusy = true; $("up-start").disabled = true;
@@ -1286,7 +1301,8 @@
             const host = "filemoon", key = upKeys[host];
             const btn = $("up-sync"), msg = $("up-sync-msg");
             if (!key) { setMsg(msg, "Falta la clave de Filemoon (botón «Claves API»).", "error"); return; }
-            const animeId = $("up-anime").value, anime = $("up-anime").selectedOptions[0]?.textContent, season = $("up-season").value;
+            const animeId = $("up-anime").value, anime = $("up-anime").selectedOptions[0]?.textContent, season = upSeasonValue();
+            if (!season) { setMsg(msg, "Elige o escribe una temporada.", "error"); return; }
             btn.disabled = true; setMsg(msg, "Buscando carpeta y archivos en el servidor…");
             try {
                 const animeFld = await UP.findFolder(host, key, anime, 0);
