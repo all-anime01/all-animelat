@@ -236,6 +236,27 @@ export async function saveHeroSlides(slides) {
   await setDoc(doc(db, "config", "hero"), { slides, updatedAt: serverTimestamp() }, { merge: true });
 }
 
+// ---- Notificaciones a usuarios (toast/banner en el sitio) -------------------
+export async function sendNotification(n) {
+  await setDoc(doc(db, "notifications", "current"), {
+    id: Date.now(),                       // cada envío es único → se muestra una vez
+    title: (n.title || "").trim(),
+    message: (n.message || "").trim(),
+    style: n.style || "info",             // info | success | warning | announce | new
+    format: n.format || "toast",          // toast (esquina) | banner (superior)
+    duration: Number(n.duration) || 6,    // segundos de auto-cierre
+    active: true,
+    createdAt: serverTimestamp(),
+  });
+}
+export async function deactivateNotification() {
+  await setDoc(doc(db, "notifications", "current"), { active: false }, { merge: true });
+}
+export async function getNotification() {
+  const s = await getDoc(doc(db, "notifications", "current"));
+  return s.exists() ? s.data() : null;
+}
+
 // Activa/desactiva una etiqueta (recomendado/doblaje/agregado) en un anime.
 // Controla en qué carrusel del inicio aparece.
 export async function setAnimeTag(animeId, tag, on) {

@@ -10,6 +10,7 @@ import { FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { logVisit } from "./analytics.js";
 import { initAds } from "./ads.js";
 import { initCardHover } from "./card-hover.js";
+import { initNotifications } from "./notifications.js";
 
 // Coincidencia de búsqueda por el título O cualquier título alternativo
 // (nombre japonés/romaji + internacional + sinónimos). Ej: "Attack on Titan"
@@ -150,6 +151,9 @@ injectAccountWidget();
 
 // Monta el hero cuanto antes (no depende del catálogo). Ver hero.js
 setupHero();
+
+// Notificación del admin (si hay una activa y no vista). No bloquea nada.
+initNotifications();
 
 $(document).ready(function () {
   loadPageData().then(function (animeData) {
