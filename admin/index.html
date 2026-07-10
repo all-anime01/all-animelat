@@ -412,7 +412,7 @@
                 <div class="card">
                     <div class="grid3up">
                         <div class="field"><label>Anime</label><select id="up-anime"></select></div>
-                        <div class="field"><label>Temporada</label><select id="up-season"></select></div>
+                        <div class="field"><label>Temporada</label><input id="up-season" list="up-season-list" placeholder="Temporada 1" autocomplete="off"><datalist id="up-season-list"></datalist></div>
                         <div class="field"><label>Carpeta destino (se crea sola)</label>
                             <div class="up-destino" id="up-destino">📁 —</div>
                         </div>
@@ -1198,8 +1198,13 @@
 
         async function upSeasons() {
             const aid = $("up-anime").value; if (!aid) return;
-            try { const seasons = await getAnimeSeasons(aid); $("up-season").innerHTML = seasons.map((s) => `<option>${s}</option>`).join(""); }
-            catch (e) { $("up-season").innerHTML = "<option>Temporada 1</option>"; }
+            try {
+                const seasons = await getAnimeSeasons(aid);
+                // Sugiere las temporadas existentes PERO permite escribir una nueva
+                // (ej. "Temporada 3") para subir/sincronizar una temporada que aún no existe.
+                $("up-season-list").innerHTML = seasons.map((s) => `<option value="${s}"></option>`).join("");
+                $("up-season").value = seasons[0] || "Temporada 1";
+            } catch (e) { $("up-season-list").innerHTML = ""; $("up-season").value = "Temporada 1"; }
             upFolderId = 0; upDestino();
         }
         function upDestino() {
@@ -1299,20 +1304,37 @@
                     (byNum[n] = byNum[n] || []).push({ host, code: UP.fileCode(f), t: UP.fileTitle(f) });
                 }
                 const anm = await getAnime(animeId); const eps = anm.episodes || [];
-                const plan = [];
-                Object.entries(byNum).forEach(([n, codes]) => {
+                // Para CADA archivo con número: si el episodio existe -> adjunta el server;
+                // si NO existe (p.ej. una TEMPORADA NUEVA) -> lo CREA. Antes solo actualizaba
+                // existentes, por eso una temporada/episodio nuevo "no cargaba".
+                const plan = Object.entries(byNum).map(([n, codes]) => {
                     const ep = eps.find((e) => String(e.season) === String(season) && Number(e.number) === Number(n));
-                    if (ep) plan.push({ n: +n, codes });
-                });
-                if (!plan.length) { setMsg(msg, `No hubo coincidencias (${files.length} archivos, ${noNum} sin nº). Revisa que los nombres incluyan el número de episodio.`, "error"); btn.disabled = false; return; }
-                // Vista previa antes de escribir (los nombres pueden ser confusos).
-                const preview = plan.sort((a, b) => a.n - b.n).map((p) => "E" + p.n).join(", ");
-                if (!confirm(`Se vincularán ${plan.length} episodios de "${anime} / ${season}" desde Filemoon:\n${preview}\n\n¿Continuar? (revisa que el número corresponda al episodio correcto)`)) { setMsg(msg, "Cancelado.", ""); btn.disabled = false; return; }
-                let attached = 0;
-                for (const p of plan) {
-                    try { await attachServers(animeId, season, p.n, p.codes.filter((c) => c.code)); attached++; } catch (e) { }
+                    return { n: +n, codes: codes.filter((c) => c.code), exists: !!ep };
+                }).filter((p) => p.codes.length).sort((a, b) => a.n - b.n);
+                if (!plan.length) { setMsg(msg, `No hubo coincidencias con filecode (${files.length} archivos, ${noNum} sin nº). Revisa que los nombres incluyan el número de episodio.`, "error"); btn.disabled = false; return; }
+                const toCreate = plan.filter((p) => !p.exists), toUpdate = plan.filter((p) => p.exists);
+                // Vista previa: distingue CREAR (nuevos) de ACTUALIZAR (existentes).
+                const prev = [
+                    toUpdate.length ? `Actualizar: ${toUpdate.map((p) => "E" + p.n).join(", ")}` : "",
+                    toCreate.length ? `CREAR nuevos: ${toCreate.map((p) => "E" + p.n).join(", ")}` : "",
+                ].filter(Boolean).join("\n");
+                if (!confirm(`"${anime} / ${season}" desde Filemoon:\n${prev}\n\n¿Continuar? (revisa que el número corresponda al episodio correcto)`)) { setMsg(msg, "Cancelado.", ""); btn.disabled = false; return; }
+                // 1) Crea los episodios/temporada que no existen (con el server de Filemoon y su player).
+                let created = 0;
+                if (toCreate.length) {
+                    const newEps = toCreate.map((p) => ({
+                        season, number: p.n, title: "Episodio " + p.n, duration: "24 min", description: "",
+                        img: "", releaseDate: "", language: "Sub",
+                        servers: p.codes.map((c) => ({ name: UP.HOSTS[c.host].label, url: UP.embedUrl(c.host, c.code), lang: "Sub", desc: "" })),
+                        videoUrl: "frame/player.html?a=" + animeId + "&s=" + encodeURIComponent(season) + "&e=" + p.n,
+                    }));
+                    try { await addEpisodes(animeId, newEps); created = newEps.length; }
+                    catch (e) { setMsg(msg, "❌ al crear episodios: " + e.message, "error"); btn.disabled = false; return; }
                 }
-                setMsg(msg, `✅ ${attached} episodio(s) vinculados desde Filemoon. (${files.length} archivos; ${noNum} sin nº)`, "ok");
+                // 2) Adjunta el server a los que ya existían (preservando sus servidores).
+                let attached = 0;
+                for (const p of toUpdate) { try { await attachServers(animeId, season, p.n, p.codes); attached++; } catch (e) { } }
+                setMsg(msg, `✅ ${created} creado(s) + ${attached} actualizado(s) desde Filemoon. (${files.length} archivos; ${noNum} sin nº)`, "ok");
                 loadCatalog();
             } catch (e) { setMsg(msg, "❌ " + e.message, "error"); }
             finally { btn.disabled = false; }
@@ -1322,15 +1344,22 @@
             const anime = await getAnime(animeId);
             const eps = anime.episodes || [];
             const i = eps.findIndex((e) => String(e.season) === String(season) && Number(e.number) === Number(number));
-            if (i < 0) throw new Error("Episodio " + number + " no existe en " + season);
+            const newServers = codes.map((c) => ({ name: UP.HOSTS[c.host].label, url: UP.embedUrl(c.host, c.code), lang: "Sub", desc: "" }));
+            const vu = "frame/player.html?a=" + animeId + "&s=" + encodeURIComponent(season) + "&e=" + number;
+            if (i < 0) {
+                // El episodio (o la temporada) NO existe todavía -> se CREA con su server y player.
+                // (Antes lanzaba error, por eso una temporada/episodio nuevo subido a Filemoon "no cargaba".)
+                await addEpisodes(animeId, [{
+                    season, number: Number(number), title: "Episodio " + number, duration: "24 min",
+                    description: "", img: "", releaseDate: "", language: "Sub", servers: newServers, videoUrl: vu,
+                }]);
+                return;
+            }
             const ep = eps[i];
             const servers = Array.isArray(ep.servers) ? [...ep.servers] : [];
-            for (const c of codes) {
-                const url = UP.embedUrl(c.host, c.code);
-                if (!servers.some((s) => s.url === url)) servers.push({ name: UP.HOSTS[c.host].label, url, lang: "Sub", desc: "" });
-            }
-            const vu = (ep.videoUrl && ep.videoUrl.includes("player.html")) ? ep.videoUrl : ("frame/player.html?a=" + animeId + "&s=" + encodeURIComponent(season) + "&e=" + number);
-            await updateEpisode(animeId, season, number, { season, number, servers, videoUrl: vu });
+            for (const s of newServers) { if (!servers.some((x) => x.url === s.url)) servers.push(s); }
+            const keepVu = (ep.videoUrl && ep.videoUrl.includes("player.html")) ? ep.videoUrl : vu;
+            await updateEpisode(animeId, season, number, { season, number, servers, videoUrl: keepVu });
         }
 
         // ---------- Importar lista de episodios (bulk) ----------
