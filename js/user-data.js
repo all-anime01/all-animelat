@@ -99,9 +99,16 @@ export async function recordHistory(anime, episode) {
       title: episode.title || "", language: episode.language || "",
       videoUrl: episode.videoUrl || "", at: serverTimestamp(),
     }, { merge: true });
-    // Primera vez que ve este episodio → suma a la popularidad pública del anime.
+    // Primera vez que ve este episodio → suma a la popularidad pública del
+    // anime Y al contador de vistas del episodio (para "episodios más vistos").
     if (!existed) {
       await setDoc(doc(db, "animeStats", anime.id), { viewCount: increment(1) }, { merge: true });
+      await setDoc(doc(db, "episodeStats", epId), {
+        viewCount: increment(1),
+        animeId: anime.id, animeTitle: anime.title,
+        season: episode.season, number: episode.number,
+        title: episode.title || "", img: episode.img || anime.img || "",
+      }, { merge: true });
     }
   } catch (e) { /* no crítico */ }
 }

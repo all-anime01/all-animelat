@@ -238,13 +238,23 @@ export async function saveHeroSlides(slides) {
 
 // ---- Notificaciones a usuarios (toast/banner en el sitio) -------------------
 export async function sendNotification(n) {
+  // id: cada ENVÍO nuevo es único (se muestra una vez). Al EDITAR uno ya
+  // publicado se pasa n.id para conservarlo (corrige sin volver a molestar a
+  // quien ya lo vio); marca "editar y re-mostrar" -> no pasar id.
   await setDoc(doc(db, "notifications", "current"), {
-    id: Date.now(),                       // cada envío es único → se muestra una vez
+    id: n.id || Date.now(),
     title: (n.title || "").trim(),
     message: (n.message || "").trim(),
     style: n.style || "info",             // info | success | warning | announce | new
-    format: n.format || "toast",          // toast (esquina) | banner (superior)
-    duration: Number(n.duration) || 6,    // segundos de auto-cierre
+    format: n.format || "toast",          // toast | banner | card (tarjeta de anime)
+    duration: Number(n.duration) || 6,    // segundos de auto-cierre (0 = fijo, no auto-cierra)
+    // Personalización tipo "tarjeta de anime" (anuncio de estreno/cancelación).
+    animeId: (n.animeId || "").trim(),    // id del anime para su tarjeta (poster + título)
+    animeTitle: (n.animeTitle || "").trim(),
+    poster: (n.poster || "").trim(),      // poster del anime (tarjeta)
+    bgImage: (n.bgImage || "").trim(),    // fondo llamativo
+    ctaText: (n.ctaText || "").trim(),    // texto del botón (ej. "Ver anime")
+    ctaUrl: (n.ctaUrl || "").trim(),      // enlace del botón
     active: true,
     createdAt: serverTimestamp(),
   });

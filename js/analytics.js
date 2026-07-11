@@ -93,3 +93,35 @@ export async function getUserCount() {
     return snap.data().count;
   } catch (e) { return null; }
 }
+
+// Lista de usuarios registrados CON SUS DATOS (para el panel admin).
+// Ordena por fecha de alta (más recientes primero); si algún doc no tiene
+// createdAt, cae a una lectura sin orden para no perder usuarios.
+export async function getUsers(max = 500) {
+  const shape = (d) => {
+    const u = d.data();
+    const ca = u.createdAt && typeof u.createdAt.toDate === "function" ? u.createdAt.toDate() : null;
+    return { uid: d.id, email: u.email || "", displayName: u.displayName || "", role: u.role || "user", photoURL: u.photoURL || "", createdAt: ca };
+  };
+  try {
+    const q = query(collection(db, "users"), orderBy("createdAt", "desc"), limit(max));
+    const snap = await getDocs(q);
+    return snap.docs.map(shape);
+  } catch (e) {
+    try {
+      const snap = await getDocs(query(collection(db, "users"), limit(max)));
+      return snap.docs.map(shape).sort((a, b) => (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0));
+    } catch (e2) { return []; }
+  }
+}
+
+// Episodios más vistos por la comunidad (episodeStats.viewCount).
+export async function getTopEpisodes(max = 10) {
+  try {
+    const q = query(collection(db, "episodeStats"), orderBy("viewCount", "desc"), limit(max));
+    const snap = await getDocs(q);
+    return snap.docs
+      .map((d) => { const s = d.data(); return { id: d.id, viewCount: s.viewCount || 0, animeId: s.animeId || "", animeTitle: s.animeTitle || "", season: s.season || "", number: s.number, title: s.title || "", img: s.img || "" }; })
+      .filter((x) => x.viewCount > 0);
+  } catch (e) { return []; }
+}
