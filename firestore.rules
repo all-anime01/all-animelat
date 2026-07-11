@@ -48,6 +48,11 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // ---- Historial de notificaciones (solo admin: activar/editar/eliminar) ----
+    match /notifications_list/{docId} {
+      allow read, write: if isAdmin();
+    }
+
     // ---- Secretos del admin (claves API de subida) — solo admin ----
     match /admin_secrets/{docId} {
       allow read, write: if isAdmin();

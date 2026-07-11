@@ -11,6 +11,9 @@ import {
   getDoc,
   getDocs,
   collection,
+  query,
+  orderBy,
+  limit,
   setDoc,
   updateDoc,
   deleteDoc,
@@ -237,27 +240,36 @@ export async function saveHeroSlides(slides) {
 }
 
 // ---- Notificaciones a usuarios (toast/banner en el sitio) -------------------
-export async function sendNotification(n) {
-  // id: cada ENVÍO nuevo es único (se muestra una vez). Al EDITAR uno ya
-  // publicado se pasa n.id para conservarlo (corrige sin volver a molestar a
-  // quien ya lo vio); marca "editar y re-mostrar" -> no pasar id.
-  await setDoc(doc(db, "notifications", "current"), {
-    id: n.id || Date.now(),
+// Construye el objeto de notificación (mismo esquema en "current" y en la lista).
+function buildNotifPayload(n) {
+  return {
+    id: n.id || Date.now(),               // id estable: al EDITAR se conserva (no re-notifica)
     title: (n.title || "").trim(),
     message: (n.message || "").trim(),
     style: n.style || "info",             // info | success | warning | announce | new
     format: n.format || "toast",          // toast | banner | card (tarjeta de anime)
-    duration: Number(n.duration) || 6,    // segundos de auto-cierre (0 = fijo, no auto-cierra)
-    // Personalización tipo "tarjeta de anime" (anuncio de estreno/cancelación).
-    animeId: (n.animeId || "").trim(),    // id del anime para su tarjeta (poster + título)
+    duration: Number.isFinite(+n.duration) ? Math.max(0, +n.duration) : 6, // 0 = fija
+    animeId: (n.animeId || "").trim(),
     animeTitle: (n.animeTitle || "").trim(),
-    poster: (n.poster || "").trim(),      // poster del anime (tarjeta)
-    bgImage: (n.bgImage || "").trim(),    // fondo llamativo
-    ctaText: (n.ctaText || "").trim(),    // texto del botón (ej. "Ver anime")
-    ctaUrl: (n.ctaUrl || "").trim(),      // enlace del botón
-    active: true,
-    createdAt: serverTimestamp(),
-  });
+    poster: (n.poster || "").trim(),
+    bgImage: (n.bgImage || "").trim(),
+    ctaText: (n.ctaText || "").trim(),
+    ctaUrl: (n.ctaUrl || "").trim(),
+  };
+}
+export async function sendNotification(n) {
+  const p = buildNotifPayload(n);
+  // 1) La activa que ve el sitio (notifications/current).
+  await setDoc(doc(db, "notifications", "current"), { ...p, active: true, createdAt: serverTimestamp() });
+  // 2) Guarda/actualiza en el HISTORIAL para poder reactivarla luego.
+  await setDoc(doc(db, "notifications_list", String(p.id)), { ...p, savedAt: serverTimestamp() }, { merge: true });
+  return p.id;
+}
+// Guarda una notificación en la lista SIN activarla (para tenerla lista).
+export async function saveNotificationToList(n) {
+  const p = buildNotifPayload(n);
+  await setDoc(doc(db, "notifications_list", String(p.id)), { ...p, savedAt: serverTimestamp() }, { merge: true });
+  return p.id;
 }
 export async function deactivateNotification() {
   await setDoc(doc(db, "notifications", "current"), { active: false }, { merge: true });
@@ -265,6 +277,26 @@ export async function deactivateNotification() {
 export async function getNotification() {
   const s = await getDoc(doc(db, "notifications", "current"));
   return s.exists() ? s.data() : null;
+}
+// Historial de notificaciones creadas (para activar/editar/eliminar).
+export async function getNotificationsList(max = 100) {
+  try {
+    const q = query(collection(db, "notifications_list"), orderBy("savedAt", "desc"), limit(max));
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => d.data());
+  } catch (e) {
+    const snap = await getDocs(collection(db, "notifications_list"));
+    return snap.docs.map((d) => d.data()).sort((a, b) => (b.id || 0) - (a.id || 0));
+  }
+}
+// Activa (muestra a los usuarios) una notificación guardada en la lista.
+export async function activateNotification(item) {
+  const p = buildNotifPayload(item);
+  await setDoc(doc(db, "notifications", "current"), { ...p, active: true, createdAt: serverTimestamp() });
+  return p.id;
+}
+export async function deleteNotificationFromList(id) {
+  await deleteDoc(doc(db, "notifications_list", String(id)));
 }
 
 // Activa/desactiva una etiqueta (recomendado/doblaje/agregado) en un anime.

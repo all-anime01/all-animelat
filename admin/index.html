@@ -148,6 +148,19 @@
         .utable a:hover { text-decoration: underline; }
         .urole { font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 20px; background: #2a2a2a; color: var(--grey); text-transform: capitalize; }
         .urole.is-admin { background: rgba(255,90,60,.16); color: var(--primary); }
+        /* Lista de notificaciones guardadas */
+        .ntl { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: #12161d; margin-bottom: 10px; flex-wrap: wrap; }
+        .ntl.is-active { border-color: #37e35f; box-shadow: 0 0 0 1px rgba(55,227,95,.25); }
+        .ntl-info { min-width: 0; flex: 1; }
+        .ntl-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+        .ntl-badge { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; padding: 2px 8px; border-radius: 20px; background: #2a2a2a; color: var(--grey); }
+        .ntl-badge.b-info { background: rgba(59,157,255,.16); color: #3b9dff; } .ntl-badge.b-success { background: rgba(34,197,94,.16); color: #22c55e; }
+        .ntl-badge.b-warning { background: rgba(245,165,36,.16); color: #f5a524; } .ntl-badge.b-announce { background: rgba(168,85,247,.16); color: #a855f7; }
+        .ntl-badge.b-new { background: rgba(255,77,109,.16); color: #ff4d6d; }
+        .ntl-live { font-size: 11.5px; font-weight: 700; color: #37e35f; }
+        .ntl-msg { font-size: 13px; color: #cbd5e1; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ntl-when { font-size: 11px; color: var(--grey); margin-top: 3px; }
+        .ntl-actions { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
         .rank .rk-val i { color: var(--primary); }
         .rank .rk-bar { flex: none; width: 80px; height: 6px; background: #2a2a2a; border-radius: 4px; overflow: hidden; }
         .rank .rk-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), #e23b3b); }
@@ -509,11 +522,19 @@
                         <button class="btn grey sm" type="button" id="nt-preview"><i class="fas fa-eye"></i> Vista previa</button>
                         <button class="btn grey sm" type="button" id="nt-edit"><i class="fas fa-pen"></i> Cargar actual para editar</button>
                         <button class="btn" type="button" id="nt-send"><i class="fas fa-paper-plane"></i> Enviar a usuarios</button>
+                        <button class="btn grey sm" type="button" id="nt-save"><i class="fas fa-floppy-disk"></i> Guardar en lista</button>
                         <button class="btn danger sm" type="button" id="nt-off"><i class="fas fa-bell-slash"></i> Desactivar la actual</button>
                         <label style="font-size:13px;display:inline-flex;align-items:center;gap:6px;color:var(--grey)"><input type="checkbox" id="nt-renotify"> Re-mostrar a todos</label>
                         <span class="msg" id="nt-msg" style="margin:0"></span>
                     </div>
                     <div id="nt-current" class="hint" style="margin-top:14px"></div>
+                </div>
+                <div class="card" style="margin-top:14px">
+                    <div class="phead" style="margin:0 0 6px"><h2 style="margin:0"><i class="fas fa-clock-rotate-left" style="color:var(--primary)"></i> Notificaciones guardadas</h2>
+                        <button class="btn grey sm" type="button" id="nt-reload"><i class="fas fa-rotate"></i> Actualizar</button>
+                    </div>
+                    <p class="hint" style="margin:0 0 10px">Cada notificación que envías o guardas queda aquí para <b>reactivarla</b>, editarla o eliminarla cuando quieras.</p>
+                    <div id="nt-list"><p class="hint">Cargando…</p></div>
                 </div>
             </section>
 
@@ -568,6 +589,7 @@
             getHeroSlides, saveHeroSlides, importAnimes, exportAllAnimes,
             buildAnimeFromForm, buildEpisodeFromForm,
             sendNotification, deactivateNotification, getNotification,
+            saveNotificationToList, getNotificationsList, activateNotification, deleteNotificationFromList,
         } from "../js/admin.js";
         import { showNotification } from "../js/notifications.js";
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
@@ -684,12 +706,71 @@
             try { await deactivateNotification(); setMsg($("nt-msg"), "Notificación desactivada.", "ok"); loadCurrentNotif(); }
             catch (e) { setMsg($("nt-msg"), "Error: " + e.message, "error"); }
         });
+        // Guardar en la lista SIN enviar (para tenerla lista y activarla luego).
+        $("nt-save").addEventListener("click", async () => {
+            const n = readNotifForm();
+            if (!n.message && !n.animeTitle) { setMsg($("nt-msg"), "Escribe un mensaje o elige un anime.", "error"); return; }
+            setMsg($("nt-msg"), "Guardando…");
+            try { await saveNotificationToList(n); $("nt-editing").value = ""; setMsg($("nt-msg"), "💾 Guardada en la lista (no enviada).", "ok"); loadNotifList(); }
+            catch (e) { setMsg($("nt-msg"), "Error: " + e.message, "error"); }
+        });
+        $("nt-reload").addEventListener("click", loadNotifList);
         async function loadCurrentNotif() {
+            loadNotifList();
             try {
                 const n = await getNotification();
                 if (!n || !n.message) { $("nt-current").innerHTML = "No hay ninguna notificación publicada."; return; }
                 $("nt-current").innerHTML = `Actual: <b>${n.active ? "🟢 activa" : "⚪ inactiva"}</b> · [${n.style}/${n.format}] ${n.title ? "<b>" + n.title + "</b> — " : ""}${n.message}`;
             } catch (e) { $("nt-current").textContent = ""; }
+        }
+        let _notifCache = {};   // id -> item (para activar/editar sin re-leer)
+        async function loadNotifList() {
+            const cont = $("nt-list");
+            try {
+                const [list, current] = await Promise.all([getNotificationsList(100), getNotification().catch(() => null)]);
+                _notifCache = {};
+                const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+                if (!list.length) { cont.innerHTML = '<p class="hint">Aún no has guardado ninguna notificación.</p>'; return; }
+                const activeId = current && current.active ? String(current.id) : "";
+                cont.innerHTML = list.map((it) => {
+                    _notifCache[String(it.id)] = it;
+                    const isActive = String(it.id) === activeId;
+                    const when = it.savedAt && it.savedAt.toDate ? it.savedAt.toDate().toLocaleString("es") : "";
+                    return `<div class="ntl ${isActive ? "is-active" : ""}">
+                        <div class="ntl-info">
+                            <div class="ntl-top"><span class="ntl-badge b-${esc(it.style)}">${esc(it.format)}</span>${isActive ? '<span class="ntl-live">🟢 activa</span>' : ""}${it.title ? `<b>${esc(it.title)}</b>` : ""}</div>
+                            <div class="ntl-msg">${esc(it.animeTitle ? "[" + it.animeTitle + "] " : "")}${esc(it.message)}</div>
+                            <div class="ntl-when">${esc(when)}</div>
+                        </div>
+                        <div class="ntl-actions">
+                            ${isActive
+                            ? `<button class="btn danger sm" data-nt-off="1"><i class="fas fa-bell-slash"></i> Desactivar</button>`
+                            : `<button class="btn sm" data-nt-act="${esc(it.id)}"><i class="fas fa-bell"></i> Activar</button>`}
+                            <button class="btn grey sm" data-nt-ed="${esc(it.id)}"><i class="fas fa-pen"></i></button>
+                            <button class="btn grey sm" data-nt-del="${esc(it.id)}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>`;
+                }).join("");
+            } catch (e) { cont.innerHTML = `<p class="msg error">No se pudo cargar la lista: ${e.message}</p>`; }
+        }
+        // Acciones de la lista (delegadas).
+        $("nt-list").addEventListener("click", async (ev) => {
+            const b = ev.target.closest("button"); if (!b) return;
+            const act = b.dataset.ntAct, ed = b.dataset.ntEd, del = b.dataset.ntDel;
+            try {
+                if (b.dataset.ntOff) { await deactivateNotification(); setMsg($("nt-msg"), "Desactivada.", "ok"); loadCurrentNotif(); }
+                else if (act) { await activateNotification(_notifCache[act]); setMsg($("nt-msg"), "🟢 Activada. La verán los usuarios.", "ok"); loadCurrentNotif(); }
+                else if (ed) { fillNotifFromItem(_notifCache[ed]); setMsg($("nt-msg"), "Cargada para editar. Modifícala y Envía o Guarda.", "ok"); window.scrollTo({ top: 0, behavior: "smooth" }); }
+                else if (del) { if (confirm("¿Eliminar esta notificación de la lista?")) { await deleteNotificationFromList(del); loadNotifList(); } }
+            } catch (e) { setMsg($("nt-msg"), "Error: " + e.message, "error"); }
+        });
+        function fillNotifFromItem(n) {
+            if (!n) return;
+            $("nt-title").value = n.title || ""; $("nt-message").value = n.message || "";
+            $("nt-style").value = n.style || "info"; $("nt-format").value = n.format || "toast";
+            $("nt-duration").value = n.duration ?? 6; $("nt-editing").value = n.id || ""; $("nt-renotify").checked = false;
+            toggleCardFields();
+            if ((n.format || "") === "card") { fillNotifAnimes(); $("nt-anime").value = n.animeId || ""; $("nt-bg").value = n.bgImage || ""; $("nt-cta-text").value = n.ctaText || ""; $("nt-cta-url").value = n.ctaUrl || ""; }
         }
 
         // ---------- Importar / Exportar JSON ----------
