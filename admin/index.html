@@ -1501,8 +1501,10 @@
                 // (así subir uno nuevo no re-toca los anteriores ni duplica videos).
                 const plan = Object.entries(byNum).map(([n, codes]) => {
                     const ep = eps.find((e) => String(e.season) === String(season) && Number(e.number) === Number(n));
-                    const have = ep ? new Set((ep.servers || []).map((s) => vidKey(s.url))) : new Set();
-                    const codesNew = codes.filter((c) => c.code && !have.has(vidKey(UP.embedUrl(c.host, c.code))));
+                    const urls = ep ? (ep.servers || []).map((s) => String(s.url || "")) : [];
+                    // Dedup por FILECODE: si el código ya aparece en algún server del
+                    // episodio (sin importar el dominio de Filemoon), ese video ya está.
+                    const codesNew = codes.filter((c) => c.code && !urls.some((u) => u.includes(c.code)));
                     return { n: +n, codes: codesNew, exists: !!ep };
                 }).filter((p) => p.codes.length).sort((a, b) => a.n - b.n);
                 if (!plan.length) { setMsg(msg, `Nada nuevo que agregar: los ${files.length} archivo(s) ya están vinculados (o sin número: ${noNum}). Sube el episodio nuevo y sincroniza de nuevo.`, "ok"); btn.disabled = false; return; }
@@ -1557,9 +1559,15 @@
             }
             const ep = eps[i];
             const servers = Array.isArray(ep.servers) ? [...ep.servers] : [];
-            const have = new Set(servers.map((x) => vidKey(x.url)));
             let changed = false;
-            for (const s of newServers) { const k = vidKey(s.url); if (!have.has(k)) { servers.push(s); have.add(k); changed = true; } }
+            // Dedup por FILECODE: si el código ya está en algún server (cualquier
+            // dominio de Filemoon), no se agrega -> no se duplica el video.
+            for (const c of codes) {
+                if (!c.code) continue;
+                if (servers.some((s) => String(s.url || "").includes(c.code))) continue;
+                servers.push({ name: UP.HOSTS[c.host].label, url: UP.embedUrl(c.host, c.code), lang: "Sub", desc: "" });
+                changed = true;
+            }
             if (!changed) return;    // ya tenía ese video -> no reescribe (no duplica)
             const keepVu = (ep.videoUrl && ep.videoUrl.includes("player.html")) ? ep.videoUrl : vu;
             await updateEpisode(animeId, season, number, { season, number, servers, videoUrl: keepVu });
