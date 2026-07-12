@@ -87,9 +87,28 @@ export async function ensureAnimeSeasonFolder(host, key, anime, season) {
 }
 
 // Busca una carpeta por nombre bajo parentId (sin crearla). Devuelve fld_id o null.
+// Match FLEXIBLE: el nombre de la carpeta en el servidor suele ser más corto que
+// el título del catálogo (ej. carpeta "Mushoku Tensei" vs título "Mushoku Tensei:
+// Jobless Reincarnation"), así que además del match exacto se acepta prefijo/
+// contención normalizada (sin acentos ni signos), eligiendo la coincidencia MÁS
+// LARGA para no confundir "Naruto" con "Naruto Shippuden".
 export async function findFolder(host, key, name, parentId = 0) {
   const folders = await listFolders(host, key, parentId);
-  const f = folders.find((x) => String(x.name).trim().toLowerCase() === String(name).trim().toLowerCase());
+  const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+  // parte principal del título: lo que va ANTES de un subtítulo (:, -, |, (, ~, –, —).
+  const mainOf = (s) => norm(String(s).split(/[:\-|(~–—]/)[0]);
+  const want = norm(name), wantMain = mainOf(name);
+  if (!want) return null;
+  // 1) match exacto normalizado del título completo
+  let f = folders.find((x) => norm(x.name) === want);
+  if (f) return f.fld_id;
+  // 2) la carpeta coincide con la PARTE PRINCIPAL del título (carpeta "Mushoku
+  //    Tensei" para "Mushoku Tensei: Jobless Reincarnation"). No confunde
+  //    "Naruto" con "Naruto Shippuden" porque "Shippuden" no es un subtítulo.
+  if (wantMain && wantMain !== want) { f = folders.find((x) => norm(x.name) === wantMain); if (f) return f.fld_id; }
+  // 3) la PARTE PRINCIPAL de la carpeta coincide con el título (carpeta con
+  //    subtítulo y título sin él).
+  f = folders.find((x) => mainOf(x.name) === want);
   return f ? f.fld_id : null;
 }
 // Lista TODOS los archivos de una carpeta (con paginación).
