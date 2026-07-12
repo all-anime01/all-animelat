@@ -185,6 +185,37 @@ export async function updateEpisode(animeId, origSeason, origNumber, newEp) {
   return sorted.length;
 }
 
+// Renombra una TEMPORADA completa: cambia el campo `season` de TODOS sus
+// episodios de una vez (sin editar uno por uno) y actualiza el `videoUrl` para
+// que el reproductor siga encontrando el episodio (evita "No se encontró el
+// episodio"). Devuelve cuántos episodios se actualizaron.
+export async function renameSeason(animeId, oldSeason, newSeason) {
+  const oldS = String(oldSeason), newS = String(newSeason || "").trim();
+  if (!newS) throw new Error("El nuevo nombre de la temporada está vacío.");
+  if (newS === oldS) return 0;
+  const ref = doc(db, "animes", animeId);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) throw new Error("El anime no existe.");
+  const anime = snap.data();
+  const eps = Array.isArray(anime.episodes) ? anime.episodes : [];
+  if (eps.some((e) => String(e.season) === newS)) throw new Error(`Ya existe una temporada llamada "${newS}".`);
+  let changed = 0;
+  const updated = eps.map((e) => {
+    if (String(e.season) !== oldS) return e;
+    changed++;
+    // Reescribe el parámetro s= del player.html con el nuevo nombre (codificado).
+    const vu = (e.videoUrl && e.videoUrl.includes("player.html"))
+      ? e.videoUrl.replace(/([?&]s=)[^&]*/, "$1" + encodeURIComponent(newS))
+      : e.videoUrl;
+    return { ...e, season: newS, videoUrl: vu };
+  });
+  if (!changed) throw new Error(`No hay episodios en la temporada "${oldS}".`);
+  // NO se reordena: se conserva el orden actual (renombrar no cambia el orden).
+  await updateDoc(ref, { episodes: updated, episodesTotal: updated.length, updatedAt: serverTimestamp() });
+  await upsertCatalogCard({ ...anime, episodes: updated });
+  return changed;
+}
+
 // Elimina un episodio (por temporada + número).
 export async function deleteEpisode(animeId, season, number) {
   const ref = doc(db, "animes", animeId);

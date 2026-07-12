@@ -342,6 +342,11 @@
                         <div class="field"><label>Anime *</label><select id="ep-anime"><option value="">Cargando…</option></select></div>
                         <div class="field"><label>Temporada</label>
                             <select id="ep-season"><option value="">— elige un anime —</option></select>
+                            <div style="display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap">
+                                <input id="rename-season-input" placeholder="Nuevo nombre (ej. East Blue)" style="flex:1;min-width:180px">
+                                <button type="button" class="btn grey sm" id="rename-season-btn"><i class="fas fa-pen"></i> Renombrar temporada</button>
+                            </div>
+                            <p class="hint" id="rename-season-msg" style="margin:4px 0 0">Cambia el nombre de la temporada elegida y TODOS sus episodios quedan bajo ese nombre de una vez.</p>
                         </div>
                     </div>
                     <div class="field" id="new-season-field" style="display:none;margin-top:6px">
@@ -585,7 +590,7 @@
         import { observeAuth, logoutUser } from "../js/auth.js";
         import {
             saveAnime, addEpisodes, importEpisodes, deleteAnime, getCatalogIndex, getAnime,
-            getAnimeSeasons, listEpisodes, deleteEpisode, updateEpisode, setAnimeTag,
+            getAnimeSeasons, listEpisodes, deleteEpisode, updateEpisode, setAnimeTag, renameSeason,
             getHeroSlides, saveHeroSlides, importAnimes, exportAllAnimes,
             buildAnimeFromForm, buildEpisodeFromForm,
             sendNotification, deactivateNotification, getNotification,
@@ -1086,6 +1091,23 @@
             const animeId = $("ep-anime").value;
             if (!isNew && animeId && $("ep-season").value) renderExistingEpisodes(animeId, $("ep-season").value);
             else $("ep-existing").innerHTML = "";
+        });
+        // Renombrar TODA la temporada elegida (y todos sus episodios de una vez).
+        $("rename-season-btn").addEventListener("click", async () => {
+            const animeId = $("ep-anime").value, oldSeason = $("ep-season").value, newName = $("rename-season-input").value.trim();
+            if (!animeId || !oldSeason || oldSeason === NEW_SEASON) { setMsg($("rename-season-msg"), "Elige un anime y una temporada existente.", "error"); return; }
+            if (!newName) { setMsg($("rename-season-msg"), "Escribe el nuevo nombre de la temporada.", "error"); return; }
+            if (!confirm(`¿Renombrar la temporada "${oldSeason}" a "${newName}"?\nTodos sus episodios quedarán bajo el nuevo nombre.`)) return;
+            setMsg($("rename-season-msg"), "Renombrando…");
+            try {
+                const n = await renameSeason(animeId, oldSeason, newName);
+                setMsg($("rename-season-msg"), `✅ ${n} episodio(s) quedaron en "${newName}".`, "ok");
+                $("rename-season-input").value = "";
+                const seasons = await getAnimeSeasons(animeId);
+                $("ep-season").innerHTML = seasons.map((s) => `<option value="${s}">${s}</option>`).join("") + `<option value="${NEW_SEASON}">➕ Nueva temporada…</option>`;
+                $("ep-season").value = newName; $("ep-season").dispatchEvent(new Event("change"));
+                loadCatalog();
+            } catch (e) { setMsg($("rename-season-msg"), "❌ " + e.message, "error"); }
         });
 
         let currentEps = [];
