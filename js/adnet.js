@@ -16,13 +16,12 @@
 
 export const ADNET = {
   // (A) Social Bar: barra/anuncio flotante. UN solo script para todo el sitio.
-  socialBarSrc: "",     // ej. "//pl26000000.effectiveratecpm.com/ab/cd/ef/abcdef.js"
+  socialBarSrc: "https://pl30358311.effectivecpmnetwork.com/cf/a6/75/cfa675a2a58c7c2c579b07801b66706f.js",
   // (B) Native Banner: bloque nativo dentro del contenido (usa los .ad-slot).
-  nativeBannerSrc: "",  // el invoke.js, ej. "//pl26000000.effectivegatecpm.com/KEY/invoke.js"
-  nativeBannerKey: "",  // el KEY (lo que va en id="container-KEY")
-  // (C) Popunder (opcional): abre una pestaña con publicidad. Máxima ganancia,
-  //     pero molesto. Déjalo vacío para no usarlo.
-  popunderSrc: "",
+  nativeBannerSrc: "https://pl30363041.effectivecpmnetwork.com/992fdc113b3f25751f3dc8f1b44721d7/invoke.js",
+  nativeBannerKey: "992fdc113b3f25751f3dc8f1b44721d7",
+  // (C) Popunder: abre una pestaña con publicidad. Máxima ganancia, pero molesto.
+  popunderSrc: "https://pl30358310.effectivecpmnetwork.com/b6/9b/2a/b69b2a93a6ad48947bfeea27f00c50c8.js",
 };
 
 function injectScript(src, extra = {}) {
