@@ -7,8 +7,9 @@ import { recommendForUser, rememberSearch } from "./recommend.js";
 import { setupHero } from "./hero.js";
 import { observeAuth, logoutUser } from "./auth.js";
 import { FIREBASE_CONFIGURED } from "./firebase-config.js";
-import { logVisit } from "./analytics.js";
+import { logVisit, touchLastVisit } from "./analytics.js";
 import { initDonations } from "./donations.js";
+import { initRemoveAdsUI, syncAdFree, setAdFreeUid, openRemoveAds, isAdFree } from "./adfree.js";
 import { initCardHover } from "./card-hover.js";
 import { initNotifications } from "./notifications.js";
 
@@ -67,6 +68,8 @@ logVisit();
 // rompía Social Bar/Native Banner que usan document.write). Aquí no se hace nada.
 // Botón de donaciones (PayPal) si hay un usuario configurado en donations.js.
 initDonations();
+// "Quitar publicidad" (premium sin anuncios pagado por PayPal).
+initRemoveAdsUI();
 // Vista previa con tráiler estilo Netflix al pasar el cursor por las tarjetas.
 initCardHover();
 // PWA: instalable como app, service worker y botón de instalación.
@@ -127,7 +130,10 @@ function injectAccountWidget() {
   if (!FIREBASE_CONFIGURED) return;
 
   observeAuth((user) => {
-    if (!user) { renderLoggedOut(); return; }
+    if (!user) { setAdFreeUid(null); renderLoggedOut(); return; }
+    touchLastVisit(user.uid);   // registra su última visita (1 vez por sesión)
+    setAdFreeUid(user.uid);
+    syncAdFree(user.uid);       // respalda/recupera el estado "sin publicidad"
     const admin = (user.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
     const name = user.displayName || user.email.split("@")[0];
     const ph = (cls) => user.photoURL
@@ -143,6 +149,7 @@ function injectAccountWidget() {
         <a href="mis-favoritos.html"><i class="fas fa-bookmark"></i> Mi lista</a>
         <a href="historial.html"><i class="fas fa-clock-rotate-left"></i> Historial</a>
         <a href="notificaciones.html"><i class="fas fa-bell"></i> Notificaciones</a>
+        ${isAdFree() ? "" : '<button class="acct-adfree"><i class="fas fa-ban"></i> Quitar publicidad</button>'}
         ${admin ? '<div class="sep"></div><a class="acct-admin" href="admin/index.html"><i class="fas fa-user-shield"></i> Panel de administración</a>' : ""}
         <div class="sep"></div>
         <button id="acct-logout"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</button>
@@ -150,6 +157,7 @@ function injectAccountWidget() {
     const menu = w.querySelector("#acct-menu");
     w.querySelector("#acct-toggle").addEventListener("click", (e) => { e.stopPropagation(); menu.classList.toggle("open"); });
     document.addEventListener("click", (e) => { if (!w.contains(e.target)) menu.classList.remove("open"); });
+    w.querySelector(".acct-adfree")?.addEventListener("click", () => { menu.classList.remove("open"); openRemoveAds(); });
     w.querySelector("#acct-logout").addEventListener("click", async () => { await logoutUser(); location.href = "index.html"; });
   });
 }

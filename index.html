@@ -189,11 +189,15 @@
         </section>
 
         <div class="ad-container">
+            <button class="ad-close" type="button" aria-label="Cerrar anuncio" onclick="this.closest('.ad-container').style.display='none'">&times;</button>
             <span class="ad-label">Publicidad</span>
             <div class="ad-slot">
-                <!-- Adsterra Native Banner -->
-                <script async="async" data-cfasync="false" src="https://pl30363041.effectivecpmnetwork.com/992fdc113b3f25751f3dc8f1b44721d7/invoke.js"></script>
-                <div id="container-992fdc113b3f25751f3dc8f1b44721d7"></div>
+                <!-- Adsterra Native Banner — sólo si el usuario NO compró "sin publicidad" -->
+                <script>
+                (function(){try{var v=localStorage.getItem("aa_adfree");if(v==="1"||(v&&Date.now()<parseInt(v,10)))return;}catch(e){}
+                document.write('<script async="async" data-cfasync="false" src="//pl30363041.effectivecpmnetwork.com/992fdc113b3f25751f3dc8f1b44721d7/invoke.js"><\/script>');
+                document.write('<div id="container-992fdc113b3f25751f3dc8f1b44721d7"></div>');})();
+                </script>
             </div>
         </div>
 
@@ -229,9 +233,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="module" src="js/main-2025.js"></script>
-    <!-- Adsterra (Social Bar + Popunder) -->
-    <script src="https://pl30358311.effectivecpmnetwork.com/cf/a6/75/cfa675a2a58c7c2c579b07801b66706f.js"></script>
-    <script src="https://pl30358310.effectivecpmnetwork.com/b6/9b/2a/b69b2a93a6ad48947bfeea27f00c50c8.js"></script>
+    <!-- Adsterra (Social Bar + Popunder) — sólo si el usuario NO compró "sin publicidad" -->
+    <script>
+    (function(){try{var v=localStorage.getItem("aa_adfree");if(v==="1"||(v&&Date.now()<parseInt(v,10)))return;}catch(e){}
+    document.write('<script src="//pl30358311.effectivecpmnetwork.com/cf/a6/75/cfa675a2a58c7c2c579b07801b66706f.js"><\/script>');
+    document.write('<script src="//pl30358310.effectivecpmnetwork.com/b6/9b/2a/b69b2a93a6ad48947bfeea27f00c50c8.js"><\/script>');})();
+    </script>
 </body>
 
 </html>

@@ -49,6 +49,18 @@ export async function logVisit() {
   } catch (e) { /* la analítica no es crítica */ }
 }
 
+// Marca la ÚLTIMA VEZ que un usuario registrado visitó el sitio. Se llama al
+// resolver la sesión; throttled a una vez por sesión de navegador para no
+// escribir en cada navegación.
+export async function touchLastVisit(uid) {
+  if (!FIREBASE_CONFIGURED || !uid) return;
+  try {
+    if (sessionStorage.getItem("lastVisitLogged")) return;
+    sessionStorage.setItem("lastVisitLogged", "1");
+    await setDoc(doc(db, "users", uid), { lastVisit: serverTimestamp() }, { merge: true });
+  } catch (e) { /* no crítico */ }
+}
+
 // Distribución de visitas por país (ordenada de mayor a menor).
 export async function getCountryStats() {
   try {
@@ -98,10 +110,10 @@ export async function getUserCount() {
 // Ordena por fecha de alta (más recientes primero); si algún doc no tiene
 // createdAt, cae a una lectura sin orden para no perder usuarios.
 export async function getUsers(max = 500) {
+  const toDate = (v) => (v && typeof v.toDate === "function" ? v.toDate() : null);
   const shape = (d) => {
     const u = d.data();
-    const ca = u.createdAt && typeof u.createdAt.toDate === "function" ? u.createdAt.toDate() : null;
-    return { uid: d.id, email: u.email || "", displayName: u.displayName || "", role: u.role || "user", photoURL: u.photoURL || "", createdAt: ca };
+    return { uid: d.id, email: u.email || "", displayName: u.displayName || "", role: u.role || "user", photoURL: u.photoURL || "", createdAt: toDate(u.createdAt), lastVisit: toDate(u.lastVisit) };
   };
   try {
     const q = query(collection(db, "users"), orderBy("createdAt", "desc"), limit(max));

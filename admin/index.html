@@ -138,6 +138,9 @@
         .rank li:nth-child(1)::before { background: var(--primary); color: #fff; }
         .rank .rk-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .rank .rk-val { color: var(--grey); font-size: 12.5px; white-space: nowrap; }
+        .btn-more { margin-top: 10px; width: 100%; background: #232323; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer; transition: background .15s; }
+        .btn-more:hover { background: #2c2c2c; }
+        .btn-more.is-open { color: var(--grey); }
         /* Tabla de usuarios registrados */
         .utable { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 520px; }
         .utable th { text-align: left; color: var(--grey); font-size: 11.5px; text-transform: uppercase; letter-spacing: .4px; padding: 8px 10px; border-bottom: 1px solid var(--border); }
@@ -1268,8 +1271,8 @@
             try {
                 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
                 const [visits, users, countries, topAnimes, topEpisodes, userList] = await Promise.all([
-                    getDailyVisits(30), getUserCount(), getCountryStats().catch(() => []), getTopAnimes(10).catch(() => []),
-                    getTopEpisodes(10).catch(() => []), getUsers(500).catch(() => []),
+                    getDailyVisits(30), getUserCount(), getCountryStats().catch(() => []), getTopAnimes(200).catch(() => []),
+                    getTopEpisodes(200).catch(() => []), getUsers(1000).catch(() => []),
                 ]);
                 const today = visits[visits.length - 1]?.count || 0;
                 const last7 = visits.slice(-7).reduce((s, d) => s + d.count, 0);
@@ -1285,32 +1288,30 @@
 
                 // Animes más vistos → título desde el catálogo.
                 const titleOf = (id) => (catalogItems.find((a) => a.id === id) || {}).title || id;
-                $("top-animes").innerHTML = topAnimes.length
-                    ? `<ol class="rank">${topAnimes.map((a) => `<li><span class="rk-title">${titleOf(a.id)}</span><span class="rk-val">${a.viewCount.toLocaleString()} <i class="fas fa-eye"></i></span></li>`).join("")}</ol>`
-                    : '<p class="hint">Aún no hay reproducciones registradas.</p>';
+                renderExpandable($("top-animes"), topAnimes.map((a) => `<li><span class="rk-title">${esc(titleOf(a.id))}</span><span class="rk-val">${a.viewCount.toLocaleString()} <i class="fas fa-eye"></i></span></li>`),
+                    'Aún no hay reproducciones registradas.');
 
                 // Países de los visitantes con barra proporcional.
-                $("top-countries").innerHTML = countries.length
-                    ? `<ol class="rank">${countries.slice(0, 12).map((c) => {
-                        const pct = countriesTotal ? Math.round((c.count / countriesTotal) * 100) : 0;
-                        return `<li><span class="rk-title">${flagEmoji(c.code)} ${c.name}</span><span class="rk-bar"><span style="width:${pct}%"></span></span><span class="rk-val">${c.count} · ${pct}%</span></li>`;
-                    }).join("")}</ol>`
-                    : '<p class="hint">Aún no hay datos de países (se registran con las nuevas visitas).</p>';
+                renderExpandable($("top-countries"), countries.map((c) => {
+                    const pct = countriesTotal ? Math.round((c.count / countriesTotal) * 100) : 0;
+                    return `<li><span class="rk-title">${flagEmoji(c.code)} ${esc(c.name)}</span><span class="rk-bar"><span style="width:${pct}%"></span></span><span class="rk-val">${c.count} · ${pct}%</span></li>`;
+                }), 'Aún no hay datos de países (se registran con las nuevas visitas).');
 
                 // Episodios más vistos.
-                $("top-episodes").innerHTML = topEpisodes.length
-                    ? `<ol class="rank">${topEpisodes.map((e) => `<li><span class="rk-title">${esc(e.animeTitle || titleOf(e.animeId))} · ${esc(e.season)} E${esc(e.number)}${e.title ? " — " + esc(e.title) : ""}</span><span class="rk-val">${(e.viewCount || 0).toLocaleString()} <i class="fas fa-eye"></i></span></li>`).join("")}</ol>`
-                    : '<p class="hint">Aún no hay reproducciones de episodios registradas (se cuentan a partir de ahora).</p>';
+                renderExpandable($("top-episodes"), topEpisodes.map((e) => `<li><span class="rk-title">${esc(e.animeTitle || titleOf(e.animeId))} · ${esc(e.season)} E${esc(e.number)}${e.title ? " — " + esc(e.title) : ""}</span><span class="rk-val">${(e.viewCount || 0).toLocaleString()} <i class="fas fa-eye"></i></span></li>`),
+                    'Aún no hay reproducciones de episodios registradas (se cuentan a partir de ahora).');
 
-                // Lista de usuarios registrados con sus datos.
+                // Lista de usuarios registrados con sus datos + última visita.
+                const fdate = (d) => d ? d.toLocaleDateString("es", { year: "numeric", month: "short", day: "numeric" }) : "—";
                 $("users-count").textContent = userList.length ? `(${userList.length})` : "";
                 $("users-list").innerHTML = userList.length
-                    ? `<table class="utable"><thead><tr><th></th><th>Nombre</th><th>Correo</th><th>Rol</th><th>Registro</th></tr></thead><tbody>${userList.map((u) => `<tr>
+                    ? `<table class="utable"><thead><tr><th></th><th>Nombre</th><th>Correo</th><th>Rol</th><th>Registro</th><th>Última visita</th></tr></thead><tbody>${userList.map((u) => `<tr>
                         <td>${u.photoURL ? `<img class="uav" src="${esc(u.photoURL)}" alt="" onerror="this.style.display='none'">` : ""}</td>
                         <td>${esc(u.displayName)}</td>
                         <td><a href="mailto:${esc(u.email)}">${esc(u.email)}</a></td>
                         <td><span class="urole ${u.role === "admin" ? "is-admin" : ""}">${esc(u.role)}</span></td>
-                        <td>${u.createdAt ? u.createdAt.toLocaleDateString("es", { year: "numeric", month: "short", day: "numeric" }) : "—"}</td>
+                        <td>${fdate(u.createdAt)}</td>
+                        <td>${fdate(u.lastVisit)}</td>
                     </tr>`).join("")}</tbody></table>`
                     : '<p class="hint">No hay usuarios, o faltan permisos de lectura de la colección <code>users</code> (revisa las reglas de Firestore).</p>';
             } catch (err) {
@@ -1320,6 +1321,22 @@
             }
         }
         $("reload-stats").addEventListener("click", loadStats);
+
+        // Renderiza una lista tipo ranking mostrando los primeros `initial` y un
+        // botón "Ver todos (N)" que despliega el resto (para ver gran cantidad).
+        function renderExpandable(el, itemsHtml, emptyMsg, initial = 10) {
+            if (!itemsHtml.length) { el.innerHTML = `<p class="hint">${emptyMsg}</p>`; return; }
+            const lis = itemsHtml.map((h, i) => i < initial ? h : h.replace(/^<li/, '<li class="rk-extra" style="display:none"')).join("");
+            const extra = itemsHtml.length - initial;
+            el.innerHTML = `<ol class="rank">${lis}</ol>` +
+                (extra > 0 ? `<button class="btn-more" type="button">Ver todos (${itemsHtml.length}) <i class="fas fa-chevron-down"></i></button>` : "");
+            const btn = el.querySelector(".btn-more");
+            if (btn) btn.addEventListener("click", () => {
+                const open = btn.classList.toggle("is-open");
+                el.querySelectorAll(".rk-extra").forEach((li) => { li.style.display = open ? "" : "none"; });
+                btn.innerHTML = open ? `Ver menos <i class="fas fa-chevron-up"></i>` : `Ver todos (${itemsHtml.length}) <i class="fas fa-chevron-down"></i>`;
+            });
+        }
 
         function renderChart(data) {
             const W = Math.max(data.length * 22, 320), H = 180, pad = 24;

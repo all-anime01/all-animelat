@@ -1663,6 +1663,86 @@ body.red-theme header {
     font-weight: 700;
 }
 .footer-nav .donate-foot .fa-heart { margin-right: 0.25rem; }
+.footer-nav .adfree-foot { color: var(--grey-text); font-weight: 700; }
+.footer-nav .adfree-foot .fa-ban { margin-right: 0.25rem; }
+
+/* --- Botón X para cerrar un anuncio --- */
+.ad-container { position: relative; }
+.ad-close {
+    position: absolute;
+    top: -6px;
+    right: max(4%, 6px);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: rgba(20, 20, 20, 0.9);
+    color: var(--light-text);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: background 0.15s, transform 0.15s;
+}
+.ad-close:hover { background: var(--primary-color); transform: scale(1.08); }
+
+/* --- Modal "Quitar publicidad" (premium sin anuncios) --- */
+.adfree-ov {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    animation: adfree-fade 0.18s ease;
+}
+@keyframes adfree-fade { from { opacity: 0; } to { opacity: 1; } }
+.adfree-box {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.8rem 1.5rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.adfree-x {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--grey-text);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+.adfree-x:hover { color: var(--light-text); }
+.adfree-ic {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 0.8rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: #fff;
+}
+.adfree-box h3 { font-family: var(--font-headings), sans-serif; margin: 0 0 0.5rem; font-size: 1.35rem; }
+.adfree-box p { color: var(--grey-text); font-size: 0.95rem; line-height: 1.5; margin: 0 0 1rem; }
+.adfree-price { font-family: var(--font-headings), sans-serif; font-size: 2rem; font-weight: 800; color: var(--secondary-color); margin-bottom: 1rem; }
+.adfree-price span { font-size: 0.9rem; color: var(--grey-text); font-weight: 600; }
+#adfree-pay { min-height: 46px; }
+.adfree-note { font-size: 0.85rem; margin-top: 0.8rem !important; min-height: 1em; }
 
 /* --- Episodio VISTO: badge permanente + icono de repetir siempre visible --- */
 /* (va en el CSS global para que se muestre aunque no se abra el reproductor) */

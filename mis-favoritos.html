@@ -59,9 +59,12 @@
             renderFavorites(document.getElementById("account-content"));
         });
     </script>
-    <!-- Adsterra (Social Bar + Popunder) -->
-    <script src="https://pl30358311.effectivecpmnetwork.com/cf/a6/75/cfa675a2a58c7c2c579b07801b66706f.js"></script>
-    <script src="https://pl30358310.effectivecpmnetwork.com/b6/9b/2a/b69b2a93a6ad48947bfeea27f00c50c8.js"></script>
+    <!-- Adsterra (Social Bar + Popunder) — sólo si el usuario NO compró "sin publicidad" -->
+    <script>
+    (function(){try{var v=localStorage.getItem("aa_adfree");if(v==="1"||(v&&Date.now()<parseInt(v,10)))return;}catch(e){}
+    document.write('<script src="//pl30358311.effectivecpmnetwork.com/cf/a6/75/cfa675a2a58c7c2c579b07801b66706f.js"></script>');
+    document.write('<script src="//pl30358310.effectivecpmnetwork.com/b6/9b/2a/b69b2a93a6ad48947bfeea27f00c50c8.js"></script>');})();
+    </script>
 </body>
 
 </html>
