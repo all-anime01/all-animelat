@@ -9,6 +9,7 @@ import { observeAuth, logoutUser } from "./auth.js";
 import { FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { logVisit } from "./analytics.js";
 import { initAds } from "./ads.js";
+import { initDonations } from "./donations.js";
 import { initCardHover } from "./card-hover.js";
 import { initNotifications } from "./notifications.js";
 
@@ -64,6 +65,8 @@ import { initPWA } from "./pwa.js";
 logVisit();
 // Monta la publicidad (AdSense) si hay un ID de editor configurado en ads.js.
 initAds();
+// Botón de donaciones (PayPal) si hay un usuario configurado en donations.js.
+initDonations();
 // Vista previa con tráiler estilo Netflix al pasar el cursor por las tarjetas.
 initCardHover();
 // PWA: instalable como app, service worker y botón de instalación.

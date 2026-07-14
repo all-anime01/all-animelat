@@ -9,7 +9,7 @@
 
 export const AD_CONFIG = {
   // 1) Pega aquí tu ID de editor de AdSense, p. ej. "ca-pub-1234567890123456".
-  client: "",
+  client: "ca-pub-7691106587507822",
   // 2) (Opcional) IDs de bloque de anuncio por posición; si los dejas vacíos,
   //    AdSense usa "Anuncios automáticos".
   // Se leen desde el atributo data-slot de cada .ad-slot en el HTML.
@@ -17,7 +17,9 @@ export const AD_CONFIG = {
 
 let scriptLoaded = false;
 function loadAdSense(client) {
-  if (scriptLoaded) return;
+  // Si ya está el <script> estático de AdSense en el <head> (para verificación
+  // del sitio y Auto Ads), no lo cargamos otra vez.
+  if (scriptLoaded || document.querySelector('script[src*="adsbygoogle.js"]')) { scriptLoaded = true; return; }
   scriptLoaded = true;
   const s = document.createElement("script");
   s.async = true;

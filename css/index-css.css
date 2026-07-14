@@ -1612,6 +1612,58 @@ body.red-theme header {
     overflow: hidden;
 }
 
+/* --- Botón flotante de donaciones (PayPal) --- */
+#donate-fab {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.7rem 1.05rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff5f6d, #ca3030);
+    color: #fff;
+    font-family: var(--font-headings), sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(202, 48, 48, 0.45);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+#donate-fab:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 26px rgba(202, 48, 48, 0.6);
+    filter: brightness(1.05);
+}
+
+#donate-fab .fa-heart {
+    animation: donate-beat 1.4s ease-in-out infinite;
+}
+
+@keyframes donate-beat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+    #donate-fab { padding: 0.7rem; }
+    #donate-fab .donate-fab-text { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #donate-fab .fa-heart { animation: none; }
+}
+
+.footer-nav .donate-foot {
+    color: #ff8a95;
+    font-weight: 700;
+}
+.footer-nav .donate-foot .fa-heart { margin-right: 0.25rem; }
+
 /* --- Episodio VISTO: badge permanente + icono de repetir siempre visible --- */
 /* (va en el CSS global para que se muestre aunque no se abra el reproductor) */
 /* Etiqueta "Visto" estilo Crunchyroll: píldora sutil abajo a la derecha */
