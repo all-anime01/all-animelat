@@ -8,8 +8,6 @@ import { setupHero } from "./hero.js";
 import { observeAuth, logoutUser } from "./auth.js";
 import { FIREBASE_CONFIGURED } from "./firebase-config.js";
 import { logVisit } from "./analytics.js";
-import { initAds } from "./ads.js";
-import { initAdnet, ADNET } from "./adnet.js";
 import { initDonations } from "./donations.js";
 import { initCardHover } from "./card-hover.js";
 import { initNotifications } from "./notifications.js";
@@ -64,11 +62,9 @@ import { initPWA } from "./pwa.js";
 
 // Registra la visita (una vez por sesión) para la analítica del admin.
 logVisit();
-// Publicidad: si hay una red alternativa (Adsterra) configurada en adnet.js, se
-// usa esa (mejor para sitios de anime, donde AdSense suele rechazar); si no,
-// intenta AdSense. Evita que ambas peleen por los mismos espacios .ad-slot.
-if ((ADNET.socialBarSrc || ADNET.nativeBannerSrc || ADNET.popunderSrc || "").trim()) initAdnet();
-else initAds();
+// Publicidad: los scripts de Adsterra (Social Bar, Popunder y Native Banner) van
+// ESTÁTICOS en el HTML de cada página (así funcionan bien; inyectarlos por JS
+// rompía Social Bar/Native Banner que usan document.write). Aquí no se hace nada.
 // Botón de donaciones (PayPal) si hay un usuario configurado en donations.js.
 initDonations();
 // Vista previa con tráiler estilo Netflix al pasar el cursor por las tarjetas.

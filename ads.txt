@@ -1,1 +1,1 @@
-google.com, pub-7691106587507822, DIRECT, f08c47fec0942fa0
+# ads.txt — pega aqui las lineas que te da Adsterra (Websites -> tu sitio -> ads.txt)
