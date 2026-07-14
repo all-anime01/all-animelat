@@ -12,7 +12,7 @@
 import { db } from "./firebase-config.js";
 import { doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-export const PAYPAL_CLIENT_ID = ""; // <-- pega aquí tu Client ID de PayPal (Live)
+export const PAYPAL_CLIENT_ID = "BAAapy_9jFxaTnc3gi0S4ddhP_j2fsXzJFPl71ztZYwiJbiHwSqpeohEEU4YQhMQ0ez-O8vJ_jVX6juqyU"; // Client ID (Live)
 const PRICE = "1.99";               // precio en USD
 const DAYS = 30;                    // 30 días sin anuncios (pon 0 para "para siempre")
 const CURRENCY = "USD";
