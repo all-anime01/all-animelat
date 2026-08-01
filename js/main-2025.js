@@ -1021,6 +1021,9 @@ $(document).ready(function () {
     container.html(heroContent);
     mountRatingWidget(document.getElementById("anime-rating"), anime);
 
+    // --- Contenido similar (relacionados por géneros compartidos) ---
+    renderRelated(anime);
+
     // --- Botón de reproducción dinámico: Reproducir / Continuar viendo / Repetir ---
     function orderedEpisodesFlat(a) {
       return (a.episodes || []).slice().sort((x, y) => {
@@ -1598,6 +1601,20 @@ $(document).ready(function () {
         { breakpoint: 480, settings: { slidesToShow: 2, arrows: false } },
       ],
     });
+  }
+  // Contenido similar en la ficha: animes que comparten más géneros con el
+  // actual (desempate por valoración). Reutiliza el carrusel de tarjetas.
+  function renderRelated(anime) {
+    if (!$("#related-carousel").length) return;
+    const mine = new Set(anime.genres || []);
+    if (!mine.size) return;
+    const scored = animeData
+      .filter((a) => a && a.id !== anime.id && Array.isArray(a.genres) && a.genres.some((g) => mine.has(g)))
+      .map((a) => ({ a, score: a.genres.filter((g) => mine.has(g)).length }))
+      .sort((x, y) => y.score - x.score || (Number(y.a.rating) || 0) - (Number(x.a.rating) || 0))
+      .slice(0, 18)
+      .map((x) => x.a);
+    renderCarousel("#related-carousel", "#related-section", scored);
   }
   function renderTop10(list) {
     const row = $("#top10-row");
