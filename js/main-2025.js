@@ -1157,7 +1157,8 @@ $(document).ready(function () {
       seasons.forEach((s) =>
         seasonSelect.append(`<option value="${s}">${s}</option>`)
       );
-      seasonSelect.val(seasons[0]);
+      // Por defecto la ÚLTIMA temporada (la más reciente), como el resto del sitio.
+      seasonSelect.val(seasons[seasons.length - 1]);
     }
 
     function renderEpisodes(seasonName, searchTerm = "", sortOrder = "desc") {
