@@ -219,6 +219,10 @@ $(document).ready(function () {
   }
 
   function parseCustomDate(dateString, timeString = "00:00") {
+    // Episodios sin fecha (ej. cargados por lote): no romper — época 1970 (no
+    // salen como "nuevos" pero no crashean el render de listas/calendario).
+    if (!dateString) return new Date(0);
+    if (!timeString) timeString = "00:00";
     const monthMap = {
       enero: 0,
       febrero: 1,
@@ -1145,13 +1149,15 @@ $(document).ready(function () {
     const seasons =
       anime.episodes && anime.episodes.length > 0
         ? [...new Set(anime.episodes.map((e) => e.season))]
+            // Siempre en orden (numérico natural: "Temporada 2" antes que "Temporada 10").
+            .sort((a, b) => String(a).localeCompare(String(b), undefined, { numeric: true }))
         : [];
     if (seasons.length > 0) {
       seasonSelect.empty();
       seasons.forEach((s) =>
         seasonSelect.append(`<option value="${s}">${s}</option>`)
       );
-      seasonSelect.val(seasons[seasons.length - 1]);
+      seasonSelect.val(seasons[0]);
     }
 
     function renderEpisodes(seasonName, searchTerm = "", sortOrder = "desc") {
@@ -1606,13 +1612,32 @@ $(document).ready(function () {
   // actual (desempate por valoración). Reutiliza el carrusel de tarjetas.
   function renderRelated(anime) {
     if (!$("#related-carousel").length) return;
-    const mine = new Set(anime.genres || []);
-    if (!mine.size) return;
+    const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+    // Título base de una franquicia: quita subtítulos y marcas de temporada/parte.
+    const STOP = new Set(["season", "temporada", "the", "final", "part", "parte", "movie", "pelicula", "arc", "saga", "hen", "second", "third", "2nd", "3rd", "shippuden", "next", "generations"]);
+    const baseTitle = (a) => norm(a.title).split(":")[0].split(/\s+/).filter((w) => w && !STOP.has(w) && !/^\d+$/.test(w)).slice(0, 3).join(" ");
+    const sigWords = (a) => new Set(norm(a.title).split(/\s+/).filter((w) => w.length > 4 && !STOP.has(w)));
+    const myGen = new Set(anime.genres || []);
+    const myTags = new Set((anime.tags || []).map((t) => String(t).toLowerCase()));
+    const myBase = baseTitle(anime);
+    const myWords = sigWords(anime);
     const scored = animeData
-      .filter((a) => a && a.id !== anime.id && Array.isArray(a.genres) && a.genres.some((g) => mine.has(g)))
-      .map((a) => ({ a, score: a.genres.filter((g) => mine.has(g)).length }))
+      .filter((a) => a && a.id !== anime.id)
+      .map((a) => {
+        let score = 0;
+        score += (a.genres || []).filter((g) => myGen.has(g)).length * 2;            // géneros compartidos
+        score += (a.tags || []).filter((t) => myTags.has(String(t).toLowerCase())).length * 3; // tags (ej. Isekai) pesan más
+        // Misma franquicia (precuela/secuela/película): título base igual o
+        // contenido, o 2+ palabras significativas compartidas → gran prioridad.
+        const ab = baseTitle(a);
+        const wordHits = [...sigWords(a)].filter((w) => myWords.has(w)).length;
+        const sameFranchise = (ab && myBase && (ab === myBase || ab.includes(myBase) || myBase.includes(ab))) || wordHits >= 2;
+        if (sameFranchise) score += 100;
+        return { a, score };
+      })
+      .filter((x) => x.score > 0)
       .sort((x, y) => y.score - x.score || (Number(y.a.rating) || 0) - (Number(x.a.rating) || 0))
-      .slice(0, 18)
+      .slice(0, 20)
       .map((x) => x.a);
     renderCarousel("#related-carousel", "#related-section", scored);
   }
