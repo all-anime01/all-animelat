@@ -29,9 +29,35 @@ export async function tioServers(slug, n) {
 }
 export const SOURCES = { jkanime: jkServers, tioanime: tioServers };
 
+// GARANTÍA DE CALIDAD: verifica que un embed cargue de verdad (no 404 / no
+// "archivo eliminado"). Devuelve true solo si responde y no está borrado.
+const DEAD = /file (?:not found|was deleted|has been removed)|no such file|video (?:not found|unavailable|no longer)|404 not found|deleted|removed by/i;
+export async function embedAlive(url) {
+  try {
+    const r = await fetch(url, { headers: UA.headers, redirect: "follow", signal: AbortSignal.timeout(12000) });
+    if (r.status === 404 || r.status === 410) return false;
+    if (!r.ok && r.status !== 403) return false;
+    const t = (await r.text()).slice(0, 4000);
+    return !DEAD.test(t);
+  } catch { return false; }
+}
+// Filtra una lista de servidores dejando solo los que cargan. Si ninguno carga,
+// devuelve [] (el episodio NO se agrega → nunca se sube contenido roto).
+export async function verifiedServers(servers) {
+  if (!servers || !servers.length) return [];
+  const checks = await Promise.all(servers.map((s) => embedAlive(s.url)));
+  return servers.filter((_, i) => checks[i]);
+}
+
 // TMDB (web, sin API key): still + overview + fecha por número absoluto.
 const MES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 const MI = { enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,octubre:9,noviembre:10,diciembre:11 };
+export async function tmdbArt(tvId) {
+  const h = await get(`https://www.themoviedb.org/tv/${tvId}`);
+  const poster = (h.match(/<meta property="og:image" content="[^"]*\/([A-Za-z0-9]{16,}\.(?:jpg|png))"/) || [])[1] || null;
+  const backdrop = (h.match(/\/t\/p\/w1920_and_h800[a-z_]*\/([A-Za-z0-9]{16,}\.jpg)/) || h.match(/\/t\/p\/original\/([A-Za-z0-9]{16,}\.jpg)/) || [])[1] || null;
+  return { poster: poster ? `https://image.tmdb.org/t/p/w500/${poster}` : null, backdrop: backdrop ? `https://image.tmdb.org/t/p/w1280/${backdrop}` : null };
+}
 export async function tmdbEpisodes(tvId) {
   const all = [];
   for (let s = 1; s <= 30; s++) {

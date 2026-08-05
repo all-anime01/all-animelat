@@ -1,0 +1,19 @@
+{
+  "_comment": "Animes NUEVOS para AMPLIAR el catálogo automáticamente (clásicos/populares). Cada entrada se crea si aún no existe, con servidores VERIFICADOS (solo se agregan episodios cuyo video carga). Pon enabled:true para activar. Campos: fsId (id único), title, source (jkanime|tioanime), slug (id en la fuente), tvId (TMDB), maxEp (nº de episodios), year, audio (Latino|Sub), genres[], creator, synopsis.",
+  "animes": [
+    {
+      "fsId": "cowboy-bebop",
+      "title": "Cowboy Bebop",
+      "source": "tioanime",
+      "slug": "cowboy-bebop",
+      "tvId": 30991,
+      "maxEp": 26,
+      "year": 1998,
+      "audio": "Sub",
+      "genres": ["Acción", "Ciencia Ficción", "Drama"],
+      "creator": "Shinichiro Watanabe",
+      "synopsis": "En el año 2071, los cazarrecompensas Spike Spiegel y Jet Black recorren el sistema solar a bordo de la nave Bebop persiguiendo criminales.",
+      "enabled": false
+    }
+  ]
+}

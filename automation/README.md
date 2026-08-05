@@ -44,9 +44,29 @@ jkanime y tioanime suelen entregar **720p**. Para **1080p real** la mejor fuente
 simple `fetch`: hace falta un navegador headless (Playwright) en el workflow. Es el
 siguiente paso para cumplir el requisito de 1080p — está anotado como pendiente.
 
+## Ampliar el catálogo con animes clásicos/populares
+
+`expand-catalog.mjs` lee `watchlist.json` y crea los animes que aún no existan, con
+**servidores verificados** (un episodio solo se agrega si su video realmente carga →
+nunca se sube contenido roto). Corre igual que el actualizador (workflow o a mano).
+
+Agrega entradas a `watchlist.json` con `enabled: true`:
+```json
+{ "fsId": "cowboy-bebop", "title": "Cowboy Bebop", "source": "tioanime",
+  "slug": "cowboy-bebop", "tvId": 30991, "maxEp": 26, "year": 1998,
+  "audio": "Sub", "genres": ["Acción"], "enabled": true }
+```
+
+## Garantía de calidad
+
+Tanto el actualizador como el expansor usan `verifiedServers()`: comprueban por HTTP
+que cada embed **carga y no está borrado** antes de guardarlo. Si ningún servidor de
+un episodio funciona, ese episodio **no se agrega**.
+
 ## Pendiente (siguientes iteraciones)
 
-- Fuente **1080p (AnimeAV1)** con navegador headless.
-- **Descubrir animes populares nuevos** automáticamente (TMDB trending + estrenos de
-  temporada) y crearlos como borrador para tu aprobación.
-- **Importador en el panel admin** (bajo demanda): pegar un anime y traerlo al instante.
+- Fuente **1080p (AnimeAV1)** con navegador headless (Playwright) — es lo único que
+  garantiza 1080p real; jkanime/tioanime son 720p.
+- **Descubrir automáticamente** los estrenos de temporada (TMDB) para llenar la
+  watchlist solo.
+- **Importador en el panel admin** (bajo demanda).

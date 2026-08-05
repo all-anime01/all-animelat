@@ -9,7 +9,7 @@ import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { getAnime, patchFields, bumpCatalogVersion, signIn } from "./lib.mjs";
-import { SOURCES, tmdbEpisodes } from "./scrapers.mjs";
+import { SOURCES, tmdbEpisodes, verifiedServers } from "./scrapers.mjs";
 
 const DRY = process.env.DRY_RUN === "1";
 const MAX_NEW = parseInt(process.env.MAX_NEW || "8", 10);
@@ -32,8 +32,11 @@ for (const t of targets) {
   const before = eps.filter((e) => e.season !== t.season).length; // aprox si multi-temporada previa
   const nuevos = [];
   for (let n = maxNum + 1; n <= maxNum + MAX_NEW; n++) {
-    const servers = await scraper(t.slug, n);
-    if (!servers) break; // no hay más episodios en la fuente
+    const raw = await scraper(t.slug, n);
+    if (!raw) break; // no hay más episodios en la fuente
+    // GARANTÍA DE CALIDAD: solo servidores que cargan de verdad.
+    const servers = await verifiedServers(raw);
+    if (!servers.length) { console.log(`  ${t.fsId} E${n}: sin servidor que funcione → no se agrega`); break; }
     const abs = before + n; // posición absoluta aproximada para TMDB
     const tm = tmdb[abs - 1] || tmdb[n - 1] || {};
     nuevos.push({

@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Actualizar episodios nuevos
+      - name: Actualizar episodios nuevos (En emisión)
         env:
           FB_API_KEY: ${{ secrets.FB_API_KEY }}
           FB_ADMIN_EMAIL: ${{ secrets.FB_ADMIN_EMAIL }}
@@ -28,3 +28,11 @@ jobs:
           DRY_RUN: ${{ github.event.inputs.dry_run }}
           MAX_NEW: "8"
         run: node automation/update-airing.mjs
+
+      - name: Ampliar catálogo (animes de la watchlist)
+        env:
+          FB_API_KEY: ${{ secrets.FB_API_KEY }}
+          FB_ADMIN_EMAIL: ${{ secrets.FB_ADMIN_EMAIL }}
+          FB_ADMIN_PASSWORD: ${{ secrets.FB_ADMIN_PASSWORD }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: node automation/expand-catalog.mjs
