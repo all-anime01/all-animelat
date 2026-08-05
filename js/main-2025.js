@@ -426,7 +426,7 @@ $(document).ready(function () {
                         <h5 class="episode-card-title">${episode.number
       }. ${episode.title}</h5>
                         <p class="episode-card-meta">${episode.language
-      } • ${episode.releaseDate}</p>
+      }${episode.releaseDate ? " • " + episode.releaseDate : ""}</p>
                     </div>
                 </a>
             </div>`;
@@ -576,7 +576,7 @@ $(document).ready(function () {
       .text(anime.title);
     $("#player-episode-title").text(`E${episode.number} - ${episode.title}`);
     $("#player-episode-meta").html(
-      `<span>${episode.language}</span> &bull; <span>Lanzado el ${episode.releaseDate}</span>`
+      `<span>${episode.language}</span>${episode.releaseDate ? " &bull; <span>Lanzado el " + episode.releaseDate + "</span>" : ""}`
     );
     $("#player-episode-description").text(episode.description);
     $("#episode-iframe").attr("src", episode.videoUrl || "");
@@ -757,7 +757,7 @@ $(document).ready(function () {
                     <h5 class="episode-card-title">${episode.number
       }. ${episode.title}</h5>
                     <p class="episode-card-meta">${episode.language
-      } • ${episode.releaseDate}</p>
+      }${episode.releaseDate ? " • " + episode.releaseDate : ""}</p>
                 </div>
             </a>
         </div>`;
@@ -1204,8 +1204,7 @@ $(document).ready(function () {
                         <div class="episode-card-info">
                             <h5 class="episode-card-title">${ep.number}. ${ep.title
           }</h5>
-                            <p class="episode-card-meta">${ep.language} • ${ep.releaseDate
-          }</p>
+                            <p class="episode-card-meta">${ep.language}${ep.releaseDate ? " • " + ep.releaseDate : ""}</p>
                         </div>
                         <div class="ep-hover">
                             <div class="eph-anime">${anime.title}</div>
