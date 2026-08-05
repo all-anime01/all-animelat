@@ -3030,3 +3030,19 @@ header .logo:hover .logo-desktop {
 .msearch-results .t { font-size: 1.6rem; font-weight: 600; }
 .msr-sub { font-size: 1.25rem; color: var(--grey-text); }
 .msr-sub .star, .search-results-dropdown .star { color: #ff3b3b; }
+
+/* Botón "Mostrar más" de la lista de episodios */
+.episodes-showmore-wrap { text-align: center; margin: 2rem 0 1rem; }
+.btn-show-more-eps {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 1rem 2.6rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .2s ease, transform .1s ease;
+}
+.btn-show-more-eps:hover { background: #ff6b6b; transform: translateY(-2px); }
+.btn-show-more-eps:active { transform: translateY(0); }

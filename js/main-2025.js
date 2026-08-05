@@ -1161,10 +1161,82 @@ $(document).ready(function () {
       seasonSelect.val(seasons[seasons.length - 1]);
     }
 
-    function renderEpisodes(seasonName, searchTerm = "", sortOrder = "desc") {
+    // Cuántos episodios se muestran de golpe antes del botón "Mostrar más".
+    const EP_INITIAL = 24, EP_STEP = 24;
+    let episodesShown = EP_INITIAL;
+
+    function episodeCardHtml(ep, index) {
+      const releaseDateTime = parseCustomDate(ep.releaseDate, ep.releaseTime);
+      const today = new Date();
+      const sevenDaysAgo = new Date(today);
+      sevenDaysAgo.setDate(today.getDate() - 7);
+      const isNew = releaseDateTime >= sevenDaysAgo;
+      return `
+                <div class="episode-detail-card" data-episode-index="${index}">
+                    <a href="#" class="open-player-from-details" data-episode-index="${index}">
+                        <div class="episode-img-container">
+                            <img src="${ep.img}" alt="${ep.title}" loading="lazy" decoding="async">
+                            ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
+                            <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
+                            <span class="duration-tag">${ep.duration}</span>
+                        </div>
+                        <div class="episode-card-info">
+                            <h5 class="episode-card-title">${ep.number}. ${ep.title}</h5>
+                            <p class="episode-card-meta">${ep.language}${ep.releaseDate ? " • " + ep.releaseDate : ""}</p>
+                        </div>
+                        <div class="ep-hover">
+                            <div class="eph-anime">${anime.title}</div>
+                            <div class="eph-title">E${ep.number} – ${ep.title || ""}</div>
+                            <div class="eph-date"><i class="far fa-calendar"></i> ${ep.releaseDate || ""}</div>
+                            <p class="eph-desc">${ep.description || "Sin descripción disponible."}</p>
+                            <div class="eph-play"><i class="fas fa-play"></i> <span class="eph-verb">VER</span> E${ep.number}</div>
+                        </div>
+                    </a>
+                </div>`;
+    }
+
+    // Pinta los episodios visibles. En vista carrusel se muestran todos (slick
+    // ya desliza); en grid/lista se paginan con el botón "Mostrar más".
+    function paintEpisodes() {
       if (episodesContainer.hasClass("slick-initialized"))
         episodesContainer.slick("unslick");
       episodesContainer.empty();
+      const $btn = $("#episodes-show-more");
+      if (currentSeasonEpisodes.length === 0) {
+        episodesContainer.html('<p class="no-results">No se encontraron episodios.</p>');
+        $btn.hide();
+        return;
+      }
+      const view = localStorage.getItem("episodeViewPreference") || "grid";
+      const isCarousel = view === "carousel";
+      const visible = isCarousel
+        ? currentSeasonEpisodes
+        : currentSeasonEpisodes.slice(0, episodesShown);
+      episodesContainer.append(visible.map((ep, index) => episodeCardHtml(ep, index)).join(""));
+
+      const remaining = currentSeasonEpisodes.length - episodesShown;
+      if (!isCarousel && remaining > 0) {
+        $btn.show().text(`Mostrar más (${remaining})`);
+      } else {
+        $btn.hide();
+      }
+
+      episodesContainer.removeClass("grid list carousel").addClass(view);
+      if (isCarousel) {
+        episodesContainer.slick({
+          infinite: false,
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          responsive: [
+            { breakpoint: 1024, settings: { slidesToShow: 2 } },
+            { breakpoint: 768, settings: { slidesToShow: 1, arrows: false } },
+          ],
+        });
+      }
+      applyWatchedBadges();
+    }
+
+    function renderEpisodes(seasonName, searchTerm = "", sortOrder = "desc") {
       const normalizedSearchTerm = searchTerm.toLowerCase().trim();
       currentSeasonEpisodes = (anime.episodes || [])
         .filter(
@@ -1178,49 +1250,16 @@ $(document).ready(function () {
           sortOrder === "asc" ? a.number - b.number : b.number - a.number
         );
 
-      if (currentSeasonEpisodes.length === 0) {
-        episodesContainer.html(
-          '<p class="no-results">No se encontraron episodios.</p>'
-        );
-        return;
-      }
-      currentSeasonEpisodes.forEach((ep, index) => {
-        const releaseDateTime = parseCustomDate(ep.releaseDate, ep.releaseTime);
-        const today = new Date();
-        const sevenDaysAgo = new Date(today);
-        sevenDaysAgo.setDate(today.getDate() - 7);
-        const isNew = releaseDateTime >= sevenDaysAgo;
-
-        episodesContainer.append(`
-                <div class="episode-detail-card" data-episode-index="${index}">
-                    <a href="#" class="open-player-from-details" data-episode-index="${index}">
-                        <div class="episode-img-container">
-                            <img src="${ep.img}" alt="${ep.title
-          }" loading="lazy" decoding="async">
-                            ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
-                            <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
-                            <span class="duration-tag">${ep.duration}</span>
-                        </div>
-                        <div class="episode-card-info">
-                            <h5 class="episode-card-title">${ep.number}. ${ep.title
-          }</h5>
-                            <p class="episode-card-meta">${ep.language}${ep.releaseDate ? " • " + ep.releaseDate : ""}</p>
-                        </div>
-                        <div class="ep-hover">
-                            <div class="eph-anime">${anime.title}</div>
-                            <div class="eph-title">E${ep.number} – ${ep.title || ""}</div>
-                            <div class="eph-date"><i class="far fa-calendar"></i> ${ep.releaseDate || ""}</div>
-                            <p class="eph-desc">${ep.description || "Sin descripción disponible."}</p>
-                            <div class="eph-play"><i class="fas fa-play"></i> <span class="eph-verb">VER</span> E${ep.number}</div>
-                        </div>
-                    </a>
-                </div>`);
-      });
-
+      episodesShown = EP_INITIAL; // reset al cambiar de temporada/búsqueda
       const savedView = localStorage.getItem("episodeViewPreference") || "grid";
-      $(`#${savedView}-view-btn`).trigger("click");
-      applyWatchedBadges();
+      $(`#${savedView}-view-btn`).addClass("active").siblings().removeClass("active");
+      paintEpisodes();
     }
+
+    $("#episodes-show-more").on("click", function () {
+      episodesShown += EP_STEP;
+      paintEpisodes();
+    });
 
     const debouncedRender = debounce(
       () =>
@@ -1241,20 +1280,7 @@ $(document).ready(function () {
         $(this).addClass("active").siblings().removeClass("active");
         const view = $(this).attr("id").split("-")[0];
         localStorage.setItem("episodeViewPreference", view); // Guardar preferencia
-        if (episodesContainer.hasClass("slick-initialized"))
-          episodesContainer.slick("unslick");
-        episodesContainer.removeClass("grid list carousel").addClass(view);
-        if (view === "carousel") {
-          episodesContainer.slick({
-            infinite: false,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            responsive: [
-              { breakpoint: 1024, settings: { slidesToShow: 2 } },
-              { breakpoint: 768, settings: { slidesToShow: 1, arrows: false } },
-            ],
-          });
-        }
+        paintEpisodes(); // repinta con la vista elegida (y paginación/slick)
       }
     );
 
