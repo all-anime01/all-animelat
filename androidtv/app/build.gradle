@@ -1,0 +1,33 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'net.allanime.tv'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "net.allanime.tv"
+        minSdk 21          // Fire TV / Android TV antiguos
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // Sin dependencias extra: usa WebView y Activity del framework (theme nativo
+    // fullscreen). Ligero y compatible con Fire TV.
+}
