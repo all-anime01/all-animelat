@@ -1,0 +1,14 @@
+{
+  "_comment": "Mapeo de animes EN EMISIÓN a su fuente para auto-actualizar episodios nuevos. Añade una entrada por anime. source: jkanime | tioanime. slug: el identificador en esa fuente. tvId: id de TMDB (para imagen/descripcion/fecha). season: nombre EXACTO de la temporada en Firestore donde se agregan los episodios nuevos.",
+  "animes": [
+    {
+      "fsId": "yu-gi-oh-vrains",
+      "source": "jkanime",
+      "slug": "yugioh-vrains",
+      "tvId": 71360,
+      "season": "Temporada 1",
+      "enabled": false,
+      "_note": "Ejemplo (ya finalizado). enabled:false para no tocarlo. Copia este formato para tus animes En emisión."
+    }
+  ]
+}

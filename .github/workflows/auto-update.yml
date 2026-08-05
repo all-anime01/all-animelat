@@ -1,0 +1,30 @@
+name: Auto-actualizar episodios (En emisión)
+
+# Corre todos los días a las 09:00 UTC (~04:00 Colombia). También se puede
+# lanzar a mano desde la pestaña Actions ("Run workflow").
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Solo detectar sin escribir (1 = sí)"
+        required: false
+        default: "0"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Actualizar episodios nuevos
+        env:
+          FB_API_KEY: ${{ secrets.FB_API_KEY }}
+          FB_ADMIN_EMAIL: ${{ secrets.FB_ADMIN_EMAIL }}
+          FB_ADMIN_PASSWORD: ${{ secrets.FB_ADMIN_PASSWORD }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+          MAX_NEW: "8"
+        run: node automation/update-airing.mjs
