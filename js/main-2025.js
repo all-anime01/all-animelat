@@ -912,6 +912,10 @@ $(document).ready(function () {
             selectedStatus === "all" ||
             anime.status === selectedStatus)
       );
+      // Orden alfabético (A-Z) por título, ignorando acentos/mayúsculas.
+      filteredData.sort((a, b) =>
+        (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base", numeric: true })
+      );
       grid.empty();
       if (filteredData.length > 0)
         filteredData.forEach((anime) => grid.append(createAnimeCard(anime)));
