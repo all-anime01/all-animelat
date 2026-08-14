@@ -55,8 +55,12 @@ export async function ytServersFromUrl(episodeUrl) {
   for (const tb of tabs) { if (tb.url && YT_WL.test(tb.url)) out.push({ name: tb.tab_name || "AnimeYT", url: tb.url, lang: "Sub", desc: "" }); }
   return out.length ? out.slice(0, 5) : null;
 }
-// Orden de preferencia por calidad: animeav1 (HD) primero. animeyt requiere la URL
-// del episodio (usar ytServersFromUrl), no encaja en el patrón (slug,n).
+// PRIORIDAD DE FUENTES (indicada por el usuario): 1) animeav1 (HD), 2) animeyt
+// (ytServersFromUrl, requiere URL de episodio), 3) animeonline.ninja, 4) pelisplushd
+// (embed69, siempre como server Latino), 5) tioanime SOLO como ÚLTIMA opción (usar
+// si en las demás no está el anime/episodio o sus servidores están dañados).
+// jkanime queda como respaldo adicional. `tryInOrder` recorre esta prioridad.
+export const SOURCE_PRIORITY = ["animeav1", "animeyt", "animeonline", "pelisplushd", "jkanime", "tioanime"];
 export const SOURCES = { animeav1: av1Servers, jkanime: jkServers, tioanime: tioServers };
 
 // GARANTÍA DE CALIDAD: verifica que un embed cargue de verdad (no 404 / no
