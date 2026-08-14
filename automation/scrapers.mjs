@@ -37,7 +37,26 @@ export async function av1Servers(slug, n) {
   for (const u of [...new Set([...h.matchAll(/https:\/\/www\.mp4upload\.com\/embed-[a-z0-9]+\.html/g)].map((m) => m[0]))].slice(0, 1)) out.push({ name: "Mp4upload", url: u, lang: "Sub", desc: "" });
   return out.length ? out : null;
 }
-// Orden de preferencia por calidad: animeav1 (HD) primero.
+// animeyt.cc: reproductor mytsumi de 3 capas. Dada la URL de un episodio:
+// 1) la página trae options.php?value=X; 2) su JS tiene base64 -> contenedor.php?id=X;
+// 3) contenedor.php trae un JSON `tabs` [{tab_name,url}] con los embeds reales.
+const YT_WL = /mega\.nz|ok\.ru\/videoembed|rpmvid|abyssplayer|streamwish|sfastwish|filemoon|voe|vidhide|bysesukior|\.mp4$/i;
+export async function ytServersFromUrl(episodeUrl) {
+  const page = await get(episodeUrl); if (!page) return null;
+  const opt = (page.match(/mytsumi\.com\/multiplayer\/options\.php\?[^"']*value=([A-Za-z0-9]+)/) || [])[1];
+  if (!opt) return null;
+  const oh = await get(`https://mytsumi.com/multiplayer/options.php?server=multi&value=${opt}`);
+  const b64 = (oh.match(/azakuEncodedURL\s*=\s*"([A-Za-z0-9+/=]+)"/) || [])[1];
+  let contUrl = b64 ? Buffer.from(b64, "base64").toString("utf8") : `https://mytsumi.com/multiplayer/contenedor.php?id=${opt}`;
+  const ch = await get(contUrl);
+  const m = (ch || "").match(/=\s*(\[\{"id":\d+[\s\S]*?\}\]);/); if (!m) return null;
+  let tabs; try { tabs = JSON.parse(m[1]); } catch { return null; }
+  const out = [];
+  for (const tb of tabs) { if (tb.url && YT_WL.test(tb.url)) out.push({ name: tb.tab_name || "AnimeYT", url: tb.url, lang: "Sub", desc: "" }); }
+  return out.length ? out.slice(0, 5) : null;
+}
+// Orden de preferencia por calidad: animeav1 (HD) primero. animeyt requiere la URL
+// del episodio (usar ytServersFromUrl), no encaja en el patrón (slug,n).
 export const SOURCES = { animeav1: av1Servers, jkanime: jkServers, tioanime: tioServers };
 
 // GARANTÍA DE CALIDAD: verifica que un embed cargue de verdad (no 404 / no
