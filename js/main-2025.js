@@ -371,14 +371,19 @@ $(document).ready(function () {
     stopWatchTracker(true);
     _watch = {
       episodeId, anime, episode, onFinish, finished: false,
-      elapsed: savedPosition(episodeId),
+      elapsed: savedPosition(episodeId),   // para el progreso/"seguir viendo"
+      sessionElapsed: 0,                    // tiempo REAL visto en esta sesión
       duration: durationToSeconds(episode.duration),
       timer: setInterval(() => {
         if (document.visibilityState !== "visible") return;
         _watch.elapsed = Math.min(_watch.duration, _watch.elapsed + 1);
-        // Cuando el episodio está por terminar (heurística de tiempo visto, ~5s
-        // antes del final) marca visto y lanza la cuenta regresiva de autoplay.
-        if (!_watch.finished && _watch.elapsed >= _watch.duration - 5) {
+        _watch.sessionElapsed += 1;
+        // El vídeo va en un iframe que SIEMPRE reinicia en 0, así que el autoplay
+        // se basa en el tiempo real de esta sesión, y solo se dispara cuando ya se
+        // superó la duración COMPLETA del episodio + un margen (para que salte al
+        // terminar el ending, nunca en pleno episodio). El margen absorbe la
+        // demora de carga/clic del reproductor.
+        if (!_watch.finished && _watch.sessionElapsed >= _watch.duration + 90) {
           _watch.finished = true;
           persistWatchProgress();
           try { _watch.onFinish && _watch.onFinish(); } catch (e) { console.error(e); }
