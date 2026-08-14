@@ -55,13 +55,22 @@ export async function ytServersFromUrl(episodeUrl) {
   for (const tb of tabs) { if (tb.url && YT_WL.test(tb.url)) out.push({ name: tb.tab_name || "AnimeYT", url: tb.url, lang: "Sub", desc: "" }); }
   return out.length ? out.slice(0, 5) : null;
 }
+// animefenix2.tv: /ver/{slug}-{n} -> Mega (directo) + ok.ru (de redirect.php?id=).
+export async function fenixServers(slug, n) {
+  const h = await get(`https://animefenix2.tv/ver/${slug}-${n}`);
+  if (!h) return null;
+  const out = [];
+  for (const u of [...new Set([...h.matchAll(/https:\/\/mega\.nz\/embed\/[^"'\s<>]+/g)].map((m) => m[0]))].slice(0, 2)) out.push({ name: "Mega", url: u, lang: "Sub", desc: "" });
+  for (const u of [...new Set([...h.matchAll(/redirect\.php\?id=(https?:\/\/ok\.ru\/videoembed\/\d+)/g)].map((m) => decodeURIComponent(m[1])))].slice(0, 1)) out.push({ name: "OK", url: u, lang: "Sub", desc: "" });
+  return out.length ? out : null;
+}
 // PRIORIDAD DE FUENTES (indicada por el usuario): 1) animeav1 (HD), 2) animeyt
 // (ytServersFromUrl, requiere URL de episodio), 3) animeonline.ninja, 4) pelisplushd
 // (embed69, siempre como server Latino), 5) tioanime SOLO como ÚLTIMA opción (usar
 // si en las demás no está el anime/episodio o sus servidores están dañados).
 // jkanime queda como respaldo adicional. `tryInOrder` recorre esta prioridad.
-export const SOURCE_PRIORITY = ["animeav1", "animeyt", "animeonline", "pelisplushd", "jkanime", "tioanime"];
-export const SOURCES = { animeav1: av1Servers, jkanime: jkServers, tioanime: tioServers };
+export const SOURCE_PRIORITY = ["animeav1", "animeyt", "animeonline", "pelisplushd", "animefenix", "jkanime", "tioanime"];
+export const SOURCES = { animeav1: av1Servers, animefenix: fenixServers, jkanime: jkServers, tioanime: tioServers };
 
 // GARANTÍA DE CALIDAD: verifica que un embed cargue de verdad (no 404 / no
 // "archivo eliminado"). Devuelve true solo si responde y no está borrado.
