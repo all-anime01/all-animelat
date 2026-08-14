@@ -1,6 +1,7 @@
 // Scrapers de fuentes (Sub) + metadata TMDB. Devuelven episodios en el formato
-// del sitio. Nota de calidad: jkanime/tioanime suelen ser 720p; para 1080p real
-// hace falta AnimeAV1 (render por JS, requiere navegador headless) — ver README.
+// del sitio. Calidad: **animeav1 = HD/1080p** (preferida); jkanime/tioanime ~720p.
+// animeav1 SÍ es scrapeable: sus páginas de episodio traen los embeds (Mega,
+// mp4upload) en el HTML del servidor — no hace falta navegador headless.
 import { get } from "./lib.mjs";
 
 const b64 = (b) => { try { return Buffer.from(b, "base64").toString("utf8").trim(); } catch { return ""; } };
@@ -27,7 +28,17 @@ export async function tioServers(slug, n) {
   for (const v of arr) { const name = v[0], url = v[1]; if (TIO_WL[name] && url && /^https?:/.test(url)) out.push({ name: name === "Yourupload" ? "YourUpload" : name, url, lang: "Sub", desc: "" }); }
   return out.length ? out : null;
 }
-export const SOURCES = { jkanime: jkServers, tioanime: tioServers };
+// animeav1: /media/{slug}/{N} -> embeds Mega + mp4upload (HD/1080p). Fuente preferida.
+export async function av1Servers(slug, n) {
+  const h = await get(`https://animeav1.com/media/${slug}/${n}`);
+  if (!h) return null;
+  const out = [];
+  for (const u of [...new Set([...h.matchAll(/https:\/\/mega\.nz\/embed\/[A-Za-z0-9_#!-]+/g)].map((m) => m[0]))].slice(0, 2)) out.push({ name: "Mega", url: u, lang: "Sub", desc: "" });
+  for (const u of [...new Set([...h.matchAll(/https:\/\/www\.mp4upload\.com\/embed-[a-z0-9]+\.html/g)].map((m) => m[0]))].slice(0, 1)) out.push({ name: "Mp4upload", url: u, lang: "Sub", desc: "" });
+  return out.length ? out : null;
+}
+// Orden de preferencia por calidad: animeav1 (HD) primero.
+export const SOURCES = { animeav1: av1Servers, jkanime: jkServers, tioanime: tioServers };
 
 // GARANTÍA DE CALIDAD: verifica que un embed cargue de verdad (no 404 / no
 // "archivo eliminado"). Devuelve true solo si responde y no está borrado.

@@ -39,10 +39,10 @@ FB_API_KEY=... FB_ADMIN_EMAIL=... FB_ADMIN_PASSWORD=... DRY_RUN=1 node automatio
 
 ## Sobre la calidad 1080p / HD
 
-jkanime y tioanime suelen entregar **720p**. Para **1080p real** la mejor fuente es
-**AnimeAV1**, pero su web se arma por JavaScript (Nuxt) y NO se puede leer con un
-simple `fetch`: hace falta un navegador headless (Playwright) en el workflow. Es el
-siguiente paso para cumplir el requisito de 1080p — está anotado como pendiente.
+**animeav1 = HD/1080p y SÍ es scrapeable** (sus páginas `/media/{slug}/{N}` traen los
+embeds Mega/mp4upload en el HTML). Es la **fuente preferida** en `SOURCES`. Úsala en
+`sources.json`/`watchlist.json` con `"source": "animeav1"` y el slug de animeav1
+(ej. `digimon-ghost-game`). jkanime/tioanime (~720p) quedan como respaldo.
 
 ## Ampliar el catálogo con animes clásicos/populares
 
