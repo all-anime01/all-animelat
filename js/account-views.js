@@ -27,7 +27,25 @@ export function injectAccountStyles() {
   .av-nsec{font-size:15px;color:#f0f0f0;margin:22px 0 8px;display:flex;align-items:center;gap:9px;font-weight:700}
   .av-nsec:first-child{margin-top:2px}
   .av-nsec i{color:#ca3030}
-  .av-when{color:#777}`;
+  .av-when{color:#777}
+  /* Historial estilo Crunchyroll: tarjetas 16:9 con barra de progreso */
+  .cr-hist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px 16px}
+  @media(max-width:600px){.cr-hist{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px 10px}}
+  .cr-card{text-decoration:none;color:#f0f0f0;display:flex;flex-direction:column;gap:9px}
+  .cr-thumb{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#161616}
+  .cr-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .28s ease}
+  .cr-card:hover .cr-thumb img{transform:scale(1.06)}
+  .cr-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);opacity:0;transition:opacity .2s}
+  .cr-card:hover .cr-ov{opacity:1}
+  .cr-play{width:52px;height:52px;border-radius:50%;background:rgba(244,117,33,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+  .cr-play svg{width:22px;height:22px;fill:#fff;margin-left:3px}
+  .cr-epn{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.72);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;letter-spacing:.3px}
+  .cr-bar{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.28)}
+  .cr-bar i{display:block;height:100%;background:#f47521}
+  .cr-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .cr-title{font-size:14px;font-weight:700;line-height:1.25;color:#f5f5f5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cr-sub{font-size:12.5px;color:#9a9a9a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cr-cont{font-size:11.5px;color:#f47521;font-weight:600}`;
   document.head.appendChild(s);
 }
 
@@ -66,7 +84,24 @@ export async function renderHistory(host) {
   try {
     const hist = await listHistory(80);
     host.innerHTML = hist.length
-      ? hist.map((e) => `<a class="av-ep" href="${epLink(e)}"><img src="${e.img}" loading="lazy" alt=""><div><b>${e.animeTitle}</b><br><small>${e.season} · E${e.number} ${e.title || ""}</small></div></a>`).join("")
+      ? `<div class="cr-hist">${hist.map((e) => {
+          const pct = Math.round(Math.max(0, Math.min(1, e.progress || 0)) * 100);
+          const seguir = pct > 2 && pct < 92;
+          const sub = `${e.season} · E${e.number}${e.title ? " · " + e.title : ""}`;
+          return `<a class="cr-card" href="${epLink(e)}">
+            <div class="cr-thumb">
+              <img src="${e.img || ""}" loading="lazy" alt="">
+              <span class="cr-epn">E${e.number}</span>
+              <div class="cr-ov"><span class="cr-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+              <div class="cr-bar"><i style="width:${pct}%"></i></div>
+            </div>
+            <div class="cr-meta">
+              <span class="cr-title">${e.animeTitle || ""}</span>
+              <span class="cr-sub">${sub}</span>
+              ${seguir ? '<span class="cr-cont">Seguir viendo</span>' : ""}
+            </div>
+          </a>`;
+        }).join("")}</div>`
       : '<p class="av-empty">Aún no has visto ningún episodio.</p>';
   } catch (e) { console.error(e); host.innerHTML = '<p class="av-empty">No se pudo cargar el historial.</p>'; }
 }
