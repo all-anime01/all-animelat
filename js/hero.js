@@ -24,6 +24,22 @@ function esc(s) {
   return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+// El campo "video" del hero acepta tanto un .mp4 (Cloudinary) como una URL de
+// YouTube; en YouTube se usa un iframe de fondo SIN controles (como Cloudinary).
+const YT_RE = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+export function ytId(url) { const m = String(url || "").match(YT_RE); return m ? m[1] : null; }
+let ytApiPromise = null;
+function loadYTApi() {
+  if (window.YT && window.YT.Player) return Promise.resolve();
+  if (ytApiPromise) return ytApiPromise;
+  ytApiPromise = new Promise((resolve) => {
+    const prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => { try { prev && prev(); } catch (e) {} resolve(); };
+    const s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api"; document.head.appendChild(s);
+  });
+  return ytApiPromise;
+}
+
 // Lee la configuración del hero desde Firestore.
 export async function getHeroConfig() {
   if (!FIREBASE_CONFIGURED) return null;
@@ -39,6 +55,7 @@ function renderSlides(section, slides) {
     <div class="hero-slide${i === 0 ? " active" : ""}" data-desktop-img="${esc(s.desktopImg)}" data-mobile-img="${esc(s.mobileImg || s.desktopImg)}" data-video="${esc(s.video || "")}"
          style="background-image:url('${esc(s.desktopImg)}')">
       <video class="hero-video" muted playsinline preload="none"></video>
+      <div class="hero-yt"></div>
       <div class="hero-content">
         ${s.logoImg ? `<img src="${esc(s.logoImg)}" alt="${esc(s.title)}" class="hero-logo">`
                     : `<h1 class="hero-logo-text">${esc(s.title)}</h1>`}
@@ -84,6 +101,11 @@ function initCarousel(section) {
     const v = sl && sl.querySelector(".hero-video");
     return v && v.classList.contains("playing") ? v : null;
   }
+  function activeYT() {
+    const sl = slides[current];
+    const holder = sl && sl.querySelector(".hero-yt");
+    return sl && sl._ytPlayer && holder && holder.classList.contains("playing") ? sl._ytPlayer : null;
+  }
   function showMute(show) { if (muteBtn) muteBtn.style.display = show ? "flex" : "none"; }
   if (muteBtn) {
     updateMuteIcon();
@@ -92,6 +114,8 @@ function initCarousel(section) {
       localStorage.setItem("heroSound", soundOn ? "1" : "0");
       const v = activeVideo();
       if (v) { v.muted = !soundOn; if (soundOn) v.play().catch(() => {}); }
+      const yt = activeYT();
+      if (yt) { try { if (soundOn) { yt.unMute(); yt.setVolume(100); } else yt.mute(); } catch (e) {} }
       updateMuteIcon();
     });
   }
@@ -117,13 +141,43 @@ function initCarousel(section) {
     clearTimeout(videoTimer);
     const v = sl.querySelector(".hero-video");
     if (v) { v.classList.remove("playing"); try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {} }
+    const holder = sl.querySelector(".hero-yt");
+    if (holder) holder.classList.remove("playing");
+    if (sl._ytPlayer) { try { sl._ytPlayer.destroy(); } catch (e) {} sl._ytPlayer = null; if (holder) holder.innerHTML = ""; }
     showMute(false);
+  }
+  // Reproduce un tráiler de YouTube como fondo, sin controles (API iframe).
+  async function playYT(sl, vid) {
+    await loadYTApi();
+    if (!sl.classList.contains("active")) return; // el usuario ya cambió de slide
+    const holder = sl.querySelector(".hero-yt");
+    if (!holder) return;
+    holder.innerHTML = '<div></div>';
+    sl._ytPlayer = new YT.Player(holder.firstChild, {
+      videoId: vid,
+      playerVars: { autoplay: 1, mute: 1, controls: 0, modestbranding: 1, rel: 0, showinfo: 0, iv_load_policy: 3, disablekb: 1, playsinline: 1, fs: 0, loop: 0, cc_load_policy: 0 },
+      events: {
+        onReady: (e) => {
+          try { if (soundOn) { e.target.unMute(); e.target.setVolume(100); } else e.target.mute(); e.target.playVideo(); } catch (er) {}
+          holder.classList.add("playing"); showMute(true); updateMuteIcon();
+        },
+        onStateChange: (e) => {
+          if (e.data === YT.PlayerState.ENDED) {
+            holder.classList.remove("playing"); showMute(false);
+            if (total > 1) { clearTimeout(imageTimer); imageTimer = setTimeout(next, 1500); }
+          }
+        },
+      },
+    });
   }
   function scheduleVideo(sl) {
     clearTimeout(videoTimer);
-    const v = sl.querySelector(".hero-video");
     const url = sl.dataset.video;
-    if (!v || !url || isMobile()) return;
+    if (!url || isMobile()) return;
+    const yid = ytId(url);
+    if (yid) { videoTimer = setTimeout(() => playYT(sl, yid), DELAY_TO_VIDEO); return; }
+    const v = sl.querySelector(".hero-video");
+    if (!v) return;
     // Al terminar el tráiler, vuelve a la imagen del slide y continúa el carrusel.
     v.onended = () => {
       v.classList.remove("playing");

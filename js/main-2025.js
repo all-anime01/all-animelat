@@ -720,7 +720,7 @@ $(document).ready(function () {
     const rating = anime.rating ? `<span class="cr-li-rating"><i class="fas fa-star"></i> ${anime.rating}</span>` : "";
     return `
       <a class="cr-list-item" href="anime-details.html?id=${ea(anime.id)}">
-        <div class="cr-li-thumb"><img src="${ea(anime.img || anime.imgMobile)}" alt="${ea(anime.title)}" loading="lazy" decoding="async"></div>
+        <div class="cr-li-thumb"><img src="${ea(anime.fonImg || anime.heroImg || anime.img)}" alt="${ea(anime.title)}" loading="lazy" decoding="async"></div>
         <div class="cr-li-info">
           <h4 class="cr-li-title">${anime.title || ""}</h4>
           <div class="cr-li-meta">${meta}${rating}</div>

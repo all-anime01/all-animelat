@@ -385,6 +385,31 @@ body.red-theme header {
     opacity: 1;
 }
 
+/* Tráiler de YouTube como fondo del hero (iframe cubierto, sin controles) */
+.hero-yt {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+.hero-yt.playing { opacity: 1; }
+.hero-yt iframe,
+.hero-yt > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 177.78vh;
+    min-width: 100%;
+    height: 56.25vw;
+    min-height: 100%;
+    border: 0;
+    pointer-events: none;
+}
+
 .hero-content {
     position: relative;
     z-index: 3;
@@ -3132,18 +3157,18 @@ header .logo:hover .logo-desktop {
     transition: background .2s ease, border-color .2s ease, transform .1s ease;
 }
 .cr-list-item:hover { background: #262626; border-color: var(--primary-color); transform: translateX(4px); }
-.cr-li-thumb { flex: none; width: 14rem; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: #111; }
+.cr-li-thumb { flex: none; width: 28rem; max-width: 40vw; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: #111; }
 .cr-li-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cr-li-info { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
-.cr-li-title { font-size: 1.8rem; font-weight: 700; font-family: var(--font-headings); margin: 0; color: #fff; }
-.cr-li-meta { font-size: 1.3rem; color: var(--grey-text); display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+.cr-li-title { font-size: 2.1rem; font-weight: 700; font-family: var(--font-headings); margin: 0; color: #fff; }
+.cr-li-meta { font-size: 1.4rem; color: var(--grey-text); display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
 .cr-li-rating { color: var(--secondary-color); font-weight: 700; }
 .cr-li-rating i { color: #f5c518; }
 .cr-li-genres { font-size: 1.25rem; color: var(--primary-color); font-weight: 600; }
 .cr-li-desc { font-size: 1.35rem; color: var(--grey-text); margin: .3rem 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.45; }
 @media (max-width: 600px) {
-    .cr-li-thumb { width: 10rem; }
-    .cr-li-title { font-size: 1.5rem; }
+    .cr-li-thumb { width: 16rem; max-width: 42vw; }
+    .cr-li-title { font-size: 1.6rem; }
     .cr-li-desc { display: none; }
     .cr-view { margin-left: 0; }
 }
