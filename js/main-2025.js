@@ -711,6 +711,25 @@ $(document).ready(function () {
         </div>`;
   }
 
+  // Fila estilo Crunchyroll para la vista de "Lista" en Explorar/Películas.
+  function createAnimeListRow(anime) {
+    const ea = (s) => String(s == null ? "" : s).replace(/"/g, "&quot;");
+    const genres = (anime.genres || []).slice(0, 4).join(" • ");
+    const meta = [anime.year, anime.type, anime.seasons ? anime.seasons + " Temp." : "", anime.audio]
+      .filter(Boolean).join(" · ");
+    const rating = anime.rating ? `<span class="cr-li-rating"><i class="fas fa-star"></i> ${anime.rating}</span>` : "";
+    return `
+      <a class="cr-list-item" href="anime-details.html?id=${ea(anime.id)}">
+        <div class="cr-li-thumb"><img src="${ea(anime.img || anime.imgMobile)}" alt="${ea(anime.title)}" loading="lazy" decoding="async"></div>
+        <div class="cr-li-info">
+          <h4 class="cr-li-title">${anime.title || ""}</h4>
+          <div class="cr-li-meta">${meta}${rating}</div>
+          <div class="cr-li-genres">${genres}</div>
+          <p class="cr-li-desc">${(anime.description || "").slice(0, 220)}</p>
+        </div>
+      </a>`;
+  }
+
   function createDynamicEpisodeItem(episode, anime) {
     const initialImage = anime.fonImg || anime.img;
     const link = `anime-details.html?id=${anime.id}&season=${encodeURIComponent(
@@ -895,8 +914,11 @@ $(document).ready(function () {
       exploreSearch = $("#explore-search"),
       toggleFiltersBtn = $("#toggle-filters-btn"),
       filtersSection = $(".filters-section"),
-      sortBar = $(".cr-sort");
+      sortBar = $(".cr-sort"),
+      viewBar = $(".cr-view");
     let sortMode = "popular";
+    let viewMode = "grid";
+    const renderCard = (a) => viewMode === "list" ? createAnimeListRow(a) : createAnimeCard(a);
 
     if (toggleFiltersBtn.length) {
       filtersSection.hide();
@@ -947,25 +969,27 @@ $(document).ready(function () {
       });
       filtered = sortData(filtered);
       grid.empty();
+      grid.removeClass("anime-grid az-view cr-list-view");
       if (!filtered.length) {
-        grid.removeClass("az-view").addClass("anime-grid");
+        grid.addClass("anime-grid");
         grid.append('<p class="no-results">No se encontraron resultados con estos filtros.</p>');
         return;
       }
+      const innerClass = viewMode === "list" ? "cr-list-view" : "anime-grid";
       if (sortMode === "az") {
-        // Vista alfabética agrupada por letra (estilo Crunchyroll).
-        grid.removeClass("anime-grid").addClass("az-view");
+        // Vista alfabética agrupada por letra (grupos A, B, C…).
+        grid.addClass("az-view");
         const groups = {}, order = [];
         filtered.forEach((a) => { const L = azLetter(a.title); if (!groups[L]) { groups[L] = []; order.push(L); } groups[L].push(a); });
         order.forEach((L) => {
-          const $g = $(`<section class="az-group"><div class="az-letter">${L}</div><div class="anime-grid az-grid"></div></section>`);
-          const $gg = $g.find(".az-grid");
-          groups[L].forEach((a) => $gg.append(createAnimeCard(a)));
+          const $g = $(`<section class="az-group"><div class="az-letter">${L}</div><div class="${innerClass} az-body"></div></section>`);
+          const $gg = $g.find(".az-body");
+          groups[L].forEach((a) => $gg.append(renderCard(a)));
           grid.append($g);
         });
       } else {
-        grid.removeClass("az-view").addClass("anime-grid");
-        filtered.forEach((a) => grid.append(createAnimeCard(a)));
+        grid.addClass(innerClass);
+        filtered.forEach((a) => grid.append(renderCard(a)));
       }
     }
 
@@ -980,6 +1004,13 @@ $(document).ready(function () {
         sortBar.find(".cr-sort-btn").removeClass("active");
         $(this).addClass("active");
         sortMode = $(this).data("sort") || "popular";
+        applyFilters();
+      });
+    if (viewBar.length)
+      viewBar.on("click", ".cr-view-btn", function () {
+        viewBar.find(".cr-view-btn").removeClass("active");
+        $(this).addClass("active");
+        viewMode = $(this).data("view") || "grid";
         applyFilters();
       });
     applyFilters();

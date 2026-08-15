@@ -3111,3 +3111,39 @@ header .logo:hover .logo-desktop {
     .cr-sort-btn { white-space: nowrap; font-size: 1.4rem; padding: .9rem 1.4rem; }
     .az-letter { font-size: 2.6rem; }
 }
+
+/* --- Toggle de vista (Cuadrícula / Lista) --- */
+.cr-view { margin-left: auto; display: inline-flex; gap: .4rem; background: var(--light-bg); border-radius: 8px; padding: .4rem; }
+.cr-view-btn { background: transparent; border: none; color: var(--grey-text); width: 3.6rem; height: 3.6rem; border-radius: 6px; cursor: pointer; font-size: 1.5rem; display: inline-flex; align-items: center; justify-content: center; transition: all .2s ease; }
+.cr-view-btn:hover { color: var(--light-text); }
+.cr-view-btn.active { background: var(--primary-color); color: #fff; }
+
+/* --- Vista de LISTA estilo Crunchyroll --- */
+.cr-list-view { display: flex; flex-direction: column; gap: 1.2rem; }
+.cr-list-item {
+    display: flex;
+    gap: 1.8rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.2rem;
+    text-decoration: none;
+    color: var(--light-text);
+    transition: background .2s ease, border-color .2s ease, transform .1s ease;
+}
+.cr-list-item:hover { background: #262626; border-color: var(--primary-color); transform: translateX(4px); }
+.cr-li-thumb { flex: none; width: 14rem; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: #111; }
+.cr-li-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cr-li-info { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+.cr-li-title { font-size: 1.8rem; font-weight: 700; font-family: var(--font-headings); margin: 0; color: #fff; }
+.cr-li-meta { font-size: 1.3rem; color: var(--grey-text); display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+.cr-li-rating { color: var(--secondary-color); font-weight: 700; }
+.cr-li-rating i { color: #f5c518; }
+.cr-li-genres { font-size: 1.25rem; color: var(--primary-color); font-weight: 600; }
+.cr-li-desc { font-size: 1.35rem; color: var(--grey-text); margin: .3rem 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.45; }
+@media (max-width: 600px) {
+    .cr-li-thumb { width: 10rem; }
+    .cr-li-title { font-size: 1.5rem; }
+    .cr-li-desc { display: none; }
+    .cr-view { margin-left: 0; }
+}
