@@ -853,7 +853,38 @@ $(document).ready(function () {
     }
   }
 
-  // --- LÓGICA DE FILTROS GENÉRICA ---
+  // Normaliza nombres de género a una forma canónica (une "Accion"/"Acción",
+  // "Deporte"/"Deportes", etc.) para no duplicar entradas en el filtro.
+  const GENRE_CANON = {
+    "accion": "Acción", "aventura": "Aventura", "aventuras": "Aventura",
+    "comedia": "Comedia", "drama": "Drama", "fantasia": "Fantasía",
+    "fantasia oscura": "Fantasía Oscura", "ciencia ficcion": "Ciencia Ficción",
+    "sci-fi": "Ciencia Ficción", "scifi": "Ciencia Ficción",
+    "deporte": "Deportes", "deportes": "Deportes", "sobrenatural": "Sobrenatural",
+    "misterio": "Misterio", "romance": "Romance", "terror": "Terror", "horror": "Terror",
+    "shounen": "Shōnen", "shonen": "Shōnen", "shōnen": "Shōnen",
+    "seinen": "Seinen", "shoujo": "Shōjo", "shojo": "Shōjo", "shōjo": "Shōjo",
+    "josei": "Josei", "mecha": "Mecha", "militar": "Militar",
+    "historico": "Histórico", "psicologico": "Psicológico", "magia": "Magia",
+    "superpoderes": "Superpoderes", "super poderes": "Superpoderes",
+    "demonios": "Demonios", "musica": "Música", "artes marciales": "Artes Marciales",
+    "escolar": "Escolar", "escolares": "Escolar", "harem": "Harem",
+    "isekai": "Isekai", "ecchi": "Ecchi", "gore": "Gore", "vampiros": "Vampiros",
+    "recuentos de la vida": "Recuentos de la vida", "slice of life": "Recuentos de la vida",
+    "futbol": "Fútbol", "fútbol": "Fútbol", "parodia": "Parodia",
+    "accion sobrenatural": "Sobrenatural", "aventura fantastica": "Aventura",
+  };
+  function canonGenre(g) {
+    if (!g) return "";
+    const k = String(g).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim();
+    return GENRE_CANON[k] || String(g).trim();
+  }
+  const azLetter = (t) => {
+    const ch = String(t || "#").trim().charAt(0).toUpperCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    return /[A-Z]/.test(ch) ? ch : "#";
+  };
+
+  // --- LÓGICA DE FILTROS GENÉRICA (estilo Crunchyroll) ---
   function setupFilterPage(gridSelector, sourceData) {
     const grid = $(gridSelector);
     if (!grid.length) return;
@@ -863,83 +894,94 @@ $(document).ready(function () {
       statusSelect = $("#status-select"),
       exploreSearch = $("#explore-search"),
       toggleFiltersBtn = $("#toggle-filters-btn"),
-      filtersSection = $(".filters-section");
+      filtersSection = $(".filters-section"),
+      sortBar = $(".cr-sort");
+    let sortMode = "popular";
 
     if (toggleFiltersBtn.length) {
       filtersSection.hide();
       toggleFiltersBtn.on("click", () => filtersSection.slideToggle());
     }
-    const genres = [...new Set(sourceData.flatMap((a) => a.genres))];
+    // Géneros canónicos deduplicados, ordenados alfabéticamente.
+    const genreSet = new Set();
+    sourceData.forEach((a) => (a.genres || []).forEach((g) => { const c = canonGenre(g); if (c) genreSet.add(c); }));
+    const genres = [...genreSet].sort((a, b) => a.localeCompare(b, "es"));
     if (genreButtonsContainer.length) {
       genreButtonsContainer.empty();
       genres.forEach((g) =>
-        genreButtonsContainer.append(
-          `<button class="genre-btn" data-genre="${g}">${g}</button>`
-        )
+        genreButtonsContainer.append(`<button class="genre-btn" data-genre="${g}">${g}</button>`)
       );
     }
-    const years = [...new Set(sourceData.map((a) => a.year))].sort(
-      (a, b) => b - a
-    );
+    const years = [...new Set(sourceData.map((a) => a.year))].filter(Boolean).sort((a, b) => b - a);
     if (yearSelect.length) {
       yearSelect.empty().append('<option value="all">Todos los años</option>');
-      years.forEach((y) =>
-        yearSelect.append(`<option value="${y}">${y}</option>`)
-      );
+      years.forEach((y) => yearSelect.append(`<option value="${y}">${y}</option>`));
+    }
+
+    function sortData(arr) {
+      const c = arr.slice();
+      if (sortMode === "recent")
+        c.sort((a, b) => (b.year || 0) - (a.year || 0) || (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base" }));
+      else if (sortMode === "az")
+        c.sort((a, b) => (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base", numeric: true }));
+      else // popular: por nº de valoraciones y luego rating
+        c.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0) || (b.rating || 0) - (a.rating || 0) || (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base" }));
+      return c;
     }
 
     function applyFilters() {
-      const searchQuery = exploreSearch.val()
-        ? exploreSearch.val().toLowerCase()
-        : "";
+      const searchQuery = exploreSearch.val() ? exploreSearch.val().toLowerCase() : "";
       const selectedGenres = genreButtonsContainer.length
-        ? $(".genre-btn.active")
-          .map(function () {
-            return $(this).data("genre");
-          })
-          .get()
+        ? $(".genre-btn.active").map(function () { return $(this).data("genre"); }).get()
         : [];
       const selectedYear = yearSelect.length ? yearSelect.val() : "all";
       const selectedType = typeSelect.length ? typeSelect.val() : "all";
       const selectedStatus = statusSelect.length ? statusSelect.val() : "all";
-      const filteredData = sourceData.filter(
-        (anime) =>
-          animeMatchesQuery(anime, searchQuery) &&
-          (selectedGenres.length === 0 ||
-            selectedGenres.every((g) => anime.genres.includes(g))) &&
-          (!yearSelect.length ||
-            selectedYear === "all" ||
-            anime.year == selectedYear) &&
-          (!typeSelect.length ||
-            selectedType === "all" ||
-            anime.type === selectedType) &&
-          (!statusSelect.length ||
-            selectedStatus === "all" ||
-            anime.status === selectedStatus)
-      );
-      // Orden alfabético (A-Z) por título, ignorando acentos/mayúsculas.
-      filteredData.sort((a, b) =>
-        (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base", numeric: true })
-      );
+      let filtered = sourceData.filter((anime) => {
+        const gc = (anime.genres || []).map(canonGenre);
+        return animeMatchesQuery(anime, searchQuery) &&
+          (selectedGenres.length === 0 || selectedGenres.every((g) => gc.includes(g))) &&
+          (!yearSelect.length || selectedYear === "all" || anime.year == selectedYear) &&
+          (!typeSelect.length || selectedType === "all" || anime.type === selectedType) &&
+          (!statusSelect.length || selectedStatus === "all" || anime.status === selectedStatus);
+      });
+      filtered = sortData(filtered);
       grid.empty();
-      if (filteredData.length > 0)
-        filteredData.forEach((anime) => grid.append(createAnimeCard(anime)));
-      else
-        grid.append(
-          '<p class="no-results">No se encontraron resultados con estos filtros.</p>'
-        );
+      if (!filtered.length) {
+        grid.removeClass("az-view").addClass("anime-grid");
+        grid.append('<p class="no-results">No se encontraron resultados con estos filtros.</p>');
+        return;
+      }
+      if (sortMode === "az") {
+        // Vista alfabética agrupada por letra (estilo Crunchyroll).
+        grid.removeClass("anime-grid").addClass("az-view");
+        const groups = {}, order = [];
+        filtered.forEach((a) => { const L = azLetter(a.title); if (!groups[L]) { groups[L] = []; order.push(L); } groups[L].push(a); });
+        order.forEach((L) => {
+          const $g = $(`<section class="az-group"><div class="az-letter">${L}</div><div class="anime-grid az-grid"></div></section>`);
+          const $gg = $g.find(".az-grid");
+          groups[L].forEach((a) => $gg.append(createAnimeCard(a)));
+          grid.append($g);
+        });
+      } else {
+        grid.removeClass("az-view").addClass("anime-grid");
+        filtered.forEach((a) => grid.append(createAnimeCard(a)));
+      }
     }
 
-    if (exploreSearch.length)
-      exploreSearch.on("input", debounce(applyFilters, 300));
+    if (exploreSearch.length) exploreSearch.on("input", debounce(applyFilters, 300));
     if (genreButtonsContainer.length)
-      genreButtonsContainer.on("click", ".genre-btn", function () {
-        $(this).toggleClass("active");
-        applyFilters();
-      });
+      genreButtonsContainer.on("click", ".genre-btn", function () { $(this).toggleClass("active"); applyFilters(); });
     if (yearSelect.length) yearSelect.on("change", applyFilters);
     if (typeSelect.length) typeSelect.on("change", applyFilters);
     if (statusSelect.length) statusSelect.on("change", applyFilters);
+    if (sortBar.length)
+      sortBar.on("click", ".cr-sort-btn", function () {
+        sortBar.find(".cr-sort-btn").removeClass("active");
+        $(this).addClass("active");
+        sortMode = $(this).data("sort") || "popular";
+        applyFilters();
+      });
     applyFilters();
   }
 

@@ -3046,3 +3046,68 @@ header .logo:hover .logo-desktop {
 }
 .btn-show-more-eps:hover { background: #ff6b6b; transform: translateY(-2px); }
 .btn-show-more-eps:active { transform: translateY(0); }
+
+/* ============================================================
+   FILTRO ESTILO CRUNCHYROLL (Explorar / Películas)
+   ============================================================ */
+/* Barra de orden: Popularidad / Más reciente / Alfabético */
+.cr-sort {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 0 3rem 0;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.cr-sort-btn {
+    background: transparent;
+    color: var(--grey-text);
+    border: none;
+    padding: 1rem 1.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: var(--font-main);
+    display: inline-flex;
+    align-items: center;
+    gap: .8rem;
+    transition: color .2s ease, background .2s ease;
+}
+.cr-sort-btn i { font-size: 1.4rem; }
+.cr-sort-btn:hover { color: var(--light-text); background: var(--light-bg); }
+.cr-sort-btn.active { color: #fff; background: var(--primary-color); }
+
+/* Chips de género (deduplicados) tipo Crunchyroll */
+.genre-btn {
+    background: var(--card-bg);
+    color: var(--light-text);
+    border: 1px solid var(--border-color);
+    padding: .7rem 1.6rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all .2s ease;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.genre-btn:hover { background: #2a2a2a; border-color: #4a4a4a; color: #fff; }
+.genre-btn.active { background: var(--primary-color); border-color: var(--primary-color); color: #fff; font-weight: 700; }
+
+/* Vista alfabética agrupada por letra (estilo Crunchyroll A-Z) */
+.az-view { display: block; }
+.az-group { margin-bottom: 4.5rem; }
+.az-letter {
+    font-family: var(--font-headings);
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--light-text);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: .8rem;
+    margin-bottom: 2.5rem;
+}
+@media (max-width: 768px) {
+    .cr-sort { gap: .5rem; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+    .cr-sort-btn { white-space: nowrap; font-size: 1.4rem; padding: .9rem 1.4rem; }
+    .az-letter { font-size: 2.6rem; }
+}
