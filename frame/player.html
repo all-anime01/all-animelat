@@ -143,6 +143,14 @@
             animation: aaResumeIn .3s ease, aaResumeOut .4s ease 3.6s forwards;
         }
         .aa-resume-toast i { color: var(--acc2); }
+        #aa-adnote {
+            position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+            z-index: 100000; background: rgba(11,32,17,.88); color: #37e35f;
+            border: 1px solid rgba(55,227,95,.4); padding: 7px 14px; border-radius: 40px;
+            font: 700 12.5px/1 'Roboto Condensed', sans-serif; display: inline-flex; gap: 7px;
+            align-items: center; pointer-events: none;
+            animation: aaResumeIn .3s ease, aaResumeOut .5s ease 3.2s forwards;
+        }
         @keyframes aaResumeIn { from { opacity: 0; transform: translate(-50%, 12px); } }
         @keyframes aaResumeOut { to { opacity: 0; transform: translate(-50%, 12px); } }
 

@@ -64,7 +64,7 @@
   };
   // Cuando hay un modal/diálogo abierto, el foco se ATRAPA dentro de él (si no,
   // "se pierde" hacia el contenido de atrás y no se puede navegar el modal).
-  const MODAL_SEL = '.episode-player-modal, #trailer-modal, #adfree-modal, .adfree-ov, [role="dialog"]';
+  const MODAL_SEL = '.episode-player-modal, #trailer-modal, #adfree-modal, .adfree-ov, #apk-help, [role="dialog"]';
   function activeScope() {
     const modals = Array.prototype.filter.call(document.querySelectorAll(MODAL_SEL), isShown);
     return modals.length ? modals[modals.length - 1] : document;

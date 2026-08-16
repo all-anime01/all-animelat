@@ -92,15 +92,51 @@ export function initPWA() {
     const forTV = isFireTV;
     const file = forTV ? "All-Anime-TV.apk" : "All-Anime-Android.apk";
     const label = forTV ? '<i class="fas fa-tv"></i> Descargar app (Fire TV)' : '<i class="fas fa-mobile-screen"></i> Descargar app (Android)';
+    const absUrl = location.origin + "/descargas/" + file;
+    const shortUrl = (location.host + "/descargas/" + file).replace(/^www\./, "");
     const apk = document.createElement("a");
     apk.id = "apk-install";
-    apk.href = "/descargas/" + file;
-    apk.setAttribute("download", file);
+    apk.href = absUrl;
+    if (!forTV) apk.setAttribute("download", file);   // móvil: descarga directa
+    apk.setAttribute("target", "_blank");
+    apk.setAttribute("rel", "noopener");
     apk.innerHTML = label + ' <span class="pwa-x" title="Ocultar">&times;</span>';
     const mountApk = () => { if (!apk.isConnected && document.body) document.body.appendChild(apk); };
     document.addEventListener("DOMContentLoaded", mountApk); mountApk();
+
+    // Guía de instalación para Fire TV (Silk no instala APKs directo: se usa
+    // la app "Downloader" con la URL). En móvil se descarga y se instala normal.
+    function showFireTVHelp() {
+      if (document.getElementById("apk-help")) return;
+      const ov = document.createElement("div");
+      ov.id = "apk-help";
+      ov.style.cssText = "position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:24px";
+      ov.innerHTML = `
+        <div style="max-width:640px;background:#161b22;border:1px solid #30363d;border-radius:16px;padding:28px;color:#e6edf3;font-family:Roboto,sans-serif;text-align:center">
+          <div style="font-size:40px">📺</div>
+          <h2 style="font-family:Poppins,sans-serif;margin:8px 0 6px">Instalar en Fire TV</h2>
+          <p style="color:#9aa4b2;font-size:15px;margin:0 0 16px">El navegador del Fire TV no instala apps por sí solo. Hazlo así:</p>
+          <ol style="text-align:left;color:#cdd5df;font-size:15px;line-height:1.7;margin:0 auto 16px;max-width:520px">
+            <li>Instala la app gratuita <b>Downloader</b> desde la tienda del Fire TV.</li>
+            <li>En Ajustes → Mi Fire TV → Opciones de desarrollador, activa <b>Instalar apps desconocidas</b> para Downloader.</li>
+            <li>Abre <b>Downloader</b> y escribe esta dirección:</li>
+          </ol>
+          <div style="background:#0d1117;border:1px dashed #3b82f6;border-radius:10px;padding:14px;font-size:18px;font-weight:700;color:#60a5fa;word-break:break-all">${shortUrl}</div>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+            <a href="${absUrl}" target="_blank" rel="noopener" style="background:#1f6feb;color:#fff;text-decoration:none;padding:12px 20px;border-radius:40px;font-weight:700">Intentar descargar aquí</a>
+            <button id="apk-help-close" style="background:#30363d;color:#fff;border:none;padding:12px 20px;border-radius:40px;font-weight:700;cursor:pointer">Cerrar</button>
+          </div>
+        </div>`;
+      document.body.appendChild(ov);
+      const close = () => ov.remove();
+      ov.querySelector("#apk-help-close").addEventListener("click", close);
+      ov.addEventListener("click", (e) => { if (e.target === ov) close(); });
+    }
+
     apk.addEventListener("click", (e) => {
-      if (e.target.classList.contains("pwa-x")) { e.preventDefault(); apk.classList.remove("show"); try { sessionStorage.setItem("apkDismissed", "1"); } catch {} }
+      if (e.target.classList.contains("pwa-x")) { e.preventDefault(); apk.classList.remove("show"); try { sessionStorage.setItem("apkDismissed", "1"); } catch {} return; }
+      if (forTV) { e.preventDefault(); showFireTVHelp(); }
+      // en móvil: deja que el enlace descargue el APK normalmente
     });
     if (!sessionStorage.getItem("apkDismissed")) setTimeout(() => apk.classList.add("show"), 1200);
   }

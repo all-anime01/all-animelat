@@ -91,13 +91,33 @@ function resumeToast(url) {
   setTimeout(() => t.remove(), 4200);
 }
 
+// ¿El usuario tiene "sin publicidad" (pagó o el admin se lo activó)?
+function aaIsAdFree() {
+  try {
+    const v = localStorage.getItem("aa_adfree");
+    if (v === "1") return true;
+    const until = parseInt(v || "0", 10);
+    return !!(until && Date.now() < until);
+  } catch { return false; }
+}
+
 function aaIframeMarkup(url) {
-  // Sin sandbox: el reproductor del servidor funciona sin restricciones.
+  const adFree = aaIsAdFree();
+  // IMPORTANTE: nunca se incluye `allow-top-navigation` → un anuncio del servidor
+  // JAMÁS puede redirigir/secuestrar la página (no se vuelve innavegable).
+  //  · adFree (pago o activado por admin): SIN `allow-popups` → los anuncios
+  //    emergentes quedan bloqueados automáticamente; el video sigue igual.
+  //  · resto: CON `allow-popups` → el anuncio se abre en pestaña aparte (se puede
+  //    cerrar a mano) y el sitio/el video siguen intactos.
+  const base = "allow-scripts allow-same-origin allow-forms allow-presentation allow-pointer-lock";
+  const sandbox = adFree ? base : base + " allow-popups allow-popups-to-escape-sandbox allow-modals";
   return `
       <span id="backToPlayers" onclick="listPlayer();"></span>
+      ${adFree ? '<div id="aa-adnote"><i class="fas fa-shield-halved"></i> Publicidad bloqueada</div>' : ''}
       <iframe
           id="IFR"
           src="${buildSrc(url)}"
+          sandbox="${sandbox}"
           allow="autoplay; fullscreen *; encrypted-media; picture-in-picture; clipboard-write; gyroscope"
           frameborder="0"
           allowfullscreen="true"
