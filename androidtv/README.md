@@ -7,20 +7,33 @@ video a pantalla completa y botón ATRÁS del control.
 Aparece en la pantalla de inicio de **Fire TV** y **Android TV** (usa
 `LEANBACK_LAUNCHER`) y también corre en teléfonos.
 
-## Cómo compilar el APK
+## APK ya compilado
 
-1. Instala **Android Studio** (incluye el SDK y Gradle).
-2. Abre esta carpeta `androidtv/` como proyecto (Android Studio genera el Gradle
-   Wrapper la primera vez).
-3. **Build → Build Bundle(s)/APK(s) → Build APK(s)**. El APK queda en
-   `app/build/outputs/apk/`.
-   - Alternativa por consola (con el wrapper ya generado): `./gradlew assembleRelease`.
+Ya hay un APK listo para instalar en la raíz de esta carpeta:
+**`androidtv/All-Anime-TV.apk`** (compilado en modo debug, firmado con la clave
+de depuración → se puede instalar por *sideload* sin más).
+
+## Cómo recompilar el APK
+
+Requisitos: **Android SDK** (con la plataforma `android-36`) y **Gradle 8.11+**
+(o Android Studio). Config actual: AGP 8.9.1, compileSdk/targetSdk 36, minSdk 21.
+
+- **Android Studio:** abre `androidtv/` como proyecto → *Build → Build APK(s)*.
+- **Consola:** `gradle assembleDebug` (o `assembleRelease`). El APK queda en
+  `app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Instalar en Fire TV / Android TV
 
-- **Fire TV:** activa *Aplicaciones de fuentes desconocidas* y usa *Downloader* o
-  `adb install app-release.apk` (conectando por IP: `adb connect IP_DEL_FIRE_TV`).
-- **Android TV:** `adb install app-release.apk` o cópialo con un gestor de archivos.
+1. En el Fire TV: *Ajustes → Mi Fire TV → Opciones de desarrollador* → activa
+   **Instalar apps desconocidas** (o *Aplicaciones de fuentes desconocidas*).
+2. Pasa el APK al televisor con una de estas opciones:
+   - **Downloader** (app en la Amazon Appstore): sube `All-Anime-TV.apk` a
+     cualquier hosting/Drive y abre el enlace desde Downloader.
+   - **adb:** `adb connect IP_DEL_FIRE_TV` y luego
+     `adb install "All-Anime-TV.apk"`.
+   - Un gestor de archivos (Send Files to TV, X-plore) desde la red local.
+3. Abre **All-Anime** desde la fila de apps del Fire TV. Navega con el control
+   remoto (flechas + OK); el botón ATRÁS cierra el video o retrocede.
 
 ## Firmar para publicar (opcional)
 
