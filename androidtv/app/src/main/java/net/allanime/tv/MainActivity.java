@@ -106,17 +106,16 @@ public class MainActivity extends Activity {
         // El sitio/servidor intenta abrir una ventana nueva (anuncio popup).
         @Override
         public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
-            if (adFree) {
-                // Sin publicidad: se bloquea el popup; el video sigue igual.
-                return false;
-            }
-            openManualPopup(resultMsg);
+            // adFree (pago o activado por admin): el anuncio se abre normal y se
+            // cierra SOLO a los 2 s, volviendo al episodio. Sin adFree: cierre manual.
+            openPopup(resultMsg, adFree);
             return true;
         }
     }
 
-    // Abre el anuncio en una ventana con botón "Cerrar" para volver a lo anterior.
-    private void openManualPopup(Message resultMsg) {
+    // Abre el anuncio del servidor. Si autoClose (adFree) → se cierra a los 2 s;
+    // siempre hay además un botón "✕ Cerrar anuncio" por si se quiere cerrar antes.
+    private void openPopup(Message resultMsg, boolean autoClose) {
         closePopup();
         popupContainer = new FrameLayout(this);
         popupContainer.setBackgroundColor(0xCC000000);
@@ -124,6 +123,7 @@ public class MainActivity extends Activity {
         popupView = new WebView(this);
         WebSettings ps = popupView.getSettings();
         ps.setJavaScriptEnabled(true);
+        ps.setDomStorageEnabled(true);
         ps.setSupportMultipleWindows(true);
         ps.setJavaScriptCanOpenWindowsAutomatically(true);
         popupView.setWebViewClient(new WebViewClient());
@@ -134,7 +134,7 @@ public class MainActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         Button close = new Button(this);
-        close.setText("✕ Cerrar anuncio");
+        close.setText(autoClose ? "✕ Cerrar anuncio (cerrando…)" : "✕ Cerrar anuncio");
         FrameLayout.LayoutParams clp = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         clp.gravity = Gravity.TOP | Gravity.END;
@@ -148,6 +148,11 @@ public class MainActivity extends Activity {
         WebView.WebViewTransport t = (WebView.WebViewTransport) resultMsg.obj;
         t.setWebView(popupView);
         resultMsg.sendToTarget();
+
+        // adFree: cierre automático a los 2 segundos → vuelve al episodio.
+        if (autoClose) {
+            rootLayout.postDelayed(this::closePopup, 2000);
+        }
     }
 
     private void closePopup() {
