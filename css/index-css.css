@@ -3172,3 +3172,41 @@ header .logo:hover .logo-desktop {
     .cr-li-desc { display: none; }
     .cr-view { margin-left: 0; }
 }
+
+/* ============================================================
+   AJUSTES PARA TV (Fire TV / Android TV)
+   El sitio ya activa la clase .aa-tv (js/tv-nav.js). Aquí se
+   corrige el modal de episodios y detalles para pantallas de TV.
+   ============================================================ */
+/* Modal de episodios: video grande en 16:9 real, centrado; los detalles
+   quedan debajo y se recorren con el control (D-pad abajo). */
+html.aa-tv .player-video-container {
+    height: 74vh;
+    max-height: 74vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+html.aa-tv #episode-iframe {
+    width: min(100%, calc(74vh * 16 / 9));
+    height: 100%;
+}
+html.aa-tv .player-details-container { padding: 3vh max(4vw, 32px) 7vh; }
+html.aa-tv .player-details-content { max-width: 1500px; gap: 3vw; }
+html.aa-tv .close-player {
+    top: max(2rem, 3.5vh);
+    right: max(3rem, 3.5vw);
+    width: 58px; height: 58px; line-height: 58px; font-size: 3rem;
+    z-index: 3002;
+}
+/* Legibilidad general a 10 pies: tipografía y controles algo más grandes. */
+html.aa-tv #player-anime-title { font-size: 2.8rem !important; }
+html.aa-tv .player-main-info-col h4 { font-size: 2.1rem; }
+html.aa-tv .player-meta-tags,
+html.aa-tv .player-main-info-col p { font-size: 1.7rem; }
+html.aa-tv .player-action-btn,
+html.aa-tv .genre-btn,
+html.aa-tv .cr-sort-btn { font-size: 1.6rem; }
+/* Evita scroll horizontal por overscan y da aire a los bordes. */
+html.aa-tv body { overflow-x: hidden; }
