@@ -362,6 +362,16 @@ export async function setUserAdFree(uid, on) {
   return !!on;
 }
 
+// ---- Métricas / observabilidad (Sentry, Mixpanel, Hotjar, Grafana) ----------
+export async function getAnalyticsConfig() {
+  const s = await getDoc(doc(db, "config", "analytics"));
+  return s.exists() ? (s.data() || {}) : {};
+}
+export async function saveAnalyticsConfig(cfg) {
+  await setDoc(doc(db, "config", "analytics"), { ...cfg, updatedAt: serverTimestamp() }, { merge: true });
+  return true;
+}
+
 // Construye un objeto anime a partir del formulario (mismos campos que database.js).
 export function buildAnimeFromForm(f) {
   const splitList = (v) =>

@@ -12,6 +12,7 @@ import { initDonations } from "./donations.js";
 import { initRemoveAdsUI, syncAdFree, setAdFreeUid, openRemoveAds, isAdFree } from "./adfree.js";
 import { initCardHover } from "./card-hover.js";
 import "./tv-nav.js";  // navegación con control remoto (Fire TV / Android TV)
+import { initMetrics, identify as metricsIdentify, track as metricsTrack, captureError } from "./metrics.js";
 import { initNotifications } from "./notifications.js";
 
 // Coincidencia de búsqueda por el título O cualquier título alternativo
@@ -75,6 +76,11 @@ initRemoveAdsUI();
 initCardHover();
 // PWA: instalable como app, service worker y botón de instalación.
 initPWA();
+// Métricas/observabilidad (Sentry, Mixpanel, Hotjar, Grafana) — solo si el
+// admin configuró claves en config/analytics. Reporta errores globales a Sentry.
+initMetrics();
+window.addEventListener("error", (e) => captureError(e.error || e.message));
+window.addEventListener("unhandledrejection", (e) => captureError(e.reason));
 
 // --- WIDGET DE CUENTA EN EL HEADER (todas las páginas) ---
 function injectAccountWidget() {
@@ -133,6 +139,7 @@ function injectAccountWidget() {
   observeAuth((user) => {
     if (!user) { setAdFreeUid(null); renderLoggedOut(); return; }
     touchLastVisit(user.uid);   // registra su última visita (1 vez por sesión)
+    metricsIdentify(user);      // segmenta métricas por usuario (Sentry/Mixpanel/Faro)
     setAdFreeUid(user.uid);
     syncAdFree(user.uid);       // respalda/recupera el estado "sin publicidad"
     const admin = (user.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
@@ -559,6 +566,7 @@ $(document).ready(function () {
     if (!anime || !episode) return;
     currentPlayerAnime = anime;
     currentPlayerEpisode = episode;
+    metricsTrack("play_episode", { animeId: anime.id, title: anime.title, season: episode.season, episode: episode.number, audio: anime.audio });
     UD.recordHistory(anime, episode); // historial sincronizado (si hay sesión)
     const playerModal = $("#episode-player-modal");
     const episodeId = `${anime.id}::${episode.season}::ep${episode.number}`;
@@ -1624,6 +1632,7 @@ $(document).ready(function () {
       return;
     }
     rememberSearch(q);
+    metricsTrack("search", { query: q });
     searchResults
       .empty()
       .show()
