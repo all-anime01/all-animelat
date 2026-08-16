@@ -33,7 +33,16 @@ function injectStyles() {
     #pwa-install.show{display:inline-flex;animation:pwa-pop .3s ease}
     #pwa-install .pwa-x{margin-left:2px;opacity:.85}
     @keyframes pwa-pop{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
-    @media (display-mode:standalone){#pwa-install{display:none!important}}`;
+    @media (display-mode:standalone){#pwa-install{display:none!important}}
+    /* Botón de descarga de la APK (Android / Fire TV) */
+    #apk-install{position:fixed;right:16px;bottom:72px;z-index:5000;display:none;align-items:center;gap:9px;
+      padding:12px 18px;border-radius:40px;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:700;
+      color:#fff;background:linear-gradient(135deg,#1f6feb,#3b82f6);box-shadow:0 10px 30px rgba(31,111,235,.45);
+      text-decoration:none;transition:transform .15s ease,filter .15s ease}
+    #apk-install:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    #apk-install.show{display:inline-flex;animation:pwa-pop .3s ease}
+    #apk-install .pwa-x{margin-left:2px;opacity:.85}
+    html.aa-tv #apk-install{font-size:20px;padding:16px 26px;right:max(3vw,24px);bottom:max(4vh,24px)}`;
   document.head.appendChild(s);
 }
 
@@ -70,4 +79,25 @@ export function initPWA() {
     btn.classList.add("show");
   });
   window.addEventListener("appinstalled", () => { btn.classList.remove("show"); deferred = null; });
+
+  // --- Descarga de la APK para Android / Fire TV ---------------------------
+  // En dispositivos Android (incluye Fire TV, que es Android) se ofrece la app
+  // instalable (APK). En escritorio el usuario tiene la PWA (botón de arriba).
+  const ua = navigator.userAgent || "";
+  const isAndroid = /Android/i.test(ua);
+  const isFireTV = /AFT[A-Z0-9]|Fire\s?TV|Silk/i.test(ua);
+  const inApp = /AllAnimeTV/i.test(ua) || window.matchMedia("(display-mode: standalone)").matches;
+  if ((isAndroid || isFireTV) && !inApp) {
+    const apk = document.createElement("a");
+    apk.id = "apk-install";
+    apk.href = "/descargas/All-Anime-TV.apk";
+    apk.setAttribute("download", "All-Anime-TV.apk");
+    apk.innerHTML = '<i class="fas fa-tv"></i> Descargar app (Android / Fire TV) <span class="pwa-x" title="Ocultar">&times;</span>';
+    const mountApk = () => { if (!apk.isConnected && document.body) document.body.appendChild(apk); };
+    document.addEventListener("DOMContentLoaded", mountApk); mountApk();
+    apk.addEventListener("click", (e) => {
+      if (e.target.classList.contains("pwa-x")) { e.preventDefault(); apk.classList.remove("show"); try { sessionStorage.setItem("apkDismissed", "1"); } catch {} }
+    });
+    if (!sessionStorage.getItem("apkDismissed")) setTimeout(() => apk.classList.add("show"), 1200);
+  }
 }
