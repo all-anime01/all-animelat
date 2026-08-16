@@ -283,6 +283,20 @@
             const byLang = {};
             servers.forEach((s) => { const lang = s.lang || "Sub"; (byLang[lang] = byLang[lang] || []).push(s); });
             const langs = Object.keys(byLang);
+            // Ordena por fiabilidad: los servidores más estables primero para que el
+            // usuario reproduzca sin fallos; los problemáticos (p. ej. Vidara, que a
+            // veces queda en negro) quedan de último como respaldo.
+            const srvRank = (name) => {
+                const n = String(name || "").toLowerCase();
+                if (n.includes("mega") || n.includes("youtube")) return 0;
+                if (n.includes("pelisplus") || n.includes("streamwish") || n.includes("filemoon")) return 1;
+                if (n.includes("streamtape") || n.includes("mp4upload") || n.includes("doodstream") || n.includes("ok")) return 2;
+                if (n.includes("voe") || n.includes("mixdrop") || n.includes("uqload")) return 3;
+                if (n.includes("vidara")) return 9;   // suele quedarse en negro → al final
+                if (n.includes("vidhide")) return 6;
+                return 4;
+            };
+            langs.forEach((l) => byLang[l].sort((a, b) => srvRank(a.name) - srvRank(b.name)));
 
             const tabs = document.getElementById("langTabs");
             tabs.innerHTML = langs.length > 1

@@ -38,8 +38,9 @@ function buildSrc(url) {
     if (pos > 5) params.set("start", String(pos));
     return `https://www.youtube.com/embed/${yid}?${params.toString()}`;
   }
-  // Otros servidores: fragmento de tiempo (lo respetan algunos hosts).
-  if (pos > 5 && !/#/.test(url)) return `${url}#t=${pos}`;
+  // Otros servidores: se carga la URL TAL CUAL. Antes se le añadía `#t=segundos`
+  // para intentar reanudar, pero varios reproductores (p. ej. Vidara) se quedaban
+  // en negro con ese fragmento; la reanudación exacta solo es fiable en YouTube.
   return url;
 }
 
@@ -60,25 +61,17 @@ function startTracking(url, iframe) {
   stopTracking();
   AA_track.url = url;
   AA_track.isYT = !!ytIdFrom(url);
+  // Solo se sigue/guarda la posición en YouTube (los demás son de otro origen y
+  // no se pueden leer/controlar; además meterles un tiempo los dejaba en negro).
   if (AA_track.isYT) {
-    // Pide a YouTube que emita eventos (incluye currentTime) periódicamente.
     const ping = () => { try { iframe.contentWindow.postMessage(JSON.stringify({ event: "listening", id: "IFR", channel: "widget" }), "*"); } catch {} };
     setTimeout(ping, 800); setTimeout(ping, 2500);
     AA_track.timer = setInterval(ping, 5000);
-  } else {
-    // Sin acceso al reproductor (otro origen): estima por reloj desde la
-    // posición guardada. Aproximado, pero permite reanudar donde se pueda.
-    AA_track.base = savedPos(url);
-    AA_track.t0 = Date.now();
-    AA_track.timer = setInterval(() => {
-      if (document.hidden) { AA_track.t0 = Date.now() - AA_track.base * 1000; return; }
-      const sec = AA_track.base + (Date.now() - AA_track.t0) / 1000;
-      savePos(url, sec);
-    }, 5000);
   }
 }
 
 function resumeToast(url) {
+  if (!ytIdFrom(url)) return;   // la reanudación solo aplica a YouTube
   const pos = savedPos(url);
   if (pos <= 15) return;
   const mm = String(Math.floor(pos / 60)).padStart(2, "0");
