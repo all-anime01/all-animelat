@@ -211,6 +211,9 @@
             <button class="navbtn" data-tab="notif"><i class="fas fa-bell"></i> Notificaciones</button>
             <button class="navbtn" data-tab="stats"><i class="fas fa-chart-line"></i> Estadísticas</button>
             <button class="navbtn" data-tab="metrics"><i class="fas fa-gauge-high"></i> Métricas</button>
+            <button class="navbtn" data-tab="control"><i class="fas fa-sliders"></i> Control</button>
+            <button class="navbtn" data-tab="errors"><i class="fas fa-triangle-exclamation"></i> Errores</button>
+            <button class="navbtn" data-tab="mod"><i class="fas fa-comments"></i> Moderación</button>
             <button class="navbtn" data-tab="ads"><i class="fas fa-ban"></i> Publicidad</button>
             <button class="navbtn" data-tab="tools"><i class="fas fa-screwdriver-wrench"></i> Herramientas</button>
         </nav>
@@ -568,6 +571,16 @@
                         <div id="top-countries"><p class="hint">Cargando…</p></div>
                     </div>
                 </div>
+                <div class="grid2" style="margin-top:18px">
+                    <div class="card">
+                        <h2><i class="fas fa-magnifying-glass" style="color:var(--primary)"></i> Búsquedas más frecuentes</h2>
+                        <div id="top-searches"><p class="hint">Cargando…</p></div>
+                    </div>
+                    <div class="card">
+                        <h2><i class="fas fa-tv" style="color:var(--primary)"></i> Dispositivos</h2>
+                        <div id="top-devices"><p class="hint">Cargando…</p></div>
+                    </div>
+                </div>
                 <div class="card" style="margin-top:18px">
                     <h2><i class="fas fa-clapperboard" style="color:var(--primary)"></i> Episodios más vistos</h2>
                     <div id="top-episodes"><p class="hint">Cargando…</p></div>
@@ -579,6 +592,69 @@
             </section>
 
             <!-- ============ HERRAMIENTAS ============ -->
+            <section class="panel" id="panel-control">
+                <div class="phead"><h1>Control del sitio</h1></div>
+                <div class="card">
+                    <h2>Modo mantenimiento</h2>
+                    <p style="color:var(--grey);font-size:14px;margin-bottom:14px">Bloquea el sitio para los visitantes (tú como admin sigues entrando normal). Útil para actualizaciones.</p>
+                    <label style="display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:12px">
+                        <input id="fl-maint" type="checkbox" style="width:auto"> Activar mantenimiento
+                    </label>
+                    <label style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
+                        <span style="color:var(--grey);font-size:13px">Mensaje de mantenimiento</span>
+                        <input id="fl-maint-msg" type="text" placeholder="Volvemos muy pronto. Gracias por tu paciencia.">
+                    </label>
+                    <h2>Banner global</h2>
+                    <p style="color:var(--grey);font-size:14px;margin-bottom:14px">Muestra una barra fija arriba en todo el sitio (avisos, estrenos, alertas).</p>
+                    <label style="display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:12px">
+                        <input id="fl-banner-on" type="checkbox" style="width:auto"> Mostrar banner
+                    </label>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+                        <input id="fl-banner-text" type="text" placeholder="Texto del banner" style="flex:1;min-width:240px">
+                        <select id="fl-banner-type" class="filter-select" style="max-width:160px">
+                            <option value="info">Info (azul)</option>
+                            <option value="warn">Aviso (ámbar)</option>
+                            <option value="danger">Alerta (rojo)</option>
+                        </select>
+                    </div>
+                    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                        <button class="btn" id="fl-save"><i class="fas fa-floppy-disk"></i> Guardar</button>
+                        <span id="fl-msg" class="msg"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Auditoría (últimas acciones del admin)</h2>
+                    <div id="audit-list" style="display:flex;flex-direction:column;gap:8px;font-size:13.5px"></div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-errors">
+                <div class="phead"><h1>Registro de errores</h1></div>
+                <div class="card">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+                        <p style="color:var(--grey);font-size:14px;margin:0">Errores de JavaScript capturados en el sitio (tipo Sentry, propio). Los más recientes primero.</p>
+                        <div style="display:flex;gap:8px">
+                            <button class="btn" id="err-reload"><i class="fas fa-rotate"></i> Recargar</button>
+                            <button class="btn" id="err-clear" style="background:#7f1d1d"><i class="fas fa-trash"></i> Limpiar</button>
+                        </div>
+                    </div>
+                    <div id="err-msg" class="msg"></div>
+                    <div id="err-list" style="display:flex;flex-direction:column;gap:8px;margin-top:12px"></div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-mod">
+                <div class="phead"><h1>Moderación de comentarios</h1></div>
+                <div class="card">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+                        <p style="color:var(--grey);font-size:14px;margin:0">Comentarios recientes de los usuarios. Puedes eliminarlos.</p>
+                        <button class="btn" id="mod-reload"><i class="fas fa-rotate"></i> Recargar</button>
+                    </div>
+                    <div id="mod-msg" class="msg"></div>
+                    <div id="mod-list" style="display:flex;flex-direction:column;gap:10px;margin-top:12px"></div>
+                </div>
+            </section>
+
             <section class="panel" id="panel-metrics">
                 <div class="phead"><h1>Métricas y observabilidad</h1></div>
                 <div class="card">
@@ -689,6 +765,8 @@
             saveNotificationToList, getNotificationsList, activateNotification, deleteNotificationFromList,
             findUsersByEmail, setUserAdFree,
             getAnalyticsConfig, saveAnalyticsConfig,
+            getFlags, saveFlags, listErrors, clearErrors, listRecentComments, deleteComment,
+            getSearchStats, getDeviceStats, listAudit,
         } from "../js/admin.js";
         import { showNotification } from "../js/notifications.js";
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
@@ -735,7 +813,92 @@
             if (b.dataset.tab === "notif") loadCurrentNotif();
             if (b.dataset.tab === "ads") loadAllUsers();
             if (b.dataset.tab === "metrics") loadMetrics();
+            if (b.dataset.tab === "control") loadControl();
+            if (b.dataset.tab === "errors") loadErrors();
+            if (b.dataset.tab === "mod") loadMod();
         }));
+
+        // ---------- Control (flags / mantenimiento) + auditoría ----------
+        const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const fmtDate = (t) => { try { const d = t && t.toDate ? t.toDate() : (t ? new Date(t) : null); return d ? d.toLocaleString("es") : ""; } catch { return ""; } };
+        async function loadControl() {
+            try {
+                const f = await getFlags();
+                $("fl-maint").checked = !!f.maintenance;
+                $("fl-maint-msg").value = f.maintenanceMsg || "";
+                $("fl-banner-on").checked = !!f.bannerOn;
+                $("fl-banner-text").value = f.bannerText || "";
+                $("fl-banner-type").value = f.bannerType || "info";
+            } catch (e) { setMsg($("fl-msg"), "Error: " + (e.message || e), "err"); }
+            loadAudit();
+        }
+        $("fl-save").addEventListener("click", async () => {
+            const f = {
+                maintenance: $("fl-maint").checked, maintenanceMsg: $("fl-maint-msg").value.trim(),
+                bannerOn: $("fl-banner-on").checked, bannerText: $("fl-banner-text").value.trim(), bannerType: $("fl-banner-type").value,
+            };
+            setMsg($("fl-msg"), "Guardando…", "");
+            try { await saveFlags(f); setMsg($("fl-msg"), "✔ Guardado. Aplica al recargar el sitio.", "ok"); loadAudit(); }
+            catch (e) { setMsg($("fl-msg"), "Error: " + (e.message || e), "err"); }
+        });
+        async function loadAudit() {
+            try {
+                const items = await listAudit(60);
+                $("audit-list").innerHTML = items.length
+                    ? items.map((a) => `<div style="padding:8px 12px;background:var(--bg2);border-radius:8px"><b style="color:var(--primary)">${esc(a.type)}</b> · ${esc(a.detail)} <span class="hint" style="float:right">${fmtDate(a.at)}</span></div>`).join("")
+                    : '<p class="hint">Sin acciones registradas.</p>';
+            } catch (e) { $("audit-list").innerHTML = '<p class="hint">No se pudo cargar.</p>'; }
+        }
+
+        // ---------- Errores ----------
+        async function loadErrors() {
+            setMsg($("err-msg"), "Cargando…", "");
+            try {
+                const errs = await listErrors(150);
+                setMsg($("err-msg"), `${errs.length} errores.`, "ok");
+                $("err-list").innerHTML = errs.length
+                    ? errs.map((e) => `<div style="padding:10px 12px;background:var(--bg2);border-radius:8px;border-left:3px solid #ef4444">
+                        <div style="font-weight:700;color:#fca5a5">${esc(e.message)}</div>
+                        <div class="hint" style="margin:4px 0">${esc(e.page || "")} · ${fmtDate(e.at)}</div>
+                        <div class="hint" style="font-size:11.5px;word-break:break-all">${esc((e.ua || "").slice(0, 120))}</div>
+                        ${e.stack ? `<details style="margin-top:6px"><summary class="hint" style="cursor:pointer">Stack</summary><pre style="white-space:pre-wrap;font-size:11px;color:#9aa">${esc(e.stack)}</pre></details>` : ""}
+                    </div>`).join("")
+                    : '<p class="hint">Sin errores. 🎉</p>';
+            } catch (e) { setMsg($("err-msg"), "Error: " + (e.message || e), "err"); }
+        }
+        $("err-reload").addEventListener("click", loadErrors);
+        $("err-clear").addEventListener("click", async () => {
+            if (!confirm("¿Borrar todos los errores registrados?")) return;
+            setMsg($("err-msg"), "Limpiando…", "");
+            try { const n = await clearErrors(); setMsg($("err-msg"), `✔ ${n} errores borrados.`, "ok"); loadErrors(); }
+            catch (e) { setMsg($("err-msg"), "Error: " + (e.message || e), "err"); }
+        });
+
+        // ---------- Moderación ----------
+        async function loadMod() {
+            setMsg($("mod-msg"), "Cargando…", "");
+            try {
+                const list = await listRecentComments(120);
+                setMsg($("mod-msg"), `${list.length} comentarios.`, "ok");
+                const box = $("mod-list"); box.innerHTML = "";
+                if (!list.length) { box.innerHTML = '<p class="hint">Sin comentarios.</p>'; return; }
+                list.forEach((c) => {
+                    const el = document.createElement("div");
+                    el.style.cssText = "padding:12px;background:var(--bg2);border-radius:10px;display:flex;gap:12px;justify-content:space-between;align-items:flex-start";
+                    el.innerHTML = `<div style="min-width:0">
+                        <div style="font-weight:700">${esc(c.userName || "Usuario")} <span class="hint" style="font-weight:400">· ${esc(c.animeId || "")} · ${fmtDate(c.createdAt)}</span></div>
+                        <div style="margin-top:4px;color:#ddd;word-break:break-word">${esc(c.text || "")}</div>
+                    </div>
+                    <button class="btn del" style="background:#7f1d1d;flex:none"><i class="fas fa-trash"></i></button>`;
+                    el.querySelector(".del").addEventListener("click", async () => {
+                        if (!confirm("¿Eliminar este comentario?")) return;
+                        try { await deleteComment(c.id); el.remove(); } catch (e) { alert("Error: " + (e.message || e)); }
+                    });
+                    box.appendChild(el);
+                });
+            } catch (e) { setMsg($("mod-msg"), "Error: " + (e.message || e), "err"); }
+        }
+        $("mod-reload").addEventListener("click", loadMod);
 
         // ---------- Métricas / observabilidad ----------
         function metricsStatusChip(label, on) {
@@ -1508,6 +1671,23 @@
                 // Episodios más vistos.
                 renderExpandable($("top-episodes"), topEpisodes.map((e) => `<li><span class="rk-title">${esc(e.animeTitle || titleOf(e.animeId))} · ${esc(e.season)} E${esc(e.number)}${e.title ? " — " + esc(e.title) : ""}</span><span class="rk-val">${(e.viewCount || 0).toLocaleString()} <i class="fas fa-eye"></i></span></li>`),
                     'Aún no hay reproducciones de episodios registradas (se cuentan a partir de ahora).');
+
+                // Búsquedas más frecuentes + dispositivos (analítica propia).
+                getSearchStats(30).then((searches) => {
+                    $("top-searches").innerHTML = searches.length
+                        ? `<ol style="padding-left:20px;margin:0;line-height:1.9">${searches.map((s) => `<li><span class="rk-title">${esc(s.term)}</span> <span class="rk-val">${(s.count || 0).toLocaleString()}</span></li>`).join("")}</ol>`
+                        : '<p class="hint">Aún no hay búsquedas registradas.</p>';
+                }).catch(() => { $("top-searches").innerHTML = '<p class="hint">No se pudo cargar.</p>'; });
+                getDeviceStats().then((devs) => {
+                    const total = devs.reduce((n, d) => n + (d.count || 0), 0) || 1;
+                    const nice = { tv: "📺 TV / Fire TV", mobile: "📱 Móvil", desktop: "💻 Escritorio" };
+                    $("top-devices").innerHTML = devs.length
+                        ? devs.sort((a, b) => (b.count || 0) - (a.count || 0)).map((d) => {
+                            const pct = Math.round((d.count || 0) / total * 100);
+                            return `<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13.5px"><span>${nice[d.label] || d.label}</span><span>${(d.count || 0).toLocaleString()} · ${pct}%</span></div><div style="height:8px;background:var(--bg2);border-radius:6px;overflow:hidden;margin-top:4px"><i style="display:block;height:100%;width:${pct}%;background:var(--primary)"></i></div></div>`;
+                        }).join("")
+                        : '<p class="hint">Aún no hay datos de dispositivos.</p>';
+                }).catch(() => { $("top-devices").innerHTML = '<p class="hint">No se pudo cargar.</p>'; });
 
                 // Lista de usuarios registrados con sus datos + última visita.
                 const fdate = (d) => d ? d.toLocaleDateString("es", { year: "numeric", month: "short", day: "numeric" }) : "—";

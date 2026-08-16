@@ -13,6 +13,7 @@ import { initRemoveAdsUI, syncAdFree, setAdFreeUid, openRemoveAds, isAdFree } fr
 import { initCardHover } from "./card-hover.js";
 import "./tv-nav.js";  // navegación con control remoto (Fire TV / Android TV)
 import { initMetrics, identify as metricsIdentify, track as metricsTrack, captureError } from "./metrics.js";
+import { applyFlags, recordDevice, recordSearch, recordError } from "./insights.js";
 import { initNotifications } from "./notifications.js";
 
 // Coincidencia de búsqueda por el título O cualquier título alternativo
@@ -79,8 +80,18 @@ initPWA();
 // Métricas/observabilidad (Sentry, Mixpanel, Hotjar, Grafana) — solo si el
 // admin configuró claves en config/analytics. Reporta errores globales a Sentry.
 initMetrics();
-window.addEventListener("error", (e) => captureError(e.error || e.message));
-window.addEventListener("unhandledrejection", (e) => captureError(e.reason));
+window.addEventListener("error", (e) => { captureError(e.error || e.message); recordError(e.error || e.message); });
+window.addEventListener("unhandledrejection", (e) => { captureError(e.reason); recordError(e.reason); });
+// Herramientas de control propias: registra dispositivo y aplica flags/mantenimiento.
+recordDevice();
+if (FIREBASE_CONFIGURED) {
+  let flagsDone = false;
+  observeAuth((u) => {
+    if (flagsDone) return; flagsDone = true;
+    const admin = !!u && (u.email || "").toLowerCase() === "all.anime.lat01@gmail.com";
+    applyFlags(admin);
+  });
+}
 
 // --- WIDGET DE CUENTA EN EL HEADER (todas las páginas) ---
 function injectAccountWidget() {
@@ -1633,6 +1644,7 @@ $(document).ready(function () {
     }
     rememberSearch(q);
     metricsTrack("search", { query: q });
+    recordSearch(q);
     searchResults
       .empty()
       .show()

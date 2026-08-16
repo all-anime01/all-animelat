@@ -18,6 +18,8 @@ import {
   setDoc,
   updateDoc,
   deleteDoc,
+  addDoc,
+  writeBatch,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -360,6 +362,61 @@ export async function setUserAdFree(uid, on) {
     adFree: !!on, adFreeUntil: null, adFreeAt: serverTimestamp(), adFreeByAdmin: !!on,
   }, { merge: true });
   return !!on;
+}
+
+// ---- Auditoría de acciones del admin ---------------------------------------
+export async function logAudit(type, detail) {
+  try { await addDoc(collection(db, "adminAudit"), { type, detail: String(detail || "").slice(0, 300), at: serverTimestamp() }); } catch {}
+}
+export async function listAudit(max = 60) {
+  const snap = await getDocs(query(collection(db, "adminAudit"), orderBy("at", "desc"), limit(max)));
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+}
+
+// ---- Flags / mantenimiento (control del sitio) -----------------------------
+export async function getFlags() {
+  const s = await getDoc(doc(db, "config", "flags"));
+  return s.exists() ? (s.data() || {}) : {};
+}
+export async function saveFlags(f) {
+  await setDoc(doc(db, "config", "flags"), { ...f, updatedAt: serverTimestamp() }, { merge: true });
+  await logAudit("flags", `mantenimiento=${!!f.maintenance}, banner=${!!f.bannerOn}`);
+  return true;
+}
+
+// ---- Registro de errores (tipo Sentry propio) ------------------------------
+export async function listErrors(max = 100) {
+  const snap = await getDocs(query(collection(db, "errorLogs"), orderBy("at", "desc"), limit(max)));
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+}
+export async function clearErrors() {
+  const snap = await getDocs(query(collection(db, "errorLogs"), limit(450)));
+  const batch = writeBatch(db);
+  snap.docs.forEach((d) => batch.delete(d.ref));
+  await batch.commit();
+  await logAudit("errors", `limpió ${snap.size} errores`);
+  return snap.size;
+}
+
+// ---- Moderación de comentarios ---------------------------------------------
+export async function listRecentComments(max = 100) {
+  const snap = await getDocs(query(collection(db, "comments"), orderBy("createdAt", "desc"), limit(max)));
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+}
+export async function deleteComment(id) {
+  await deleteDoc(doc(db, "comments", id));
+  await logAudit("mod", "borró comentario " + id);
+  return true;
+}
+
+// ---- Analítica propia: búsquedas y dispositivos ----------------------------
+export async function getSearchStats(max = 30) {
+  const snap = await getDocs(query(collection(db, "search_stats"), orderBy("count", "desc"), limit(max)));
+  return snap.docs.map((d) => d.data());
+}
+export async function getDeviceStats() {
+  const snap = await getDocs(collection(db, "device_stats"));
+  return snap.docs.map((d) => d.data());
 }
 
 // ---- Métricas / observabilidad (Sentry, Mixpanel, Hotjar, Grafana) ----------
