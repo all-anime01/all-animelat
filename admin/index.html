@@ -590,6 +590,17 @@
                     <div id="ads-msg" class="msg"></div>
                     <div id="ads-results" style="margin-top:16px;display:flex;flex-direction:column;gap:10px"></div>
                 </div>
+                <div class="card">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+                        <h2 style="margin:0">Registro de usuarios</h2>
+                        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                            <input id="ads-filter" type="text" placeholder="Filtrar por correo o nombre…" style="min-width:200px">
+                            <button class="btn" id="ads-reload"><i class="fas fa-rotate"></i> Recargar</button>
+                        </div>
+                    </div>
+                    <div id="ads-count" style="color:var(--grey);font-size:13px;margin-bottom:10px"></div>
+                    <div id="ads-all" style="display:flex;flex-direction:column;gap:10px"></div>
+                </div>
             </section>
 
             <section class="panel" id="panel-tools">
@@ -658,6 +669,7 @@
             if (b.dataset.tab === "hero") loadHero();
             if (b.dataset.tab === "upload") loadUpload();
             if (b.dataset.tab === "notif") loadCurrentNotif();
+            if (b.dataset.tab === "ads") loadAllUsers();
         }));
 
         // ---------- Publicidad por usuario ----------
@@ -708,6 +720,27 @@
         }
         $("ads-search").addEventListener("click", searchAdUsers);
         $("ads-email").addEventListener("keydown", (e) => { if (e.key === "Enter") searchAdUsers(); });
+
+        // Registro completo de usuarios (con toggle de publicidad).
+        let allUsersCache = [];
+        function paintAllUsers() {
+            const q = ($("ads-filter").value || "").trim().toLowerCase();
+            const list = q ? allUsersCache.filter((u) => (u.email || "").toLowerCase().includes(q) || (u.displayName || "").toLowerCase().includes(q)) : allUsersCache;
+            const box = $("ads-all"); box.innerHTML = "";
+            const adFreeN = allUsersCache.filter((u) => u.adFree).length;
+            $("ads-count").textContent = `${allUsersCache.length} usuarios · ${adFreeN} sin publicidad · mostrando ${list.length}`;
+            if (!list.length) { box.innerHTML = '<p style="color:var(--grey)">Sin usuarios que coincidan.</p>'; return; }
+            list.forEach((u) => box.appendChild(renderAdUser(u)));
+        }
+        async function loadAllUsers() {
+            $("ads-count").textContent = "Cargando registro…";
+            try {
+                allUsersCache = await getUsers(1000);
+                paintAllUsers();
+            } catch (e) { $("ads-count").textContent = "Error al cargar usuarios: " + (e.message || e); }
+        }
+        $("ads-reload").addEventListener("click", loadAllUsers);
+        $("ads-filter").addEventListener("input", paintAllUsers);
 
         // ---------- Notificaciones a usuarios ----------
         function readNotifForm() {

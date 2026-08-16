@@ -113,7 +113,7 @@ export async function getUsers(max = 500) {
   const toDate = (v) => (v && typeof v.toDate === "function" ? v.toDate() : null);
   const shape = (d) => {
     const u = d.data();
-    return { uid: d.id, email: u.email || "", displayName: u.displayName || "", role: u.role || "user", photoURL: u.photoURL || "", createdAt: toDate(u.createdAt), lastVisit: toDate(u.lastVisit) };
+    return { uid: d.id, email: u.email || "", displayName: u.displayName || "", role: u.role || "user", photoURL: u.photoURL || "", adFree: !!u.adFree, createdAt: toDate(u.createdAt), lastVisit: toDate(u.lastVisit) };
   };
   try {
     const q = query(collection(db, "users"), orderBy("createdAt", "desc"), limit(max));

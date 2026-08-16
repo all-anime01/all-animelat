@@ -133,6 +133,19 @@
         .speed-btn:hover { background: rgba(255,210,74,.16); transform: translateY(-1px); }
         .speed-btn:disabled { opacity: .7; cursor: default; }
 
+        /* ---- Aviso de reanudación ---- */
+        .aa-resume-toast {
+            position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+            z-index: 100000; display: inline-flex; align-items: center; gap: 9px;
+            padding: 11px 18px; border-radius: 40px; font-size: 14px; font-weight: 700;
+            color: #fff; background: rgba(13,17,23,.88); border: 1px solid rgba(255,138,76,.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,.5); backdrop-filter: blur(8px);
+            animation: aaResumeIn .3s ease, aaResumeOut .4s ease 3.6s forwards;
+        }
+        .aa-resume-toast i { color: var(--acc2); }
+        @keyframes aaResumeIn { from { opacity: 0; transform: translate(-50%, 12px); } }
+        @keyframes aaResumeOut { to { opacity: 0; transform: translate(-50%, 12px); } }
+
         /* ---- Estados vacíos / skeleton ---- */
         .player-empty { color: #cbd5e1; text-align: center; padding: 50px 20px; grid-column: 1/-1; }
         .player-empty svg, .player-empty i { color: var(--acc); display: block; margin: 0 auto 14px; font-size: 34px; }
@@ -254,8 +267,6 @@
 
             const servers = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url) : [];
             if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video disponibles."); document.title = anime.title; return; }
-
-            document.getElementById("ad-note").style.display = "inline-flex";
 
             // Agrupa por idioma. La etiqueta puede tener espacios o "|" (p. ej.
             // "Sub | Dob"), así que se usa un slug seguro para la clase CSS/SelLang.

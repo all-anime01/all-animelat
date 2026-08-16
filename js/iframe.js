@@ -1,42 +1,110 @@
 // ============================================================================
-//  BLOQUEADOR DE ANUNCIOS (escudo por video)
-//  Los reproductores son de servidores externos (streamwish, filemoon, etc.)
-//  y no podemos tocar su DOM (otro origen). Pero SÍ podemos neutralizar la
-//  publicidad más molesta —popups, popunders y redirecciones— aislando el
-//  iframe con `sandbox` (sin allow-popups ni allow-top-navigation). Un botón
-//  escudo permite activarlo/desactivarlo por si algún servidor lo necesita.
+//  REPRODUCTOR (frame/player.html)
+//  - Carga el servidor externo en un iframe SIN sandbox (así ningún servidor
+//    queda bloqueado; se quitó el "escudo" que impedía reproducir en algunos).
+//  - Embed de YouTube con controles completos (calidad, volumen, pantalla
+//    completa) vía enablejsapi.
+//  - REANUDACIÓN: guarda la posición del video por episodio+servidor y la
+//    restaura al volver. En YouTube es exacta (API); en otros servidores es
+//    "lo mejor posible" con el fragmento de tiempo (#t=), pues son de otro
+//    origen y su reproductor no se puede leer/controlar.
 // ============================================================================
 let AA_currentUrl = null;
-function aaAdBlockOn() { return localStorage.getItem("aaBlockAds") !== "0"; } // por defecto ACTIVO
-const AA_SHIELD_SVG =
-  '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path class="aa-check" d="M9 12l2 2 4-4"></path></svg>';
+
+// --- Reanudación --------------------------------------------------------------
+const AA_Q = new URLSearchParams(location.search);
+const AA_EPKEY = `aa_pos_${AA_Q.get("a")}_${AA_Q.get("s")}_${AA_Q.get("e")}`;
+const AA_track = { url: null, timer: null, base: 0, t0: 0, isYT: false };
+
+function ytIdFrom(url) {
+  const m = String(url || "").match(/(?:youtube\.com\/(?:embed\/|watch\?v=|shorts\/|v\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+function hostKey(url) { try { return new URL(url, location.href).host.replace(/[^a-z0-9]/gi, ""); } catch { return "x"; } }
+function posKey(url) { return AA_EPKEY + "_" + hostKey(url); }
+function savedPos(url) { try { return parseInt(localStorage.getItem(posKey(url)) || "0", 10) || 0; } catch { return 0; } }
+function savePos(url, sec) { try { if (sec > 5) localStorage.setItem(posKey(url), String(Math.floor(sec))); } catch {} }
+
+// Construye el src del iframe aplicando la posición guardada y, en YouTube, los
+// controles completos + la API de JS (para leer/guardar el tiempo real).
+function buildSrc(url) {
+  const pos = savedPos(url);
+  const yid = ytIdFrom(url);
+  if (yid) {
+    const params = new URLSearchParams({
+      autoplay: "1", controls: "1", fs: "1", rel: "0", modestbranding: "1",
+      iv_load_policy: "3", playsinline: "1", enablejsapi: "1", origin: location.origin,
+    });
+    if (pos > 5) params.set("start", String(pos));
+    return `https://www.youtube.com/embed/${yid}?${params.toString()}`;
+  }
+  // Otros servidores: fragmento de tiempo (lo respetan algunos hosts).
+  if (pos > 5 && !/#/.test(url)) return `${url}#t=${pos}`;
+  return url;
+}
+
+// Recibe el tiempo real desde el iframe de YouTube (enablejsapi) y lo guarda.
+window.addEventListener("message", (e) => {
+  if (!/youtube\.com$/.test((() => { try { return new URL(e.origin).host; } catch { return ""; } })())) return;
+  let d; try { d = typeof e.data === "string" ? JSON.parse(e.data) : e.data; } catch { return; }
+  if (d && d.event === "infoDelivery" && d.info && typeof d.info.currentTime === "number") {
+    if (AA_track.url && AA_track.isYT) savePos(AA_track.url, d.info.currentTime);
+  }
+});
+
+function stopTracking() {
+  if (AA_track.timer) { clearInterval(AA_track.timer); AA_track.timer = null; }
+  AA_track.url = null;
+}
+function startTracking(url, iframe) {
+  stopTracking();
+  AA_track.url = url;
+  AA_track.isYT = !!ytIdFrom(url);
+  if (AA_track.isYT) {
+    // Pide a YouTube que emita eventos (incluye currentTime) periódicamente.
+    const ping = () => { try { iframe.contentWindow.postMessage(JSON.stringify({ event: "listening", id: "IFR", channel: "widget" }), "*"); } catch {} };
+    setTimeout(ping, 800); setTimeout(ping, 2500);
+    AA_track.timer = setInterval(ping, 5000);
+  } else {
+    // Sin acceso al reproductor (otro origen): estima por reloj desde la
+    // posición guardada. Aproximado, pero permite reanudar donde se pueda.
+    AA_track.base = savedPos(url);
+    AA_track.t0 = Date.now();
+    AA_track.timer = setInterval(() => {
+      if (document.hidden) { AA_track.t0 = Date.now() - AA_track.base * 1000; return; }
+      const sec = AA_track.base + (Date.now() - AA_track.t0) / 1000;
+      savePos(url, sec);
+    }, 5000);
+  }
+}
+
+function resumeToast(url) {
+  const pos = savedPos(url);
+  if (pos <= 15) return;
+  const mm = String(Math.floor(pos / 60)).padStart(2, "0");
+  const ss = String(Math.floor(pos % 60)).padStart(2, "0");
+  const t = document.createElement("div");
+  t.className = "aa-resume-toast";
+  t.innerHTML = `<i class="fas fa-clock-rotate-left"></i> Reanudando desde ${mm}:${ss}`;
+  const dv = document.querySelector(".DisplayVideo");
+  if (dv) dv.appendChild(t);
+  setTimeout(() => t.remove(), 4200);
+}
 
 function aaIframeMarkup(url) {
-  const block = aaAdBlockOn();
-  // allow-scripts+allow-same-origin: el player funciona; se OMITE allow-popups
-  // y allow-top-navigation → no puede abrir pestañas ni redirigir la página.
-  const sandbox = block ? ' sandbox="allow-scripts allow-same-origin allow-forms allow-presentation allow-orientation-lock"' : '';
+  // Sin sandbox: el reproductor del servidor funciona sin restricciones.
   return `
       <span id="backToPlayers" onclick="listPlayer();"></span>
-      <button id="adShield" class="${block ? "on" : "off"}" onclick="toggleAdShield();"
-              title="${block ? "Publicidad bloqueada — clic para desactivar" : "Bloqueo desactivado — clic para activar"}">
-        ${AA_SHIELD_SVG}<em>${block ? "Anuncios bloqueados" : "Bloqueo desactivado"}</em>
-      </button>
       <iframe
           id="IFR"
-          src="${url}"${sandbox}
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          src="${buildSrc(url)}"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture; clipboard-write; gyroscope"
           frameborder="0"
           allowfullscreen="true"
           webkitallowfullscreen="true"
           mozallowfullscreen="true"
           onload="this.dataset.loaded = 'true';">
       </iframe>`;
-}
-
-function toggleAdShield() {
-  localStorage.setItem("aaBlockAds", aaAdBlockOn() ? "0" : "1");
-  if (AA_currentUrl) go_to_player(AA_currentUrl); // recarga el servidor con el nuevo ajuste
 }
 
 // --- FUNCIÓN MODIFICADA PARA CARGA DE 4 SEGUNDOS ---
@@ -66,11 +134,14 @@ function go_to_player(url) {
   const timerPromise = new Promise((resolve) => setTimeout(resolve, 4000));
   const iframeLoadPromise = new Promise((resolve) => {
     displayVideo.innerHTML = aaIframeMarkup(url);
+    resumeToast(url);
+    const iframe = document.getElementById("IFR");
+    if (iframe) startTracking(url, iframe);
 
     // Verificar si el iframe cargó
     const checkIframe = setInterval(() => {
-      const iframe = document.getElementById("IFR");
-      if (iframe && iframe.dataset.loaded === "true") {
+      const ifr = document.getElementById("IFR");
+      if (ifr && ifr.dataset.loaded === "true") {
         clearInterval(checkIframe);
         resolve();
       }
@@ -82,7 +153,7 @@ function go_to_player(url) {
     if (playerDisplay) playerDisplay.classList.remove("is-loading");
   });
 
-  // Lógica para mostrar/ocultar los controles (volver + escudo)
+  // Lógica para mostrar/ocultar los controles (volver)
   let idleTimer = null;
   let idleState = false;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -91,19 +162,16 @@ function go_to_player(url) {
   function showFoo(time) {
     const elem = document.getElementById("backToPlayers");
     const ifr = document.getElementById("IFR");
-    const shield = document.getElementById("adShield");
     if (!elem || !ifr) return;
     if (idleState) {
       elem.className = "";
       ifr.className = "";
-      if (shield) shield.classList.remove("inactive");
     }
     clearTimeout(idleTimer);
     idleState = false;
     idleTimer = setTimeout(() => {
       elem.className = "inactive";
       ifr.className = "nopoints";
-      if (shield) shield.classList.add("inactive");
       idleState = true;
     }, time);
   }
@@ -112,8 +180,9 @@ function go_to_player(url) {
   document.addEventListener("mousemove", () => showFoo(timeShow));
 }
 
-// --- RESTO DE FUNCIONES ORIGINALES (SIN CAMBIOS) ---
+// --- RESTO DE FUNCIONES ORIGINALES ---
 function listPlayer() {
+  stopTracking();
   const displayVideo = document.querySelector(".DisplayVideo");
   const playerDisplay = document.getElementById("PlayerDisplay");
 
@@ -129,39 +198,25 @@ function listPlayer() {
 
 function CrearSuperCookie(key, value, ttl) {
   const now = new Date();
-  const item = {
-    value: value,
-    expiry: now.getTime() + ttl * 60000,
-  };
+  const item = { value: value, expiry: now.getTime() + ttl * 60000 };
   localStorage.setItem(key, JSON.stringify(item));
 }
 
 function obtenerSuperCookie(key) {
   const itemStr = localStorage.getItem(key);
-  if (!itemStr) {
-    return null;
-  }
+  if (!itemStr) return null;
   const item = JSON.parse(itemStr);
   const now = new Date();
-  if (now.getTime() > item.expiry) {
-    localStorage.removeItem(key);
-    return null;
-  }
+  if (now.getTime() > item.expiry) { localStorage.removeItem(key); return null; }
   return item.value;
 }
 
+// Aviso "escudo antipublicidad" retirado: ya no se muestra.
 const msj = document.getElementById("msjad");
-if (msj && obtenerSuperCookie("msjad") == null) {
-  msj.style.display = "flex";
-} else if (msj) {
-  msj.style.display = "none";
-}
+if (msj) msj.style.display = "none";
 
 function hideMsj(time = 0) {
-  if (msj) {
-    CrearSuperCookie("msjad", true, time * 60);
-    msj.style.display = "none";
-  }
+  if (msj) { CrearSuperCookie("msjad", true, time * 60); msj.style.display = "none"; }
 }
 
 function SelLang(who, id) {
@@ -169,19 +224,13 @@ function SelLang(who, id) {
   if (firstLoad) firstLoad.classList.add("FirstLoadA");
 
   const sldA = document.querySelector(".SLD_A");
-  if (sldA) {
-    sldA.classList.remove("SLD_A");
-  }
+  if (sldA) sldA.classList.remove("SLD_A");
   who.classList.add("SLD_A");
 
   setTimeout(function () {
     if (firstLoad) firstLoad.classList.remove("FirstLoadA");
-
     const reactiv = document.querySelector(".REactiv");
-    if (reactiv) {
-      reactiv.classList.remove("REactiv");
-    }
-
+    if (reactiv) reactiv.classList.remove("REactiv");
     const odId = document.querySelector(".OD_" + id);
     if (odId) odId.classList.add("REactiv");
   }, 300);

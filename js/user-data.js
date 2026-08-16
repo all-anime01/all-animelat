@@ -18,10 +18,15 @@ let currentUser = null;
 async function upsertProfile(u) {
   if (!u) return;
   try {
-    await setDoc(doc(db, "users", u.uid), {
+    const ref = doc(db, "users", u.uid);
+    let hasCreated = false;
+    try { const s = await getDoc(ref); hasCreated = s.exists() && !!s.data().createdAt; } catch {}
+    const base = {
       email: u.email || "", emailLower: (u.email || "").toLowerCase(),
-      displayName: u.displayName || "", photoURL: u.photoURL || "", lastSeen: serverTimestamp(),
-    }, { merge: true });
+      displayName: u.displayName || "", photoURL: u.photoURL || "", lastVisit: serverTimestamp(),
+    };
+    if (!hasCreated) base.createdAt = serverTimestamp();
+    await setDoc(ref, base, { merge: true });
   } catch (e) { /* no crítico */ }
 }
 export const userReady = new Promise((resolve) => {
