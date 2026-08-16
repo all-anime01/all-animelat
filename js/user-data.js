@@ -13,11 +13,22 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 let currentUser = null;
+// Guarda/actualiza el perfil público mínimo del usuario (email, nombre) para que
+// el panel admin pueda encontrarlo por correo (p. ej. para quitarle la publicidad).
+async function upsertProfile(u) {
+  if (!u) return;
+  try {
+    await setDoc(doc(db, "users", u.uid), {
+      email: u.email || "", emailLower: (u.email || "").toLowerCase(),
+      displayName: u.displayName || "", photoURL: u.photoURL || "", lastSeen: serverTimestamp(),
+    }, { merge: true });
+  } catch (e) { /* no crítico */ }
+}
 export const userReady = new Promise((resolve) => {
   if (!FIREBASE_CONFIGURED) { resolve(null); return; }
   let first = true;
   try {
-    observeAuth((u) => { currentUser = u; if (first) { first = false; resolve(u); } });
+    observeAuth((u) => { currentUser = u; if (u) upsertProfile(u); if (first) { first = false; resolve(u); } });
   } catch (e) { resolve(null); }
 });
 

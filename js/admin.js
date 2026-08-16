@@ -13,6 +13,7 @@ import {
   collection,
   query,
   orderBy,
+  where,
   limit,
   setDoc,
   updateDoc,
@@ -341,6 +342,24 @@ export async function setAnimeTag(animeId, tag, on) {
   if (!on && has) tags = tags.filter((t) => t !== tag);
   await saveAnime({ ...anime, tags });
   return tags;
+}
+
+// ---- Publicidad por usuario (quitar anuncios sin pago, desde el admin) ------
+// Busca usuarios por correo (requiere que el perfil guarde emailLower, lo hace
+// js/user-data.js al iniciar sesión).
+export async function findUsersByEmail(email) {
+  const e = (email || "").trim().toLowerCase();
+  if (!e) return [];
+  const snap = await getDocs(query(collection(db, "users"), where("emailLower", "==", e), limit(10)));
+  return snap.docs.map((d) => ({ uid: d.id, ...d.data() }));
+}
+// Activa/desactiva "sin publicidad" permanente para un usuario (sin pago).
+export async function setUserAdFree(uid, on) {
+  if (!uid) throw new Error("uid requerido");
+  await setDoc(doc(db, "users", uid), {
+    adFree: !!on, adFreeUntil: null, adFreeAt: serverTimestamp(), adFreeByAdmin: !!on,
+  }, { merge: true });
+  return !!on;
 }
 
 // Construye un objeto anime a partir del formulario (mismos campos que database.js).

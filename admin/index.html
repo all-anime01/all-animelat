@@ -210,6 +210,7 @@
             <button class="navbtn" data-tab="upload"><i class="fas fa-cloud-arrow-up"></i> Subir</button>
             <button class="navbtn" data-tab="notif"><i class="fas fa-bell"></i> Notificaciones</button>
             <button class="navbtn" data-tab="stats"><i class="fas fa-chart-line"></i> Estadísticas</button>
+            <button class="navbtn" data-tab="ads"><i class="fas fa-ban"></i> Publicidad</button>
             <button class="navbtn" data-tab="tools"><i class="fas fa-screwdriver-wrench"></i> Herramientas</button>
         </nav>
 
@@ -577,6 +578,20 @@
             </section>
 
             <!-- ============ HERRAMIENTAS ============ -->
+            <section class="panel" id="panel-ads">
+                <div class="phead"><h1>Publicidad por usuario</h1></div>
+                <div class="card">
+                    <h2>Quitar publicidad a un usuario (sin pago)</h2>
+                    <p style="color:var(--grey);font-size:14px;margin-bottom:16px">Busca al usuario por su correo y actívale la navegación <b>sin anuncios</b> de forma permanente. El usuario debe haber iniciado sesión al menos una vez. El cambio se aplica la próxima vez que cargue el sitio con su sesión.</p>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                        <input id="ads-email" type="email" placeholder="correo@ejemplo.com" style="flex:1;min-width:240px">
+                        <button class="btn" id="ads-search"><i class="fas fa-magnifying-glass"></i> Buscar</button>
+                    </div>
+                    <div id="ads-msg" class="msg"></div>
+                    <div id="ads-results" style="margin-top:16px;display:flex;flex-direction:column;gap:10px"></div>
+                </div>
+            </section>
+
             <section class="panel" id="panel-tools">
                 <div class="phead"><h1>Herramientas</h1></div>
                 <div class="card">
@@ -598,6 +613,7 @@
             buildAnimeFromForm, buildEpisodeFromForm,
             sendNotification, deactivateNotification, getNotification,
             saveNotificationToList, getNotificationsList, activateNotification, deleteNotificationFromList,
+            findUsersByEmail, setUserAdFree,
         } from "../js/admin.js";
         import { showNotification } from "../js/notifications.js";
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
@@ -643,6 +659,55 @@
             if (b.dataset.tab === "upload") loadUpload();
             if (b.dataset.tab === "notif") loadCurrentNotif();
         }));
+
+        // ---------- Publicidad por usuario ----------
+        function renderAdUser(u) {
+            const on = !!u.adFree;
+            const wrap = document.createElement("div");
+            wrap.className = "card";
+            wrap.style.cssText = "display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between;background:var(--bg2)";
+            wrap.innerHTML = `
+                <div style="display:flex;align-items:center;gap:12px;min-width:0">
+                    <img src="${u.photoURL || ''}" onerror="this.style.display='none'" style="width:40px;height:40px;border-radius:50%;object-fit:cover;background:#333">
+                    <div style="min-width:0">
+                        <div style="font-weight:700">${u.displayName || '(sin nombre)'}</div>
+                        <div style="color:var(--grey);font-size:13px">${u.email || ''}</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <span class="ad-state" style="font-size:13px;font-weight:700;color:${on ? '#4ade80' : 'var(--grey)'}">${on ? 'SIN publicidad' : 'CON publicidad'}</span>
+                    <button class="btn ad-toggle">${on ? 'Volver a activar anuncios' : 'Quitar publicidad'}</button>
+                </div>`;
+            const btn = wrap.querySelector(".ad-toggle");
+            const state = wrap.querySelector(".ad-state");
+            btn.addEventListener("click", async () => {
+                btn.disabled = true; const next = !(u.adFree);
+                try {
+                    await setUserAdFree(u.uid, next);
+                    u.adFree = next;
+                    state.textContent = next ? "SIN publicidad" : "CON publicidad";
+                    state.style.color = next ? "#4ade80" : "var(--grey)";
+                    btn.textContent = next ? "Volver a activar anuncios" : "Quitar publicidad";
+                    setMsg($("ads-msg"), next ? `✔ Publicidad desactivada para ${u.email}` : `✔ Publicidad reactivada para ${u.email}`, "ok");
+                } catch (e) { setMsg($("ads-msg"), "Error: " + (e.message || e), "err"); }
+                btn.disabled = false;
+            });
+            return wrap;
+        }
+        async function searchAdUsers() {
+            const email = $("ads-email").value.trim();
+            const box = $("ads-results"); box.innerHTML = "";
+            if (!email) { setMsg($("ads-msg"), "Escribe un correo.", "err"); return; }
+            setMsg($("ads-msg"), "Buscando…", "");
+            try {
+                const users = await findUsersByEmail(email);
+                if (!users.length) { setMsg($("ads-msg"), "No se encontró ningún usuario con ese correo (¿ya inició sesión al menos una vez?).", "err"); return; }
+                setMsg($("ads-msg"), `${users.length} usuario(s) encontrado(s).`, "ok");
+                users.forEach((u) => box.appendChild(renderAdUser(u)));
+            } catch (e) { setMsg($("ads-msg"), "Error: " + (e.message || e), "err"); }
+        }
+        $("ads-search").addEventListener("click", searchAdUsers);
+        $("ads-email").addEventListener("keydown", (e) => { if (e.key === "Enter") searchAdUsers(); });
 
         // ---------- Notificaciones a usuarios ----------
         function readNotifForm() {
