@@ -11,6 +11,7 @@ import { logVisit, touchLastVisit } from "./analytics.js";
 import { initDonations } from "./donations.js";
 import { initRemoveAdsUI, syncAdFree, setAdFreeUid, openRemoveAds, isAdFree } from "./adfree.js";
 import { initCardHover } from "./card-hover.js";
+import "./tv-nav.js";  // navegación con control remoto (Fire TV / Android TV)
 import { initNotifications } from "./notifications.js";
 
 // Coincidencia de búsqueda por el título O cualquier título alternativo
