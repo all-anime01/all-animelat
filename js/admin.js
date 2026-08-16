@@ -372,6 +372,14 @@ export async function listAudit(max = 60) {
   const snap = await getDocs(query(collection(db, "adminAudit"), orderBy("at", "desc"), limit(max)));
   return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
+export async function deleteAudit(id) { await deleteDoc(doc(db, "adminAudit", id)); return true; }
+export async function clearAudit() {
+  const snap = await getDocs(query(collection(db, "adminAudit"), limit(450)));
+  const batch = writeBatch(db);
+  snap.docs.forEach((d) => batch.delete(d.ref));
+  await batch.commit();
+  return snap.size;
+}
 
 // ---- Flags / mantenimiento (control del sitio) -----------------------------
 export async function getFlags() {

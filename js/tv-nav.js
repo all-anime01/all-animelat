@@ -25,7 +25,6 @@
   const st = document.createElement("style");
   st.id = "aa-tv-styles";
   st.textContent = `
-    html.aa-tv { font-size: 112%; }
     html.aa-tv body { overflow-x: hidden; }
     /* Foco muy visible para el control remoto */
     html.aa-tv :focus { outline: none; }
@@ -51,16 +50,29 @@
   const NATIVE = /^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/;
   // Los <li>/<a sin href> con onclick no son enfocables: les damos tabindex.
   const ensureFocusable = (el) => { if (!NATIVE.test(el.tagName) && !el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0"); return el; };
-  const visible = (el) => {
-    if (!el || el.disabled) return false;
-    const r = el.getBoundingClientRect();
-    if (r.width < 6 || r.height < 6) return false;
+  const isShown = (el) => {
     const s = getComputedStyle(el);
     if (s.visibility === "hidden" || s.display === "none" || +s.opacity === 0) return false;
-    // dentro (o cerca) del viewport vertical
+    const r = el.getBoundingClientRect();
+    return r.width > 2 && r.height > 2;
+  };
+  const visible = (el) => {
+    if (!el || el.disabled || !isShown(el)) return false;
+    const r = el.getBoundingClientRect();
+    // dentro (o cerca) del viewport
     return r.bottom > -4 && r.top < (window.innerHeight + 4) && r.right > -4 && r.left < (window.innerWidth + 4);
   };
-  const focusables = () => Array.prototype.filter.call(document.querySelectorAll(SEL), visible).map(ensureFocusable);
+  // Cuando hay un modal/diálogo abierto, el foco se ATRAPA dentro de él (si no,
+  // "se pierde" hacia el contenido de atrás y no se puede navegar el modal).
+  const MODAL_SEL = '.episode-player-modal, #trailer-modal, #adfree-modal, .adfree-ov, [role="dialog"]';
+  function activeScope() {
+    const modals = Array.prototype.filter.call(document.querySelectorAll(MODAL_SEL), isShown);
+    return modals.length ? modals[modals.length - 1] : document;
+  }
+  const focusables = () => {
+    const scope = activeScope();
+    return Array.prototype.filter.call(scope.querySelectorAll(SEL), visible).map(ensureFocusable);
+  };
 
   let current = null;
   function setFocus(el, scroll) {
@@ -133,14 +145,38 @@
       || list.find((el) => el.matches(".hero-button, .cr-card, .cr-list-item")) || list[0];
     setFocus(pref, false);
   }
+  // Mueve el foco al primer elemento del ámbito actual (modal o contenido).
+  function focusScope(scope) {
+    const list = focusables();
+    if (!list.length) return;
+    let pref;
+    if (scope && scope !== document) {
+      // dentro de un modal: prioriza el reproductor/lista de servidores
+      pref = list.find((el) => el.closest(".OD, #serverContainer, .player-video-container, .player-nav-col")) || list[0];
+    } else {
+      pref = list.find((el) => el.closest(".OD, #serverContainer, .anime-grid, .cr-hist, .anime-listing-section, .episodes-list-container"))
+        || list.find((el) => el.matches(".hero-button, .cr-card, .cr-list-item")) || list[0];
+    }
+    setFocus(pref, scope !== document);
+  }
+  function focusInitial() { focusScope(document); }
   const start = () => setTimeout(focusInitial, 600);
   if (document.readyState === "complete" || document.readyState === "interactive") start();
   else document.addEventListener("DOMContentLoaded", start);
 
-  // Si el contenido se repinta (catálogo dinámico), reengancha el foco si se perdió.
-  const mo = new MutationObserver(() => {
-    if (current && document.body.contains(current) && visible(current)) return;
-    if (document.querySelector(".aa-focus")) return;
-  });
-  try { mo.observe(document.body, { childList: true, subtree: true }); } catch {}
+  // Vigila la apertura/cierre de modales: al abrirse uno, mete el foco dentro;
+  // si el foco quedó fuera del ámbito activo (o el elemento enfocado ya no está
+  // visible), lo re-engancha. Así el modal siempre es navegable con el control.
+  let lastScope = document;
+  const resync = () => {
+    const scope = activeScope();
+    const scopeChanged = scope !== lastScope;
+    lastScope = scope;
+    const curOk = current && document.contains(current) && visible(current) &&
+      (scope === document ? true : scope.contains(current));
+    if (scopeChanged || !curOk) setTimeout(() => focusScope(scope), scope !== document ? 250 : 50);
+  };
+  let moT = null;
+  const mo = new MutationObserver(() => { clearTimeout(moT); moT = setTimeout(resync, 120); });
+  try { mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class", "hidden"] }); } catch {}
 })();

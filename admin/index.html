@@ -619,11 +619,22 @@
                     </div>
                     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
                         <button class="btn" id="fl-save"><i class="fas fa-floppy-disk"></i> Guardar</button>
+                        <button class="btn grey" id="fl-preview" type="button"><i class="fas fa-eye"></i> Vista previa</button>
                         <span id="fl-msg" class="msg"></span>
+                    </div>
+                    <div style="margin-top:16px">
+                        <h2 style="font-size:15px">Vista previa</h2>
+                        <div id="fl-preview-box" style="position:relative;border:1px dashed var(--border);border-radius:10px;overflow:hidden;background:#0d1117;min-height:120px">
+                            <div id="fl-preview-banner"></div>
+                            <div id="fl-preview-content" style="padding:26px 16px;color:#8a93a0;text-align:center;font-size:13px">Así se verá el sitio con la configuración actual (pulsa «Vista previa»).</div>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
-                    <h2>Auditoría (últimas acciones del admin)</h2>
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px">
+                        <h2 style="margin:0">Auditoría (últimas acciones del admin)</h2>
+                        <button class="btn grey" id="audit-clear" type="button"><i class="fas fa-trash"></i> Limpiar todo</button>
+                    </div>
                     <div id="audit-list" style="display:flex;flex-direction:column;gap:8px;font-size:13.5px"></div>
                 </div>
             </section>
@@ -766,7 +777,7 @@
             findUsersByEmail, setUserAdFree,
             getAnalyticsConfig, saveAnalyticsConfig,
             getFlags, saveFlags, listErrors, clearErrors, listRecentComments, deleteComment,
-            getSearchStats, getDeviceStats, listAudit,
+            getSearchStats, getDeviceStats, listAudit, deleteAudit, clearAudit,
         } from "../js/admin.js";
         import { showNotification } from "../js/notifications.js";
         import { GENRES, FUNCTIONAL_TAGS, THEME_TAGS, TYPES, STATUSES, AUDIOS, EPISODE_LANGS } from "../js/catalog-constants.js";
@@ -843,12 +854,38 @@
         });
         async function loadAudit() {
             try {
-                const items = await listAudit(60);
-                $("audit-list").innerHTML = items.length
-                    ? items.map((a) => `<div style="padding:8px 12px;background:var(--bg2);border-radius:8px"><b style="color:var(--primary)">${esc(a.type)}</b> · ${esc(a.detail)} <span class="hint" style="float:right">${fmtDate(a.at)}</span></div>`).join("")
-                    : '<p class="hint">Sin acciones registradas.</p>';
+                const items = await listAudit(80);
+                const box = $("audit-list"); box.innerHTML = "";
+                if (!items.length) { box.innerHTML = '<p class="hint">Sin acciones registradas.</p>'; return; }
+                items.forEach((a) => {
+                    const row = document.createElement("div");
+                    row.style.cssText = "padding:8px 12px;background:var(--bg2);border-radius:8px;display:flex;gap:10px;align-items:center;justify-content:space-between";
+                    row.innerHTML = `<div style="min-width:0"><b style="color:var(--primary)">${esc(a.type)}</b> · ${esc(a.detail)} <span class="hint">${fmtDate(a.at)}</span></div>
+                        <button class="btn del" style="background:#7f1d1d;flex:none;padding:6px 10px" title="Borrar"><i class="fas fa-trash"></i></button>`;
+                    row.querySelector(".del").addEventListener("click", async () => {
+                        try { await deleteAudit(a.id); row.remove(); if (!$("audit-list").children.length) $("audit-list").innerHTML = '<p class="hint">Sin acciones registradas.</p>'; }
+                        catch (e) { alert("Error: " + (e.message || e)); }
+                    });
+                    box.appendChild(row);
+                });
             } catch (e) { $("audit-list").innerHTML = '<p class="hint">No se pudo cargar.</p>'; }
         }
+        $("audit-clear").addEventListener("click", async () => {
+            if (!confirm("¿Borrar TODO el registro de auditoría?")) return;
+            try { const n = await clearAudit(); $("audit-list").innerHTML = '<p class="hint">Sin acciones registradas.</p>'; setMsg($("fl-msg"), `✔ ${n} registros borrados.`, "ok"); }
+            catch (e) { setMsg($("fl-msg"), "Error: " + (e.message || e), "err"); }
+        });
+        // Vista previa del banner / mantenimiento con la config actual del formulario.
+        $("fl-preview").addEventListener("click", () => {
+            const bannerOn = $("fl-banner-on").checked, bText = $("fl-banner-text").value.trim(), bType = $("fl-banner-type").value;
+            const maint = $("fl-maint").checked, mMsg = $("fl-maint-msg").value.trim() || "Volvemos muy pronto. Gracias por tu paciencia.";
+            const bg = bType === "warn" ? "#b45309" : bType === "danger" ? "#b91c1c" : "#1f6feb";
+            $("fl-preview-banner").innerHTML = (bannerOn && bText)
+                ? `<div style="background:${bg};color:#fff;font-weight:700;font-size:13px;padding:9px 14px;text-align:center">${esc(bText)} <span style="opacity:.8">✕</span></div>` : "";
+            $("fl-preview-content").innerHTML = maint
+                ? `<div style="padding:30px 16px"><div style="font-size:44px">🛠️</div><div style="font-family:Poppins,sans-serif;font-size:20px;font-weight:700;color:#fff;margin:6px 0">Estamos en mantenimiento</div><div style="color:#8a93a0;font-size:13px">${esc(mMsg)}</div><div class="hint" style="margin-top:8px">(Los visitantes verán esto; tú como admin entras normal)</div></div>`
+                : `<div style="color:#8a93a0;font-size:13px;padding:26px 16px">Sitio normal (sin mantenimiento).${bannerOn && bText ? " Con el banner de arriba." : ""}</div>`;
+        });
 
         // ---------- Errores ----------
         async function loadErrors() {

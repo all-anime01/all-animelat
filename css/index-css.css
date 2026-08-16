@@ -3200,13 +3200,6 @@ html.aa-tv .close-player {
     width: 58px; height: 58px; line-height: 58px; font-size: 3rem;
     z-index: 3002;
 }
-/* Legibilidad general a 10 pies: tipografía y controles algo más grandes. */
-html.aa-tv #player-anime-title { font-size: 2.8rem !important; }
-html.aa-tv .player-main-info-col h4 { font-size: 2.1rem; }
-html.aa-tv .player-meta-tags,
-html.aa-tv .player-main-info-col p { font-size: 1.7rem; }
-html.aa-tv .player-action-btn,
-html.aa-tv .genre-btn,
-html.aa-tv .cr-sort-btn { font-size: 1.6rem; }
-/* Evita scroll horizontal por overscan y da aire a los bordes. */
+/* Evita scroll horizontal por overscan. (La tipografía usa el tamaño normal del
+   sitio; el navegador del Fire TV ya escala, así que NO se agranda aquí.) */
 html.aa-tv body { overflow-x: hidden; }
