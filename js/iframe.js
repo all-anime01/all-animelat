@@ -98,11 +98,12 @@ function aaIframeMarkup(url) {
       <iframe
           id="IFR"
           src="${buildSrc(url)}"
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture; clipboard-write; gyroscope"
+          allow="autoplay; fullscreen *; encrypted-media; picture-in-picture; clipboard-write; gyroscope"
           frameborder="0"
           allowfullscreen="true"
           webkitallowfullscreen="true"
           mozallowfullscreen="true"
+          scrolling="no"
           onload="this.dataset.loaded = 'true';">
       </iframe>`;
 }
@@ -163,15 +164,15 @@ function go_to_player(url) {
     const elem = document.getElementById("backToPlayers");
     const ifr = document.getElementById("IFR");
     if (!elem || !ifr) return;
-    if (idleState) {
-      elem.className = "";
-      ifr.className = "";
-    }
+    // NOTA: nunca se desactivan los clics del iframe (antes usaba "nopoints",
+    // que impedía usar los controles del reproductor —incluida la pantalla
+    // completa de StreamWish— y no se podía reactivar con el mouse sobre el
+    // video, por ser de otro origen). Solo se oculta el botón "volver".
+    if (idleState) elem.className = "";
     clearTimeout(idleTimer);
     idleState = false;
     idleTimer = setTimeout(() => {
       elem.className = "inactive";
-      ifr.className = "nopoints";
       idleState = true;
     }, time);
   }
