@@ -7,11 +7,25 @@ video a pantalla completa y botón ATRÁS del control.
 Aparece en la pantalla de inicio de **Fire TV** y **Android TV** (usa
 `LEANBACK_LAUNCHER`) y también corre en teléfonos.
 
-## APK ya compilado
+## APKs ya compilados (dos apps)
 
-Ya hay un APK listo para instalar en la raíz de esta carpeta:
-**`androidtv/All-Anime-TV.apk`** (compilado en modo debug, firmado con la clave
-de depuración → se puede instalar por *sideload* sin más).
+Desde el mismo código se generan **dos apps** (product flavors):
+- **`descargas/All-Anime-TV.apk`** — Fire TV / Android TV (horizontal, aparece en
+  la fila de apps del TV con `LEANBACK_LAUNCHER`).
+- **`descargas/All-Anime-Android.apk`** — teléfonos/tablets Android (cualquier
+  orientación). `applicationId` con sufijo `.mobile`, así conviven en un mismo equipo.
+
+El sitio (`js/pwa.js`) detecta el dispositivo y ofrece la app correcta desde el
+inicio. Ambas están firmadas en debug → se instalan por *sideload*.
+
+### Anuncios en la app
+Las ventanas emergentes de los servidores externos se manejan así: si el usuario
+tiene *sin publicidad* (pagó o el admin se lo activó — se lee `aa_adfree` del
+sitio) los popups se **bloquean automáticamente** y el video sigue; si no, el
+popup se abre con un botón **"✕ Cerrar anuncio"** para cerrarlo a mano.
+
+Recompilar: `gradle assembleMobileDebug assembleTvDebug` → APKs en
+`app/build/outputs/apk/{mobile,tv}/debug/`.
 
 ## Cómo recompilar el APK
 

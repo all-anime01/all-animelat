@@ -85,14 +85,18 @@ export function initPWA() {
   // instalable (APK). En escritorio el usuario tiene la PWA (botón de arriba).
   const ua = navigator.userAgent || "";
   const isAndroid = /Android/i.test(ua);
-  const isFireTV = /AFT[A-Z0-9]|Fire\s?TV|Silk/i.test(ua);
+  const isFireTV = /AFT[A-Z0-9]|Fire\s?TV|Silk|SmartTV|GoogleTV|Web0S|WebOS|Tizen/i.test(ua);
   const inApp = /AllAnimeTV/i.test(ua) || window.matchMedia("(display-mode: standalone)").matches;
   if ((isAndroid || isFireTV) && !inApp) {
+    // Fire TV / Android TV → app de TV; teléfono/tablet Android → app móvil.
+    const forTV = isFireTV;
+    const file = forTV ? "All-Anime-TV.apk" : "All-Anime-Android.apk";
+    const label = forTV ? '<i class="fas fa-tv"></i> Descargar app (Fire TV)' : '<i class="fas fa-mobile-screen"></i> Descargar app (Android)';
     const apk = document.createElement("a");
     apk.id = "apk-install";
-    apk.href = "/descargas/All-Anime-TV.apk";
-    apk.setAttribute("download", "All-Anime-TV.apk");
-    apk.innerHTML = '<i class="fas fa-tv"></i> Descargar app (Android / Fire TV) <span class="pwa-x" title="Ocultar">&times;</span>';
+    apk.href = "/descargas/" + file;
+    apk.setAttribute("download", file);
+    apk.innerHTML = label + ' <span class="pwa-x" title="Ocultar">&times;</span>';
     const mountApk = () => { if (!apk.isConnected && document.body) document.body.appendChild(apk); };
     document.addEventListener("DOMContentLoaded", mountApk); mountApk();
     apk.addEventListener("click", (e) => {

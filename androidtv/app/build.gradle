@@ -14,6 +14,22 @@ android {
         versionName "1.0"
     }
 
+    // Dos apps desde el mismo código: 'mobile' (Android teléfono/tablet, cualquier
+    // orientación) y 'tv' (Fire TV / Android TV, horizontal). Pueden convivir en el
+    // mismo dispositivo (applicationId distinto).
+    flavorDimensions += "device"
+    productFlavors {
+        mobile {
+            dimension "device"
+            applicationIdSuffix ".mobile"
+            manifestPlaceholders = [orientation: "unspecified", appName: "All-Anime"]
+        }
+        tv {
+            dimension "device"
+            manifestPlaceholders = [orientation: "landscape", appName: "All-Anime TV"]
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
