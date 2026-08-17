@@ -9,11 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.FrameLayout;
+
+import java.io.ByteArrayInputStream;
 
 /**
  * App WebView para Android (móvil) y Android TV / Fire TV. Carga el sitio
@@ -63,20 +67,68 @@ public class MainActivity extends Activity {
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
         s.setUserAgentString(s.getUserAgentString() + " AllAnimeTV/1.0");
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);   // navegación normal dentro del WebView
-                return true;
-            }
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                refreshAdFree();     // relee el estado "sin publicidad" del sitio
-            }
-        });
-
+        webView.setWebViewClient(new AppClient(true));
         webView.setWebChromeClient(new AppChrome());
         webView.loadUrl(SITE_URL);
+    }
+
+    // Dominios de anuncios/tracking a bloquear cuando el usuario tiene adFree.
+    private static final String[] AD_HOSTS = {
+        "temptedrecognise.com", "effectivecpmnetwork.com", "acscdn.com", "tercetacker.com",
+        "adsterra", "propellerads", "propu.sh", "poweredby.jads", "onclickalgo", "hilltopads",
+        "popads", "popcash", "adnxs", "doubleclick.net", "googlesyndication.com", "adservice.google",
+        "clickadu", "admaven", "mgid.com", "revcontent", "outbrain", "taboola", "exoclick",
+        "juicyads", "trafficjunky", "a-ads", "monetag", "clickadilla",
+    };
+    private boolean isAdHost(String url) {
+        if (url == null) return false;
+        String u = url.toLowerCase();
+        for (String h : AD_HOSTS) if (u.contains(h)) return true;
+        return false;
+    }
+    // ¿Debe bloquearse esta navegación? (esquemas que sacan de la app o el market)
+    private boolean blocksNavigation(String url) {
+        if (url == null) return false;
+        String u = url.toLowerCase();
+        if (!(u.startsWith("http://") || u.startsWith("https://"))) return true;  // market:, intent:, etc.
+        return u.contains("play.google.com") || u.contains("://market.android.com") || u.contains("amazon.com/gp/mas");
+    }
+
+    // Cliente WebView compartido (ventana principal y popups).
+    private class AppClient extends WebViewClient {
+        private final boolean main;
+        AppClient(boolean main) { this.main = main; }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest req) {
+            return handle(view, req.getUrl() != null ? req.getUrl().toString() : null);
+        }
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) { return handle(view, url); }
+
+        private boolean handle(WebView view, String url) {
+            // Impide que un anuncio abra Google Play u otra app y deje atrapado al
+            // usuario fuera de All-Anime. Se queda todo dentro del WebView.
+            if (blocksNavigation(url)) { return true; }
+            if (url != null) view.loadUrl(url);
+            return true;
+        }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest req) {
+            String url = req.getUrl() != null ? req.getUrl().toString() : null;
+            // Con adFree: se bloquean a nivel de red los dominios de anuncios, así el
+            // bloqueo aplica de verdad en la app (aunque el sitio ya haya cargado).
+            if (adFree && isAdHost(url)) {
+                return new WebResourceResponse("text/plain", "utf-8", new ByteArrayInputStream(new byte[0]));
+            }
+            return super.shouldInterceptRequest(view, req);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            if (main) refreshAdFree();
+        }
     }
 
     // Lee localStorage.aa_adfree del sitio para saber si bloquear anuncios.
@@ -126,7 +178,7 @@ public class MainActivity extends Activity {
         ps.setDomStorageEnabled(true);
         ps.setSupportMultipleWindows(true);
         ps.setJavaScriptCanOpenWindowsAutomatically(true);
-        popupView.setWebViewClient(new WebViewClient());
+        popupView.setWebViewClient(new AppClient(false));   // también bloquea market/Play
         popupView.setWebChromeClient(new WebChromeClient() {
             @Override public void onCloseWindow(WebView w) { closePopup(); }
         });

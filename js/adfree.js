@@ -58,13 +58,25 @@ export async function grantAdFree(uid) {
   }
 }
 
-// Oculta los contenedores de anuncios ya presentes (por si se compró en caliente).
+// Quita los anuncios ya presentes para usuarios sin publicidad (por si el script
+// de ads alcanzó a cargar antes de sincronizar el estado). Se repite un rato por
+// si Adsterra inyecta sus elementos con retraso.
+const AD_HOST_RE = /effectivecpmnetwork|temptedrecognise|acscdn|tercetacker|adsterra|propellerads|propu\.sh|onclickalgo|hilltopads|popads|popcash|doubleclick|googlesyndication|adservice\.google|clickadu|admaven|mgid|exoclick|monetag|clickadilla/i;
+function killAds() {
+  document.querySelectorAll(".ad-container").forEach((el) => el.remove());
+  document.querySelectorAll("iframe, ins, script").forEach((el) => {
+    const src = el.src || el.getAttribute("data-src") || "";
+    if (src && AD_HOST_RE.test(src)) { const box = el.closest(".ad-container") || el; box.remove(); }
+  });
+  document.querySelectorAll('[id^="adsterra"], [class*="adsterra"], [id*="container-"][data-cfasync]').forEach((el) => el.remove());
+}
+let _reflectIv = null;
 function reflectAds() {
   if (!isAdFree()) return;
-  document.querySelectorAll(".ad-container, #donate-fab").forEach((el) => { /* dona sí se queda */ });
-  document.querySelectorAll(".ad-container").forEach((el) => el.remove());
-  // Social Bar de Adsterra (barra flotante) — intenta ocultarla si ya cargó.
-  document.querySelectorAll('iframe[src*="effectivecpmnetwork"], [id^="adsterra"]').forEach((el) => el.remove());
+  killAds();
+  if (_reflectIv) return;
+  let n = 0;
+  _reflectIv = setInterval(() => { killAds(); if (++n > 12) { clearInterval(_reflectIv); _reflectIv = null; } }, 1000);
 }
 
 // --- UI: botón + modal con PayPal --------------------------------------------
