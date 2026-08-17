@@ -83,19 +83,24 @@ function injectStyles() {
   .eng-empty{color:#888;font-size:14px;padding:8px 0}
 
   /* Cuenta regresiva estilo Netflix (tarjeta abajo a la derecha) */
-  .eng-countdown{position:absolute;right:18px;bottom:18px;width:330px;max-width:calc(100% - 36px);background:rgba(18,18,18,.96);border:1px solid #333;border-radius:14px;padding:14px;display:flex;gap:12px;z-index:60;box-shadow:0 16px 44px rgba(0,0,0,.6);animation:eng-slide .35s ease}
+  .eng-countdown{position:absolute;right:20px;bottom:20px;width:410px;max-width:calc(100% - 32px);background:rgba(14,14,17,.97);border:1px solid #3a3a3a;border-radius:16px;padding:16px;display:flex;gap:15px;align-items:center;z-index:2147483000;box-shadow:0 22px 54px rgba(0,0,0,.7);animation:eng-slide .35s ease;backdrop-filter:blur(6px)}
   @keyframes eng-slide{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
-  .eng-countdown img{width:110px;height:64px;object-fit:cover;border-radius:8px;flex:none;background:#222}
-  .eng-cd-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
-  .eng-cd-label{font-size:11px;letter-spacing:.6px;color:#aaa;text-transform:uppercase}
-  .eng-cd-title{font-size:13px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .eng-cd-bar{height:4px;background:#333;border-radius:3px;overflow:hidden;margin:3px 0}
-  .eng-cd-fill{height:100%;width:0;background:linear-gradient(90deg,#ca3030,#ff5c5c);transition:width 1s linear}
-  .eng-cd-actions{display:flex;gap:8px;margin-top:2px}
-  .eng-cd-actions button{flex:1;padding:8px;border-radius:8px;border:none;cursor:pointer;font-weight:700;font-size:12.5px;transition:transform .1s}
+  .eng-countdown img{width:128px;height:74px;object-fit:cover;border-radius:10px;flex:none;background:#222}
+  .eng-cd-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+  .eng-cd-label{font-size:11px;letter-spacing:1px;color:#ff8a4c;text-transform:uppercase;font-weight:800}
+  .eng-cd-title{font-size:14px;color:#fff;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .eng-cd-info{display:flex;align-items:center;gap:11px;margin-top:4px}
+  .eng-cd-ring{position:relative;width:48px;height:48px;flex:none}
+  .eng-cd-ring svg{width:48px;height:48px;transform:rotate(-90deg)}
+  .eng-cd-track{fill:none;stroke:#333;stroke-width:4}
+  .eng-cd-prog{fill:none;stroke:#ff5a3c;stroke-width:4;stroke-linecap:round;stroke-dasharray:125.6;stroke-dashoffset:0}
+  .eng-cd-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+  .eng-cd-actions{display:flex;flex-direction:column;gap:6px;flex:1}
+  .eng-cd-actions button{padding:8px 10px;border-radius:9px;border:none;cursor:pointer;font-weight:700;font-size:12.5px;transition:transform .1s;white-space:nowrap}
   .eng-cd-actions button:active{transform:scale(.95)}
   .eng-cd-go{background:linear-gradient(135deg,#ca3030,#e23b3b);color:#fff}
   .eng-cd-cancel{background:#333;color:#fff}
+  @media (max-width:560px){.eng-countdown{right:12px;left:12px;bottom:12px;width:auto}.eng-countdown img{width:96px;height:56px}}
 
   `;
   const s = document.createElement("style");
@@ -139,7 +144,7 @@ export async function markEpisodeWatched(anime, episode) {
 
 // Cuenta regresiva de autoplay hacia el siguiente episodio (estilo Netflix, 5s).
 export function startAutoplayCountdown(nextEpisode, onPlayNext) {
-  if (nextEpisode && onPlayNext) startCountdown(5, nextEpisode, onPlayNext);
+  if (nextEpisode && onPlayNext) startCountdown(8, nextEpisode, onPlayNext);
 }
 
 function startCountdown(seconds, nextEpisode, onPlayNext) {
@@ -149,30 +154,37 @@ function startCountdown(seconds, nextEpisode, onPlayNext) {
   clearInterval(countdownTimer);
   document.querySelector(".eng-countdown")?.remove();
 
+  const C = 125.6;   // circunferencia del anillo (2π·20)
   let n = seconds;
   const box = document.createElement("div");
   box.className = "eng-countdown";
   box.innerHTML = `
     <img src="${nextEpisode.img || ""}" alt="">
     <div class="eng-cd-body">
-      <span class="eng-cd-label">Siguiente episodio</span>
+      <span class="eng-cd-label">Siguiente episodio en <span class="eng-cd-n">${n}</span>s</span>
       <span class="eng-cd-title">E${nextEpisode.number} · ${nextEpisode.title || ""}</span>
-      <div class="eng-cd-bar"><div class="eng-cd-fill"></div></div>
-      <div class="eng-cd-actions">
-        <button class="eng-cd-go"><i class="fas fa-play"></i> Reproducir (<span class="eng-cd-n">${n}</span>)</button>
-        <button class="eng-cd-cancel">Cancelar</button>
+      <div class="eng-cd-info">
+        <div class="eng-cd-ring" aria-label="Cuenta regresiva">
+          <svg viewBox="0 0 48 48"><circle class="eng-cd-track" cx="24" cy="24" r="20"/><circle class="eng-cd-prog" cx="24" cy="24" r="20"/></svg>
+          <span class="eng-cd-num">${n}</span>
+        </div>
+        <div class="eng-cd-actions">
+          <button class="eng-cd-go"><i class="fas fa-play"></i> Reproducir ahora</button>
+          <button class="eng-cd-cancel">Cancelar</button>
+        </div>
       </div>
     </div>`;
   container.appendChild(box);
-  const fill = box.querySelector(".eng-cd-fill");
-  requestAnimationFrame(() => { fill.style.transition = `width ${seconds}s linear`; fill.style.width = "100%"; });
+  // El anillo se vacía en `seconds` segundos (feedback visual del conteo).
+  const prog = box.querySelector(".eng-cd-prog");
+  requestAnimationFrame(() => { prog.style.transition = `stroke-dashoffset ${seconds}s linear`; prog.style.strokeDashoffset = String(C); });
+  const setNum = (v) => box.querySelectorAll(".eng-cd-num, .eng-cd-n").forEach((el) => el.textContent = Math.max(0, v));
   const go = () => { clearAutoplay(); onPlayNext(); };
   box.querySelector(".eng-cd-go").onclick = go;
   box.querySelector(".eng-cd-cancel").onclick = () => clearAutoplay();
   countdownTimer = setInterval(() => {
     n -= 1;
-    const el = box.querySelector(".eng-cd-n");
-    if (el) el.textContent = Math.max(0, n);
+    setNum(n);
     if (n <= 0) go();
   }, 1000);
 }
