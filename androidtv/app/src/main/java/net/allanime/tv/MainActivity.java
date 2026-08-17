@@ -117,9 +117,14 @@ public class MainActivity extends Activity {
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest req) {
             String url = req.getUrl() != null ? req.getUrl().toString() : null;
-            // Con adFree: se bloquean a nivel de red los dominios de anuncios, así el
-            // bloqueo aplica de verdad en la app (aunque el sitio ya haya cargado).
-            if (adFree && isAdHost(url)) {
+            // En la app SIEMPRE se bloquean a nivel de red las redes de anuncios
+            // intrusivas (popunders/redirecciones tipo Adsterra). Motivo: en Fire TV
+            // esos anuncios impedían abrir el login/registro (y provocaban crashes al
+            // redirigir), y no se puede activar adFree sin antes iniciar sesión. Los
+            // servidores de video NO están en esta lista, así que la reproducción
+            // sigue funcionando; los popups de anuncios del server los maneja
+            // onCreateWindow (cierre manual o automático según adFree).
+            if (isAdHost(url)) {
                 return new WebResourceResponse("text/plain", "utf-8", new ByteArrayInputStream(new byte[0]));
             }
             return super.shouldInterceptRequest(view, req);

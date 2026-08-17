@@ -2080,18 +2080,13 @@ body.red-theme header {
 }
 
 .player-video-container {
-    /* 16:9 real basado en el ancho → se ve bien en móvil (vertical) por defecto.
-       En pantallas apaisadas (TV/escritorio/móvil horizontal) lo ajusta el media
-       query por aspecto de más abajo. */
     width: 100%;
-    aspect-ratio: 16 / 9;
-    height: auto;
-    max-height: 82vh;
+    height: 56.25vh;
+    /* 16:9 aspect ratio */
+    max-height: 75vh;
+    /* Límite para que no ocupe toda la pantalla */
     background-color: #000;
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #episode-iframe {
@@ -3183,8 +3178,21 @@ header .logo:hover .logo-desktop {
    El sitio ya activa la clase .aa-tv (js/tv-nav.js). Aquí se
    corrige el modal de episodios y detalles para pantallas de TV.
    ============================================================ */
-/* Modal de episodios en TV: los detalles quedan debajo con márgenes de overscan
-   (el tamaño/centrado del video lo maneja el media query por aspecto, universal). */
+/* Modal de episodios en TV (Fire TV/Android TV): video grande en 16:9 real
+   centrado; los detalles quedan debajo con márgenes de overscan. Solo afecta a
+   .aa-tv (TV), NO a escritorio ni a móvil. */
+html.aa-tv .player-video-container {
+    height: 74vh;
+    max-height: 74vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+html.aa-tv #episode-iframe {
+    width: min(100%, calc(74vh * 16 / 9));
+    height: 100%;
+}
 html.aa-tv .player-details-container { padding: 3vh max(4vw, 32px) 7vh; }
 html.aa-tv .player-details-content { max-width: 1500px; gap: 3vw; }
 html.aa-tv .close-player {
@@ -3196,27 +3204,3 @@ html.aa-tv .close-player {
 /* Evita scroll horizontal por overscan. (La tipografía usa el tamaño normal del
    sitio; el navegador del Fire TV ya escala, así que NO se agranda aquí.) */
 html.aa-tv body { overflow-x: hidden; }
-
-/* ===================================================================
-   Modal de episodios en pantallas APAISADAS (Fire TV, escritorio,
-   móvil horizontal): el video se limita en alto y se centra en 16:9
-   real; los detalles quedan debajo (scroll / D-pad). Basado en el
-   ASPECTO de la pantalla, así funciona sin depender de detección JS.
-   =================================================================== */
-@media (min-aspect-ratio: 3/2) {
-    .player-video-container {
-        aspect-ratio: auto;
-        height: 72vh;
-        max-height: 72vh;
-    }
-    #episode-iframe {
-        width: min(100%, calc(72vh * 16 / 9));
-        height: 100%;
-    }
-}
-/* Pantallas apaisadas muy bajas (móvil horizontal): deja algo más de aire a los
-   detalles reduciendo un poco el video. */
-@media (min-aspect-ratio: 3/2) and (max-height: 500px) {
-    .player-video-container { height: 66vh; max-height: 66vh; }
-    #episode-iframe { width: min(100%, calc(66vh * 16 / 9)); }
-}

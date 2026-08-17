@@ -573,6 +573,33 @@ $(document).ready(function () {
   }
 
   // --- FUNCIÓN PRINCIPAL DEL REPRODUCTOR ---
+  // Bloquea el fondo mientras el reproductor está abierto: no se puede hacer
+  // scroll ni navegar (ratón, teclado o D-pad de TV) detrás del modal; el foco
+  // queda solo dentro de él. Robusto en móvil (position:fixed) y accesible (inert).
+  let _bgLocked = false, _bgLockY = 0;
+  function lockBackground() {
+    if (_bgLocked) return; _bgLocked = true;
+    _bgLockY = window.scrollY || document.documentElement.scrollTop || 0;
+    const b = document.body.style;
+    b.position = "fixed"; b.top = `-${_bgLockY}px`; b.left = "0"; b.right = "0";
+    b.width = "100%"; b.overflow = "hidden";
+    const modal = document.getElementById("episode-player-modal");
+    Array.from(document.body.children).forEach((el) => {
+      if (el !== modal && !el.contains(modal) && !el.hasAttribute("inert")) {
+        el.setAttribute("inert", ""); el.setAttribute("data-aa-inert", "1");
+      }
+    });
+  }
+  function unlockBackground() {
+    if (!_bgLocked) return; _bgLocked = false;
+    const b = document.body.style;
+    b.position = ""; b.top = ""; b.left = ""; b.right = ""; b.width = ""; b.overflow = "";
+    window.scrollTo(0, _bgLockY);
+    document.querySelectorAll("[data-aa-inert]").forEach((el) => {
+      el.removeAttribute("inert"); el.removeAttribute("data-aa-inert");
+    });
+  }
+
   function openPlayer(anime, episode) {
     if (!anime || !episode) return;
     currentPlayerAnime = anime;
@@ -689,7 +716,7 @@ $(document).ready(function () {
     });
 
     playerModal.css("display", "flex").hide().fadeIn();
-    $("body").css("overflow", "hidden");
+    lockBackground();
   }
 
   // --- FUNCIONES PARA RENDERIZAR CONTENIDO DINÁMICO ---
@@ -1689,7 +1716,7 @@ $(document).ready(function () {
     else if (episodeId) saveToHistory(episodeId);
     populateContinueWatching();
     playerModal.fadeOut(() => $("#episode-iframe").attr("src", ""));
-    $("body").css("overflow", "auto");
+    unlockBackground();
   });
 
   $(document).on("keyup", (e) => {

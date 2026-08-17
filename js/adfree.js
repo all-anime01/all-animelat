@@ -70,9 +70,27 @@ function killAds() {
   });
   document.querySelectorAll('[id^="adsterra"], [class*="adsterra"], [id*="container-"][data-cfasync]').forEach((el) => el.remove());
 }
+// Neutraliza los popunders/pop-ups de anuncios para usuarios adFree: aunque el
+// script de Adsterra alcance a ejecutarse (antes de sincronizar el estado), sus
+// pop-ups pasan por window.open → aquí se bloquean los que van a dominios de
+// anuncios o a about:blank (patrón típico de popunder). Solo para adFree, así no
+// afecta a los usuarios sin plan.
+function guardPopups() {
+  if (!isAdFree() || window.__aaPopGuard) return;
+  window.__aaPopGuard = true;
+  const orig = window.open ? window.open.bind(window) : null;
+  window.open = function (url, ...rest) {
+    try {
+      const u = url ? String(url) : "";
+      if (!u || u === "about:blank" || AD_HOST_RE.test(u)) return null; // popunder → bloqueado
+      return orig ? orig(url, ...rest) : null;
+    } catch { return null; }
+  };
+}
 let _reflectIv = null;
 function reflectAds() {
   if (!isAdFree()) return;
+  guardPopups();
   killAds();
   if (_reflectIv) return;
   let n = 0;

@@ -277,12 +277,12 @@
             showMsg("Sesión cerrada.", "ok");
         });
     </script>
-    <!-- Adsterra (Social Bar + Popunder) — sólo si el usuario NO compró "sin publicidad" -->
-    <script>
-    (function(){try{var v=localStorage.getItem("aa_adfree");if(v==="1"||(v&&Date.now()<parseInt(v,10)))return;}catch(e){}
-    document.write('<script src="//temptedrecognise.com/cf/a6/75/cfa675a2a58c7c2c579b07801b66706f.js"><\/script>');
-    document.write('<script src="//temptedrecognise.com/b6/9b/2a/b69b2a93a6ad48947bfeea27f00c50c8.js"><\/script>');})();
-    </script>
+    <!-- NOTA: la página de cuenta (login/registro) va SIN anuncios a propósito.
+         Los popunders/redirecciones de Adsterra impedían abrir el registro/inicio
+         de sesión y provocaban crashes (sobre todo en Fire TV), y no se puede
+         activar "sin publicidad" sin antes iniciar sesión. Aquí no se cargan. -->
+    <!-- Navegación con control remoto (D-pad) en Fire TV / Android TV -->
+    <script src="js/tv-nav.js"></script>
 </body>
 
 </html>
