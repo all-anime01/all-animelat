@@ -429,6 +429,9 @@ body.red-theme header {
 .hero-logo {
     max-width: 70%;
     height: auto;
+    max-height: 28vh;      /* evita que el logo del hero domine en pantallas bajas */
+    object-fit: contain;
+    object-position: left center;
     margin-bottom: 2rem;
 }
 
@@ -1125,6 +1128,9 @@ body.red-theme header {
     max-width: 70%;
     width: 500px;
     height: auto;
+    max-height: 30vh;      /* nunca tapa demás en pantallas bajas (Fire TV 720p) */
+    object-fit: contain;
+    object-position: left center;
     margin-bottom: 2rem;
 }
 
@@ -3204,3 +3210,18 @@ html.aa-tv .close-player {
 /* Evita scroll horizontal por overscan. (La tipografía usa el tamaño normal del
    sitio; el navegador del Fire TV ya escala, así que NO se agranda aquí.) */
 html.aa-tv body { overflow-x: hidden; }
+
+/* ===================================================================
+   Pantallas BAJAS (Fire TV 720p, laptops 768px) — los logos de cada
+   anime y el hero no deben tapar el fondo/contenido. Se limitan por
+   ALTO (no solo por ancho, que no cubría estos casos).
+   =================================================================== */
+@media (max-height: 820px) {
+    .anime-logo { width: 400px; max-height: 24vh; }
+    .hero-logo { max-height: 22vh; }
+    .anime-detail-hero .hero-content, .hero-content { padding-top: 3vh; padding-bottom: 3vh; }
+}
+@media (max-height: 620px) {
+    .anime-logo { width: 340px; max-height: 20vh; margin-bottom: 1rem; }
+    .hero-logo { max-height: 18vh; }
+}

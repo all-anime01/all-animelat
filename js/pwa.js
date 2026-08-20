@@ -54,6 +54,11 @@ export function initPWA() {
     window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
   }
 
+  // ¿Estamos DENTRO de la app nativa (móvil o TV) o en una PWA instalada? En ese
+  // caso NO se muestra ningún botón de "descargar/instalar app".
+  const IN_APP = /AllAnime(App|TV)/i.test(navigator.userAgent || "") ||
+    window.matchMedia("(display-mode: standalone)").matches;
+
   // Botón de instalación (Android / escritorio: usa beforeinstallprompt).
   let deferred = null;
   const btn = document.createElement("button");
@@ -74,7 +79,7 @@ export function initPWA() {
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferred = e;
-    if (sessionStorage.getItem("pwaDismissed")) return;
+    if (IN_APP || sessionStorage.getItem("pwaDismissed")) return;   // dentro de la app: nunca
     mount();
     btn.classList.add("show");
   });
@@ -86,7 +91,7 @@ export function initPWA() {
   const ua = navigator.userAgent || "";
   const isAndroid = /Android/i.test(ua);
   const isFireTV = /AFT[A-Z0-9]|Fire\s?TV|Silk|SmartTV|GoogleTV|Web0S|WebOS|Tizen/i.test(ua);
-  const inApp = /AllAnimeTV/i.test(ua) || window.matchMedia("(display-mode: standalone)").matches;
+  const inApp = IN_APP;
   if ((isAndroid || isFireTV) && !inApp) {
     // Fire TV / Android TV → app de TV; teléfono/tablet Android → app móvil.
     const forTV = isFireTV;

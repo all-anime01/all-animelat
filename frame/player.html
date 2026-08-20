@@ -218,6 +218,9 @@
             <div class="player-controls">
                 <div class="SelectLangDisp" id="langTabs"></div>
                 <div class="ctrl-right">
+                    <button class="speed-btn" id="fill-btn" type="button" title="Ajusta los episodios en 4:3 para que llenen la pantalla 16:9">
+                        <i class="fas fa-expand"></i> <span id="fill-label">Llenar pantalla</span>
+                    </button>
                     <button class="speed-btn" id="speed-btn" type="button" style="display:none" title="Mide la latencia y recomienda el servidor más rápido">
                         <i class="fas fa-bolt"></i> Probar velocidad
                     </button>
@@ -239,6 +242,31 @@
     </div>
 
     <script src="/js/iframe.js"></script>
+    <script>
+    // Herramienta 16:9: los episodios en 4:3 (animes clásicos) se ven con barras
+    // negras a los lados; este botón los AMPLÍA para llenar la pantalla 16:9
+    // (recorta un poco arriba/abajo). Se recuerda la preferencia entre episodios.
+    (function () {
+      var KEY = "aa_fill";
+      var pd = document.getElementById("PlayerDisplay");
+      var btn = document.getElementById("fill-btn");
+      var lbl = document.getElementById("fill-label");
+      var css = document.createElement("style");
+      css.textContent =
+        "#PlayerDisplay.aa-fill #IFR{transform:scale(1.34);transform-origin:center center}" +
+        "#fill-btn.active{background:#ff5a3c;color:#fff;border-color:#ff5a3c}";
+      document.head.appendChild(css);
+      function apply(on) {
+        if (pd) pd.classList.toggle("aa-fill", on);
+        if (lbl) lbl.textContent = on ? "Ajustar (16:9)" : "Llenar pantalla";
+        if (btn) btn.classList.toggle("active", on);
+        try { localStorage.setItem(KEY, on ? "1" : "0"); } catch (e) {}
+      }
+      var on = false; try { on = localStorage.getItem(KEY) === "1"; } catch (e) {}
+      apply(on);
+      if (btn) btn.addEventListener("click", function () { apply(!(pd && pd.classList.contains("aa-fill"))); });
+    })();
+    </script>
     <script src="/js/tv-nav.js"></script>
     <script type="module">
         import { db } from "/js/firebase-config.js";

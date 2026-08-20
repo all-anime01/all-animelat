@@ -47,55 +47,55 @@
     /* Oculta el cursor cuando se navega por D-pad */
     html.aa-tv.aa-dpad, html.aa-tv.aa-dpad * { cursor: none !important; }
 
-    /* ===== Modo TV estilo Crunchyroll: barra lateral izquierda ===== */
-    /* Se oculta el header horizontal original y el contenido se desplaza a la
-       derecha, dejando la barra lateral fija a la izquierda (navegable con D-pad). */
+    /* ===== Barra lateral estilo Prime Video: overlay TRANSPARENTE que NO empuja
+       el contenido (no se pierde pantalla); se oscurece y expande al enfocarla,
+       con animación fluida. Arriba va el avatar de "Mi cuenta" (sin texto). ===== */
     html.aa-tv.aa-rail-on header { display: none !important; }
-    html.aa-tv.aa-rail-on body { padding-left: ${RAIL_W}px; }
+    /* El contenido va a pantalla completa por debajo; solo un respiro a la izquierda. */
     html.aa-tv.aa-rail-on .main-content,
-    html.aa-tv.aa-rail-on .container { padding-left: max(2.5vw, 20px); padding-right: max(3vw, 28px); }
+    html.aa-tv.aa-rail-on .container { padding-left: max(2vw, 20px); padding-right: max(2.5vw, 24px); }
 
     .aa-rail {
-      position: fixed; top: 0; left: 0; height: 100vh; width: ${RAIL_W}px;
-      background: linear-gradient(180deg, #16181d 0%, #0e0f13 100%);
-      border-right: 1px solid #24262d; z-index: 1500;
-      display: flex; flex-direction: column; align-items: stretch; gap: 6px;
-      padding: 22px 0; box-sizing: border-box; overflow: hidden;
-      transition: width .18s ease, box-shadow .18s ease;
+      position: fixed; top: 0; left: 0; height: 100vh; width: ${RAIL_W}px; z-index: 1500;
+      display: flex; flex-direction: column; align-items: stretch; gap: 4px;
+      padding: 26px 0; box-sizing: border-box; overflow: hidden;
+      background: linear-gradient(90deg, rgba(9,10,13,.72) 0%, rgba(9,10,13,.30) 58%, rgba(9,10,13,0) 100%);
+      transition: width .24s cubic-bezier(.22,.61,.36,1), background .24s ease;
     }
-    .aa-rail.expanded { width: ${RAIL_EXP}px; box-shadow: 24px 0 60px rgba(0,0,0,.55); }
-    .aa-rail-logo { display:flex; align-items:center; justify-content:flex-start; gap:12px;
-      padding: 0 26px; height: 52px; margin-bottom: 14px; overflow:hidden; }
-    .aa-rail-logo img { width: 32px; height: 32px; object-fit: contain; flex: none; }
-    .aa-rail-logo b { color:#fff; font-size: 20px; white-space:nowrap; opacity:0; transition:opacity .15s; letter-spacing:.5px; }
-    .aa-rail.expanded .aa-rail-logo b { opacity: 1; }
+    .aa-rail.expanded {
+      width: ${RAIL_EXP}px;
+      background: linear-gradient(90deg, rgba(8,9,12,.99) 0%, rgba(8,9,12,.96) 64%, rgba(8,9,12,0) 100%);
+      backdrop-filter: blur(3px);
+    }
     .aa-rail-spacer { flex: 1; }
     .aa-rail-item {
-      display: flex; align-items: center; gap: 20px; height: 56px;
-      padding: 0 30px; color: #b6bac2; text-decoration: none; white-space: nowrap;
-      font-size: 17px; font-weight: 600; border: none; background: none; cursor: pointer;
-      border-left: 4px solid transparent;
+      display: flex; align-items: center; gap: 20px; height: 54px; padding: 0 26px;
+      color: #cfd3db; text-decoration: none; white-space: nowrap; font-size: 17px;
+      font-weight: 600; border: none; background: none; cursor: pointer;
     }
-    .aa-rail-item i { font-size: 22px; width: 24px; text-align: center; flex: none; }
-    .aa-rail-item span { opacity: 0; transition: opacity .15s ease; }
-    .aa-rail.expanded .aa-rail-item span { opacity: 1; }
-    .aa-rail-item.active { color: #fff; border-left-color: #ff5a3c; }
+    .aa-rail-item i { font-size: 23px; width: 28px; text-align: center; flex: none;
+      filter: drop-shadow(0 2px 7px rgba(0,0,0,.9)); }
+    .aa-rail-item span:not(.aa-rail-avatar) { opacity: 0; transform: translateX(-6px);
+      transition: opacity .18s ease, transform .18s ease; }
+    .aa-rail.expanded .aa-rail-item span:not(.aa-rail-avatar) { opacity: 1; transform: none; }
+    .aa-rail-item.active { color: #fff; }
+    .aa-rail-item.active i { color: #ff5a3c; }
     .aa-rail-item.aa-focus {
       outline: none !important; box-shadow: none !important; transform: none !important;
-      background: rgba(255,90,60,.16); color: #fff; border-left-color: #ff5a3c; border-radius: 0 !important;
+      color: #fff; border-radius: 0 !important;
     }
-    /* Overlay de búsqueda para TV */
-    .aa-tv-search {
-      position: fixed; inset: 0; z-index: 1650; background: rgba(8,9,12,.96);
-      display: none; align-items: flex-start; justify-content: center; padding-top: 14vh;
+    .aa-rail.expanded .aa-rail-item.aa-focus { background: rgba(255,255,255,.13); }
+    .aa-rail-item.aa-focus i { color: #ff5a3c; }
+    /* Avatar de "Mi cuenta" arriba (reemplaza el nombre/logo All-Anime) */
+    .aa-rail-account { height: 66px; margin-bottom: 8px; }
+    .aa-rail-avatar {
+      width: 42px; height: 42px; border-radius: 50%; flex: none; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: #2a2d36; color: #fff; font-weight: 800; font-size: 18px;
+      border: 2px solid rgba(255,255,255,.55); box-shadow: 0 2px 10px rgba(0,0,0,.7);
     }
-    .aa-tv-search.on { display: flex; }
-    .aa-tv-search input {
-      width: min(70vw, 760px); font-size: 26px; padding: 18px 24px; border-radius: 14px;
-      border: 2px solid #333; background: #17181d; color: #fff; outline: none;
-    }
-    .aa-tv-search input:focus, .aa-tv-search input.aa-focus { border-color: #ff5a3c; box-shadow: 0 0 0 5px rgba(255,90,60,.3) !important; }
-    .aa-tv-search .aa-tv-search-hint { position:absolute; bottom: 8vh; color:#8a8f99; font-size:15px; }
+    .aa-rail-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .aa-rail-account.aa-focus .aa-rail-avatar { border-color: #ff5a3c; }
   `;
   (document.head || root).appendChild(st);
   // CSS para revelar el buscador del header al pulsar "Buscar" en la barra.
@@ -109,39 +109,50 @@
     html.aa-tv.aa-search-open header #search-input { display: block !important; width: 100%; font-size: 20px; padding: 12px 18px; }
   `;
 
-  // --- Barra lateral estilo Crunchyroll -------------------------------------
+  // --- Barra lateral estilo Prime Video -------------------------------------
   const RAIL_ITEMS = [
     { icon: "fa-search", label: "Buscar", act: "search" },
     { icon: "fa-home", label: "Inicio", href: "index.html" },
     { icon: "fa-compass", label: "Explorar", href: "explorar.html" },
     { icon: "fa-film", label: "Películas", href: "peliculas.html" },
   ];
+  // El buscador de TV reutiliza el overlay a pantalla completa del sitio (igual que
+  // en Android). Si no está listo aún, cae al buscador del header como respaldo.
   function openSearch() {
+    if (typeof window.__aaOpenSearch === "function") {
+      window.__aaOpenSearch();
+      setTimeout(() => { const i = document.getElementById("msearch-input"); if (i) { try { i.focus(); } catch {} setFocus(i, false); } }, 120);
+      return;
+    }
     root.classList.add("aa-search-open");
-    const c = document.querySelector(".search-container");
-    if (c) c.classList.add("active");                 // el sitio muestra el input al activar
+    const c = document.querySelector(".search-container"); if (c) c.classList.add("active");
     const inp = document.getElementById("search-input");
     if (inp) setTimeout(() => { try { inp.focus(); } catch {} setFocus(inp, false); }, 80);
   }
   function closeSearch() {
+    if (typeof window.__aaCloseSearch === "function") window.__aaCloseSearch();
     root.classList.remove("aa-search-open");
-    const c = document.querySelector(".search-container");
-    if (c) c.classList.remove("active");
+    const c = document.querySelector(".search-container"); if (c) c.classList.remove("active");
+  }
+  function avatarInner() {
+    const u = window.__aaUser;
+    if (u && u.photoURL) return `<img src="${u.photoURL}" alt="">`;
+    if (u && (u.displayName || u.email)) return (u.displayName || u.email).trim().charAt(0).toUpperCase();
+    return '<i class="fas fa-user" style="font-size:19px"></i>';
   }
   function buildRail() {
     if (window.self !== window.top) return;           // no dentro del iframe del reproductor
     if (!document.querySelector("header")) return;      // páginas sin header
     if (document.querySelector(".aa-rail")) return;
     const page = (location.pathname.split("/").pop() || "index.html").toLowerCase() || "index.html";
-    const logoImg = (document.querySelector(".logo img") || {}).src || "image/all-anime-logo.png";
-    let html = `<div class="aa-rail-logo"><img src="${logoImg}" alt=""><b>All-Anime</b></div>`;
+    // Arriba: avatar de "Mi cuenta" (sin el texto All-Anime).
+    let html = `<a href="cuenta.html" class="aa-rail-item aa-rail-account${page === "cuenta.html" ? " active" : ""}"><span class="aa-rail-avatar" id="aa-rail-av">${avatarInner()}</span><span>Mi cuenta</span></a>`;
     for (const it of RAIL_ITEMS) {
       const active = it.href && (page === it.href || page === it.href.replace(".html", ""));
       if (it.href) html += `<a href="${it.href}" class="aa-rail-item${active ? " active" : ""}"><i class="fas ${it.icon}"></i><span>${it.label}</span></a>`;
       else html += `<button type="button" data-act="${it.act}" class="aa-rail-item"><i class="fas ${it.icon}"></i><span>${it.label}</span></button>`;
     }
     html += `<div class="aa-rail-spacer"></div>`;
-    html += `<a href="cuenta.html" class="aa-rail-item${page === "cuenta.html" ? " active" : ""}"><i class="fas fa-user"></i><span>Mi cuenta</span></a>`;
     const rail = document.createElement("nav");
     rail.className = "aa-rail";
     rail.innerHTML = html;
@@ -149,12 +160,14 @@
     root.classList.add("aa-rail-on");
     const sb = rail.querySelector('[data-act="search"]');
     if (sb) sb.addEventListener("click", openSearch);
+    // Actualiza el avatar cuando cambia la sesión.
+    document.addEventListener("aa-user-change", () => { const av = document.getElementById("aa-rail-av"); if (av) av.innerHTML = avatarInner(); });
   }
   if (document.body) buildRail();
   else document.addEventListener("DOMContentLoaded", buildRail);
 
   // --- Utilidades de foco ----------------------------------------------------
-  const SEL = 'a[href], button:not([disabled]), input:not([type=hidden]):not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), .open-player-from-details, .open-player-from-modal, .ODDIV li, .SelectLangDisp li';
+  const SEL = 'a[href], button:not([disabled]), input:not([type=hidden]):not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), .open-player-from-details, .open-player-from-modal, .ODDIV li, .SelectLangDisp li, .rw-stars i';
   const NATIVE = /^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/;
   // Los <li>/<a sin href> con onclick no son enfocables: les damos tabindex.
   const ensureFocusable = (el) => { if (!NATIVE.test(el.tagName) && !el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0"); return el; };
@@ -172,7 +185,7 @@
   };
   // Cuando hay un modal/diálogo abierto, el foco se ATRAPA dentro de él (si no,
   // "se pierde" hacia el contenido de atrás y no se puede navegar el modal).
-  const MODAL_SEL = '.episode-player-modal, #trailer-modal, #adfree-modal, .adfree-ov, #apk-help, [role="dialog"]';
+  const MODAL_SEL = '.episode-player-modal, #trailer-modal, #adfree-modal, .adfree-ov, #apk-help, .msearch-overlay.open, [role="dialog"]';
   function activeScope() {
     const modals = Array.prototype.filter.call(document.querySelectorAll(MODAL_SEL), isShown);
     return modals.length ? modals[modals.length - 1] : document;
@@ -186,16 +199,24 @@
     return Array.prototype.filter.call(scope.querySelectorAll(SEL), isShown).map(ensureFocusable);
   };
 
-  let current = null;
+  let current = null, _hoverCard = null;
   function setFocus(el, scroll) {
     if (!el) return;
     if (current && current !== el) current.classList.remove("aa-focus");
     current = el;
     el.classList.add("aa-focus");
     // La barra lateral se expande (muestra las etiquetas) solo cuando el foco está
-    // en ella; al salir al contenido, se colapsa a íconos (estilo Crunchyroll).
+    // en ella; al salir al contenido, se colapsa a íconos.
     const rail = document.querySelector(".aa-rail");
     if (rail) rail.classList.toggle("expanded", !!el.closest(".aa-rail"));
+    // Vista previa de la tarjeta al enfocarla (dispara el hover, como en PC: sale
+    // el trailer/preview del anime correspondiente).
+    const card = el.closest ? el.closest(".anime-card, .cr-card, .episode-detail-card, .cr-list-item") : null;
+    if (card !== _hoverCard) {
+      try { if (_hoverCard) _hoverCard.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true })); } catch {}
+      _hoverCard = card || null;
+      try { if (_hoverCard) _hoverCard.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true })); } catch {}
+    }
     try { el.focus({ preventScroll: true }); } catch { try { el.focus(); } catch {} }
     // No arrastrar el scroll cuando el foco está en la barra fija.
     if (scroll !== false && !el.closest(".aa-rail")) el.scrollIntoView({ block: "center", inline: "nearest", behavior: "smooth" });
@@ -247,10 +268,18 @@
     return best;
   }
 
-  // Navega en una dirección. Contenido y barra son zonas separadas: en el borde
-  // izquierdo del contenido se salta a la barra; desde la barra a la derecha se
-  // vuelve al contenido. Se prefiere lo visible; si no hay nada, se busca en toda
-  // la página (el foco arrastra el scroll) o se desplaza la página.
+  // ¿Dos elementos están en la MISMA fila? (se solapan en vertical)
+  function sameRow(a, b) {
+    if (!a || !b) return false;
+    const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+    const overlap = Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top);
+    return overlap > Math.min(ra.height, rb.height) * 0.4;
+  }
+
+  // Navega en una dirección. Barra y contenido son zonas separadas. En horizontal
+  // se mueve DENTRO de la fila (carrusel); al llegar al inicio de la fila, IZQUIERDA
+  // abre la barra en un solo toque. En vertical se prefiere lo visible; si no hay,
+  // salta a la siguiente sección (el foco arrastra el scroll) o desplaza la página.
   function navigate(dir) {
     const cur = current;
     // --- En la barra lateral ---
@@ -259,13 +288,19 @@
       if (dir === "right") { const c = allContent().filter(nearViewport); const n = bestAmong(c, "right", null) || c[0] || allContent()[0]; if (n) setFocus(n); return; }
       return; // izquierda en la barra: ya está al borde
     }
-    // --- En el contenido ---
+    // --- Contenido: horizontal = dentro de la fila ---
+    if (dir === "left" || dir === "right") {
+      const row = allContent().filter((el) => el !== cur && sameRow(el, cur));
+      let n = bestAmong(row.filter(nearViewport), dir, cur) || bestAmong(row, dir, cur);
+      if (n) { setFocus(n); return; }
+      if (dir === "left") { const r = nearestRailItem(cur); if (r) { setFocus(r); return; } }
+      return; // fin de la fila hacia la derecha: no salta a otra fila
+    }
+    // --- Contenido: vertical ---
     const vp = allContent().filter(nearViewport);
     let n = bestAmong(vp, dir, cur);
     if (!n) n = bestAmong(allContent(), dir, cur);   // salta a la siguiente sección fuera de pantalla
     if (n) { setFocus(n); return; }
-    if (dir === "left") { const r = nearestRailItem(cur); if (r) { setFocus(r); return; } }
-    // Sin candidato: desplaza la página por si hay contenido fuera del alcance.
     if (dir === "down") window.scrollBy({ top: Math.round(window.innerHeight * 0.7), behavior: "smooth" });
     else if (dir === "up") window.scrollBy({ top: -Math.round(window.innerHeight * 0.7), behavior: "smooth" });
   }
@@ -274,9 +309,10 @@
     const k = e.key;
     const active = document.activeElement;
     // Atrás/Escape: si el buscador de TV está abierto, ciérralo y vuelve al contenido.
-    if ((k === "Escape" || k === "Backspace" || k === "GoBack" || k === "BrowserBack") && root.classList.contains("aa-search-open")) {
+    const searchOpen = root.classList.contains("aa-search-open") || document.querySelector(".msearch-overlay.open");
+    if ((k === "Escape" || k === "Backspace" || k === "GoBack" || k === "BrowserBack") && searchOpen) {
       if (isTyping(active) && k === "Backspace" && active.value) return; // deja borrar texto
-      e.preventDefault(); closeSearch(); setTimeout(() => focusScope(document), 40); return;
+      e.preventDefault(); closeSearch(); setTimeout(() => focusScope(document), 60); return;
     }
     // Si se está escribiendo en un campo, deja que las flechas muevan el cursor
     // del texto (salvo arriba/abajo para poder salir del campo).

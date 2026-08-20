@@ -148,6 +148,8 @@ function injectAccountWidget() {
   if (!FIREBASE_CONFIGURED) return;
 
   observeAuth((user) => {
+    window.__aaUser = user || null;   // para el avatar de la barra lateral de TV
+    document.dispatchEvent(new CustomEvent("aa-user-change"));
     if (!user) { setAdFreeUid(null); renderLoggedOut(); return; }
     touchLastVisit(user.uid);   // registra su última visita (1 vez por sesión)
     metricsIdentify(user);      // segmenta métricas por usuario (Sentry/Mixpanel/Faro)
@@ -989,14 +991,20 @@ $(document).ready(function () {
 
     function sortData(arr) {
       const c = arr.slice();
+      const byTitle = (a, b) => (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base", numeric: true });
       if (sortMode === "recent")
-        c.sort((a, b) => (b.year || 0) - (a.year || 0) || (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base" }));
+        c.sort((a, b) => (b.year || 0) - (a.year || 0) || byTitle(a, b));
+      else if (sortMode === "oldest")
+        c.sort((a, b) => (a.year || 0) - (b.year || 0) || byTitle(a, b));
       else if (sortMode === "az")
-        c.sort((a, b) => (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base", numeric: true }));
+        c.sort(byTitle);
+      else if (sortMode === "za")
+        c.sort((a, b) => byTitle(b, a));
       else // popular: por nº de valoraciones y luego rating
-        c.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0) || (b.rating || 0) - (a.rating || 0) || (a.title || "").localeCompare(b.title || "", "es", { sensitivity: "base" }));
+        c.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0) || (b.rating || 0) - (a.rating || 0) || byTitle(a, b));
       return c;
     }
+    const isAzMode = () => sortMode === "az" || sortMode === "za";
 
     function applyFilters() {
       const searchQuery = exploreSearch.val() ? exploreSearch.val().toLowerCase() : "";
@@ -1023,8 +1031,8 @@ $(document).ready(function () {
         return;
       }
       const innerClass = viewMode === "list" ? "cr-list-view" : "anime-grid";
-      if (sortMode === "az") {
-        // Vista alfabética agrupada por letra (grupos A, B, C…).
+      if (isAzMode()) {
+        // Vista alfabética agrupada por letra (A→Z o Z→A según el orden elegido).
         grid.addClass("az-view");
         const groups = {}, order = [];
         filtered.forEach((a) => { const L = azLetter(a.title); if (!groups[L]) { groups[L] = []; order.push(L); } groups[L].push(a); });
@@ -1663,6 +1671,10 @@ $(document).ready(function () {
     $("body").css("overflow", "");
     $("#msearch-input").val("");
   }
+  // Expuestas para el modo TV (tv-nav.js): el buscador de TV reutiliza este overlay
+  // a pantalla completa (igual que en Android), navegable con el control.
+  window.__aaOpenSearch = openMobileSearch;
+  window.__aaCloseSearch = closeMobileSearch;
   const performSearch = debounce(() => {
     const q = searchInput.val().toLowerCase().trim();
     if (q.length < 3) {

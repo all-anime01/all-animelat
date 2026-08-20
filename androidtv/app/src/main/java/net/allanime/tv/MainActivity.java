@@ -72,9 +72,10 @@ public class MainActivity extends Activity {
         s.setJavaScriptCanOpenWindowsAutomatically(false);
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
-        // Solo el flavor de TV se identifica como "AllAnimeTV" (así el sitio activa
-        // la barra lateral de Fire TV). El flavor MÓVIL NO, para que se vea normal.
-        String ua = s.getUserAgentString();
+        // "AllAnimeApp" en AMBOS flavors → el sitio oculta el botón de descargar app
+        // (ya estás dentro de la app). "AllAnimeTV" SOLO en el flavor TV → el sitio
+        // activa la barra lateral de Fire TV. El flavor MÓVIL NO la activa.
+        String ua = s.getUserAgentString() + " AllAnimeApp/1.0";
         if (BuildConfig.IS_TV) ua += " AllAnimeTV/1.0";
         s.setUserAgentString(ua);
 
@@ -270,11 +271,22 @@ public class MainActivity extends Activity {
     }
 
     private void closePopup() {
-        if (popupContainer != null) {
-            rootLayout.removeView(popupContainer);
-            if (popupView != null) { popupView.destroy(); popupView = null; }
+        // A prueba de crashes: se anulan las referencias PRIMERO (por si se llama dos
+        // veces: cierre manual + autocierre a 2 s), se saca la vista, y el WebView se
+        // destruye en el SIGUIENTE ciclo (destruirlo dentro de un callback del propio
+        // WebView cerraba la app "a la segunda vez").
+        try {
+            final FrameLayout pc = popupContainer;
+            final WebView pv = popupView;
             popupContainer = null;
-        }
+            popupView = null;
+            if (pv != null) {
+                try { pv.stopLoading(); } catch (Exception ignored) {}
+                try { pv.setWebChromeClient(null); } catch (Exception ignored) {}
+            }
+            if (pc != null) rootLayout.removeView(pc);
+            if (pv != null) rootLayout.post(() -> { try { pv.destroy(); } catch (Exception ignored) {} });
+        } catch (Exception ignored) {}
     }
 
     private void hideCustomVideo() {
