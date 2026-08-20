@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -16,6 +17,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.graphics.Color;
+import android.util.TypedValue;
 
 import java.io.ByteArrayInputStream;
 
@@ -49,9 +52,13 @@ public class MainActivity extends Activity {
 
         rootLayout = new FrameLayout(this);
         setContentView(rootLayout);
+        createMainWebView();
+    }
 
+    // Crea (o recrea, tras un crash del render) el WebView principal.
+    private void createMainWebView() {
         webView = new WebView(this);
-        rootLayout.addView(webView, new FrameLayout.LayoutParams(
+        rootLayout.addView(webView, 0, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         WebSettings s = webView.getSettings();
@@ -65,7 +72,11 @@ public class MainActivity extends Activity {
         s.setJavaScriptCanOpenWindowsAutomatically(false);
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
-        s.setUserAgentString(s.getUserAgentString() + " AllAnimeTV/1.0");
+        // Solo el flavor de TV se identifica como "AllAnimeTV" (así el sitio activa
+        // la barra lateral de Fire TV). El flavor MÓVIL NO, para que se vea normal.
+        String ua = s.getUserAgentString();
+        if (BuildConfig.IS_TV) ua += " AllAnimeTV/1.0";
+        s.setUserAgentString(ua);
 
         webView.setWebViewClient(new AppClient(true));
         webView.setWebChromeClient(new AppChrome());
@@ -110,8 +121,33 @@ public class MainActivity extends Activity {
             // Impide que un anuncio abra Google Play u otra app y deje atrapado al
             // usuario fuera de All-Anime. Se queda todo dentro del WebView.
             if (blocksNavigation(url)) { return true; }
+            // Impide que un anuncio del servidor SECUESTRE la pantalla principal
+            // navegándola a un dominio de anuncios (dejaría al usuario sin episodio
+            // y sin forma de cerrar). Se bloquea en la ventana principal; los popups
+            // legítimos de anuncios pasan por onCreateWindow (con botón de cerrar).
+            if (main && isAdHost(url)) { return true; }
             if (url != null) view.loadUrl(url);
             return true;
+        }
+
+        // Si el proceso de render del WebView muere (OOM por video + anuncios en
+        // Fire TV), NO se deja crashear la app: se descarta ese WebView y se
+        // recupera (recargando el sitio o cerrando el popup del anuncio).
+        @Override
+        public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
+            try {
+                if (view == popupView) { closePopup(); return true; }
+                if (view == webView) {
+                    rootLayout.removeView(webView);
+                    webView.destroy();
+                    webView = null;
+                    createMainWebView();
+                    return true;
+                }
+                rootLayout.removeView(view);
+                view.destroy();
+            } catch (Exception ignored) {}
+            return true; // true = manejado → la app no se cierra
         }
 
         @Override
@@ -170,6 +206,10 @@ public class MainActivity extends Activity {
         }
     }
 
+    private int dp(int v) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, v, getResources().getDisplayMetrics());
+    }
+
     // Abre el anuncio del servidor. Si autoClose (adFree) → se cierra a los 2 s;
     // siempre hay además un botón "✕ Cerrar anuncio" por si se quiere cerrar antes.
     private void openPopup(Message resultMsg, boolean autoClose) {
@@ -183,24 +223,41 @@ public class MainActivity extends Activity {
         ps.setDomStorageEnabled(true);
         ps.setSupportMultipleWindows(true);
         ps.setJavaScriptCanOpenWindowsAutomatically(true);
-        popupView.setWebViewClient(new AppClient(false));   // también bloquea market/Play
+        popupView.setWebViewClient(new AppClient(false));   // bloquea market/Play + recupera crashes
         popupView.setWebChromeClient(new WebChromeClient() {
             @Override public void onCloseWindow(WebView w) { closePopup(); }
+            // Un anuncio dentro del popup intenta abrir OTRA ventana (anuncio sobre
+            // anuncio): se ignora, así nunca se apila algo imposible de cerrar.
+            @Override public boolean onCreateWindow(WebView v, boolean d, boolean g, Message m) { return false; }
         });
         popupContainer.addView(popupView, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
+        // Botón de cierre GRANDE y siempre visible (barra superior). Funciona en
+        // móvil (toque) y en Fire TV (además el botón ATRÁS del control cierra).
+        int pad = dp(14), mar = dp(16);
         Button close = new Button(this);
-        close.setText(autoClose ? "✕ Cerrar anuncio (cerrando…)" : "✕ Cerrar anuncio");
+        close.setText(autoClose ? "✕  CERRAR ANUNCIO  (cerrando…)" : "✕  CERRAR ANUNCIO");
+        close.setAllCaps(false);
+        close.setTextColor(Color.WHITE);
+        close.setBackgroundColor(0xFFE0231F);
+        close.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+        close.setPadding(dp(22), pad, dp(22), pad);
+        close.setElevation(dp(8));
         FrameLayout.LayoutParams clp = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         clp.gravity = Gravity.TOP | Gravity.END;
-        clp.setMargins(28, 28, 28, 28);
+        clp.setMargins(mar, mar, mar, mar);
         close.setOnClickListener(v -> closePopup());
-        popupContainer.addView(close, clp);
+        close.setFocusable(true);
+        close.setFocusableInTouchMode(false);
 
         rootLayout.addView(popupContainer, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        // El botón se añade al final para quedar SIEMPRE por encima del anuncio.
+        popupContainer.addView(close, clp);
+        close.bringToFront();
+        close.requestFocus();   // en Fire TV queda resaltado para cerrarlo con OK
 
         WebView.WebViewTransport t = (WebView.WebViewTransport) resultMsg.obj;
         t.setWebView(popupView);

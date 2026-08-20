@@ -38,6 +38,12 @@
     html.aa-tv .episode-detail-card.aa-focus, html.aa-tv .cr-list-item.aa-focus {
       transform: scale(1.06) !important; transition: transform .12s ease;
     }
+    /* Las tarjetas envuelven su contenido en un <a> (ese es el que recibe el foco);
+       se escala ese <a> para que la selección se vea claramente. */
+    html.aa-tv .anime-card a.aa-focus, html.aa-tv .cr-card a.aa-focus,
+    html.aa-tv .episode-detail-card a.aa-focus {
+      display: block !important; transform: scale(1.05); transition: transform .12s ease;
+    }
     /* Oculta el cursor cuando se navega por D-pad */
     html.aa-tv.aa-dpad, html.aa-tv.aa-dpad * { cursor: none !important; }
 
@@ -112,10 +118,16 @@
   ];
   function openSearch() {
     root.classList.add("aa-search-open");
+    const c = document.querySelector(".search-container");
+    if (c) c.classList.add("active");                 // el sitio muestra el input al activar
     const inp = document.getElementById("search-input");
-    if (inp) setTimeout(() => setFocus(inp, false), 60);
+    if (inp) setTimeout(() => { try { inp.focus(); } catch {} setFocus(inp, false); }, 80);
   }
-  function closeSearch() { root.classList.remove("aa-search-open"); }
+  function closeSearch() {
+    root.classList.remove("aa-search-open");
+    const c = document.querySelector(".search-container");
+    if (c) c.classList.remove("active");
+  }
   function buildRail() {
     if (window.self !== window.top) return;           // no dentro del iframe del reproductor
     if (!document.querySelector("header")) return;      // páginas sin header
@@ -191,12 +203,19 @@
 
   const isTyping = (el) => el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName) && el.type !== "button" && el.type !== "submit";
 
-  // --- Navegación espacial: mejor candidato en una dirección -----------------
-  function best(dir) {
-    const list = focusables();
+  // --- Navegación espacial por ZONAS (barra lateral vs contenido) ------------
+  const inRail = (el) => !!(el && el.closest && el.closest(".aa-rail"));
+  const nearViewport = (el) => {
+    const r = el.getBoundingClientRect();
+    return r.bottom > -60 && r.top < window.innerHeight + 60 && r.right > -60 && r.left < window.innerWidth + 60;
+  };
+  const allContent = () => focusables().filter((el) => !inRail(el));
+  const railItems = () => focusables().filter(inRail);
+
+  // Mejor candidato en una dirección dentro de una lista dada.
+  function bestAmong(list, dir, cur) {
     if (!list.length) return null;
-    const cur = current && list.includes(current) ? current : null;
-    if (!cur) return list[0];
+    if (!cur || !list.includes(cur)) return list[0];
     const cr = cur.getBoundingClientRect();
     const cx = cr.left + cr.width / 2, cy = cr.top + cr.height / 2;
     let winner = null, bestScore = Infinity;
@@ -211,10 +230,44 @@
       else if (dir === "down") { if (r.top < cr.bottom - 6) continue; primary = dy; cross = Math.abs(dx); }
       else { if (r.bottom > cr.top + 6) continue; primary = -dy; cross = Math.abs(dx); }
       if (primary <= 0) continue;
-      const score = primary + cross * 2;          // prioriza alineación en el eje cruzado
+      const score = primary + cross * 2.4;         // prioriza fuerte la alineación
       if (score < bestScore) { bestScore = score; winner = el; }
     }
     return winner;
+  }
+
+  // Ítem de la barra lateral más cercano en vertical al elemento actual.
+  function nearestRailItem(cur) {
+    const items = railItems();
+    if (!items.length) return null;
+    if (!cur) return items[0];
+    const cy = cur.getBoundingClientRect().top + cur.getBoundingClientRect().height / 2;
+    let best = items[0], bd = Infinity;
+    for (const it of items) { const r = it.getBoundingClientRect(); const d = Math.abs((r.top + r.height / 2) - cy); if (d < bd) { bd = d; best = it; } }
+    return best;
+  }
+
+  // Navega en una dirección. Contenido y barra son zonas separadas: en el borde
+  // izquierdo del contenido se salta a la barra; desde la barra a la derecha se
+  // vuelve al contenido. Se prefiere lo visible; si no hay nada, se busca en toda
+  // la página (el foco arrastra el scroll) o se desplaza la página.
+  function navigate(dir) {
+    const cur = current;
+    // --- En la barra lateral ---
+    if (inRail(cur)) {
+      if (dir === "up" || dir === "down") { const n = bestAmong(railItems(), dir, cur); if (n) setFocus(n); return; }
+      if (dir === "right") { const c = allContent().filter(nearViewport); const n = bestAmong(c, "right", null) || c[0] || allContent()[0]; if (n) setFocus(n); return; }
+      return; // izquierda en la barra: ya está al borde
+    }
+    // --- En el contenido ---
+    const vp = allContent().filter(nearViewport);
+    let n = bestAmong(vp, dir, cur);
+    if (!n) n = bestAmong(allContent(), dir, cur);   // salta a la siguiente sección fuera de pantalla
+    if (n) { setFocus(n); return; }
+    if (dir === "left") { const r = nearestRailItem(cur); if (r) { setFocus(r); return; } }
+    // Sin candidato: desplaza la página por si hay contenido fuera del alcance.
+    if (dir === "down") window.scrollBy({ top: Math.round(window.innerHeight * 0.7), behavior: "smooth" });
+    else if (dir === "up") window.scrollBy({ top: -Math.round(window.innerHeight * 0.7), behavior: "smooth" });
   }
 
   function onKey(e) {
@@ -231,8 +284,8 @@
 
     if (k === "ArrowRight" || k === "ArrowLeft" || k === "ArrowUp" || k === "ArrowDown") {
       const dir = k === "ArrowRight" ? "right" : k === "ArrowLeft" ? "left" : k === "ArrowUp" ? "up" : "down";
-      const next = best(dir);
-      if (next) { e.preventDefault(); root.classList.add("aa-dpad"); setFocus(next); }
+      e.preventDefault(); root.classList.add("aa-dpad");
+      navigate(dir);
       return;
     }
     if (k === "Enter" || k === "OK") {

@@ -23,11 +23,18 @@ android {
             dimension "device"
             applicationIdSuffix ".mobile"
             manifestPlaceholders = [orientation: "unspecified", appName: "All-Anime"]
+            // Móvil NO se marca como TV → el sitio NO activa la barra lateral de Fire TV.
+            buildConfigField "boolean", "IS_TV", "false"
         }
         tv {
             dimension "device"
             manifestPlaceholders = [orientation: "landscape", appName: "All-Anime"]
+            buildConfigField "boolean", "IS_TV", "true"
         }
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
     buildTypes {
