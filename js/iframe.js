@@ -92,12 +92,23 @@ function aaIframeMarkup(url) {
   // El botón "Pantalla completa" es NUESTRO (mismo origen): en Fire TV el control
   // remoto no puede llegar a los botones del reproductor del server (es de otro
   // origen), así que ofrecemos el fullscreen desde aquí, navegable con el D-pad.
+  // Botón "Cursor" SOLO dentro de la app nativa (existe el puente window.AAApp):
+  // activa un cursor con el control para pulsar los controles del server (que es
+  // de otro origen y no se puede navegar con el D-pad).
+  const hasCursor = typeof window.AAApp !== "undefined" && window.AAApp && typeof window.AAApp.toggleCursor === "function";
+  const cursorBtn = hasCursor
+    ? `<button id="aa-cursor-btn" class="aa-fs-btn aa-cursor-btn" type="button" title="Cursor para los controles del servidor"
+              aria-label="Cursor" onclick="try{window.AAApp.toggleCursor();}catch(e){}">
+          <i class="fas fa-arrow-pointer"></i><span class="aa-fs-lbl">Cursor</span>
+      </button>`
+    : "";
   return `
       <span id="backToPlayers" onclick="listPlayer();"></span>
       <button id="aa-fs-btn" class="aa-fs-btn" type="button" title="Pantalla completa"
               aria-label="Pantalla completa" onclick="aaToggleFullscreen();">
           <i class="fas fa-expand"></i><span class="aa-fs-lbl">Pantalla completa</span>
       </button>
+      ${cursorBtn}
       <iframe
           id="IFR"
           src="${buildSrc(url)}"

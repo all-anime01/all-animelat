@@ -1,13 +1,17 @@
 package net.allanime.tv;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebResourceRequest;
@@ -17,7 +21,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.util.TypedValue;
 
 import java.io.ByteArrayInputStream;
@@ -47,6 +53,14 @@ public class MainActivity extends Activity {
     private boolean popupOpen = false;
     private Runnable pendingAutoClose;
     private boolean adFree = false;                 // "sin publicidad" del usuario
+
+    // Cursor virtual (para llegar a los controles del reproductor del server, que
+    // es de otro origen y no se puede navegar con el D-pad). Se mueve con las
+    // flechas y OK inyecta un TOQUE real en la WebView (sí alcanza el iframe).
+    private View cursorView;
+    private boolean cursorMode = false;
+    private float curX, curY;
+    private static final int CURSOR_DP = 42;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +98,37 @@ public class MainActivity extends Activity {
 
         webView.setWebViewClient(new AppClient(true));
         webView.setWebChromeClient(new AppChrome());
+        // Puente JS: la web (botón "Cursor" en el reproductor de TV) puede activar
+        // el cursor virtual aunque el control remoto no tenga botón de menú.
+        webView.addJavascriptInterface(new AABridge(), "AAApp");
         webView.loadUrl(SITE_URL);
+    }
+
+    // Puente accesible desde el sitio como window.AAApp.*
+    private class AABridge {
+        @JavascriptInterface public void toggleCursor() { runOnUiThread(() -> toggleCursor()); }
+        @JavascriptInterface public boolean cursorAvailable() { return true; }
+        @JavascriptInterface public boolean isTV() { return BuildConfig.IS_TV; }
+    }
+
+    // Relanzar la app desde el launcher (Fire TV / teléfono) vuelve al INICIO en
+    // vez de reanudar donde se quedó (lo pidió el usuario). singleTask entrega el
+    // intent aquí en vez de recrear la actividad.
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        boolean launcher = intent != null && Intent.ACTION_MAIN.equals(intent.getAction())
+                && (intent.hasCategory(Intent.CATEGORY_LAUNCHER) || intent.hasCategory(Intent.CATEGORY_LEANBACK_LAUNCHER));
+        if (launcher) goHome();
+    }
+
+    // Cierra popups/fullscreen/cursor y carga el inicio del sitio.
+    private void goHome() {
+        if (popupOpen) closePopup();
+        if (customView != null) hideCustomVideo();
+        if (cursorMode) toggleCursor();
+        if (webView != null) webView.loadUrl(SITE_URL);
     }
 
     // Dominios de anuncios/tracking a bloquear cuando el usuario tiene adFree.
@@ -222,6 +266,74 @@ public class MainActivity extends Activity {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, v, getResources().getDisplayMetrics());
     }
 
+    private void toast(String m) { Toast.makeText(this, m, Toast.LENGTH_LONG).show(); }
+
+    // ===== Cursor virtual =====================================================
+    private void ensureCursor() {
+        if (cursorView != null) return;
+        cursorView = new View(this);
+        GradientDrawable g = new GradientDrawable();
+        g.setShape(GradientDrawable.OVAL);
+        g.setColor(0x55FFFFFF);
+        g.setStroke(dp(3), 0xFFFF5A3C);
+        cursorView.setBackground(g);
+        cursorView.setElevation(dp(12));
+        int sz = dp(CURSOR_DP);
+        cursorView.setVisibility(View.GONE);
+        rootLayout.addView(cursorView, new FrameLayout.LayoutParams(sz, sz));
+    }
+
+    private void toggleCursor() {
+        ensureCursor();
+        cursorMode = !cursorMode;
+        if (cursorMode) {
+            curX = rootLayout.getWidth() / 2f;
+            curY = rootLayout.getHeight() / 2f;
+            positionCursor();
+            cursorView.setVisibility(View.VISIBLE);
+            cursorView.bringToFront();
+            toast("Cursor activado · mueve con las flechas, OK para pulsar, ATRÁS para salir");
+        } else {
+            cursorView.setVisibility(View.GONE);
+        }
+    }
+
+    private void positionCursor() {
+        if (cursorView == null) return;
+        curX = Math.max(0, Math.min(rootLayout.getWidth() - 1, curX));
+        curY = Math.max(0, Math.min(rootLayout.getHeight() - 1, curY));
+        int sz = dp(CURSOR_DP);
+        cursorView.setX(curX - sz / 2f);
+        cursorView.setY(curY - sz / 2f);
+        cursorView.bringToFront();
+    }
+
+    private void moveCursor(int dx, int dy) { curX += dx; curY += dy; positionCursor(); }
+
+    // La vista que está al frente (video fullscreen > popup de anuncio > principal).
+    private View cursorTarget() {
+        if (customView != null) return customView;
+        if (popupOpen && popupView != null) return popupView;
+        return webView;
+    }
+
+    // Inyecta un toque real en la vista destino en la posición del cursor. Como es
+    // un MotionEvent nativo, atraviesa el hit-test del DOM y SÍ pulsa los controles
+    // del iframe del server (cross-origin) — imposible desde JS.
+    private void cursorTap() {
+        View t = cursorTarget();
+        if (t == null) return;
+        int[] rloc = new int[2]; rootLayout.getLocationOnScreen(rloc);
+        int[] tloc = new int[2]; t.getLocationOnScreen(tloc);
+        float x = curX + rloc[0] - tloc[0];
+        float y = curY + rloc[1] - tloc[1];
+        long now = SystemClock.uptimeMillis();
+        MotionEvent down = MotionEvent.obtain(now, now, MotionEvent.ACTION_DOWN, x, y, 0);
+        MotionEvent up = MotionEvent.obtain(now, now + 60, MotionEvent.ACTION_UP, x, y, 0);
+        try { t.dispatchTouchEvent(down); t.dispatchTouchEvent(up); } catch (Exception ignored) {}
+        down.recycle(); up.recycle();
+    }
+
     // Crea (UNA sola vez) el contenedor + WebView del anuncio + botón de cierre.
     // Se REUTILIZAN en cada anuncio: NUNCA se destruyen mientras la app vive. Ese
     // era el crash "a la 2ª publicidad": destruir el WebView del popup en cada cierre.
@@ -309,6 +421,26 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // Tecla MENÚ (☰ del control Fire TV) → activa/desactiva el cursor virtual.
+        if (keyCode == KeyEvent.KEYCODE_MENU) { toggleCursor(); return true; }
+
+        // Con el cursor activo, el D-pad lo MUEVE y OK inyecta un toque; ATRÁS sale.
+        if (cursorMode) {
+            int step = dp(40);
+            // Acelera si se mantiene pulsada la flecha (auto-repeat).
+            if (event.getRepeatCount() > 2) step = dp(80);
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_DPAD_LEFT:  moveCursor(-step, 0); return true;
+                case KeyEvent.KEYCODE_DPAD_RIGHT: moveCursor(step, 0);  return true;
+                case KeyEvent.KEYCODE_DPAD_UP:    moveCursor(0, -step); return true;
+                case KeyEvent.KEYCODE_DPAD_DOWN:  moveCursor(0, step);  return true;
+                case KeyEvent.KEYCODE_DPAD_CENTER:
+                case KeyEvent.KEYCODE_ENTER:
+                case KeyEvent.KEYCODE_BUTTON_A:   cursorTap(); return true;
+                case KeyEvent.KEYCODE_BACK:       toggleCursor(); return true; // salir del cursor
+            }
+        }
+
         // BACK: cierra el anuncio, luego el video fullscreen, luego retrocede.
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (popupOpen) { closePopup(); return true; }

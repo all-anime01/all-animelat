@@ -439,6 +439,8 @@ li {
     opacity: 0;
     pointer-events: none;
 }
+/* Botón "Cursor" (solo app nativa): debajo del de pantalla completa. */
+.aa-cursor-btn { top: 71px; }
 /* En TV el foco resalta con más fuerza el botón. */
 html.aa-tv .aa-fs-btn.aa-focus {
     background-color: rgba(255, 90, 60, 0.95);
