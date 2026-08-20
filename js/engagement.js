@@ -82,10 +82,12 @@ function injectStyles() {
   .eng-cdel:hover{color:#ff5c5c}
   .eng-empty{color:#888;font-size:14px;padding:8px 0}
 
-  /* Cuenta regresiva estilo Netflix (tarjeta abajo a la derecha) */
-  .eng-countdown{position:absolute;right:20px;bottom:20px;width:410px;max-width:calc(100% - 32px);background:rgba(14,14,17,.97);border:1px solid #3a3a3a;border-radius:16px;padding:16px;display:flex;gap:15px;align-items:center;z-index:2147483000;box-shadow:0 22px 54px rgba(0,0,0,.7);animation:eng-slide .35s ease;backdrop-filter:blur(6px)}
-  @keyframes eng-slide{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
-  .eng-countdown img{width:128px;height:74px;object-fit:cover;border-radius:10px;flex:none;background:#222}
+  /* Cuenta regresiva estilo Netflix — tarjeta COMPACTA dentro de la info del
+     modal (columna de navegación), ya NO flotando sobre el video (en Fire TV
+     el overlay sobre el iframe dejaba el video en negro). */
+  .eng-countdown{position:relative;width:100%;background:rgba(20,20,24,.96);border:1px solid #3a3a3a;border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center;box-shadow:0 10px 28px rgba(0,0,0,.45);animation:eng-slide .3s ease;margin-bottom:14px}
+  @keyframes eng-slide{from{transform:translateY(-10px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .eng-countdown img{width:104px;height:60px;object-fit:cover;border-radius:9px;flex:none;background:#222}
   .eng-cd-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
   .eng-cd-label{font-size:11px;letter-spacing:1px;color:#ff8a4c;text-transform:uppercase;font-weight:800}
   .eng-cd-title{font-size:14px;color:#fff;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -100,7 +102,7 @@ function injectStyles() {
   .eng-cd-actions button:active{transform:scale(.95)}
   .eng-cd-go{background:linear-gradient(135deg,#ca3030,#e23b3b);color:#fff}
   .eng-cd-cancel{background:#333;color:#fff}
-  @media (max-width:560px){.eng-countdown{right:12px;left:12px;bottom:12px;width:auto}.eng-countdown img{width:96px;height:56px}}
+  @media (max-width:560px){.eng-countdown img{width:88px;height:52px}}
 
   `;
   const s = document.createElement("style");
@@ -148,9 +150,13 @@ export function startAutoplayCountdown(nextEpisode, onPlayNext) {
 }
 
 function startCountdown(seconds, nextEpisode, onPlayNext) {
-  const container = document.querySelector(".player-video-container");
+  // El contador vive en la INFO del modal (columna de navegación), NO sobre el
+  // video: así no tapa/ennegrece el iframe del server en Fire TV. Se coloca
+  // arriba de la columna, junto a "Siguiente episodio".
+  const container = document.querySelector(".player-nav-col")
+    || document.querySelector(".player-details-content")
+    || document.querySelector(".player-details-container");
   if (!container || !onPlayNext) return;
-  if (getComputedStyle(container).position === "static") container.style.position = "relative";
   clearInterval(countdownTimer);
   document.querySelector(".eng-countdown")?.remove();
 
@@ -174,7 +180,7 @@ function startCountdown(seconds, nextEpisode, onPlayNext) {
         </div>
       </div>
     </div>`;
-  container.appendChild(box);
+  container.prepend(box);   // arriba de la columna de info
   // El anillo se vacía en `seconds` segundos (feedback visual del conteo).
   const prog = box.querySelector(".eng-cd-prog");
   requestAnimationFrame(() => { prog.style.transition = `stroke-dashoffset ${seconds}s linear`; prog.style.strokeDashoffset = String(C); });
