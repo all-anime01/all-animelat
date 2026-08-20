@@ -236,48 +236,9 @@
         <div class="FirstLoad"></div>
         <div class="BotHumano"></div>
         <div class="DisplayVideo"></div>
-        <button id="fill-btn" type="button" title="Estira el video 4:3 para llenar la pantalla en 16:9">
-            <i class="fas fa-expand"></i> <span id="fill-label">Llenar 16:9</span>
-        </button>
     </div>
 
     <script src="/js/iframe.js"></script>
-    <script>
-    // Herramienta 16:9: los episodios en 4:3 se ven con barras negras a los lados.
-    // El botón (overlay SOBRE el video) los AMPLÍA para llenar la pantalla 16:9,
-    // sirve para CUALQUIER servidor externo. Solo aparece cuando un servidor ya
-    // está cargado (no en la lista de servidores). Recuerda la preferencia.
-    (function () {
-      var KEY = "aa_fill";
-      var pd = document.getElementById("PlayerDisplay");
-      var btn = document.getElementById("fill-btn");
-      var lbl = document.getElementById("fill-label");
-      var css = document.createElement("style");
-      css.textContent =
-        "#PlayerDisplay.aa-fill #IFR{transform:scale(1.34);transform-origin:center center}" +
-        "#fill-btn{position:fixed;right:14px;bottom:14px;z-index:2147483600;display:none;align-items:center;gap:8px;" +
-        "background:rgba(14,14,17,.86);color:#fff;border:1px solid #3a3a3a;border-radius:30px;padding:11px 18px;" +
-        "font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.5)}" +
-        "#fill-btn.show{display:inline-flex}" +
-        "#fill-btn.active{background:#ff5a3c;color:#fff;border-color:#ff5a3c}" +
-        "html.aa-tv #fill-btn{font-size:17px;padding:14px 22px}" +
-        "html.aa-tv #fill-btn.aa-focus{outline:4px solid #ff5a3c;outline-offset:3px;box-shadow:0 0 0 6px rgba(255,90,60,.4)}";
-      document.head.appendChild(css);
-      function apply(on) {
-        if (pd) pd.classList.toggle("aa-fill", on);
-        if (lbl) lbl.textContent = on ? "Ajustar (original)" : "Llenar 16:9";
-        if (btn) btn.classList.toggle("active", on);
-        try { localStorage.setItem(KEY, on ? "1" : "0"); } catch (e) {}
-      }
-      var on = false; try { on = localStorage.getItem(KEY) === "1"; } catch (e) {}
-      apply(on);
-      if (btn) btn.addEventListener("click", function () { apply(!(pd && pd.classList.contains("aa-fill"))); });
-      // Mostrar el botón SOLO cuando hay un servidor cargado (existe el iframe #IFR).
-      function refresh() { if (btn) btn.classList.toggle("show", !!document.getElementById("IFR")); }
-      refresh();
-      new MutationObserver(refresh).observe(document.body, { childList: true, subtree: true });
-    })();
-    </script>
     <script src="/js/tv-nav.js"></script>
     <script type="module">
         import { db } from "/js/firebase-config.js";
