@@ -272,6 +272,20 @@ public class MainActivity extends Activity {
     private void toast(String m) { Toast.makeText(this, m, Toast.LENGTH_LONG).show(); }
 
     // ===== Cursor virtual =====================================================
+    // Clave: el cursor es un View ENFOCABLE con su propio OnKeyListener. Al activarlo
+    // le damos el foco → el D-pad va al cursor y NO a la WebView (que si tiene el
+    // foco se come las flechas durante el video, por eso antes "no se movía").
+    private boolean isCursorKey(int keyCode) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_LEFT: case KeyEvent.KEYCODE_DPAD_RIGHT:
+            case KeyEvent.KEYCODE_DPAD_UP: case KeyEvent.KEYCODE_DPAD_DOWN:
+            case KeyEvent.KEYCODE_DPAD_CENTER: case KeyEvent.KEYCODE_ENTER:
+            case KeyEvent.KEYCODE_BUTTON_A: case KeyEvent.KEYCODE_BACK:
+                return true;
+            default: return false;
+        }
+    }
+
     private void ensureCursor() {
         if (cursorView != null) return;
         cursorView = new View(this);
@@ -281,9 +295,29 @@ public class MainActivity extends Activity {
         g.setStroke(dp(3), 0xFFFF5A3C);
         cursorView.setBackground(g);
         cursorView.setElevation(dp(12));
+        cursorView.setFocusable(true);
+        cursorView.setFocusableInTouchMode(true);
         int sz = dp(CURSOR_DP);
         cursorView.setVisibility(View.GONE);
         rootLayout.addView(cursorView, new FrameLayout.LayoutParams(sz, sz));
+        cursorView.setOnKeyListener((v, keyCode, ev) -> {
+            if (!cursorMode) return false;
+            if (!isCursorKey(keyCode)) return false;
+            if (ev.getAction() == KeyEvent.ACTION_DOWN) {
+                int step = ev.getRepeatCount() > 2 ? dp(85) : dp(42);
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_DPAD_LEFT:  moveCursor(-step, 0); break;
+                    case KeyEvent.KEYCODE_DPAD_RIGHT: moveCursor(step, 0);  break;
+                    case KeyEvent.KEYCODE_DPAD_UP:    moveCursor(0, -step); break;
+                    case KeyEvent.KEYCODE_DPAD_DOWN:  moveCursor(0, step);  break;
+                    case KeyEvent.KEYCODE_DPAD_CENTER:
+                    case KeyEvent.KEYCODE_ENTER:
+                    case KeyEvent.KEYCODE_BUTTON_A:   cursorTap(); break;
+                    case KeyEvent.KEYCODE_BACK:       toggleCursor(); break;
+                }
+            }
+            return true;   // consume DOWN y UP de estas teclas (la WebView no las ve)
+        });
     }
 
     private void toggleCursor() {
@@ -292,12 +326,22 @@ public class MainActivity extends Activity {
         if (cursorMode) {
             curX = rootLayout.getWidth() / 2f;
             curY = rootLayout.getHeight() / 2f;
-            positionCursor();
             cursorView.setVisibility(View.VISIBLE);
             cursorView.bringToFront();
+            positionCursor();
+            // La WebView deja de ser enfocable → NO puede quedarse con el D-pad
+            // (esa era la causa de que el cursor "no se moviera" con el video).
+            if (webView != null) { webView.setFocusable(false); webView.setFocusableInTouchMode(false); }
+            if (customView != null) customView.setFocusable(false);
+            // El cursor es lo único enfocable y toma el foco → recibe las flechas.
+            cursorView.requestFocus();
             toast("Cursor activado · mueve con las flechas, OK para pulsar, ATRÁS para salir");
         } else {
             cursorView.setVisibility(View.GONE);
+            if (webView != null) { webView.setFocusable(true); webView.setFocusableInTouchMode(true); }
+            if (customView != null) customView.setFocusable(true);
+            View t = (customView != null) ? customView : webView;
+            if (t != null) t.requestFocus();     // devuelve el foco al contenido
         }
     }
 
@@ -308,7 +352,6 @@ public class MainActivity extends Activity {
         int sz = dp(CURSOR_DP);
         cursorView.setX(curX - sz / 2f);
         cursorView.setY(curY - sz / 2f);
-        cursorView.bringToFront();
     }
 
     private void moveCursor(int dx, int dy) { curX += dx; curY += dy; positionCursor(); }
@@ -335,6 +378,12 @@ public class MainActivity extends Activity {
         MotionEvent up = MotionEvent.obtain(now, now + 60, MotionEvent.ACTION_UP, x, y, 0);
         try { t.dispatchTouchEvent(down); t.dispatchTouchEvent(up); } catch (Exception ignored) {}
         down.recycle(); up.recycle();
+        // El toque puede robar el foco (p. ej. si abre pantalla completa del server);
+        // lo recuperamos para seguir moviendo el cursor con el D-pad.
+        if (cursorMode && cursorView != null) {
+            cursorView.bringToFront();
+            cursorView.postDelayed(() -> { if (cursorMode && cursorView != null) cursorView.requestFocus(); }, 120);
+        }
     }
 
     // Crea (UNA sola vez) el contenedor + WebView del anuncio + botón de cierre.
