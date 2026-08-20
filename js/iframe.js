@@ -109,12 +109,8 @@ function aaIframeMarkup(url) {
 // recomposición de la capa (toggle de transform + micro-scroll) y le pedimos al
 // documento padre (la ficha del episodio) que también dé un micro-scroll.
 function aaRepaintNudge() {
-  const dv = document.querySelector(".DisplayVideo");
-  if (dv) {
-    dv.style.transform = "translateZ(0)";
-    void dv.offsetHeight;                       // fuerza reflow
-    requestAnimationFrame(() => { dv.style.transform = ""; });
-  }
+  // Solo micro-scroll (NADA de transform sobre el video: transformar su capa lo
+  // deja en negro en la WebView). El scroll recompone la capa sin ennegrecerla.
   try { window.scrollBy(0, 1); window.scrollBy(0, -1); } catch {}
   try { if (window.parent !== window) window.parent.postMessage({ aa: "repaint" }, "*"); } catch {}
 }

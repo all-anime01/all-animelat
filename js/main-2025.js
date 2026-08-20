@@ -1750,8 +1750,8 @@ $(document).ready(function () {
   window.addEventListener("message", (ev) => {
     const d = ev && ev.data;
     if (!d || typeof d !== "object" || d.aa !== "repaint") return;
-    const c = document.querySelector(".player-video-container");
-    if (c) { c.style.transform = "translateZ(0)"; void c.offsetHeight; requestAnimationFrame(() => { c.style.transform = ""; }); }
+    // Solo micro-scroll — NO transformar .player-video-container (transformar la
+    // capa del video lo deja en negro con audio en la WebView de Fire TV).
     const modal = document.getElementById("episode-player-modal");
     try { if (modal && modal.scrollBy) { modal.scrollBy(0, 1); modal.scrollBy(0, -1); } } catch {}
     try { window.scrollBy(0, 1); window.scrollBy(0, -1); } catch {}

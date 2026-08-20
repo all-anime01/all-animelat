@@ -363,11 +363,10 @@ li {
     left: 0;
     top: 0;
     height: 100%;
-    /* Promueve el iframe a su propia capa de composición: evita que en algunas
-       WebView (Fire TV / Android) el video quede en NEGRO hasta que un scroll
-       fuerza el repintado. */
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    /* IMPORTANTE: NO poner transform/opacity/will-change en el iframe del video.
+       En la WebView de Fire TV/Android eso mete el video (SurfaceView) en una capa
+       transformada y se ve TODO NEGRO (solo audio). El "negro hasta hacer scroll"
+       se soluciona con un micro-scroll (aaRepaintNudge en iframe.js), no con capas. */
 }
 
 #backToPlayers {

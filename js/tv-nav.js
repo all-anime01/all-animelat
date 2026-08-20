@@ -10,7 +10,7 @@
 
   // --- Detección de TV -------------------------------------------------------
   const ua = navigator.userAgent || "";
-  const isTVua = /AllAnimeTV|AFT[A-Z0-9]|Fire\s?TV|; ?TV\b|\bTV\b|SmartTV|Smart-TV|GoogleTV|Google TV|BRAVIA|Web0S|WebOS|Tizen|HbbTV|NetCast|Silk/i.test(ua);
+  const isTVua = /AllAnimeTV|AFT[A-Z0-9]|Fire\s?TV|; ?TV\b|\bTV\b|SmartTV|Smart-TV|GoogleTV|Google TV|Android ?TV|AOSP|BRAVIA|Web0S|WebOS|Tizen|HbbTV|NetCast|VIDAA|Roku|AppleTV|Apple TV|DTV|NetCast|Silk/i.test(ua);
   const noTouch = !("ontouchstart" in window) && (navigator.maxTouchPoints || 0) === 0;
   const bigScreen = Math.min(window.screen ? screen.width : 0, window.screen ? screen.height : 0) >= 700 && (window.innerWidth >= 1280);
   let forced = false;
@@ -30,6 +30,9 @@
   const RAIL_W = 84, RAIL_EXP = 268;   // ancho colapsado / expandido de la barra
   st.textContent = `
     html.aa-tv body { overflow-x: hidden; }
+    /* Desplazamiento suave para que la navegación con el control se sienta fluida. */
+    html.aa-tv { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html.aa-tv { scroll-behavior: auto; } }
     /* Foco muy visible para el control remoto */
     html.aa-tv :focus { outline: none; }
     html.aa-tv .aa-focus {
@@ -401,7 +404,18 @@
     setFocus(pref, scope !== document);
   }
   function focusInitial() { focusScope(document); }
-  const start = () => setTimeout(focusInitial, 600);
+  // Al abrir: EMPEZAR DESDE ARRIBA. Sube al tope y enfoca el elemento de contenido
+  // más alto (hero / primera tarjeta), no algo a mitad de página.
+  function focusTop() {
+    if (window.self !== window.top) { focusScope(document); return; }  // dentro del player: normal
+    try { window.scrollTo({ top: 0, behavior: "auto" }); } catch { window.scrollTo(0, 0); }
+    const list = allContent();
+    if (!list.length) { focusScope(document); return; }
+    let best = null, bt = Infinity;
+    for (const el of list) { const t = el.getBoundingClientRect().top; if (t >= -4 && t < bt) { bt = t; best = el; } }
+    setFocus(best || list[0], false);
+  }
+  const start = () => setTimeout(focusTop, 500);
   if (document.readyState === "complete" || document.readyState === "interactive") start();
   else document.addEventListener("DOMContentLoaded", start);
 

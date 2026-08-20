@@ -8,10 +8,12 @@ android {
 
     defaultConfig {
         applicationId "net.allanime.tv"
-        minSdk 21          // Fire TV / Android TV antiguos
+        minSdk 21          // Fire TV / Android TV / Google TV antiguos
         targetSdk 36
-        versionCode 1
-        versionName "1.0"
+        // SUBIR versionCode en CADA cambio → al instalar la nueva APK (misma firma
+        // debug) se ACTUALIZA en sitio, sin desinstalar. versionName es informativo.
+        versionCode 2
+        versionName "1.1"
     }
 
     // Dos apps desde el mismo código: 'mobile' (Android teléfono/tablet, cualquier
