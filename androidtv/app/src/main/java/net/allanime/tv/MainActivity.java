@@ -252,13 +252,16 @@ public class MainActivity extends Activity {
         @Override
         public void onHideCustomView() { hideCustomVideo(); }
 
-        // El sitio/servidor intenta abrir una ventana nueva (anuncio popup).
+        // El sitio/servidor intenta abrir una ventana nueva (anuncio popunder).
         @Override
         public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
-            // adFree (pago o activado por admin): el anuncio se abre normal y se
-            // cierra SOLO a los 2 s, volviendo al episodio. Sin adFree: cierre manual.
-            openPopup(resultMsg, adFree);
-            return true;
+            // ESTILO BRAVE: NO se abre ninguna ventana de anuncio. Antes se abría un
+            // WebView de popup que se veía en NEGRO y a veces crasheaba a la 2ª. Ahora
+            // el popunder se bloquea del todo (return false) → el video sigue
+            // reproduciéndose sin interrupciones. Las redes de anuncios ya se filtran
+            // a nivel de red en shouldInterceptRequest y los redireccionamientos de la
+            // vista principal en handle() (main && isAdHost).
+            return false;
         }
     }
 
@@ -419,28 +422,50 @@ public class MainActivity extends Activity {
         }
     }
 
+    // dispatchKeyEvent recibe las teclas ANTES que la WebView. Es imprescindible
+    // para el cursor: la WebView se come las flechas (scroll/nav web) y nunca
+    // llegaban a onKeyDown → el cursor "no se movía". Aquí sí las interceptamos.
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // Tecla MENÚ (☰ del control Fire TV) → activa/desactiva el cursor virtual.
-        if (keyCode == KeyEvent.KEYCODE_MENU) { toggleCursor(); return true; }
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        int keyCode = event.getKeyCode();
+        int action = event.getAction();
 
-        // Con el cursor activo, el D-pad lo MUEVE y OK inyecta un toque; ATRÁS sale.
-        if (cursorMode) {
-            int step = dp(40);
-            // Acelera si se mantiene pulsada la flecha (auto-repeat).
-            if (event.getRepeatCount() > 2) step = dp(80);
-            switch (keyCode) {
-                case KeyEvent.KEYCODE_DPAD_LEFT:  moveCursor(-step, 0); return true;
-                case KeyEvent.KEYCODE_DPAD_RIGHT: moveCursor(step, 0);  return true;
-                case KeyEvent.KEYCODE_DPAD_UP:    moveCursor(0, -step); return true;
-                case KeyEvent.KEYCODE_DPAD_DOWN:  moveCursor(0, step);  return true;
-                case KeyEvent.KEYCODE_DPAD_CENTER:
-                case KeyEvent.KEYCODE_ENTER:
-                case KeyEvent.KEYCODE_BUTTON_A:   cursorTap(); return true;
-                case KeyEvent.KEYCODE_BACK:       toggleCursor(); return true; // salir del cursor
-            }
+        // Tecla MENÚ (☰) → activa/desactiva el cursor virtual (una vez, al soltar).
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            if (action == KeyEvent.ACTION_UP) toggleCursor();
+            return true;
         }
 
+        if (cursorMode) {
+            boolean handled = false;
+            if (action == KeyEvent.ACTION_DOWN) {
+                int step = event.getRepeatCount() > 2 ? dp(85) : dp(42);
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_DPAD_LEFT:  moveCursor(-step, 0); handled = true; break;
+                    case KeyEvent.KEYCODE_DPAD_RIGHT: moveCursor(step, 0);  handled = true; break;
+                    case KeyEvent.KEYCODE_DPAD_UP:    moveCursor(0, -step); handled = true; break;
+                    case KeyEvent.KEYCODE_DPAD_DOWN:  moveCursor(0, step);  handled = true; break;
+                    case KeyEvent.KEYCODE_DPAD_CENTER:
+                    case KeyEvent.KEYCODE_ENTER:
+                    case KeyEvent.KEYCODE_BUTTON_A:   cursorTap();          handled = true; break;
+                    case KeyEvent.KEYCODE_BACK:       toggleCursor();       handled = true; break;
+                }
+            } else if (action == KeyEvent.ACTION_UP) {
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_DPAD_LEFT: case KeyEvent.KEYCODE_DPAD_RIGHT:
+                    case KeyEvent.KEYCODE_DPAD_UP:   case KeyEvent.KEYCODE_DPAD_DOWN:
+                    case KeyEvent.KEYCODE_DPAD_CENTER: case KeyEvent.KEYCODE_ENTER:
+                    case KeyEvent.KEYCODE_BUTTON_A:  case KeyEvent.KEYCODE_BACK:
+                        handled = true; break;
+                }
+            }
+            if (handled) return true;   // consumida: la WebView no la ve
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         // BACK: cierra el anuncio, luego el video fullscreen, luego retrocede.
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (popupOpen) { closePopup(); return true; }

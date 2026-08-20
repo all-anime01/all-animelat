@@ -408,49 +408,6 @@ li {
     pointer-events: none;
 }
 
-/* Botón "Pantalla completa" propio (mismo origen) — alcanzable con el control
-   remoto en Fire TV, donde no se puede llegar a los controles del server. */
-.aa-fs-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 2147483647;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    height: 44px;
-    padding: 0 17px;
-    border-radius: 40px;
-    background-color: rgba(31, 41, 55, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(5px);
-    color: #fff;
-    font: 700 14px/1 'Roboto Condensed', sans-serif;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-.aa-fs-btn i { font-size: 16px; }
-.aa-fs-btn:hover {
-    background-color: rgba(255, 90, 60, 0.92);
-    border-color: #fff;
-    transform: scale(1.04);
-}
-.aa-fs-btn.inactive {
-    opacity: 0;
-    pointer-events: none;
-}
-/* Botón "Cursor" (solo app nativa): debajo del de pantalla completa. */
-.aa-cursor-btn { top: 71px; }
-/* En TV el foco resalta con más fuerza el botón. */
-html.aa-tv .aa-fs-btn.aa-focus {
-    background-color: rgba(255, 90, 60, 0.95);
-    border-color: #fff;
-    transform: scale(1.06);
-}
-@media (max-width: 560px) {
-    .aa-fs-btn { padding: 0; width: 44px; justify-content: center; }
-    .aa-fs-btn .aa-fs-lbl { display: none; }
-}
 
 #IFR.nopoints {
     pointer-events: none;
