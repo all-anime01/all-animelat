@@ -1747,6 +1747,19 @@ $(document).ready(function () {
   // que un scroll la recompone. Forzamos aquí el repintado del contenedor del
   // video (toggle de transform + micro-scroll) sin que el usuario tenga que hacer
   // scroll hasta la información del modal.
+  // La app nativa (MainActivity) llama a esto al pulsar ATRÁS ANTES de hacer
+  // goBack: si el modal del reproductor está abierto, delega en el iframe (que
+  // vuelve de server→lista, o pide cerrar el modal) y devuelve true = "yo lo
+  // manejo, no navegues atrás". Si no hay modal abierto, devuelve false.
+  window.__aaBack = function () {
+    const modal = document.getElementById("episode-player-modal");
+    const open = modal && getComputedStyle(modal).display !== "none";
+    if (!open) return false;
+    const ifr = document.getElementById("episode-iframe");
+    if (ifr && ifr.contentWindow) { try { ifr.contentWindow.postMessage({ aa: "back" }, "*"); } catch {} }
+    return true;
+  };
+
   window.addEventListener("message", (ev) => {
     const d = ev && ev.data;
     if (!d || typeof d !== "object" || d.aa !== "repaint") return;

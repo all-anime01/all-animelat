@@ -334,6 +334,17 @@
     else if (dir === "up") window.scrollBy({ top: -Math.round(window.innerHeight * 0.7), behavior: "smooth" });
   }
 
+  // ATRÁS dentro del reproductor (iframe): si hay un server REPRODUCIÉNDOSE, vuelve
+  // a la LISTA de servers; si ya estás en la lista, pide al padre cerrar el modal.
+  function aaFrameBack() {
+    if (document.querySelector(".DisplayVideoA") && typeof window.listPlayer === "function") {
+      try { window.listPlayer(); } catch {}
+      setTimeout(() => focusScope(document), 80);   // reenfoca la lista de servers
+      return;
+    }
+    try { window.parent.postMessage({ aa: "closeModal" }, "*"); } catch {}
+  }
+
   function onKey(e) {
     const k = e.key;
     const active = document.activeElement;
@@ -342,7 +353,7 @@
     if (isFrame && (k === "Escape" || k === "Backspace" || k === "GoBack" || k === "BrowserBack")) {
       if (isTyping(active) && k === "Backspace" && active.value) return;
       e.preventDefault();
-      try { window.parent.postMessage({ aa: "exit" }, "*"); } catch {}
+      aaFrameBack();
       return;
     }
     // Atrás/Escape: si el buscador de TV está abierto, ciérralo y vuelve al contenido.
@@ -460,6 +471,13 @@
       // El padre pidió entrar: enfoca la lista de servidores del reproductor.
       root.classList.add("aa-dpad");
       setTimeout(() => focusScope(document), 60);
+    } else if (d.aa === "back" && isFrame) {
+      // ATRÁS desde el padre (app nativa) → misma lógica: server→lista, lista→cerrar.
+      aaFrameBack();
+    } else if (d.aa === "closeModal" && !isFrame) {
+      // El iframe pidió cerrar el modal del episodio (ya estaba en la lista de servers).
+      const b = document.getElementById("close-player-modal");
+      if (b) b.click();
     } else if (d.aa === "exit" && !isFrame) {
       // El iframe pidió salir: enfoca un elemento del modal (NO el iframe, para no
       // volver a entrar) en la dirección indicada: arriba = cerrar/controles,

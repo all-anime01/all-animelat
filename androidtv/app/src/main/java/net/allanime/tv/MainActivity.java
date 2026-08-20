@@ -209,14 +209,13 @@ public class MainActivity extends Activity {
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest req) {
             String url = req.getUrl() != null ? req.getUrl().toString() : null;
-            // En la app SIEMPRE se bloquean a nivel de red las redes de anuncios
-            // intrusivas (popunders/redirecciones tipo Adsterra). Motivo: en Fire TV
-            // esos anuncios impedían abrir el login/registro (y provocaban crashes al
-            // redirigir), y no se puede activar adFree sin antes iniciar sesión. Los
-            // servidores de video NO están en esta lista, así que la reproducción
-            // sigue funcionando; los popups de anuncios del server los maneja
-            // onCreateWindow (cierre manual o automático según adFree).
-            if (isAdHost(url)) {
+            // PRIVILEGIO ad-free: las redes de anuncios de la PÁGINA (Adsterra, etc.)
+            // solo se bloquean para usuarios ad-free (pago o activados por el admin).
+            // Los usuarios GRATUITOS conservan la publicidad de la página (ingresos).
+            // Los popunders/redirecciones peligrosas de los SERVERS se bloquean para
+            // TODOS aparte: window.open en onCreateWindow (return false) y redirects
+            // de la vista principal en handle() (main && isAdHost) → sin sustos.
+            if (adFree && isAdHost(url)) {
                 return new WebResourceResponse("text/plain", "utf-8", new ByteArrayInputStream(new byte[0]));
             }
             return super.shouldInterceptRequest(view, req);
@@ -515,11 +514,24 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // BACK: cierra el anuncio, luego el video fullscreen, luego retrocede.
+        // BACK: cierra el anuncio, luego el video fullscreen. Después DELEGA en la
+        // página (window.__aaBack): si hay un modal de episodio abierto, ella vuelve
+        // de server→lista o cierra el modal y devuelve true; solo si no lo maneja,
+        // retrocedemos en el historial (o salimos de la app).
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (popupOpen) { closePopup(); return true; }
             if (customView != null) { hideCustomVideo(); return true; }
-            if (webView.canGoBack()) { webView.goBack(); return true; }
+            final WebView wv = webView;
+            if (wv != null) {
+                wv.evaluateJavascript("(window.__aaBack&&window.__aaBack())?'1':'0'", value -> {
+                    boolean handled = value != null && value.contains("1");
+                    if (!handled) {
+                        if (wv.canGoBack()) wv.goBack();
+                        else finish();
+                    }
+                });
+                return true;
+            }
         }
         // Botón PLAY/PAUSA del control → activa lo enfocado en la web (elegir server,
         // dar play). Por si el WebView no entrega la tecla al JS de la página.
