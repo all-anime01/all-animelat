@@ -41,8 +41,11 @@ public class MainActivity extends Activity {
     private FrameLayout rootLayout;
     private View customView;                        // video a pantalla completa
     private WebChromeClient.CustomViewCallback customViewCallback;
-    private FrameLayout popupContainer;             // ventana de anuncio (manual)
-    private WebView popupView;
+    private FrameLayout popupContainer;             // ventana de anuncio (se REUTILIZA)
+    private WebView popupView;                       // WebView del anuncio (se REUTILIZA, no se destruye)
+    private Button popupClose;
+    private boolean popupOpen = false;
+    private Runnable pendingAutoClose;
     private boolean adFree = false;                 // "sin publicidad" del usuario
 
     @Override
@@ -137,7 +140,15 @@ public class MainActivity extends Activity {
         @Override
         public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
             try {
-                if (view == popupView) { closePopup(); return true; }
+                if (view == popupView) {
+                    // El render del popup murió: reinicia por completo el popup (se
+                    // recreará solo en el próximo anuncio).
+                    popupOpen = false;
+                    if (popupContainer != null) { rootLayout.removeView(popupContainer); popupContainer = null; }
+                    try { popupView.destroy(); } catch (Exception ignored) {}
+                    popupView = null; popupClose = null;
+                    return true;
+                }
                 if (view == webView) {
                     rootLayout.removeView(webView);
                     webView.destroy();
@@ -211,12 +222,14 @@ public class MainActivity extends Activity {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, v, getResources().getDisplayMetrics());
     }
 
-    // Abre el anuncio del servidor. Si autoClose (adFree) → se cierra a los 2 s;
-    // siempre hay además un botón "✕ Cerrar anuncio" por si se quiere cerrar antes.
-    private void openPopup(Message resultMsg, boolean autoClose) {
-        closePopup();
+    // Crea (UNA sola vez) el contenedor + WebView del anuncio + botón de cierre.
+    // Se REUTILIZAN en cada anuncio: NUNCA se destruyen mientras la app vive. Ese
+    // era el crash "a la 2ª publicidad": destruir el WebView del popup en cada cierre.
+    private void ensurePopup() {
+        if (popupContainer != null) return;
         popupContainer = new FrameLayout(this);
         popupContainer.setBackgroundColor(0xCC000000);
+        popupContainer.setVisibility(View.GONE);
 
         popupView = new WebView(this);
         WebSettings ps = popupView.getSettings();
@@ -227,66 +240,60 @@ public class MainActivity extends Activity {
         popupView.setWebViewClient(new AppClient(false));   // bloquea market/Play + recupera crashes
         popupView.setWebChromeClient(new WebChromeClient() {
             @Override public void onCloseWindow(WebView w) { closePopup(); }
-            // Un anuncio dentro del popup intenta abrir OTRA ventana (anuncio sobre
-            // anuncio): se ignora, así nunca se apila algo imposible de cerrar.
+            // Un anuncio dentro del popup intenta abrir OTRA ventana: se ignora.
             @Override public boolean onCreateWindow(WebView v, boolean d, boolean g, Message m) { return false; }
         });
         popupContainer.addView(popupView, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        // Botón de cierre GRANDE y siempre visible (barra superior). Funciona en
-        // móvil (toque) y en Fire TV (además el botón ATRÁS del control cierra).
         int pad = dp(14), mar = dp(16);
-        Button close = new Button(this);
-        close.setText(autoClose ? "✕  CERRAR ANUNCIO  (cerrando…)" : "✕  CERRAR ANUNCIO");
-        close.setAllCaps(false);
-        close.setTextColor(Color.WHITE);
-        close.setBackgroundColor(0xFFE0231F);
-        close.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
-        close.setPadding(dp(22), pad, dp(22), pad);
-        close.setElevation(dp(8));
+        popupClose = new Button(this);
+        popupClose.setAllCaps(false);
+        popupClose.setTextColor(Color.WHITE);
+        popupClose.setBackgroundColor(0xFFE0231F);
+        popupClose.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+        popupClose.setPadding(dp(22), pad, dp(22), pad);
+        popupClose.setElevation(dp(8));
         FrameLayout.LayoutParams clp = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         clp.gravity = Gravity.TOP | Gravity.END;
         clp.setMargins(mar, mar, mar, mar);
-        close.setOnClickListener(v -> closePopup());
-        close.setFocusable(true);
-        close.setFocusableInTouchMode(false);
+        popupClose.setOnClickListener(v -> closePopup());
+        popupClose.setFocusable(true);
+        popupClose.setFocusableInTouchMode(false);
+        popupContainer.addView(popupClose, clp);
+    }
 
-        rootLayout.addView(popupContainer, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        // El botón se añade al final para quedar SIEMPRE por encima del anuncio.
-        popupContainer.addView(close, clp);
-        close.bringToFront();
-        close.requestFocus();   // en Fire TV queda resaltado para cerrarlo con OK
+    // Muestra el anuncio del servidor en el WebView REUTILIZABLE.
+    private void openPopup(Message resultMsg, boolean autoClose) {
+        ensurePopup();
+        if (pendingAutoClose != null) { rootLayout.removeCallbacks(pendingAutoClose); pendingAutoClose = null; }
+        popupClose.setText(autoClose ? "✕  CERRAR ANUNCIO  (cerrando…)" : "✕  CERRAR ANUNCIO");
+        if (popupContainer.getParent() == null) {
+            rootLayout.addView(popupContainer, new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+        popupContainer.setVisibility(View.VISIBLE);
+        popupContainer.bringToFront();
+        popupClose.bringToFront();
+        popupOpen = true;
+        popupClose.requestFocus();   // en Fire TV queda resaltado para cerrarlo con OK
 
         WebView.WebViewTransport t = (WebView.WebViewTransport) resultMsg.obj;
         t.setWebView(popupView);
         resultMsg.sendToTarget();
 
-        // adFree: cierre automático a los 2 segundos → vuelve al episodio.
-        if (autoClose) {
-            rootLayout.postDelayed(this::closePopup, 2000);
-        }
+        if (autoClose) { pendingAutoClose = this::closePopup; rootLayout.postDelayed(pendingAutoClose, 2000); }
     }
 
+    // Cierra el anuncio: oculta el contenedor y descarga el WebView (about:blank),
+    // pero NO lo destruye (se reutiliza) → no puede crashear al cerrar.
     private void closePopup() {
-        // A prueba de crashes: se anulan las referencias PRIMERO (por si se llama dos
-        // veces: cierre manual + autocierre a 2 s), se saca la vista, y el WebView se
-        // destruye en el SIGUIENTE ciclo (destruirlo dentro de un callback del propio
-        // WebView cerraba la app "a la segunda vez").
-        try {
-            final FrameLayout pc = popupContainer;
-            final WebView pv = popupView;
-            popupContainer = null;
-            popupView = null;
-            if (pv != null) {
-                try { pv.stopLoading(); } catch (Exception ignored) {}
-                try { pv.setWebChromeClient(null); } catch (Exception ignored) {}
-            }
-            if (pc != null) rootLayout.removeView(pc);
-            if (pv != null) rootLayout.post(() -> { try { pv.destroy(); } catch (Exception ignored) {} });
-        } catch (Exception ignored) {}
+        if (!popupOpen) return;
+        popupOpen = false;
+        if (pendingAutoClose != null) { rootLayout.removeCallbacks(pendingAutoClose); pendingAutoClose = null; }
+        try { if (popupView != null) { popupView.stopLoading(); popupView.loadUrl("about:blank"); } } catch (Exception ignored) {}
+        try { if (popupContainer != null) popupContainer.setVisibility(View.GONE); } catch (Exception ignored) {}
     }
 
     private void hideCustomVideo() {
@@ -304,7 +311,7 @@ public class MainActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // BACK: cierra el anuncio, luego el video fullscreen, luego retrocede.
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (popupContainer != null) { closePopup(); return true; }
+            if (popupOpen) { closePopup(); return true; }
             if (customView != null) { hideCustomVideo(); return true; }
             if (webView.canGoBack()) { webView.goBack(); return true; }
         }
@@ -321,5 +328,9 @@ public class MainActivity extends Activity {
 
     @Override protected void onPause() { super.onPause(); if (webView != null) webView.onPause(); }
     @Override protected void onResume() { super.onResume(); if (webView != null) webView.onResume(); }
-    @Override protected void onDestroy() { closePopup(); if (webView != null) { webView.destroy(); webView = null; } super.onDestroy(); }
+    @Override protected void onDestroy() {
+        try { if (popupView != null) { popupView.destroy(); popupView = null; } } catch (Exception ignored) {}
+        if (webView != null) { webView.destroy(); webView = null; }
+        super.onDestroy();
+    }
 }

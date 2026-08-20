@@ -232,10 +232,16 @@
       _hoverCard = card || null;
       try { if (card && typeof window.__aaCardPreview === "function") window.__aaCardPreview(card); } catch {}
     }
-    // OJO: NO enfocar el <iframe> del reproductor con .focus() — eso transferiría
-    // el teclado dentro del iframe y el padre dejaría de controlar el D-pad. El
-    // iframe solo se resalta; se entra a él con ENTER (postMessage aa:"enter").
-    if (el.tagName !== "IFRAME") { try { el.focus({ preventScroll: true }); } catch { try { el.focus(); } catch {} } }
+    // Al enfocar el <iframe> del reproductor se ENTRA a él: se transfiere el teclado
+    // a su documento y se le pide enfocar la lista de servidores. Así en Fire TV se
+    // navegan y SELECCIONAN los servidores (OK/Play reproduce). Se sale con ATRÁS o
+    // navegando más allá del primer/último servidor (el iframe avisa al padre).
+    if (el.tagName === "IFRAME") {
+      try { if (el.contentWindow) el.contentWindow.focus(); } catch {}
+      try { if (el.contentWindow) el.contentWindow.postMessage({ aa: "enter" }, "*"); } catch {}
+    } else {
+      try { el.focus({ preventScroll: true }); } catch { try { el.focus(); } catch {} }
+    }
     // No arrastrar el scroll cuando el foco está en la barra fija.
     if (scroll !== false && !el.closest(".aa-rail")) el.scrollIntoView({ block: "center", inline: "nearest", behavior: "smooth" });
   }
@@ -314,6 +320,12 @@
       const r = nearestRailItem(cur); if (r) { setFocus(r); return; }
     }
     if (n) { setFocus(n); return; }
+    // Dentro del iframe del reproductor: si no hay más servidores en esa dirección,
+    // SALE al modal padre (arriba → cerrar/controles; abajo → comentarios/lista).
+    if (isFrame && (dir === "up" || dir === "down")) {
+      try { window.parent.postMessage({ aa: "exit", dir: dir }, "*"); } catch {}
+      return;
+    }
     // Sin candidato en esa dirección: desplaza la página por si hay más contenido.
     if (dir === "down") window.scrollBy({ top: Math.round(window.innerHeight * 0.7), behavior: "smooth" });
     else if (dir === "up") window.scrollBy({ top: -Math.round(window.innerHeight * 0.7), behavior: "smooth" });
@@ -432,9 +444,17 @@
       root.classList.add("aa-dpad");
       setTimeout(() => focusScope(document), 60);
     } else if (d.aa === "exit" && !isFrame) {
-      // El iframe pidió salir: devuelve el resalte al iframe dentro del modal.
+      // El iframe pidió salir: enfoca un elemento del modal (NO el iframe, para no
+      // volver a entrar) en la dirección indicada: arriba = cerrar/controles,
+      // abajo = comentarios / lista de episodios.
       const ifr = document.getElementById("episode-iframe");
-      if (ifr) setFocus(ifr);
+      if (!ifr) return;
+      const dir = d.dir || "down";
+      const list = allContent().filter((el) => el.tagName !== "IFRAME");
+      list.push(ifr);
+      let target = bestAmong(list, dir, ifr);
+      if (!target || target === ifr) target = document.getElementById("close-player-modal") || list.find((el) => el !== ifr);
+      if (target && target !== ifr) setFocus(target);
     }
   });
 })();
