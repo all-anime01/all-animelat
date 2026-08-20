@@ -89,8 +89,15 @@ function aaIframeMarkup(url) {
   // cargaba cuando se aislaba el iframe. El reproductor del server carga libre.
   // (El bloqueo de anuncios emergentes para quienes pagan/tienen adFree se maneja
   //  en las APPS nativas vía onCreateWindow, sin afectar la reproducción.)
+  // El botón "Pantalla completa" es NUESTRO (mismo origen): en Fire TV el control
+  // remoto no puede llegar a los botones del reproductor del server (es de otro
+  // origen), así que ofrecemos el fullscreen desde aquí, navegable con el D-pad.
   return `
       <span id="backToPlayers" onclick="listPlayer();"></span>
+      <button id="aa-fs-btn" class="aa-fs-btn" type="button" title="Pantalla completa"
+              aria-label="Pantalla completa" onclick="aaToggleFullscreen();">
+          <i class="fas fa-expand"></i><span class="aa-fs-lbl">Pantalla completa</span>
+      </button>
       <iframe
           id="IFR"
           src="${buildSrc(url)}"
@@ -102,6 +109,59 @@ function aaIframeMarkup(url) {
           scrolling="no"
           onload="this.dataset.loaded = 'true';">
       </iframe>`;
+}
+
+// Alterna la pantalla completa del video (nuestro contenedor same-origin). En la
+// app WebView esto dispara onShowCustomView → el video se ve a pantalla completa.
+// En el navegador usa la Fullscreen API estándar. Es el único control de pantalla
+// completa alcanzable con el control remoto (el del server es de otro origen).
+function aaFsTarget() {
+  return document.getElementById("IFR") || document.querySelector(".DisplayVideo");
+}
+function aaIsFullscreen() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+}
+function aaToggleFullscreen() {
+  const el = aaFsTarget();
+  if (!el) return;
+  if (aaIsFullscreen()) {
+    const ex = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+    if (ex) try { ex.call(document); } catch {}
+  } else {
+    const rq = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitEnterFullscreen || el.msRequestFullscreen;
+    if (rq) try { rq.call(el); } catch {}
+  }
+}
+// Refleja el estado en el ícono/etiqueta y, al salir de fullscreen en TV, devuelve
+// el foco al botón (para que siga siendo navegable con el control).
+function aaSyncFsBtn() {
+  const btn = document.getElementById("aa-fs-btn");
+  if (!btn) return;
+  const full = aaIsFullscreen();
+  const ic = btn.querySelector("i");
+  const lbl = btn.querySelector(".aa-fs-lbl");
+  if (ic) ic.className = full ? "fas fa-compress" : "fas fa-expand";
+  if (lbl) lbl.textContent = full ? "Salir de pantalla completa" : "Pantalla completa";
+  if (!full && document.documentElement.classList.contains("aa-tv")) {
+    try { if (typeof window.__aaFocus === "function") window.__aaFocus(btn); } catch {}
+  }
+}
+["fullscreenchange", "webkitfullscreenchange", "msfullscreenchange"].forEach((ev) =>
+  document.addEventListener(ev, aaSyncFsBtn));
+
+// Empujón de repintado: en algunas WebView (Fire TV / Android) el iframe del
+// video queda en NEGRO al reproducir y solo se ve tras hacer scroll. Forzamos la
+// recomposición de la capa (toggle de transform + micro-scroll) y le pedimos al
+// documento padre (la ficha del episodio) que también dé un micro-scroll.
+function aaRepaintNudge() {
+  const dv = document.querySelector(".DisplayVideo");
+  if (dv) {
+    dv.style.transform = "translateZ(0)";
+    void dv.offsetHeight;                       // fuerza reflow
+    requestAnimationFrame(() => { dv.style.transform = ""; });
+  }
+  try { window.scrollBy(0, 1); window.scrollBy(0, -1); } catch {}
+  try { if (window.parent !== window) window.parent.postMessage({ aa: "repaint" }, "*"); } catch {}
 }
 
 // --- FUNCIÓN MODIFICADA PARA CARGA DE 4 SEGUNDOS ---
@@ -140,6 +200,7 @@ function go_to_player(url) {
       const ifr = document.getElementById("IFR");
       if (ifr && ifr.dataset.loaded === "true") {
         clearInterval(checkIframe);
+        aaRepaintNudge();                 // evita el "video en negro" en la WebView
         resolve();
       }
     }, 100);
@@ -148,9 +209,24 @@ function go_to_player(url) {
   // Ocultar la animación solo cuando ambas promesas se cumplen
   Promise.all([timerPromise, iframeLoadPromise]).then(() => {
     if (playerDisplay) playerDisplay.classList.remove("is-loading");
+    // Segundo empujón tras quitar el overlay de carga (la capa cambia de nuevo).
+    aaRepaintNudge();
+    setTimeout(aaRepaintNudge, 350);
   });
 
-  // Lógica para mostrar/ocultar los controles (volver)
+  // En TV (Fire TV / Android TV) el control remoto necesita llegar a nuestros
+  // controles: enfocamos el botón de pantalla completa al cargar y los dejamos
+  // SIEMPRE visibles (no se auto-ocultan) para que el D-pad no navegue "a ciegas".
+  const isTV = document.documentElement.classList.contains("aa-tv");
+  if (isTV) {
+    aaSyncFsBtn();
+    // El foco lo re-sincroniza tv-nav al aparecer el video (scope .DisplayVideoA),
+    // pero lo forzamos por si acaso al botón de pantalla completa.
+    setTimeout(() => { try { window.__aaFocus && window.__aaFocus(document.getElementById("aa-fs-btn")); } catch {} }, 300);
+    return; // sin temporizador de auto-ocultado en TV
+  }
+
+  // Lógica para mostrar/ocultar los controles (volver + pantalla completa)
   let idleTimer = null;
   let idleState = false;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -158,17 +234,19 @@ function go_to_player(url) {
 
   function showFoo(time) {
     const elem = document.getElementById("backToPlayers");
+    const fsb = document.getElementById("aa-fs-btn");
     const ifr = document.getElementById("IFR");
     if (!elem || !ifr) return;
     // NOTA: nunca se desactivan los clics del iframe (antes usaba "nopoints",
     // que impedía usar los controles del reproductor —incluida la pantalla
     // completa de StreamWish— y no se podía reactivar con el mouse sobre el
-    // video, por ser de otro origen). Solo se oculta el botón "volver".
-    if (idleState) elem.className = "";
+    // video, por ser de otro origen). Solo se ocultan nuestros botones.
+    if (idleState) { elem.className = ""; if (fsb) fsb.className = "aa-fs-btn"; }
     clearTimeout(idleTimer);
     idleState = false;
     idleTimer = setTimeout(() => {
       elem.className = "inactive";
+      if (fsb) fsb.className = "aa-fs-btn inactive";
       idleState = true;
     }, time);
   }

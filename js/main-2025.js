@@ -1742,6 +1742,21 @@ $(document).ready(function () {
     if (i) i.className = on ? "fas fa-compress" : "fas fa-expand";
   });
 
+  // El reproductor (frame/player.html) avisa cuando el video del server arranca:
+  // en algunas WebView (Fire TV / Android) la capa del iframe queda en NEGRO hasta
+  // que un scroll la recompone. Forzamos aquí el repintado del contenedor del
+  // video (toggle de transform + micro-scroll) sin que el usuario tenga que hacer
+  // scroll hasta la información del modal.
+  window.addEventListener("message", (ev) => {
+    const d = ev && ev.data;
+    if (!d || typeof d !== "object" || d.aa !== "repaint") return;
+    const c = document.querySelector(".player-video-container");
+    if (c) { c.style.transform = "translateZ(0)"; void c.offsetHeight; requestAnimationFrame(() => { c.style.transform = ""; }); }
+    const modal = document.getElementById("episode-player-modal");
+    try { if (modal && modal.scrollBy) { modal.scrollBy(0, 1); modal.scrollBy(0, -1); } } catch {}
+    try { window.scrollBy(0, 1); window.scrollBy(0, -1); } catch {}
+  });
+
   $("#close-player-modal").on("click", () => {
     clearAutoplay();
     const playerModal = $("#episode-player-modal");

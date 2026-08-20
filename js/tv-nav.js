@@ -200,7 +200,10 @@
   };
   // Cuando hay un modal/diálogo abierto, el foco se ATRAPA dentro de él (si no,
   // "se pierde" hacia el contenido de atrás y no se puede navegar el modal).
-  const MODAL_SEL = '.episode-player-modal, #trailer-modal, #adfree-modal, .adfree-ov, #apk-help, .msearch-overlay.open, [role="dialog"]';
+  // .DisplayVideoA = contenedor del video del server cuando está activo: al
+  // reproducir, el foco se ATRAPA en sus controles (Volver + Pantalla completa),
+  // para que el D-pad no navegue "a ciegas" la lista de servidores oculta detrás.
+  const MODAL_SEL = '.DisplayVideoA, .episode-player-modal, #trailer-modal, #adfree-modal, .adfree-ov, #apk-help, .msearch-overlay.open, [role="dialog"]';
   function activeScope() {
     const modals = Array.prototype.filter.call(document.querySelectorAll(MODAL_SEL), isShown);
     return modals.length ? modals[modals.length - 1] : document;
@@ -392,8 +395,10 @@
     if (!list.length) return;
     let pref;
     if (scope && scope !== document) {
-      // dentro de un modal: prioriza el reproductor/lista de servidores
-      pref = list.find((el) => el.closest(".OD, #serverContainer, .player-video-container, .player-nav-col")) || list[0];
+      // Video del server reproduciéndose: enfoca el botón de Pantalla completa.
+      // Si no, dentro de un modal prioriza el reproductor/lista de servidores.
+      pref = list.find((el) => el.id === "aa-fs-btn")
+        || list.find((el) => el.closest(".OD, #serverContainer, .player-video-container, .player-nav-col")) || list[0];
     } else {
       pref = list.find((el) => el.closest(".OD, #serverContainer, .anime-grid, .cr-hist, .anime-listing-section, .episodes-list-container"))
         || list.find((el) => el.matches(".hero-button, .cr-card, .cr-list-item")) || list[0];
@@ -433,6 +438,9 @@
   };
   // Mueve el foco en una dirección (la app puede llamarlo si hiciera falta).
   window.__aaMove = function (dir) { root.classList.add("aa-dpad"); navigate(dir); };
+  // Enfoca un elemento concreto (lo usa iframe.js para llevar el foco al botón de
+  // pantalla completa cuando arranca el video, y al salir de fullscreen).
+  window.__aaFocus = function (el) { if (el) setFocus(el); };
 
   // --- Puente de foco entre el modal del episodio (padre) y el iframe del
   //     reproductor (selección de servidores). ENTER entra; ATRÁS vuelve. ---
