@@ -33,9 +33,20 @@
     /* Foco muy visible para el control remoto */
     html.aa-tv :focus { outline: none; }
     html.aa-tv .aa-focus {
-      outline: 3px solid #ff5a3c !important; outline-offset: 3px !important;
-      border-radius: 8px !important; box-shadow: 0 0 0 6px rgba(255,90,60,.35), 0 12px 34px rgba(0,0,0,.55) !important;
+      outline: 4px solid #ff5a3c !important; outline-offset: 3px !important;
+      border-radius: 8px !important; box-shadow: 0 0 0 7px rgba(255,90,60,.4), 0 14px 38px rgba(0,0,0,.6) !important;
       position: relative; z-index: 5;
+    }
+    /* El iframe del reproductor, al estar enfocado, muestra un marco claro + pista. */
+    html.aa-tv #episode-iframe.aa-focus {
+      outline: 6px solid #ff5a3c !important; outline-offset: -2px !important;
+    }
+    html.aa-tv .player-video-container:has(#episode-iframe.aa-focus)::after {
+      content: "▶  Pulsa OK / Play para elegir servidor";
+      position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+      background: rgba(255,90,60,.95); color: #fff; font-weight: 700; font-size: 15px;
+      padding: 8px 16px; border-radius: 30px; z-index: 61; pointer-events: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,.5);
     }
     html.aa-tv .anime-card.aa-focus, html.aa-tv .cr-card.aa-focus,
     html.aa-tv .episode-detail-card.aa-focus, html.aa-tv .cr-list-item.aa-focus {
@@ -274,39 +285,35 @@
     return best;
   }
 
-  // ¿Dos elementos están en la MISMA fila? (se solapan en vertical)
+  // ¿El candidato está grosso modo en la misma fila? (para decidir si IZQUIERDA
+  // abre la barra en vez de subir a otra fila).
   function sameRow(a, b) {
     if (!a || !b) return false;
     const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
     const overlap = Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top);
-    return overlap > Math.min(ra.height, rb.height) * 0.4;
+    return overlap > Math.min(ra.height, rb.height) * 0.35;
   }
 
-  // Navega en una dirección. Barra y contenido son zonas separadas. En horizontal
-  // se mueve DENTRO de la fila (carrusel); al llegar al inicio de la fila, IZQUIERDA
-  // abre la barra en un solo toque. En vertical se prefiere lo visible; si no hay,
-  // salta a la siguiente sección (el foco arrastra el scroll) o desplaza la página.
+  // Navegación LIBRE: en cualquier dirección busca el mejor candidato en TODA la
+  // página (no solo el viewport), así se puede recorrer tarjeta por tarjeta,
+  // izquierda↔derecha y arriba↔abajo sin atascarse; el foco arrastra el scroll.
   function navigate(dir) {
     const cur = current;
     // --- En la barra lateral ---
     if (inRail(cur)) {
       if (dir === "up" || dir === "down") { const n = bestAmong(railItems(), dir, cur); if (n) setFocus(n); return; }
-      if (dir === "right") { const c = allContent().filter(nearViewport); const n = bestAmong(c, "right", null) || c[0] || allContent()[0]; if (n) setFocus(n); return; }
+      if (dir === "right") { const c = allContent(); const n = bestAmong(c.filter(nearViewport), "right", null) || bestAmong(c, "right", null) || c[0]; if (n) setFocus(n); return; }
       return; // izquierda en la barra: ya está al borde
     }
-    // --- Contenido: horizontal = dentro de la fila ---
-    if (dir === "left" || dir === "right") {
-      const row = allContent().filter((el) => el !== cur && sameRow(el, cur));
-      let n = bestAmong(row.filter(nearViewport), dir, cur) || bestAmong(row, dir, cur);
-      if (n) { setFocus(n); return; }
-      if (dir === "left") { const r = nearestRailItem(cur); if (r) { setFocus(r); return; } }
-      return; // fin de la fila hacia la derecha: no salta a otra fila
+    // --- Contenido: mejor candidato en la dirección, por toda la página ---
+    const content = allContent();
+    let n = bestAmong(content, dir, cur);
+    // IZQUIERDA: si no hay nada a la izquierda EN LA MISMA fila, abre la barra.
+    if (dir === "left" && (!n || !sameRow(n, cur))) {
+      const r = nearestRailItem(cur); if (r) { setFocus(r); return; }
     }
-    // --- Contenido: vertical ---
-    const vp = allContent().filter(nearViewport);
-    let n = bestAmong(vp, dir, cur);
-    if (!n) n = bestAmong(allContent(), dir, cur);   // salta a la siguiente sección fuera de pantalla
     if (n) { setFocus(n); return; }
+    // Sin candidato en esa dirección: desplaza la página por si hay más contenido.
     if (dir === "down") window.scrollBy({ top: Math.round(window.innerHeight * 0.7), behavior: "smooth" });
     else if (dir === "up") window.scrollBy({ top: -Math.round(window.innerHeight * 0.7), behavior: "smooth" });
   }
@@ -338,10 +345,12 @@
       navigate(dir);
       return;
     }
-    if (k === "Enter" || k === "OK") {
+    // OK/Enter y también el botón PLAY/PAUSA del control (para elegir servidor /
+    // dar play a lo enfocado).
+    if (k === "Enter" || k === "OK" || k === "MediaPlayPause" || k === "MediaPlay" || k === "Play" || k === "Pause" || k === " " || k === "Spacebar") {
+      if (isTyping(active) && (k === " " || k === "Spacebar")) return;   // espacio en un campo escribe
       if (isTyping(active)) return;
-      // ENTER sobre el iframe del reproductor → ENTRA a la selección de servidores
-      // (le pasa el foco al iframe). Así se puede elegir/cambiar de servidor.
+      // ENTER/PLAY sobre el iframe del reproductor → ENTRA a la selección de servidores.
       if (current && current.id === "episode-iframe" && current.contentWindow) {
         e.preventDefault();
         try { current.contentWindow.postMessage({ aa: "enter" }, "*"); } catch {}
@@ -398,6 +407,19 @@
   let moT = null;
   const mo = new MutationObserver(() => { clearTimeout(moT); moT = setTimeout(resync, 120); });
   try { mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class", "hidden"] }); } catch {}
+
+  // Activa el elemento enfocado (equivale a OK). La app nativa lo llama cuando se
+  // pulsa el botón PLAY/PAUSA del control (por si el WebView no envía la tecla a JS).
+  window.__aaActivate = function () {
+    if (!current) return;
+    if (current.id === "episode-iframe" && current.contentWindow) {
+      try { current.contentWindow.postMessage({ aa: "enter" }, "*"); } catch {}
+      return;
+    }
+    try { current.click(); } catch {}
+  };
+  // Mueve el foco en una dirección (la app puede llamarlo si hiciera falta).
+  window.__aaMove = function (dir) { root.classList.add("aa-dpad"); navigate(dir); };
 
   // --- Puente de foco entre el modal del episodio (padre) y el iframe del
   //     reproductor (selección de servidores). ENTER entra; ATRÁS vuelve. ---

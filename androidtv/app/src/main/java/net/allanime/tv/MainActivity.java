@@ -308,6 +308,14 @@ public class MainActivity extends Activity {
             if (customView != null) { hideCustomVideo(); return true; }
             if (webView.canGoBack()) { webView.goBack(); return true; }
         }
+        // Botón PLAY/PAUSA del control → activa lo enfocado en la web (elegir server,
+        // dar play). Por si el WebView no entrega la tecla al JS de la página.
+        if (keyCode == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE || keyCode == KeyEvent.KEYCODE_MEDIA_PLAY
+                || keyCode == KeyEvent.KEYCODE_MEDIA_PAUSE) {
+            WebView tgt = (popupView != null) ? popupView : webView;
+            if (tgt != null) try { tgt.evaluateJavascript("window.__aaActivate&&window.__aaActivate()", null); } catch (Exception ignored) {}
+            return true;
+        }
         return super.onKeyDown(keyCode, event);
     }
 
