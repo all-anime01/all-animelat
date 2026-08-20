@@ -1141,6 +1141,11 @@ $(document).ready(function () {
     $("#hero-style").remove();
     $("head").append(styleBlock);
 
+    // Enlace cruzado serie ↔ colección de películas (data-driven: campos moviesId / seriesId).
+    let crossLinkBtn = "";
+    if (anime.moviesId) crossLinkBtn = `<a class="action-btn more-info" href="anime-details.html?id=${anime.moviesId}" title="Ver las películas"><i class="fas fa-film"></i> Películas</a>`;
+    else if (anime.seriesId) crossLinkBtn = `<a class="action-btn more-info" href="anime-details.html?id=${anime.seriesId}" title="Ver la serie"><i class="fas fa-tv"></i> Ver la serie</a>`;
+
     const heroContent = `
             <div class="hero-content">
                 <img src="${anime.logoImg}" alt="${anime.title} Logo" class="anime-logo">
@@ -1155,6 +1160,7 @@ $(document).ready(function () {
                 <div class="anime-actions">
                     <button class="action-btn play" id="hero-play-btn"><i class="fas fa-play"></i> <span id="hero-play-label">Reproducir</span></button>
                     <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> Más info</button>
+                    ${crossLinkBtn}
                     <button class="action-btn mylist-btn favorite-btn" id="favorite-anime-btn" title="Añadir a Mi lista"><i class="far fa-bookmark"></i> <span class="mylist-label">Mi lista</span></button>
                     <button class="action-btn share-btn" id="share-anime-btn" title="Compartir"><i class="fas fa-share-nodes"></i> Compartir</button>
                 </div>
