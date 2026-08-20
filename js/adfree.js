@@ -63,12 +63,16 @@ export async function grantAdFree(uid) {
 // si Adsterra inyecta sus elementos con retraso.
 const AD_HOST_RE = /effectivecpmnetwork|temptedrecognise|acscdn|tercetacker|adsterra|propellerads|propu\.sh|onclickalgo|hilltopads|popads|popcash|doubleclick|googlesyndication|adservice\.google|clickadu|admaven|mgid|exoclick|monetag|clickadilla/i;
 function killAds() {
-  document.querySelectorAll(".ad-container").forEach((el) => el.remove());
-  document.querySelectorAll("iframe, ins, script").forEach((el) => {
-    const src = el.src || el.getAttribute("data-src") || "";
-    if (src && AD_HOST_RE.test(src)) { const box = el.closest(".ad-container") || el; box.remove(); }
+  const kill = (el) => { try { (el.closest(".ad-container") || el).remove(); } catch {} };
+  // Contenedores de anuncios (Adsterra Social Bar/Popunder + effectivecpmnetwork).
+  // OJO: el banner de effectivecpm es <div id="container-XXXX"> SIN data-cfasync
+  // (el data-cfasync está en el <script>), por eso antes NO se borraba en móvil.
+  document.querySelectorAll('.ad-container, [id^="container-"], [id^="adsterra"], [class*="adsterra"], ins.adsbygoogle, [id^="aterra"], [aria-label*="advert" i]').forEach(kill);
+  // Cualquier iframe/script/ins/link/img que apunte a un dominio de anuncios.
+  document.querySelectorAll("iframe, ins, script, link, img").forEach((el) => {
+    const src = el.src || el.href || el.getAttribute("data-src") || el.getAttribute("data-cfasrc") || "";
+    if (src && AD_HOST_RE.test(src)) kill(el);
   });
-  document.querySelectorAll('[id^="adsterra"], [class*="adsterra"], [id*="container-"][data-cfasync]').forEach((el) => el.remove());
 }
 // Neutraliza los popunders/pop-ups de anuncios para usuarios adFree: aunque el
 // script de Adsterra alcance a ejecutarse (antes de sincronizar el estado), sus
@@ -87,14 +91,21 @@ function guardPopups() {
     } catch { return null; }
   };
 }
-let _reflectIv = null;
+let _adObserver = null;
 function reflectAds() {
   if (!isAdFree()) return;
   guardPopups();
   killAds();
-  if (_reflectIv) return;
-  let n = 0;
-  _reflectIv = setInterval(() => { killAds(); if (++n > 12) { clearInterval(_reflectIv); _reflectIv = null; } }, 1000);
+  if (_adObserver) return;
+  // PERSISTENTE: en móvil (y en cualquier equipo) los scripts de Adsterra inyectan
+  // sus banners/social-bar con retraso o al navegar; un observador permanente los
+  // elimina en cuanto aparecen, en vez de solo durante los primeros 12 s. Así el
+  // bloqueo del admin funciona también en móvil, no solo en escritorio.
+  try {
+    _adObserver = new MutationObserver(() => killAds());
+    _adObserver.observe(document.documentElement, { childList: true, subtree: true });
+  } catch {}
+  setInterval(killAds, 3000); // barrido de respaldo continuo
 }
 
 // --- UI: botón + modal con PayPal --------------------------------------------
