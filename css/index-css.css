@@ -1483,9 +1483,11 @@ body.red-theme header {
     background: #141414;
     box-shadow: 0 22px 60px rgba(0, 0, 0, 0.8);
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.8) translateY(10px);
     transform-origin: center center;
-    transition: opacity 0.18s ease, transform 0.2s ease;
+    /* Expansión fluida tipo Netflix/Prime: sale creciendo desde la tarjeta con un
+       ease-out suave (no un simple fundido). */
+    transition: opacity 0.2s ease, transform 0.36s cubic-bezier(0.16, 0.84, 0.24, 1), box-shadow 0.36s ease;
     will-change: transform, opacity;
     cursor: pointer;
     display: flex;
@@ -1494,7 +1496,19 @@ body.red-theme header {
 
 .card-preview.show {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
+}
+
+/* El contenido interno (título, botones, géneros) aparece con un leve retraso
+   escalonado para que se sienta más pulido. */
+.card-preview .cardpv-info {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.28s ease 0.08s, transform 0.32s cubic-bezier(0.16, 0.84, 0.24, 1) 0.06s;
+}
+.card-preview.show .cardpv-info {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .cardpv-media-wrap {
@@ -3225,3 +3239,22 @@ html.aa-tv body { overflow-x: hidden; }
     .anime-logo { width: 340px; max-height: 20vh; margin-bottom: 1rem; }
     .hero-logo { max-height: 18vh; }
 }
+
+/* ===================================================================
+   Botón de pantalla completa del reproductor: hace fullscreen del
+   CONTENEDOR del video (no del iframe interno del servidor), para que
+   el CONTEO del siguiente episodio se vea también en pantalla completa.
+   =================================================================== */
+.player-video-container { position: relative; }
+.player-fs-btn {
+    position: absolute; bottom: 14px; left: 14px; z-index: 60;
+    width: 46px; height: 46px; border-radius: 10px; border: none; cursor: pointer;
+    background: rgba(0, 0, 0, .6); color: #fff; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    opacity: .5; transition: opacity .2s ease, background .2s ease;
+}
+.player-fs-btn:hover, .player-fs-btn:focus, .player-fs-btn.aa-focus { opacity: 1; background: #ff5a3c; }
+.player-video-container:fullscreen,
+.player-video-container:-webkit-full-screen { width: 100vw; height: 100vh; max-height: none; background: #000; }
+.player-video-container:fullscreen #episode-iframe,
+.player-video-container:-webkit-full-screen #episode-iframe { width: 100%; height: 100%; }

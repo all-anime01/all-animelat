@@ -79,8 +79,19 @@ function showPreview(card) {
 }
 
 export function initCardHover() {
-  // Sin hover real (móvil/táctil) no se activa.
-  if (window.matchMedia("(hover: none)").matches) return;
+  // Modo TV (D-pad, sin puntero real): tv-nav.js llama estas funciones al enfocar
+  // o salir de una tarjeta, para mostrar/ocultar la vista previa igual que en PC.
+  window.__aaCardPreview = (card) => {
+    if (!card || card === activeCard) return;
+    if (!card.dataset.trailer && !card.dataset.video) return;
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(() => showPreview(card), 420);
+  };
+  window.__aaCardPreviewClose = () => { clearTimeout(hoverTimer); removePreview(); };
+
+  // Con puntero real (escritorio) se activa por hover automático. En táctil no.
+  if (window.matchMedia("(hover: none)").matches && !document.documentElement.classList.contains("aa-tv")) return;
+  if (window.matchMedia("(hover: none)").matches && document.documentElement.classList.contains("aa-tv")) return; // en TV lo dispara tv-nav, no el puntero
 
   document.addEventListener("pointerover", (e) => {
     const card = e.target.closest(".anime-card");

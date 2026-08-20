@@ -1720,6 +1720,22 @@ $(document).ready(function () {
     }
   });
 
+  // Pantalla completa del CONTENEDOR del video (no del iframe del server) → el
+  // conteo del siguiente episodio (que vive dentro de .player-video-container) se
+  // ve también en pantalla completa.
+  $(document).on("click", "#player-fs-btn", () => {
+    const c = document.querySelector(".player-video-container");
+    if (!c) return;
+    const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+    if (fsEl) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); }
+    else { (c.requestFullscreen || c.webkitRequestFullscreen || c.msRequestFullscreen || (() => {})).call(c); }
+  });
+  document.addEventListener("fullscreenchange", () => {
+    const on = !!document.fullscreenElement;
+    const i = document.querySelector("#player-fs-btn i");
+    if (i) i.className = on ? "fas fa-compress" : "fas fa-expand";
+  });
+
   $("#close-player-modal").on("click", () => {
     clearAutoplay();
     const playerModal = $("#episode-player-modal");

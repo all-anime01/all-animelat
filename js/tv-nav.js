@@ -20,6 +20,9 @@
 
   const root = document.documentElement;
   root.classList.add("aa-tv");
+  // ¿Estamos dentro del iframe del reproductor (frame/player.html) o en la página
+  // principal? Sirve para el "puente" de foco entre el modal y la lista de servidores.
+  const isFrame = window.self !== window.top;
 
   // --- Estilos del modo TV (foco 10 pies + overscan) -------------------------
   const st = document.createElement("style");
@@ -167,7 +170,7 @@
   else document.addEventListener("DOMContentLoaded", buildRail);
 
   // --- Utilidades de foco ----------------------------------------------------
-  const SEL = 'a[href], button:not([disabled]), input:not([type=hidden]):not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), .open-player-from-details, .open-player-from-modal, .ODDIV li, .SelectLangDisp li, .rw-stars i';
+  const SEL = 'a[href], button:not([disabled]), input:not([type=hidden]):not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), .open-player-from-details, .open-player-from-modal, .ODDIV li, .SelectLangDisp li, .rw-stars i, #episode-iframe, #backToPlayers';
   const NATIVE = /^(A|BUTTON|INPUT|SELECT|TEXTAREA)$/;
   // Los <li>/<a sin href> con onclick no son enfocables: les damos tabindex.
   const ensureFocusable = (el) => { if (!NATIVE.test(el.tagName) && !el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0"); return el; };
@@ -209,15 +212,18 @@
     // en ella; al salir al contenido, se colapsa a íconos.
     const rail = document.querySelector(".aa-rail");
     if (rail) rail.classList.toggle("expanded", !!el.closest(".aa-rail"));
-    // Vista previa de la tarjeta al enfocarla (dispara el hover, como en PC: sale
-    // el trailer/preview del anime correspondiente).
-    const card = el.closest ? el.closest(".anime-card, .cr-card, .episode-detail-card, .cr-list-item") : null;
+    // Vista previa de la tarjeta al enfocarla (sale el trailer/preview del anime,
+    // como el hover en PC). card-hover.js expone estas funciones para TV.
+    const card = el.closest ? el.closest(".anime-card") : null;
     if (card !== _hoverCard) {
-      try { if (_hoverCard) _hoverCard.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true })); } catch {}
+      try { if (typeof window.__aaCardPreviewClose === "function") window.__aaCardPreviewClose(); } catch {}
       _hoverCard = card || null;
-      try { if (_hoverCard) _hoverCard.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true })); } catch {}
+      try { if (card && typeof window.__aaCardPreview === "function") window.__aaCardPreview(card); } catch {}
     }
-    try { el.focus({ preventScroll: true }); } catch { try { el.focus(); } catch {} }
+    // OJO: NO enfocar el <iframe> del reproductor con .focus() — eso transferiría
+    // el teclado dentro del iframe y el padre dejaría de controlar el D-pad. El
+    // iframe solo se resalta; se entra a él con ENTER (postMessage aa:"enter").
+    if (el.tagName !== "IFRAME") { try { el.focus({ preventScroll: true }); } catch { try { el.focus(); } catch {} } }
     // No arrastrar el scroll cuando el foco está en la barra fija.
     if (scroll !== false && !el.closest(".aa-rail")) el.scrollIntoView({ block: "center", inline: "nearest", behavior: "smooth" });
   }
@@ -308,6 +314,14 @@
   function onKey(e) {
     const k = e.key;
     const active = document.activeElement;
+    // Dentro del iframe del reproductor, ATRÁS devuelve el foco al modal padre
+    // (para llegar a comentarios / like / lista de episodios / cerrar).
+    if (isFrame && (k === "Escape" || k === "Backspace" || k === "GoBack" || k === "BrowserBack")) {
+      if (isTyping(active) && k === "Backspace" && active.value) return;
+      e.preventDefault();
+      try { window.parent.postMessage({ aa: "exit" }, "*"); } catch {}
+      return;
+    }
     // Atrás/Escape: si el buscador de TV está abierto, ciérralo y vuelve al contenido.
     const searchOpen = root.classList.contains("aa-search-open") || document.querySelector(".msearch-overlay.open");
     if ((k === "Escape" || k === "Backspace" || k === "GoBack" || k === "BrowserBack") && searchOpen) {
@@ -326,10 +340,16 @@
     }
     if (k === "Enter" || k === "OK") {
       if (isTyping(active)) return;
+      // ENTER sobre el iframe del reproductor → ENTRA a la selección de servidores
+      // (le pasa el foco al iframe). Así se puede elegir/cambiar de servidor.
+      if (current && current.id === "episode-iframe" && current.contentWindow) {
+        e.preventDefault();
+        try { current.contentWindow.postMessage({ aa: "enter" }, "*"); } catch {}
+        return;
+      }
       if (current) {
         e.preventDefault();
-        // dispara la acción real (link/botón) del elemento enfocado
-        current.click();
+        current.click();   // dispara la acción real (link/botón) del elemento enfocado
       }
     }
   }
@@ -378,4 +398,20 @@
   let moT = null;
   const mo = new MutationObserver(() => { clearTimeout(moT); moT = setTimeout(resync, 120); });
   try { mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class", "hidden"] }); } catch {}
+
+  // --- Puente de foco entre el modal del episodio (padre) y el iframe del
+  //     reproductor (selección de servidores). ENTER entra; ATRÁS vuelve. ---
+  window.addEventListener("message", (ev) => {
+    const d = ev.data;
+    if (!d || typeof d !== "object" || !d.aa) return;
+    if (d.aa === "enter" && isFrame) {
+      // El padre pidió entrar: enfoca la lista de servidores del reproductor.
+      root.classList.add("aa-dpad");
+      setTimeout(() => focusScope(document), 60);
+    } else if (d.aa === "exit" && !isFrame) {
+      // El iframe pidió salir: devuelve el resalte al iframe dentro del modal.
+      const ifr = document.getElementById("episode-iframe");
+      if (ifr) setFocus(ifr);
+    }
+  });
 })();
