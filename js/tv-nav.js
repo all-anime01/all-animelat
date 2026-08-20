@@ -37,9 +37,10 @@
       border-radius: 8px !important; box-shadow: 0 0 0 7px rgba(255,90,60,.4), 0 14px 38px rgba(0,0,0,.6) !important;
       position: relative; z-index: 5;
     }
-    /* El iframe del reproductor, al estar enfocado, muestra un marco claro + pista. */
-    html.aa-tv #episode-iframe.aa-focus {
-      outline: 6px solid #ff5a3c !important; outline-offset: -2px !important;
+    /* Los IFRAMES (reproductor / video de cada server) NO llevan borde de foco:
+       molestaba sobre el video. Se indica dónde estás solo con la pista de texto. */
+    html.aa-tv iframe.aa-focus, html.aa-tv #episode-iframe.aa-focus, html.aa-tv #IFR.aa-focus {
+      outline: none !important; box-shadow: none !important;
     }
     html.aa-tv .player-video-container:has(#episode-iframe.aa-focus)::after {
       content: "▶  Pulsa OK / Play para elegir servidor";
