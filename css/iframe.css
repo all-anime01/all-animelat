@@ -363,10 +363,14 @@ li {
     left: 0;
     top: 0;
     height: 100%;
-    /* IMPORTANTE: NO poner transform/opacity/will-change en el iframe del video.
-       En la WebView de Fire TV/Android eso mete el video (SurfaceView) en una capa
-       transformada y se ve TODO NEGRO (solo audio). El "negro hasta hacer scroll"
-       se soluciona con un micro-scroll (aaRepaintNudge en iframe.js), no con capas. */
+    /* FORZAR CAPA DE TEXTURA (translateZ): en la WebView de Fire TV/Android varios
+       hosts (VidHide/Streamwish/VOE/Mega/Filemoon) reproducen el <video> en una
+       SurfaceView por hardware que se ve NEGRA (solo audio); promover el iframe a su
+       propia capa de composición lo renderiza como textura y SÍ se ve. En escritorio
+       es inofensivo. (pelisplus ya funcionaba porque su player no usa SurfaceView.)
+       Requisito: NINGÚN ancestro debe animar opacity ni usar backdrop-filter. */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 #backToPlayers {

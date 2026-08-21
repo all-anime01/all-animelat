@@ -2113,6 +2113,10 @@ body.red-theme header {
     width: 100%;
     height: 100%;
     border: none;
+    /* Fuerza capa de textura del subárbol del reproductor → evita el "video en
+       negro" (SurfaceView por hardware) en la WebView de Fire TV/Android. */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .player-details-container {
