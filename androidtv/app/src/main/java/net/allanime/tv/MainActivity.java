@@ -100,6 +100,9 @@ public class MainActivity extends Activity {
         // sobre la WebView puede TAPAR la capa de video (SurfaceView) y dejarla negra.
         // Se deja el comportamiento por defecto (hardware accel del manifest), que es
         // como el video se veía bien antes.
+        // Borra la caché al abrir → la app siempre carga la ÚLTIMA versión del sitio
+        // (JS/CSS), así los arreglos web se aplican SIN tener que reinstalar la APK.
+        webView.clearCache(true);
         webView.setWebViewClient(new AppClient(true));
         webView.setWebChromeClient(new AppChrome());
         // Puente JS: la web (botón "Cursor" en el reproductor de TV) puede activar
