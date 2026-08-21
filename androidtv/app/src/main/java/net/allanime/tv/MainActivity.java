@@ -96,10 +96,10 @@ public class MainActivity extends Activity {
         if (BuildConfig.IS_TV) ua += " AllAnimeTV/1.0";
         s.setUserAgentString(ua);
 
-        // Capa por hardware: refuerza la composición del video (evita el "video en
-        // negro con solo audio" en algunas WebView de Fire TV/Android).
-        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        webView.setBackgroundColor(Color.BLACK);
+        // NOTA: NO forzar setLayerType ni setBackgroundColor(BLACK) — un fondo opaco
+        // sobre la WebView puede TAPAR la capa de video (SurfaceView) y dejarla negra.
+        // Se deja el comportamiento por defecto (hardware accel del manifest), que es
+        // como el video se veía bien antes.
         webView.setWebViewClient(new AppClient(true));
         webView.setWebChromeClient(new AppChrome());
         // Puente JS: la web (botón "Cursor" en el reproductor de TV) puede activar
