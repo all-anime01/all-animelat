@@ -3207,17 +3207,26 @@ header .logo:hover .logo-desktop {
    (se baja con el D-pad). El iframe ocupa el 100% del contenedor SIN min()/calc()
    (WebView viejas de Fire TV los ignoraban → el iframe quedaba mal dimensionado y
    se veía "4:3"). El video interno del server conserva su propio aspecto. */
+/* En TV: el MODAL entero hace scroll como UNA sola columna (video en el flujo
+   normal, no un video fijo + detalles con scroll aparte). Ese arreglo estructural
+   evita el bug de la WebView de Fire TV donde el video sale NEGRO hasta que el área
+   de detalles hace scroll (y se re-ennegrece al subir). Aquí el video pinta normal. */
+html.aa-tv .episode-player-modal {
+    overflow-y: auto;
+}
 html.aa-tv .player-video-container {
     width: 100%;
     height: 72vh;
     max-height: 72vh;
     background: #000;
+    flex: 0 0 auto;
 }
 html.aa-tv #episode-iframe {
     width: 100%;
     height: 100%;
 }
-html.aa-tv .player-details-container { padding: 3vh max(4vw, 32px) 7vh; }
+/* Los detalles ya NO tienen su propio scroll interno en TV (scrollea el modal). */
+html.aa-tv .player-details-container { padding: 3vh max(4vw, 32px) 7vh; overflow: visible; flex: 0 0 auto; }
 html.aa-tv .player-details-content { max-width: 1500px; gap: 3vw; }
 html.aa-tv .close-player {
     top: max(2rem, 3.5vh);
