@@ -583,8 +583,15 @@ $(document).ready(function () {
     if (_bgLocked) return; _bgLocked = true;
     _bgLockY = window.scrollY || document.documentElement.scrollTop || 0;
     const b = document.body.style;
-    b.position = "fixed"; b.top = `-${_bgLockY}px`; b.left = "0"; b.right = "0";
-    b.width = "100%"; b.overflow = "hidden";
+    // En TV (Fire TV / smart TV) NO usar `position: fixed` en el body: rompe el
+    // PINTADO del video del iframe → queda NEGRO hasta hacer scroll (y al volver
+    // arriba se re-ennegrece). En TV basta `overflow:hidden` + `inert` para bloquear
+    // el fondo. `position:fixed` solo se usa en móvil (donde hace falta para el scroll).
+    const isTV = document.documentElement.classList.contains("aa-tv");
+    if (!isTV) {
+      b.position = "fixed"; b.top = `-${_bgLockY}px`; b.left = "0"; b.right = "0"; b.width = "100%";
+    }
+    b.overflow = "hidden";
     const modal = document.getElementById("episode-player-modal");
     Array.from(document.body.children).forEach((el) => {
       if (el !== modal && !el.contains(modal) && !el.hasAttribute("inert")) {
