@@ -323,6 +323,20 @@
                 </div>`).join("");
             document.title = `${anime.title} — E${ep.number}`;
             initConnectionTools(servers);
+
+            // En TV (Fire TV / smart TV): si el PRIMER servidor es el reproductor
+            // PelisPlus/embed69 —el que SÍ se ve en la WebView, a diferencia de los
+            // hosts directos que salen negros— se reproduce AUTOMÁTICAMENTE para que
+            // el episodio "solo funcione" como antes. Con ATRÁS se vuelve a la lista.
+            if (document.documentElement.classList.contains("aa-tv")) {
+                setTimeout(() => {
+                    const first = document.querySelector(".ODDIV .OD.REactiv li[data-url]");
+                    const url = first && first.getAttribute("data-url");
+                    if (first && url && /embed69\.org/.test(url) && typeof window.go_to_player === "function") {
+                        window.go_to_player(url);
+                    }
+                }, 700);
+            }
         }
 
         // ===== Herramienta de conexión: acelera la carga del vídeo =====
