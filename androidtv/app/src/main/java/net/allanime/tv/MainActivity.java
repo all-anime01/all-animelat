@@ -116,6 +116,37 @@ public class MainActivity extends Activity {
         @JavascriptInterface public void toggleCursor() { runOnUiThread(() -> toggleCursor()); }
         @JavascriptInterface public boolean cursorAvailable() { return true; }
         @JavascriptInterface public boolean isTV() { return BuildConfig.IS_TV; }
+        // El sitio avisa cuando carga el video de un server → forzamos el repintado
+        // (el video queda NEGRO en la WebView de Fire TV hasta que algo repinta).
+        @JavascriptInterface public void videoLoaded() { runOnUiThread(() -> scheduleRepaints()); }
+    }
+
+    // Fuerza el repintado del video: reajusta el ALTO de la WebView 2px y lo
+    // restaura → Chromium re-hace layout y repinta la capa de video (equivale al
+    // scroll manual que "despierta" el video). Se hace varias veces porque el video
+    // del server aparece unos segundos después de cargar el iframe.
+    private void scheduleRepaints() {
+        forceRepaint();
+        if (rootLayout != null) {
+            rootLayout.postDelayed(this::forceRepaint, 900);
+            rootLayout.postDelayed(this::forceRepaint, 2200);
+            rootLayout.postDelayed(this::forceRepaint, 4200);
+            rootLayout.postDelayed(this::forceRepaint, 6500);
+        }
+    }
+    private void forceRepaint() {
+        if (webView == null) return;
+        int h = webView.getHeight();
+        if (h <= 4) return;
+        final ViewGroup.LayoutParams lp = webView.getLayoutParams();
+        lp.height = h - 2;
+        webView.setLayoutParams(lp);          // requestLayout → relayout + repaint
+        webView.post(() -> {
+            if (webView == null) return;
+            ViewGroup.LayoutParams lp2 = webView.getLayoutParams();
+            lp2.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            webView.setLayoutParams(lp2);
+        });
     }
 
     // Relanzar la app desde el launcher (Fire TV / teléfono) vuelve al INICIO en
