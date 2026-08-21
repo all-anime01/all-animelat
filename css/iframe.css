@@ -45,8 +45,7 @@ li {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(13, 17, 23, 0.7);
-    backdrop-filter: blur(8px);
+    background-color: rgba(13, 17, 23, 0.92);
     z-index: 20000;
     display: flex;
     justify-content: center;
@@ -377,9 +376,9 @@ li {
     z-index: 2147483647;
     width: 44px;
     height: 44px;
-    background-color: rgba(31, 41, 55, 0.7);
+    background-color: rgba(31, 41, 55, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
+    /* SIN backdrop-filter: sobre el video (hardware) lo dejaba en NEGRO en la WebView. */
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -431,9 +430,8 @@ li {
     font-weight: 700;
     letter-spacing: .3px;
     color: #fff;
-    background: rgba(31, 41, 55, .72);
+    background: rgba(31, 41, 55, .92);
     border: 1px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(6px);
     transition: background .2s ease, transform .2s ease, opacity .3s ease;
 }
 

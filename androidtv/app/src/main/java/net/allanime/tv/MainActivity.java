@@ -96,6 +96,10 @@ public class MainActivity extends Activity {
         if (BuildConfig.IS_TV) ua += " AllAnimeTV/1.0";
         s.setUserAgentString(ua);
 
+        // Capa por hardware: refuerza la composición del video (evita el "video en
+        // negro con solo audio" en algunas WebView de Fire TV/Android).
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        webView.setBackgroundColor(Color.BLACK);
         webView.setWebViewClient(new AppClient(true));
         webView.setWebChromeClient(new AppChrome());
         // Puente JS: la web (botón "Cursor" en el reproductor de TV) puede activar
@@ -533,14 +537,10 @@ public class MainActivity extends Activity {
                 return true;
             }
         }
-        // Botón PLAY/PAUSA del control → activa lo enfocado en la web (elegir server,
-        // dar play). Por si el WebView no entrega la tecla al JS de la página.
-        if (keyCode == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE || keyCode == KeyEvent.KEYCODE_MEDIA_PLAY
-                || keyCode == KeyEvent.KEYCODE_MEDIA_PAUSE) {
-            WebView tgt = (popupView != null) ? popupView : webView;
-            if (tgt != null) try { tgt.evaluateJavascript("window.__aaActivate&&window.__aaActivate()", null); } catch (Exception ignored) {}
-            return true;
-        }
+        // Teclas MULTIMEDIA (play/pausa/avanzar/retroceder): NO se interceptan → se
+        // dejan pasar a la WebView, que las entrega a la MediaSession del video que
+        // se está reproduciendo en el server → controlan play/pausa/seek del propio
+        // reproductor. (Antes se interceptaban para "activar" y NO controlaban el video.)
         return super.onKeyDown(keyCode, event);
     }
 
