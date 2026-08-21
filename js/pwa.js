@@ -90,13 +90,14 @@ export function initPWA() {
   // instalable (APK). En escritorio el usuario tiene la PWA (botón de arriba).
   const ua = navigator.userAgent || "";
   const isAndroid = /Android/i.test(ua);
-  const isFireTV = /AFT[A-Z0-9]|Fire\s?TV|Silk|SmartTV|GoogleTV|Web0S|WebOS|Tizen/i.test(ua);
+  // MISMA app de TV para Fire TV, Android TV, Google TV y cualquier smart TV Android.
+  const isFireTV = /AFT[A-Z0-9]|Fire\s?TV|Silk|SmartTV|Smart-TV|Google ?TV|Android ?TV|BRAVIA|AOSP|Web0S|WebOS|Tizen|VIDAA/i.test(ua);
   const inApp = IN_APP;
   if ((isAndroid || isFireTV) && !inApp) {
-    // Fire TV / Android TV → app de TV; teléfono/tablet Android → app móvil.
+    // TV (Fire TV / Android TV / Google TV) → app de TV; teléfono/tablet → app móvil.
     const forTV = isFireTV;
     const file = forTV ? "All-Anime-TV.apk" : "All-Anime-Android.apk";
-    const label = forTV ? '<i class="fas fa-tv"></i> Descargar app (Fire TV)' : '<i class="fas fa-mobile-screen"></i> Descargar app (Android)';
+    const label = forTV ? '<i class="fas fa-tv"></i> Descargar app (Smart TV)' : '<i class="fas fa-mobile-screen"></i> Descargar app (Android)';
     const absUrl = location.origin + "/descargas/" + file;
     const shortUrl = (location.host + "/descargas/" + file).replace(/^www\./, "");
     const apk = document.createElement("a");
