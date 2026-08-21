@@ -583,15 +583,8 @@ $(document).ready(function () {
     if (_bgLocked) return; _bgLocked = true;
     _bgLockY = window.scrollY || document.documentElement.scrollTop || 0;
     const b = document.body.style;
-    // En TV (Fire TV / smart TV) NO usar `position: fixed` en el body: rompe el
-    // PINTADO del video del iframe → queda NEGRO hasta hacer scroll (y al volver
-    // arriba se re-ennegrece). En TV basta `overflow:hidden` + `inert` para bloquear
-    // el fondo. `position:fixed` solo se usa en móvil (donde hace falta para el scroll).
-    const isTV = document.documentElement.classList.contains("aa-tv");
-    if (!isTV) {
-      b.position = "fixed"; b.top = `-${_bgLockY}px`; b.left = "0"; b.right = "0"; b.width = "100%";
-    }
-    b.overflow = "hidden";
+    b.position = "fixed"; b.top = `-${_bgLockY}px`; b.left = "0"; b.right = "0";
+    b.width = "100%"; b.overflow = "hidden";
     const modal = document.getElementById("episode-player-modal");
     Array.from(document.body.children).forEach((el) => {
       if (el !== modal && !el.contains(modal) && !el.hasAttribute("inert")) {
@@ -724,9 +717,7 @@ $(document).ready(function () {
       onPlayNext: nextEpisode ? () => openPlayer(anime, nextEpisode) : null,
     });
 
-    // Mostrar SIN animar opacity (fadeIn animaba la opacity del modal, ancestro del
-    // video → rompía la capa de video por hardware en la WebView = pantalla negra).
-    playerModal.css({ display: "flex", opacity: 1 });
+    playerModal.css("display", "flex").hide().fadeIn();
     lockBackground();
   }
 
@@ -1751,34 +1742,6 @@ $(document).ready(function () {
     if (i) i.className = on ? "fas fa-compress" : "fas fa-expand";
   });
 
-  // El reproductor (frame/player.html) avisa cuando el video del server arranca:
-  // en algunas WebView (Fire TV / Android) la capa del iframe queda en NEGRO hasta
-  // que un scroll la recompone. Forzamos aquí el repintado del contenedor del
-  // video (toggle de transform + micro-scroll) sin que el usuario tenga que hacer
-  // scroll hasta la información del modal.
-  // La app nativa (MainActivity) llama a esto al pulsar ATRÁS ANTES de hacer
-  // goBack: si el modal del reproductor está abierto, delega en el iframe (que
-  // vuelve de server→lista, o pide cerrar el modal) y devuelve true = "yo lo
-  // manejo, no navegues atrás". Si no hay modal abierto, devuelve false.
-  window.__aaBack = function () {
-    const modal = document.getElementById("episode-player-modal");
-    const open = modal && getComputedStyle(modal).display !== "none";
-    if (!open) return false;
-    const ifr = document.getElementById("episode-iframe");
-    if (ifr && ifr.contentWindow) { try { ifr.contentWindow.postMessage({ aa: "back" }, "*"); } catch {} }
-    return true;
-  };
-
-  window.addEventListener("message", (ev) => {
-    const d = ev && ev.data;
-    if (!d || typeof d !== "object" || d.aa !== "repaint") return;
-    // Solo micro-scroll — NO transformar .player-video-container (transformar la
-    // capa del video lo deja en negro con audio en la WebView de Fire TV).
-    const modal = document.getElementById("episode-player-modal");
-    try { if (modal && modal.scrollBy) { modal.scrollBy(0, 1); modal.scrollBy(0, -1); } } catch {}
-    try { window.scrollBy(0, 1); window.scrollBy(0, -1); } catch {}
-  });
-
   $("#close-player-modal").on("click", () => {
     clearAutoplay();
     const playerModal = $("#episode-player-modal");
@@ -1786,8 +1749,7 @@ $(document).ready(function () {
     if (_watch) stopWatchTracker(true);
     else if (episodeId) saveToHistory(episodeId);
     populateContinueWatching();
-    playerModal.css("display", "none");   // sin fadeOut (evita animar opacity)
-    $("#episode-iframe").attr("src", "");
+    playerModal.fadeOut(() => $("#episode-iframe").attr("src", ""));
     unlockBackground();
   });
 

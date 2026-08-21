@@ -45,7 +45,8 @@ li {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(13, 17, 23, 0.92);
+    background-color: rgba(13, 17, 23, 0.7);
+    backdrop-filter: blur(8px);
     z-index: 20000;
     display: flex;
     justify-content: center;
@@ -337,14 +338,11 @@ li {
 }
 
 /* --- Vistas de Video y Botón de Volver --- */
-/* IMPORTANTE: NADA de animación de opacity/transform aquí. Animar la opacity de
-   este contenedor (ancestro del iframe del video) rompe la capa de video por
-   hardware (SurfaceView) de la WebView: se ven los controles del server pero el
-   video queda EN NEGRO (solo audio). Se muestra/oculta solo con top + z-index. */
 .DisplayVideo {
     top: -100%;
     background-color: #000;
-    opacity: 1;
+    opacity: 0;
+    transition: top 0s ease .4s, opacity .4s ease;
     position: absolute;
     z-index: 10;
     left: 0;
@@ -354,7 +352,9 @@ li {
 
 .DisplayVideoA {
     top: 0 !important;
+    opacity: 1 !important;
     z-index: 9999 !important;
+    transition: top 0s ease 0s, opacity .4s ease !important;
 }
 
 #IFR {
@@ -363,9 +363,6 @@ li {
     left: 0;
     top: 0;
     height: 100%;
-    /* NADA de transform aquí: en la WebView de Fire TV, poner transform en el iframe
-       del video METÍA todo el video (incluido YouTube) en una capa que se veía NEGRA
-       aunque en escritorio funcionara. Sin transform = como funcionaba antes. */
 }
 
 #backToPlayers {
@@ -375,9 +372,9 @@ li {
     z-index: 2147483647;
     width: 44px;
     height: 44px;
-    background-color: rgba(31, 41, 55, 0.92);
+    background-color: rgba(31, 41, 55, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    /* SIN backdrop-filter: sobre el video (hardware) lo dejaba en NEGRO en la WebView. */
+    backdrop-filter: blur(5px);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -406,7 +403,6 @@ li {
     pointer-events: none;
 }
 
-
 #IFR.nopoints {
     pointer-events: none;
 }
@@ -429,8 +425,9 @@ li {
     font-weight: 700;
     letter-spacing: .3px;
     color: #fff;
-    background: rgba(31, 41, 55, .92);
+    background: rgba(31, 41, 55, .72);
     border: 1px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(6px);
     transition: background .2s ease, transform .2s ease, opacity .3s ease;
 }
 
