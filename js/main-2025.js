@@ -717,7 +717,9 @@ $(document).ready(function () {
       onPlayNext: nextEpisode ? () => openPlayer(anime, nextEpisode) : null,
     });
 
-    playerModal.css("display", "flex").hide().fadeIn();
+    // Mostrar SIN animar opacity (fadeIn animaba la opacity del modal, ancestro del
+    // video → rompía la capa de video por hardware en la WebView = pantalla negra).
+    playerModal.css({ display: "flex", opacity: 1 });
     lockBackground();
   }
 
@@ -1777,7 +1779,8 @@ $(document).ready(function () {
     if (_watch) stopWatchTracker(true);
     else if (episodeId) saveToHistory(episodeId);
     populateContinueWatching();
-    playerModal.fadeOut(() => $("#episode-iframe").attr("src", ""));
+    playerModal.css("display", "none");   // sin fadeOut (evita animar opacity)
+    $("#episode-iframe").attr("src", "");
     unlockBackground();
   });
 

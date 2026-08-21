@@ -338,11 +338,14 @@ li {
 }
 
 /* --- Vistas de Video y Botón de Volver --- */
+/* IMPORTANTE: NADA de animación de opacity/transform aquí. Animar la opacity de
+   este contenedor (ancestro del iframe del video) rompe la capa de video por
+   hardware (SurfaceView) de la WebView: se ven los controles del server pero el
+   video queda EN NEGRO (solo audio). Se muestra/oculta solo con top + z-index. */
 .DisplayVideo {
     top: -100%;
     background-color: #000;
-    opacity: 0;
-    transition: top 0s ease .4s, opacity .4s ease;
+    opacity: 1;
     position: absolute;
     z-index: 10;
     left: 0;
@@ -352,9 +355,7 @@ li {
 
 .DisplayVideoA {
     top: 0 !important;
-    opacity: 1 !important;
     z-index: 9999 !important;
-    transition: top 0s ease 0s, opacity .4s ease !important;
 }
 
 #IFR {
