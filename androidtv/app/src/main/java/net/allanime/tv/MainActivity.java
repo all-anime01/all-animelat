@@ -31,7 +31,13 @@ import androidx.media3.common.util.UnstableApi;
 import androidx.media3.datasource.DefaultHttpDataSource;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
+import androidx.media3.ui.CaptionStyleCompat;
 import androidx.media3.ui.PlayerView;
+import androidx.media3.ui.SubtitleView;
+import android.graphics.Typeface;
+import android.view.LayoutInflater;
+import android.widget.ImageButton;
 
 import java.io.ByteArrayInputStream;
 import java.util.HashMap;
@@ -260,6 +266,7 @@ public class MainActivity extends Activity {
 
     // ===== Reproductor NATIVO (ExoPlayer) =====================================
     private ExoPlayer exo;
+    private DefaultTrackSelector trackSelector;
     private PlayerView playerView;
     private FrameLayout exoContainer;
     private boolean exoOpen = false;
@@ -267,20 +274,42 @@ public class MainActivity extends Activity {
     @UnstableApi
     private void ensureExo() {
         if (exo != null) return;
-        exo = new ExoPlayer.Builder(this).build();
-        playerView = new PlayerView(this);
+        // Selector de pistas: PREFIERE subtítulos en español y activa subs de idioma
+        // indeterminado → arregla que el CC no cargara. El engranaje de ajustes deja
+        // cambiar audio/subtítulos/velocidad.
+        trackSelector = new DefaultTrackSelector(this);
+        trackSelector.setParameters(trackSelector.buildUponParameters()
+                .setPreferredTextLanguages("es", "spa", "lat", "es-419")
+                .setPreferredAudioLanguages("es", "spa", "lat")
+                .setSelectUndeterminedTextLanguage(true));
+        exo = new ExoPlayer.Builder(this).setTrackSelector(trackSelector).build();
+
+        // Inflar el reproductor propio (rojo, estilo Prime Video) con su controlador.
+        playerView = (PlayerView) LayoutInflater.from(this).inflate(R.layout.aa_player_view, null);
         playerView.setPlayer(exo);
-        playerView.setUseController(true);
         playerView.setControllerShowTimeoutMs(4000);
         playerView.setControllerAutoShow(true);
-        playerView.setShowSubtitleButton(true);          // subtítulos
-        playerView.setShowFastForwardButton(true);       // adelantar
-        playerView.setShowRewindButton(true);            // retroceder
-        playerView.setShowNextButton(false);
-        playerView.setShowPreviousButton(false);
         playerView.setBackgroundColor(Color.BLACK);
         playerView.setFocusable(true);
         playerView.setFocusableInTouchMode(true);
+
+        // Subtítulos estilo Disney+: texto blanco, SIN fondo de caja (transparente),
+        // borde sutil para legibilidad, tamaño cómodo. Se ignoran estilos embebidos
+        // para que se vean uniformes.
+        SubtitleView sub = playerView.getSubtitleView();
+        if (sub != null) {
+            sub.setApplyEmbeddedStyles(false);
+            sub.setApplyEmbeddedFontSizes(false);
+            sub.setStyle(new CaptionStyleCompat(
+                    Color.WHITE, Color.TRANSPARENT, Color.TRANSPARENT,
+                    CaptionStyleCompat.EDGE_TYPE_OUTLINE, 0xFF000000,
+                    Typeface.create("sans-serif", Typeface.NORMAL)));
+            sub.setFractionalTextSize(0.055f);
+        }
+
+        // Botón de volumen propio: OK = silenciar/activar; izquierda/derecha baja/sube.
+        setupVolumeButton();
+
         exoContainer = new FrameLayout(this);
         exoContainer.setBackgroundColor(0xFF000000);
         exoContainer.setFocusable(true);
@@ -289,6 +318,29 @@ public class MainActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         rootLayout.addView(exoContainer, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    }
+
+    private float aaVolume = 1f;
+    private void setupVolumeButton() {
+        ImageButton vb = playerView.findViewById(R.id.aa_volume);
+        if (vb == null) return;
+        vb.setOnClickListener(v -> {
+            aaVolume = (aaVolume > 0f) ? 0f : 1f;   // OK alterna silencio
+            if (exo != null) exo.setVolume(aaVolume);
+            updateVolumeIcon(vb);
+            toast(aaVolume == 0f ? "Silencio" : "Sonido activado");
+        });
+        vb.setOnKeyListener((v, keyCode, ev) -> {
+            if (ev.getAction() != KeyEvent.ACTION_DOWN) return false;
+            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT)  { aaVolume = Math.max(0f, aaVolume - 0.1f); if (exo != null) exo.setVolume(aaVolume); updateVolumeIcon(vb); return true; }
+            if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) { aaVolume = Math.min(1f, aaVolume + 0.1f); if (exo != null) exo.setVolume(aaVolume); updateVolumeIcon(vb); return true; }
+            return false;
+        });
+        updateVolumeIcon(vb);
+    }
+    private void updateVolumeIcon(ImageButton vb) {
+        vb.setImageResource(aaVolume == 0f ? android.R.drawable.ic_lock_silent_mode
+                : android.R.drawable.ic_lock_silent_mode_off);
     }
 
     @UnstableApi

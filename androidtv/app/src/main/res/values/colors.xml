@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Rojo de marca All-Anime -->
+    <color name="aa_red">#E0231F</color>
+    <color name="aa_red_dim">#88E0231F</color>
+    <color name="aa_unplayed">#55FFFFFF</color>
+    <color name="aa_scrim">#B3000000</color>
+</resources>

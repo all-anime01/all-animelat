@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Controlador propio de All-Anime TV (rojo, estilo Prime Video). Usa los IDs
+     estándar exo_* para que PlayerView los cablee solo (play/pausa, seek, tiempo,
+     CC, ajustes). Añade un botón propio de volumen (@id/aa_volume). -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Oscurecido de fondo para legibilidad de los controles -->
+    <View android:id="@id/exo_controls_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/aa_scrim"/>
+
+    <!-- Barra inferior: tiempo a la izquierda, botones a la derecha -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="18dp"
+        android:paddingEnd="10dp"
+        android:layout_marginBottom="6dp"
+        android:layoutDirection="ltr">
+
+        <TextView android:id="@id/exo_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:includeFontPadding="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  /  "
+            android:textColor="#B3FFFFFF"
+            android:textSize="14sp"/>
+
+        <TextView android:id="@id/exo_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#B3FFFFFF"
+            android:textSize="14sp"
+            android:includeFontPadding="false"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <ImageButton android:id="@+id/aa_volume"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_lock_silent_mode_off"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:contentDescription="Volumen"
+            android:tint="#FFFFFF"/>
+
+        <ImageButton android:id="@id/exo_subtitle"
+            style="@style/ExoStyledControls.Button.Bottom.CC"/>
+
+        <ImageButton android:id="@id/exo_settings"
+            style="@style/ExoStyledControls.Button.Bottom.Settings"/>
+
+    </LinearLayout>
+
+    <!-- Barra de progreso ROJA -->
+    <androidx.media3.ui.DefaultTimeBar
+        android:id="@id/exo_progress"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="52dp"
+        app:played_color="@color/aa_red"
+        app:scrubber_color="@color/aa_red"
+        app:buffered_color="@color/aa_red_dim"
+        app:unplayed_color="@color/aa_unplayed"/>
+
+    <!-- Controles centrales: retroceder / play-pausa / adelantar -->
+    <LinearLayout
+        android:id="@id/exo_center_controls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:padding="12dp"
+        android:clipToPadding="false"
+        android:layoutDirection="ltr">
+
+        <include layout="@layout/exo_player_control_rewind_button"/>
+
+        <ImageButton android:id="@id/exo_play_pause"
+            style="@style/ExoStyledControls.Button.Center.PlayPause"/>
+
+        <include layout="@layout/exo_player_control_ffwd_button"/>
+
+    </LinearLayout>
+
+</merge>
