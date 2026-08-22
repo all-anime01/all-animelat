@@ -116,7 +116,39 @@ public class MainActivity extends Activity {
         @JavascriptInterface public void toggleCursor() { runOnUiThread(() -> toggleCursor()); }
         @JavascriptInterface public boolean cursorAvailable() { return true; }
         @JavascriptInterface public boolean isTV() { return BuildConfig.IS_TV; }
-        @JavascriptInterface public void videoLoaded() { /* no-op: el repaint por resize no ayudaba */ }
+        // El sitio avisa que cargó el video → inyectamos un GESTO DE SCROLL real (lo
+        // único que repinta el SurfaceView del video en la WebView de Fire TV; el
+        // micro-scroll por JS no basta). Como un scroll a mano, pero automático.
+        @JavascriptInterface public void videoLoaded() {
+            runOnUiThread(() -> { nudgeScroll(); rootLayout.postDelayed(MainActivity.this::nudgeScroll, 1500);
+                rootLayout.postDelayed(MainActivity.this::nudgeScroll, 3500); });
+        }
+    }
+
+    // Inyecta un gesto de scroll (baja y vuelve) en la WebView del frente → fuerza a
+    // Chromium a recomponer y PINTAR el video que estaba en negro.
+    private void nudgeScroll() {
+        WebView t = (customView != null) ? webView : webView;   // el scroll va a la webView del sitio
+        if (t == null) return;
+        int w = t.getWidth(), h = t.getHeight();
+        if (w <= 0 || h <= 0) return;
+        float x = w / 2f, y = h * 0.82f;   // en la zona de detalles (debajo del video)
+        swipe(t, x, y, x, y - dp(90));      // baja
+        rootLayout.postDelayed(() -> swipe(t, x, y - dp(90), x, y), 140);   // vuelve
+    }
+    private void swipe(View v, float x1, float y1, float x2, float y2) {
+        long t0 = SystemClock.uptimeMillis();
+        try {
+            MotionEvent d = MotionEvent.obtain(t0, t0, MotionEvent.ACTION_DOWN, x1, y1, 0);
+            v.dispatchTouchEvent(d); d.recycle();
+            for (int i = 1; i <= 4; i++) {
+                float xi = x1 + (x2 - x1) * i / 4f, yi = y1 + (y2 - y1) * i / 4f;
+                MotionEvent m = MotionEvent.obtain(t0, t0 + i * 12, MotionEvent.ACTION_MOVE, xi, yi, 0);
+                v.dispatchTouchEvent(m); m.recycle();
+            }
+            MotionEvent u = MotionEvent.obtain(t0, t0 + 60, MotionEvent.ACTION_UP, x2, y2, 0);
+            v.dispatchTouchEvent(u); u.recycle();
+        } catch (Exception ignored) {}
     }
 
     // Relanzar la app desde el launcher (Fire TV / teléfono) vuelve al INICIO en

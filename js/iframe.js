@@ -158,6 +158,9 @@ function go_to_player(url) {
   // se pinte SOLO, sin que el usuario tenga que hacer scroll a mano.
   function aaRepaintNudge() {
     try { if (window.parent && window.parent !== window) window.parent.postMessage({ aa: "repaint" }, "*"); } catch {}
+    // App nativa: pide un GESTO DE SCROLL real (lo hace la app), que es lo único que
+    // repinta el SurfaceView del video en la WebView de Fire TV.
+    try { const A = window.top && window.top.AAApp; if (A && A.videoLoaded) A.videoLoaded(); } catch {}
   }
   [700, 1800, 3200, 5000, 7000].forEach((ms) => setTimeout(aaRepaintNudge, ms));
 
