@@ -89,14 +89,11 @@ public class MainActivity extends Activity {
         s.setJavaScriptCanOpenWindowsAutomatically(false);
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
-        // UA: nos identificamos como CHROME NORMAL (quitamos el marcador "wv" de
-        // WebView y NO añadimos sufijo). Motivo: muchos hosts de video (VidHide/
-        // Streamwish/VOE/Filemoon) sirven un reproductor ROTO/NEGRO a las WebView y el
-        // bueno a un navegador normal → por eso en Silk se ve y en la app no. Con UA de
-        // Chrome, el host cree que es un navegador y da el player que SÍ se ve.
-        // La app se detecta en el sitio por el puente window.AAApp (no por UA).
-        String ua = s.getUserAgentString()
-                .replace("; wv)", ")").replace(" wv)", ")").replace("; wv;", ";");
+        // UA igual que en las primeras versiones que SÍ reproducían (el "wv" NO era el
+        // problema: esa versión lo tenía y funcionaba). Sufijo para que el sitio sepa
+        // que es la app; detección también por el puente window.AAApp.
+        String ua = s.getUserAgentString() + " AllAnimeApp/1.0";
+        if (BuildConfig.IS_TV) ua += " AllAnimeTV/1.0";
         s.setUserAgentString(ua);
 
         // NOTA: NO forzar setLayerType ni setBackgroundColor(BLACK) — un fondo opaco
@@ -218,20 +215,11 @@ public class MainActivity extends Activity {
             return true; // true = manejado → la app no se cierra
         }
 
-        @Override
-        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest req) {
-            String url = req.getUrl() != null ? req.getUrl().toString() : null;
-            // PRIVILEGIO ad-free: las redes de anuncios de la PÁGINA (Adsterra, etc.)
-            // solo se bloquean para usuarios ad-free (pago o activados por el admin).
-            // Los usuarios GRATUITOS conservan la publicidad de la página (ingresos).
-            // Los popunders/redirecciones peligrosas de los SERVERS se bloquean para
-            // TODOS aparte: window.open en onCreateWindow (return false) y redirects
-            // de la vista principal en handle() (main && isAdHost) → sin sustos.
-            if (adFree && isAdHost(url)) {
-                return new WebResourceResponse("text/plain", "utf-8", new ByteArrayInputStream(new byte[0]));
-            }
-            return super.shouldInterceptRequest(view, req);
-        }
+        // NOTA: se ELIMINÓ shouldInterceptRequest. En las primeras versiones (que SÍ
+        // reproducían) NO existía; bloquear recursos a nivel de red rompía el
+        // reproductor del host/YouTube (les cortaba scripts/analytics que necesitan)
+        // → video NEGRO. Los anuncios de la PÁGINA los quita `js/adfree.js` en el DOM
+        // (para adFree), y los popups de los servers los bloquea onCreateWindow.
 
         @Override
         public void onPageFinished(WebView view, String url) {
