@@ -37,7 +37,9 @@ import androidx.media3.exoplayer.hls.HlsMediaSource;
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
 import androidx.media3.exoplayer.source.MediaSource;
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
+import androidx.media3.ui.AspectRatioFrameLayout;
 import androidx.media3.ui.CaptionStyleCompat;
+import androidx.media3.ui.DefaultTimeBar;
 import androidx.media3.ui.PlayerView;
 import androidx.media3.ui.SubtitleView;
 import android.graphics.Typeface;
@@ -312,14 +314,32 @@ public class MainActivity extends Activity {
             }
         });
 
-        // Inflar el reproductor propio (rojo, estilo Prime Video) con su controlador.
-        playerView = (PlayerView) LayoutInflater.from(this).inflate(R.layout.aa_player_view, null);
+        // Controlador POR DEFECTO de media3 (trae TODO funcionando: play/pausa,
+        // retroceder/adelantar, barra de tiempo, selección de subtítulos, engranaje de
+        // ajustes con audio+velocidad, y pantalla completa). Un layout propio lo rompía.
+        playerView = new PlayerView(this);
         playerView.setPlayer(exo);
-        playerView.setControllerShowTimeoutMs(4000);
+        playerView.setUseController(true);
+        playerView.setControllerShowTimeoutMs(4500);
         playerView.setControllerAutoShow(true);
+        playerView.setShowSubtitleButton(true);       // botón CC → seleccionar subtítulos
+        playerView.setShowFastForwardButton(true);    // adelantar
+        playerView.setShowRewindButton(true);         // retroceder
+        playerView.setShowNextButton(false);
+        playerView.setShowPreviousButton(false);
         playerView.setBackgroundColor(Color.BLACK);
         playerView.setFocusable(true);
         playerView.setFocusableInTouchMode(true);
+        // Botón de PANTALLA COMPLETA / VENTANA (alterna ajuste ↔ llenar, como Crunchyroll).
+        playerView.setFullscreenButtonClickListener(isFull ->
+                playerView.setResizeMode(isFull
+                        ? AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+                        : AspectRatioFrameLayout.RESIZE_MODE_FIT));
+        // Barra de progreso ROJA (color de marca) sobre el controlador estándar.
+        try {
+            DefaultTimeBar tb = playerView.findViewById(androidx.media3.ui.R.id.exo_progress);
+            if (tb != null) { tb.setPlayedColor(0xFFE0231F); tb.setScrubberColor(0xFFE0231F); tb.setBufferedColor(0x88E0231F); }
+        } catch (Exception ignored) {}
 
         // Subtítulos estilo Disney+: texto blanco, SIN fondo de caja (transparente),
         // borde sutil para legibilidad, tamaño cómodo. Se ignoran estilos embebidos
@@ -335,9 +355,6 @@ public class MainActivity extends Activity {
             sub.setFractionalTextSize(0.055f);
         }
 
-        // Botón de volumen propio: OK = silenciar/activar; izquierda/derecha baja/sube.
-        setupVolumeButton();
-
         exoContainer = new FrameLayout(this);
         exoContainer.setBackgroundColor(0xFF000000);
         exoContainer.setFocusable(true);
@@ -348,28 +365,10 @@ public class MainActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
+    // Volumen: en TV se controla con las teclas de volumen del control (pasan al sistema);
+    // aaVolume queda a tope por defecto. (Una barra propia requería layout personalizado,
+    // que rompía los controles estándar, así que se usa el volumen del dispositivo.)
     private float aaVolume = 1f;
-    private void setupVolumeButton() {
-        ImageButton vb = playerView.findViewById(R.id.aa_volume);
-        if (vb == null) return;
-        vb.setOnClickListener(v -> {
-            aaVolume = (aaVolume > 0f) ? 0f : 1f;   // OK alterna silencio
-            if (exo != null) exo.setVolume(aaVolume);
-            updateVolumeIcon(vb);
-            toast(aaVolume == 0f ? "Silencio" : "Sonido activado");
-        });
-        vb.setOnKeyListener((v, keyCode, ev) -> {
-            if (ev.getAction() != KeyEvent.ACTION_DOWN) return false;
-            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT)  { aaVolume = Math.max(0f, aaVolume - 0.1f); if (exo != null) exo.setVolume(aaVolume); updateVolumeIcon(vb); return true; }
-            if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) { aaVolume = Math.min(1f, aaVolume + 0.1f); if (exo != null) exo.setVolume(aaVolume); updateVolumeIcon(vb); return true; }
-            return false;
-        });
-        updateVolumeIcon(vb);
-    }
-    private void updateVolumeIcon(ImageButton vb) {
-        vb.setImageResource(aaVolume == 0f ? android.R.drawable.ic_lock_silent_mode
-                : android.R.drawable.ic_lock_silent_mode_off);
-    }
 
     @UnstableApi
     private void playNativeStream(String streamUrl, Map<String, String> headers) {
