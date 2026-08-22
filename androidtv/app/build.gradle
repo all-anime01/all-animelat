@@ -12,8 +12,8 @@ android {
         targetSdk 36
         // SUBIR versionCode en CADA cambio → al instalar la nueva APK (misma firma
         // debug) se ACTUALIZA en sitio, sin desinstalar. versionName es informativo.
-        versionCode 17
-        versionName "2.6"
+        versionCode 18
+        versionName "2.7"
     }
 
     // Dos apps desde el mismo código: 'mobile' (Android teléfono/tablet, cualquier

@@ -133,9 +133,15 @@ public class MainActivity extends Activity {
         // puede extraer, no hace nada y queda la WebView (iframe) de respaldo.
         @JavascriptInterface public void playNative(String url) {
             if (url == null || url.isEmpty()) return;
+            String h; try { h = new java.net.URL(url).getHost(); } catch (Exception e) { h = url; }
+            final String host = h;
+            runOnUiThread(() -> toast("All-Anime TV: cargando " + host + "…"));
             new Thread(() -> {
                 final Extractor.Result r = Extractor.extract(url);
-                if (r != null && r.url != null) runOnUiThread(() -> playNativeStream(r));
+                runOnUiThread(() -> {
+                    if (r != null && r.url != null) { toast("▶ Reproduciendo en All-Anime TV"); playNativeStream(r); }
+                    else toast("No se pudo extraer " + host + " — usando reproductor web");
+                });
             }).start();
         }
     }
