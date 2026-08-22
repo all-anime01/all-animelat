@@ -262,14 +262,12 @@ public class MainActivity extends Activity {
         // El sitio/servidor intenta abrir una ventana nueva (anuncio popunder).
         @Override
         public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
-            // CLAVE (por esto se veía NEGRO): el reproductor de varios servers necesita
-            // que window.open "funcione"; si se bloquea del todo (return false) su flujo
-            // se rompe y el video queda en NEGRO. Por eso ANTES funcionaba: la app SÍ
-            // abría la ventana. Solución estilo Brave sin romper el video: ACEPTAMOS la
-            // ventana (el server reproduce) pero el popup queda INVISIBLE y se cierra
-            // solo enseguida → el anuncio no se ve y el episodio se reproduce normal.
-            openPopupSilent(resultMsg);
-            return true;
+            // BLOQUEO ESTILO BRAVE (return false): confirmado por el usuario que ESTO
+            // funciona y NO crashea; el video reproduce bien con el bloqueo activo. NO
+            // reabrir el popup (eso reintroducía el crash). El popunder simplemente no
+            // se abre; el video sigue. Redes de anuncios ya filtradas en
+            // shouldInterceptRequest (solo adFree) y redirects en handle() (main && isAdHost).
+            return false;
         }
     }
 
@@ -456,27 +454,6 @@ public class MainActivity extends Activity {
         resultMsg.sendToTarget();
 
         if (autoClose) { pendingAutoClose = this::closePopup; rootLayout.postDelayed(pendingAutoClose, 2000); }
-    }
-
-    // Estilo Brave SIN romper el video: le da al server la ventana que pide (para que
-    // su reproductor funcione) pero el popup queda INVISIBLE (nunca se ve el anuncio) y
-    // se cierra solo enseguida. Reutiliza el WebView del popup (no crashea).
-    private void openPopupSilent(Message resultMsg) {
-        ensurePopup();
-        if (pendingAutoClose != null) { rootLayout.removeCallbacks(pendingAutoClose); pendingAutoClose = null; }
-        if (popupContainer.getParent() == null) {
-            rootLayout.addView(popupContainer, new FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        }
-        popupContainer.setVisibility(View.INVISIBLE);   // adjunto (carga) pero NO a la vista
-        popupOpen = true;
-        try {
-            WebView.WebViewTransport t = (WebView.WebViewTransport) resultMsg.obj;
-            t.setWebView(popupView);
-            resultMsg.sendToTarget();
-        } catch (Exception ignored) {}
-        pendingAutoClose = this::closePopup;
-        rootLayout.postDelayed(pendingAutoClose, 1500);   // se cierra solo → sin anuncio
     }
 
     // Cierra el anuncio: oculta el contenedor y descarga el WebView (about:blank),
