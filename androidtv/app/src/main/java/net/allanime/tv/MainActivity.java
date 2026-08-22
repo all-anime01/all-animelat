@@ -722,7 +722,19 @@ public class MainActivity extends Activity {
 
         // Con el reproductor nativo abierto, TODAS las teclas van a SUS controles
         // (play/pausa/seek/subtítulos con el D-pad). BACK lo maneja onKeyDown (cierra).
-        if (exoOpen) return super.dispatchKeyEvent(event);
+        if (exoOpen) {
+            // Si la barra de controles está OCULTA, la PRIMERA tecla (que no sea BACK)
+            // solo la vuelve a mostrar y se consume — así SIEMPRE reaparecen los
+            // controles tras dar OK/pausa o tras el auto-ocultado.
+            if (action == KeyEvent.ACTION_DOWN
+                    && keyCode != KeyEvent.KEYCODE_BACK
+                    && playerView != null && !playerView.isControllerFullyVisible()) {
+                playerView.showController();
+                playerView.requestFocus();
+                return true;
+            }
+            return super.dispatchKeyEvent(event);
+        }
 
         // Tecla MENÚ (☰) → activa/desactiva el cursor virtual (una vez, al soltar).
         if (keyCode == KeyEvent.KEYCODE_MENU) {
