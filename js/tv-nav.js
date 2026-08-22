@@ -385,6 +385,16 @@
       }
       if (current) {
         e.preventDefault();
+        // Si el foco está en una TARJETA de anime (o su enlace), ENTRAR al anime
+        // directo por su data-href. Así OK siempre entra aunque el preview/tráiler
+        // esté encima o intente capturar la entrada.
+        const card = current.closest ? current.closest(".anime-card") : null;
+        const href = card && card.dataset && card.dataset.href;
+        if (href) {
+          try { if (typeof window.__aaCardPreviewClose === "function") window.__aaCardPreviewClose(); } catch {}
+          location.href = href;
+          return;
+        }
         current.click();   // dispara la acción real (link/botón) del elemento enfocado
       }
     }

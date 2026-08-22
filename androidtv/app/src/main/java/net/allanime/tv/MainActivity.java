@@ -131,12 +131,13 @@ public class MainActivity extends Activity {
         if (launcher) goHome();
     }
 
-    // Cierra popups/fullscreen/cursor y carga el inicio del sitio.
+    // Cierra popups/fullscreen/cursor, BORRA la caché y carga el inicio del sitio
+    // FRESCO (así los cambios web se ven sí o sí al reabrir).
     private void goHome() {
         if (popupOpen) closePopup();
         if (customView != null) hideCustomVideo();
         if (cursorMode) toggleCursor();
-        if (webView != null) webView.loadUrl(SITE_URL);
+        if (webView != null) { webView.clearCache(true); webView.loadUrl(SITE_URL); }
     }
 
     // Dominios de anuncios/tracking a bloquear cuando el usuario tiene adFree.
@@ -547,8 +548,20 @@ public class MainActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
+    private boolean wasStopped = false;
     @Override protected void onPause() { super.onPause(); if (webView != null) webView.onPause(); }
-    @Override protected void onResume() { super.onResume(); if (webView != null) webView.onResume(); }
+    @Override protected void onStop() { super.onStop(); wasStopped = true; }
+    @Override protected void onResume() {
+        super.onResume();
+        if (webView != null) webView.onResume();
+        // Al VOLVER a la app tras haberla dejado (Home), recarga FRESCO desde el inicio
+        // → así los cambios/actualizaciones del sitio se aplican y se ve al instante.
+        // (No recarga en cambios de foco breves, solo tras un onStop real.)
+        if (wasStopped) {
+            wasStopped = false;
+            if (webView != null) { webView.clearCache(true); webView.loadUrl(SITE_URL); }
+        }
+    }
     @Override protected void onDestroy() {
         try { if (popupView != null) { popupView.destroy(); popupView = null; } } catch (Exception ignored) {}
         if (webView != null) { webView.destroy(); webView = null; }

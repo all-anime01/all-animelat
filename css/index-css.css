@@ -3218,6 +3218,13 @@ html.aa-tv #episode-iframe {
     height: 100%;
 }
 html.aa-tv .player-details-container { padding: 3vh max(4vw, 32px) 7vh; }
+
+/* TV: tarjetas MÁS PEQUEÑAS estilo Crunchyroll (más por fila → se ve ligero y no
+   gigante). Aplica solo en .aa-tv; escritorio/móvil quedan igual. */
+html.aa-tv .hrow .anime-card { width: 158px; }
+html.aa-tv .anime-grid,
+html.aa-tv .anime-listing-grid { grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)) !important; gap: 14px !important; }
+html.aa-tv .anime-card .card-image-container { border-radius: 8px; }
 html.aa-tv .player-details-content { max-width: 1500px; gap: 3vw; }
 html.aa-tv .close-player {
     top: max(2rem, 3.5vh);
