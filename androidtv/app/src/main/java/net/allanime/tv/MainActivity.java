@@ -191,8 +191,11 @@ public class MainActivity extends Activity {
                 v.postDelayed(() -> { if (extracting) v.evaluateJavascript(js, null); }, 1500);
             }
         });
-        // 2x2 px, invisible, detrás de todo (attached para que reproduzca y pida el stream).
-        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(2, 2);
+        // Tamaño completo pero INVISIBLE (alpha 0) y DETRÁS de todo (índice 0): así el
+        // reproductor del host se inicializa bien y pide el stream, sin verse. (2x2 era
+        // muy chico y algunos players no arrancaban.)
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         rootLayout.addView(extractWv, 0, lp);
         extractWv.setAlpha(0f);
     }
@@ -200,9 +203,11 @@ public class MainActivity extends Activity {
     private boolean isStreamUrl(String u) {
         if (u == null) return false;
         String x = u.toLowerCase();
-        if (x.contains(".m3u8")) return true;
-        if (x.contains("/hls/") || x.contains("master.txt") || x.contains("index.m3u8")) return true;
-        if (x.contains(".mp4") && !x.contains("thumb") && !x.contains("preview") && !x.contains("sprite")) return true;
+        if (x.contains(".m3u8") || x.contains("m3u8")) return true;
+        if (x.contains("/hls/") || x.contains("/hls2/") || x.contains("master.txt") || x.contains("index.m3u8")
+                || x.contains("playlist") || x.contains("manifest") || x.contains(".mpd")) return true;
+        if ((x.contains(".mp4") || x.contains("/get_video") || x.contains("googlevideo.com/videoplayback"))
+                && !x.contains("thumb") && !x.contains("preview") && !x.contains("sprite") && !x.contains("poster")) return true;
         return false;
     }
 
@@ -253,10 +258,19 @@ public class MainActivity extends Activity {
         playerView = new PlayerView(this);
         playerView.setPlayer(exo);
         playerView.setUseController(true);
-        playerView.setControllerShowTimeoutMs(3500);
+        playerView.setControllerShowTimeoutMs(4000);
+        playerView.setControllerAutoShow(true);
+        playerView.setShowSubtitleButton(true);          // subtítulos
+        playerView.setShowFastForwardButton(true);       // adelantar
+        playerView.setShowRewindButton(true);            // retroceder
+        playerView.setShowNextButton(false);
+        playerView.setShowPreviousButton(false);
         playerView.setBackgroundColor(Color.BLACK);
+        playerView.setFocusable(true);
+        playerView.setFocusableInTouchMode(true);
         exoContainer = new FrameLayout(this);
         exoContainer.setBackgroundColor(0xFF000000);
+        exoContainer.setFocusable(true);
         exoContainer.setVisibility(View.GONE);
         exoContainer.addView(playerView, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -275,8 +289,13 @@ public class MainActivity extends Activity {
             exo.setMediaSource(new DefaultMediaSourceFactory(dsf).createMediaSource(MediaItem.fromUri(streamUrl)));
             exoContainer.setVisibility(View.VISIBLE);
             exoContainer.bringToFront();
-            playerView.requestFocus();
             exoOpen = true;
+            // CONGELA la WebView detrás: no enfocable → el D-pad NO mueve el home/lista
+            // de servers por detrás; todo va a los controles del reproductor.
+            if (webView != null) { webView.setFocusable(false); webView.setFocusableInTouchMode(false); }
+            playerView.setUseController(true);
+            playerView.requestFocus();
+            playerView.showController();
             exo.prepare();
             exo.setPlayWhenReady(true);
         } catch (Exception ignored) {}
@@ -290,7 +309,8 @@ public class MainActivity extends Activity {
         stopExtractWv();
         try { if (exo != null) { exo.setPlayWhenReady(false); exo.stop(); exo.clearMediaItems(); } } catch (Exception ignored) {}
         if (exoContainer != null) exoContainer.setVisibility(View.GONE);
-        if (webView != null) webView.requestFocus();
+        // Devuelve el foco a la WebView (vuelve a la lista de servers).
+        if (webView != null) { webView.setFocusable(true); webView.setFocusableInTouchMode(true); webView.requestFocus(); }
     }
 
     // Inyecta un gesto de scroll (baja y vuelve) en la WebView del frente → fuerza a
@@ -699,6 +719,10 @@ public class MainActivity extends Activity {
     public boolean dispatchKeyEvent(KeyEvent event) {
         int keyCode = event.getKeyCode();
         int action = event.getAction();
+
+        // Con el reproductor nativo abierto, TODAS las teclas van a SUS controles
+        // (play/pausa/seek/subtítulos con el D-pad). BACK lo maneja onKeyDown (cierra).
+        if (exoOpen) return super.dispatchKeyEvent(event);
 
         // Tecla MENÚ (☰) → activa/desactiva el cursor virtual (una vez, al soltar).
         if (keyCode == KeyEvent.KEYCODE_MENU) {
