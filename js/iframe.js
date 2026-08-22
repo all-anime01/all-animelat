@@ -29,7 +29,9 @@ function aaBridge() { try { return window.AAApp || (window.top && window.top.AAA
 // VidHide…) quedan en negro en la WebView → los reproduce el nativo (ExoPlayer).
 function aaWebViewFriendly(url) {
   const u = String(url || "").toLowerCase();
-  return !!ytIdFrom(url) || u.includes("pelisplus") || u.includes("pelisplushd");
+  // embed69/PelisPlus tienen su PROPIO reproductor que SÍ se ve en la WebView (hacen
+  // la extracción del lado del servidor). No deben ir por el reproductor nativo.
+  return !!ytIdFrom(url) || u.includes("pelisplus") || u.includes("pelisplushd") || u.includes("embed69");
 }
 // Pantalla propia de "All-Anime TV" mientras el nativo extrae (así NUNCA se ve el
 // reproductor en negro del server por detrás). Si el nativo no logra el video,
