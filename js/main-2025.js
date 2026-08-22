@@ -1742,6 +1742,19 @@ $(document).ready(function () {
     if (i) i.className = on ? "fas fa-compress" : "fas fa-expand";
   });
 
+  // El reproductor (frame/player.html) pide un "empujón de repintado" cuando arranca
+  // el video: en la WebView de Fire TV el video queda NEGRO hasta que un scroll lo
+  // repinta (por eso al bajar a la info aparece). Hacemos ese micro-scroll por código
+  // en el contenedor que scrollea el usuario → el video se pinta SOLO.
+  window.addEventListener("message", (ev) => {
+    const d = ev && ev.data;
+    if (!d || typeof d !== "object" || d.aa !== "repaint") return;
+    const nudge = (el) => { if (el && el.scrollBy) { try { el.scrollBy(0, 24); el.scrollBy(0, -24); } catch {} } };
+    nudge(document.querySelector(".player-details-container"));
+    nudge(document.getElementById("episode-player-modal"));
+    try { window.scrollBy(0, 1); window.scrollBy(0, -1); } catch {}
+  });
+
   $("#close-player-modal").on("click", () => {
     clearAutoplay();
     const playerModal = $("#episode-player-modal");

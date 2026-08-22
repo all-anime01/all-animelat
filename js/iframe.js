@@ -148,7 +148,18 @@ function go_to_player(url) {
   // Ocultar la animación solo cuando ambas promesas se cumplen
   Promise.all([timerPromise, iframeLoadPromise]).then(() => {
     if (playerDisplay) playerDisplay.classList.remove("is-loading");
+    aaRepaintNudge();
   });
+
+  // EMPUJÓN DE REPINTADO: en la WebView de Fire TV/Android el video se queda en
+  // NEGRO hasta que un scroll lo repinta (por eso al bajar a la info aparece).
+  // Le pedimos al documento padre (la ficha) que haga un micro-scroll varias veces
+  // durante los primeros segundos (el video del server tarda en aparecer) para que
+  // se pinte SOLO, sin que el usuario tenga que hacer scroll a mano.
+  function aaRepaintNudge() {
+    try { if (window.parent && window.parent !== window) window.parent.postMessage({ aa: "repaint" }, "*"); } catch {}
+  }
+  [700, 1800, 3200, 5000, 7000].forEach((ms) => setTimeout(aaRepaintNudge, ms));
 
   // Lógica para mostrar/ocultar los controles (volver)
   let idleTimer = null;

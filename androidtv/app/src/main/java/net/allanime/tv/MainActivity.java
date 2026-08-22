@@ -154,6 +154,20 @@ public class MainActivity extends Activity {
         for (String h : AD_HOSTS) if (u.contains(h)) return true;
         return false;
     }
+
+    // Redes de anuncios INTRUSIVAS a bloquear a nivel de red (estilo Brave), para
+    // TODOS. SIN dominios de Google (YouTube/otros players los necesitan).
+    private static final String[] INTRUSIVE_ADS = {
+        "temptedrecognise.com", "effectivecpmnetwork.com", "acscdn.com", "tercetacker.com",
+        "adsterra", "propellerads", "propu.sh", "poweredby.jads", "onclickalgo", "hilltopads",
+        "popads", "popcash", "clickadu", "admaven", "mgid.com", "revcontent", "outbrain",
+        "taboola", "exoclick", "juicyads", "trafficjunky", "a-ads", "monetag", "clickadilla",
+        "adnxs", "hilltopads", "onclickmax", "admixer", "adskeeper", "bidgear",
+    };
+    private boolean isIntrusiveAd(String u) {
+        for (String h : INTRUSIVE_ADS) if (u.contains(h)) return true;
+        return false;
+    }
     // ¿Debe bloquearse esta navegación? (esquemas que sacan de la app o el market)
     private boolean blocksNavigation(String url) {
         if (url == null) return false;
@@ -215,11 +229,20 @@ public class MainActivity extends Activity {
             return true; // true = manejado → la app no se cierra
         }
 
-        // NOTA: se ELIMINÓ shouldInterceptRequest. En las primeras versiones (que SÍ
-        // reproducían) NO existía; bloquear recursos a nivel de red rompía el
-        // reproductor del host/YouTube (les cortaba scripts/analytics que necesitan)
-        // → video NEGRO. Los anuncios de la PÁGINA los quita `js/adfree.js` en el DOM
-        // (para adFree), y los popups de los servers los bloquea onCreateWindow.
+        // BLOQUEO estilo Brave (para TODOS): corta a nivel de red las redes de anuncios
+        // INTRUSIVAS (popunders/trackers tipo Adsterra) → mejor experiencia en los
+        // servers. IMPORTANTE: NO se bloquean dominios de Google (doubleclick/
+        // googlesyndication/adservice) porque YouTube/otros reproductores los necesitan
+        // y bloquearlos deja el video en negro. El negro que quedaba NO era esto (es un
+        // bug de repintado que se arregla con el micro-scroll del sitio).
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest req) {
+            String url = req.getUrl() != null ? req.getUrl().toString().toLowerCase() : null;
+            if (url != null && isIntrusiveAd(url)) {
+                return new WebResourceResponse("text/plain", "utf-8", new ByteArrayInputStream(new byte[0]));
+            }
+            return super.shouldInterceptRequest(view, req);
+        }
 
         @Override
         public void onPageFinished(WebView view, String url) {
