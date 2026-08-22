@@ -3269,3 +3269,14 @@ html.aa-tv body { overflow-x: hidden; }
 .player-video-container:-webkit-full-screen { width: 100vw; height: 100vh; max-height: none; background: #000; }
 .player-video-container:fullscreen #episode-iframe,
 .player-video-container:-webkit-full-screen #episode-iframe { width: 100%; height: 100%; }
+/* En TV la regla html.aa-tv .player-video-container{height:72vh} tenía MÁS
+   especificidad y ganaba incluso en pantalla completa → el video salía a ~1/4.
+   Forzamos que en fullscreen llene toda la pantalla, con más peso e !important. */
+html.aa-tv .player-video-container:fullscreen,
+html.aa-tv .player-video-container:-webkit-full-screen {
+    width: 100vw !important; height: 100vh !important; max-height: none !important;
+}
+html.aa-tv .player-video-container:fullscreen #episode-iframe,
+html.aa-tv .player-video-container:-webkit-full-screen #episode-iframe {
+    width: 100vw !important; height: 100vh !important; max-width: none !important; max-height: none !important;
+}
