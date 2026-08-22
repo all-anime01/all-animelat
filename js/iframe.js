@@ -113,7 +113,10 @@ function go_to_player(url) {
   // el puente, así que solo se usa el iframe de siempre.
   try {
     const A = window.AAApp || (window.top && window.top.AAApp);
-    if (A && typeof A.playNative === "function") A.playNative(url);
+    // YouTube NO va por el reproductor nativo (ExoPlayer no reproduce YouTube y su
+    // iframe SÍ se ve bien en la WebView). El resto de hosts directos sí: la app los
+    // extrae y reproduce en ExoPlayer (en la WebView quedan en negro).
+    if (A && typeof A.playNative === "function" && !ytIdFrom(url)) A.playNative(url);
   } catch {}
   const playerDisplay = document.getElementById("PlayerDisplay");
   const displayVideo = document.querySelector(".DisplayVideo");

@@ -206,7 +206,10 @@ public class MainActivity extends Activity {
         if (x.contains(".m3u8") || x.contains("m3u8")) return true;
         if (x.contains("/hls/") || x.contains("/hls2/") || x.contains("master.txt") || x.contains("index.m3u8")
                 || x.contains("playlist") || x.contains("manifest") || x.contains(".mpd")) return true;
-        if ((x.contains(".mp4") || x.contains("/get_video") || x.contains("googlevideo.com/videoplayback"))
+        // (NO capturar googlevideo.com/videoplayback: son los streams de YouTube,
+        //  con throttle/nsig, que no se reproducen fuera de su player. YouTube va por
+        //  su iframe, no por ExoPlayer.)
+        if ((x.contains(".mp4") || x.contains("/get_video"))
                 && !x.contains("thumb") && !x.contains("preview") && !x.contains("sprite") && !x.contains("poster")) return true;
         return false;
     }
