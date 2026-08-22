@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-Anime TV</title>
+    <meta name="robots" content="noindex,nofollow">
+    <style>
+        /* Reproductor envoltorio "All-Anime TV": carga el servidor en un iframe
+           ANIDADO (como hace pelisplus/embed69). En la WebView de Fire TV / smart TV
+           esto hace que el video se pinte como TEXTURA en vez de una SurfaceView que
+           queda en NEGRO cuando el host se carga directo. Solo se usa en las apps. */
+        html, body { margin: 0; padding: 0; height: 100%; width: 100%; background: #000; overflow: hidden; }
+        #host {
+            position: absolute; inset: 0; top: 0; left: 0;
+            width: 100%; height: 100%; border: 0; display: block; background: #000;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="host"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture; clipboard-write; gyroscope"
+            allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"
+            frameborder="0" scrolling="no"></iframe>
+    <script>
+        (function () {
+            var p = new URLSearchParams(location.search);
+            var u = p.get("u") || "";
+            try { u = decodeURIComponent(u); } catch (e) {}
+            var f = document.getElementById("host");
+            if (u && /^https?:\/\//i.test(u)) {
+                f.src = u;
+            } else {
+                document.body.innerHTML = "<p style='color:#fff;font-family:sans-serif;text-align:center;margin-top:20vh'>Enlace inválido.</p>";
+            }
+        })();
+    </script>
+</body>
+</html>
