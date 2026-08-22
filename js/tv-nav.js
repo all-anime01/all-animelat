@@ -45,13 +45,6 @@
     html.aa-tv iframe.aa-focus, html.aa-tv #episode-iframe.aa-focus, html.aa-tv #IFR.aa-focus {
       outline: none !important; box-shadow: none !important;
     }
-    html.aa-tv .player-video-container:has(#episode-iframe.aa-focus)::after {
-      content: "▶  Pulsa OK / Play para elegir servidor";
-      position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
-      background: rgba(255,90,60,.95); color: #fff; font-weight: 700; font-size: 15px;
-      padding: 8px 16px; border-radius: 30px; z-index: 61; pointer-events: none;
-      box-shadow: 0 6px 20px rgba(0,0,0,.5);
-    }
     html.aa-tv .anime-card.aa-focus, html.aa-tv .cr-card.aa-focus,
     html.aa-tv .episode-detail-card.aa-focus, html.aa-tv .cr-list-item.aa-focus {
       transform: scale(1.06) !important; transition: transform .12s ease;
