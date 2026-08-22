@@ -128,22 +128,116 @@ public class MainActivity extends Activity {
         @JavascriptInterface public boolean cursorAvailable() { return true; }
         @JavascriptInterface public boolean isTV() { return BuildConfig.IS_TV; }
         @JavascriptInterface public void videoLoaded() { /* no-op */ }
-        // El sitio avisa el server elegido → la app intenta EXTRAER el video directo y
-        // reproducirlo en ExoPlayer nativo (la WebView deja estos hosts en negro). Si no
-        // puede extraer, no hace nada y queda la WebView (iframe) de respaldo.
+        // El sitio avisa el server elegido → la app lo carga en una WebView OCULTA que
+        // ejecuta el JS del host (reto anti-bot) y, al pedir el .m3u8/.mp4, capturamos
+        // ese enlace y lo reproducimos en ExoPlayer nativo (la WebView normal deja
+        // estos hosts en NEGRO). Igual que hace embed69, pero con nuestros servers.
         @JavascriptInterface public void playNative(String url) {
             if (url == null || url.isEmpty()) return;
             String h; try { h = new java.net.URL(url).getHost(); } catch (Exception e) { h = url; }
             final String host = h;
-            runOnUiThread(() -> toast("All-Anime TV: cargando " + host + "…"));
-            new Thread(() -> {
-                final Extractor.Result r = Extractor.extract(url);
-                runOnUiThread(() -> {
-                    if (r != null && r.url != null) { toast("▶ Reproduciendo en All-Anime TV"); playNativeStream(r); }
-                    else toast("No se pudo extraer " + host + " — usando reproductor web");
-                });
-            }).start();
+            runOnUiThread(() -> { toast("All-Anime TV: cargando " + host + "…"); startExtraction(url); });
         }
+    }
+
+    private static final String CHROME_UA =
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+    private static String originOf(String u) {
+        try { java.net.URL x = new java.net.URL(u); return x.getProtocol() + "://" + x.getHost() + "/"; } catch (Exception e) { return u; }
+    }
+
+    // ===== Extracción asistida por WebView oculta =============================
+    private WebView extractWv;
+    private boolean extracting = false;
+    private String currentEmbed = null;
+    private Runnable extractTimeout;
+
+    private void ensureExtractWv() {
+        if (extractWv != null) return;
+        extractWv = new WebView(this);
+        WebSettings s = extractWv.getSettings();
+        s.setJavaScriptEnabled(true);
+        s.setDomStorageEnabled(true);
+        s.setDatabaseEnabled(true);
+        s.setMediaPlaybackRequiresUserGesture(false);   // autoplay → dispara la petición del stream
+        s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        s.setUserAgentString(CHROME_UA);
+        extractWv.setWebChromeClient(new WebChromeClient() {
+            @Override public boolean onCreateWindow(WebView v, boolean d, boolean g, Message m) { return false; }
+        });
+        extractWv.setWebViewClient(new WebViewClient() {
+            @Override public WebResourceResponse shouldInterceptRequest(WebView v, WebResourceRequest req) {
+                try {
+                    String u = req.getUrl() != null ? req.getUrl().toString() : "";
+                    if (extracting && isStreamUrl(u)) {
+                        extracting = false;
+                        final String su = u;
+                        final Map<String, String> hh = req.getRequestHeaders();
+                        runOnUiThread(() -> onStreamFound(su, hh));
+                    }
+                } catch (Exception ignored) {}
+                return super.shouldInterceptRequest(v, req);
+            }
+            @Override public void onPageFinished(WebView v, String u) {
+                if (!extracting) return;
+                // Silencia (para que no suene la WebView oculta) e intenta iniciar la
+                // reproducción → así el host pide el .m3u8 y lo capturamos.
+                String js = "(function(){try{var vs=document.getElementsByTagName('video');" +
+                        "for(var i=0;i<vs.length;i++){vs[i].muted=true;try{vs[i].play();}catch(e){}}" +
+                        "var sel=['.jw-icon-display','.vjs-big-play-button','#player','.play-button','.play','button'];" +
+                        "for(var j=0;j<sel.length;j++){var b=document.querySelector(sel[j]);if(b){b.click();break;}}" +
+                        "if(document.body)document.body.click();}catch(e){}})();";
+                v.evaluateJavascript(js, null);
+                v.postDelayed(() -> { if (extracting) v.evaluateJavascript(js, null); }, 1500);
+            }
+        });
+        // 2x2 px, invisible, detrás de todo (attached para que reproduzca y pida el stream).
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(2, 2);
+        rootLayout.addView(extractWv, 0, lp);
+        extractWv.setAlpha(0f);
+    }
+
+    private boolean isStreamUrl(String u) {
+        if (u == null) return false;
+        String x = u.toLowerCase();
+        if (x.contains(".m3u8")) return true;
+        if (x.contains("/hls/") || x.contains("master.txt") || x.contains("index.m3u8")) return true;
+        if (x.contains(".mp4") && !x.contains("thumb") && !x.contains("preview") && !x.contains("sprite")) return true;
+        return false;
+    }
+
+    @UnstableApi
+    private void startExtraction(String embedUrl) {
+        ensureExo();
+        ensureExtractWv();
+        currentEmbed = embedUrl;
+        extracting = true;
+        if (extractTimeout != null) rootLayout.removeCallbacks(extractTimeout);
+        extractTimeout = () -> {
+            if (extracting) { extracting = false; stopExtractWv();
+                toast("No se pudo cargar este servidor — prueba otro"); }
+        };
+        rootLayout.postDelayed(extractTimeout, 22000);
+        Map<String, String> h = new HashMap<>();
+        h.put("Referer", originOf(embedUrl));
+        try { extractWv.loadUrl(embedUrl, h); } catch (Exception e) { extractWv.loadUrl(embedUrl); }
+    }
+
+    private void stopExtractWv() {
+        try { if (extractWv != null) { extractWv.stopLoading(); extractWv.loadUrl("about:blank"); } } catch (Exception ignored) {}
+    }
+
+    @UnstableApi
+    private void onStreamFound(String streamUrl, Map<String, String> reqHeaders) {
+        if (extractTimeout != null) rootLayout.removeCallbacks(extractTimeout);
+        String ref = (reqHeaders != null && reqHeaders.get("Referer") != null) ? reqHeaders.get("Referer") : originOf(currentEmbed);
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Referer", ref);
+        if (reqHeaders != null && reqHeaders.get("Cookie") != null) headers.put("Cookie", reqHeaders.get("Cookie"));
+        if (reqHeaders != null && reqHeaders.get("Origin") != null) headers.put("Origin", reqHeaders.get("Origin"));
+        toast("▶ Reproduciendo en All-Anime TV");
+        playNativeStream(streamUrl, headers);
+        stopExtractWv();
     }
 
     // ===== Reproductor NATIVO (ExoPlayer) =====================================
@@ -171,16 +265,14 @@ public class MainActivity extends Activity {
     }
 
     @UnstableApi
-    private void playNativeStream(Extractor.Result r) {
+    private void playNativeStream(String streamUrl, Map<String, String> headers) {
         try {
             ensureExo();
-            Map<String, String> headers = new HashMap<>();
-            if (r.referer != null) headers.put("Referer", r.referer);
             DefaultHttpDataSource.Factory dsf = new DefaultHttpDataSource.Factory()
-                    .setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                    .setUserAgent(CHROME_UA)
                     .setAllowCrossProtocolRedirects(true)
                     .setDefaultRequestProperties(headers);
-            exo.setMediaSource(new DefaultMediaSourceFactory(dsf).createMediaSource(MediaItem.fromUri(r.url)));
+            exo.setMediaSource(new DefaultMediaSourceFactory(dsf).createMediaSource(MediaItem.fromUri(streamUrl)));
             exoContainer.setVisibility(View.VISIBLE);
             exoContainer.bringToFront();
             playerView.requestFocus();
@@ -194,6 +286,8 @@ public class MainActivity extends Activity {
     private void closeExo() {
         if (!exoOpen) return;
         exoOpen = false;
+        extracting = false;
+        stopExtractWv();
         try { if (exo != null) { exo.setPlayWhenReady(false); exo.stop(); exo.clearMediaItems(); } } catch (Exception ignored) {}
         if (exoContainer != null) exoContainer.setVisibility(View.GONE);
         if (webView != null) webView.requestFocus();
