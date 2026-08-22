@@ -180,6 +180,15 @@ public class MainActivity extends Activity {
         s.setMediaPlaybackRequiresUserGesture(false);   // autoplay → dispara la petición del stream
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         s.setUserAgentString(CHROME_UA);
+        // Puente para la 2ª vía de extracción (JS lee el m3u8 del player y lo reporta).
+        extractWv.addJavascriptInterface(new Object() {
+            @JavascriptInterface public void found(String url) {
+                if (url == null || url.isEmpty() || !extracting || !isStreamUrl(url)) return;
+                extracting = false;
+                final String su = url;
+                runOnUiThread(() -> { Map<String, String> h = new HashMap<>(); h.put("Referer", originOf(currentEmbed)); onStreamFound(su, h); });
+            }
+        }, "AAX");
         extractWv.setWebChromeClient(new WebChromeClient() {
             @Override public boolean onCreateWindow(WebView v, boolean d, boolean g, Message m) { return false; }
         });
@@ -212,9 +221,19 @@ public class MainActivity extends Activity {
                         "var t=(vs[0]||document.querySelector('#player,.jwplayer,.plyr,.video-js')||document.body);" +
                         "if(t){var r=t.getBoundingClientRect();var cx=r.left+r.width/2,cy=r.top+r.height/2;" +
                         "['pointerdown','mousedown','pointerup','mouseup','click'].forEach(function(ev){try{t.dispatchEvent(new MouseEvent(ev,{bubbles:true,cancelable:true,clientX:cx,clientY:cy}));}catch(e){}});}" +
-                        "if(document.body)document.body.click();}catch(e){}})();";
+                        "if(document.body)document.body.click();" +
+                        // 2ª VÍA: leer el m3u8 directo del reproductor del host (jwplayer/
+                        // config/<video>/HTML) y reportarlo por el puente AAX → capta hosts
+                        // donde la petición de red no se intercepta bien (Filemoon/StreamWish).
+                        "var url='';" +
+                        "try{if(window.jwplayer){var pl=jwplayer().getPlaylist&&jwplayer().getPlaylist();if(pl&&pl[0]&&pl[0].file)url=pl[0].file;" +
+                        "if(!url){var cf=jwplayer().getConfig&&jwplayer().getConfig();if(cf&&cf.sources&&cf.sources[0])url=cf.sources[0].file||cf.sources[0].src||'';}}}catch(e){}" +
+                        "try{if(!url){var vv=document.querySelector('video');if(vv&&vv.src&&vv.src.indexOf('m3u8')>=0)url=vv.src;}}catch(e){}" +
+                        "try{if(!url){var mm=document.documentElement.innerHTML.match(/https?:\\/\\/[^\"'\\s\\\\]+\\.m3u8[^\"'\\s\\\\]*/);if(mm)url=mm[0];}}catch(e){}" +
+                        "try{if(url&&window.AAX&&AAX.found)AAX.found(url);}catch(e){}" +
+                        "}catch(e){}})();";
                 v.evaluateJavascript(js, null);
-                for (int ms : new int[]{800, 2000, 3500, 5500, 8000}) {
+                for (int ms : new int[]{800, 1600, 2800, 4200, 6000, 8500, 12000, 16000}) {
                     v.postDelayed(() -> { if (extracting) v.evaluateJavascript(js, null); }, ms);
                 }
             }
@@ -253,7 +272,7 @@ public class MainActivity extends Activity {
             if (extracting) { extracting = false; stopExtractWv();
                 toast("No se pudo cargar este servidor — prueba otro"); }
         };
-        rootLayout.postDelayed(extractTimeout, 22000);
+        rootLayout.postDelayed(extractTimeout, 35000);
         Map<String, String> h = new HashMap<>();
         h.put("Referer", originOf(embedUrl));
         try { extractWv.loadUrl(embedUrl, h); } catch (Exception e) { extractWv.loadUrl(embedUrl); }
