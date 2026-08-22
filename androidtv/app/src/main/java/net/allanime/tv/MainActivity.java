@@ -26,7 +26,16 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.util.TypedValue;
 
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.datasource.DefaultHttpDataSource;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
+import androidx.media3.ui.PlayerView;
+
 import java.io.ByteArrayInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * App WebView para Android (móvil) y Android TV / Fire TV. Carga el sitio
@@ -100,12 +109,8 @@ public class MainActivity extends Activity {
         // sobre la WebView puede TAPAR la capa de video (SurfaceView) y dejarla negra.
         // Se deja el comportamiento por defecto (hardware accel del manifest), que es
         // como el video se veía bien antes.
-        // CLAVE (video negro/solo-audio en Fire TV): forzar capa de SOFTWARE. Así el
-        // <video> NO se dibuja en una SurfaceView por hardware (la que sale NEGRA hasta
-        // hacer scroll) sino como textura normal → se pinta siempre, y en fullscreen
-        // re-escala bien. Es el arreglo documentado para este síntoma. (Compromiso:
-        // algo más de CPU al pintar; aceptable frente a no ver el video.)
-        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        // (Se probó LAYER_TYPE_SOFTWARE y fue PEOR: no pintaba y muy lento. Revertido:
+        //  se deja la aceleración por hardware por defecto.)
         // Borra la caché al abrir → la app siempre carga la ÚLTIMA versión del sitio
         // (JS/CSS), así los arreglos web se aplican SIN tener que reinstalar la APK.
         webView.clearCache(true);
@@ -122,8 +127,70 @@ public class MainActivity extends Activity {
         @JavascriptInterface public void toggleCursor() { runOnUiThread(() -> toggleCursor()); }
         @JavascriptInterface public boolean cursorAvailable() { return true; }
         @JavascriptInterface public boolean isTV() { return BuildConfig.IS_TV; }
-        // Con la capa de software el video se pinta solo → ya no hace falta el gesto.
         @JavascriptInterface public void videoLoaded() { /* no-op */ }
+        // El sitio avisa el server elegido → la app intenta EXTRAER el video directo y
+        // reproducirlo en ExoPlayer nativo (la WebView deja estos hosts en negro). Si no
+        // puede extraer, no hace nada y queda la WebView (iframe) de respaldo.
+        @JavascriptInterface public void playNative(String url) {
+            if (url == null || url.isEmpty()) return;
+            new Thread(() -> {
+                final Extractor.Result r = Extractor.extract(url);
+                if (r != null && r.url != null) runOnUiThread(() -> playNativeStream(r));
+            }).start();
+        }
+    }
+
+    // ===== Reproductor NATIVO (ExoPlayer) =====================================
+    private ExoPlayer exo;
+    private PlayerView playerView;
+    private FrameLayout exoContainer;
+    private boolean exoOpen = false;
+
+    @UnstableApi
+    private void ensureExo() {
+        if (exo != null) return;
+        exo = new ExoPlayer.Builder(this).build();
+        playerView = new PlayerView(this);
+        playerView.setPlayer(exo);
+        playerView.setUseController(true);
+        playerView.setControllerShowTimeoutMs(3500);
+        playerView.setBackgroundColor(Color.BLACK);
+        exoContainer = new FrameLayout(this);
+        exoContainer.setBackgroundColor(0xFF000000);
+        exoContainer.setVisibility(View.GONE);
+        exoContainer.addView(playerView, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        rootLayout.addView(exoContainer, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    }
+
+    @UnstableApi
+    private void playNativeStream(Extractor.Result r) {
+        try {
+            ensureExo();
+            Map<String, String> headers = new HashMap<>();
+            if (r.referer != null) headers.put("Referer", r.referer);
+            DefaultHttpDataSource.Factory dsf = new DefaultHttpDataSource.Factory()
+                    .setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                    .setAllowCrossProtocolRedirects(true)
+                    .setDefaultRequestProperties(headers);
+            exo.setMediaSource(new DefaultMediaSourceFactory(dsf).createMediaSource(MediaItem.fromUri(r.url)));
+            exoContainer.setVisibility(View.VISIBLE);
+            exoContainer.bringToFront();
+            playerView.requestFocus();
+            exoOpen = true;
+            exo.prepare();
+            exo.setPlayWhenReady(true);
+        } catch (Exception ignored) {}
+    }
+
+    @UnstableApi
+    private void closeExo() {
+        if (!exoOpen) return;
+        exoOpen = false;
+        try { if (exo != null) { exo.setPlayWhenReady(false); exo.stop(); exo.clearMediaItems(); } } catch (Exception ignored) {}
+        if (exoContainer != null) exoContainer.setVisibility(View.GONE);
+        if (webView != null) webView.requestFocus();
     }
 
     // Inyecta un gesto de scroll (baja y vuelve) en la WebView del frente → fuerza a
@@ -574,6 +641,7 @@ public class MainActivity extends Activity {
         // de server→lista o cierra el modal y devuelve true; solo si no lo maneja,
         // retrocedemos en el historial (o salimos de la app).
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (exoOpen) { closeExo(); return true; }   // cerrar reproductor nativo → vuelve a la lista
             if (popupOpen) { closePopup(); return true; }
             if (customView != null) { hideCustomVideo(); return true; }
             final WebView wv = webView;
@@ -610,6 +678,7 @@ public class MainActivity extends Activity {
         }
     }
     @Override protected void onDestroy() {
+        try { if (exo != null) { exo.release(); exo = null; } } catch (Exception ignored) {}
         try { if (popupView != null) { popupView.destroy(); popupView = null; } } catch (Exception ignored) {}
         if (webView != null) { webView.destroy(); webView = null; }
         super.onDestroy();

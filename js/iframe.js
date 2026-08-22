@@ -107,6 +107,14 @@ function aaIframeMarkup(url) {
 // --- FUNCIÓN MODIFICADA PARA CARGA DE 4 SEGUNDOS ---
 function go_to_player(url) {
   AA_currentUrl = url;
+  // APP nativa: le pedimos que EXTRAIGA y reproduzca el video en ExoPlayer (la WebView
+  // deja estos hosts en negro). Si la app logra extraer, superpone su reproductor; si
+  // no puede, no pasa nada y queda este iframe de respaldo. En web/escritorio no existe
+  // el puente, así que solo se usa el iframe de siempre.
+  try {
+    const A = window.AAApp || (window.top && window.top.AAApp);
+    if (A && typeof A.playNative === "function") A.playNative(url);
+  } catch {}
   const playerDisplay = document.getElementById("PlayerDisplay");
   const displayVideo = document.querySelector(".DisplayVideo");
   let loadingOverlay = document.getElementById("loadingOverlay");
