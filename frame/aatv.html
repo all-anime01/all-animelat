@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-Anime TV</title>
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root { --acc:#ff5a3c; --acc2:#ff8a4c; }
+        * { box-sizing:border-box; }
+        html,body { margin:0; padding:0; height:100%; width:100%; background:#0d1117; color:#e0e0e0;
+            font-family:'Roboto Condensed',Arial,sans-serif; overflow:hidden; }
+        #aatv { display:flex; flex-direction:column; height:100%; }
+        /* Área de video (arriba, grande) */
+        .aatv-video { position:relative; flex:1 1 auto; min-height:0; background:#000; }
+        .aatv-video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; background:#000; }
+        .aatv-loading { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+            flex-direction:column; gap:14px; color:#cbd5e1; background:#000; z-index:2; }
+        .aatv-loading.hidden { display:none; }
+        .aatv-spin { width:52px; height:52px; border:5px solid rgba(255,255,255,.2); border-top-color:var(--acc);
+            border-radius:50%; animation:sp 1s linear infinite; }
+        @keyframes sp { to { transform:rotate(360deg); } }
+        /* Barra de servidores (abajo, integrada, tipo embed69) */
+        .aatv-bar { flex:0 0 auto; background:linear-gradient(180deg,#12161d,#0d1117); border-top:1px solid rgba(255,255,255,.08);
+            padding:12px 16px 16px; }
+        .aatv-brand { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+        .aatv-brand b { color:#fff; font-size:15px; letter-spacing:.5px; }
+        .aatv-brand .dot { color:var(--acc); }
+        .aatv-brand span.hint { margin-left:auto; color:#8b95a3; font-size:12.5px; }
+        .aatv-servers { display:flex; flex-wrap:wrap; gap:10px; }
+        .aatv-srv { display:inline-flex; align-items:center; gap:9px; padding:11px 18px; border-radius:12px;
+            background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:#cbd5e1;
+            font-weight:700; font-size:14.5px; cursor:pointer; transition:.15s; outline:none; }
+        .aatv-srv i { color:var(--acc2); }
+        .aatv-srv:hover, .aatv-srv:focus, .aatv-srv.aa-focus { border-color:var(--acc); color:#fff;
+            background:rgba(255,90,60,.14); transform:translateY(-2px); }
+        .aatv-srv.active { background:linear-gradient(135deg,var(--acc),var(--acc2)); border-color:transparent; color:#fff; }
+        .aatv-srv .q { font-size:11px; font-weight:700; padding:1px 7px; border-radius:20px;
+            background:rgba(0,0,0,.25); color:#fff; }
+        .aatv-empty { color:#cbd5e1; text-align:center; padding:40px 20px; }
+    </style>
+</head>
+<body>
+    <div id="aatv">
+        <div class="aatv-video">
+            <div class="aatv-loading" id="loading"><div class="aatv-spin"></div><p>Cargando servidor…</p></div>
+            <iframe id="frame"
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture; clipboard-write; gyroscope"
+                    allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"
+                    frameborder="0" scrolling="no"></iframe>
+        </div>
+        <div class="aatv-bar">
+            <div class="aatv-brand"><i class="fas fa-tv dot"></i><b>All-Anime<span class="dot">TV</span></b>
+                <span class="hint">Elige un servidor</span></div>
+            <div class="aatv-servers" id="servers"></div>
+        </div>
+    </div>
+
+    <script src="/js/tv-nav.js"></script>
+    <script type="module">
+        import { db } from "/js/firebase-config.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const p = new URLSearchParams(location.search);
+        const animeId = p.get("a"), season = p.get("s"), number = p.get("e");
+        const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const isQ = (t) => /\b(360|480|720|1080|2160|4k|hd|fhd|uhd)\b/i.test(String(t));
+        const frame = document.getElementById("frame");
+        const loading = document.getElementById("loading");
+
+        function play(url, li) {
+            document.querySelectorAll(".aatv-srv").forEach((x) => x.classList.remove("active"));
+            if (li) li.classList.add("active");
+            loading.classList.remove("hidden");
+            frame.src = url;
+        }
+        frame.addEventListener("load", () => { if (frame.src) loading.classList.add("hidden"); });
+
+        function render(servers) {
+            const cont = document.getElementById("servers");
+            if (!servers.length) { document.querySelector(".aatv-bar").innerHTML = '<div class="aatv-empty">Sin servidores para este episodio.</div>'; return; }
+            cont.innerHTML = servers.map((s, i) => {
+                const q = s.desc && isQ(s.desc) ? `<span class="q">${esc(s.desc)}</span>` : "";
+                return `<button class="aatv-srv${i === 0 ? " active" : ""}" data-url="${esc(s.url)}" type="button">
+                    <i class="fas fa-play"></i>${esc(s.name || "Servidor")} ${q}</button>`;
+            }).join("");
+            cont.querySelectorAll(".aatv-srv").forEach((b) => b.addEventListener("click", () => play(b.dataset.url, b)));
+            play(servers[0].url, cont.querySelector(".aatv-srv"));   // auto-reproduce el primero
+        }
+
+        (async () => {
+            try {
+                const snap = await getDoc(doc(db, "animes", animeId));
+                if (!snap.exists()) { render([]); return; }
+                const anime = snap.data();
+                const ep = (anime.episodes || []).find((e) => (!season || String(e.season) === String(season)) && Number(e.number) === Number(number));
+                let servers = (ep && Array.isArray(ep.servers) ? ep.servers : []).filter((s) => s && s.url);
+                // Excluir embed69/PelisPlus (ese se muestra aparte como "PelisPlus").
+                servers = servers.filter((s) => !/embed69\.org/i.test(s.url));
+                render(servers);
+            } catch (e) { render([]); }
+        })();
+    </script>
+</body>
+</html>

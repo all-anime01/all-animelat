@@ -277,6 +277,36 @@
             const servers = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url) : [];
             if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video disponibles."); document.title = anime.title; return; }
 
+            // ===== SOLO EN LA APP (Fire TV / smart TV / Android) =====
+            // En vez de la lista suelta de servers, se muestran dos opciones:
+            //   • "PelisPlus" (si el episodio tiene embed69 → el reproductor que SÍ se ve)
+            //   • "All-Anime TV" (reproductor propio integrado, tipo embed69, con el resto
+            //     de servers dentro). En web/escritorio se deja la lista completa de siempre.
+            const IN_APP = /AllAnime(App|TV)/i.test(navigator.userAgent || "");
+            if (IN_APP) {
+                const pel = servers.find((s) => /embed69\.org/i.test(s.url));
+                const others = servers.filter((s) => !/embed69\.org/i.test(s.url));
+                const cards = [];
+                if (pel) cards.push({ name: "PelisPlus", url: pel.url, sub: pel.lang || "Reproductor", icon: "fa-clapperboard" });
+                if (others.length) cards.push({ name: "All-Anime TV", sub: "Reproductor propio", icon: "fa-tv",
+                    url: `aatv.html?a=${encodeURIComponent(animeId)}&s=${encodeURIComponent(season || "")}&e=${encodeURIComponent(number)}` });
+                if (cards.length) {
+                    document.getElementById("langTabs").innerHTML = "";
+                    const cont = document.getElementById("serverContainer");
+                    cont.innerHTML = `<div class="OD REactiv">` + cards.map((c) => `
+                        <li data-url="${esc(c.url)}" onclick="go_to_player('${esc(c.url).replace(/'/g, "\\'")}');">
+                            <div class="srv-ico"><i class="fas ${c.icon}"></i></div>
+                            <div class="srv-info"><span>${esc(c.name)}</span>
+                                <div class="srv-badges"><span class="srv-badge">${esc(c.sub)}</span></div></div>
+                        </li>`).join("") + `</div>`;
+                    document.title = `${anime.title} — E${ep.number}`;
+                    if (document.documentElement.classList.contains("aa-tv")) {
+                        setTimeout(() => { const f = cont.querySelector("li[data-url]"); if (f) f.click(); }, 500);
+                    }
+                    return;
+                }
+            }
+
             // Agrupa por idioma. La etiqueta puede tener espacios o "|" (p. ej.
             // "Sub | Dob"), así que se usa un slug seguro para la clase CSS/SelLang.
             const slug = (l) => "L" + String(l).replace(/[^a-z0-9]+/gi, "_");
