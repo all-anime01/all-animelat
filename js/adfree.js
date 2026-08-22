@@ -92,8 +92,22 @@ function guardPopups() {
   };
 }
 let _adObserver = null;
+// Oculta los contenedores de anuncios AL INSTANTE con CSS (antes de que killAds los
+// borre) → nada de parpadeo ni "uno que otro" que se cuela para los usuarios ad-free.
+function injectAdHideCss() {
+  if (document.getElementById("aa-adhide")) return;
+  const st = document.createElement("style");
+  st.id = "aa-adhide";
+  st.textContent = `[id^="container-"],[id^="adsterra"],[class*="adsterra"],ins.adsbygoogle,
+    [aria-label*="advert" i],.ad-container,#aa-social-bar,[class*="popunder"],
+    iframe[src*="doubleclick"],iframe[src*="googlesyndication"],iframe[src*="adsterra"],
+    iframe[src*="effectivecpm"],iframe[src*="propellerads"],iframe[src*="monetag"]
+    { display:none !important; visibility:hidden !important; opacity:0 !important; pointer-events:none !important; }`;
+  (document.head || document.documentElement).appendChild(st);
+}
 function reflectAds() {
   if (!isAdFree()) return;
+  injectAdHideCss();
   guardPopups();
   killAds();
   if (_adObserver) return;
