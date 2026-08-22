@@ -29,8 +29,13 @@ import android.util.TypedValue;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.util.UnstableApi;
 import androidx.media3.datasource.DefaultHttpDataSource;
+import androidx.media3.common.MimeTypes;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.Player;
 import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.hls.HlsMediaSource;
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
+import androidx.media3.exoplayer.source.MediaSource;
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
 import androidx.media3.ui.CaptionStyleCompat;
 import androidx.media3.ui.PlayerView;
@@ -298,6 +303,14 @@ public class MainActivity extends Activity {
                 .setPreferredAudioLanguages("es", "spa", "lat")
                 .setSelectUndeterminedTextLanguage(true));
         exo = new ExoPlayer.Builder(this).setTrackSelector(trackSelector).build();
+        // Si el stream falla (host caído, cabeceras, formato), avisa y cierra en vez de
+        // quedarse cargando para siempre.
+        exo.addListener(new Player.Listener() {
+            @Override public void onPlayerError(PlaybackException error) {
+                toast("No se pudo reproducir este servidor — prueba otro");
+                closeExo();
+            }
+        });
 
         // Inflar el reproductor propio (rojo, estilo Prime Video) con su controlador.
         playerView = (PlayerView) LayoutInflater.from(this).inflate(R.layout.aa_player_view, null);
@@ -365,8 +378,24 @@ public class MainActivity extends Activity {
             DefaultHttpDataSource.Factory dsf = new DefaultHttpDataSource.Factory()
                     .setUserAgent(CHROME_UA)
                     .setAllowCrossProtocolRedirects(true)
+                    .setKeepPostFor302Redirects(true)
+                    .setConnectTimeoutMs(15000)
+                    .setReadTimeoutMs(15000)
                     .setDefaultRequestProperties(headers);
-            exo.setMediaSource(new DefaultMediaSourceFactory(dsf).createMediaSource(MediaItem.fromUri(streamUrl)));
+            // Muchos m3u8 (StreamWish, VOE…) llevan parámetros en la URL, así que
+            // ExoPlayer NO detecta que es HLS por la extensión y lo trataba como MP4
+            // progresivo → se quedaba en 00:00. Forzamos HlsMediaSource cuando la URL
+            // es HLS, con preparación SIN fragmentos (arranca mucho más rápido).
+            String lu = streamUrl.toLowerCase();
+            boolean isHls = lu.contains("m3u8") || lu.contains("/hls");
+            MediaSource ms;
+            if (isHls) {
+                MediaItem mi = new MediaItem.Builder().setUri(streamUrl).setMimeType(MimeTypes.APPLICATION_M3U8).build();
+                ms = new HlsMediaSource.Factory(dsf).setAllowChunklessPreparation(true).createMediaSource(mi);
+            } else {
+                ms = new DefaultMediaSourceFactory(dsf).createMediaSource(MediaItem.fromUri(streamUrl));
+            }
+            exo.setMediaSource(ms);
             exoContainer.setVisibility(View.VISIBLE);
             exoContainer.bringToFront();
             exoOpen = true;
