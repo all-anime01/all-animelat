@@ -301,6 +301,7 @@ $(document).ready(function () {
   // Anime/episodio abiertos actualmente en el reproductor (para sync con Firestore).
   let currentPlayerAnime = null;
   let currentPlayerEpisode = null;
+  let currentNextEpisode = null;   // siguiente episodio (para autoplay del reproductor nativo)
 
   function setEpisodeFavLocal(episodeId, on) {
     let f = getFavoriteEpisodes();
@@ -396,6 +397,9 @@ $(document).ready(function () {
       sessionElapsed: 0,                    // tiempo REAL visto en esta sesión
       duration: durationToSeconds(episode.duration),
       timer: setInterval(() => {
+        // Si el reproductor NATIVO alimenta el tiempo real, no usamos el contador
+        // aproximado (evita doble conteo y da progreso exacto).
+        if (_watch.nativeDriven) return;
         if (document.visibilityState !== "visible") return;
         _watch.elapsed = Math.min(_watch.duration, _watch.elapsed + 1);
         _watch.sessionElapsed += 1;
@@ -422,6 +426,28 @@ $(document).ready(function () {
   }
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") persistWatchProgress(); });
   window.addEventListener("beforeunload", persistWatchProgress);
+
+  // ===== Puente con el reproductor NATIVO (app Fire TV/Android) =====
+  // El nativo (ExoPlayer) conoce el tiempo REAL, así que alimenta aquí el progreso
+  // ("seguir viendo" preciso y sincronizado con la tarjeta) y pide el siguiente
+  // episodio para el autoplay con conteo (que dibuja el propio reproductor nativo).
+  window.aaOnNativeProgress = function (episodeId, posSec, durSec) {
+    try {
+      if (!_watch || _watch.episodeId !== episodeId) return;
+      _watch.nativeDriven = true;
+      if (durSec > 0) _watch.duration = durSec;
+      _watch.elapsed = Math.max(0, Math.min(_watch.duration, posSec));
+      persistWatchProgress();
+    } catch (e) {}
+  };
+  window.aaPlayNext = function () {
+    try {
+      const a = currentPlayerAnime, nx = currentNextEpisode;
+      if (currentPlayerEpisode) markEpisodeWatched(a, currentPlayerEpisode);
+      if (a && nx) { openPlayer(a, nx, { autoplay: true }); return true; }
+      return false;
+    } catch (e) { return false; }
+  };
 
   function createHistoryEpisodeCard(episode, anime) {
     const link = `anime-details.html?id=${anime.id}&season=${encodeURIComponent(
@@ -602,8 +628,9 @@ $(document).ready(function () {
     });
   }
 
-  function openPlayer(anime, episode) {
+  function openPlayer(anime, episode, opts) {
     if (!anime || !episode) return;
+    opts = opts || {};
     currentPlayerAnime = anime;
     currentPlayerEpisode = episode;
     metricsTrack("play_episode", { animeId: anime.id, title: anime.title, season: episode.season, episode: episode.number, audio: anime.audio });
@@ -623,6 +650,14 @@ $(document).ready(function () {
     );
     const prevEpisode = seasonEpisodes[currentEpisodeIndex - 1];
     const nextEpisode = seasonEpisodes[currentEpisodeIndex + 1];
+    currentNextEpisode = nextEpisode || null;
+
+    // APP nativa: avisa al reproductor la posición para REANUDAR y si hay siguiente
+    // (para el autoplay con conteo, que dibuja el propio ExoPlayer). Solo en la app.
+    try {
+      if (window.AAApp && typeof window.AAApp.nativeContext === "function")
+        window.AAApp.nativeContext(episodeId, savedPosition(episodeId) || 0, !!nextEpisode);
+    } catch (e) {}
 
     $("#player-poster").attr("src", anime.img || anime.imgMobile || episode.img || "");
     $("#player-anime-link")
@@ -633,7 +668,11 @@ $(document).ready(function () {
       `<span>${episode.language}</span>${episode.releaseDate ? " &bull; <span>Lanzado el " + episode.releaseDate + "</span>" : ""}`
     );
     $("#player-episode-description").text(episode.description);
-    $("#episode-iframe").attr("src", episode.videoUrl || "");
+    // En autoplay (venido del reproductor nativo) se añade aaap=1 para que player.html
+    // reproduzca automáticamente el mejor servidor del siguiente episodio.
+    let _vsrc = episode.videoUrl || "";
+    if (opts.autoplay && _vsrc) _vsrc += (_vsrc.includes("?") ? "&" : "?") + "aaap=1";
+    $("#episode-iframe").attr("src", _vsrc);
 
     // Navegación de episodios en el modal (siguiente/anterior) con miniatura,
     // badge de duración o "restantes" y barra de progreso de "seguir viendo".

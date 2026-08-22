@@ -261,6 +261,7 @@
         const animeId = p.get("a");
         const season = p.get("s");
         const number = p.get("e");
+        const autoplayFirst = p.get("aaap") === "1";   // autoplay: reproducir el mejor server solo
 
         const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
         const lockerIcon = (name) => `https://i0.wp.com/embedsito.net/static/lockers/${encodeURIComponent(String(name).toLowerCase().trim())}.png`;
@@ -345,6 +346,18 @@
                 </div>`).join("");
             document.title = `${anime.title} — E${ep.number}`;
             initConnectionTools(servers);
+
+            // AUTOPLAY: si venimos del "siguiente episodio" del reproductor nativo,
+            // reproducir automáticamente el MEJOR servidor (el primero, ya ordenado por
+            // fiabilidad) de la pestaña de idioma activa, sin que el usuario haga clic.
+            if (autoplayFirst) {
+                setTimeout(() => {
+                    const first = document.querySelector(".OD.REactiv li[data-url]")
+                        || document.querySelector(".ODDIV li[data-url]")
+                        || document.querySelector("li[data-url]");
+                    if (first) { const u = first.getAttribute("data-url"); if (u) go_to_player(u); }
+                }, 400);
+            }
         }
 
         // ===== Herramienta de conexión: acelera la carga del vídeo =====

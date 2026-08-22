@@ -144,6 +144,11 @@ public class MainActivity extends Activity {
             final String host = h;
             runOnUiThread(() -> { toast("All-Anime TV: cargando " + host + "…"); startExtraction(url); });
         }
+        // La web (main-2025) avisa, al abrir un episodio, la posición para REANUDAR y si
+        // hay episodio SIGUIENTE (para el autoplay con conteo). Se aplica al reproducir.
+        @JavascriptInterface public void nativeContext(String episodeId, int startSec, boolean hasNext) {
+            runOnUiThread(() -> { aaEpisodeId = episodeId; aaStartSec = Math.max(0, startSec); aaHasNext = hasNext; aaCountdownActive = false; });
+        }
     }
 
     private static final String CHROME_UA =
@@ -270,6 +275,16 @@ public class MainActivity extends Activity {
     private PlayerView playerView;
     private FrameLayout exoContainer;
     private boolean exoOpen = false;
+    // Contexto para REANUDAR y AUTOPLAY (lo fija la web vía nativeContext).
+    private String aaEpisodeId = null;
+    private int aaStartSec = 0;
+    private boolean aaHasNext = false;
+    private boolean aaCountdownActive = false;
+    private boolean aaAdvancing = false;
+    private Runnable aaPoll;
+    private android.widget.TextView aaCountdownView;
+    private int aaCountdownLeft = 0;
+    private Runnable aaCountdownTick;
 
     @UnstableApi
     private void ensureExo() {
@@ -362,15 +377,100 @@ public class MainActivity extends Activity {
             playerView.requestFocus();
             playerView.showController();
             exo.prepare();
+            if (aaStartSec > 3) { try { exo.seekTo(aaStartSec * 1000L); } catch (Exception ignored) {} }  // REANUDAR
+            exo.setVolume(aaVolume);
             exo.setPlayWhenReady(true);
+            hideCountdown();
+            aaCountdownActive = false;
+            aaAdvancing = false;
+            startPoll();
         } catch (Exception ignored) {}
+    }
+
+    // Sondeo de posición: informa el progreso REAL a la web ("seguir viendo" preciso) y
+    // dispara el conteo de autoplay cerca del final.
+    @UnstableApi
+    private void startPoll() {
+        stopPoll();
+        aaPoll = new Runnable() {
+            @Override public void run() {
+                if (!exoOpen || exo == null) return;
+                try {
+                    long posMs = exo.getCurrentPosition(), durMs = exo.getDuration();
+                    int pos = (int) (posMs / 1000), dur = durMs > 0 ? (int) (durMs / 1000) : 0;
+                    if (aaEpisodeId != null && dur > 0) {
+                        String js = "window.aaOnNativeProgress&&aaOnNativeProgress('" + aaEpisodeId.replace("'", "") + "'," + pos + "," + dur + ")";
+                        if (webView != null) webView.evaluateJavascript(js, null);
+                    }
+                    // Conteo de autoplay: en los últimos ~15s, si hay siguiente episodio.
+                    if (dur > 0 && aaHasNext && !aaCountdownActive && !aaAdvancing && pos >= dur - 15 && pos < dur) {
+                        showCountdown();
+                    }
+                } catch (Exception ignored) {}
+                rootLayout.postDelayed(this, 3000);
+            }
+        };
+        rootLayout.postDelayed(aaPoll, 3000);
+    }
+    private void stopPoll() { if (aaPoll != null) { rootLayout.removeCallbacks(aaPoll); aaPoll = null; } }
+
+    // Conteo de "Siguiente episodio" DIBUJADO por el nativo (el DOM web queda tapado).
+    private void showCountdown() {
+        if (aaCountdownActive) return;
+        aaCountdownActive = true;
+        aaCountdownLeft = 10;
+        if (aaCountdownView == null) {
+            aaCountdownView = new android.widget.TextView(this);
+            aaCountdownView.setTextColor(Color.WHITE);
+            aaCountdownView.setTextSize(16);
+            aaCountdownView.setPadding(dp(20), dp(12), dp(20), dp(12));
+            aaCountdownView.setBackgroundColor(0xCCE0231F);   // rojo semitransparente de marca
+            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp.gravity = android.view.Gravity.BOTTOM | android.view.Gravity.END;
+            lp.setMargins(0, 0, dp(28), dp(90));
+            exoContainer.addView(aaCountdownView, lp);
+        }
+        aaCountdownView.setVisibility(View.VISIBLE);
+        aaCountdownView.setText("Siguiente episodio en " + aaCountdownLeft + "s  (OK)");
+        aaCountdownView.setOnClickListener(v -> goNextEpisode());
+        aaCountdownTick = new Runnable() {
+            @Override public void run() {
+                aaCountdownLeft--;
+                if (aaCountdownLeft <= 0) { goNextEpisode(); return; }
+                if (aaCountdownView != null) aaCountdownView.setText("Siguiente episodio en " + aaCountdownLeft + "s  (OK)");
+                rootLayout.postDelayed(this, 1000);
+            }
+        };
+        rootLayout.postDelayed(aaCountdownTick, 1000);
+    }
+    private void hideCountdown() {
+        if (aaCountdownTick != null) { rootLayout.removeCallbacks(aaCountdownTick); aaCountdownTick = null; }
+        if (aaCountdownView != null) aaCountdownView.setVisibility(View.GONE);
+    }
+    private void goNextEpisode() {
+        hideCountdown();
+        aaAdvancing = true;   // evita re-disparar el conteo mientras carga el siguiente
+        // La web abre el siguiente episodio y auto-reproduce su primer server → playNative.
+        if (webView != null) webView.evaluateJavascript("window.aaPlayNext&&aaPlayNext()", null);
     }
 
     @UnstableApi
     private void closeExo() {
         if (!exoOpen) return;
+        // Reporta la posición final a la web (para "seguir viendo" preciso) antes de cerrar.
+        try {
+            if (exo != null && aaEpisodeId != null) {
+                long posMs = exo.getCurrentPosition(), durMs = exo.getDuration();
+                if (durMs > 0 && webView != null)
+                    webView.evaluateJavascript("window.aaOnNativeProgress&&aaOnNativeProgress('" + aaEpisodeId.replace("'", "") + "'," + (posMs / 1000) + "," + (durMs / 1000) + ")", null);
+            }
+        } catch (Exception ignored) {}
         exoOpen = false;
         extracting = false;
+        stopPoll();
+        hideCountdown();
+        aaCountdownActive = false;
         stopExtractWv();
         try { if (exo != null) { exo.setPlayWhenReady(false); exo.stop(); exo.clearMediaItems(); } } catch (Exception ignored) {}
         if (exoContainer != null) exoContainer.setVisibility(View.GONE);
