@@ -71,7 +71,7 @@
             display: inline-flex; align-items: center; gap: 8px;
             padding: 8px 14px; border-radius: 40px; font-size: 12.5px; font-weight: 700;
             color: #37e35f; background: rgba(11,32,17,.7); border: 1px solid rgba(55,227,95,.35);
-
+            backdrop-filter: blur(6px);
         }
         .ad-note svg { width: 15px; height: 15px; }
 
@@ -83,7 +83,7 @@
         .OD { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
         .ODDIV li {
             background: rgba(23,27,34,.82); border: 1px solid rgba(255,255,255,.08); border-radius: 14px;
-            padding: 14px 16px; gap: 14px;
+            padding: 14px 16px; gap: 14px; backdrop-filter: blur(3px);
         }
         .ODDIV li::after {
             content: ""; width: 22px; height: 22px; margin-left: auto; flex-shrink: 0; opacity: .5; transition: .2s;
@@ -128,12 +128,12 @@
             display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
             padding: 8px 14px; border-radius: 40px; font-size: 12.5px; font-weight: 700; font-family: inherit;
             color: #ffd24a; background: rgba(40,32,8,.72); border: 1px solid rgba(255,210,74,.4);
- transition: background .2s ease, transform .15s ease;
+            backdrop-filter: blur(6px); transition: background .2s ease, transform .15s ease;
         }
         .speed-btn:hover { background: rgba(255,210,74,.16); transform: translateY(-1px); }
         .speed-btn:disabled { opacity: .7; cursor: default; }
 
-        /* Instrucciones de uso (cambian en escritorio vs TV) */
+        /* Instrucciones de uso (distintas en escritorio y en TV). */
         .player-help {
             margin: 0 24px 4px; padding: 10px 14px; border-radius: 12px;
             background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
@@ -151,7 +151,7 @@
             z-index: 100000; display: inline-flex; align-items: center; gap: 9px;
             padding: 11px 18px; border-radius: 40px; font-size: 14px; font-weight: 700;
             color: #fff; background: rgba(13,17,23,.88); border: 1px solid rgba(255,138,76,.5);
-            box-shadow: 0 10px 30px rgba(0,0,0,.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,.5); backdrop-filter: blur(8px);
             animation: aaResumeIn .3s ease, aaResumeOut .4s ease 3.6s forwards;
         }
         .aa-resume-toast i { color: var(--acc2); }
@@ -291,18 +291,13 @@
             if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video disponibles."); document.title = anime.title; return; }
 
             // Instrucciones de uso (distintas en TV y en escritorio).
-            const _tvHelp = document.documentElement.classList.contains("aa-tv");
             const _help = document.getElementById("player-help");
             if (_help) {
-                _help.innerHTML = _tvHelp
-                    ? `<i class="fas fa-tv"></i> Con el control: baja a un servidor y pulsa <b>OK</b> para reproducir. Si uno no carga o se ve negro, pulsa <b>ATRÁS</b> y prueba otro (o el de <b>PelisPlus</b>).`
-                    : `<i class="fas fa-circle-info"></i> Haz <b>clic</b> en un servidor para reproducir. Algunos abren una pestaña de publicidad: ciérrala y vuelve al episodio. Si uno no carga, prueba otro.`;
+                _help.innerHTML = document.documentElement.classList.contains("aa-tv")
+                    ? `<i class="fas fa-tv"></i> Con el control: baja a un servidor y pulsa <b>OK</b> para reproducir. Si uno no carga o se ve negro, pulsa <b>ATRÁS</b> y prueba otro.`
+                    : `<i class="fas fa-circle-info"></i> Haz <b>clic</b> en un servidor para reproducir. Algunos abren una pestaña de publicidad: ciérrala y vuelve. Si uno no carga, prueba otro.`;
                 _help.classList.add("show");
             }
-
-            // (Se retiró la vista especial de la app de 2 tarjetas PelisPlus/All-Anime TV:
-            //  interfería y no arreglaba el negro. La lista normal de servers es igual en
-            //  todas las plataformas, como funcionaba antes.)
 
             // Agrupa por idioma. La etiqueta puede tener espacios o "|" (p. ej.
             // "Sub | Dob"), así que se usa un slug seguro para la clase CSS/SelLang.
@@ -350,20 +345,6 @@
                 </div>`).join("");
             document.title = `${anime.title} — E${ep.number}`;
             initConnectionTools(servers);
-
-            // En TV (Fire TV / smart TV): si el PRIMER servidor es el reproductor
-            // PelisPlus/embed69 —el que SÍ se ve en la WebView, a diferencia de los
-            // hosts directos que salen negros— se reproduce AUTOMÁTICAMENTE para que
-            // el episodio "solo funcione" como antes. Con ATRÁS se vuelve a la lista.
-            if (document.documentElement.classList.contains("aa-tv")) {
-                setTimeout(() => {
-                    const first = document.querySelector(".ODDIV .OD.REactiv li[data-url]");
-                    const url = first && first.getAttribute("data-url");
-                    if (first && url && /embed69\.org/.test(url) && typeof window.go_to_player === "function") {
-                        window.go_to_player(url);
-                    }
-                }, 700);
-            }
         }
 
         // ===== Herramienta de conexión: acelera la carga del vídeo =====

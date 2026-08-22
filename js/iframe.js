@@ -44,13 +44,6 @@ function buildSrc(url) {
   return url;
 }
 
-// NOTA: se retiró el envoltorio frame/wrap.html. Anidar el reproductor del host en un
-// iframe NO arregla el negro: el problema es que esos hosts usan un <video> por
-// hardware (SurfaceView) que la WebView de Fire TV pinta negro. embed69/pelisplus SÍ
-// se ve porque usa su PROPIO <video> con la fuente ya resuelta (no el player del host).
-// Por eso el server que funciona en la app es "PelisPlus" (embed69). Cargamos directo.
-function aaWrap(src) { return src; }
-
 // Recibe el tiempo real desde el iframe de YouTube (enablejsapi) y lo guarda.
 window.addEventListener("message", (e) => {
   if (!/youtube\.com$/.test((() => { try { return new URL(e.origin).host; } catch { return ""; } })())) return;
@@ -94,13 +87,13 @@ function resumeToast(url) {
 function aaIframeMarkup(url) {
   // SIN sandbox (permanente): algunos servidores fallaban/daban 404 y el video no
   // cargaba cuando se aislaba el iframe. El reproductor del server carga libre.
-  // NO se agregan botones propios sobre el video: en Fire TV los controles del
-  // server (otro origen) se operan con el CURSOR virtual de la app (tecla MENÚ).
+  // (El bloqueo de anuncios emergentes para quienes pagan/tienen adFree se maneja
+  //  en las APPS nativas vía onCreateWindow, sin afectar la reproducción.)
   return `
       <span id="backToPlayers" onclick="listPlayer();"></span>
       <iframe
           id="IFR"
-          src="${aaWrap(buildSrc(url))}"
+          src="${buildSrc(url)}"
           allow="autoplay; fullscreen *; encrypted-media; picture-in-picture; clipboard-write; gyroscope"
           frameborder="0"
           allowfullscreen="true"
@@ -109,20 +102,6 @@ function aaIframeMarkup(url) {
           scrolling="no"
           onload="this.dataset.loaded = 'true';">
       </iframe>`;
-}
-
-// Empujón de repintado: en algunas WebView (Fire TV / Android) el iframe del
-// video queda en NEGRO al reproducir y solo se ve tras hacer scroll. Forzamos la
-// recomposición de la capa (toggle de transform + micro-scroll) y le pedimos al
-// documento padre (la ficha del episodio) que también dé un micro-scroll.
-function aaRepaintNudge() {
-  // Micro-scroll + aviso al padre para su propio repintado.
-  try { window.scrollBy(0, 1); window.scrollBy(0, -1); } catch {}
-  try { if (window.parent !== window) window.parent.postMessage({ aa: "repaint" }, "*"); } catch {}
-  // App nativa (Fire TV): avísale para que fuerce el repintado del video por código
-  // (el video queda NEGRO en la WebView hasta que algo lo repinta). window.top tiene
-  // el puente AAApp (frame/player.html es mismo origen que la página).
-  try { if (window.top && window.top.AAApp && window.top.AAApp.videoLoaded) window.top.AAApp.videoLoaded(); } catch {}
 }
 
 // --- FUNCIÓN MODIFICADA PARA CARGA DE 4 SEGUNDOS ---
@@ -161,7 +140,6 @@ function go_to_player(url) {
       const ifr = document.getElementById("IFR");
       if (ifr && ifr.dataset.loaded === "true") {
         clearInterval(checkIframe);
-        aaRepaintNudge();                 // evita el "video en negro" en la WebView
         resolve();
       }
     }, 100);
@@ -170,12 +148,9 @@ function go_to_player(url) {
   // Ocultar la animación solo cuando ambas promesas se cumplen
   Promise.all([timerPromise, iframeLoadPromise]).then(() => {
     if (playerDisplay) playerDisplay.classList.remove("is-loading");
-    // Segundo empujón tras quitar el overlay de carga (la capa cambia de nuevo).
-    aaRepaintNudge();
-    setTimeout(aaRepaintNudge, 350);
   });
 
-  // Lógica para mostrar/ocultar el botón "volver" tras inactividad.
+  // Lógica para mostrar/ocultar los controles (volver)
   let idleTimer = null;
   let idleState = false;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
