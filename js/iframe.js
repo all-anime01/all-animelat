@@ -21,6 +21,28 @@ function ytIdFrom(url) {
   return m ? m[1] : null;
 }
 function hostKey(url) { try { return new URL(url, location.href).host.replace(/[^a-z0-9]/gi, ""); } catch { return "x"; } }
+
+// Puente con la APP nativa (Fire TV / Android TV / Android).
+function aaBridge() { try { return window.AAApp || (window.top && window.top.AAApp) || null; } catch { return null; } }
+// Hosts que SÍ se ven bien dentro de la WebView (no necesitan el reproductor nativo):
+// YouTube y PelisPlus/PelisPlusHD. El resto (Filemoon, Streamwish, VOE, Vidara,
+// VidHide…) quedan en negro en la WebView → los reproduce el nativo (ExoPlayer).
+function aaWebViewFriendly(url) {
+  const u = String(url || "").toLowerCase();
+  return !!ytIdFrom(url) || u.includes("pelisplus") || u.includes("pelisplushd");
+}
+// Pantalla propia de "All-Anime TV" mientras el nativo extrae (así NUNCA se ve el
+// reproductor en negro del server por detrás). Si el nativo no logra el video,
+// el usuario ve el mensaje y prueba otro servidor.
+function aaNativeMarkup() {
+  return `
+      <span id="backToPlayers" onclick="listPlayer();"></span>
+      <div class="aa-native-stage" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;color:#fff;text-align:center;gap:14px;padding:20px;">
+        <div class="spinner"></div>
+        <p style="margin:0;font-size:1.05rem;font-weight:600;">Reproduciendo en All-Anime TV…</p>
+        <p style="margin:0;opacity:.7;font-size:.9rem;">Si no carga en unos segundos, prueba otro servidor.</p>
+      </div>`;
+}
 function posKey(url) { return AA_EPKEY + "_" + hostKey(url); }
 function savedPos(url) { try { return parseInt(localStorage.getItem(posKey(url)) || "0", 10) || 0; } catch { return 0; } }
 function savePos(url, sec) { try { if (sec > 5) localStorage.setItem(posKey(url), String(Math.floor(sec))); } catch {} }
@@ -111,13 +133,12 @@ function go_to_player(url) {
   // deja estos hosts en negro). Si la app logra extraer, superpone su reproductor; si
   // no puede, no pasa nada y queda este iframe de respaldo. En web/escritorio no existe
   // el puente, así que solo se usa el iframe de siempre.
-  try {
-    const A = window.AAApp || (window.top && window.top.AAApp);
-    // YouTube NO va por el reproductor nativo (ExoPlayer no reproduce YouTube y su
-    // iframe SÍ se ve bien en la WebView). El resto de hosts directos sí: la app los
-    // extrae y reproduce en ExoPlayer (en la WebView quedan en negro).
-    if (A && typeof A.playNative === "function" && !ytIdFrom(url)) A.playNative(url);
-  } catch {}
+  // ¿Modo NATIVO? Solo en la app y solo para hosts directos (no YouTube ni PelisPlus).
+  // En ese modo NO se carga el iframe del server (evita ver su reproductor en negro
+  // detrás): la app extrae y reproduce en ExoPlayer; aquí solo se ve la pantalla propia.
+  const A = aaBridge();
+  const nativeMode = !!(A && typeof A.playNative === "function" && !aaWebViewFriendly(url));
+  try { if (nativeMode) A.playNative(url); } catch {}
   const playerDisplay = document.getElementById("PlayerDisplay");
   const displayVideo = document.querySelector(".DisplayVideo");
   let loadingOverlay = document.getElementById("loadingOverlay");
@@ -136,6 +157,20 @@ function go_to_player(url) {
   if (displayVideo) {
     displayVideo.classList.add("DisplayVideoA");
     displayVideo.style.zIndex = "9999";
+  }
+
+  // MODO NATIVO: pantalla propia de All-Anime TV (sin iframe del server).
+  if (nativeMode) {
+    displayVideo.innerHTML = aaNativeMarkup();
+    // El reproductor nativo tarda en extraer; ocultamos el spinner de "Cargando
+    // servidor…" enseguida (la propia pantalla nativa ya indica el estado).
+    setTimeout(() => { if (playerDisplay) playerDisplay.classList.remove("is-loading"); }, 800);
+    let idleN = null, idleSN = false;
+    const showN = (t) => { const el = document.getElementById("backToPlayers"); if (!el) return; if (idleSN) el.className = ""; clearTimeout(idleN); idleSN = false; idleN = setTimeout(() => { el.className = "inactive"; idleSN = true; }, t); };
+    showN(5000);
+    document.addEventListener("click", () => showN(5000));
+    document.addEventListener("mousemove", () => showN(5000));
+    return;
   }
 
   // Lógica para asegurar 4 segundos de carga

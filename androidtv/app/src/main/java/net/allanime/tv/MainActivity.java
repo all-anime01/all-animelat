@@ -181,14 +181,24 @@ public class MainActivity extends Activity {
             @Override public void onPageFinished(WebView v, String u) {
                 if (!extracting) return;
                 // Silencia (para que no suene la WebView oculta) e intenta iniciar la
-                // reproducción → así el host pide el .m3u8 y lo capturamos.
-                String js = "(function(){try{var vs=document.getElementsByTagName('video');" +
-                        "for(var i=0;i<vs.length;i++){vs[i].muted=true;try{vs[i].play();}catch(e){}}" +
-                        "var sel=['.jw-icon-display','.vjs-big-play-button','#player','.play-button','.play','button'];" +
-                        "for(var j=0;j<sel.length;j++){var b=document.querySelector(sel[j]);if(b){b.click();break;}}" +
+                // reproducción → así el host pide el .m3u8 y lo capturamos. Muchos
+                // players (Streamwish/VOE) sólo piden el stream tras un "clic" real, así
+                // que además del .play() y .click() sobre los botones típicos, se dispara
+                // una secuencia de eventos de puntero en el centro del reproductor. Se
+                // reintenta varias veces porque el player suele cargar tarde.
+                String js = "(function(){try{" +
+                        "var vs=document.getElementsByTagName('video');" +
+                        "for(var i=0;i<vs.length;i++){try{vs[i].muted=true;vs[i].play();}catch(e){}}" +
+                        "var sel=['.jw-icon-display','.vjs-big-play-button','.plyr__control--overlaid','#player','.play-button','.play','.vjs-play-control','button[aria-label*=\"lay\"]','button'];" +
+                        "for(var j=0;j<sel.length;j++){var b=document.querySelector(sel[j]);if(b){try{b.click();}catch(e){}}}" +
+                        "var t=(vs[0]||document.querySelector('#player,.jwplayer,.plyr,.video-js')||document.body);" +
+                        "if(t){var r=t.getBoundingClientRect();var cx=r.left+r.width/2,cy=r.top+r.height/2;" +
+                        "['pointerdown','mousedown','pointerup','mouseup','click'].forEach(function(ev){try{t.dispatchEvent(new MouseEvent(ev,{bubbles:true,cancelable:true,clientX:cx,clientY:cy}));}catch(e){}});}" +
                         "if(document.body)document.body.click();}catch(e){}})();";
                 v.evaluateJavascript(js, null);
-                v.postDelayed(() -> { if (extracting) v.evaluateJavascript(js, null); }, 1500);
+                for (int ms : new int[]{800, 2000, 3500, 5500, 8000}) {
+                    v.postDelayed(() -> { if (extracting) v.evaluateJavascript(js, null); }, ms);
+                }
             }
         });
         // Tamaño completo pero INVISIBLE (alpha 0) y DETRÁS de todo (índice 0): así el
