@@ -44,18 +44,12 @@ function buildSrc(url) {
   return url;
 }
 
-// SOLO en las apps (Fire TV / smart TV / Android nativa): envolvemos el host en
-// NUESTRO reproductor (frame/wrap.html), que lo carga en un iframe ANIDADO como hace
-// pelisplus. Así la WebView pinta el video (los hosts directos salen NEGROS). La web
-// de escritorio/navegador NO se envuelve (ahí ya funciona directo). Se dejan sin
-// envolver los que YA funcionan en la app: embed69/pelisplus y YouTube.
-const AA_IN_APP = /AllAnime(App|TV)/i.test(navigator.userAgent || "");
-function aaWrap(src) {
-  if (!AA_IN_APP) return src;
-  if (/embed69\.org/i.test(src)) return src;      // pelisplus/embed69: ya se ve
-  if (/youtube\.com|youtu\.be/i.test(src)) return src;  // iframe de Google: ya se ve
-  return "/frame/wrap.html?u=" + encodeURIComponent(src);
-}
+// NOTA: se retiró el envoltorio frame/wrap.html. Anidar el reproductor del host en un
+// iframe NO arregla el negro: el problema es que esos hosts usan un <video> por
+// hardware (SurfaceView) que la WebView de Fire TV pinta negro. embed69/pelisplus SÍ
+// se ve porque usa su PROPIO <video> con la fuente ya resuelta (no el player del host).
+// Por eso el server que funciona en la app es "PelisPlus" (embed69). Cargamos directo.
+function aaWrap(src) { return src; }
 
 // Recibe el tiempo real desde el iframe de YouTube (enablejsapi) y lo guarda.
 window.addEventListener("message", (e) => {
