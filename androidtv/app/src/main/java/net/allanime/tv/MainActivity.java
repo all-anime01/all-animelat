@@ -100,6 +100,12 @@ public class MainActivity extends Activity {
         // sobre la WebView puede TAPAR la capa de video (SurfaceView) y dejarla negra.
         // Se deja el comportamiento por defecto (hardware accel del manifest), que es
         // como el video se veía bien antes.
+        // CLAVE (video negro/solo-audio en Fire TV): forzar capa de SOFTWARE. Así el
+        // <video> NO se dibuja en una SurfaceView por hardware (la que sale NEGRA hasta
+        // hacer scroll) sino como textura normal → se pinta siempre, y en fullscreen
+        // re-escala bien. Es el arreglo documentado para este síntoma. (Compromiso:
+        // algo más de CPU al pintar; aceptable frente a no ver el video.)
+        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         // Borra la caché al abrir → la app siempre carga la ÚLTIMA versión del sitio
         // (JS/CSS), así los arreglos web se aplican SIN tener que reinstalar la APK.
         webView.clearCache(true);
@@ -116,13 +122,8 @@ public class MainActivity extends Activity {
         @JavascriptInterface public void toggleCursor() { runOnUiThread(() -> toggleCursor()); }
         @JavascriptInterface public boolean cursorAvailable() { return true; }
         @JavascriptInterface public boolean isTV() { return BuildConfig.IS_TV; }
-        // El sitio avisa que cargó el video → inyectamos un GESTO DE SCROLL real (lo
-        // único que repinta el SurfaceView del video en la WebView de Fire TV; el
-        // micro-scroll por JS no basta). Como un scroll a mano, pero automático.
-        @JavascriptInterface public void videoLoaded() {
-            runOnUiThread(() -> { nudgeScroll(); rootLayout.postDelayed(MainActivity.this::nudgeScroll, 1500);
-                rootLayout.postDelayed(MainActivity.this::nudgeScroll, 3500); });
-        }
+        // Con la capa de software el video se pinta solo → ya no hace falta el gesto.
+        @JavascriptInterface public void videoLoaded() { /* no-op */ }
     }
 
     // Inyecta un gesto de scroll (baja y vuelve) en la WebView del frente → fuerza a
