@@ -15,7 +15,11 @@
   const bigScreen = Math.min(window.screen ? screen.width : 0, window.screen ? screen.height : 0) >= 700 && (window.innerWidth >= 1280);
   let forced = false;
   try { forced = localStorage.getItem("aa_tv") === "1"; } catch {}
-  const isTV = forced || isTVua || (noTouch && bigScreen && /Android|Linux armv|CrKey/i.test(ua));
+  // La app TV se detecta por el puente window.AAApp.isTV() (ya NO por el UA, que
+  // ahora es Chrome normal para que los hosts sirvan el reproductor bueno).
+  let bridgeTV = false;
+  try { bridgeTV = !!(window.AAApp && window.AAApp.isTV && window.AAApp.isTV()); } catch {}
+  const isTV = forced || bridgeTV || isTVua || (noTouch && bigScreen && /Android|Linux armv|CrKey/i.test(ua));
   if (!isTV) return; // en escritorio/móvil no cambiamos nada
 
   const root = document.documentElement;

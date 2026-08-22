@@ -56,7 +56,8 @@ export function initPWA() {
 
   // ¿Estamos DENTRO de la app nativa (móvil o TV) o en una PWA instalada? En ese
   // caso NO se muestra ningún botón de "descargar/instalar app".
-  const IN_APP = /AllAnime(App|TV)/i.test(navigator.userAgent || "") ||
+  const IN_APP = (typeof window.AAApp !== "undefined") ||   // puente de la app nativa
+    /AllAnime(App|TV)/i.test(navigator.userAgent || "") ||
     window.matchMedia("(display-mode: standalone)").matches;
 
   // Botón de instalación (Android / escritorio: usa beforeinstallprompt).

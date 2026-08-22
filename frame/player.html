@@ -133,6 +133,18 @@
         .speed-btn:hover { background: rgba(255,210,74,.16); transform: translateY(-1px); }
         .speed-btn:disabled { opacity: .7; cursor: default; }
 
+        /* Instrucciones de uso (cambian en escritorio vs TV) */
+        .player-help {
+            margin: 0 24px 4px; padding: 10px 14px; border-radius: 12px;
+            background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+            color: #b9c2cf; font-size: 13.5px; line-height: 1.5; display: none;
+        }
+        .player-help.show { display: block; }
+        .player-help b { color: var(--acc2); }
+        .player-help i { color: var(--acc); margin-right: 6px; }
+        html.aa-tv .player-help { font-size: 16px; margin: 0 24px 8px; padding: 12px 18px; }
+        @media (max-width: 560px) { .player-help { margin: 0 14px 4px; font-size: 12.5px; } }
+
         /* ---- Aviso de reanudación ---- */
         .aa-resume-toast {
             position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
@@ -227,6 +239,7 @@
                     </div>
                 </div>
             </div>
+            <div class="player-help" id="player-help"></div>
             <div class="OptionsLangDisp">
                 <div class="ODDIV" id="serverContainer">
                     <div class="OD REactiv"><div class="skl"><div></div><div></div><div></div><div></div></div></div>
@@ -277,12 +290,24 @@
             const servers = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url) : [];
             if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video disponibles."); document.title = anime.title; return; }
 
+            // Instrucciones de uso (distintas en TV y en escritorio).
+            const _tvHelp = document.documentElement.classList.contains("aa-tv");
+            const _help = document.getElementById("player-help");
+            if (_help) {
+                _help.innerHTML = _tvHelp
+                    ? `<i class="fas fa-tv"></i> Con el control: baja a un servidor y pulsa <b>OK</b> para reproducir. Si uno no carga o se ve negro, pulsa <b>ATRÁS</b> y prueba otro (o el de <b>PelisPlus</b>).`
+                    : `<i class="fas fa-circle-info"></i> Haz <b>clic</b> en un servidor para reproducir. Algunos abren una pestaña de publicidad: ciérrala y vuelve al episodio. Si uno no carga, prueba otro.`;
+                _help.classList.add("show");
+            }
+
             // ===== SOLO EN LA APP (Fire TV / smart TV / Android) =====
             // En vez de la lista suelta de servers, se muestran dos opciones:
             //   • "PelisPlus" (si el episodio tiene embed69 → el reproductor que SÍ se ve)
             //   • "All-Anime TV" (reproductor propio integrado, tipo embed69, con el resto
             //     de servers dentro). En web/escritorio se deja la lista completa de siempre.
-            const IN_APP = /AllAnime(App|TV)/i.test(navigator.userAgent || "");
+            let IN_APP = false;
+            try { IN_APP = (typeof window.AAApp !== "undefined") || (typeof window.top.AAApp !== "undefined"); } catch (e) {}
+            if (!IN_APP) IN_APP = /AllAnime(App|TV)/i.test(navigator.userAgent || "");
             if (IN_APP) {
                 const pel = servers.find((s) => /embed69\.org/i.test(s.url));
                 const others = servers.filter((s) => !/embed69\.org/i.test(s.url));

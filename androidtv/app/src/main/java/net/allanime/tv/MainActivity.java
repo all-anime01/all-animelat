@@ -89,11 +89,14 @@ public class MainActivity extends Activity {
         s.setJavaScriptCanOpenWindowsAutomatically(false);
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
-        // "AllAnimeApp" en AMBOS flavors → el sitio oculta el botón de descargar app
-        // (ya estás dentro de la app). "AllAnimeTV" SOLO en el flavor TV → el sitio
-        // activa la barra lateral de Fire TV. El flavor MÓVIL NO la activa.
-        String ua = s.getUserAgentString() + " AllAnimeApp/1.0";
-        if (BuildConfig.IS_TV) ua += " AllAnimeTV/1.0";
+        // UA: nos identificamos como CHROME NORMAL (quitamos el marcador "wv" de
+        // WebView y NO añadimos sufijo). Motivo: muchos hosts de video (VidHide/
+        // Streamwish/VOE/Filemoon) sirven un reproductor ROTO/NEGRO a las WebView y el
+        // bueno a un navegador normal → por eso en Silk se ve y en la app no. Con UA de
+        // Chrome, el host cree que es un navegador y da el player que SÍ se ve.
+        // La app se detecta en el sitio por el puente window.AAApp (no por UA).
+        String ua = s.getUserAgentString()
+                .replace("; wv)", ")").replace(" wv)", ")").replace("; wv;", ";");
         s.setUserAgentString(ua);
 
         // NOTA: NO forzar setLayerType ni setBackgroundColor(BLACK) — un fondo opaco
