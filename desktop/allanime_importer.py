@@ -302,27 +302,38 @@ def av1_servers(slug, n):
             seen.add(name); res.append({"url": url, "name": name, "lang": tag, "desc": ""})
     return res
 
-# ------------------------------------------------------------------ Construir
-def build(title, opts, log, prog):
+# ------------------------------------------------------------------ Construir (2 fases)
+def build_meta(title, opts, log):
+    """FASE 1 (rápida): metadata + imágenes. Rellena la ficha al instante."""
     log(f"== {title} ==")
     tmdb = tmdb_resolve(title, opts["tmdb_key"])
-    info = tmdb_full(tmdb, opts["tmdb_key"]) if tmdb else {"title": title, "year": None, "genres": [], "description": "", "poster": "", "backdrop": "", "logo": "", "imdb": "", "seasons": [], "stills": {}}
+    info = tmdb_full(tmdb, opts["tmdb_key"]) if tmdb else {"title": title, "year": None, "genres": [], "description": "",
+            "poster": "", "backdrop": "", "logo": "", "imdb": "", "seasons": [], "stills": {}, "altTitles": [], "creator": "", "runtime": 24}
     real_title = info["title"] or title
     imdb = info["imdb"] or imdb_suggest(real_title, info["year"])
+    info["imdb"] = imdb
     log(f"título real: {real_title} | imdb={imdb} | tmdb={tmdb} | logo={'sí' if info['logo'] else 'no'}")
+    if not tmdb: log("⚠ TMDB no resolvió el título — revisa el nombre o pon la TMDB API key.")
     seasons = info["seasons"] or [{"season": 1, "count": 60}]
-    aid = slugify(real_title)
+    return {"aid": slugify(real_title), "info": info, "real_title": real_title, "seasons": seasons,
+            "episodes": [], "audio": "Sub", "altTitles": info.get("altTitles", []), "creator": info.get("creator", ""), "tmdb": tmdb}
+
+def build_episodes(data, opts, log, prog, on_ep):
+    """FASE 2 (lenta): servidores por episodio, se van mostrando en vivo."""
+    info = data["info"]; imdb = info["imdb"]; seasons = data["seasons"]; aid = data["aid"]
+    title = data["real_title"]
     jkslug = jk_search(title) if opts["jk"] else None
     avslug = av1_search(title) if opts["av1"] else None
     if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}")
     if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
+    episodes = data["episodes"]
     manual = {}
     if opts["manual"]:
         for i, line in enumerate([l.strip() for l in opts["manual_text"].splitlines() if l.strip()]):
             mm = re.match(r'^(\d+)\s*\|\s*(https?://\S+)', line)
             manual[int(mm.group(1)) if mm else i + 1] = (mm.group(2) if mm else line)
 
-    episodes, absn = [], 0
+    absn = 0
     total = sum(s["count"] for s in seasons) or 60
     for S in seasons:
         sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
@@ -346,16 +357,18 @@ def build(title, opts, log, prog):
                 log(f"  ep {absn} (S{S['season']}E{n}): sin servers"); continue
             em = info["stills"].get(f"{S['season']}x{n}", {})
             rt = em.get("runtime") or info.get("runtime") or 24
-            episodes.append({"number": n, "season": sname, "title": em.get("title") or f"Episodio {n}",
-                             "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
-                             "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={n}",
-                             "img": em.get("still") or info["backdrop"] or info["poster"],
-                             "description": em.get("overview") or "", "releaseDate": em.get("air_date") or "",
-                             "duration": f"{rt} min", "servers": servers})
+            ep = {"number": n, "season": sname, "title": em.get("title") or f"Episodio {n}",
+                  "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
+                  "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={n}",
+                  "img": em.get("still") or info["backdrop"] or info["poster"],
+                  "description": em.get("overview") or "", "releaseDate": em.get("air_date") or "",
+                  "duration": f"{rt} min", "servers": servers}
+            episodes.append(ep)
+            if on_ep: on_ep(ep)
     langs = list(dict.fromkeys(e["language"] for e in episodes))
-    log(f"== {len(episodes)} episodios construidos == audio: {audio_label(langs)}")
-    return {"aid": aid, "info": info, "real_title": real_title, "seasons": seasons, "episodes": episodes,
-            "audio": audio_label(langs), "altTitles": info.get("altTitles", []), "creator": info.get("creator", "")}
+    data["audio"] = audio_label(langs)
+    log(f"== {len(episodes)} episodios == audio: {data['audio']}")
+    return data
 
 def save(data, token, replace, log):
     aid = data["aid"]; built = data["episodes"]; info = data["info"]
@@ -528,26 +541,40 @@ class App:
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip()}
         def work():
             try:
-                self.data = build(t, opts, self.log, self.prog); self.root.after(0, self.render)
+                # FASE 1: metadata → rellena la ficha AL INSTANTE
+                self.data = build_meta(t, opts, self.log)
+                self.root.after(0, self.render_meta)
+                # FASE 2: episodios en vivo
+                build_episodes(self.data, opts, self.log, self.prog,
+                               on_ep=lambda ep: self.root.after(0, lambda e=ep: self.add_ep_row(e)))
+                self.root.after(0, self.after_episodes)
             except Exception as e:
                 self.log("ERROR: " + str(e))
             finally:
                 self.root.after(0, lambda: self.build_btn.config(state="normal"))
         threading.Thread(target=work, daemon=True).start()
 
-    def render(self):
+    def render_meta(self):
+        """Rellena la ficha del anime en cuanto llega la metadata (rápido)."""
         info = self.data["info"]
         for e, val in [(self.f_title, self.data["real_title"]), (self.f_year, info.get("year") or ""),
                        (self.f_alt, ", ".join(self.data.get("altTitles", []))), (self.f_creator, self.data.get("creator", "")),
                        (self.f_poster, info["poster"]), (self.f_back, info["backdrop"]), (self.f_logo, info["logo"])]:
             e.delete(0, "end"); e.insert(0, str(val))
         self.f_audio.set(self.data.get("audio", "Sub"))
-        for i, e in enumerate(self.data["episodes"]):
-            srv = ", ".join(f"{s['name']}({s['lang'][:3]})" for s in e["servers"])
-            img = "sí" if e["img"] else "—"
-            self.tree.insert("", "end", iid=str(i), text="", values=(f"E{e['number']} · {e['title']}", img, srv))
+        if not info["logo"]: self.log("Sin logo (pon una TMDB API key para traerlo, o pégalo en el campo Logo).")
+        if not info["poster"]: self.log("⚠ Sin imágenes de TMDB — revisa el título o usa la TMDB API key.")
+
+    def add_ep_row(self, e):
+        srv = ", ".join(f"{s['name']}({s['lang'][:3]})" for s in e["servers"])
+        self.tree.insert("", "end", iid=str(len(self.tree.get_children())), text="",
+                         values=(f"E{e['number']} · {e['title']}", "sí" if e["img"] else "—", srv))
+        self.save_btn.config(state="normal")
+
+    def after_episodes(self):
+        self.f_audio.set(self.data.get("audio", "Sub"))
         self.save_btn.config(state="normal" if self.data["episodes"] else "disabled")
-        if not info["logo"]: self.log("Sin logo (añade una TMDB API key para traerlo, o pégalo en el campo Logo).")
+        if not self.data["episodes"]: self.log("No se encontraron servidores. Revisa fuentes/título.")
 
     def edit_episode(self, ev):
         iid = self.tree.focus()
