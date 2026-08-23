@@ -364,9 +364,15 @@ def build_episodes(data, opts, log, prog, on_ep):
     """FASE 2 (lenta): servidores por episodio, se van mostrando en vivo."""
     info = data["info"]; imdb = info["imdb"]; seasons = data["seasons"]; aid = data["aid"]
     title = data["real_title"]
-    jkslug = jk_search(title) if opts["jk"] else None
-    avslug = av1_search(title) if opts["av1"] else None
-    if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}")
+    # SLUG/URL manual de la fuente (para temporadas separadas como animes distintos).
+    # Si se da, se usa tal cual y se numera POR TEMPORADA (esos slugs empiezan en ep 1).
+    src_slug = (opts.get("src_slug") or "").strip()
+    if src_slug:
+        src_slug = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", src_slug).strip("/").split("/")[0].split("?")[0]
+    jkslug = src_slug if src_slug else (jk_search(title) if opts["jk"] else None)
+    avslug = src_slug if src_slug else (av1_search(title) if opts["av1"] else None)
+    per_season_num = bool(src_slug)   # slug manual → numeración por temporada (n), no absoluta
+    if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}" + (" [slug manual · nº por temporada]" if src_slug else ""))
     if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
     episodes = data["episodes"]
     manual = {}
@@ -389,17 +395,18 @@ def build_episodes(data, opts, log, prog, on_ep):
             absn += 1; servers = []
             # con temporada elegida, el rango es por nº de temporada; si no, por nº absoluto
             if rng and (n if season_sel else absn) not in rng: continue
+            src_num = n if per_season_num else absn   # nº para jkanime/animeav1
 
             if opts["e69"] and imdb:
                 r = embed69_lat(imdb, S["season"], n)
                 if r: servers.append(r)
                 time.sleep(0.85)
             if opts["av1"] and avslug:
-                a = av1_servers(avslug, absn)
+                a = av1_servers(avslug, src_num)
                 if a is None and absn > total: break
                 servers += (a or []); time.sleep(0.35)
             if opts["jk"] and jkslug:
-                servers += (jk_servers(jkslug, absn) or []); time.sleep(0.3)
+                servers += (jk_servers(jkslug, src_num) or []); time.sleep(0.3)
             if opts["manual"] and absn in manual:
                 servers.append({"url": manual[absn], "name": nm(manual[absn]), "lang": "Latino", "desc": ""})
             prog(absn, total)
@@ -555,6 +562,10 @@ class App:
         ttk.Label(rg, text="Episodios a agregar (ej: 5-12 · vacío = todos):").pack(side="left")
         self.rangef = ttk.Entry(rg, width=18); self.rangef.pack(side="left", padx=6)
         ttk.Button(rg, text="Detectar faltantes", command=self.detect_missing).pack(side="left")
+        sg = tk.Frame(sc, bg=CARD); sg.pack(fill="x", padx=14, pady=(0, 8))
+        ttk.Label(sg, text="Slug/URL exacta de la fuente (opcional · para temporadas separadas):").pack(side="left")
+        self.srcslug = ttk.Entry(sg, width=34); self.srcslug.pack(side="left", padx=6)
+        ttk.Label(sg, text="↳ jkanime/animeav1; numera por temporada", style="Mut.TLabel").pack(side="left")
         self.manbox = tk.Frame(sc, bg=CARD)
         ttk.Label(self.manbox, text="URLs manuales (N|URL por línea)", style="Mut.TLabel").pack(anchor="w", padx=14)
         self.mantext = tk.Text(self.manbox, height=3, bg="#101015", fg=TXT, insertbackground=TXT, relief="flat"); self.mantext.pack(fill="x", padx=14, pady=(0, 8))
@@ -624,7 +635,7 @@ class App:
         opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": self.man.get(),
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
-                "season": self.seasonf.get().strip()}
+                "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip()}
         def work():
             try:
                 # FASE 1: metadata → rellena la ficha AL INSTANTE
