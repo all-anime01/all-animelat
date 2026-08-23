@@ -4,6 +4,16 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v4
+
+- **Audio** por anime (Sub / Sub | Dob / Latino / Castellano…) se calcula solo según lo
+  encontrado y queda editable.
+- **Títulos alternativos** (otros países: Kimetsu no Yaiba ↔ Demon Slayer) desde TMDB.
+- Llena **TODOS los datos**: título real, títulos alternativos, estudio, géneros, año,
+  descripción, y por episodio: **título, descripción, fecha de lanzamiento y duración real**.
+  *(La descripción/fecha/duración por episodio requieren la TMDB API key — ver abajo.)*
+- **Icono de All-Anime** en la ventana y el .exe.
+
 ## Novedades v3
 
 - **Guarda con el nombre REAL** del anime (título oficial de TMDB), no con lo que
@@ -54,7 +64,7 @@ Los comandos van en una **terminal de Windows**, dentro de la carpeta `desktop`:
 
    ```
    pip install pyinstaller
-   pyinstaller --onefile --noconsole --name AllAnimeImporter allanime_importer.py
+   pyinstaller --onefile --noconsole --icon icon.ico --add-data "icon.ico;." --name AllAnimeImporter allanime_importer.py
    ```
 
 4. Al terminar, el ejecutable queda en `desktop\dist\AllAnimeImporter.exe`.

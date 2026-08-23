@@ -112,6 +112,20 @@ def dec_ent(s): return (s or "").replace("&#39;", "'").replace("&quot;", '"').re
 def slugify(s):
     s = unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode()
     return re.sub(r"^-|-$", "", re.sub(r"[^a-z0-9]+", "-", s.lower()))
+MESES = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+def fmt_date(d):
+    if not d or len(d) < 10: return ""
+    try:
+        y, m, day = d[:10].split("-"); return f"{MESES[int(m)]} {int(day)}, {y}"
+    except Exception: return ""
+def audio_label(langs):
+    """Mapea los idiomas presentes al valor 'audio' del sitio."""
+    has_lat = "Latino" in langs; has_sub = "Sub" in langs; has_cas = "Castellano" in langs
+    if has_lat and has_sub: return "Sub | Dob"
+    if has_cas and has_sub: return "Sub | Cas"
+    if has_lat: return "Latino"
+    if has_cas: return "Castellano"
+    return "Sub"
 def best(cands, title):
     if not cands: return None
     want = norm(title)
@@ -134,7 +148,7 @@ def tmdb_resolve(title, key):
 def tmdb_full(tv, key):
     """Devuelve dict con title real, year, genres, desc, poster, backdrop, LOGO, imdb, seasons, stills."""
     out = {"title": "", "year": None, "genres": [], "description": "", "poster": "", "backdrop": "",
-           "logo": "", "imdb": "", "seasons": [], "stills": {}}
+           "logo": "", "imdb": "", "seasons": [], "stills": {}, "altTitles": [], "creator": "", "runtime": 24}
     if key:
         d = get_json(f"https://api.themoviedb.org/3/tv/{tv}?api_key={key}&language=es-ES")
         out["title"] = d.get("name") or d.get("original_name") or ""
@@ -143,6 +157,13 @@ def tmdb_full(tv, key):
         fad = d.get("first_air_date") or ""; out["year"] = int(fad[:4]) if fad[:4].isdigit() else None
         if d.get("poster_path"): out["poster"] = f"{IMG}/w500{d['poster_path']}"
         if d.get("backdrop_path"): out["backdrop"] = f"{IMG}/w1280{d['backdrop_path']}"
+        rt = d.get("episode_run_time") or []; out["runtime"] = rt[0] if rt else 24
+        out["creator"] = (d.get("created_by") or [{}])[0].get("name") or (d.get("production_companies") or [{}])[0].get("name") or (d.get("networks") or [{}])[0].get("name") or ""
+        # títulos alternativos (otros países) + original
+        alts = get_json(f"https://api.themoviedb.org/3/tv/{tv}/alternative_titles?api_key={key}")
+        at = [a.get("title") for a in (alts.get("results") or []) if a.get("title")]
+        if d.get("original_name"): at.insert(0, d["original_name"])
+        seen = set(); out["altTitles"] = [x for x in at if x and x != out["title"] and not (x.lower() in seen or seen.add(x.lower()))][:8]
         seasons = [s for s in d.get("seasons", []) if s.get("season_number", 0) >= 1 and s.get("episode_count", 0) > 0]
         out["seasons"] = [{"season": s["season_number"], "count": s["episode_count"]} for s in seasons]
         ext = get_json(f"https://api.themoviedb.org/3/tv/{tv}/external_ids?api_key={key}")
@@ -157,8 +178,10 @@ def tmdb_full(tv, key):
             sd = get_json(f"https://api.themoviedb.org/3/tv/{tv}/season/{S['season']}?api_key={key}&language=es-ES")
             for e in sd.get("episodes", []):
                 n = e.get("episode_number")
-                out["stills"][f"{S['season']}x{n}"] = {"still": f"{IMG}/w500{e['still_path']}" if e.get("still_path") else "",
-                                                        "title": e.get("name") or ""}
+                out["stills"][f"{S['season']}x{n}"] = {
+                    "still": f"{IMG}/w500{e['still_path']}" if e.get("still_path") else "",
+                    "title": e.get("name") or "", "overview": e.get("overview") or "",
+                    "air_date": fmt_date(e.get("air_date")), "runtime": e.get("runtime") or out["runtime"]}
             time.sleep(0.05)
         return out
     # ---- Fallback scraping (sin logo) ----
@@ -322,13 +345,17 @@ def build(title, opts, log, prog):
             if not servers:
                 log(f"  ep {absn} (S{S['season']}E{n}): sin servers"); continue
             em = info["stills"].get(f"{S['season']}x{n}", {})
+            rt = em.get("runtime") or info.get("runtime") or 24
             episodes.append({"number": n, "season": sname, "title": em.get("title") or f"Episodio {n}",
                              "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
                              "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={n}",
-                             "img": em.get("still") or info["backdrop"] or info["poster"], "description": "",
-                             "duration": "24 min", "servers": servers})
-    log(f"== {len(episodes)} episodios construidos ==")
-    return {"aid": aid, "info": info, "real_title": real_title, "seasons": seasons, "episodes": episodes}
+                             "img": em.get("still") or info["backdrop"] or info["poster"],
+                             "description": em.get("overview") or "", "releaseDate": em.get("air_date") or "",
+                             "duration": f"{rt} min", "servers": servers})
+    langs = list(dict.fromkeys(e["language"] for e in episodes))
+    log(f"== {len(episodes)} episodios construidos == audio: {audio_label(langs)}")
+    return {"aid": aid, "info": info, "real_title": real_title, "seasons": seasons, "episodes": episodes,
+            "audio": audio_label(langs), "altTitles": info.get("altTitles", []), "creator": info.get("creator", "")}
 
 def save(data, token, replace, log):
     aid = data["aid"]; built = data["episodes"]; info = data["info"]
@@ -346,17 +373,18 @@ def save(data, token, replace, log):
         log(f"Existente: +{added} nuevos" + (f", {replaced} reemplazados" if replace else " (no se tocó lo demás)"))
     else:
         episodes = built
-        langs = list(dict.fromkeys(e["language"] for e in episodes))
-        doc = {"id": aid, "title": data["real_title"], "altTitles": [], "type": "TV", "audio": " | ".join(langs),
+        doc = {"id": aid, "title": data["real_title"], "altTitles": [], "type": "TV", "audio": data["audio"],
                "status": "Finalizado", "quality": "1080p", "year": info["year"], "creator": "", "genres": info["genres"],
                "tags": [], "seasons": len(data["seasons"]), "rating": 4.4, "ratingCount": 300, "contentWarning": "",
                "description": info["description"], "img": info["poster"], "imgMobile": info["poster"],
                "heroImg": info["backdrop"], "fonImg": info["backdrop"], "logoImg": info["logo"], "trailerUrl": ""}
-    # aplica ediciones del anime (título/imágenes) siempre
+    # aplica los datos/ediciones del anime siempre
     doc["title"] = data["real_title"]; doc["img"] = info["poster"]; doc["imgMobile"] = info["poster"]
     doc["heroImg"] = info["backdrop"]; doc["fonImg"] = info["backdrop"]; doc["logoImg"] = info["logo"]
-    langs = list(dict.fromkeys(e["language"] for e in episodes))
-    doc["episodes"] = episodes; doc["episodesTotal"] = len(episodes); doc["episodesCount"] = len(episodes); doc["audio"] = " | ".join(langs)
+    doc["altTitles"] = data.get("altTitles", []); doc["audio"] = data.get("audio", "Sub")
+    if data.get("creator"): doc["creator"] = data["creator"]
+    if info.get("description") and not doc.get("description"): doc["description"] = info["description"]
+    doc["episodes"] = episodes; doc["episodesTotal"] = len(episodes); doc["episodesCount"] = len(episodes)
     st, t = patch_fields(f"animes/{aid}", doc, token)
     if st != 200: log(f"ERROR guardar: {st} {t[:150]}"); return
     cat = get_catalog(); light = {k: v for k, v in doc.items() if k != "episodes"}
@@ -365,14 +393,26 @@ def save(data, token, replace, log):
     else: cat.append(light)
     patch_fields("catalog/index", {"items": cat}, token)
     patch_fields("meta/catalog", {"version": int(time.time() * 1000)}, token)
-    log(f"OK GUARDADO: {aid} — {len(episodes)} eps [{' | '.join(langs)}]. Ya está en el sitio.")
+    log(f"OK GUARDADO: {aid} — {len(episodes)} eps [{doc.get('audio', '')}]. Ya está en el sitio.")
 
 # ================================================================== GUI
 BG = "#0f0f12"; CARD = "#1a1a20"; LINE = "#2a2a33"; TXT = "#e9e9ee"; MUT = "#9aa0aa"; RED = "#e0231f"; GRN = "#25a35a"
+AUDIOS = ["Sub", "Sub | Dob", "Sub | Cas", "Latino", "Castellano", "Subtitulado"]
+def _icon_path():
+    import sys
+    for base in (getattr(sys, "_MEIPASS", None), os.path.dirname(os.path.abspath(__file__))):
+        if base:
+            p = os.path.join(base, "icon.ico")
+            if os.path.exists(p): return p
+    return None
 class App:
     def __init__(self, root):
         self.root = root; self.token = None; self.data = None; self.cfg = load_cfg()
-        root.title("All-Anime · Importador"); root.geometry("980x720"); root.configure(bg=BG); root.minsize(880, 640)
+        root.title("All-Anime · Importador"); root.geometry("980x740"); root.configure(bg=BG); root.minsize(880, 640)
+        try:
+            ip = _icon_path()
+            if ip: root.iconbitmap(ip)
+        except Exception: pass
         s = ttk.Style(); s.theme_use("clam")
         s.configure(".", background=BG, foreground=TXT, fieldbackground="#101015", font=("Segoe UI", 10))
         s.configure("Card.TFrame", background=CARD)
@@ -440,8 +480,12 @@ class App:
         head(pv, "VISTA PREVIA (todo editable · doble clic en un episodio para cambiar su imagen)")
         af = tk.Frame(pv, bg=CARD); af.pack(fill="x", padx=14)
         self.f_title = self._field(af, "Título", 0); self.f_year = self._field(af, "Año", 1, w=8)
-        self.f_poster = self._field(af, "Portada (img)", 2, w=40); self.f_back = self._field(af, "Fondo (heroImg)", 3, w=40)
-        self.f_logo = self._field(af, "Logo (logoImg)", 4, w=40)
+        self.f_alt = self._field(af, "Títulos alternativos (coma)", 2)
+        ttk.Label(af, text="Audio", style="Mut.TLabel").grid(row=3, column=0, sticky="w", pady=2)
+        self.f_audio = ttk.Combobox(af, values=AUDIOS, width=16, state="readonly"); self.f_audio.grid(row=3, column=1, sticky="w", padx=8, pady=2); self.f_audio.set("Sub")
+        self.f_creator = self._field(af, "Estudio/Creador", 4)
+        self.f_poster = self._field(af, "Portada (img)", 5, w=40); self.f_back = self._field(af, "Fondo (heroImg)", 6, w=40)
+        self.f_logo = self._field(af, "Logo (logoImg)", 7, w=40)
         self.bar = ttk.Progressbar(pv); self.bar.pack(fill="x", padx=14, pady=8)
         self.tree = ttk.Treeview(pv, columns=("t", "img", "srv"), show="headings", height=8)
         for c, txt, w in [("t", "Título", 240), ("img", "Imagen", 120), ("srv", "Servidores", 320)]:
@@ -494,8 +538,10 @@ class App:
     def render(self):
         info = self.data["info"]
         for e, val in [(self.f_title, self.data["real_title"]), (self.f_year, info.get("year") or ""),
+                       (self.f_alt, ", ".join(self.data.get("altTitles", []))), (self.f_creator, self.data.get("creator", "")),
                        (self.f_poster, info["poster"]), (self.f_back, info["backdrop"]), (self.f_logo, info["logo"])]:
             e.delete(0, "end"); e.insert(0, str(val))
+        self.f_audio.set(self.data.get("audio", "Sub"))
         for i, e in enumerate(self.data["episodes"]):
             srv = ", ".join(f"{s['name']}({s['lang'][:3]})" for s in e["servers"])
             img = "sí" if e["img"] else "—"
@@ -520,6 +566,9 @@ class App:
         try: info["year"] = int(self.f_year.get().strip()) if self.f_year.get().strip() else info["year"]
         except Exception: pass
         info["poster"] = self.f_poster.get().strip(); info["backdrop"] = self.f_back.get().strip(); info["logo"] = self.f_logo.get().strip()
+        self.data["altTitles"] = [x.strip() for x in self.f_alt.get().split(",") if x.strip()]
+        self.data["audio"] = self.f_audio.get().strip() or self.data.get("audio", "Sub")
+        self.data["creator"] = self.f_creator.get().strip()
         self.save_btn.config(state="disabled")
         def work():
             try: save(self.data, self.token, self.replace.get(), self.log)
