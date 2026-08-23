@@ -1,53 +1,58 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-All-Anime — Importador de escritorio (v2)
+All-Anime — Importador de escritorio (v3)
 =========================================
-App nativa (sin navegador, sin CORS) que hace lo mismo que el asistente al agregar un
-anime: resuelve metadata + imágenes y extrae los servidores por episodio de varias
-fuentes, muestra una VISTA PREVIA, y guarda directo en tu Firebase (Firestore).
+App nativa (sin navegador, sin CORS). Buscas el título, arma el anime con sus datos
+REALES (título oficial, portada, fondo, LOGO, e imagen/título por episodio) y sus
+servidores en Latino/Sub de varias fuentes; TODO es editable antes de guardar.
 
-Fuentes:
-  - embed69  (Latino)  = el catálogo de animeonline.ninja ya decodificado.
-  - animeav1 (Latino "DUB" + Sub) = Mega / HLS / MP4Upload.
-  - jkanime  (Sub)     = Mega / StreamWish / VOE / VidHide / Streamtape.
-  - Manual             = pegas tú las URLs (N|URL por línea).
+Novedades v3:
+  - Guarda con el NOMBRE REAL del anime (no el que escribiste para buscar).
+  - Trae también el LOGO (con TMDB API key opcional, gratis) + portada/fondo.
+  - Puedes EDITAR título, imágenes del anime y la imagen/título de cada episodio.
+  - Interfaz rediseñada.
+  - Fuentes: embed69 (Latino), animeav1 (Lat+Sub), jkanime (Sub), Manual.
+  - Prioridad de servidores + modo "reparar/reemplazar enlaces rotos".
 
-Modos:
-  - Solo añadir lo nuevo (no toca nada existente).
-  - Reemplazar enlaces (REPARAR rotos): cambia los servidores de los episodios que
-    vuelvas a construir. Úsalo cuando un anime tenga enlaces caídos.
+TMDB API key (opcional, recomendada para el LOGO y mejores datos):
+  Gratis en https://www.themoviedb.org/settings/api  (copia la "API Key (v3 auth)").
+  Pégala una vez en el campo TMDB y se guarda.
 
-USO
----
-1) Instala Python 3 (python.org, marca "Add Python to PATH"). No hace falta nada más.
-2) Doble clic en este archivo, o:  python allanime_importer.py
-3) Inicia sesión con tu cuenta de ADMIN.
-4) Escribe el título, elige fuentes → "Construir (vista previa)".
-5) Revisa la lista → "Guardar en la web".
-
-Para .EXE:  pip install pyinstaller
-   pyinstaller --onefile --noconsole --name AllAnimeImporter allanime_importer.py
+Uso:
+  Instala Python 3 (python.org, "Add to PATH") → doble clic en este archivo.
+  .exe:  pip install pyinstaller
+         pyinstaller --onefile --noconsole --name AllAnimeImporter allanime_importer.py
 """
 
-import json, re, base64, urllib.request, urllib.parse, urllib.error, threading, time, ssl, unicodedata
+import json, re, base64, os, urllib.request, urllib.parse, urllib.error, threading, time, ssl, unicodedata
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, simpledialog
 
 API_KEY = "AIzaSyDJMJcwFvQCAfp9mXcCvxCQpX-6wy-a4FA"
 PROJECT = "all-anime-eae5b"
 FS = f"https://firestore.googleapis.com/v1/projects/{PROJECT}/databases/(default)/documents"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+IMG = "https://image.tmdb.org/t/p"
+CFG_PATH = os.path.join(os.path.expanduser("~"), ".allanime_importer.json")
 _SSL = ssl.create_default_context(); _SSL.check_hostname = False; _SSL.verify_mode = ssl.CERT_NONE
+
+def load_cfg():
+    try:
+        with open(CFG_PATH, encoding="utf-8") as f: return json.load(f)
+    except Exception: return {}
+def save_cfg(c):
+    try:
+        with open(CFG_PATH, "w", encoding="utf-8") as f: json.dump(c, f)
+    except Exception: pass
 
 # ------------------------------------------------------------------ HTTP
 def http(url, data=None, headers=None, referer=None, method=None, timeout=25):
     h = {"User-Agent": UA, "Accept-Language": "es-ES,es;q=0.9"}
     if referer: h["Referer"] = referer
     if headers: h.update(headers)
-    body = None
-    if data is not None:
-        body = json.dumps(data).encode("utf-8"); h["Content-Type"] = "application/json"
+    body = json.dumps(data).encode() if data is not None else None
+    if body is not None: h["Content-Type"] = "application/json"
     req = urllib.request.Request(url, data=body, headers=h, method=method or ("POST" if data is not None else "GET"))
     try:
         with urllib.request.urlopen(req, timeout=timeout, context=_SSL) as r:
@@ -56,9 +61,12 @@ def http(url, data=None, headers=None, referer=None, method=None, timeout=25):
         return e.code, e.read().decode("utf-8", "replace")
     except Exception as e:
         return 0, str(e)
-
 def get_text(url, referer=None):
     _, t = http(url, referer=referer); return t
+def get_json(url):
+    st, t = http(url)
+    try: return json.loads(t)
+    except Exception: return {}
 
 # ------------------------------------------------------------------ Firestore
 def sign_in(email, password):
@@ -67,7 +75,6 @@ def sign_in(email, password):
     j = json.loads(t)
     if "idToken" not in j: raise RuntimeError(j.get("error", {}).get("message", "login falló"))
     return j["idToken"]
-
 def to_fs(v):
     if v is None: return {"nullValue": None}
     if isinstance(v, bool): return {"booleanValue": v}
@@ -77,7 +84,6 @@ def to_fs(v):
     if isinstance(v, list): return {"arrayValue": {"values": [to_fs(x) for x in v]}}
     if isinstance(v, dict): return {"mapValue": {"fields": {k: to_fs(x) for k, x in v.items() if x is not None}}}
     return {"nullValue": None}
-
 def fv(v):
     if "stringValue" in v: return v["stringValue"]
     if "integerValue" in v: return int(v["integerValue"])
@@ -87,19 +93,16 @@ def fv(v):
     if "arrayValue" in v: return [fv(x) for x in v["arrayValue"].get("values", [])]
     if "mapValue" in v: return {k: fv(x) for k, x in v["mapValue"].get("fields", {}).items()}
     return None
-
 def get_doc(path, token=None):
     h = {"Authorization": "Bearer " + token} if token else None
     st, t = http(f"{FS}/{path}", headers=h)
     if st != 200: return None
     j = json.loads(t)
     return {k: fv(x) for k, x in j["fields"].items()} if "fields" in j else None
-
 def patch_fields(path, fields, token):
     mask = "&".join("updateMask.fieldPaths=" + urllib.parse.quote(k) for k in fields)
     return http(f"{FS}/{path}?{mask}", data={"fields": {k: to_fs(v) for k, v in fields.items()}},
                 headers={"Authorization": "Bearer " + token}, method="PATCH")
-
 def get_catalog():
     d = get_doc("catalog/index"); return (d or {}).get("items", []) if d else []
 
@@ -119,8 +122,74 @@ def best(cands, title):
         ws = set(want.split()); return len([w for w in cn.split() if w in ws])
     return sorted(cands, key=sc, reverse=True)[0]
 
-# ------------------------------------------------------------------ TMDB / IMDB
-def imdb_resolve(title, year=None):
+# ------------------------------------------------------------------ TMDB (API si hay key; si no, scraping)
+def tmdb_resolve(title, key):
+    if key:
+        j = get_json(f"https://api.themoviedb.org/3/search/tv?api_key={key}&language=es-ES&query={urllib.parse.quote(title)}")
+        r = (j.get("results") or [])
+        return str(r[0]["id"]) if r else None
+    t = get_text(f"https://www.themoviedb.org/search/tv?query={urllib.parse.quote(title)}")
+    m = re.search(r'href="/tv/(\d+)', t); return m.group(1) if m else None
+
+def tmdb_full(tv, key):
+    """Devuelve dict con title real, year, genres, desc, poster, backdrop, LOGO, imdb, seasons, stills."""
+    out = {"title": "", "year": None, "genres": [], "description": "", "poster": "", "backdrop": "",
+           "logo": "", "imdb": "", "seasons": [], "stills": {}}
+    if key:
+        d = get_json(f"https://api.themoviedb.org/3/tv/{tv}?api_key={key}&language=es-ES")
+        out["title"] = d.get("name") or d.get("original_name") or ""
+        out["description"] = d.get("overview") or ""
+        out["genres"] = [g["name"] for g in d.get("genres", [])][:5]
+        fad = d.get("first_air_date") or ""; out["year"] = int(fad[:4]) if fad[:4].isdigit() else None
+        if d.get("poster_path"): out["poster"] = f"{IMG}/w500{d['poster_path']}"
+        if d.get("backdrop_path"): out["backdrop"] = f"{IMG}/w1280{d['backdrop_path']}"
+        seasons = [s for s in d.get("seasons", []) if s.get("season_number", 0) >= 1 and s.get("episode_count", 0) > 0]
+        out["seasons"] = [{"season": s["season_number"], "count": s["episode_count"]} for s in seasons]
+        ext = get_json(f"https://api.themoviedb.org/3/tv/{tv}/external_ids?api_key={key}")
+        out["imdb"] = ext.get("imdb_id") or ""
+        im = get_json(f"https://api.themoviedb.org/3/tv/{tv}/images?api_key={key}&include_image_language=es,en,null")
+        logos = im.get("logos") or []
+        def lscore(l): return (2 if l.get("iso_639_1") == "es" else 1 if l.get("iso_639_1") == "en" else 0, l.get("vote_average", 0))
+        if logos:
+            lg = sorted(logos, key=lscore, reverse=True)[0]
+            out["logo"] = f"{IMG}/w500{lg['file_path']}"
+        for S in out["seasons"]:
+            sd = get_json(f"https://api.themoviedb.org/3/tv/{tv}/season/{S['season']}?api_key={key}&language=es-ES")
+            for e in sd.get("episodes", []):
+                n = e.get("episode_number")
+                out["stills"][f"{S['season']}x{n}"] = {"still": f"{IMG}/w500{e['still_path']}" if e.get("still_path") else "",
+                                                        "title": e.get("name") or ""}
+            time.sleep(0.05)
+        return out
+    # ---- Fallback scraping (sin logo) ----
+    h = get_text(f"https://www.themoviedb.org/tv/{tv}?language=es-ES")
+    mt = re.search(r'property="og:title" content="([^"]+)"', h) or re.search(r"<title>([^(<]+)", h)
+    out["title"] = dec_ent(mt.group(1)) if mt else ""
+    poster = re.search(r'property="og:image" content="[^"]*/([A-Za-z0-9]{16,})\.(?:jpg|png)', h)
+    if poster: out["poster"] = f"{IMG}/w500/{poster.group(1)}.jpg"
+    bd = get_text(f"https://www.themoviedb.org/tv/{tv}/images/backdrops")
+    m = re.search(r'image\.tmdb\.org/t/p/[a-z0-9_]+/([A-Za-z0-9]{20,})\.jpg', bd)
+    if m: out["backdrop"] = f"{IMG}/w1280/{m.group(1)}.jpg"
+    desc = re.search(r'<div class="overview">\s*<p>([^<]+)</p>', h)
+    out["description"] = dec_ent(desc.group(1)) if desc else ""
+    out["genres"] = [dec_ent(g) for g in list(dict.fromkeys(re.findall(r'/genre/\d+[^"]*"[^>]*>([^<]+)<', h)))[:5]]
+    yr = re.search(r"<title>[^<]*?\((?:[^)]*?)(19[6-9]\d|20[0-4]\d)\)", h) or re.search(r"(20[0-4]\d|19[6-9]\d)", h)
+    out["year"] = int(yr.group(1)) if yr else None
+    for s in range(1, 9):
+        hs = get_text(f"https://www.themoviedb.org/tv/{tv}/season/{s}?language=es-ES")
+        chunks = re.split(r'id="episode_[0-9a-f]+"', hs)[1:]
+        if not chunks:
+            if s > 1: break
+            continue
+        out["seasons"].append({"season": s, "count": len(chunks)})
+        for i, c in enumerate(chunks):
+            im = re.search(r'(?:media\.themoviedb\.org|image\.tmdb\.org)/t/p/[a-z0-9_]+/([A-Za-z0-9]{16,})\.', c)
+            ti = re.search(r'<div class="episode_title">\s*<h3>\s*<a[^>]*>([^<]+)</a>', c)
+            out["stills"][f"{s}x{i+1}"] = {"still": f"{IMG}/w500/{im.group(1)}.jpg" if im else "", "title": dec_ent(ti.group(1)) if ti else ""}
+        time.sleep(0.15)
+    return out
+
+def imdb_suggest(title, year=None):
     slug = re.sub(r"\s+", "_", re.sub(r"[^a-z0-9 ]", "", title.lower()).strip())
     if not slug: return None
     try:
@@ -134,40 +203,6 @@ def imdb_resolve(title, year=None):
         return pool[0]["id"] if pool else None
     except Exception: return None
 
-def tmdb_search(title):
-    t = get_text(f"https://www.themoviedb.org/search/tv?query={urllib.parse.quote(title)}")
-    m = re.search(r'href="/tv/(\d+)', t); return m.group(1) if m else None
-
-def tmdb_meta(tv):
-    h = get_text(f"https://www.themoviedb.org/tv/{tv}?language=es-ES")
-    poster = re.search(r'property="og:image" content="[^"]*/([A-Za-z0-9]{16,})\.(?:jpg|png)', h)
-    bd = get_text(f"https://www.themoviedb.org/tv/{tv}/images/backdrops")
-    backdrop = re.search(r'image\.tmdb\.org/t/p/[a-z0-9_]+/([A-Za-z0-9]{20,})\.jpg', bd)
-    desc = re.search(r'<div class="overview">\s*<p>([^<]+)</p>', h)
-    genres = list(dict.fromkeys(re.findall(r'/genre/\d+[^"]*"[^>]*>([^<]+)<', h)))[:5]
-    yr = re.search(r"<title>[^(]*\((\d{4})", h)
-    return {"poster": f"https://image.tmdb.org/t/p/w500/{poster.group(1)}.jpg" if poster else "",
-            "backdrop": f"https://image.tmdb.org/t/p/w1280/{backdrop.group(1)}.jpg" if backdrop else "",
-            "description": dec_ent(desc.group(1)) if desc else "",
-            "genres": [dec_ent(g) for g in genres], "year": int(yr.group(1)) if yr else None}
-
-def tmdb_stills(tv, maxs=8):
-    flat, seasons = {}, []
-    for s in range(1, maxs + 1):
-        h = get_text(f"https://www.themoviedb.org/tv/{tv}/season/{s}?language=es-ES")
-        chunks = re.split(r'id="episode_[0-9a-f]+"', h)[1:]
-        if not chunks:
-            if s > 1: break
-            continue
-        seasons.append({"season": s, "count": len(chunks)})
-        for i, c in enumerate(chunks):
-            im = re.search(r'(?:media\.themoviedb\.org|image\.tmdb\.org)/t/p/[a-z0-9_]+/([A-Za-z0-9]{16,})\.', c)
-            ti = re.search(r'<div class="episode_title">\s*<h3>\s*<a[^>]*>([^<]+)</a>', c)
-            flat[f"{s}x{i+1}"] = {"still": f"https://image.tmdb.org/t/p/w500/{im.group(1)}.jpg" if im else "",
-                                  "title": dec_ent(ti.group(1)) if ti else ""}
-        time.sleep(0.2)
-    return flat, seasons
-
 # ------------------------------------------------------------------ Fuentes de servidores
 NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "swiftplay": "Streamwish",
         "hglink": "Streamwish", "voe": "VOE", "vidhide": "VidHide", "vidhidevip": "VidHide",
@@ -177,10 +212,7 @@ def nm(u):
     for k, v in NAME.items():
         if k in s: return v
     return "Servidor"
-
 def prioritize(servers, prefer=None, only=False):
-    """Ordena por preferencia de host y deja máx 3 por idioma.
-    prefer = lista de nombres en orden (ej. ['Mega','Streamwish']). only=True → solo esos."""
     prefer = [p.strip().lower() for p in (prefer or []) if p.strip()]
     def rank(s):
         n = s["name"].lower()
@@ -192,25 +224,18 @@ def prioritize(servers, prefer=None, only=False):
         if only and prefer and not any(p in s["name"].lower() for p in prefer): continue
         g.setdefault(s["lang"], []).append(s)
     out = []
-    for k in g:
-        arr = sorted(g[k], key=rank)
-        out += arr[:3]
+    for k in g: out += sorted(g[k], key=rank)[:3]
     return out
-def cap3(servers): return prioritize(servers)
 
 def embed69_lat(imdb, s, e):
     code = f"{imdb}-{s}x{str(e).zfill(2)}"
     h = get_text(f"https://embed69.org/f/{code}/", referer="https://pelisplushd.bz/")
     m = re.search(r'dataLink\s*=\s*(\[[\s\S]*?\]);', h)
     if not m: return None
-    try:
-        dl = json.loads(m.group(1))
-    except Exception:
-        return None
-    if any(g.get("video_language") in ("LAT", "ESP") for g in dl) or dl:
-        return {"url": f"https://embed69.org/f/{code}/", "name": "PelisPlus", "lang": "Latino", "desc": "Audio Latino"}
+    try: dl = json.loads(m.group(1))
+    except Exception: return None
+    if dl: return {"url": f"https://embed69.org/f/{code}/", "name": "PelisPlus", "lang": "Latino", "desc": "Audio Latino"}
     return None
-
 JK_KEEP = ("mega", "sfastwish", "streamwish", "swiftplay", "voe", "vidhide", "vidhidevip", "filemoon", "streamtape")
 def jk_search(title):
     h = get_text(f"https://jkanime.net/buscar/{urllib.parse.quote(title)}/")
@@ -231,9 +256,7 @@ def jk_servers(slug, n):
         name = nm(u)
         if name in seen: continue
         seen.add(name); out.append({"url": u, "name": name, "lang": "Sub", "desc": ""})
-    rank = {"Mega": 0, "Streamwish": 1, "VOE": 2, "VidHide": 3, "Filemoon": 4, "Streamtape": 5}
-    out.sort(key=lambda x: rank.get(x["name"], 9)); return out[:3]
-
+    return out
 def av1_search(title):
     for u in (f"https://animeav1.com/catalogo?search={urllib.parse.quote(title)}", f"https://animeav1.com/catalogo?q={urllib.parse.quote(title)}"):
         h = get_text(u)
@@ -242,30 +265,30 @@ def av1_search(title):
     return None
 def av1_servers(slug, n):
     h = get_text(f"https://animeav1.com/media/{slug}/{n}")
-    if "no encontr" in h.lower() and len(h) < 3000: return None
+    if len(h) < 3000 and "embeds" not in h: return None
     res = []
-    blk = re.search(r'embeds:\{([\s\S]*?\})\s*,\s*[a-zA-Z]+:', h) or re.search(r'embeds:\{([\s\S]*?)\}\}', h)
+    blk = re.search(r'embeds:\{([\s\S]*?)\}\}', h)
     raw = blk.group(0) if blk else h
     for lang, tag in (("DUB", "Latino"), ("SUB", "Sub")):
         seg = re.search(lang + r':\[([\s\S]*?)\]', raw)
         if not seg: continue
         seen = set()
         for m in re.finditer(r'server:"([^"]+)",url:"([^"]+)"', seg.group(1)):
-            url = m.group(2)
-            name = nm(url) if nm(url) != "Servidor" else (m.group(1) if m.group(1) != "HLS" else "AnimeAV1 HD")
+            url = m.group(2); name = nm(url) if nm(url) != "Servidor" else (m.group(1) if m.group(1) != "HLS" else "AnimeAV1 HD")
             if name in seen: continue
             seen.add(name); res.append({"url": url, "name": name, "lang": tag, "desc": ""})
     return res
 
-# ------------------------------------------------------------------ Construir (sin guardar)
+# ------------------------------------------------------------------ Construir
 def build(title, opts, log, prog):
     log(f"== {title} ==")
-    imdb = imdb_resolve(title); tmdb = tmdb_search(title)
-    log(f"imdb={imdb}  tmdb={tmdb}")
-    meta = tmdb_meta(tmdb) if tmdb else {"genres": [], "description": "", "poster": "", "backdrop": "", "year": None}
-    flat, seasons = tmdb_stills(tmdb) if tmdb else ({}, [])
-    if not seasons: seasons = [{"season": 1, "count": int(opts.get("count") or 60)}]
-    aid = slugify(title)
+    tmdb = tmdb_resolve(title, opts["tmdb_key"])
+    info = tmdb_full(tmdb, opts["tmdb_key"]) if tmdb else {"title": title, "year": None, "genres": [], "description": "", "poster": "", "backdrop": "", "logo": "", "imdb": "", "seasons": [], "stills": {}}
+    real_title = info["title"] or title
+    imdb = info["imdb"] or imdb_suggest(real_title, info["year"])
+    log(f"título real: {real_title} | imdb={imdb} | tmdb={tmdb} | logo={'sí' if info['logo'] else 'no'}")
+    seasons = info["seasons"] or [{"season": 1, "count": 60}]
+    aid = slugify(real_title)
     jkslug = jk_search(title) if opts["jk"] else None
     avslug = av1_search(title) if opts["av1"] else None
     if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}")
@@ -281,8 +304,7 @@ def build(title, opts, log, prog):
     for S in seasons:
         sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
         for n in range(1, S["count"] + 1):
-            absn += 1
-            servers = []
+            absn += 1; servers = []
             if opts["e69"] and imdb:
                 r = embed69_lat(imdb, S["season"], n)
                 if r: servers.append(r)
@@ -290,52 +312,49 @@ def build(title, opts, log, prog):
             if opts["av1"] and avslug:
                 a = av1_servers(avslug, absn)
                 if a is None and absn > total: break
-                for x in (a or []): servers.append(x)
-                time.sleep(0.35)
+                servers += (a or []); time.sleep(0.35)
             if opts["jk"] and jkslug:
-                for x in (jk_servers(jkslug, absn) or []): servers.append(x)
-                time.sleep(0.3)
+                servers += (jk_servers(jkslug, absn) or []); time.sleep(0.3)
             if opts["manual"] and absn in manual:
-                servers.append({"url": manual[absn], "name": nm(manual[absn]), "lang": opts.get("manual_lang", "Latino"), "desc": ""})
+                servers.append({"url": manual[absn], "name": nm(manual[absn]), "lang": "Latino", "desc": ""})
             prog(absn, total)
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
                 log(f"  ep {absn} (S{S['season']}E{n}): sin servers"); continue
-            em = flat.get(f"{S['season']}x{n}", {})
+            em = info["stills"].get(f"{S['season']}x{n}", {})
             episodes.append({"number": n, "season": sname, "title": em.get("title") or f"Episodio {n}",
                              "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
                              "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={n}",
-                             "img": em.get("still") or meta["backdrop"] or meta["poster"], "description": "",
+                             "img": em.get("still") or info["backdrop"] or info["poster"], "description": "",
                              "duration": "24 min", "servers": servers})
-    log(f"== construidos {len(episodes)} episodios ==")
-    return {"aid": aid, "title": title, "meta": meta, "seasons": seasons, "episodes": episodes}
+    log(f"== {len(episodes)} episodios construidos ==")
+    return {"aid": aid, "info": info, "real_title": real_title, "seasons": seasons, "episodes": episodes}
 
 def save(data, token, replace, log):
-    aid = data["aid"]; built = data["episodes"]; meta = data["meta"]
+    aid = data["aid"]; built = data["episodes"]; info = data["info"]
     if not built: log("Nada que guardar."); return
     existing = get_doc(f"animes/{aid}", token)
     if existing and existing.get("episodes"):
-        ex = existing["episodes"]
-        idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
+        ex = existing["episodes"]; idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
         added = replaced = 0
         for b in built:
             k = f"{b['season']}|{b['number']}"
             if k in idx:
-                if replace:
-                    idx[k]["servers"] = b["servers"]; idx[k]["language"] = b["language"]; replaced += 1
-            else:
-                ex.append(b); idx[k] = b; added += 1
-        episodes = ex
-        log(f"Anime existente: +{added} nuevos" + (f", {replaced} con enlaces REEMPLAZADOS" if replace else " (no se tocó lo existente)"))
-        doc = existing
+                if replace: idx[k]["servers"] = b["servers"]; idx[k]["language"] = b["language"]; idx[k]["img"] = b["img"]; idx[k]["title"] = b["title"]; replaced += 1
+            else: ex.append(b); added += 1
+        episodes = ex; doc = existing
+        log(f"Existente: +{added} nuevos" + (f", {replaced} reemplazados" if replace else " (no se tocó lo demás)"))
     else:
         episodes = built
         langs = list(dict.fromkeys(e["language"] for e in episodes))
-        doc = {"id": aid, "title": data["title"], "altTitles": [], "type": "TV", "audio": " | ".join(langs),
-               "status": "Finalizado", "quality": "1080p", "year": meta["year"], "creator": "",
-               "genres": meta["genres"], "tags": [], "seasons": len(data["seasons"]), "rating": 4.4, "ratingCount": 300,
-               "contentWarning": "", "description": meta["description"], "img": meta["poster"], "imgMobile": meta["poster"],
-               "heroImg": meta["backdrop"], "fonImg": meta["backdrop"], "logoImg": "", "trailerUrl": ""}
+        doc = {"id": aid, "title": data["real_title"], "altTitles": [], "type": "TV", "audio": " | ".join(langs),
+               "status": "Finalizado", "quality": "1080p", "year": info["year"], "creator": "", "genres": info["genres"],
+               "tags": [], "seasons": len(data["seasons"]), "rating": 4.4, "ratingCount": 300, "contentWarning": "",
+               "description": info["description"], "img": info["poster"], "imgMobile": info["poster"],
+               "heroImg": info["backdrop"], "fonImg": info["backdrop"], "logoImg": info["logo"], "trailerUrl": ""}
+    # aplica ediciones del anime (título/imágenes) siempre
+    doc["title"] = data["real_title"]; doc["img"] = info["poster"]; doc["imgMobile"] = info["poster"]
+    doc["heroImg"] = info["backdrop"]; doc["fonImg"] = info["backdrop"]; doc["logoImg"] = info["logo"]
     langs = list(dict.fromkeys(e["language"] for e in episodes))
     doc["episodes"] = episodes; doc["episodesTotal"] = len(episodes); doc["episodesCount"] = len(episodes); doc["audio"] = " | ".join(langs)
     st, t = patch_fields(f"animes/{aid}", doc, token)
@@ -346,95 +365,161 @@ def save(data, token, replace, log):
     else: cat.append(light)
     patch_fields("catalog/index", {"items": cat}, token)
     patch_fields("meta/catalog", {"version": int(time.time() * 1000)}, token)
-    log(f"OK GUARDADO: {aid} — {len(episodes)} episodios [{' | '.join(langs)}]. Ya está en el sitio.")
+    log(f"OK GUARDADO: {aid} — {len(episodes)} eps [{' | '.join(langs)}]. Ya está en el sitio.")
 
-# ------------------------------------------------------------------ GUI
+# ================================================================== GUI
+BG = "#0f0f12"; CARD = "#1a1a20"; LINE = "#2a2a33"; TXT = "#e9e9ee"; MUT = "#9aa0aa"; RED = "#e0231f"; GRN = "#25a35a"
 class App:
     def __init__(self, root):
-        self.root = root; self.token = None; self.data = None
-        root.title("All-Anime — Importador"); root.geometry("820x680"); root.configure(bg="#141414")
+        self.root = root; self.token = None; self.data = None; self.cfg = load_cfg()
+        root.title("All-Anime · Importador"); root.geometry("980x720"); root.configure(bg=BG); root.minsize(880, 640)
         s = ttk.Style(); s.theme_use("clam")
-        s.configure("TButton", background="#e0231f", foreground="#fff", padding=7, font=("Segoe UI", 10, "bold"))
-        s.configure("G.TButton", background="#1f9d55"); s.configure("TLabel", background="#141414", foreground="#eaeaea", font=("Segoe UI", 10))
-        s.configure("TCheckbutton", background="#141414", foreground="#eaeaea"); s.configure("TRadiobutton", background="#141414", foreground="#eaeaea")
-        s.configure("Treeview", background="#0e0e0e", fieldbackground="#0e0e0e", foreground="#ddd", rowheight=22)
-        top = tk.Frame(root, bg="#141414"); top.pack(fill="x", padx=14, pady=(12, 2))
-        ttk.Label(top, text="Correo admin").grid(row=0, column=0, sticky="w"); ttk.Label(top, text="Contraseña").grid(row=0, column=1, sticky="w")
-        self.email = tk.Entry(top, width=28); self.email.grid(row=1, column=0, padx=(0, 8))
-        self.pw = tk.Entry(top, width=20, show="•"); self.pw.grid(row=1, column=1, padx=(0, 8))
-        ttk.Button(top, text="Iniciar sesión", command=self.login).grid(row=1, column=2)
-        self.status = ttk.Label(root, text="Inicia sesión para empezar.", foreground="#ffcf7a"); self.status.pack(anchor="w", padx=14)
-        f = tk.Frame(root, bg="#141414"); f.pack(fill="x", padx=14, pady=8)
-        ttk.Label(f, text="Título del anime").pack(anchor="w")
-        self.title = tk.Entry(f, font=("Segoe UI", 11)); self.title.pack(fill="x", pady=3)
-        src = tk.Frame(f, bg="#141414"); src.pack(anchor="w", pady=3)
+        s.configure(".", background=BG, foreground=TXT, fieldbackground="#101015", font=("Segoe UI", 10))
+        s.configure("Card.TFrame", background=CARD)
+        s.configure("TLabel", background=CARD, foreground=TXT)
+        s.configure("Mut.TLabel", background=CARD, foreground=MUT, font=("Segoe UI", 9))
+        s.configure("H.TLabel", background=CARD, foreground="#ff8a8a", font=("Segoe UI", 10, "bold"))
+        s.configure("TButton", background="#26262e", foreground=TXT, padding=8, borderwidth=0, font=("Segoe UI", 10, "bold"))
+        s.map("TButton", background=[("active", "#33333d")])
+        s.configure("Red.TButton", background=RED); s.map("Red.TButton", background=[("active", "#b81c19")])
+        s.configure("Grn.TButton", background=GRN); s.map("Grn.TButton", background=[("active", "#1c7d45")])
+        s.configure("TCheckbutton", background=CARD, foreground=TXT); s.configure("TRadiobutton", background=CARD, foreground=TXT)
+        s.configure("TEntry", fieldbackground="#101015", foreground=TXT, insertcolor=TXT, borderwidth=1)
+        s.configure("Treeview", background="#101015", fieldbackground="#101015", foreground=TXT, rowheight=24, borderwidth=0)
+        s.configure("Treeview.Heading", background="#22222a", foreground=TXT, font=("Segoe UI", 9, "bold"))
+        s.configure("TNotebook", background=BG, borderwidth=0); s.configure("TNotebook.Tab", background="#1a1a20", foreground=MUT, padding=(14, 7))
+        s.map("TNotebook.Tab", background=[("selected", CARD)], foreground=[("selected", TXT)])
+
+        # Header
+        hd = tk.Frame(root, bg="#141418"); hd.pack(fill="x")
+        tk.Label(hd, text="▎", fg=RED, bg="#141418", font=("Segoe UI", 20, "bold")).pack(side="left", padx=(14, 0))
+        tk.Label(hd, text="All-Anime · Importador", fg=TXT, bg="#141418", font=("Segoe UI", 14, "bold")).pack(side="left", pady=12)
+        self.status = tk.Label(hd, text="Inicia sesión", fg="#ffcf7a", bg="#141418", font=("Segoe UI", 9)); self.status.pack(side="right", padx=16)
+
+        body = tk.Frame(root, bg=BG); body.pack(fill="both", expand=True, padx=14, pady=12)
+
+        def card(parent):
+            c = tk.Frame(parent, bg=CARD, highlightbackground=LINE, highlightthickness=1); return c
+        def head(c, t):
+            ttk.Label(c, text=t, style="H.TLabel").pack(anchor="w", padx=14, pady=(12, 6))
+
+        # Config card (login + tmdb)
+        cf = card(body); cf.pack(fill="x")
+        head(cf, "CUENTA Y AJUSTES")
+        row = tk.Frame(cf, bg=CARD); row.pack(fill="x", padx=14, pady=(0, 12))
+        ttk.Label(row, text="Correo admin").grid(row=0, column=0, sticky="w"); ttk.Label(row, text="Contraseña").grid(row=0, column=1, sticky="w", padx=(8, 0))
+        ttk.Label(row, text="TMDB API key (opcional, para logo)").grid(row=0, column=2, sticky="w", padx=(8, 0))
+        self.email = ttk.Entry(row, width=26); self.email.grid(row=1, column=0, sticky="w"); self.email.insert(0, self.cfg.get("email", ""))
+        self.pw = ttk.Entry(row, width=18, show="•"); self.pw.grid(row=1, column=1, padx=(8, 0))
+        self.tmdb = ttk.Entry(row, width=30); self.tmdb.grid(row=1, column=2, padx=(8, 0)); self.tmdb.insert(0, self.cfg.get("tmdb_key", ""))
+        ttk.Button(row, text="Iniciar sesión", style="Red.TButton", command=self.login).grid(row=1, column=3, padx=(10, 0))
+
+        # Search card
+        sc = card(body); sc.pack(fill="x", pady=(12, 0))
+        head(sc, "AGREGAR ANIME")
+        sr = tk.Frame(sc, bg=CARD); sr.pack(fill="x", padx=14)
+        self.title = ttk.Entry(sr, font=("Segoe UI", 12)); self.title.pack(side="left", fill="x", expand=True)
+        self.build_btn = ttk.Button(sr, text="Buscar y construir", style="Red.TButton", command=self.do_build, state="disabled"); self.build_btn.pack(side="left", padx=(8, 0))
+        opt = tk.Frame(sc, bg=CARD); opt.pack(fill="x", padx=14, pady=8)
         self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
-        ttk.Checkbutton(src, text="embed69 (Latino / animeonlineninja)", variable=self.e69).grid(row=0, column=0, sticky="w", padx=(0, 12))
-        ttk.Checkbutton(src, text="animeav1 (Latino+Sub)", variable=self.av1).grid(row=0, column=1, sticky="w", padx=(0, 12))
-        ttk.Checkbutton(src, text="jkanime (Sub)", variable=self.jk).grid(row=0, column=2, sticky="w", padx=(0, 12))
-        ttk.Checkbutton(src, text="Manual", variable=self.man, command=self.toggle_manual).grid(row=0, column=3, sticky="w")
-        self.manbox = tk.Frame(f, bg="#141414")
-        ttk.Label(self.manbox, text="URLs manuales (una por línea: N|URL)").pack(anchor="w")
-        self.mantext = tk.Text(self.manbox, height=3, bg="#0e0e0e", fg="#ddd"); self.mantext.pack(fill="x")
-        pf = tk.Frame(f, bg="#141414"); pf.pack(anchor="w", pady=3, fill="x")
-        ttk.Label(pf, text="Prioridad de servidores (coma, ej: Mega, Streamwish, VOE)").pack(anchor="w")
-        prow = tk.Frame(pf, bg="#141414"); prow.pack(anchor="w", fill="x")
-        self.prefer = tk.Entry(prow, width=48); self.prefer.pack(side="left", pady=2)
-        self.only = tk.BooleanVar(value=False)
-        ttk.Checkbutton(prow, text="Usar SOLO estos", variable=self.only).pack(side="left", padx=10)
-        mode = tk.Frame(f, bg="#141414"); mode.pack(anchor="w", pady=4)
+        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("Manual", self.man, self.toggle_manual)]):
+            ttk.Checkbutton(opt, text=t, variable=v, command=cmd or (lambda: None)).grid(row=0, column=i, sticky="w", padx=(0, 14))
         self.replace = tk.BooleanVar(value=False)
-        ttk.Radiobutton(mode, text="Solo añadir lo nuevo", variable=self.replace, value=False).pack(side="left", padx=(0, 14))
-        ttk.Radiobutton(mode, text="Reemplazar enlaces (reparar rotos)", variable=self.replace, value=True).pack(side="left")
-        btns = tk.Frame(f, bg="#141414"); btns.pack(anchor="w", pady=4)
-        self.build_btn = ttk.Button(btns, text="Construir (vista previa)", command=self.do_build, state="disabled"); self.build_btn.pack(side="left", padx=(0, 8))
-        self.save_btn = ttk.Button(btns, text="Guardar en la web", style="G.TButton", command=self.do_save, state="disabled"); self.save_btn.pack(side="left")
-        self.bar = ttk.Progressbar(root); self.bar.pack(fill="x", padx=14, pady=3)
-        # Vista previa
-        pv = tk.Frame(root, bg="#141414"); pv.pack(fill="both", expand=True, padx=14, pady=(4, 2))
-        self.tree = ttk.Treeview(pv, columns=("t", "srv"), show="tree headings", height=9)
-        self.tree.heading("#0", text="Ep"); self.tree.column("#0", width=60)
-        self.tree.heading("t", text="Título"); self.tree.column("t", width=300)
-        self.tree.heading("srv", text="Servidores (idioma)"); self.tree.column("srv", width=360)
-        self.tree.pack(fill="both", expand=True)
-        self.logbox = tk.Text(root, bg="#0a0a0a", fg="#cfcfcf", height=7, font=("Consolas", 9), relief="flat")
-        self.logbox.pack(fill="x", padx=14, pady=(4, 12))
+        ttk.Radiobutton(opt, text="Añadir nuevo", variable=self.replace, value=False).grid(row=0, column=5, padx=(10, 6))
+        ttk.Radiobutton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True).grid(row=0, column=6)
+        pr = tk.Frame(sc, bg=CARD); pr.pack(fill="x", padx=14, pady=(0, 10))
+        ttk.Label(pr, text="Prioridad de servidores:").pack(side="left")
+        self.prefer = ttk.Entry(pr, width=40); self.prefer.pack(side="left", padx=6); self.prefer.insert(0, "Mega, Streamwish, VOE")
+        self.only = tk.BooleanVar(value=False); ttk.Checkbutton(pr, text="solo estos", variable=self.only).pack(side="left")
+        self.manbox = tk.Frame(sc, bg=CARD)
+        ttk.Label(self.manbox, text="URLs manuales (N|URL por línea)", style="Mut.TLabel").pack(anchor="w", padx=14)
+        self.mantext = tk.Text(self.manbox, height=3, bg="#101015", fg=TXT, insertbackground=TXT, relief="flat"); self.mantext.pack(fill="x", padx=14, pady=(0, 8))
+
+        # Preview card (anime editable + episodes)
+        pv = card(body); pv.pack(fill="both", expand=True, pady=(12, 0))
+        head(pv, "VISTA PREVIA (todo editable · doble clic en un episodio para cambiar su imagen)")
+        af = tk.Frame(pv, bg=CARD); af.pack(fill="x", padx=14)
+        self.f_title = self._field(af, "Título", 0); self.f_year = self._field(af, "Año", 1, w=8)
+        self.f_poster = self._field(af, "Portada (img)", 2, w=40); self.f_back = self._field(af, "Fondo (heroImg)", 3, w=40)
+        self.f_logo = self._field(af, "Logo (logoImg)", 4, w=40)
+        self.bar = ttk.Progressbar(pv); self.bar.pack(fill="x", padx=14, pady=8)
+        self.tree = ttk.Treeview(pv, columns=("t", "img", "srv"), show="headings", height=8)
+        for c, txt, w in [("t", "Título", 240), ("img", "Imagen", 120), ("srv", "Servidores", 320)]:
+            self.tree.heading(c, text=txt); self.tree.column(c, width=w)
+        self.tree.pack(fill="both", expand=True, padx=14)
+        self.tree.bind("<Double-1>", self.edit_episode)
+        bb = tk.Frame(pv, bg=CARD); bb.pack(fill="x", padx=14, pady=10)
+        self.save_btn = ttk.Button(bb, text="Guardar en la web", style="Grn.TButton", command=self.do_save, state="disabled"); self.save_btn.pack(side="left")
+        ttk.Label(bb, text="  (aplica lo que edites arriba)", style="Mut.TLabel").pack(side="left")
+
+        self.logbox = tk.Text(root, bg="#0a0a0c", fg="#c8c8d0", height=6, font=("Consolas", 9), relief="flat"); self.logbox.pack(fill="x", padx=14, pady=(0, 12))
+
+    def _field(self, parent, label, r, w=None):
+        ttk.Label(parent, text=label, style="Mut.TLabel").grid(row=r, column=0, sticky="w", pady=2)
+        e = ttk.Entry(parent, width=w or 60); e.grid(row=r, column=1, sticky="we", padx=8, pady=2); parent.columnconfigure(1, weight=1)
+        return e
 
     def toggle_manual(self):
-        if self.man.get(): self.manbox.pack(fill="x", pady=3)
+        if self.man.get(): self.manbox.pack(fill="x", pady=(0, 6))
         else: self.manbox.pack_forget()
     def log(self, m): self.logbox.insert("end", m + "\n"); self.logbox.see("end"); self.root.update_idletasks()
     def prog(self, n, t): self.bar["maximum"] = t; self.bar["value"] = n; self.root.update_idletasks()
+
     def login(self):
         try:
             self.token = sign_in(self.email.get().strip(), self.pw.get())
-            self.status.config(text="✅ Sesión iniciada.", foreground="#9fd89f"); self.build_btn.config(state="normal")
+            self.cfg.update(email=self.email.get().strip(), tmdb_key=self.tmdb.get().strip()); save_cfg(self.cfg)
+            self.status.config(text="✅ Sesión iniciada", fg="#9fd89f"); self.build_btn.config(state="normal")
         except Exception as e: messagebox.showerror("Login", str(e))
+
     def do_build(self):
         t = self.title.get().strip()
         if not t or not self.token: return
+        self.cfg["tmdb_key"] = self.tmdb.get().strip(); save_cfg(self.cfg)
         self.build_btn.config(state="disabled"); self.save_btn.config(state="disabled")
         for i in self.tree.get_children(): self.tree.delete(i)
         self.logbox.delete("1.0", "end")
         opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": self.man.get(),
-                "manual_text": self.mantext.get("1.0", "end"), "manual_lang": "Latino", "count": 0,
-                "prefer": self.prefer.get().split(","), "only": self.only.get()}
+                "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
+                "only": self.only.get(), "tmdb_key": self.tmdb.get().strip()}
         def work():
             try:
-                self.data = build(t, opts, self.log, self.prog)
-                self.root.after(0, self.render)
+                self.data = build(t, opts, self.log, self.prog); self.root.after(0, self.render)
             except Exception as e:
                 self.log("ERROR: " + str(e))
             finally:
                 self.root.after(0, lambda: self.build_btn.config(state="normal"))
         threading.Thread(target=work, daemon=True).start()
+
     def render(self):
-        for e in self.data["episodes"]:
+        info = self.data["info"]
+        for e, val in [(self.f_title, self.data["real_title"]), (self.f_year, info.get("year") or ""),
+                       (self.f_poster, info["poster"]), (self.f_back, info["backdrop"]), (self.f_logo, info["logo"])]:
+            e.delete(0, "end"); e.insert(0, str(val))
+        for i, e in enumerate(self.data["episodes"]):
             srv = ", ".join(f"{s['name']}({s['lang'][:3]})" for s in e["servers"])
-            self.tree.insert("", "end", text=f"{e['season'][-1]}·{e['number']}", values=(e["title"], srv))
+            img = "sí" if e["img"] else "—"
+            self.tree.insert("", "end", iid=str(i), text="", values=(f"E{e['number']} · {e['title']}", img, srv))
         self.save_btn.config(state="normal" if self.data["episodes"] else "disabled")
+        if not info["logo"]: self.log("Sin logo (añade una TMDB API key para traerlo, o pégalo en el campo Logo).")
+
+    def edit_episode(self, ev):
+        iid = self.tree.focus()
+        if not iid or not self.data: return
+        ep = self.data["episodes"][int(iid)]
+        new = simpledialog.askstring("Editar imagen del episodio", f"E{ep['number']} — URL de la imagen:", initialvalue=ep["img"], parent=self.root)
+        if new is not None:
+            ep["img"] = new.strip()
+            self.tree.set(iid, "img", "sí" if ep["img"] else "—")
+
     def do_save(self):
         if not self.data: return
+        # aplica ediciones del anime
+        info = self.data["info"]
+        self.data["real_title"] = self.f_title.get().strip() or self.data["real_title"]
+        try: info["year"] = int(self.f_year.get().strip()) if self.f_year.get().strip() else info["year"]
+        except Exception: pass
+        info["poster"] = self.f_poster.get().strip(); info["backdrop"] = self.f_back.get().strip(); info["logo"] = self.f_logo.get().strip()
         self.save_btn.config(state="disabled")
         def work():
             try: save(self.data, self.token, self.replace.get(), self.log)

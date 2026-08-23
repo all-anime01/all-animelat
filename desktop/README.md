@@ -4,6 +4,21 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v3
+
+- **Guarda con el nombre REAL** del anime (título oficial de TMDB), no con lo que
+  escribiste para buscar.
+- Trae **portada, fondo y LOGO** (el logo necesita una **TMDB API key** gratis; sin ella
+  funciona todo menos el logo, que puedes pegar a mano).
+- **Todo editable** antes de guardar: título, año, portada, fondo, logo, y la
+  **imagen/título de cada episodio** (doble clic en un episodio para cambiar su imagen).
+- Interfaz rediseñada.
+
+### TMDB API key (opcional, para el LOGO y mejores datos)
+Gratis: entra a https://www.themoviedb.org/settings/api → crea una key → copia la
+**"API Key (v3 auth)"** y pégala en el campo TMDB de la app (se guarda). Con ella el logo,
+el título real y las imágenes salen automáticos y más fiables.
+
 ## Funciones
 
 - **Fuentes:** embed69 (Latino = catálogo de animeonline.ninja ya decodificado),
