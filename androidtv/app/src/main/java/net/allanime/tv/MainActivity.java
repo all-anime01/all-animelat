@@ -169,6 +169,22 @@ public class MainActivity extends Activity {
     private boolean extracting = false;
     private String currentEmbed = null;
     private Runnable extractTimeout;
+    // Subtítulos (.vtt/.srt/.ass) capturados durante la extracción → se cargan en ExoPlayer.
+    private final java.util.List<String> capturedSubs = new java.util.concurrent.CopyOnWriteArrayList<>();
+
+    private boolean isSubtitleUrl(String u) {
+        if (u == null) return false;
+        String x = u.toLowerCase();
+        if (x.contains(".m3u8") || x.contains(".mp4") || x.contains(".ts")) return false;
+        return x.contains(".vtt") || x.contains(".srt") || x.contains(".ass")
+                || x.contains("/subtitle") || x.contains("/subs/") || x.contains("caption") || x.contains("subtitles");
+    }
+    private String subMime(String u) {
+        String x = u.toLowerCase();
+        if (x.contains(".srt")) return MimeTypes.APPLICATION_SUBRIP;
+        if (x.contains(".ass") || x.contains(".ssa")) return MimeTypes.TEXT_SSA;
+        return MimeTypes.TEXT_VTT;   // .vtt y por defecto
+    }
 
     private void ensureExtractWv() {
         if (extractWv != null) return;
@@ -196,11 +212,16 @@ public class MainActivity extends Activity {
             @Override public WebResourceResponse shouldInterceptRequest(WebView v, WebResourceRequest req) {
                 try {
                     String u = req.getUrl() != null ? req.getUrl().toString() : "";
+                    // Captura archivos de SUBTÍTULOS que pide el player del host (.vtt/.srt/
+                    // .ass): el m3u8 crudo casi nunca los trae, así que se cargan aparte.
+                    if (extracting && isSubtitleUrl(u) && !capturedSubs.contains(u)) capturedSubs.add(u);
                     if (extracting && isStreamUrl(u)) {
                         extracting = false;
                         final String su = u;
                         final Map<String, String> hh = req.getRequestHeaders();
-                        runOnUiThread(() -> onStreamFound(su, hh));
+                        // Pequeña espera: da tiempo a que también se capture el .vtt antes de
+                        // arrancar (muchos players piden el subtítulo junto con el m3u8).
+                        runOnUiThread(() -> rootLayout.postDelayed(() -> onStreamFound(su, hh), 500));
                     }
                 } catch (Exception ignored) {}
                 return super.shouldInterceptRequest(v, req);
@@ -267,6 +288,7 @@ public class MainActivity extends Activity {
         ensureExtractWv();
         currentEmbed = embedUrl;
         extracting = true;
+        capturedSubs.clear();
         if (extractTimeout != null) rootLayout.removeCallbacks(extractTimeout);
         extractTimeout = () -> {
             if (extracting) { extracting = false; stopExtractWv();
@@ -406,14 +428,26 @@ public class MainActivity extends Activity {
             // es HLS, con preparación SIN fragmentos (arranca mucho más rápido).
             String lu = streamUrl.toLowerCase();
             boolean isHls = lu.contains("m3u8") || lu.contains("/hls");
-            MediaSource ms;
-            if (isHls) {
-                MediaItem mi = new MediaItem.Builder().setUri(streamUrl).setMimeType(MimeTypes.APPLICATION_M3U8).build();
-                ms = new HlsMediaSource.Factory(dsf).setAllowChunklessPreparation(true).createMediaSource(mi);
-            } else {
-                ms = new DefaultMediaSourceFactory(dsf).createMediaSource(MediaItem.fromUri(streamUrl));
+            // MediaItem con SUBTÍTULOS capturados (.vtt/.srt/.ass) cargados aparte, en
+            // español y seleccionados por defecto → el CC ahora sí los muestra.
+            MediaItem.Builder mib = new MediaItem.Builder().setUri(streamUrl);
+            if (isHls) mib.setMimeType(MimeTypes.APPLICATION_M3U8);
+            java.util.List<MediaItem.SubtitleConfiguration> subCfgs = new java.util.ArrayList<>();
+            for (String su : capturedSubs) {
+                try {
+                    subCfgs.add(new MediaItem.SubtitleConfiguration.Builder(android.net.Uri.parse(su))
+                            .setMimeType(subMime(su))
+                            .setLanguage("es")
+                            .setSelectionFlags(androidx.media3.common.C.SELECTION_FLAG_DEFAULT)
+                            .build());
+                } catch (Exception ignored) {}
             }
-            exo.setMediaSource(ms);
+            if (!subCfgs.isEmpty()) mib.setSubtitleConfigurations(subCfgs);
+            MediaItem mi = mib.build();
+            // DefaultMediaSourceFactory: detecta HLS por el MIME (arregla el 00:00 de
+            // StreamWish/VOE) Y fusiona los subtítulos side-loaded (HlsMediaSource directo
+            // no los fusiona). Preparación HLS sin fragmentos = arranque más rápido.
+            exo.setMediaSource(new DefaultMediaSourceFactory(dsf).createMediaSource(mi));
             exoContainer.setVisibility(View.VISIBLE);
             exoContainer.bringToFront();
             exoOpen = true;
