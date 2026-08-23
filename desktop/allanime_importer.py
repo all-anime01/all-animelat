@@ -525,8 +525,19 @@ class App:
     def login(self):
         try:
             self.token = sign_in(self.email.get().strip(), self.pw.get())
-            self.cfg.update(email=self.email.get().strip(), tmdb_key=self.tmdb.get().strip()); save_cfg(self.cfg)
+            key = self.tmdb.get().strip()
+            self.cfg.update(email=self.email.get().strip(), tmdb_key=key); save_cfg(self.cfg)
             self.status.config(text="✅ Sesión iniciada", fg="#9fd89f"); self.build_btn.config(state="normal")
+            # Valida la TMDB API key para que sepas que la está usando.
+            if key:
+                def chk():
+                    ok = False
+                    try: ok = bool((get_json(f"https://api.themoviedb.org/3/configuration?api_key={key}") or {}).get("images"))
+                    except Exception: ok = False
+                    self.root.after(0, lambda: self.log("TMDB API key: " + ("✅ válida (logo y datos completos activados)" if ok else "❌ inválida — revisa que sea la 'Llave API (v3)'")))
+                threading.Thread(target=chk, daemon=True).start()
+            else:
+                self.log("Sin TMDB API key: se llenarán título/imágenes/servidores, pero NO el logo ni el detalle por episodio.")
         except Exception as e: messagebox.showerror("Login", str(e))
 
     def do_build(self):
