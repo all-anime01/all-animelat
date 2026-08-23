@@ -383,6 +383,10 @@
             });
             const btn = document.getElementById("speed-btn");
             if (btn) { btn.style.display = "inline-flex"; btn.onclick = probeAll; }
+            // AUTO: mide la velocidad y marca el servidor más rápido en cuanto carga la
+            // lista, sin que el usuario pulse el botón → mejora la conexión (precalienta
+            // DNS/TCP/TLS de todos) y recomienda el mejor para que el video cargue rápido.
+            setTimeout(() => { try { probeAll(); } catch (e) {} }, 500);
         }
         function probe(origin) {
             return new Promise((res) => {
