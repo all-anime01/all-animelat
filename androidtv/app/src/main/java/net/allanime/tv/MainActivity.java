@@ -110,7 +110,9 @@ public class MainActivity extends Activity {
         s.setSupportMultipleWindows(true);              // para interceptar popups de anuncios
         s.setJavaScriptCanOpenWindowsAutomatically(false);
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
-        s.setCacheMode(WebSettings.LOAD_DEFAULT);
+        // SIEMPRE contenido actual: no servir HTML/JS cacheado (así toda actualización del
+        // sitio se ve de inmediato en la app, en cualquier plataforma).
+        s.setCacheMode(WebSettings.LOAD_NO_CACHE);
         // UA igual que en las primeras versiones que SÍ reproducían (el "wv" NO era el
         // problema: esa versión lo tenía y funcionaba). Sufijo para que el sitio sepa
         // que es la app; detección también por el puente window.AAApp.

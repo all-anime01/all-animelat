@@ -71,7 +71,11 @@
                     <div><label>TMDB id (opcional)</label><input id="f-tmdb" placeholder="12345"></div>
                     <div><label>Año</label><input id="f-year" placeholder="2020"></div>
                 </div>
-                <div style="margin-top:12px"><button class="btn grey" id="btn-resolve"><i class="fas fa-magnifying-glass"></i> Resolver metadata + imágenes</button></div>
+                <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+                    <button class="btn" id="btn-auto"><i class="fas fa-wand-magic-sparkles"></i> Agregar automático (Sub + Latino)</button>
+                    <button class="btn grey" id="btn-resolve"><i class="fas fa-magnifying-glass"></i> Solo resolver metadata</button>
+                </div>
+                <small>Automático: con el título busca las fuentes solo (embed69 = Latino, jkanime = Sub), arma todos los episodios y muestra la vista previa para guardar.</small>
                 <div id="meta-prev" style="margin-top:14px"></div>
             </div>
 
@@ -200,7 +204,53 @@
             return [];
         }
 
-        // 2/3 · Construir
+        // AUTO: solo el título → resuelve, busca fuentes (embed69 Latino + jkanime Sub) y
+        // arma TODOS los episodios combinando ambos idiomas (cap 3/idioma). Como el asistente.
+        $("btn-auto").onclick = async () => {
+            try {
+                $("btn-auto").disabled = true; $("btn-save").disabled = true; $("ep-prev").innerHTML = ""; built = null;
+                const title = $("f-title").value.trim(); if (!title) { alert("Escribe el título"); $("btn-auto").disabled = false; return; }
+                if (!$("f-id").value) $("f-id").value = slugify(title);
+                log("== AUTO: " + title + " ==");
+                // 1) resolver + metadata + stills
+                let imdb = $("f-imdb").value.trim(), tmdb = $("f-tmdb").value.trim();
+                if (!imdb || !tmdb) { const r = await wk("/resolve", { title, year: $("f-year").value.trim() }); imdb = imdb || r.imdb || ""; tmdb = tmdb || r.tmdbId || ""; }
+                $("f-imdb").value = imdb; $("f-tmdb").value = tmdb;
+                log("imdb=" + imdb + " tmdb=" + tmdb);
+                meta = tmdb ? await wk("/meta", { tmdb }) : { genres: [], description: "" };
+                const st = tmdb ? await wk("/stills", { tmdb, maxS: 8 }) : { flat: {}, seasons: [] };
+                stills = st.flat || {}; seasonsInfo = st.seasons || [];
+                if (meta.year && !$("f-year").value) $("f-year").value = meta.year;
+                $("meta-prev").innerHTML = `<div class="prev"><img src="${meta.poster || meta.backdrop || ""}"><div><b>${title}</b><br><small>${meta.year || ""} · ${(meta.genres || []).join(", ")}</small><br><small>Temporadas: ${seasonsInfo.map((s) => "S" + s.season + "(" + s.count + ")").join(" ") || "1"}</small></div></div>`;
+                // 2) buscar slug en jkanime (Sub) — auto
+                let jkSlug = null;
+                try { const s = await wk("/search", { source: "jkanime", q: title }); jkSlug = s.slug; log("jkanime slug: " + (jkSlug || "(no encontrado)") + (s.candidates ? "  [" + s.candidates.slice(0, 5).join(", ") + "]" : "")); } catch (e) { log("jkanime search: " + e.message); }
+                // 3) construir por temporada (Latino embed69) + Sub jkanime por nº absoluto
+                const seasons = seasonsInfo.length ? seasonsInfo : [{ season: 1, count: 100 }];
+                const eps = []; let abs = 0; const totalGuess = seasons.reduce((a, s) => a + s.count, 0) || 100;
+                for (const S of seasons) {
+                    const seasonName = seasons.length > 1 ? "Temporada " + S.season : "Temporada 1";
+                    for (let n = 1; n <= S.count; n++) {
+                        abs++;
+                        const servers = [];
+                        // Latino (embed69)
+                        try { const r = await wk("/embed69", { imdb, s: S.season, e: n }); if ((r.servers || []).some((x) => x.lang === "LAT") || (r.servers || []).length) servers.push({ url: r.wrapper, name: "PelisPlus", lang: "Latino", desc: "Audio Latino" }); } catch {}
+                        await sleep(900);
+                        // Sub (jkanime por nº absoluto)
+                        if (jkSlug) { try { const r = await wk("/jkanime", { slug: jkSlug, n: abs }); const sub = cap3((r.servers || []).map((s) => ({ url: s.url, name: nm(s.name || s.url), lang: "Sub", desc: "" })).filter((s) => /mega|streamwish|sfastwish|voe|vidhide|filemoon|streamtape/i.test(s.url))); servers.push(...sub); } catch {} await sleep(350); }
+                        if (!servers.length) { log("ep abs" + abs + " (S" + S.season + "E" + n + "): sin servers"); continue; }
+                        const em = stills[S.season + "x" + n] || {};
+                        eps.push({ number: n, season: seasonName, title: em.title || "Episodio " + n, language: servers.some((s) => s.lang === "Latino") ? "Latino" : "Sub", videoUrl: `frame/player.html?a=${$("f-id").value}&s=${encodeURIComponent(seasonName)}&e=${n}`, img: em.still || meta.backdrop || meta.poster || "", description: "", duration: "24 min", servers: cap3(servers) });
+                        $("build-msg").textContent = "Construidos " + eps.length + "…"; $("prog").style.width = Math.round(abs / totalGuess * 100) + "%";
+                    }
+                }
+                built = eps; renderEps(eps); $("btn-save").disabled = !eps.length;
+                log("== AUTO listo: " + eps.length + " episodios (Sub+Latino donde hay) ==");
+            } catch (e) { log("ERROR auto: " + e.message); $("build-msg").textContent = "❌ " + e.message; }
+            $("btn-auto").disabled = false;
+        };
+
+        // 2/3 · Construir (manual)
         $("btn-build").onclick = async () => {
             try {
                 $("btn-build").disabled = true; $("btn-save").disabled = true; $("ep-prev").innerHTML = ""; built = null;

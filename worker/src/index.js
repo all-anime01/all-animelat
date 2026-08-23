@@ -125,6 +125,41 @@ async function extractGeneric(url) {
   return { embeds, m3u8, e69, imdb, iframeCount: iframes.length };
 }
 
+// ---------- Búsqueda de slug por título en cada fuente ----------
+const normTitle = (s) => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+function bestSlug(cands, title) {
+  if (!cands.length) return null;
+  const want = normTitle(title);
+  let best = cands[0], bestScore = -1;
+  for (const c of cands) {
+    const cn = normTitle(c.replace(/[-/]/g, " "));
+    let score = 0;
+    if (cn === want) score = 100;
+    else if (cn.startsWith(want) || want.startsWith(cn)) score = 70;
+    else { const wt = new Set(want.split(" ")); const hit = cn.split(" ").filter((w) => wt.has(w)).length; score = hit; }
+    if (score > bestScore) { bestScore = score; best = c; }
+  }
+  return best;
+}
+async function searchSource(source, q) {
+  let cands = [];
+  if (source === "jkanime") {
+    const { text: h } = await fetchText(`https://jkanime.net/buscar/${encodeURIComponent(q)}/`);
+    cands = [...new Set([...h.matchAll(/href="https:\/\/jkanime\.net\/([a-z0-9-]+)\/"/gi)].map((m) => m[1]))]
+      .filter((s) => !["buscar", "letra", "genero", "top", "horario", "directorio"].includes(s));
+  } else if (source === "animeav1") {
+    for (const u of [`https://animeav1.com/catalogo?search=${encodeURIComponent(q)}`, `https://animeav1.com/catalogo?q=${encodeURIComponent(q)}`]) {
+      const { text: h } = await fetchText(u);
+      cands = [...new Set([...h.matchAll(/\/media\/([a-z0-9-]+)/gi)].map((m) => m[1]))];
+      if (cands.length) break;
+    }
+  } else if (source === "tioanime") {
+    const { text: h } = await fetchText(`https://tioanime.com/directorio?q=${encodeURIComponent(q)}`);
+    cands = [...new Set([...h.matchAll(/href="\/anime\/([a-z0-9-]+)"/gi)].map((m) => m[1]))];
+  }
+  return { candidates: cands.slice(0, 12), slug: bestSlug(cands, q) };
+}
+
 // ---------- Resolver IMDB (API de sugerencias) + TMDB ----------
 async function resolveIds(title, year) {
   const slug = String(title).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9 ]/g, "").trim().replace(/\s+/g, "_");
@@ -193,6 +228,7 @@ export default {
       if (path === "/jkanime") return json(await jkanime(q.get("slug"), q.get("n")), ch);
       if (path === "/tioanime") return json(await tioanime(q.get("slug"), q.get("n")), ch);
       if (path === "/animeav1") return json(await animeav1(q.get("slug"), q.get("n")), ch);
+      if (path === "/search") return json(await searchSource(q.get("source"), q.get("q") || ""), ch);
       if (path === "/extract") return json(await extractGeneric(q.get("url")), ch);
       if (path === "/fetch") { const r = await fetchText(q.get("url"), q.get("ref") || null); return json({ status: r.status, html: r.text.slice(0, 500000) }, ch); }
       return json({ error: "not_found", path }, ch);
