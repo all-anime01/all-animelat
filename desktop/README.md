@@ -4,6 +4,14 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v5
+
+- **Agregar solo episodios que faltan.** Campo "Episodios a agregar" (ej. `117-125`,
+  `5,8,12`, `51-`, o vacío = todos) para que construya solo esos.
+- Botón **"Detectar faltantes"**: compara lo que ya tiene el anime en la web con lo que
+  TMDB dice que existe y rellena el rango con los que faltan. Luego, con el modo
+  "Añadir nuevo", los agrega sin tocar lo existente.
+
 ## Novedades v4
 
 - **Audio** por anime (Sub / Sub | Dob / Latino / Castellano…) se calcula solo según lo

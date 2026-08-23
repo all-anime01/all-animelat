@@ -126,6 +126,21 @@ def audio_label(langs):
     if has_lat: return "Latino"
     if has_cas: return "Castellano"
     return "Sub"
+def parse_range(s, total):
+    """'117-125' | '5,8,12' | '51-' | '' → set de números absolutos (o None = todos)."""
+    s = (s or "").strip()
+    if not s: return None
+    out = set()
+    for part in s.split(","):
+        part = part.strip()
+        if not part: continue
+        if "-" in part:
+            a, b = part.split("-", 1)
+            try: a = int(a) if a.strip() else 1; b = int(b) if b.strip() else total
+            except Exception: continue
+            out.update(range(a, b + 1))
+        elif part.isdigit(): out.add(int(part))
+    return out or None
 def best(cands, title):
     if not cands: return None
     want = norm(title)
@@ -335,10 +350,14 @@ def build_episodes(data, opts, log, prog, on_ep):
 
     absn = 0
     total = sum(s["count"] for s in seasons) or 60
+    rng = parse_range(opts.get("range"), total)
+    if rng: log(f"solo episodios: {sorted(rng)[:3]}…{sorted(rng)[-1]} ({len(rng)})")
     for S in seasons:
         sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
         for n in range(1, S["count"] + 1):
             absn += 1; servers = []
+            if rng and absn not in rng: continue   # solo los episodios pedidos
+
             if opts["e69"] and imdb:
                 r = embed69_lat(imdb, S["season"], n)
                 if r: servers.append(r)
@@ -484,6 +503,10 @@ class App:
         ttk.Label(pr, text="Prioridad de servidores:").pack(side="left")
         self.prefer = ttk.Entry(pr, width=40); self.prefer.pack(side="left", padx=6); self.prefer.insert(0, "Mega, Streamwish, VOE")
         self.only = tk.BooleanVar(value=False); ttk.Checkbutton(pr, text="solo estos", variable=self.only).pack(side="left")
+        rg = tk.Frame(sc, bg=CARD); rg.pack(fill="x", padx=14, pady=(0, 8))
+        ttk.Label(rg, text="Episodios a agregar (ej: 117-125 · vacío = todos):").pack(side="left")
+        self.rangef = ttk.Entry(rg, width=22); self.rangef.pack(side="left", padx=6)
+        ttk.Button(rg, text="Detectar faltantes", command=self.detect_missing).pack(side="left")
         self.manbox = tk.Frame(sc, bg=CARD)
         ttk.Label(self.manbox, text="URLs manuales (N|URL por línea)", style="Mut.TLabel").pack(anchor="w", padx=14)
         self.mantext = tk.Text(self.manbox, height=3, bg="#101015", fg=TXT, insertbackground=TXT, relief="flat"); self.mantext.pack(fill="x", padx=14, pady=(0, 8))
@@ -549,7 +572,7 @@ class App:
         self.logbox.delete("1.0", "end")
         opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": self.man.get(),
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
-                "only": self.only.get(), "tmdb_key": self.tmdb.get().strip()}
+                "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip()}
         def work():
             try:
                 # FASE 1: metadata → rellena la ficha AL INSTANTE
@@ -586,6 +609,42 @@ class App:
         self.f_audio.set(self.data.get("audio", "Sub"))
         self.save_btn.config(state="normal" if self.data["episodes"] else "disabled")
         if not self.data["episodes"]: self.log("No se encontraron servidores. Revisa fuentes/título.")
+
+    def detect_missing(self):
+        """Compara lo que existe en la web con lo que TMDB dice que hay → rellena el rango con los faltantes."""
+        t = self.title.get().strip()
+        if not t or not self.token: messagebox.showwarning("Faltantes", "Escribe el título e inicia sesión."); return
+        self.log("Detectando episodios faltantes…")
+        def work():
+            try:
+                key = self.tmdb.get().strip()
+                d = self.data if (self.data and self.data.get("real_title")) else build_meta(t, {"tmdb_key": key}, self.log)
+                aid = d["aid"]; seasons = d["seasons"]
+                # mapa absoluto → (sname, número)
+                absmap = {}; absn = 0
+                for S in seasons:
+                    sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
+                    for n in range(1, S["count"] + 1):
+                        absn += 1; absmap[absn] = (sname, n)
+                existing = get_doc(f"animes/{aid}", self.token)
+                have = set()
+                if existing and existing.get("episodes"):
+                    have = {(e.get("season"), int(e.get("number"))) for e in existing["episodes"]}
+                missing = sorted(a for a, sn in absmap.items() if sn not in have)
+                # compacta a rangos: 117,118,...125 → "117-125"
+                parts, i = [], 0
+                while i < len(missing):
+                    j = i
+                    while j + 1 < len(missing) and missing[j + 1] == missing[j] + 1: j += 1
+                    parts.append(str(missing[i]) if i == j else f"{missing[i]}-{missing[j]}"); i = j + 1
+                txt = ", ".join(parts)
+                def fill():
+                    self.rangef.delete(0, "end"); self.rangef.insert(0, txt)
+                    self.log(f"Existen {len(have)} · TMDB tiene {len(absmap)} · faltan {len(missing)}: {txt or 'ninguno'}")
+                self.root.after(0, fill)
+            except Exception as e:
+                self.log("ERROR detectar: " + str(e))
+        threading.Thread(target=work, daemon=True).start()
 
     def edit_episode(self, ev):
         iid = self.tree.focus()
