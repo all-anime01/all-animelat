@@ -303,6 +303,14 @@ def jk_servers(slug, n):
     # Mediafire, Mixdrop, Mp4upload, Doodstream…). Los nombra como jkanime los llama y
     # descarta solo los que no son una URL http real (wrappers internos sin enlace).
     out, seen = [], set()
+    # 1) Players PROPIOS de jkanime (Desu, Magi) → jkanime.net/jkplayer/{um,umv}?...
+    #    (se omite el tipo 'jk' porque lleva la IP del cliente y no es reutilizable).
+    JKP = {"um": "Desu", "umv": "Magi"}
+    for m in re.finditer(r'jkplayer/(um|umv)\?[^"\'\s<)]+', h):
+        name = JKP.get(m.group(1))
+        if not name or name in seen: continue
+        seen.add(name); out.append({"url": "https://jkanime.net/" + m.group(0).replace("&amp;", "&"), "name": name, "lang": "Sub", "desc": ""})
+    # 2) Servidores externos del array var servers.
     for s in arr:
         try: u = base64.b64decode(s.get("remote", "")).decode().strip()
         except Exception: continue
