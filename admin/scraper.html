@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importar anime (scraper) — All-Anime Admin</title>
+    <link rel="shortcut icon" href="../image/logo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Roboto, system-ui, sans-serif; background: #101010; color: #f0f0f0; padding: 26px 16px 80px; }
+        .wrap { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 22px; margin-bottom: 4px; }
+        h2 { font-size: 15px; margin: 22px 0 10px; color: #ff8a8a; text-transform: uppercase; letter-spacing: .04em; }
+        .sub { color: #a0a0a0; font-size: 14px; margin-bottom: 20px; }
+        .box { background: #1c1c1c; border: 1px solid #2e2e2e; border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+        label { display: block; font-size: 13px; color: #bdbdbd; margin: 10px 0 5px; }
+        input, select, textarea { width: 100%; background: #0e0e0e; border: 1px solid #333; color: #f0f0f0; border-radius: 9px; padding: 11px 12px; font-size: 14px; font-family: inherit; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        .btn { background: #e0231f; color: #fff; border: none; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; }
+        .btn:disabled { opacity: .5; cursor: not-allowed; }
+        .btn.grey { background: #2f2f2f; }
+        .btn.green { background: #1f9d55; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+        .chip { background: #0e0e0e; border: 1px solid #333; border-radius: 20px; padding: 8px 14px; font-size: 13px; cursor: pointer; user-select: none; }
+        .chip.on { background: #e0231f; border-color: #e0231f; }
+        .bar { height: 10px; background: #0c0c0c; border-radius: 8px; overflow: hidden; margin: 14px 0 6px; }
+        .bar > div { height: 100%; width: 0; background: linear-gradient(90deg, #e0231f, #ff5c5c); transition: width .25s; }
+        .log { margin-top: 12px; font-family: monospace; font-size: 12.5px; background: #0a0a0a; border-radius: 10px; padding: 12px; max-height: 240px; overflow-y: auto; white-space: pre-wrap; }
+        .prev { display: flex; gap: 14px; align-items: flex-start; }
+        .prev img { width: 120px; border-radius: 10px; }
+        .ep { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #262626; font-size: 13px; }
+        .ep img { width: 74px; height: 42px; object-fit: cover; border-radius: 5px; background: #000; }
+        .ep .n { color: #ff8a8a; font-weight: 700; min-width: 40px; }
+        .ep .s { color: #9fd89f; font-size: 12px; }
+        .ep .s.none { color: #e08a8a; }
+        .warn { background: #3a2a10; border: 1px solid #6b4d1a; color: #ffcf7a; padding: 11px 13px; border-radius: 10px; font-size: 13.5px; margin-bottom: 14px; }
+        .center { text-align: center; padding: 40px 0; }
+        a { color: #ff6b6b; }
+        small { color: #8a8a8a; }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1><i class="fas fa-robot"></i> Importar anime (scraper)</h1>
+        <p class="sub">Como lo hace el asistente: resuelve metadata + imágenes y extrae los servidores por episodio. <a href="index.html">← Panel</a></p>
+        <div id="gate" class="center">Verificando sesión…</div>
+
+        <div id="app" style="display:none">
+            <div class="box">
+                <h2>Motor (Cloudflare Worker)</h2>
+                <div class="row">
+                    <div><label>URL del Worker</label><input id="wk-url" placeholder="https://allanime-scraper.tu-usuario.workers.dev"></div>
+                    <div><label>API Key</label><input id="wk-key" type="password" placeholder="la que pusiste con wrangler secret"></div>
+                </div>
+                <div style="margin-top:12px"><button class="btn grey" id="wk-test"><i class="fas fa-plug"></i> Probar conexión</button> <span id="wk-msg" style="margin-left:10px;font-size:13px"></span></div>
+                <small>Se guarda en este navegador. Guía de despliegue: carpeta <code>worker/</code> del repo.</small>
+            </div>
+
+            <div class="box">
+                <h2>1 · Anime</h2>
+                <div class="row">
+                    <div><label>Título</label><input id="f-title" placeholder="Ej: Dragon Quest: The Adventure of Dai"></div>
+                    <div><label>ID (slug) — se autogenera</label><input id="f-id" placeholder="dragon-quest-dai"></div>
+                </div>
+                <div class="row3">
+                    <div><label>IMDB (opcional)</label><input id="f-imdb" placeholder="tt..."></div>
+                    <div><label>TMDB id (opcional)</label><input id="f-tmdb" placeholder="12345"></div>
+                    <div><label>Año</label><input id="f-year" placeholder="2020"></div>
+                </div>
+                <div style="margin-top:12px"><button class="btn grey" id="btn-resolve"><i class="fas fa-magnifying-glass"></i> Resolver metadata + imágenes</button></div>
+                <div id="meta-prev" style="margin-top:14px"></div>
+            </div>
+
+            <div class="box">
+                <h2>2 · Fuente de servidores</h2>
+                <div class="chips" id="src-chips">
+                    <span class="chip on" data-src="embed69">embed69 (Latino)</span>
+                    <span class="chip" data-src="jkanime">jkanime</span>
+                    <span class="chip" data-src="animeav1">animeav1</span>
+                    <span class="chip" data-src="tioanime">tioanime</span>
+                    <span class="chip" data-src="manual">URL manual</span>
+                </div>
+                <div class="row" style="margin-top:12px">
+                    <div><label>Slug/código en la fuente <small>(jkanime/tioanime/animeav1)</small></label><input id="f-slug" placeholder="ej: dragon-quest-dai-no-daibouken-2020"></div>
+                    <div><label>Temporada (embed69) / Nombre temporada</label><input id="f-season" value="Temporada 1"></div>
+                </div>
+                <div class="row3">
+                    <div><label>N.º de episodios (0 = auto)</label><input id="f-count" value="0"></div>
+                    <div><label>Idioma etiqueta</label><input id="f-lang" value="Latino"></div>
+                    <div><label>Empezar desde el episodio</label><input id="f-from" value="1"></div>
+                </div>
+                <div id="manual-box" style="display:none;margin-top:10px">
+                    <label>URLs manuales (una por línea: <code>N|URL</code> o solo URL en orden)</label>
+                    <textarea id="f-manual" rows="4" placeholder="1|https://...&#10;2|https://..."></textarea>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2>3 · Construir y revisar</h2>
+                <button class="btn" id="btn-build"><i class="fas fa-gears"></i> Construir episodios</button>
+                <span id="build-msg" style="margin-left:10px;font-size:13px"></span>
+                <div class="bar"><div id="prog"></div></div>
+                <div id="ep-prev"></div>
+            </div>
+
+            <div class="box">
+                <div class="warn"><i class="fas fa-triangle-exclamation"></i> Al guardar se crea/actualiza <code>animes/{id}</code> y la tarjeta del catálogo. Solo AÑADE; nunca borra enlaces existentes de un anime que ya exista.</div>
+                <button class="btn green" id="btn-save" disabled><i class="fas fa-cloud-arrow-up"></i> Guardar en Firestore</button>
+                <span id="save-msg" style="margin-left:10px;font-size:13px"></span>
+            </div>
+            <div class="log" id="log"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { db, isAdmin } from "../js/firebase-config.js";
+        import { observeAuth } from "../js/auth.js";
+        import { saveAnime, getAnime } from "../js/admin.js";
+        const $ = (id) => document.getElementById(id);
+        const logEl = $("log");
+        const log = (m) => { logEl.textContent += m + "\n"; logEl.scrollTop = logEl.scrollHeight; };
+        const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+        const pad = (n) => String(n).padStart(2, "0");
+        const slugify = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+        observeAuth((user) => {
+            if (!user) { $("gate").innerHTML = 'Inicia sesión como admin. <a href="../cuenta.html?redirect=admin/scraper.html">Login</a>'; return; }
+            if (!isAdmin(user)) { $("gate").innerHTML = 'La cuenta <b>' + user.email + '</b> no es administrador.'; return; }
+            $("gate").style.display = "none"; $("app").style.display = "block";
+            $("wk-url").value = localStorage.getItem("aa_wk_url") || "";
+            $("wk-key").value = localStorage.getItem("aa_wk_key") || "";
+        });
+
+        // Worker client
+        const wk = async (path, params) => {
+            const base = $("wk-url").value.trim().replace(/\/+$/, "");
+            const key = $("wk-key").value.trim();
+            if (!base) throw new Error("Falta la URL del Worker");
+            localStorage.setItem("aa_wk_url", base); localStorage.setItem("aa_wk_key", key);
+            const u = new URL(base + path); u.searchParams.set("key", key);
+            for (const k in params) if (params[k] != null) u.searchParams.set(k, params[k]);
+            const r = await fetch(u.toString());
+            const j = await r.json();
+            if (j.error) throw new Error(j.error);
+            return j;
+        };
+        $("wk-test").onclick = async () => { try { const j = await wk("/health", {}); $("wk-msg").textContent = j.ok ? "✅ Conectado" : "?"; $("wk-msg").style.color = "#9fd89f"; } catch (e) { $("wk-msg").textContent = "❌ " + e.message; $("wk-msg").style.color = "#e08a8a"; } };
+
+        // Source chips
+        let source = "embed69";
+        document.querySelectorAll("#src-chips .chip").forEach((c) => c.onclick = () => {
+            document.querySelectorAll("#src-chips .chip").forEach((x) => x.classList.remove("on"));
+            c.classList.add("on"); source = c.dataset.src;
+            $("manual-box").style.display = source === "manual" ? "block" : "none";
+        });
+        $("f-title").addEventListener("blur", () => { if (!$("f-id").value) $("f-id").value = slugify($("f-title").value); });
+
+        // State
+        let meta = null, stills = {}, seasonsInfo = [], built = null;
+
+        // 1 · Resolver
+        $("btn-resolve").onclick = async () => {
+            try {
+                $("btn-resolve").disabled = true; $("meta-prev").innerHTML = "Resolviendo…";
+                let imdb = $("f-imdb").value.trim(), tmdb = $("f-tmdb").value.trim();
+                if (!imdb || !tmdb) { const r = await wk("/resolve", { title: $("f-title").value.trim(), year: $("f-year").value.trim() }); imdb = imdb || r.imdb || ""; tmdb = tmdb || r.tmdbId || ""; log("resolve → imdb=" + imdb + " tmdb=" + tmdb); }
+                $("f-imdb").value = imdb; $("f-tmdb").value = tmdb;
+                meta = tmdb ? await wk("/meta", { tmdb }) : { poster: "", backdrop: "", description: "", genres: [], year: null };
+                if (tmdb) { const st = await wk("/stills", { tmdb, maxS: 8 }); stills = st.flat || {}; seasonsInfo = st.seasons || []; }
+                if (meta.year && !$("f-year").value) $("f-year").value = meta.year;
+                $("meta-prev").innerHTML = `<div class="prev"><img src="${meta.poster || meta.backdrop || ""}"><div><b>${$("f-title").value}</b><br><small>${meta.year || ""} · ${(meta.genres || []).join(", ")}</small><br><small>Temporadas TMDB: ${seasonsInfo.map((s) => "S" + s.season + "(" + s.count + ")").join(" ") || "—"}</small><p style="margin-top:8px;color:#bbb;font-size:13px">${(meta.description || "").slice(0, 220)}</p></div></div>`;
+            } catch (e) { $("meta-prev").innerHTML = "❌ " + e.message; }
+            $("btn-resolve").disabled = false;
+        };
+
+        // Normaliza servers: cap 3 por idioma
+        const cap3 = (servers) => {
+            const g = {}; for (const s of servers) { const k = (s.lang || "Sub"); (g[k] = g[k] || []).push(s); }
+            const out = []; for (const k in g) out.push(...g[k].slice(0, 3)); return out;
+        };
+        const nm = (n) => { const m = { sfastwish: "StreamWish", streamwish: "StreamWish", swiftplay: "StreamWish", hglink: "StreamWish", "voe": "VOE", vidhide: "VidHide", vidhidevip: "VidHide", filemoon: "Filemoon", minochinos: "VidHide", mega: "Mega", streamtape: "Streamtape", mp4upload: "Mp4upload" }; const s = String(n || "").toLowerCase(); for (const k in m) if (s.includes(k)) return m[k]; return (String(n || "Servidor").charAt(0).toUpperCase() + String(n || "").slice(1)); };
+
+        // Trae los servers de un episodio según la fuente
+        async function epServers(n, season) {
+            const imdb = $("f-imdb").value.trim(), slug = $("f-slug").value.trim(), lang = $("f-lang").value.trim() || "Latino";
+            if (source === "embed69") {
+                const r = await wk("/embed69", { imdb, s: season, e: n });
+                const lat = (r.servers || []).filter((x) => x.lang === "LAT");
+                if (!lat.length && !(r.servers || []).length) return [];
+                // wrapper estable (se ve en app y web)
+                return [{ url: r.wrapper, name: "PelisPlus", lang, desc: "Audio " + lang }];
+            }
+            if (source === "jkanime") { const r = await wk("/jkanime", { slug, n }); return cap3((r.servers || []).map((s) => ({ url: s.url, name: nm(s.name || s.url), lang, desc: "" }))); }
+            if (source === "tioanime") { const r = await wk("/tioanime", { slug, n }); return cap3((r.servers || []).map((s) => ({ url: s.url, name: nm(s.name || s.url), lang: "Sub", desc: "" }))); }
+            if (source === "animeav1") { const r = await wk("/animeav1", { slug, n }); if (r.notfound) return null; return cap3((r.servers || []).map((s) => ({ url: s.url, name: nm(s.name || s.url), lang: "Sub", desc: "" }))); }
+            return [];
+        }
+
+        // 2/3 · Construir
+        $("btn-build").onclick = async () => {
+            try {
+                $("btn-build").disabled = true; $("btn-save").disabled = true; $("ep-prev").innerHTML = ""; built = null;
+                const season = $("f-season").value.trim() || "Temporada 1";
+                const sIdx = (season.match(/(\d+)/) || [1])[0];
+                const lang = $("f-lang").value.trim() || "Latino";
+                const from = +$("f-from").value || 1;
+                let count = +$("f-count").value || 0;
+                // manual
+                if (source === "manual") {
+                    const lines = $("f-manual").value.split("\n").map((l) => l.trim()).filter(Boolean);
+                    const eps = [];
+                    lines.forEach((l, i) => { const m = l.match(/^(\d+)\s*\|\s*(https?:\/\/\S+)/); const n = m ? +m[1] : (from + i); const u = m ? m[2] : l; eps.push({ number: n, season, title: (stills[sIdx + "x" + n] || {}).title || "Episodio " + n, language: lang, img: (stills[sIdx + "x" + n] || {}).still || meta?.backdrop || "", description: "", duration: "24 min", videoUrl: `frame/player.html?a=${$("f-id").value}&s=${encodeURIComponent(season)}&e=${n}`, servers: [{ url: u, name: nm(u), lang, desc: "" }] }); });
+                    built = eps; renderEps(eps); $("btn-save").disabled = !eps.length; $("btn-build").disabled = false; return;
+                }
+                // auto count desde TMDB o stills
+                if (!count) { const si = seasonsInfo.find((s) => String(s.season) === String(sIdx)); count = si ? si.count : (source === "embed69" ? 60 : 100); }
+                const eps = []; let done = 0;
+                for (let n = from; n < from + count; n++) {
+                    let servers = [];
+                    try { servers = await epServers(n, sIdx); } catch (e) { servers = []; }
+                    if (servers === null) { log("ep " + n + ": no existe (fin)"); break; }   // animeav1 fin
+                    done++; $("prog").style.width = Math.round((n - from + 1) / count * 100) + "%";
+                    if (!servers.length) { log("ep " + n + ": sin servers"); await sleep(source === "embed69" ? 900 : 350); continue; }
+                    const key = sIdx + "x" + n; const em = stills[key] || {};
+                    eps.push({ number: n, season, title: em.title || "Episodio " + n, language: lang, img: em.still || meta?.backdrop || meta?.poster || "", description: "", duration: "24 min", videoUrl: `frame/player.html?a=${$("f-id").value}&s=${encodeURIComponent(season)}&e=${n}`, servers });
+                    $("build-msg").textContent = "Construidos " + eps.length + " episodios…";
+                    await sleep(source === "embed69" ? 950 : 350);
+                }
+                built = eps; renderEps(eps); $("btn-save").disabled = !eps.length;
+                log("== construidos " + eps.length + " episodios con servers ==");
+            } catch (e) { $("build-msg").textContent = "❌ " + e.message; log("ERROR: " + e.message); }
+            $("btn-build").disabled = false;
+        };
+        function renderEps(eps) {
+            $("ep-prev").innerHTML = eps.map((e) => `<div class="ep"><img src="${e.img}" onerror="this.style.visibility='hidden'"><span class="n">E${e.number}</span><span style="flex:1">${e.title}</span><span class="s ${e.servers.length ? "" : "none"}">${e.servers.map((s) => s.name).join(", ") || "sin servers"}</span></div>`).join("");
+        }
+
+        // Guardar
+        $("btn-save").onclick = async () => {
+            if (!built || !built.length) return;
+            try {
+                $("btn-save").disabled = true; $("save-msg").textContent = "Guardando…";
+                const id = $("f-id").value.trim() || slugify($("f-title").value);
+                const existing = await getAnime(id).catch(() => null);
+                let episodes = built;
+                if (existing && Array.isArray(existing.episodes) && existing.episodes.length) {
+                    // Anime existente: SOLO añade episodios/temporadas nuevos; nunca toca los que ya están.
+                    const have = new Set(existing.episodes.map((e) => e.season + "|" + e.number));
+                    const nuevos = built.filter((e) => !have.has(e.season + "|" + e.number));
+                    episodes = [...existing.episodes, ...nuevos];
+                    log(`anime existente: +${nuevos.length} episodios nuevos (no se tocaron los ${existing.episodes.length} existentes)`);
+                }
+                const langs = [...new Set(episodes.map((e) => e.language))];
+                const doc = existing && existing.title ? { ...existing, episodes } : {
+                    id, title: $("f-title").value.trim(), altTitles: [], type: "TV", audio: langs.join(" | "),
+                    status: "Finalizado", quality: "1080p", year: +$("f-year").value || meta?.year || null,
+                    creator: "", genres: meta?.genres || [], tags: [], seasons: 1,
+                    rating: 4.4, ratingCount: 300, contentWarning: "", description: meta?.description || "",
+                    img: meta?.poster || "", imgMobile: meta?.poster || "", heroImg: meta?.backdrop || "", fonImg: meta?.backdrop || "", logoImg: "", trailerUrl: "",
+                    episodes,
+                };
+                doc.episodes = episodes; doc.episodesTotal = episodes.length; doc.episodesCount = episodes.length;
+                await saveAnime(doc);
+                $("save-msg").textContent = "✅ Guardado: " + id + " (" + episodes.length + " eps)"; $("save-msg").style.color = "#9fd89f";
+                log("✅ GUARDADO " + id + " — " + episodes.length + " episodios");
+            } catch (e) { $("save-msg").textContent = "❌ " + e.message; $("save-msg").style.color = "#e08a8a"; log("ERROR guardar: " + e.message); $("btn-save").disabled = false; }
+        };
+    </script>
+</body>
+
+</html>

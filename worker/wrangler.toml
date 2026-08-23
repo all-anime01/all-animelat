@@ -1,0 +1,18 @@
+# Cloudflare Worker — motor de scraping de All-Anime (evita CORS del navegador).
+# Despliegue (una sola vez):
+#   1) Crea una cuenta gratis en https://dash.cloudflare.com  (no pide tarjeta)
+#   2) Instala Node y luego:  npm i -g wrangler
+#   3) Dentro de esta carpeta:  wrangler login   (abre el navegador y autoriza)
+#   4) Define el token de acceso (el mismo que pondrás en el admin):
+#        wrangler secret put API_KEY      -> escribe una contraseña larga
+#   5) Publica:  wrangler deploy
+#   Te dará una URL tipo  https://allanime-scraper.TUUSUARIO.workers.dev
+#   Pégala (y el API_KEY) en el admin → Importar anime.
+name = "allanime-scraper"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# CORS: dominios del sitio autorizados a llamar al Worker (separados por coma).
+# Ajusta si tu dominio cambia. "*" permitiría cualquiera (menos seguro).
+[vars]
+ALLOWED_ORIGINS = "https://www.all-anime.net,https://all-anime.net,http://localhost,http://127.0.0.1"
