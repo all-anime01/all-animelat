@@ -377,13 +377,18 @@ def build_episodes(data, opts, log, prog, on_ep):
 
     absn = 0
     total = sum(s["count"] for s in seasons) or 60
+    season_sel = (opts.get("season") or "").strip()
     rng = parse_range(opts.get("range"), total)
-    if rng: log(f"solo episodios: {sorted(rng)[:3]}…{sorted(rng)[-1]} ({len(rng)})")
+    if season_sel: log(f"solo Temporada {season_sel}" + (f", episodios {opts.get('range')}" if rng else ""))
+    elif rng: log(f"solo episodios: {sorted(rng)[:3]}…{sorted(rng)[-1]} ({len(rng)})")
     for S in seasons:
         sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
+        if season_sel and str(S["season"]) != season_sel:
+            absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
         for n in range(1, S["count"] + 1):
             absn += 1; servers = []
-            if rng and absn not in rng: continue   # solo los episodios pedidos
+            # con temporada elegida, el rango es por nº de temporada; si no, por nº absoluto
+            if rng and (n if season_sel else absn) not in rng: continue
 
             if opts["e69"] and imdb:
                 r = embed69_lat(imdb, S["season"], n)
@@ -545,8 +550,10 @@ class App:
         self.prefer = ttk.Entry(pr, width=40); self.prefer.pack(side="left", padx=6); self.prefer.insert(0, "Mega, Streamwish, VOE")
         self.only = tk.BooleanVar(value=False); ttk.Checkbutton(pr, text="solo estos", variable=self.only).pack(side="left")
         rg = tk.Frame(sc, bg=CARD); rg.pack(fill="x", padx=14, pady=(0, 8))
-        ttk.Label(rg, text="Episodios a agregar (ej: 117-125 · vacío = todos):").pack(side="left")
-        self.rangef = ttk.Entry(rg, width=22); self.rangef.pack(side="left", padx=6)
+        ttk.Label(rg, text="Temporada:").pack(side="left")
+        self.seasonf = ttk.Entry(rg, width=5); self.seasonf.pack(side="left", padx=(4, 10))
+        ttk.Label(rg, text="Episodios a agregar (ej: 5-12 · vacío = todos):").pack(side="left")
+        self.rangef = ttk.Entry(rg, width=18); self.rangef.pack(side="left", padx=6)
         ttk.Button(rg, text="Detectar faltantes", command=self.detect_missing).pack(side="left")
         self.manbox = tk.Frame(sc, bg=CARD)
         ttk.Label(self.manbox, text="URLs manuales (N|URL por línea)", style="Mut.TLabel").pack(anchor="w", padx=14)
@@ -616,7 +623,8 @@ class App:
         self.logbox.delete("1.0", "end")
         opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": self.man.get(),
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
-                "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip()}
+                "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
+                "season": self.seasonf.get().strip()}
         def work():
             try:
                 # FASE 1: metadata → rellena la ficha AL INSTANTE
@@ -664,17 +672,20 @@ class App:
                 key = self.tmdb.get().strip()
                 d = self.data if (self.data and self.data.get("real_title")) else build_meta(t, {"tmdb_key": key}, self.log)
                 aid = d["aid"]; seasons = d["seasons"]
-                # mapa absoluto → (sname, número)
-                absmap = {}; absn = 0
+                season_sel = self.seasonf.get().strip()
+                # mapa: clave (absoluto o nº de temporada) → (sname, número)
+                keymap = {}; absn = 0
                 for S in seasons:
                     sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
                     for n in range(1, S["count"] + 1):
-                        absn += 1; absmap[absn] = (sname, n)
+                        absn += 1
+                        if season_sel and str(S["season"]) != season_sel: continue
+                        keymap[n if season_sel else absn] = (sname, n)
                 existing = get_doc(f"animes/{aid}", self.token)
                 have = set()
                 if existing and existing.get("episodes"):
                     have = {(e.get("season"), int(e.get("number"))) for e in existing["episodes"]}
-                missing = sorted(a for a, sn in absmap.items() if sn not in have)
+                missing = sorted(k for k, sn in keymap.items() if sn not in have)
                 # compacta a rangos: 117,118,...125 → "117-125"
                 parts, i = [], 0
                 while i < len(missing):
@@ -682,9 +693,10 @@ class App:
                     while j + 1 < len(missing) and missing[j + 1] == missing[j] + 1: j += 1
                     parts.append(str(missing[i]) if i == j else f"{missing[i]}-{missing[j]}"); i = j + 1
                 txt = ", ".join(parts)
+                scope = f"Temporada {season_sel}" if season_sel else "todo"
                 def fill():
                     self.rangef.delete(0, "end"); self.rangef.insert(0, txt)
-                    self.log(f"Existen {len(have)} · TMDB tiene {len(absmap)} · faltan {len(missing)}: {txt or 'ninguno'}")
+                    self.log(f"[{scope}] TMDB tiene {len(keymap)} · faltan {len(missing)}: {txt or 'ninguno'}")
                 self.root.after(0, fill)
             except Exception as e:
                 self.log("ERROR detectar: " + str(e))

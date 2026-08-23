@@ -4,6 +4,14 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v6
+
+- Campo **Temporada** junto a "Episodios a agregar": si lo indicas, el rango de episodios
+  aplica a esa temporada (numeración por temporada); vacío = todas (número absoluto).
+  "Detectar faltantes" también respeta la temporada elegida.
+- jkanime: incluye sus players propios **Desu** y **Magi**.
+- Toda la ventana con **scroll**.
+
 ## Novedades v5
 
 - **Agregar solo episodios que faltan.** Campo "Episodios a agregar" (ej. `117-125`,
