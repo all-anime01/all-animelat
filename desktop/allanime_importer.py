@@ -244,7 +244,10 @@ def imdb_suggest(title, year=None):
 # ------------------------------------------------------------------ Fuentes de servidores
 NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "swiftplay": "Streamwish",
         "hglink": "Streamwish", "voe": "VOE", "vidhide": "VidHide", "vidhidevip": "VidHide",
-        "filemoon": "Filemoon", "streamtape": "Streamtape", "mp4upload": "Mp4upload", "zilla": "AnimeAV1 HD"}
+        "filemoon": "Filemoon", "filemooon": "Filemoon", "streamtape": "Streamtape", "mp4upload": "Mp4upload",
+        "zilla": "AnimeAV1 HD", "mediafire": "Mediafire", "mixdrop": "Mixdrop", "mdbekj": "Mixdrop", "mdy48": "Mixdrop",
+        "d-s.io": "Doodstream", "dood": "Doodstream", "desu": "Desu", "desuka": "Desu", "okru": "Okru", "ok.ru": "Okru",
+        "uqload": "Uqload", "yourupload": "YourUpload"}
 def nm(u):
     s = (u or "").lower()
     for k, v in NAME.items():
@@ -274,32 +277,48 @@ def embed69_lat(imdb, s, e):
     except Exception: return None
     if dl: return {"url": f"https://embed69.org/f/{code}/", "name": "PelisPlus", "lang": "Latino", "desc": "Audio Latino"}
     return None
-JK_KEEP = ("mega", "sfastwish", "streamwish", "swiftplay", "voe", "vidhide", "vidhidevip", "filemoon", "streamtape")
+def search_variants(title):
+    """Variantes de búsqueda: título, parte principal (antes de :/-/(), y primeras palabras."""
+    v = [title]
+    main = re.split(r"[:\-–—(|~]", title)[0].strip()
+    if main and main != title: v.append(main)
+    words = main.split()
+    if len(words) > 2: v.append(" ".join(words[:2]))
+    if len(words) > 1: v.append(words[0])
+    seen = set(); return [x for x in v if x and not (x.lower() in seen or seen.add(x.lower()))]
 def jk_search(title):
-    h = get_text(f"https://jkanime.net/buscar/{urllib.parse.quote(title)}/")
-    c = [m for m in dict.fromkeys(re.findall(r'href="https://jkanime\.net/([a-z0-9-]+)/"', h))
-         if m not in ("buscar", "letra", "genero", "top", "horario", "directorio")]
-    return best(c, title)
+    for q in search_variants(title):
+        h = get_text(f"https://jkanime.net/buscar/{urllib.parse.quote(q)}/")
+        c = [m for m in dict.fromkeys(re.findall(r'href="https://jkanime\.net/([a-z0-9-]+)/"', h))
+             if m not in ("buscar", "letra", "genero", "top", "horario", "directorio")]
+        if c: return best(c, title)
+    return None
 def jk_servers(slug, n):
     h = get_text(f"https://jkanime.net/{slug}/{n}/")
     m = re.search(r'var\s+servers\s*=\s*(\[[\s\S]*?\]);', h)
     if not m: return None
     try: arr = json.loads(m.group(1))
     except Exception: return []
+    # Conserva TODOS los servidores de jkanime (Desu, Magi, Mega, Streamwish, VOE, VidHide,
+    # Mediafire, Mixdrop, Mp4upload, Doodstream…). Los nombra como jkanime los llama y
+    # descarta solo los que no son una URL http real (wrappers internos sin enlace).
     out, seen = [], set()
     for s in arr:
         try: u = base64.b64decode(s.get("remote", "")).decode().strip()
         except Exception: continue
-        if not u.startswith("http") or not any(k in u.lower() for k in JK_KEEP): continue
-        name = nm(u)
+        if not u.startswith("http"): continue
+        jkname = (s.get("server") or "").strip()
+        known = nm(u)
+        name = known if known != "Servidor" else (jkname or "Servidor")
         if name in seen: continue
         seen.add(name); out.append({"url": u, "name": name, "lang": "Sub", "desc": ""})
     return out
 def av1_search(title):
-    for u in (f"https://animeav1.com/catalogo?search={urllib.parse.quote(title)}", f"https://animeav1.com/catalogo?q={urllib.parse.quote(title)}"):
-        h = get_text(u)
-        c = list(dict.fromkeys(re.findall(r'/media/([a-z0-9-]+)', h)))
-        if c: return best(c, title)
+    for q in search_variants(title):
+        for u in (f"https://animeav1.com/catalogo?search={urllib.parse.quote(q)}", f"https://animeav1.com/catalogo?q={urllib.parse.quote(q)}"):
+            h = get_text(u)
+            c = list(dict.fromkeys(re.findall(r'/media/([a-z0-9-]+)', h)))
+            if c: return best(c, title)
     return None
 def av1_servers(slug, n):
     h = get_text(f"https://animeav1.com/media/{slug}/{n}")
@@ -468,7 +487,21 @@ class App:
         tk.Label(hd, text="All-Anime · Importador", fg=TXT, bg="#141418", font=("Segoe UI", 14, "bold")).pack(side="left", pady=12)
         self.status = tk.Label(hd, text="Inicia sesión", fg="#ffcf7a", bg="#141418", font=("Segoe UI", 9)); self.status.pack(side="right", padx=16)
 
-        body = tk.Frame(root, bg=BG); body.pack(fill="both", expand=True, padx=14, pady=12)
+        # Log FIJO abajo
+        self.logbox = tk.Text(root, bg="#0a0a0c", fg="#c8c8d0", height=6, font=("Consolas", 9), relief="flat")
+        self.logbox.pack(side="bottom", fill="x", padx=14, pady=(0, 12))
+        # Área DESPLAZABLE (scroll) con todo el contenido
+        outer = tk.Frame(root, bg=BG); outer.pack(fill="both", expand=True)
+        canvas = tk.Canvas(outer, bg=BG, highlightthickness=0)
+        vsb = ttk.Scrollbar(outer, orient="vertical", command=canvas.yview)
+        canvas.configure(yscrollcommand=vsb.set)
+        vsb.pack(side="right", fill="y"); canvas.pack(side="left", fill="both", expand=True)
+        _inner = tk.Frame(canvas, bg=BG)
+        _win = canvas.create_window((0, 0), window=_inner, anchor="nw")
+        _inner.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.bind("<Configure>", lambda e: canvas.itemconfig(_win, width=e.width))
+        canvas.bind_all("<MouseWheel>", lambda e: canvas.yview_scroll(int(-1 * (e.delta / 120)), "units"))
+        body = tk.Frame(_inner, bg=BG); body.pack(fill="both", expand=True, padx=14, pady=12)
 
         def card(parent):
             c = tk.Frame(parent, bg=CARD, highlightbackground=LINE, highlightthickness=1); return c
@@ -523,16 +556,19 @@ class App:
         self.f_poster = self._field(af, "Portada (img)", 5, w=40); self.f_back = self._field(af, "Fondo (heroImg)", 6, w=40)
         self.f_logo = self._field(af, "Logo (logoImg)", 7, w=40)
         self.bar = ttk.Progressbar(pv); self.bar.pack(fill="x", padx=14, pady=8)
-        self.tree = ttk.Treeview(pv, columns=("t", "img", "srv"), show="headings", height=8)
+        tw = tk.Frame(pv, bg=CARD); tw.pack(fill="both", expand=True, padx=14)
+        self.tree = ttk.Treeview(tw, columns=("t", "img", "srv"), show="headings", height=9)
+        tvsb = ttk.Scrollbar(tw, orient="vertical", command=self.tree.yview)
+        self.tree.configure(yscrollcommand=tvsb.set)
         for c, txt, w in [("t", "Título", 240), ("img", "Imagen", 120), ("srv", "Servidores", 320)]:
             self.tree.heading(c, text=txt); self.tree.column(c, width=w)
-        self.tree.pack(fill="both", expand=True, padx=14)
+        tvsb.pack(side="right", fill="y"); self.tree.pack(side="left", fill="both", expand=True)
         self.tree.bind("<Double-1>", self.edit_episode)
+        # La rueda sobre el listado lo desplaza a ÉL (no al scroll general).
+        self.tree.bind("<MouseWheel>", lambda e: (self.tree.yview_scroll(int(-1 * (e.delta / 120)), "units"), "break")[1])
         bb = tk.Frame(pv, bg=CARD); bb.pack(fill="x", padx=14, pady=10)
         self.save_btn = ttk.Button(bb, text="Guardar en la web", style="Grn.TButton", command=self.do_save, state="disabled"); self.save_btn.pack(side="left")
         ttk.Label(bb, text="  (aplica lo que edites arriba)", style="Mut.TLabel").pack(side="left")
-
-        self.logbox = tk.Text(root, bg="#0a0a0c", fg="#c8c8d0", height=6, font=("Consolas", 9), relief="flat"); self.logbox.pack(fill="x", padx=14, pady=(0, 12))
 
     def _field(self, parent, label, r, w=None):
         ttk.Label(parent, text=label, style="Mut.TLabel").grid(row=r, column=0, sticky="w", pady=2)
