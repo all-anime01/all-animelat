@@ -185,6 +185,29 @@ public class MainActivity extends Activity {
         if (x.contains(".ass") || x.contains(".ssa")) return MimeTypes.TEXT_SSA;
         return MimeTypes.TEXT_VTT;   // .vtt y por defecto
     }
+    // Detecta el idioma del subtítulo por el nombre del archivo/URL (o null si no se sabe).
+    private String subLang(String u) {
+        String x = u.toLowerCase();
+        if (x.matches(".*(spanish|espanol|españ?ol|latino|/lat|_lat|-lat|castellano|[_/\\-.=]es[_/\\-.]|[_/\\-.=]spa[_/\\-.]).*")) return "es";
+        if (x.matches(".*(english|ingles|inglés|[_/\\-.=]en[_/\\-.]|[_/\\-.=]eng[_/\\-.]).*")) return "en";
+        if (x.matches(".*(portug|brazil|[_/\\-.=]pt[_/\\-.]|[_/\\-.=]por[_/\\-.]).*")) return "pt";
+        if (x.matches(".*(japan|nihongo|[_/\\-.=]ja[_/\\-.]|[_/\\-.=]jpn[_/\\-.]).*")) return "ja";
+        return null;
+    }
+    // Etiqueta legible y DISTINTA por pista (para no ver "Español" en todas).
+    private String subLabel(String u, int idx) {
+        String lang = subLang(u);
+        if ("es".equals(lang)) return u.toLowerCase().contains("lat") ? "Español (Latino)" : "Español";
+        if ("en".equals(lang)) return "Inglés";
+        if ("pt".equals(lang)) return "Portugués";
+        if ("ja".equals(lang)) return "Japonés";
+        // sin idioma claro: usa el nombre del archivo o el índice
+        try {
+            String name = android.net.Uri.parse(u).getLastPathSegment();
+            if (name != null) { name = name.replaceAll("\\.(vtt|srt|ass|ssa)$", "").replaceAll("[_-]+", " ").trim(); if (name.length() > 1 && name.length() <= 24) return name; }
+        } catch (Exception ignored) {}
+        return "Subtítulo " + idx;
+    }
 
     private void ensureExtractWv() {
         if (extractWv != null) return;
@@ -353,6 +376,11 @@ public class MainActivity extends Activity {
                 toast("No se pudo reproducir este servidor — prueba otro");
                 closeExo();
             }
+            @Override public void onPlaybackStateChanged(int state) {
+                // Respaldo del autoplay: si el video TERMINA y hay siguiente, salta (por si
+                // el sondeo por duración no lo detectó, p. ej. duración HLS desconocida).
+                if (state == Player.STATE_ENDED && exoOpen && aaHasNext && !aaAdvancing) goNextEpisode();
+            }
         });
 
         // Controlador POR DEFECTO de media3 (trae TODO funcionando: play/pausa,
@@ -433,13 +461,19 @@ public class MainActivity extends Activity {
             MediaItem.Builder mib = new MediaItem.Builder().setUri(streamUrl);
             if (isHls) mib.setMimeType(MimeTypes.APPLICATION_M3U8);
             java.util.List<MediaItem.SubtitleConfiguration> subCfgs = new java.util.ArrayList<>();
+            int subIdx = 0;
             for (String su : capturedSubs) {
                 try {
-                    subCfgs.add(new MediaItem.SubtitleConfiguration.Builder(android.net.Uri.parse(su))
+                    subIdx++;
+                    String lang = subLang(su);               // idioma detectado o null (indeterminado)
+                    String label = subLabel(su, subIdx);     // etiqueta DISTINTA por pista
+                    boolean isSpanish = lang != null && (lang.startsWith("es") || lang.equals("spa") || lang.equals("lat"));
+                    MediaItem.SubtitleConfiguration.Builder sb = new MediaItem.SubtitleConfiguration.Builder(android.net.Uri.parse(su))
                             .setMimeType(subMime(su))
-                            .setLanguage("es")
-                            .setSelectionFlags(androidx.media3.common.C.SELECTION_FLAG_DEFAULT)
-                            .build());
+                            .setLabel(label);
+                    if (lang != null) sb.setLanguage(lang);
+                    if (isSpanish) sb.setSelectionFlags(androidx.media3.common.C.SELECTION_FLAG_DEFAULT);  // el español, activo por defecto
+                    subCfgs.add(sb.build());
                 } catch (Exception ignored) {}
             }
             if (!subCfgs.isEmpty()) mib.setSubtitleConfigurations(subCfgs);
