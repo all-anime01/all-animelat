@@ -305,13 +305,22 @@ def prioritize(servers, prefer=None, only=False, cap=3):
     return out
 
 def embed69_lat(imdb, s, e):
+    if not imdb: return None
     code = f"{imdb}-{s}x{str(e).zfill(2)}"
-    h = get_text(f"https://embed69.org/f/{code}/", referer="https://pelisplushd.bz/")
-    m = re.search(r'dataLink\s*=\s*(\[[\s\S]*?\]);', h)
-    if not m: return None
-    try: dl = json.loads(m.group(1))
-    except Exception: return None
-    if dl: return {"url": f"https://embed69.org/f/{code}/", "name": "PelisPlus", "lang": "Latino", "desc": "Audio Latino"}
+    # Reintenta si embed69 responde vacío (suele ser rate-limit temporal en sesiones largas).
+    for attempt in range(3):
+        h = get_text(f"https://embed69.org/f/{code}/", referer="https://pelisplushd.bz/")
+        m = re.search(r'dataLink\s*=\s*(\[[\s\S]*?\]);', h)
+        if m:
+            try:
+                if json.loads(m.group(1)):
+                    return {"url": f"https://embed69.org/f/{code}/", "name": "PelisPlus", "lang": "Latino", "desc": "Audio Latino"}
+            except Exception: pass
+            return None  # existe la página pero sin datos → no hay en embed69
+        if "Rate limit" in h or not h:
+            time.sleep(4)  # rate-limit: espera y reintenta
+            continue
+        return None
     return None
 def search_variants(title):
     """Variantes de búsqueda: título, parte principal (antes de :/-/(), y primeras palabras."""
@@ -438,7 +447,7 @@ def build_episodes(data, opts, log, prog, on_ep):
     if not per_season_num and not season_sel:
         try:
             smax = max(jk_max(jkslug) if (opts["jk"] and jkslug) else 0, av1_max(avslug) if (opts["av1"] and avslug) else 0)
-            if smax > total and seasons:
+            if total < smax <= total + 300 and seasons:   # cap para no disparar miles por un dato raro
                 log(f"fuente al día: {smax} eps disponibles (TMDB {total}) → +{smax - total} en la última temporada")
                 seasons[-1] = {**seasons[-1], "count": seasons[-1]["count"] + (smax - total)}
                 total = smax
@@ -456,16 +465,27 @@ def build_episodes(data, opts, log, prog, on_ep):
             if rng and (n if season_sel else absn) not in rng: continue
             src_num = n if per_season_num else absn   # nº para jkanime/animeav1
 
+            ce = ca = cj = 0
             if opts["e69"] and imdb:
-                r = embed69_lat(imdb, S["season"], n)
-                if r: servers.append(r)
+                try:
+                    r = embed69_lat(imdb, S["season"], n)
+                    if r: servers.append(r); ce = 1
+                except Exception as ex: log(f"  (embed69 err: {str(ex)[:40]})")
                 time.sleep(0.85)
             if opts["av1"] and avslug:
-                a = av1_servers(avslug, src_num)
-                if a is None and absn > total: break
-                servers += (a or []); time.sleep(0.35)
+                try:
+                    a = av1_servers(avslug, src_num)
+                    if a is None and absn > total: break
+                    servers += (a or []); ca = len(a or [])
+                except Exception as ex: log(f"  (animeav1 err: {str(ex)[:40]})")
+                time.sleep(0.35)
             if opts["jk"] and jkslug:
-                servers += (jk_servers(jkslug, src_num) or []); time.sleep(0.3)
+                try:
+                    js = jk_servers(jkslug, src_num) or []; servers += js; cj = len(js)
+                except Exception as ex: log(f"  (jkanime err: {str(ex)[:40]})")
+                time.sleep(0.3)
+            if absn == 1 or (not servers and absn <= 3):
+                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj}" + (f" · imdb={imdb} jk={jkslug} av1={avslug}" if not servers else ""))
             if opts["manual"] and absn in manual:
                 servers.append({"url": manual[absn], "name": nm(manual[absn]), "lang": "Latino", "desc": ""})
             prog(absn, total)
