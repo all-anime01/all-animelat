@@ -627,6 +627,7 @@ class App:
         s.map("TButton", background=[("active", "#33333d")])
         s.configure("Red.TButton", background=RED); s.map("Red.TButton", background=[("active", "#b81c19")])
         s.configure("Grn.TButton", background=GRN); s.map("Grn.TButton", background=[("active", "#1c7d45")])
+        s.configure("AA.Horizontal.TProgressbar", troughcolor="#101015", bordercolor="#101015", background="#25c257", lightcolor="#25c257", darkcolor="#1c9c45", thickness=16)
         s.configure("TCheckbutton", background=CARD, foreground=TXT); s.configure("TRadiobutton", background=CARD, foreground=TXT)
         s.configure("TEntry", fieldbackground="#101015", foreground=TXT, insertcolor=TXT, borderwidth=1)
         s.configure("Treeview", background="#101015", fieldbackground="#101015", foreground=TXT, rowheight=24, borderwidth=0)
@@ -721,7 +722,9 @@ class App:
         self.f_creator = self._field(af, "Estudio/Creador", 4)
         self.f_poster = self._field(af, "Portada (img)", 5, w=40); self.f_back = self._field(af, "Fondo (heroImg)", 6, w=40)
         self.f_logo = self._field(af, "Logo (logoImg)", 7, w=40)
-        self.bar = ttk.Progressbar(pv); self.bar.pack(fill="x", padx=14, pady=8)
+        pgrow = tk.Frame(pv, bg=CARD); pgrow.pack(fill="x", padx=14, pady=8)
+        self.bar = ttk.Progressbar(pgrow, style="AA.Horizontal.TProgressbar"); self.bar.pack(side="left", fill="x", expand=True)
+        self.count_lbl = ttk.Label(pgrow, text="0 episodios", style="Mut.TLabel"); self.count_lbl.pack(side="left", padx=10)
         tw = tk.Frame(pv, bg=CARD); tw.pack(fill="both", expand=True, padx=14)
         self.tree = ttk.Treeview(tw, columns=("t", "img", "srv"), show="headings", height=9)
         tvsb = ttk.Scrollbar(tw, orient="vertical", command=self.tree.yview)
@@ -734,6 +737,7 @@ class App:
         self.tree.bind("<MouseWheel>", lambda e: (self.tree.yview_scroll(int(-1 * (e.delta / 120)), "units"), "break")[1])
         bb = tk.Frame(pv, bg=CARD); bb.pack(fill="x", padx=14, pady=10)
         self.save_btn = ttk.Button(bb, text="Guardar en la web", style="Grn.TButton", command=self.do_save, state="disabled"); self.save_btn.pack(side="left")
+        ttk.Button(bb, text="🖼 Reparar imágenes", command=self.do_fix_images).pack(side="left", padx=10)
         ttk.Button(bb, text="↶ Revertir último cambio", command=self.do_revert).pack(side="left", padx=10)
         ttk.Label(bb, text="  (aplica lo que edites arriba)", style="Mut.TLabel").pack(side="left")
 
@@ -850,8 +854,10 @@ class App:
 
     def add_ep_row(self, e):
         srv = ", ".join(f"{s['name']}({s['lang'][:3]})" for s in e["servers"])
-        self.tree.insert("", "end", iid=str(len(self.tree.get_children())), text="",
-                         values=(f"E{e['number']} · {e['title']}", "sí" if e["img"] else "—", srv))
+        nrows = len(self.tree.get_children())
+        self.tree.insert("", "end", iid=str(nrows), text="",
+                         values=(f"{e['season']} · E{e['number']} · {e['title']}", "sí" if e["img"] else "—", srv))
+        self.count_lbl.config(text=f"{nrows + 1} episodios")
         self.save_btn.config(state="normal")
 
     def after_episodes(self):
@@ -931,6 +937,34 @@ class App:
                 patch_fields("meta/catalog", {"version": int(time.time() * 1000)}, self.token)
                 self.log(f"↶ REVERTIDO: {aid} restaurado ({n} episodios).")
             except Exception as e: self.log("ERROR revertir: " + str(e))
+        threading.Thread(target=work, daemon=True).start()
+
+    def do_fix_images(self):
+        if not self.data or not self.data.get("episodes"):
+            messagebox.showinfo("Reparar imágenes", "Primero carga o construye un anime."); return
+        key = self.tmdb.get().strip()
+        self.log("Reparando imágenes/descripciones de episodios desde TMDB…")
+        def work():
+            try:
+                tmdb = self.data.get("tmdb") or tmdb_resolve(self.data["real_title"], key)
+                info = tmdb_full(tmdb, key) if tmdb else {"stills": {}}
+                stills = info.get("stills", {})
+                if not stills:
+                    self.log("TMDB no tiene stills por episodio (necesitas la TMDB API key). Usa doble clic para poner imágenes a mano."); return
+                fixed = 0
+                for e in self.data["episodes"]:
+                    sm = re.search(r"(\d+)", str(e.get("season", "1"))); s = sm.group(1) if sm else "1"
+                    st = stills.get(f"{s}x{e['number']}")
+                    if st and st.get("still"):
+                        e["img"] = st["still"]; fixed += 1
+                        if not e.get("title") or str(e["title"]).startswith("Episodio "): e["title"] = st.get("title") or e["title"]
+                        if not e.get("description"): e["description"] = st.get("overview", "")
+                def refresh():
+                    for i in self.tree.get_children(): self.tree.delete(i)
+                    for e in self.data["episodes"]: self.add_ep_row(e)
+                    self.log(f"Imágenes/descripciones reparadas: {fixed} episodios. Ajusta alguna con doble clic. Pulsa Guardar para aplicar.")
+                self.root.after(0, refresh)
+            except Exception as e: self.log("ERROR reparar imágenes: " + str(e))
         threading.Thread(target=work, daemon=True).start()
 
     def edit_episode(self, ev):
