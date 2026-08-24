@@ -272,6 +272,60 @@ def imdb_suggest(title, year=None):
         return pool[0]["id"] if pool else None
     except Exception: return None
 
+def guess_kind(title):
+    """'movie' o 'tv' según la API de sugerencias de IMDB (feature/video/short = película)."""
+    slug = re.sub(r"\s+", "_", re.sub(r"[^a-z0-9 ]", "", title.lower()).strip())
+    if not slug: return "tv"
+    try:
+        d = [x for x in json.loads(http(f"https://v2.sg.media-imdb.com/suggestion/{slug[0]}/{urllib.parse.quote(slug)}.json")[1]).get("d", []) if str(x.get("id", "")).startswith("tt")]
+        if not d: return "tv"
+        q = (d[0].get("q") or "").lower()
+        return "movie" if re.search(r"feature|video|short|tv movie|movie", q) else "tv"
+    except Exception: return "tv"
+
+def imdb_movie(title, year=None):
+    slug = re.sub(r"\s+", "_", re.sub(r"[^a-z0-9 ]", "", title.lower()).strip())
+    if not slug: return None
+    try:
+        d = [x for x in json.loads(http(f"https://v2.sg.media-imdb.com/suggestion/{slug[0]}/{urllib.parse.quote(slug)}.json")[1]).get("d", []) if str(x.get("id", "")).startswith("tt")]
+        mv = [x for x in d if re.search(r"feature|video|tv movie|short", (x.get("q") or ""), re.I)] or d
+        if year:
+            yr = [x for x in mv if x.get("y") and abs(x["y"] - int(year)) <= 1]
+            if yr: return yr[0]["id"]
+        return mv[0]["id"] if mv else None
+    except Exception: return None
+
+def tmdb_movie(title, key):
+    """Metadata de PELÍCULA (título real, imágenes, sinopsis, año, duración, imdb, logo)."""
+    out = {"title": "", "year": None, "genres": [], "description": "", "poster": "", "backdrop": "", "logo": "", "imdb": "", "runtime": 0}
+    if not key:
+        s = get_text(f"https://www.themoviedb.org/search/movie?query={urllib.parse.quote(title)}")
+        mid = (re.search(r'href="/movie/(\d+)', s) or [None, None])[1]
+        if not mid: return out
+        h = get_text(f"https://www.themoviedb.org/movie/{mid}?language=es-ES")
+        out["title"] = dec_ent((re.search(r'og:title" content="([^"]+)"', h) or re.search(r"<title>([^(<]+)", h) or [None, ""])[1])
+        p = re.search(r'og:image" content="[^"]*/([A-Za-z0-9]{16,})\.(?:jpg|png)', h)
+        if p: out["poster"] = f"{IMG}/w500/{p.group(1)}.jpg"
+        de = re.search(r'<div class="overview">\s*<p>([^<]+)</p>', h); out["description"] = dec_ent(de.group(1)) if de else ""
+        return out
+    j = get_json(f"https://api.themoviedb.org/3/search/movie?api_key={key}&language=es-ES&query={urllib.parse.quote(title)}")
+    r = (j.get("results") or [])
+    if not r: return out
+    mid = r[0]["id"]
+    d = get_json(f"https://api.themoviedb.org/3/movie/{mid}?api_key={key}&language=es-ES")
+    out["title"] = d.get("title") or d.get("original_title") or ""
+    out["description"] = d.get("overview") or ""
+    out["genres"] = [g["name"] for g in d.get("genres", [])][:5]
+    out["runtime"] = d.get("runtime") or 0
+    rd = d.get("release_date") or ""; out["year"] = int(rd[:4]) if rd[:4].isdigit() else None
+    if d.get("poster_path"): out["poster"] = f"{IMG}/w500{d['poster_path']}"
+    if d.get("backdrop_path"): out["backdrop"] = f"{IMG}/w1280{d['backdrop_path']}"
+    out["imdb"] = (get_json(f"https://api.themoviedb.org/3/movie/{mid}/external_ids?api_key={key}") or {}).get("imdb_id") or ""
+    im = get_json(f"https://api.themoviedb.org/3/movie/{mid}/images?api_key={key}&include_image_language=es,en,null")
+    logos = im.get("logos") or []
+    if logos: out["logo"] = f"{IMG}/w500{sorted(logos, key=lambda l: (l.get('iso_639_1') == 'es', l.get('vote_average', 0)), reverse=True)[0]['file_path']}"
+    return out
+
 # ------------------------------------------------------------------ Fuentes de servidores
 NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "swiftplay": "Streamwish",
         "hglink": "Streamwish", "voe": "VOE", "vidhide": "VidHide", "vidhidevip": "VidHide",
@@ -304,6 +358,20 @@ def prioritize(servers, prefer=None, only=False, cap=3):
         if lang in g: out += sorted(g[lang], key=rank)[:cap]
     return out
 
+def embed69_movie(imdb):
+    if not imdb: return None
+    for _ in range(3):
+        h = get_text(f"https://embed69.org/f/{imdb}/", referer="https://pelisplushd.bz/")
+        m = re.search(r'dataLink\s*=\s*(\[[\s\S]*?\]);', h)
+        if m:
+            try:
+                if json.loads(m.group(1)):
+                    return {"url": f"https://embed69.org/f/{imdb}/", "name": "PelisPlus", "lang": "Latino", "desc": "Audio Latino"}
+            except Exception: pass
+            return None
+        if "Rate limit" in h or not h: time.sleep(4); continue
+        return None
+    return None
 def embed69_lat(imdb, s, e):
     if not imdb: return None
     code = f"{imdb}-{s}x{str(e).zfill(2)}"
@@ -436,6 +504,51 @@ def build_meta(title, opts, log):
     seasons = info["seasons"] or [{"season": 1, "count": 60}]
     return {"aid": slugify(real_title), "info": info, "real_title": real_title, "seasons": seasons,
             "episodes": [], "audio": "Sub", "altTitles": info.get("altTitles", []), "creator": info.get("creator", ""), "tmdb": tmdb}
+
+def build_movie(title, opts, log):
+    """Arma una PELÍCULA de anime (1 entrada, type Película)."""
+    key = opts["tmdb_key"]
+    m = tmdb_movie(title, key)
+    real = m["title"] or title
+    imdb = m["imdb"] or imdb_movie(real, m["year"])
+    aid = slugify(real)
+    # fallback jkanime para imagen/descripción
+    if not m["poster"] or not m["description"]:
+        slug0 = (opts.get("src_slug") or "").split(",")[0].strip()
+        slug0 = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", slug0).strip("/").split("/")[0] if slug0 else jk_search(title)
+        jm = jk_meta(slug0) if slug0 else {}
+        if jm.get("poster") and not m["poster"]: m["poster"] = jm["poster"]
+        if jm.get("poster") and not m["backdrop"]: m["backdrop"] = jm["poster"]
+        if jm.get("description") and not m["description"]: m["description"] = jm["description"]
+    log(f"PELÍCULA: {real} | imdb={imdb} | img={'sí' if m['poster'] else 'no'}")
+    servers = []
+    if opts["e69"] and imdb:
+        try:
+            r = embed69_movie(imdb)
+            if r: servers.append(r)
+        except Exception: pass
+    slug = (opts.get("src_slug") or "").split(",")[0].strip()
+    slug = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", slug).strip("/").split("/")[0] if slug else None
+    if opts["av1"]:
+        avs = slug or av1_search(title)
+        try:
+            for x in (av1_servers(avs, 1) or []): servers.append(x)
+        except Exception: pass
+    if opts["jk"]:
+        jks = slug or jk_search(title)
+        try:
+            for x in (jk_servers(jks, 1) or []): servers.append(x)
+        except Exception: pass
+    servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
+    dur = f"{m['runtime']} min" if m.get("runtime") else "1h 30 min"
+    ep = {"number": 1, "season": "Película", "title": real, "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
+          "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote('Película')}&e=1",
+          "img": m["backdrop"] or m["poster"], "description": m["description"], "releaseDate": "", "duration": dur, "servers": servers}
+    info = {"title": real, "year": m["year"], "genres": m["genres"], "description": m["description"], "poster": m["poster"],
+            "backdrop": m["backdrop"] or m["poster"], "logo": m["logo"], "imdb": imdb, "seasons": [], "stills": {}, "altTitles": [], "creator": "", "runtime": m.get("runtime", 0)}
+    log(f"== película: {len(servers)} servers ==")
+    return {"aid": aid, "info": info, "real_title": real, "seasons": [{"season": "Película", "count": 1}],
+            "episodes": [ep], "audio": ep["language"], "altTitles": [], "creator": "", "tmdb": None, "type": "Película"}
 
 def build_episodes(data, opts, log, prog, on_ep):
     """FASE 2 (lenta): servidores por episodio, se van mostrando en vivo."""
@@ -577,7 +690,7 @@ def save(data, token, replace, log):
         log(f"Existente: +{added} nuevos" + (f", {replaced} reemplazados" if replace else " (no se tocó lo demás)"))
     else:
         episodes = built
-        doc = {"id": aid, "title": data["real_title"], "altTitles": [], "type": "TV", "audio": data["audio"],
+        doc = {"id": aid, "title": data["real_title"], "altTitles": [], "type": data.get("type", "TV"), "audio": data["audio"],
                "status": "Finalizado", "quality": "1080p", "year": info["year"], "creator": "", "genres": info["genres"],
                "tags": [], "seasons": len(data["seasons"]), "rating": 4.4, "ratingCount": 300, "contentWarning": "",
                "description": info["description"], "img": info["poster"], "imgMobile": info["poster"],
@@ -685,6 +798,7 @@ class App:
         ttk.Label(cr, text="(o escribe un título nuevo abajo)", style="Mut.TLabel").pack(side="left", padx=8)
         sr = tk.Frame(sc, bg=CARD); sr.pack(fill="x", padx=14)
         self.title = ttk.Entry(sr, font=("Segoe UI", 12)); self.title.pack(side="left", fill="x", expand=True)
+        self.kind = ttk.Combobox(sr, values=["Auto", "Serie", "Película"], width=9, state="readonly"); self.kind.set("Auto"); self.kind.pack(side="left", padx=(8, 0))
         self.build_btn = ttk.Button(sr, text="Buscar y construir", style="Red.TButton", command=self.do_build, state="disabled"); self.build_btn.pack(side="left", padx=(8, 0))
         opt = tk.Frame(sc, bg=CARD); opt.pack(fill="x", padx=14, pady=8)
         self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
@@ -826,8 +940,18 @@ class App:
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
                 "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip()}
+        kind = self.kind.get()
         def work():
             try:
+                is_movie = (kind == "Película") or (kind == "Auto" and guess_kind(t) == "movie")
+                if is_movie:
+                    self.log("Detectado: PELÍCULA de anime")
+                    self.data = build_movie(t, opts, self.log)
+                    self.root.after(0, self.render_meta)
+                    for e in self.data["episodes"]:
+                        self.root.after(0, lambda ep=e: self.add_ep_row(ep))
+                    self.root.after(0, self.after_episodes)
+                    return
                 # FASE 1: metadata → rellena la ficha AL INSTANTE
                 self.data = build_meta(t, opts, self.log)
                 self.root.after(0, self.render_meta)
