@@ -1341,6 +1341,24 @@ $(document).ready(function () {
       );
       // Por defecto la ÚLTIMA temporada (la más reciente), como el resto del sitio.
       seasonSelect.val(seasons[seasons.length - 1]);
+      // …pero si el usuario YA está viendo este anime, muestra la temporada en la que va
+      // (la de su último episodio visto). Prioridad: enlace ?season= > temporada vista >
+      // última temporada. Se resuelve async (historial local + Firestore) y re-renderiza.
+      const _urlS = urlParams.get("season");
+      if (_urlS && seasons.includes(decodeURIComponent(_urlS))) {
+        seasonSelect.val(decodeURIComponent(_urlS));
+      } else {
+        (async () => {
+          try {
+            const r = await computeResume(anime);
+            const s = r && r.ep && r.mode === "continue" ? r.ep.season : null;
+            if (s && seasons.includes(s) && s !== seasonSelect.val()) {
+              seasonSelect.val(s);
+              renderEpisodes(seasonSelect.val(), $("#episode-search").val(), $("#sort-episodes").val() || "desc");
+            }
+          } catch (e) {}
+        })();
+      }
     }
 
     // Cuántos episodios se muestran de golpe antes del botón "Mostrar más".
