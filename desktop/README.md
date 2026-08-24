@@ -4,6 +4,18 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v10
+
+- **Nombres personalizados de temporada.** Al cargar un anime del catálogo, la app lee y
+  respeta los nombres reales de sus temporadas (ej. **«Temporada 22: Elbaph»**) y los
+  muestra en la vista previa. Al usar **«➕ Añadir episodios nuevos»**, el episodio entra
+  con el nombre correcto:
+  - **Temporada destino:** nuevo selector (junto a "Episodios a agregar") que se rellena
+    con las temporadas reales del anime. Elige a cuál va el episodio nuevo, o déjalo en
+    **«automática por número»** para que use la temporada que ya usa ese número.
+  - También puedes **escribir** un nombre nuevo (ej. «Temporada 23: …») para empezar una
+    temporada; se respeta tal cual al guardar (ya no se convierte en "Temporada N").
+
 ## Novedades v9
 
 - **Botón «➕ Añadir episodios nuevos».** Es el botón dedicado a "salió un episodio":

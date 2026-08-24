@@ -695,6 +695,9 @@ def save(data, token, replace, log):
             last_season = None
             if by_num: last_season = by_num[max(by_num)]
             for b in built:
+                # Solo se corrige el nombre GENÉRICO de TMDB ("Temporada 5"); si ya trae un
+                # nombre personalizado (ej. "Temporada 22: Elbaph"), se respeta tal cual.
+                if not re.match(r"^Temporada\s+\d+$", str(b.get("season", ""))): continue
                 try: bn = int(b.get("number"))
                 except (TypeError, ValueError): continue
                 if bn in by_num: b["season"] = by_num[bn]
@@ -768,6 +771,7 @@ class App:
     def __init__(self, root):
         self.root = root; self.token = None; self.data = None; self.cfg = load_cfg()
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
+        self.loaded_seasons = []; self.loaded_season_by_num = {}                 # nombres/rangos reales de temporada del anime cargado
         root.title("All-Anime · Importador"); root.geometry("1020x780"); root.configure(bg=BG); root.minsize(900, 660)
         try:
             ip = _icon_path()
@@ -871,11 +875,18 @@ class App:
         self.prefer = ttk.Entry(pr, width=40); self.prefer.pack(side="left", padx=6); self.prefer.insert(0, "Mega, Streamwish, VOE")
         self.only = tk.BooleanVar(value=False); ttk.Checkbutton(pr, text="solo estos", variable=self.only).pack(side="left")
         rg = tk.Frame(sc, bg=CARD); rg.pack(fill="x", padx=14, pady=(0, 8))
-        ttk.Label(rg, text="Temporada:").pack(side="left")
+        ttk.Label(rg, text="Temporada:", style="Mut.TLabel").pack(side="left")
         self.seasonf = ttk.Entry(rg, width=5); self.seasonf.pack(side="left", padx=(4, 10))
-        ttk.Label(rg, text="Episodios a agregar (ej: 5-12 · vacío = todos):").pack(side="left")
-        self.rangef = ttk.Entry(rg, width=18); self.rangef.pack(side="left", padx=6)
-        ttk.Button(rg, text="Detectar faltantes", command=self.detect_missing).pack(side="left")
+        ttk.Label(rg, text="Episodios a agregar (ej: 5-12 · vacío = todos):", style="Mut.TLabel").pack(side="left")
+        self.rangef = ttk.Entry(rg, width=16); self.rangef.pack(side="left", padx=6)
+        ttk.Button(rg, text="Detectar faltantes", style="Ghost.TButton", command=self.detect_missing).pack(side="left")
+        # Temporada DESTINO (nombre personalizado, ej. "Temporada 22: Elbaph"). Se llena con
+        # los nombres reales del anime al cargarlo; editable para crear una temporada nueva.
+        dr = tk.Frame(sc, bg=CARD); dr.pack(fill="x", padx=14, pady=(0, 8))
+        ttk.Label(dr, text="Temporada destino (para «Añadir episodios nuevos»):", style="Mut.TLabel").pack(side="left")
+        self.dest_season = ttk.Combobox(dr, width=34, values=["(automática por número)"]); self.dest_season.set("(automática por número)")
+        self.dest_season.pack(side="left", padx=6)
+        ttk.Label(dr, text="↳ respeta nombres como «Temporada 22: Elbaph»", style="Mut.TLabel").pack(side="left")
         sg = tk.Frame(sc, bg=CARD); sg.pack(fill="x", padx=14, pady=(0, 8))
         ttk.Label(sg, text="Slug(s) de la fuente (opcional · varios por coma = secuelas como temporadas):").pack(side="left")
         self.srcslug = ttk.Entry(sg, width=44); self.srcslug.pack(side="left", padx=6)
@@ -1012,7 +1023,14 @@ class App:
                 d = get_doc(f"animes/{aid}", self.token)
                 if not d: self.log("No se encontró el anime en la base."); return
                 eps = d.get("episodes") or []
-                seasons_names = list(dict.fromkeys(e.get("season") for e in eps))
+                seasons_names = list(dict.fromkeys(e.get("season") for e in eps if e.get("season")))
+                # Recuerda los nombres REALES de temporada y el rango de nº de cada una
+                # (para colocar/mostrar los episodios nuevos en «Temporada 22: Elbaph», etc.).
+                self.loaded_seasons = seasons_names
+                self.loaded_season_by_num = {}
+                for e in eps:
+                    try: self.loaded_season_by_num[int(e.get("number"))] = e.get("season")
+                    except (TypeError, ValueError): pass
                 info = {"title": d.get("title", ""), "year": d.get("year"), "genres": d.get("genres", []),
                         "description": d.get("description", ""), "poster": d.get("img", ""), "backdrop": d.get("heroImg", d.get("fonImg", "")),
                         "logo": d.get("logoImg", ""), "imdb": "", "seasons": [], "stills": {}, "altTitles": d.get("altTitles", []),
@@ -1028,7 +1046,11 @@ class App:
                     for i in self.tree.get_children(): self.tree.delete(i)
                     for e in eps: self.add_ep_row(e)
                     self.save_btn.config(state="normal"); self.addnew_btn.config(state="normal")
-                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios. Usa «➕ Añadir episodios nuevos» para sumar los que falten sin tocar lo demás.")
+                    # Ofrece las temporadas reales del anime en el selector de destino.
+                    self.dest_season.config(values=["(automática por número)"] + seasons_names)
+                    self.dest_season.set("(automática por número)")
+                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(seasons_names)} temporada(s): {', '.join(seasons_names[:4])}{'…' if len(seasons_names) > 4 else ''}")
+                    self.log("Usa «➕ Añadir episodios nuevos» para sumar los que falten sin tocar lo demás.")
                 self.root.after(0, show)
             except Exception as e: self.log("ERROR cargar: " + str(e))
         threading.Thread(target=work, daemon=True).start()
@@ -1102,15 +1124,37 @@ class App:
                 build_episodes(self.data, opts, self.log, self.prog,
                                on_ep=lambda ep: self.root.after(0, lambda e=ep: self.add_ep_row(e)))
                 if add_only:
-                    nnew = len(self.data.get("episodes") or []) - nbefore
-                    self.root.after(0, lambda: self.log(f"➕ {nnew} episodio(s) nuevo(s) listos para guardar. Pulsa «Guardar en la web»."))
-                self.root.after(0, self.after_episodes)
+                    self.root.after(0, lambda: self._finish_add(nbefore))
+                else:
+                    self.root.after(0, self.after_episodes)
             except Exception as e:
                 self.log("ERROR: " + str(e))
             finally:
                 self.root.after(0, lambda: (self.build_btn.config(state="normal"),
                                             self.addnew_btn.config(state="normal" if self.loaded_aid else "disabled")))
         threading.Thread(target=work, daemon=True).start()
+
+    def _finish_add(self, nbefore):
+        """Tras «Añadir episodios nuevos»: pone el NOMBRE de temporada correcto a los
+        episodios recién creados (destino elegido, o el nombre real que ya usa ese número,
+        o la última temporada) y refresca la lista para mostrarlo tal cual se guardará."""
+        eps = self.data.get("episodes") or []
+        new_eps = eps[nbefore:]
+        dest = self.dest_season.get().strip()
+        custom = bool(dest) and not dest.startswith("(autom")
+        for e in new_eps:
+            try: num = int(e.get("number"))
+            except (TypeError, ValueError): num = None
+            if custom: e["season"] = dest
+            elif num is not None and num in self.loaded_season_by_num: e["season"] = self.loaded_season_by_num[num]
+            elif self.loaded_seasons: e["season"] = self.loaded_seasons[-1]
+            # el videoUrl codifica el nombre de temporada → mantenerlo en sintonía
+            e["videoUrl"] = f"frame/player.html?a={self.loaded_aid}&s={urllib.parse.quote(str(e.get('season', '')))}&e={e.get('number')}"
+        for i in self.tree.get_children(): self.tree.delete(i)
+        for e in eps: self.add_ep_row(e)
+        dst = f"«{dest}»" if custom else "temporada asignada por número"
+        self.log(f"➕ {len(new_eps)} episodio(s) nuevo(s) → {dst}. Revisa y pulsa «Guardar en la web».")
+        self.after_episodes()
 
     def render_meta(self):
         """Rellena la ficha del anime en cuanto llega la metadata (rápido)."""
