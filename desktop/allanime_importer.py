@@ -455,43 +455,55 @@ def build_episodes(data, opts, log, prog, on_ep):
     rng = parse_range(opts.get("range"), total)
     if season_sel: log(f"solo Temporada {season_sel}" + (f", episodios {opts.get('range')}" if rng else ""))
     elif rng: log(f"solo episodios: {sorted(rng)[:3]}…{sorted(rng)[-1]} ({len(rng)})")
+    # Guardas: dejar de consultar una fuente que claramente NO tiene este anime, y terminar
+    # cuando la fuente se acaba (evita construir cientos de episodios vacíos / franquicias).
+    skip = {"e69": False, "av1": False, "jk": False}; miss = {"e69": 0, "av1": 0, "jk": 0}
+    empty_streak = 0; stop = False
     for S in seasons:
+        if stop: break
         sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
         if season_sel and str(S["season"]) != season_sel:
             absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
         for n in range(1, S["count"] + 1):
             absn += 1; servers = []
-            # con temporada elegida, el rango es por nº de temporada; si no, por nº absoluto
             if rng and (n if season_sel else absn) not in rng: continue
             src_num = n if per_season_num else absn   # nº para jkanime/animeav1
-
             ce = ca = cj = 0
-            if opts["e69"] and imdb:
+            if opts["e69"] and imdb and not skip["e69"]:
                 try:
                     r = embed69_lat(imdb, S["season"], n)
                     if r: servers.append(r); ce = 1
                 except Exception as ex: log(f"  (embed69 err: {str(ex)[:40]})")
-                time.sleep(0.85)
-            if opts["av1"] and avslug:
+                miss["e69"] = 0 if ce else miss["e69"] + 1
+                if miss["e69"] >= 6: skip["e69"] = True; log("  embed69 no tiene este anime → se omite")
+                time.sleep(0.6)
+            if opts["av1"] and avslug and not skip["av1"]:
                 try:
-                    a = av1_servers(avslug, src_num)
-                    if a is None and absn > total: break
-                    servers += (a or []); ca = len(a or [])
+                    a = av1_servers(avslug, src_num); servers += (a or []); ca = len(a or [])
                 except Exception as ex: log(f"  (animeav1 err: {str(ex)[:40]})")
-                time.sleep(0.35)
-            if opts["jk"] and jkslug:
+                miss["av1"] = 0 if ca else miss["av1"] + 1
+                if miss["av1"] >= 6: skip["av1"] = True; log("  animeav1 no tiene este anime → se omite")
+                time.sleep(0.3)
+            if opts["jk"] and jkslug and not skip["jk"]:
                 try:
                     js = jk_servers(jkslug, src_num) or []; servers += js; cj = len(js)
                 except Exception as ex: log(f"  (jkanime err: {str(ex)[:40]})")
+                miss["jk"] = 0 if cj else miss["jk"] + 1
+                if miss["jk"] >= 6: skip["jk"] = True; log("  jkanime no tiene este anime → se omite")
                 time.sleep(0.3)
-            if absn == 1 or (not servers and absn <= 3):
-                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj}" + (f" · imdb={imdb} jk={jkslug} av1={avslug}" if not servers else ""))
             if opts["manual"] and absn in manual:
                 servers.append({"url": manual[absn], "name": nm(manual[absn]), "lang": "Latino", "desc": ""})
+            if absn == 1 or (not servers and absn <= 3):
+                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj}" + (f" · imdb={imdb} jk={jkslug} av1={avslug}" if not servers else ""))
             prog(absn, total)
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
-                log(f"  ep {absn} (S{S['season']}E{n}): sin servers"); continue
+                empty_streak += 1
+                # sin rango/temporada fijos: si se acaban las fuentes, terminar (fin del anime)
+                if empty_streak >= 10 and not rng and not season_sel:
+                    log(f"  fin del anime (10 episodios seguidos sin servers) — construidos {len(episodes)}"); stop = True; break
+                continue
+            empty_streak = 0
             em = info["stills"].get(f"{S['season']}x{n}", {})
             rt = em.get("runtime") or info.get("runtime") or 24
             ep = {"number": n, "season": sname, "title": em.get("title") or f"Episodio {n}",
