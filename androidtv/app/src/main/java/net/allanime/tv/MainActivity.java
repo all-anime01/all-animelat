@@ -276,6 +276,12 @@ public class MainActivity extends Activity {
                         "if(!url){var cf=jwplayer().getConfig&&jwplayer().getConfig();if(cf&&cf.sources&&cf.sources[0])url=cf.sources[0].file||cf.sources[0].src||'';}}}catch(e){}" +
                         "try{if(!url){var vv=document.querySelector('video');if(vv&&vv.src&&vv.src.indexOf('m3u8')>=0)url=vv.src;}}catch(e){}" +
                         "try{if(!url){var mm=document.documentElement.innerHTML.match(/https?:\\/\\/[^\"'\\s\\\\]+\\.m3u8[^\"'\\s\\\\]*/);if(mm)url=mm[0];}}catch(e){}" +
+                        // 3ª VÍA: iframes ANIDADOS del mismo origen (Filemoon/byse a veces mete
+                        // su reproductor en un iframe interno → el m3u8 está en su documento).
+                        "try{if(!url){var ifr=document.getElementsByTagName('iframe');for(var k=0;k<ifr.length&&!url;k++){try{var d2=ifr[k].contentDocument;if(d2){var mi=d2.documentElement.innerHTML.match(/https?:\\/\\/[^\"'\\s\\\\]+\\.m3u8[^\"'\\s\\\\]*/);if(mi)url=mi[0];}}catch(e){}}}}catch(e){}" +
+                        // 4ª VÍA: VOE y similares esconden el enlace en base64 → se decodifican
+                        // las cadenas largas y se busca el m3u8 (también dentro de JSON).
+                        "try{if(!url){var H=document.documentElement.innerHTML;var B=H.match(/[A-Za-z0-9+\\/=]{100,}/g)||[];for(var q=0;q<B.length&&!url;q++){try{var D=atob(B[q]);var M=D.match(/https?:\\/\\/[^\"'\\s\\\\]+\\.m3u8[^\"'\\s\\\\]*/);if(M){url=M[0];}else{var J=JSON.parse(D);var sc=J&&(J.source||J.file||(J.sources&&J.sources[0]&&(J.sources[0].file||J.sources[0].src)));if(sc&&(''+sc).indexOf('m3u8')>=0)url=sc;}}catch(e){}}}}catch(e){}" +
                         "try{if(url&&window.AAX&&AAX.found)AAX.found(url);}catch(e){}" +
                         "}catch(e){}})();";
                 v.evaluateJavascript(js, null);

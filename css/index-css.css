@@ -1162,7 +1162,7 @@ body.red-theme header {
 .anime-description {
     font-size: 1.6rem;
     line-height: 1.7;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     max-width: 90%;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -1170,10 +1170,21 @@ body.red-theme header {
     overflow: hidden;
 }
 
+/* Bloque de interacción (valoración + reacciones): agrupado y separado del resto
+   para que no se vea amontonado contra la descripción y los botones. */
+#anime-rating { margin: 0 0 0.4rem; }
+#anime-reactions {
+    margin: 0 0 2.2rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    max-width: 90%;
+}
+
 .anime-actions {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.2rem;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .action-btn {
