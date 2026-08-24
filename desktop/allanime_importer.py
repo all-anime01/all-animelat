@@ -45,6 +45,15 @@ def save_cfg(c):
     try:
         with open(CFG_PATH, "w", encoding="utf-8") as f: json.dump(c, f)
     except Exception: pass
+def _obf(s):
+    """Ofusca la contraseña guardada (no es cifrado fuerte, evita verla a simple vista)."""
+    try: return base64.b64encode(("aa::" + s).encode("utf-8")).decode() if s else ""
+    except Exception: return ""
+def _deobf(s):
+    try:
+        v = base64.b64decode((s or "").encode()).decode("utf-8")
+        return v[4:] if v.startswith("aa::") else ""
+    except Exception: return ""
 
 # --- Respaldos locales (para REVERTIR cambios) ---
 BACKUP_DIR = os.path.join(os.path.expanduser("~"), ".allanime_backups")
@@ -732,7 +741,21 @@ def save(data, token, replace, log):
     log(f"OK GUARDADO: {aid} — {len(episodes)} eps [{doc.get('audio', '')}]. Ya está en el sitio.")
 
 # ================================================================== GUI
-BG = "#0f0f12"; CARD = "#1a1a20"; LINE = "#2a2a33"; TXT = "#e9e9ee"; MUT = "#9aa0aa"; RED = "#e0231f"; GRN = "#25a35a"
+# Paleta moderna (dark, tono azulado + acento rojo de marca)
+BG   = "#0b0d13"   # fondo general (casi negro azulado)
+CARD = "#151922"   # tarjetas
+CARD2= "#1b2030"   # tarjeta elevada / cabecera de sección
+FIELD= "#0e1119"   # campos / inputs
+LINE = "#252b39"   # bordes sutiles
+TXT  = "#eef1f7"   # texto principal
+MUT  = "#8b93a6"   # texto secundario
+RED  = "#e11d2a"   # acento de marca
+REDH = "#ff3846"   # acento hover
+GRN  = "#22c55e"   # guardar / éxito
+GRNH = "#34d76e"
+BLUE = "#3b82f6"   # acción secundaria
+BLUEH= "#5a97ff"
+HEAD = "#0e1118"   # barra superior
 AUDIOS = ["Sub", "Sub | Dob", "Sub | Cas", "Latino", "Castellano", "Subtitulado"]
 def _icon_path():
     import sys
@@ -745,34 +768,44 @@ class App:
     def __init__(self, root):
         self.root = root; self.token = None; self.data = None; self.cfg = load_cfg()
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
-        root.title("All-Anime · Importador"); root.geometry("980x740"); root.configure(bg=BG); root.minsize(880, 640)
+        root.title("All-Anime · Importador"); root.geometry("1020x780"); root.configure(bg=BG); root.minsize(900, 660)
         try:
             ip = _icon_path()
             if ip: root.iconbitmap(ip)
         except Exception: pass
+        FBODY = ("Segoe UI", 10); FSMALL = ("Segoe UI", 9); FBOLD = ("Segoe UI Semibold", 10)
         s = ttk.Style(); s.theme_use("clam")
-        s.configure(".", background=BG, foreground=TXT, fieldbackground="#101015", font=("Segoe UI", 10))
+        s.configure(".", background=BG, foreground=TXT, fieldbackground=FIELD, font=FBODY)
         s.configure("Card.TFrame", background=CARD)
         s.configure("TLabel", background=CARD, foreground=TXT)
-        s.configure("Mut.TLabel", background=CARD, foreground=MUT, font=("Segoe UI", 9))
-        s.configure("H.TLabel", background=CARD, foreground="#ff8a8a", font=("Segoe UI", 10, "bold"))
-        s.configure("TButton", background="#26262e", foreground=TXT, padding=8, borderwidth=0, font=("Segoe UI", 10, "bold"))
-        s.map("TButton", background=[("active", "#33333d")])
-        s.configure("Red.TButton", background=RED); s.map("Red.TButton", background=[("active", "#b81c19")])
-        s.configure("Grn.TButton", background=GRN); s.map("Grn.TButton", background=[("active", "#1c7d45")])
-        s.configure("AA.Horizontal.TProgressbar", troughcolor="#101015", bordercolor="#101015", background="#25c257", lightcolor="#25c257", darkcolor="#1c9c45", thickness=16)
-        s.configure("TCheckbutton", background=CARD, foreground=TXT); s.configure("TRadiobutton", background=CARD, foreground=TXT)
-        s.configure("TEntry", fieldbackground="#101015", foreground=TXT, insertcolor=TXT, borderwidth=1)
-        s.configure("Treeview", background="#101015", fieldbackground="#101015", foreground=TXT, rowheight=24, borderwidth=0)
-        s.configure("Treeview.Heading", background="#22222a", foreground=TXT, font=("Segoe UI", 9, "bold"))
-        s.configure("TNotebook", background=BG, borderwidth=0); s.configure("TNotebook.Tab", background="#1a1a20", foreground=MUT, padding=(14, 7))
-        s.map("TNotebook.Tab", background=[("selected", CARD)], foreground=[("selected", TXT)])
+        s.configure("Mut.TLabel", background=CARD, foreground=MUT, font=FSMALL)
+        s.configure("H.TLabel", background=CARD, foreground=TXT, font=("Segoe UI Semibold", 11))
+        # Botones: base (neutro), acento (rojo), guardar (verde), secundario (azul)
+        s.configure("TButton", background="#232838", foreground=TXT, padding=(14, 9), borderwidth=0, font=FBOLD, focuscolor=CARD)
+        s.map("TButton", background=[("active", "#2e3550"), ("pressed", "#2e3550")])
+        s.configure("Red.TButton", background=RED, foreground="#ffffff"); s.map("Red.TButton", background=[("active", REDH), ("pressed", REDH)])
+        s.configure("Grn.TButton", background=GRN, foreground="#062b15"); s.map("Grn.TButton", background=[("active", GRNH), ("pressed", GRNH)])
+        s.configure("Blue.TButton", background=BLUE, foreground="#ffffff"); s.map("Blue.TButton", background=[("active", BLUEH), ("pressed", BLUEH)])
+        s.configure("Ghost.TButton", background=CARD2, foreground=MUT, padding=(10, 7)); s.map("Ghost.TButton", background=[("active", "#242a3b")], foreground=[("active", TXT)])
+        s.configure("AA.Horizontal.TProgressbar", troughcolor=FIELD, bordercolor=FIELD, background=GRN, lightcolor=GRNH, darkcolor="#1aa54f", thickness=14)
+        s.configure("TCheckbutton", background=CARD, foreground=TXT, focuscolor=CARD); s.map("TCheckbutton", background=[("active", CARD)])
+        s.configure("TRadiobutton", background=CARD, foreground=TXT, focuscolor=CARD); s.map("TRadiobutton", background=[("active", CARD)])
+        s.configure("TEntry", fieldbackground=FIELD, foreground=TXT, insertcolor=TXT, borderwidth=1, bordercolor=LINE, padding=5)
+        s.map("TEntry", bordercolor=[("focus", RED)])
+        s.configure("TCombobox", fieldbackground=FIELD, background=FIELD, foreground=TXT, arrowcolor=MUT, bordercolor=LINE, padding=4)
+        s.map("TCombobox", fieldbackground=[("readonly", FIELD)])
+        s.configure("Treeview", background=FIELD, fieldbackground=FIELD, foreground=TXT, rowheight=26, borderwidth=0, font=FSMALL)
+        s.map("Treeview", background=[("selected", "#26314a")], foreground=[("selected", TXT)])
+        s.configure("Treeview.Heading", background=CARD2, foreground=MUT, font=("Segoe UI Semibold", 9), borderwidth=0, padding=6)
+        s.configure("Vertical.TScrollbar", background=CARD2, troughcolor=BG, bordercolor=BG, arrowcolor=MUT)
 
-        # Header
-        hd = tk.Frame(root, bg="#141418"); hd.pack(fill="x")
-        tk.Label(hd, text="▎", fg=RED, bg="#141418", font=("Segoe UI", 20, "bold")).pack(side="left", padx=(14, 0))
-        tk.Label(hd, text="All-Anime · Importador", fg=TXT, bg="#141418", font=("Segoe UI", 14, "bold")).pack(side="left", pady=12)
-        self.status = tk.Label(hd, text="Inicia sesión", fg="#ffcf7a", bg="#141418", font=("Segoe UI", 9)); self.status.pack(side="right", padx=16)
+        # ---- Header (barra superior con marca + estado + cerrar sesión) ----
+        hd = tk.Frame(root, bg=HEAD, height=58); hd.pack(fill="x"); hd.pack_propagate(False)
+        badge = tk.Label(hd, text=" ▶ ", fg="#ffffff", bg=RED, font=("Segoe UI", 12, "bold")); badge.pack(side="left", padx=(16, 10), pady=13)
+        tk.Label(hd, text="All-Anime", fg=TXT, bg=HEAD, font=("Segoe UI Semibold", 15)).pack(side="left")
+        tk.Label(hd, text="Importador", fg=MUT, bg=HEAD, font=("Segoe UI", 12)).pack(side="left", padx=(6, 0))
+        self.logout_btn = ttk.Button(hd, text="Cerrar sesión", style="Ghost.TButton", command=self.logout)
+        self.status = tk.Label(hd, text="●  Sin sesión", fg="#ffcf7a", bg=HEAD, font=("Segoe UI Semibold", 10)); self.status.pack(side="right", padx=16)
 
         # Log FIJO abajo
         self.logbox = tk.Text(root, bg="#0a0a0c", fg="#c8c8d0", height=6, font=("Consolas", 9), relief="flat")
@@ -792,32 +825,38 @@ class App:
 
         def card(parent):
             c = tk.Frame(parent, bg=CARD, highlightbackground=LINE, highlightthickness=1); return c
-        def head(c, t):
-            ttk.Label(c, text=t, style="H.TLabel").pack(anchor="w", padx=14, pady=(12, 6))
+        def head(c, t, sub=None):
+            hf = tk.Frame(c, bg=CARD); hf.pack(fill="x", padx=16, pady=(14, 8))
+            tk.Frame(hf, bg=RED, width=4, height=18).pack(side="left", padx=(0, 10))
+            box = tk.Frame(hf, bg=CARD); box.pack(side="left", fill="x")
+            tk.Label(box, text=t, bg=CARD, fg=TXT, font=("Segoe UI Semibold", 11)).pack(anchor="w")
+            if sub: tk.Label(box, text=sub, bg=CARD, fg=MUT, font=("Segoe UI", 9)).pack(anchor="w")
 
         # Config card (login + tmdb)
         cf = card(body); cf.pack(fill="x")
-        head(cf, "CUENTA Y AJUSTES")
-        row = tk.Frame(cf, bg=CARD); row.pack(fill="x", padx=14, pady=(0, 12))
-        ttk.Label(row, text="Correo admin").grid(row=0, column=0, sticky="w"); ttk.Label(row, text="Contraseña").grid(row=0, column=1, sticky="w", padx=(8, 0))
-        ttk.Label(row, text="TMDB API key (opcional, para logo)").grid(row=0, column=2, sticky="w", padx=(8, 0))
-        self.email = ttk.Entry(row, width=26); self.email.grid(row=1, column=0, sticky="w"); self.email.insert(0, self.cfg.get("email", ""))
-        self.pw = ttk.Entry(row, width=18, show="•"); self.pw.grid(row=1, column=1, padx=(8, 0))
-        self.tmdb = ttk.Entry(row, width=30); self.tmdb.grid(row=1, column=2, padx=(8, 0)); self.tmdb.insert(0, self.cfg.get("tmdb_key", ""))
-        ttk.Button(row, text="Iniciar sesión", style="Red.TButton", command=self.login).grid(row=1, column=3, padx=(10, 0))
+        head(cf, "Cuenta y ajustes", "Tu sesión y la TMDB API key quedan guardadas en este equipo.")
+        row = tk.Frame(cf, bg=CARD); row.pack(fill="x", padx=16, pady=(0, 14))
+        ttk.Label(row, text="Correo admin", style="Mut.TLabel").grid(row=0, column=0, sticky="w"); ttk.Label(row, text="Contraseña", style="Mut.TLabel").grid(row=0, column=1, sticky="w", padx=(8, 0))
+        ttk.Label(row, text="TMDB API key (opcional, para logo)", style="Mut.TLabel").grid(row=0, column=2, sticky="w", padx=(8, 0))
+        self.email = ttk.Entry(row, width=26); self.email.grid(row=1, column=0, sticky="w", pady=(2, 0)); self.email.insert(0, self.cfg.get("email", ""))
+        self.pw = ttk.Entry(row, width=18, show="•"); self.pw.grid(row=1, column=1, padx=(8, 0), pady=(2, 0)); self.pw.insert(0, _deobf(self.cfg.get("pw", "")))
+        self.tmdb = ttk.Entry(row, width=30); self.tmdb.grid(row=1, column=2, padx=(8, 0), pady=(2, 0)); self.tmdb.insert(0, self.cfg.get("tmdb_key", ""))
+        self.login_btn = ttk.Button(row, text="Iniciar sesión", style="Red.TButton", command=self.login); self.login_btn.grid(row=1, column=3, padx=(10, 0))
+        self.remember = tk.BooleanVar(value=bool(self.cfg.get("pw")))
+        ttk.Checkbutton(row, text="Recordar sesión", variable=self.remember).grid(row=1, column=4, padx=(10, 0))
 
         # Search card
         sc = card(body); sc.pack(fill="x", pady=(12, 0))
-        head(sc, "AGREGAR / EDITAR ANIME")
+        head(sc, "Agregar o editar anime", "Carga uno de tu catálogo para actualizarlo, o escribe un título nuevo.")
         # Catálogo existente (para editar info, reparar servers o añadir episodios)
-        cr = tk.Frame(sc, bg=CARD); cr.pack(fill="x", padx=14, pady=(0, 8))
+        cr = tk.Frame(sc, bg=CARD); cr.pack(fill="x", padx=16, pady=(0, 8))
         ttk.Label(cr, text="Del catálogo:", style="Mut.TLabel").pack(side="left")
-        self.catalog_cb = ttk.Combobox(cr, width=44, state="disabled"); self.catalog_cb.pack(side="left", padx=6)
+        self.catalog_cb = ttk.Combobox(cr, width=42, state="disabled"); self.catalog_cb.pack(side="left", padx=6)
         self.catalog_cb.bind("<KeyRelease>", self._filter_catalog)
         self.load_btn = ttk.Button(cr, text="Cargar", command=self.load_from_catalog, state="disabled"); self.load_btn.pack(side="left")
-        ttk.Label(cr, text="(o escribe un título nuevo abajo)", style="Mut.TLabel").pack(side="left", padx=8)
-        sr = tk.Frame(sc, bg=CARD); sr.pack(fill="x", padx=14)
-        self.title = ttk.Entry(sr, font=("Segoe UI", 12)); self.title.pack(side="left", fill="x", expand=True)
+        self.addnew_btn = ttk.Button(cr, text="➕ Añadir episodios nuevos", style="Blue.TButton", command=self.do_add_new, state="disabled"); self.addnew_btn.pack(side="left", padx=(8, 0))
+        sr = tk.Frame(sc, bg=CARD); sr.pack(fill="x", padx=16, pady=(2, 0))
+        self.title = ttk.Entry(sr, font=("Segoe UI", 12)); self.title.pack(side="left", fill="x", expand=True, ipady=3)
         self.kind = ttk.Combobox(sr, values=["Auto", "Serie", "Película"], width=9, state="readonly"); self.kind.set("Auto"); self.kind.pack(side="left", padx=(8, 0))
         self.build_btn = ttk.Button(sr, text="Buscar y construir", style="Red.TButton", command=self.do_build, state="disabled"); self.build_btn.pack(side="left", padx=(8, 0))
         opt = tk.Frame(sc, bg=CARD); opt.pack(fill="x", padx=14, pady=8)
@@ -847,7 +886,7 @@ class App:
 
         # Preview card (anime editable + episodes)
         pv = card(body); pv.pack(fill="both", expand=True, pady=(12, 0))
-        head(pv, "VISTA PREVIA (todo editable · doble clic en un episodio para cambiar su imagen)")
+        head(pv, "Vista previa", "Todo es editable · doble clic en un episodio para cambiar su imagen.")
         af = tk.Frame(pv, bg=CARD); af.pack(fill="x", padx=14)
         self.f_title = self._field(af, "Título", 0); self.f_year = self._field(af, "Año", 1, w=8)
         self.f_alt = self._field(af, "Títulos alternativos (coma)", 2)
@@ -886,12 +925,37 @@ class App:
     def log(self, m): self.logbox.insert("end", m + "\n"); self.logbox.see("end"); self.root.update_idletasks()
     def prog(self, n, t): self.bar["maximum"] = t; self.bar["value"] = n; self.root.update_idletasks()
 
-    def login(self):
+    def _auto_login(self):
+        """Inicia sesión sola al abrir si hay credenciales recordadas."""
+        if self.token: return
+        if self.cfg.get("email") and _deobf(self.cfg.get("pw", "")):
+            self.log("Sesión recordada — iniciando sesión…")
+            self.login(silent=True)
+
+    def logout(self):
+        self.token = None
+        self.cfg.pop("pw", None); save_cfg(self.cfg)
+        self.remember.set(False)
+        self.status.config(text="●  Sin sesión", fg="#ffcf7a")
+        self.logout_btn.pack_forget()
+        for b in (self.build_btn, self.save_btn, self.load_btn, self.addnew_btn):
+            try: b.config(state="disabled")
+            except Exception: pass
+        try: self.catalog_cb.config(state="disabled")
+        except Exception: pass
+        self.log("Sesión cerrada. (La contraseña recordada se borró de este equipo.)")
+
+    def login(self, silent=False):
         try:
             self.token = sign_in(self.email.get().strip(), self.pw.get())
             key = self.tmdb.get().strip()
-            self.cfg.update(email=self.email.get().strip(), tmdb_key=key); save_cfg(self.cfg)
-            self.status.config(text="✅ Sesión iniciada", fg="#9fd89f"); self.build_btn.config(state="normal")
+            self.cfg.update(email=self.email.get().strip(), tmdb_key=key)
+            # Recordar sesión: guarda la contraseña ofuscada (o la borra si se desmarca).
+            if self.remember.get(): self.cfg["pw"] = _obf(self.pw.get())
+            else: self.cfg.pop("pw", None)
+            save_cfg(self.cfg)
+            self.logout_btn.pack(side="right", padx=(0, 6), pady=13)
+            self.status.config(text="●  Sesión iniciada", fg="#7ee0a3"); self.build_btn.config(state="normal")
             # Valida la TMDB API key para que sepas que la está usando.
             if key:
                 def chk():
@@ -913,7 +977,11 @@ class App:
                                                 self.log(f"Catálogo cargado: {len(self._catalog)} animes (elige uno en 'Del catálogo').")))
                 except Exception as e: self.root.after(0, lambda: self.log("No se pudo cargar el catálogo: " + str(e)))
             threading.Thread(target=loadcat, daemon=True).start()
-        except Exception as e: messagebox.showerror("Login", str(e))
+        except Exception as e:
+            self.token = None
+            self.status.config(text="●  Sin sesión", fg="#ff9a9a")
+            if silent: self.log("No se pudo iniciar sesión automáticamente: " + str(e))
+            else: messagebox.showerror("Login", str(e))
 
     def _filter_catalog(self, ev=None):
         q = self.catalog_cb.get().lower()
@@ -923,7 +991,21 @@ class App:
     def load_from_catalog(self):
         sel = self.catalog_cb.get().strip()
         if not sel or not self.token: return
-        aid = sel.split("·")[-1].strip() if "·" in sel else slugify(sel)
+        # Resuelve el id real del anime. El selector muestra "Título · id"; si el usuario
+        # escribió solo parte del título, se busca la coincidencia en el catálogo por su id
+        # real (no se inventa un slug — evita fallar con ids tipo 'TetsunabeNoJan').
+        if "·" in sel:
+            aid = sel.split("·")[-1].strip()
+        else:
+            match = None
+            for c in getattr(self, "_catalog", []):
+                lbl = (c.get("title") or "").lower()
+                if sel.lower() == lbl or sel.lower() == (c.get("id") or "").lower():
+                    match = c; break
+            if not match:
+                cands = [c for c in getattr(self, "_catalog", []) if sel.lower() in (c.get("title") or "").lower()]
+                match = cands[0] if len(cands) == 1 else None
+            aid = match["id"] if match else slugify(sel)
         self.log(f"Cargando '{aid}' del catálogo…")
         def work():
             try:
@@ -945,32 +1027,59 @@ class App:
                     self.render_meta()
                     for i in self.tree.get_children(): self.tree.delete(i)
                     for e in eps: self.add_ep_row(e)
-                    self.save_btn.config(state="normal")
-                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios. Edita los campos o usa Detectar faltantes / Reparar.")
+                    self.save_btn.config(state="normal"); self.addnew_btn.config(state="normal")
+                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios. Usa «➕ Añadir episodios nuevos» para sumar los que falten sin tocar lo demás.")
                 self.root.after(0, show)
             except Exception as e: self.log("ERROR cargar: " + str(e))
         threading.Thread(target=work, daemon=True).start()
 
-    def do_build(self):
+    def do_add_new(self):
+        """Añade SOLO episodios nuevos al anime cargado del catálogo — conserva la lista
+        existente y no crea duplicados. Es el botón dedicado a 'un episodio se estrenó'."""
+        if not self.loaded_aid or not self.data or not self.data.get("episodes"):
+            messagebox.showinfo("Añadir episodios nuevos",
+                "Primero carga el anime desde «Del catálogo» → Cargar.\n\n"
+                "Este botón suma los episodios nuevos SIN borrar ni cambiar lo que ya tiene.")
+            return
+        rng = self.rangef.get().strip()
+        if not rng:
+            if not messagebox.askyesno("Añadir episodios nuevos",
+                    "No indicaste qué episodios agregar.\n\nPuedes pulsar «Detectar faltantes» para rellenarlo, "
+                    "o continuar para buscar TODOS y añadir solo los que falten.\n\n¿Continuar de todos modos?"):
+                return
+        self.do_build(add_only=True)
+
+    def do_build(self, add_only=False):
         t = self.title.get().strip()
         if not t or not self.token: return
+        if add_only and not self.loaded_aid:
+            messagebox.showinfo("Añadir episodios nuevos", "Carga primero el anime del catálogo."); return
         self.cfg["tmdb_key"] = self.tmdb.get().strip(); save_cfg(self.cfg)
-        self.build_btn.config(state="disabled"); self.save_btn.config(state="disabled")
-        for i in self.tree.get_children(): self.tree.delete(i)
+        self.build_btn.config(state="disabled"); self.save_btn.config(state="disabled"); self.addnew_btn.config(state="disabled")
+        # En modo "añadir episodios" NO se borra la lista existente (se conserva a la vista);
+        # en modo construir normal, se limpia para reconstruir desde cero.
+        existing_eps = []
+        if add_only:
+            existing_eps = list(self.data.get("episodes") or [])
+            self.replace.set(False)  # añadir episodios NUNCA reemplaza lo existente
+        else:
+            for i in self.tree.get_children(): self.tree.delete(i)
         self.logbox.delete("1.0", "end")
         opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": self.man.get(),
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
                 "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip()}
         kind = self.kind.get()
-        # ¿Actualizar el anime cargado del catálogo? (mismo título) → NO crear duplicado.
-        updating = bool(self.loaded_aid and t == self.loaded_title)
-        def _keep_loaded():
+        # ¿Actualizar el anime cargado del catálogo? (mismo título, o modo añadir) → NO duplicar.
+        updating = add_only or bool(self.loaded_aid and t == self.loaded_title)
+        def _keep_loaded(keep_eps=False):
             self.data["aid"] = self.loaded_aid
             self.data["real_title"] = self.loaded_title
             for k in ("poster", "backdrop", "logo"):
                 if self._loaded_info.get(k): self.data["info"][k] = self._loaded_info[k]
             self.data["_update_only"] = True   # save() solo añade episodios, no cambia la info
+            if keep_eps:  # conserva los episodios ya cargados y AÑADE los nuevos encima
+                self.data["episodes"] = list(existing_eps)
             self.log(f"Actualizando '{self.loaded_aid}' (no se crea duplicado).")
         def work():
             try:
@@ -986,16 +1095,21 @@ class App:
                     return
                 # FASE 1: metadata → rellena la ficha AL INSTANTE
                 self.data = build_meta(t, opts, self.log)
-                if updating: _keep_loaded()
+                if updating: _keep_loaded(keep_eps=add_only)
                 self.root.after(0, self.render_meta)
-                # FASE 2: episodios en vivo
+                # FASE 2: episodios en vivo (en modo añadir, se APILAN sobre los existentes)
+                nbefore = len(self.data.get("episodes") or [])
                 build_episodes(self.data, opts, self.log, self.prog,
                                on_ep=lambda ep: self.root.after(0, lambda e=ep: self.add_ep_row(e)))
+                if add_only:
+                    nnew = len(self.data.get("episodes") or []) - nbefore
+                    self.root.after(0, lambda: self.log(f"➕ {nnew} episodio(s) nuevo(s) listos para guardar. Pulsa «Guardar en la web»."))
                 self.root.after(0, self.after_episodes)
             except Exception as e:
                 self.log("ERROR: " + str(e))
             finally:
-                self.root.after(0, lambda: self.build_btn.config(state="normal"))
+                self.root.after(0, lambda: (self.build_btn.config(state="normal"),
+                                            self.addnew_btn.config(state="normal" if self.loaded_aid else "disabled")))
         threading.Thread(target=work, daemon=True).start()
 
     def render_meta(self):
@@ -1157,4 +1271,6 @@ class App:
         threading.Thread(target=work, daemon=True).start()
 
 if __name__ == "__main__":
-    r = tk.Tk(); App(r); r.mainloop()
+    r = tk.Tk(); app = App(r)
+    r.after(400, app._auto_login)   # inicia sesión sola si hay credenciales recordadas
+    r.mainloop()

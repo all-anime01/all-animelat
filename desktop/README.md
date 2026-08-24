@@ -4,6 +4,24 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v9
+
+- **Botón «➕ Añadir episodios nuevos».** Es el botón dedicado a "salió un episodio":
+  cargas el anime del catálogo → (opcional) «Detectar faltantes» → **➕ Añadir episodios
+  nuevos**. **Conserva** la lista que ya tiene a la vista, solo **suma** lo nuevo y guarda
+  sobre el MISMO anime (no duplica, no borra). "Buscar y construir" sigue haciendo lo de
+  antes (arma/rehace el anime desde cero).
+  - *Arreglo:* antes, al cargar un anime viejo/oscuro (ej. Iron Wok Jan) y pulsar
+    "Buscar y construir", la lista quedaba vacía porque reconstruía desde cero y las
+    fuentes no lo tienen. El nuevo botón ya no borra lo cargado.
+- **Sesión recordada + Cerrar sesión.** Marca **«Recordar sesión»** y la próxima vez la
+  app **inicia sesión sola** al abrir. Botón **«Cerrar sesión»** arriba a la derecha para
+  salir y borrar la contraseña guardada de este equipo.
+- **Diseño renovado:** paleta moderna, cabeceras con acento, botones y listas más claros
+  (sin cambiar cómo funciona).
+- Carga del catálogo más robusta: resuelve el id real aunque escribas solo parte del
+  título (arregla ids con mayúsculas como `TetsunabeNoJan`).
+
 ## Novedades v8
 
 - **Cargar del catálogo + agregar episodio = ACTUALIZA (ya no duplica).** Antes, al cargar
