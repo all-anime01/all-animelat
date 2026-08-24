@@ -284,19 +284,24 @@ def nm(u):
     for k, v in NAME.items():
         if k in s: return v
     return "Servidor"
-def prioritize(servers, prefer=None, only=False):
+# Orden de calidad por defecto (mejores reproductores primero) si no eliges prioridad.
+QUALITY = ["mega", "streamwish", "voe", "vidhide", "filemoon", "desu", "magi", "streamtape", "mp4upload", "mixdrop", "doodstream", "mediafire"]
+def prioritize(servers, prefer=None, only=False, cap=3):
+    """Máx `cap` por idioma; LATINO primero; ordenados por tu preferencia o por calidad."""
     prefer = [p.strip().lower() for p in (prefer or []) if p.strip()]
+    order = prefer if prefer else QUALITY
     def rank(s):
         n = s["name"].lower()
-        for i, p in enumerate(prefer):
+        for i, p in enumerate(order):
             if p in n: return i
-        return len(prefer) + 5
+        return len(order) + 5
     g = {}
     for s in servers:
         if only and prefer and not any(p in s["name"].lower() for p in prefer): continue
-        g.setdefault(s["lang"], []).append(s)
+        g.setdefault(s.get("lang", "Sub"), []).append(s)
     out = []
-    for k in g: out += sorted(g[k], key=rank)[:3]
+    for lang in ["Latino", "Castellano", "Sub"] + [k for k in g if k not in ("Latino", "Castellano", "Sub")]:
+        if lang in g: out += sorted(g[lang], key=rank)[:cap]
     return out
 
 def embed69_lat(imdb, s, e):
@@ -324,6 +329,19 @@ def jk_search(title):
              if m not in ("buscar", "letra", "genero", "top", "horario", "directorio")]
         if c: return best(c, title)
     return None
+def jk_max(slug):
+    """Último episodio disponible en jkanime para ese slug (para animes al día)."""
+    if not slug: return 0
+    h = get_text(f"https://jkanime.net/{slug}/")
+    nums = [int(x) for x in re.findall(re.escape(slug) + r"/(\d+)", h)]
+    if nums: return max(nums)
+    m = re.search(r"(\d+)\s*[Ee]pisodios", h)
+    return int(m.group(1)) if m else 0
+def av1_max(slug):
+    if not slug: return 0
+    h = get_text(f"https://animeav1.com/media/{slug}")
+    nums = [int(x) for x in re.findall(re.escape(slug) + r"/(\d+)", h)]
+    return max(nums) if nums else 0
 def jk_servers(slug, n):
     h = get_text(f"https://jkanime.net/{slug}/{n}/")
     m = re.search(r'var\s+servers\s*=\s*(\[[\s\S]*?\]);', h)
@@ -415,6 +433,16 @@ def build_episodes(data, opts, log, prog, on_ep):
     absn = 0
     total = sum(s["count"] for s in seasons) or 60
     season_sel = (opts.get("season") or "").strip()
+    # ANIMES AL DÍA: si la fuente (jkanime/animeav1) tiene más episodios que TMDB,
+    # extiende la última temporada para alcanzar los recién salidos.
+    if not per_season_num and not season_sel:
+        try:
+            smax = max(jk_max(jkslug) if (opts["jk"] and jkslug) else 0, av1_max(avslug) if (opts["av1"] and avslug) else 0)
+            if smax > total and seasons:
+                log(f"fuente al día: {smax} eps disponibles (TMDB {total}) → +{smax - total} en la última temporada")
+                seasons[-1] = {**seasons[-1], "count": seasons[-1]["count"] + (smax - total)}
+                total = smax
+        except Exception: pass
     rng = parse_range(opts.get("range"), total)
     if season_sel: log(f"solo Temporada {season_sel}" + (f", episodios {opts.get('range')}" if rng else ""))
     elif rng: log(f"solo episodios: {sorted(rng)[:3]}…{sorted(rng)[-1]} ({len(rng)})")
@@ -471,7 +499,13 @@ def save(data, token, replace, log):
         for b in built:
             k = f"{b['season']}|{b['number']}"
             if k in idx:
-                if replace: idx[k]["servers"] = b["servers"]; idx[k]["language"] = b["language"]; idx[k]["img"] = b["img"]; idx[k]["title"] = b["title"]; replaced += 1
+                if replace:
+                    # Al reemplazar, CONSERVA las subidas propias del usuario (Vidara/Filemoon/
+                    # Streamwish subidos) — nunca se tocan sin preguntar. Se añaden las nuevas.
+                    keep = [s for s in (idx[k].get("servers") or []) if re.search(r"vidara", s.get("url", ""), re.I)]
+                    idx[k]["servers"] = prioritize(keep + b["servers"]); idx[k]["language"] = b["language"]
+                    if b.get("img"): idx[k]["img"] = b["img"]
+                    replaced += 1
             else: ex.append(b); added += 1
         episodes = ex; doc = existing
         log(f"Existente: +{added} nuevos" + (f", {replaced} reemplazados" if replace else " (no se tocó lo demás)"))
@@ -716,8 +750,20 @@ class App:
             try:
                 key = self.tmdb.get().strip()
                 d = self.data if (self.data and self.data.get("real_title")) else build_meta(t, {"tmdb_key": key}, self.log)
-                aid = d["aid"]; seasons = d["seasons"]
+                aid = d["aid"]; seasons = [dict(s) for s in d["seasons"]]
                 season_sel = self.seasonf.get().strip()
+                # AL DÍA: extiende con lo disponible en las fuentes (jkanime/animeav1),
+                # que suelen ir más adelantadas que TMDB → detecta los episodios de hoy.
+                tmdb_total = sum(s["count"] for s in seasons)
+                if not season_sel and seasons:
+                    slug = (self.srcslug.get().strip() or "")
+                    slug = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", slug).strip("/").split("/")[0].split("?")[0] if slug else ""
+                    jks = slug or (jk_search(d["real_title"]) if self.jk.get() else "")
+                    avs = slug or (av1_search(d["real_title"]) if self.av1.get() else "")
+                    smax = max(jk_max(jks) if jks else 0, av1_max(avs) if avs else 0)
+                    if smax > tmdb_total:
+                        seasons[-1]["count"] += (smax - tmdb_total)
+                        self.log(f"fuente al día: {smax} eps (TMDB {tmdb_total})")
                 # mapa: clave (absoluto o nº de temporada) → (sname, número)
                 keymap = {}; absn = 0
                 for S in seasons:
@@ -780,6 +826,11 @@ class App:
 
     def do_save(self):
         if not self.data: return
+        if self.replace.get():
+            if not messagebox.askyesno("Reemplazar enlaces",
+                    "Modo REEMPLAZAR: cambiará los servidores de los episodios que coincidan.\n"
+                    "(Se conservan tus subidas de Vidara.)\n\n¿Continuar?"):
+                return
         # aplica ediciones del anime
         info = self.data["info"]
         self.data["real_title"] = self.f_title.get().strip() or self.data["real_title"]
