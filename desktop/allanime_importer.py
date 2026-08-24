@@ -338,6 +338,15 @@ def jk_search(title):
              if m not in ("buscar", "letra", "genero", "top", "horario", "directorio")]
         if c: return best(c, title)
     return None
+def jk_meta(slug):
+    """Poster + sinopsis desde jkanime (fallback cuando TMDB no tiene el anime)."""
+    if not slug: return {}
+    h = get_text(f"https://jkanime.net/{slug}/")
+    poster = (re.search(r'og:image"\s+content="([^"]+)"', h) or [None, ""])[1]
+    desc = (re.search(r'class="[^"]*(?:sinopsis|description|scroll)[^"]*"[^>]*>\s*([^<]{20,})', h) or [None, ""])[1]
+    if not desc:
+        desc = (re.search(r'og:description"\s+content="([^"]{20,})"', h) or [None, ""])[1]
+    return {"poster": poster, "description": dec_ent(desc)}
 def jk_max(slug):
     """Último episodio disponible en jkanime para ese slug (para animes al día)."""
     if not slug: return 0
@@ -412,8 +421,18 @@ def build_meta(title, opts, log):
     real_title = info["title"] or title
     imdb = info["imdb"] or imdb_suggest(real_title, info["year"])
     info["imdb"] = imdb
-    log(f"título real: {real_title} | imdb={imdb} | tmdb={tmdb} | logo={'sí' if info['logo'] else 'no'}")
-    if not tmdb: log("⚠ TMDB no resolvió el título — revisa el nombre o pon la TMDB API key.")
+    # FALLBACK de imágenes/descripción: si TMDB no trae (ej. Beyblade Burst), usa jkanime.
+    if not info.get("poster") or not info.get("description"):
+        slug0 = (opts.get("src_slug") or "").split(",")[0].strip()
+        slug0 = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", slug0).strip("/").split("/")[0] if slug0 else jk_search(title)
+        jm = jk_meta(slug0) if slug0 else {}
+        if jm.get("poster") and not info.get("poster"): info["poster"] = jm["poster"]; log("imagen desde jkanime")
+        if jm.get("poster") and not info.get("backdrop"): info["backdrop"] = jm["poster"]
+        if jm.get("description") and not info.get("description"): info["description"] = jm["description"]
+        if not info.get("title"): info["title"] = title
+    real_title = info["title"] or title
+    log(f"título real: {real_title} | imdb={imdb} | tmdb={tmdb} | logo={'sí' if info['logo'] else 'no'} | img={'sí' if info.get('poster') else 'no'}")
+    if not tmdb: log("⚠ TMDB no resolvió el título — se usó jkanime para imagen/descripción si estaba.")
     seasons = info["seasons"] or [{"season": 1, "count": 60}]
     return {"aid": slugify(real_title), "info": info, "real_title": real_title, "seasons": seasons,
             "episodes": [], "audio": "Sub", "altTitles": info.get("altTitles", []), "creator": info.get("creator", ""), "tmdb": tmdb}
@@ -655,7 +674,14 @@ class App:
 
         # Search card
         sc = card(body); sc.pack(fill="x", pady=(12, 0))
-        head(sc, "AGREGAR ANIME")
+        head(sc, "AGREGAR / EDITAR ANIME")
+        # Catálogo existente (para editar info, reparar servers o añadir episodios)
+        cr = tk.Frame(sc, bg=CARD); cr.pack(fill="x", padx=14, pady=(0, 8))
+        ttk.Label(cr, text="Del catálogo:", style="Mut.TLabel").pack(side="left")
+        self.catalog_cb = ttk.Combobox(cr, width=44, state="disabled"); self.catalog_cb.pack(side="left", padx=6)
+        self.catalog_cb.bind("<KeyRelease>", self._filter_catalog)
+        self.load_btn = ttk.Button(cr, text="Cargar", command=self.load_from_catalog, state="disabled"); self.load_btn.pack(side="left")
+        ttk.Label(cr, text="(o escribe un título nuevo abajo)", style="Mut.TLabel").pack(side="left", padx=8)
         sr = tk.Frame(sc, bg=CARD); sr.pack(fill="x", padx=14)
         self.title = ttk.Entry(sr, font=("Segoe UI", 12)); self.title.pack(side="left", fill="x", expand=True)
         self.build_btn = ttk.Button(sr, text="Buscar y construir", style="Red.TButton", command=self.do_build, state="disabled"); self.build_btn.pack(side="left", padx=(8, 0))
@@ -738,7 +764,52 @@ class App:
                 threading.Thread(target=chk, daemon=True).start()
             else:
                 self.log("Sin TMDB API key: se llenarán título/imágenes/servidores, pero NO el logo ni el detalle por episodio.")
+            # Carga el catálogo de la web para el selector (elegir un anime existente).
+            def loadcat():
+                try:
+                    cat = get_catalog()
+                    self._catalog = sorted(cat, key=lambda x: (x.get("title") or "").lower())
+                    self._catalog_labels = [f"{c.get('title')}  ·  {c.get('id')}" for c in self._catalog]
+                    self.root.after(0, lambda: (self.catalog_cb.config(values=self._catalog_labels, state="normal"),
+                                                self.load_btn.config(state="normal"),
+                                                self.log(f"Catálogo cargado: {len(self._catalog)} animes (elige uno en 'Del catálogo').")))
+                except Exception as e: self.root.after(0, lambda: self.log("No se pudo cargar el catálogo: " + str(e)))
+            threading.Thread(target=loadcat, daemon=True).start()
         except Exception as e: messagebox.showerror("Login", str(e))
+
+    def _filter_catalog(self, ev=None):
+        q = self.catalog_cb.get().lower()
+        if not hasattr(self, "_catalog_labels"): return
+        self.catalog_cb.config(values=[l for l in self._catalog_labels if q in l.lower()] or self._catalog_labels)
+
+    def load_from_catalog(self):
+        sel = self.catalog_cb.get().strip()
+        if not sel or not self.token: return
+        aid = sel.split("·")[-1].strip() if "·" in sel else slugify(sel)
+        self.log(f"Cargando '{aid}' del catálogo…")
+        def work():
+            try:
+                d = get_doc(f"animes/{aid}", self.token)
+                if not d: self.log("No se encontró el anime en la base."); return
+                eps = d.get("episodes") or []
+                seasons_names = list(dict.fromkeys(e.get("season") for e in eps))
+                info = {"title": d.get("title", ""), "year": d.get("year"), "genres": d.get("genres", []),
+                        "description": d.get("description", ""), "poster": d.get("img", ""), "backdrop": d.get("heroImg", d.get("fonImg", "")),
+                        "logo": d.get("logoImg", ""), "imdb": "", "seasons": [], "stills": {}, "altTitles": d.get("altTitles", []),
+                        "creator": d.get("creator", ""), "runtime": 24}
+                self.data = {"aid": aid, "info": info, "real_title": d.get("title", aid),
+                             "seasons": [{"season": s, "count": 0} for s in seasons_names], "episodes": list(eps),
+                             "audio": d.get("audio", "Sub"), "altTitles": d.get("altTitles", []), "creator": d.get("creator", ""), "tmdb": None}
+                def show():
+                    self.title.delete(0, "end"); self.title.insert(0, d.get("title", ""))
+                    self.render_meta()
+                    for i in self.tree.get_children(): self.tree.delete(i)
+                    for e in eps: self.add_ep_row(e)
+                    self.save_btn.config(state="normal")
+                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios. Edita los campos o usa Detectar faltantes / Reparar.")
+                self.root.after(0, show)
+            except Exception as e: self.log("ERROR cargar: " + str(e))
+        threading.Thread(target=work, daemon=True).start()
 
     def do_build(self):
         t = self.title.get().strip()
