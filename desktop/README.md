@@ -4,6 +4,19 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v11
+
+- **Buscador del catálogo (arreglado el bug del desplegable).** El antiguo menú se
+  descolocaba al hacer scroll (la rueda movía el fondo). Ahora hay un **campo de búsqueda**
+  + una **lista con scroll propio**: escribe parte del título, selecciona y **Cargar** (o
+  doble clic). La rueda sobre la lista la desplaza solo a ella.
+- **«Detectar faltantes» ya no marca todo como faltante.** Antes, en animes con nombres de
+  temporada personalizados (ej. One Piece / «Temporada 22: Elbaph»), comparaba por
+  nombre+número y devolvía «1-1175». Ahora compara **por número**, así que solo señala los
+  que de verdad faltan (ej. **1175**). Para sumar un episodio suelto: cárgalo del catálogo,
+  escribe su número en «Episodios a agregar» y pulsa **➕ Añadir episodios nuevos** (no
+  reemplaza nada).
+
 ## Novedades v10
 
 - **Nombres personalizados de temporada.** Al cargar un anime del catálogo, la app lee y

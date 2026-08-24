@@ -852,13 +852,24 @@ class App:
         # Search card
         sc = card(body); sc.pack(fill="x", pady=(12, 0))
         head(sc, "Agregar o editar anime", "Carga uno de tu catálogo para actualizarlo, o escribe un título nuevo.")
-        # Catálogo existente (para editar info, reparar servers o añadir episodios)
-        cr = tk.Frame(sc, bg=CARD); cr.pack(fill="x", padx=16, pady=(0, 8))
-        ttk.Label(cr, text="Del catálogo:", style="Mut.TLabel").pack(side="left")
-        self.catalog_cb = ttk.Combobox(cr, width=42, state="disabled"); self.catalog_cb.pack(side="left", padx=6)
-        self.catalog_cb.bind("<KeyRelease>", self._filter_catalog)
+        # Catálogo existente (para editar info, reparar servers o añadir episodios).
+        # Buscador + lista con scroll PROPIO (evita el bug del antiguo desplegable, que se
+        # descolocaba al hacer scroll porque la rueda movía también el fondo).
+        cr = tk.Frame(sc, bg=CARD); cr.pack(fill="x", padx=16, pady=(0, 4))
+        ttk.Label(cr, text="Buscar en tu catálogo:", style="Mut.TLabel").pack(side="left")
+        self.cat_search = ttk.Entry(cr, width=34); self.cat_search.pack(side="left", padx=6)
+        self.cat_search.bind("<KeyRelease>", self._filter_catalog)
         self.load_btn = ttk.Button(cr, text="Cargar", command=self.load_from_catalog, state="disabled"); self.load_btn.pack(side="left")
         self.addnew_btn = ttk.Button(cr, text="➕ Añadir episodios nuevos", style="Blue.TButton", command=self.do_add_new, state="disabled"); self.addnew_btn.pack(side="left", padx=(8, 0))
+        self.cat_count = ttk.Label(cr, text="", style="Mut.TLabel"); self.cat_count.pack(side="left", padx=(8, 0))
+        lf = tk.Frame(sc, bg=CARD); lf.pack(fill="x", padx=16, pady=(0, 8))
+        self.cat_list = tk.Listbox(lf, height=5, bg=FIELD, fg=TXT, selectbackground="#26314a", selectforeground=TXT,
+                                   relief="flat", highlightthickness=1, highlightbackground=LINE, font=("Segoe UI", 9), activestyle="none")
+        clsb = ttk.Scrollbar(lf, orient="vertical", command=self.cat_list.yview); self.cat_list.configure(yscrollcommand=clsb.set)
+        clsb.pack(side="right", fill="y"); self.cat_list.pack(side="left", fill="x", expand=True)
+        self.cat_list.bind("<Double-1>", lambda e: self.load_from_catalog())
+        # la rueda sobre la lista la desplaza a ELLA (no al fondo) → sin descolocarse
+        self.cat_list.bind("<MouseWheel>", lambda e: (self.cat_list.yview_scroll(int(-1 * (e.delta / 120)), "units"), "break")[1])
         sr = tk.Frame(sc, bg=CARD); sr.pack(fill="x", padx=16, pady=(2, 0))
         self.title = ttk.Entry(sr, font=("Segoe UI", 12)); self.title.pack(side="left", fill="x", expand=True, ipady=3)
         self.kind = ttk.Combobox(sr, values=["Auto", "Serie", "Película"], width=9, state="readonly"); self.kind.set("Auto"); self.kind.pack(side="left", padx=(8, 0))
@@ -952,7 +963,7 @@ class App:
         for b in (self.build_btn, self.save_btn, self.load_btn, self.addnew_btn):
             try: b.config(state="disabled")
             except Exception: pass
-        try: self.catalog_cb.config(state="disabled")
+        try: self.cat_list.delete(0, "end"); self.cat_count.config(text="")
         except Exception: pass
         self.log("Sesión cerrada. (La contraseña recordada se borró de este equipo.)")
 
@@ -982,10 +993,9 @@ class App:
                 try:
                     cat = get_catalog()
                     self._catalog = sorted(cat, key=lambda x: (x.get("title") or "").lower())
-                    self._catalog_labels = [f"{c.get('title')}  ·  {c.get('id')}" for c in self._catalog]
-                    self.root.after(0, lambda: (self.catalog_cb.config(values=self._catalog_labels, state="normal"),
+                    self.root.after(0, lambda: (self._filter_catalog(),
                                                 self.load_btn.config(state="normal"),
-                                                self.log(f"Catálogo cargado: {len(self._catalog)} animes (elige uno en 'Del catálogo').")))
+                                                self.log(f"Catálogo cargado: {len(self._catalog)} animes (escribe arriba para buscar).")))
                 except Exception as e: self.root.after(0, lambda: self.log("No se pudo cargar el catálogo: " + str(e)))
             threading.Thread(target=loadcat, daemon=True).start()
         except Exception as e:
@@ -995,28 +1005,27 @@ class App:
             else: messagebox.showerror("Login", str(e))
 
     def _filter_catalog(self, ev=None):
-        q = self.catalog_cb.get().lower()
-        if not hasattr(self, "_catalog_labels"): return
-        self.catalog_cb.config(values=[l for l in self._catalog_labels if q in l.lower()] or self._catalog_labels)
+        if not hasattr(self, "_catalog"): return
+        q = self.cat_search.get().strip().lower()
+        self._filtered = [c for c in self._catalog
+                          if (not q) or q in (c.get("title") or "").lower() or q in (c.get("id") or "").lower()]
+        self.cat_list.delete(0, "end")
+        for c in self._filtered:
+            self.cat_list.insert("end", f"{c.get('title')}   ·   {c.get('id')}")
+        self.cat_count.config(text=f"{len(self._filtered)} de {len(self._catalog)}")
 
     def load_from_catalog(self):
-        sel = self.catalog_cb.get().strip()
-        if not sel or not self.token: return
-        # Resuelve el id real del anime. El selector muestra "Título · id"; si el usuario
-        # escribió solo parte del título, se busca la coincidencia en el catálogo por su id
-        # real (no se inventa un slug — evita fallar con ids tipo 'TetsunabeNoJan').
-        if "·" in sel:
-            aid = sel.split("·")[-1].strip()
-        else:
-            match = None
-            for c in getattr(self, "_catalog", []):
-                lbl = (c.get("title") or "").lower()
-                if sel.lower() == lbl or sel.lower() == (c.get("id") or "").lower():
-                    match = c; break
-            if not match:
-                cands = [c for c in getattr(self, "_catalog", []) if sel.lower() in (c.get("title") or "").lower()]
-                match = cands[0] if len(cands) == 1 else None
-            aid = match["id"] if match else slugify(sel)
+        if not self.token: return
+        # Toma el anime seleccionado en la lista; si no hay selección pero el buscador dejó
+        # una sola coincidencia, usa esa. El texto es "Título   ·   id" → el id es real.
+        sel = None
+        cur = self.cat_list.curselection()
+        if cur: sel = self.cat_list.get(cur[0])
+        elif len(getattr(self, "_filtered", [])) == 1:
+            c = self._filtered[0]; sel = f"{c.get('title')}   ·   {c.get('id')}"
+        if not sel:
+            messagebox.showinfo("Cargar", "Busca y selecciona un anime de la lista."); return
+        aid = sel.split("·")[-1].strip()
         self.log(f"Cargando '{aid}' del catálogo…")
         def work():
             try:
@@ -1188,8 +1197,12 @@ class App:
         def work():
             try:
                 key = self.tmdb.get().strip()
-                d = self.data if (self.data and self.data.get("real_title")) else build_meta(t, {"tmdb_key": key}, self.log)
-                aid = d["aid"]; seasons = [dict(s) for s in d["seasons"]]
+                # La ESTRUCTURA de temporadas (cuántos episodios hay) se resuelve SIEMPRE en
+                # TMDB: el anime cargado del catálogo trae count=0 y nombres personalizados,
+                # que no sirven para contar. El id, en cambio, es el del anime cargado.
+                meta = build_meta(t, {"tmdb_key": key, "src_slug": self.srcslug.get().strip()}, self.log)
+                aid = self.loaded_aid or meta["aid"]
+                seasons = [dict(s) for s in meta["seasons"]]
                 season_sel = self.seasonf.get().strip()
                 # AL DÍA: extiende con lo disponible en las fuentes (jkanime/animeav1),
                 # que suelen ir más adelantadas que TMDB → detecta los episodios de hoy.
@@ -1197,25 +1210,29 @@ class App:
                 if not season_sel and seasons:
                     slug = (self.srcslug.get().strip() or "")
                     slug = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", slug).strip("/").split("/")[0].split("?")[0] if slug else ""
-                    jks = slug or (jk_search(d["real_title"]) if self.jk.get() else "")
-                    avs = slug or (av1_search(d["real_title"]) if self.av1.get() else "")
+                    jks = slug or (jk_search(meta["real_title"]) if self.jk.get() else "")
+                    avs = slug or (av1_search(meta["real_title"]) if self.av1.get() else "")
                     smax = max(jk_max(jks) if jks else 0, av1_max(avs) if avs else 0)
                     if smax > tmdb_total:
                         seasons[-1]["count"] += (smax - tmdb_total)
                         self.log(f"fuente al día: {smax} eps (TMDB {tmdb_total})")
-                # mapa: clave (absoluto o nº de temporada) → (sname, número)
+                # claves = número de episodio (absoluto, o por temporada si se fijó una)
                 keymap = {}; absn = 0
                 for S in seasons:
-                    sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
                     for n in range(1, S["count"] + 1):
                         absn += 1
                         if season_sel and str(S["season"]) != season_sel: continue
-                        keymap[n if season_sel else absn] = (sname, n)
+                        keymap[n if season_sel else absn] = n
+                # Lo que YA existe se compara POR NÚMERO (ignora el nombre de temporada, que
+                # puede ser personalizado como «Temporada 22: Elbaph») → así no marca como
+                # faltantes los 1174 que One Piece ya tiene.
                 existing = get_doc(f"animes/{aid}", self.token)
                 have = set()
                 if existing and existing.get("episodes"):
-                    have = {(e.get("season"), int(e.get("number"))) for e in existing["episodes"]}
-                missing = sorted(k for k, sn in keymap.items() if sn not in have)
+                    for e in existing["episodes"]:
+                        try: have.add(int(e.get("number")))
+                        except (TypeError, ValueError): pass
+                missing = sorted(k for k in keymap if k not in have)
                 # compacta a rangos: 117,118,...125 → "117-125"
                 parts, i = [], 0
                 while i < len(missing):
