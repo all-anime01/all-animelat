@@ -4,6 +4,23 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v14
+
+- **Nombre:** la app ahora se llama **All-Anime Scrapper**.
+- **Submenús ya no flotan al hacer scroll.** La rueda del ratón sobre un desplegable ya no
+  cambia su valor ni deja el menú «flotando»; cierra el desplegable y desplaza la página.
+- **Conteo real por las fuentes.** El nº de episodios se toma de **jkanime/animeav1** (lo que
+  hay hoy) y TMDB queda solo de respaldo. Se corrige tanto al construir como en «Detectar
+  faltantes» (ej. One Piece: 1175 reales, ya no 1181 de TMDB).
+- **La vista previa vuelve a cargar la lista COMPLETA** al abrir un anime del catálogo (con
+  red de seguridad para no dejarla vacía); en «Ver temporada» filtras por temporada.
+- **Agregar Latino más robusto.** Prueba varios patrones de embed69/pelisplushd (1x{absoluto}
+  y {temporada}x{nº}) + animeav1 + jkanime, y muestra diagnóstico por episodio. Regla de la
+  app: **si el anime tiene doblaje Latino, se agrega siempre**.
+- **Botón 🧹 Limpiar** + **auto-limpieza al guardar** para no arrastrar estado y evitar
+  conflictos.
+- Títulos de episodio: prioridad español (genéricos «Episode N» → «Episodio N»).
+
 ## Novedades v13
 
 - **Títulos de episodio en español (prioridad).** Se piden a TMDB en es-ES y los genéricos

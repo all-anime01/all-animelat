@@ -600,15 +600,18 @@ def build_episodes(data, opts, log, prog, on_ep):
     absn = 0
     total = sum(s["count"] for s in seasons) or 60
     season_sel = (opts.get("season") or "").strip()
-    # ANIMES AL DÍA: si la fuente (jkanime/animeav1) tiene más episodios que TMDB,
-    # extiende la última temporada para alcanzar los recién salidos.
+    # CONTEO REAL POR LAS FUENTES (jkanime/animeav1) como AUTORIDAD; TMDB solo de respaldo.
+    # TMDB suele estar adelantado/atrasado (ej. One Piece: TMDB 1181 vs real 1175), así que se
+    # ajusta la última temporada para que el total coincida con lo que hay hoy en las fuentes.
     if not per_season_num and not season_sel:
         try:
             smax = max(jk_max(jkslug) if (opts["jk"] and jkslug) else 0, av1_max(avslug) if (opts["av1"] and avslug) else 0)
-            if total < smax <= total + 300 and seasons:   # cap para no disparar miles por un dato raro
-                log(f"fuente al día: {smax} eps disponibles (TMDB {total}) → +{smax - total} en la última temporada")
-                seasons[-1] = {**seasons[-1], "count": seasons[-1]["count"] + (smax - total)}
-                total = smax
+            if smax > 0 and abs(smax - total) <= 400 and seasons:   # confía en la fuente; cap anti-datos-raros
+                diff = smax - total
+                if diff != 0:
+                    log(f"conteo por fuentes: {smax} eps hoy (TMDB decía {total}) → ajuste {'+' if diff > 0 else ''}{diff} en la última temporada")
+                    seasons[-1] = {**seasons[-1], "count": max(1, seasons[-1]["count"] + diff)}
+                    total = sum(s["count"] for s in seasons)
         except Exception: pass
     rng = parse_range(opts.get("range"), total)
     if season_sel: log(f"solo Temporada {season_sel}" + (f", episodios {opts.get('range')}" if rng else ""))
@@ -745,7 +748,7 @@ def save(data, token, replace, log):
     # ej. Mushoku Tensei que tenía "2" cuando en verdad hay 3).
     doc["seasons"] = len({e.get("season") for e in episodes if e.get("season")}) or doc.get("seasons", 1)
     st, t = patch_fields(f"animes/{aid}", doc, token)
-    if st != 200: log(f"ERROR guardar: {st} {t[:150]}"); return
+    if st != 200: log(f"ERROR guardar: {st} {t[:150]}"); return False
     cat = get_catalog(); light = {k: v for k, v in doc.items() if k != "episodes"}
     i = next((j for j, x in enumerate(cat) if x.get("id") == aid), -1)
     if i >= 0: cat[i] = light
@@ -753,6 +756,7 @@ def save(data, token, replace, log):
     patch_fields("catalog/index", {"items": cat}, token)
     patch_fields("meta/catalog", {"version": int(time.time() * 1000)}, token)
     log(f"OK GUARDADO: {aid} — {len(episodes)} eps [{doc.get('audio', '')}]. Ya está en el sitio.")
+    return True
 
 # ================================================================== GUI
 # Paleta moderna (dark, tono azulado + acento rojo de marca)
@@ -784,7 +788,7 @@ class App:
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
         self.loaded_seasons = []; self.loaded_season_by_num = {}                 # nombres/rangos reales de temporada del anime cargado
         self._tree_eps = []                                                     # episodios visibles en el listado (mapa fila→episodio)
-        root.title("All-Anime · Importador"); root.geometry("1020x780"); root.configure(bg=BG); root.minsize(900, 660)
+        root.title("All-Anime Scrapper"); root.geometry("1020x780"); root.configure(bg=BG); root.minsize(900, 660)
         try:
             ip = _icon_path()
             if ip: root.iconbitmap(ip)
@@ -819,7 +823,7 @@ class App:
         hd = tk.Frame(root, bg=HEAD, height=58); hd.pack(fill="x"); hd.pack_propagate(False)
         badge = tk.Label(hd, text=" ▶ ", fg="#ffffff", bg=RED, font=("Segoe UI", 12, "bold")); badge.pack(side="left", padx=(16, 10), pady=13)
         tk.Label(hd, text="All-Anime", fg=TXT, bg=HEAD, font=("Segoe UI Semibold", 15)).pack(side="left")
-        tk.Label(hd, text="Importador", fg=MUT, bg=HEAD, font=("Segoe UI", 12)).pack(side="left", padx=(6, 0))
+        tk.Label(hd, text="Scrapper", fg=MUT, bg=HEAD, font=("Segoe UI", 12)).pack(side="left", padx=(6, 0))
         self.logout_btn = ttk.Button(hd, text="Cerrar sesión", style="Ghost.TButton", command=self.logout)
         self.status = tk.Label(hd, text="●  Sin sesión", fg="#ffcf7a", bg=HEAD, font=("Segoe UI Semibold", 10)); self.status.pack(side="right", padx=16)
 
@@ -836,7 +840,11 @@ class App:
         _win = canvas.create_window((0, 0), window=_inner, anchor="nw")
         _inner.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
         canvas.bind("<Configure>", lambda e: canvas.itemconfig(_win, width=e.width))
-        canvas.bind_all("<MouseWheel>", lambda e: canvas.yview_scroll(int(-1 * (e.delta / 120)), "units"))
+        self._canvas = canvas
+        # Rueda del ratón: desplaza la página. Antes de desplazar cierra cualquier desplegable
+        # abierto (así no queda "flotando") y evita que la rueda sobre un combo cambie su valor.
+        canvas.bind_all("<MouseWheel>", self._wheel)
+        root.bind_class("TCombobox", "<MouseWheel>", self._wheel)
         body = tk.Frame(_inner, bg=BG); body.pack(fill="both", expand=True, padx=14, pady=12)
 
         def card(parent):
@@ -962,6 +970,7 @@ class App:
         self.save_btn = ttk.Button(bb, text="Guardar en la web", style="Grn.TButton", command=self.do_save, state="disabled"); self.save_btn.pack(side="left")
         ttk.Button(bb, text="🖼 Reparar imágenes", command=self.do_fix_images).pack(side="left", padx=10)
         ttk.Button(bb, text="↶ Revertir último cambio", command=self.do_revert).pack(side="left", padx=10)
+        ttk.Button(bb, text="🧹 Limpiar", style="Ghost.TButton", command=self.do_clear).pack(side="left", padx=10)
         ttk.Label(bb, text="  (aplica lo que edites arriba)", style="Mut.TLabel").pack(side="left")
 
     def _field(self, parent, label, r, w=None):
@@ -972,6 +981,17 @@ class App:
     def toggle_manual(self):
         if self.man.get(): self.manbox.pack(fill="x", pady=(0, 6))
         else: self.manbox.pack_forget()
+    def _wheel(self, e):
+        """Desplaza la página con la rueda; cierra desplegables abiertos y evita que la rueda
+        sobre un combobox cambie su valor (submenús ya no quedan flotando)."""
+        try:
+            w = self.root.focus_get()
+            if isinstance(w, ttk.Combobox): w.event_generate("<Escape>")
+        except Exception: pass
+        try: self._canvas.yview_scroll(int(-1 * (e.delta / 120)), "units")
+        except Exception: pass
+        return "break"
+
     def log(self, m): self.logbox.insert("end", m + "\n"); self.logbox.see("end"); self.root.update_idletasks()
     def prog(self, n, t): self.bar["maximum"] = t; self.bar["value"] = n; self.root.update_idletasks()
 
@@ -1080,11 +1100,13 @@ class App:
                 def show():
                     self.title.delete(0, "end"); self.title.insert(0, d.get("title", ""))
                     self.render_meta()
-                    self.update_season_view()               # llena el navegador y muestra la última temporada
+                    self.update_season_view(select="Todas")   # muestra la LISTA COMPLETA al cargar
+                    if not self._tree_eps and eps:            # red de seguridad: nunca dejar la lista vacía
+                        self.refresh_tree(None)
                     self.save_btn.config(state="normal"); self.addnew_btn.config(state="normal")
                     ordered = self._distinct_seasons()
                     self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(ordered)} temporada(s): {', '.join(ordered[:6])}{'…' if len(ordered) > 6 else ''}")
-                    self.log("Se muestra la última temporada; cambia en «Ver temporada» para revisar cualquier otra. «Todas» muestra el listado completo.")
+                    self.log("Lista completa cargada; en «Ver temporada» puedes filtrar por temporada.")
                 self.root.after(0, show)
             except Exception as e: self.log("ERROR cargar: " + str(e))
         threading.Thread(target=work, daemon=True).start()
@@ -1280,9 +1302,29 @@ class App:
 
     def after_episodes(self):
         self.f_audio.set(self.data.get("audio", "Sub"))
-        self.update_season_view()
+        self.update_season_view(select="Todas")
         self.save_btn.config(state="normal" if self.data["episodes"] else "disabled")
         if not self.data["episodes"]: self.log("No se encontraron servidores. Revisa fuentes/título.")
+
+    def do_clear(self, silent=False):
+        """Deja la app lista para otra operación sin arrastrar el estado anterior (evita
+        conflictos). Se puede llamar a mano con «🧹 Limpiar» o automático tras guardar."""
+        self.data = None
+        self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}
+        self.loaded_seasons = []; self.loaded_season_by_num = {}
+        self.clear_tree()
+        for e in (self.f_title, self.f_year, self.f_alt, self.f_creator, self.f_poster, self.f_back, self.f_logo,
+                  self.title, self.rangef, self.seasonf, self.srcslug):
+            try: e.delete(0, "end")
+            except Exception: pass
+        self.f_audio.set("Sub"); self.kind.set("Auto")
+        self.season_view.config(values=["Todas"]); self.season_view.set("Todas"); self.season_info.config(text="")
+        self.dest_season.config(values=["(automática por número)"]); self.dest_season.set("(automática por número)")
+        self.bar["value"] = 0; self.count_lbl.config(text="0 episodios")
+        try: self.cat_search.delete(0, "end"); self._filter_catalog()
+        except Exception: pass
+        self.save_btn.config(state="disabled"); self.addnew_btn.config(state="disabled")
+        if not silent: self.log("🧹 Limpio. Listo para cargar/buscar otro anime.")
 
     def detect_missing(self):
         """Compara lo que existe en la web con lo que TMDB dice que hay → rellena el rango con los faltantes."""
@@ -1299,8 +1341,9 @@ class App:
                 aid = self.loaded_aid or meta["aid"]
                 seasons = [dict(s) for s in meta["seasons"]]
                 season_sel = self.seasonf.get().strip()
-                # AL DÍA: extiende con lo disponible en las fuentes (jkanime/animeav1),
-                # que suelen ir más adelantadas que TMDB → detecta los episodios de hoy.
+                # CONTEO REAL POR LAS FUENTES (jkanime/animeav1) = autoridad; TMDB de respaldo.
+                # Ajusta (sube o BAJA) el total para que coincida con lo que hay hoy en las
+                # fuentes (ej. One Piece: fuentes 1175, TMDB 1181 → se usa 1175).
                 tmdb_total = sum(s["count"] for s in seasons)
                 if not season_sel and seasons:
                     slug = (self.srcslug.get().strip() or "")
@@ -1308,9 +1351,10 @@ class App:
                     jks = slug or (jk_search(meta["real_title"]) if self.jk.get() else "")
                     avs = slug or (av1_search(meta["real_title"]) if self.av1.get() else "")
                     smax = max(jk_max(jks) if jks else 0, av1_max(avs) if avs else 0)
-                    if smax > tmdb_total:
-                        seasons[-1]["count"] += (smax - tmdb_total)
-                        self.log(f"fuente al día: {smax} eps (TMDB {tmdb_total})")
+                    if smax > 0 and abs(smax - tmdb_total) <= 400:
+                        diff = smax - tmdb_total
+                        seasons[-1]["count"] = max(1, seasons[-1]["count"] + diff)
+                        self.log(f"conteo por fuentes: {smax} eps hoy (TMDB decía {tmdb_total})")
                 # claves = número de episodio (absoluto, o por temporada si se fijó una)
                 keymap = {}; absn = 0
                 for S in seasons:
@@ -1381,6 +1425,7 @@ class App:
             full = tmdb_full(tmdb, key) if tmdb else {}
             imdb = imdb or full.get("imdb") or imdb_suggest(title)
             if full.get("stills"): stills = full["stills"]; info["stills"] = stills
+            if full.get("seasons"): info["seasons"] = full["seasons"]   # para los patrones de embed69
             info["imdb"] = imdb; self.data["tmdb"] = tmdb; self.data["info"] = info
         slug = (self.srcslug.get().strip() or "")
         slug = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", slug).strip("/").split("/")[0].split("?")[0] if slug else ""
@@ -1390,27 +1435,34 @@ class App:
         self.log(f"Fuentes: imdb={imdb or '—'} jk={self.data['_jkslug'] or '—'} av1={self.data['_avslug'] or '—'}")
 
     def _fetch_ep_servers(self, ep):
-        """Trae los servidores de un episodio concreto desde las fuentes activas."""
+        """Trae los servidores de un episodio concreto desde TODAS las fuentes activas
+        (embed69/pelisplushd, animeav1, jkanime). Prueba varios patrones de código de embed69
+        porque cada anime numera distinto (1x{absoluto} tipo One Piece, o {temporada}x{nº})."""
         imdb = (self.data.get("info") or {}).get("imdb"); jks = self.data.get("_jkslug"); avs = self.data.get("_avslug")
         try: num = int(ep.get("number"))
         except (TypeError, ValueError): return []
-        servers = []
+        servers = []; ce = ca = cj = 0
         if self.e69.get() and imdb:
-            cands = [(1, num)]
+            cands = [(1, num)]                                   # One Piece y continuos: 1x{absoluto}
             m = re.search(r"(\d+)", str(ep.get("season", "")))
-            if m and int(m.group(1)) != 1: cands.append((int(m.group(1)), num))
+            if m and int(m.group(1)) != 1: cands.append((int(m.group(1)), num))   # {temporada}x{nº}
+            for S in (self.data.get("info") or {}).get("seasons", []):            # temporadas conocidas de TMDB
+                c = (S.get("season"), num)
+                if c not in cands: cands.append(c)
             for s, n in cands:
                 try:
                     r = embed69_lat(imdb, s, n)
-                    if r: servers.append(r); break
+                    if r: servers.append(r); ce = 1; break
                 except Exception: pass
-                time.sleep(0.4)
+                time.sleep(0.3)
         if self.av1.get() and avs:
-            try: servers += (av1_servers(avs, num) or [])
+            try: a = av1_servers(avs, num) or []; servers += a; ca = len(a)
             except Exception: pass
         if self.jk.get() and jks:
-            try: servers += (jk_servers(jks, num) or [])
+            try: j = jk_servers(jks, num) or []; servers += j; cj = len(j)
             except Exception: pass
+        lat = sum(1 for s in servers if s.get("lang") == "Latino")
+        self.log(f"  E{num}: embed69={ce} av1={ca} jk={cj} · Latino={lat}" + ("" if servers else f"  (imdb={imdb or '—'} jk={jks or '—'} av1={avs or '—'})"))
         return servers
 
     def repair_selected(self, mode):
@@ -1462,7 +1514,6 @@ class App:
                             ep["servers"] = prioritize(keep + found, self.prefer.get().split(","), self.only.get())
                             ep["language"] = "Latino" if any(s["lang"] == "Latino" for s in ep["servers"]) else "Sub"
                             changed += 1
-                    self.log(f"  E{ep.get('number')}: {len(found)} server(s) de fuente")
                 self.root.after(0, lambda: (self.update_season_view(select=self._current_season_sel()),
                                             self.log(f"✅ {changed}/{len(eps)} episodio(s) actualizados. Revisa y pulsa «Guardar en la web».")))
             except Exception as e:
@@ -1524,9 +1575,16 @@ class App:
         self.data["creator"] = self.f_creator.get().strip()
         self.save_btn.config(state="disabled")
         def work():
-            try: save(self.data, self.token, self.replace.get(), self.log)
+            ok = False
+            try: ok = bool(save(self.data, self.token, self.replace.get(), self.log))
             except Exception as e: self.log("ERROR guardar: " + str(e))
-            finally: self.root.after(0, lambda: self.save_btn.config(state="normal"))
+            finally:
+                if ok:
+                    # se guardó bien → limpia para no arrastrar estado y evitar conflictos
+                    self.root.after(0, lambda: (self.do_clear(silent=True),
+                                                self.log("✅ Guardado y limpiado. Listo para el siguiente.")))
+                else:
+                    self.root.after(0, lambda: self.save_btn.config(state="normal"))
         threading.Thread(target=work, daemon=True).start()
 
 if __name__ == "__main__":
