@@ -338,7 +338,8 @@ def tmdb_movie(title, key):
 # ------------------------------------------------------------------ Fuentes de servidores
 NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "swiftplay": "Streamwish",
         "hglink": "Streamwish", "voe": "VOE", "vidhide": "VidHide", "vidhidevip": "VidHide",
-        "filemoon": "Filemoon", "filemooon": "Filemoon", "streamtape": "Streamtape", "mp4upload": "Mp4upload",
+        "filemoon": "Filemoon", "filemooon": "Filemoon", "byse": "Filemoon", "bysc": "Filemoon", "moonplayer": "Filemoon",
+        "streamtape": "Streamtape", "mp4upload": "Mp4upload",
         "zilla": "AnimeAV1 HD", "mediafire": "Mediafire", "mixdrop": "Mixdrop", "mdbekj": "Mixdrop", "mdy48": "Mixdrop",
         "d-s.io": "Doodstream", "dood": "Doodstream", "desu": "Desu", "desuka": "Desu", "okru": "Okru", "ok.ru": "Okru",
         "uqload": "Uqload", "yourupload": "YourUpload"}
@@ -733,6 +734,9 @@ def save(data, token, replace, log):
         if data.get("creator"): doc["creator"] = data["creator"]
         if info.get("description") and not doc.get("description"): doc["description"] = info["description"]
     doc["episodes"] = episodes; doc["episodesTotal"] = len(episodes); doc["episodesCount"] = len(episodes)
+    # Recalcula el nº de temporadas a partir de los episodios reales (corrige datos viejos,
+    # ej. Mushoku Tensei que tenía "2" cuando en verdad hay 3).
+    doc["seasons"] = len({e.get("season") for e in episodes if e.get("season")}) or doc.get("seasons", 1)
     st, t = patch_fields(f"animes/{aid}", doc, token)
     if st != 200: log(f"ERROR guardar: {st} {t[:150]}"); return
     cat = get_catalog(); light = {k: v for k, v in doc.items() if k != "episodes"}
@@ -772,6 +776,7 @@ class App:
         self.root = root; self.token = None; self.data = None; self.cfg = load_cfg()
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
         self.loaded_seasons = []; self.loaded_season_by_num = {}                 # nombres/rangos reales de temporada del anime cargado
+        self._tree_eps = []                                                     # episodios visibles en el listado (mapa fila→episodio)
         root.title("All-Anime · Importador"); root.geometry("1020x780"); root.configure(bg=BG); root.minsize(900, 660)
         try:
             ip = _icon_path()
@@ -920,6 +925,14 @@ class App:
         pgrow = tk.Frame(pv, bg=CARD); pgrow.pack(fill="x", padx=14, pady=8)
         self.bar = ttk.Progressbar(pgrow, style="AA.Horizontal.TProgressbar"); self.bar.pack(side="left", fill="x", expand=True)
         self.count_lbl = ttk.Label(pgrow, text="0 episodios", style="Mut.TLabel"); self.count_lbl.pack(side="left", padx=10)
+        # Navegador de TEMPORADAS: se llena con las temporadas del anime; al elegir una, el
+        # listado de abajo muestra solo esa temporada y pasa a ser la temporada destino.
+        svrow = tk.Frame(pv, bg=CARD); svrow.pack(fill="x", padx=14, pady=(0, 4))
+        ttk.Label(svrow, text="Ver temporada:", style="Mut.TLabel").pack(side="left")
+        self.season_view = ttk.Combobox(svrow, width=32, state="readonly", values=["Todas"]); self.season_view.set("Todas")
+        self.season_view.pack(side="left", padx=6)
+        self.season_view.bind("<<ComboboxSelected>>", self.on_season_view)
+        self.season_info = ttk.Label(svrow, text="", style="Mut.TLabel"); self.season_info.pack(side="left", padx=8)
         tw = tk.Frame(pv, bg=CARD); tw.pack(fill="both", expand=True, padx=14)
         self.tree = ttk.Treeview(tw, columns=("t", "img", "srv"), show="headings", height=9)
         tvsb = ttk.Scrollbar(tw, orient="vertical", command=self.tree.yview)
@@ -1052,14 +1065,12 @@ class App:
                 def show():
                     self.title.delete(0, "end"); self.title.insert(0, d.get("title", ""))
                     self.render_meta()
-                    for i in self.tree.get_children(): self.tree.delete(i)
-                    for e in eps: self.add_ep_row(e)
+                    self.refresh_tree(None)                 # muestra todos los episodios
+                    self.update_season_view()               # llena el navegador de temporadas
                     self.save_btn.config(state="normal"); self.addnew_btn.config(state="normal")
-                    # Ofrece las temporadas reales del anime en el selector de destino.
-                    self.dest_season.config(values=["(automática por número)"] + seasons_names)
-                    self.dest_season.set("(automática por número)")
-                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(seasons_names)} temporada(s): {', '.join(seasons_names[:4])}{'…' if len(seasons_names) > 4 else ''}")
-                    self.log("Usa «➕ Añadir episodios nuevos» para sumar los que falten sin tocar lo demás.")
+                    ordered = self._distinct_seasons()
+                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(ordered)} temporada(s): {', '.join(ordered[:5])}{'…' if len(ordered) > 5 else ''}")
+                    self.log("Elige una temporada en «Ver temporada» para revisarla; usa «➕ Añadir episodios nuevos» para sumar los que falten.")
                 self.root.after(0, show)
             except Exception as e: self.log("ERROR cargar: " + str(e))
         threading.Thread(target=work, daemon=True).start()
@@ -1094,7 +1105,7 @@ class App:
             existing_eps = list(self.data.get("episodes") or [])
             self.replace.set(False)  # añadir episodios NUNCA reemplaza lo existente
         else:
-            for i in self.tree.get_children(): self.tree.delete(i)
+            self.clear_tree()
         self.logbox.delete("1.0", "end")
         opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": self.man.get(),
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
@@ -1159,8 +1170,9 @@ class App:
             elif self.loaded_seasons: e["season"] = self.loaded_seasons[-1]
             # el videoUrl codifica el nombre de temporada → mantenerlo en sintonía
             e["videoUrl"] = f"frame/player.html?a={self.loaded_aid}&s={urllib.parse.quote(str(e.get('season', '')))}&e={e.get('number')}"
-        for i in self.tree.get_children(): self.tree.delete(i)
+        self.clear_tree()
         for e in eps: self.add_ep_row(e)
+        self.update_season_view()
         dst = f"«{dest}»" if custom else "temporada asignada por número"
         self.log(f"➕ {len(new_eps)} episodio(s) nuevo(s) → {dst}. Revisa y pulsa «Guardar en la web».")
         self.after_episodes()
@@ -1176,16 +1188,66 @@ class App:
         if not info["logo"]: self.log("Sin logo (pon una TMDB API key para traerlo, o pégalo en el campo Logo).")
         if not info["poster"]: self.log("⚠ Sin imágenes de TMDB — revisa el título o usa la TMDB API key.")
 
+    def clear_tree(self):
+        for i in self.tree.get_children(): self.tree.delete(i)
+        self._tree_eps = []
+
     def add_ep_row(self, e):
+        """Añade una fila y recuerda a qué episodio corresponde (para editarlo/filtrarlo)."""
         srv = ", ".join(f"{s['name']}({s['lang'][:3]})" for s in e["servers"])
-        nrows = len(self.tree.get_children())
-        self.tree.insert("", "end", iid=str(nrows), text="",
+        iid = str(len(self._tree_eps))
+        self.tree.insert("", "end", iid=iid, text="",
                          values=(f"{e['season']} · E{e['number']} · {e['title']}", "sí" if e["img"] else "—", srv))
-        self.count_lbl.config(text=f"{nrows + 1} episodios")
+        self._tree_eps.append(e)
+        total = len(self.data.get("episodes", [])) if self.data else len(self._tree_eps)
+        self.count_lbl.config(text=(f"{len(self._tree_eps)} de {total} episodios" if len(self._tree_eps) != total else f"{total} episodios"))
         self.save_btn.config(state="normal")
+
+    @staticmethod
+    def _season_key(s):
+        """Orden natural de temporadas: 'Temporada 2' antes que 'Temporada 10'."""
+        nums = re.findall(r"\d+", str(s))
+        return (int(nums[0]) if nums else 9999, str(s))
+
+    def _distinct_seasons(self):
+        eps = (self.data or {}).get("episodes") or []
+        return sorted({e.get("season") for e in eps if e.get("season")}, key=self._season_key)
+
+    def update_season_view(self):
+        """Rellena el navegador de temporadas con las del anime cargado/construido."""
+        seasons = self._distinct_seasons()
+        counts = {}
+        for e in (self.data or {}).get("episodes") or []:
+            s = e.get("season")
+            if s: counts[s] = counts.get(s, 0) + 1
+        vals = [f"Todas ({sum(counts.values())})"] + [f"{s}  ({counts.get(s, 0)})" for s in seasons]
+        self.season_view.config(values=vals)
+        self.season_view.set(vals[0])
+        self.season_info.config(text=(f"{len(seasons)} temporada(s)" if seasons else ""))
+        # sincroniza también el selector de temporada DESTINO con los nombres reales
+        self.dest_season.config(values=["(automática por número)"] + seasons)
+
+    def on_season_view(self, ev=None):
+        """Al elegir una temporada: filtra el listado y la fija como temporada destino."""
+        sel = self.season_view.get()
+        if sel.startswith("Todas"):
+            self.dest_season.set("(automática por número)")
+            self.refresh_tree(None)
+        else:
+            name = re.sub(r"\s*\(\d+\)\s*$", "", sel)   # quita el " (N)" del final
+            self.dest_season.set(name)
+            self.refresh_tree(name)
+
+    def refresh_tree(self, season=None):
+        """Redibuja el listado; si `season` no es None, muestra solo esa temporada."""
+        self.clear_tree()
+        for e in (self.data or {}).get("episodes") or []:
+            if season is None or e.get("season") == season:
+                self.add_ep_row(e)
 
     def after_episodes(self):
         self.f_audio.set(self.data.get("audio", "Sub"))
+        self.update_season_view()
         self.save_btn.config(state="normal" if self.data["episodes"] else "disabled")
         if not self.data["episodes"]: self.log("No se encontraron servidores. Revisa fuentes/título.")
 
@@ -1292,8 +1354,7 @@ class App:
                         if not e.get("title") or str(e["title"]).startswith("Episodio "): e["title"] = st.get("title") or e["title"]
                         if not e.get("description"): e["description"] = st.get("overview", "")
                 def refresh():
-                    for i in self.tree.get_children(): self.tree.delete(i)
-                    for e in self.data["episodes"]: self.add_ep_row(e)
+                    self.refresh_tree(None); self.update_season_view()
                     self.log(f"Imágenes/descripciones reparadas: {fixed} episodios. Ajusta alguna con doble clic. Pulsa Guardar para aplicar.")
                 self.root.after(0, refresh)
             except Exception as e: self.log("ERROR reparar imágenes: " + str(e))
@@ -1302,7 +1363,8 @@ class App:
     def edit_episode(self, ev):
         iid = self.tree.focus()
         if not iid or not self.data: return
-        ep = self.data["episodes"][int(iid)]
+        try: ep = self._tree_eps[int(iid)]   # mapea la fila visible al episodio real (respeta el filtro)
+        except (IndexError, ValueError): return
         new = simpledialog.askstring("Editar imagen del episodio", f"E{ep['number']} — URL de la imagen:", initialvalue=ep["img"], parent=self.root)
         if new is not None:
             ep["img"] = new.strip()

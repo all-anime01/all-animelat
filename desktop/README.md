@@ -4,6 +4,20 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v12
+
+- **Navegador de temporadas.** Al cargar un anime aparecen TODAS sus temporadas (se leen de
+  los episodios). Con **«Ver temporada»** eliges una y el listado muestra solo esa; al hacerlo,
+  esa temporada queda fijada como **destino** para «➕ Añadir episodios nuevos».
+- **Corrige el nº de temporadas.** El campo `seasons` se recalcula solo al guardar a partir de
+  los episodios reales (arreglado, p. ej., Mushoku Tensei que marcaba 2 cuando tiene 3).
+- **Filemoon = «byse».** Filemoon ahora aparece como **byse/bysc** en las páginas; se reconoce
+  y se etiqueta como Filemoon automáticamente.
+- *Nota sobre animeyt:* su sitio actual (animeyt.cc) esconde los servidores tras un
+  **redirector cifrado con protección anti-bot**, así que no se puede extraer en enlaces
+  reproducibles/reutilizables (guardaría un `redirector.php` que no reproduce). Por eso no se
+  añadió como fuente automática; las fuentes fiables siguen siendo embed69, animeav1 y jkanime.
+
 ## Novedades v11
 
 - **Buscador del catálogo (arreglado el bug del desplegable).** El antiguo menú se
