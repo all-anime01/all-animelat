@@ -144,6 +144,13 @@ def slugify(s):
     s = unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode()
     return re.sub(r"^-|-$", "", re.sub(r"[^a-z0-9]+", "-", s.lower()))
 MESES = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+def es_ep_title(name, n):
+    """Prioriza el título en español. Si TMDB no tiene traducción y devuelve el genérico en
+    inglés ('Episode 5') o viene vacío, usa 'Episodio N' en español."""
+    name = (name or "").strip()
+    if not name or re.match(r"(?i)^(episode|episodio|ep\.?|capitulo|capítulo)\s*\d+$", name):
+        return f"Episodio {n}"
+    return name
 def fmt_date(d):
     if not d or len(d) < 10: return ""
     try:
@@ -235,7 +242,7 @@ def tmdb_full(tv, key):
                 n = e.get("episode_number")
                 out["stills"][f"{S['season']}x{n}"] = {
                     "still": f"{IMG}/w500{e['still_path']}" if e.get("still_path") else "",
-                    "title": e.get("name") or "", "overview": e.get("overview") or "",
+                    "title": es_ep_title(e.get("name"), n), "overview": e.get("overview") or "",
                     "air_date": fmt_date(e.get("air_date")), "runtime": e.get("runtime") or out["runtime"]}
             time.sleep(0.05)
         return out
@@ -263,7 +270,7 @@ def tmdb_full(tv, key):
         for i, c in enumerate(chunks):
             im = re.search(r'(?:media\.themoviedb\.org|image\.tmdb\.org)/t/p/[a-z0-9_]+/([A-Za-z0-9]{16,})\.', c)
             ti = re.search(r'<div class="episode_title">\s*<h3>\s*<a[^>]*>([^<]+)</a>', c)
-            out["stills"][f"{s}x{i+1}"] = {"still": f"{IMG}/w500/{im.group(1)}.jpg" if im else "", "title": dec_ent(ti.group(1)) if ti else ""}
+            out["stills"][f"{s}x{i+1}"] = {"still": f"{IMG}/w500/{im.group(1)}.jpg" if im else "", "title": es_ep_title(dec_ent(ti.group(1)) if ti else "", i + 1)}
         time.sleep(0.15)
     return out
 
@@ -934,7 +941,8 @@ class App:
         self.season_view.bind("<<ComboboxSelected>>", self.on_season_view)
         self.season_info = ttk.Label(svrow, text="", style="Mut.TLabel"); self.season_info.pack(side="left", padx=8)
         tw = tk.Frame(pv, bg=CARD); tw.pack(fill="both", expand=True, padx=14)
-        self.tree = ttk.Treeview(tw, columns=("t", "img", "srv"), show="headings", height=9)
+        # selectmode extended → puedes marcar VARIOS episodios (Ctrl/Shift+clic) para repararlos.
+        self.tree = ttk.Treeview(tw, columns=("t", "img", "srv"), show="headings", height=9, selectmode="extended")
         tvsb = ttk.Scrollbar(tw, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=tvsb.set)
         for c, txt, w in [("t", "Título", 240), ("img", "Imagen", 120), ("srv", "Servidores", 320)]:
@@ -943,6 +951,13 @@ class App:
         self.tree.bind("<Double-1>", self.edit_episode)
         # La rueda sobre el listado lo desplaza a ÉL (no al scroll general).
         self.tree.bind("<MouseWheel>", lambda e: (self.tree.yview_scroll(int(-1 * (e.delta / 120)), "units"), "break")[1])
+        # Barra de REPARACIÓN MANUAL por selección (marca uno o varios episodios arriba)
+        rr = tk.Frame(pv, bg=CARD); rr.pack(fill="x", padx=14, pady=(8, 0))
+        ttk.Label(rr, text="Seleccionados:", style="Mut.TLabel").pack(side="left")
+        ttk.Button(rr, text="➕ Agregar Latino", style="Blue.TButton", command=lambda: self.repair_selected("latino")).pack(side="left", padx=(6, 0))
+        ttk.Button(rr, text="🔧 Reparar servers", command=lambda: self.repair_selected("servers")).pack(side="left", padx=6)
+        ttk.Button(rr, text="🖼 Reparar imagen", command=lambda: self.repair_selected("image")).pack(side="left")
+        ttk.Label(rr, text="  (marca uno o varios con Ctrl/Shift+clic · siempre pregunta antes)", style="Mut.TLabel").pack(side="left", padx=8)
         bb = tk.Frame(pv, bg=CARD); bb.pack(fill="x", padx=14, pady=10)
         self.save_btn = ttk.Button(bb, text="Guardar en la web", style="Grn.TButton", command=self.do_save, state="disabled"); self.save_btn.pack(side="left")
         ttk.Button(bb, text="🖼 Reparar imágenes", command=self.do_fix_images).pack(side="left", padx=10)
@@ -1065,12 +1080,11 @@ class App:
                 def show():
                     self.title.delete(0, "end"); self.title.insert(0, d.get("title", ""))
                     self.render_meta()
-                    self.refresh_tree(None)                 # muestra todos los episodios
-                    self.update_season_view()               # llena el navegador de temporadas
+                    self.update_season_view()               # llena el navegador y muestra la última temporada
                     self.save_btn.config(state="normal"); self.addnew_btn.config(state="normal")
                     ordered = self._distinct_seasons()
-                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(ordered)} temporada(s): {', '.join(ordered[:5])}{'…' if len(ordered) > 5 else ''}")
-                    self.log("Elige una temporada en «Ver temporada» para revisarla; usa «➕ Añadir episodios nuevos» para sumar los que falten.")
+                    self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(ordered)} temporada(s): {', '.join(ordered[:6])}{'…' if len(ordered) > 6 else ''}")
+                    self.log("Se muestra la última temporada; cambia en «Ver temporada» para revisar cualquier otra. «Todas» muestra el listado completo.")
                 self.root.after(0, show)
             except Exception as e: self.log("ERROR cargar: " + str(e))
         threading.Thread(target=work, daemon=True).start()
@@ -1170,12 +1184,13 @@ class App:
             elif self.loaded_seasons: e["season"] = self.loaded_seasons[-1]
             # el videoUrl codifica el nombre de temporada → mantenerlo en sintonía
             e["videoUrl"] = f"frame/player.html?a={self.loaded_aid}&s={urllib.parse.quote(str(e.get('season', '')))}&e={e.get('number')}"
-        self.clear_tree()
-        for e in eps: self.add_ep_row(e)
-        self.update_season_view()
+        # muestra la temporada donde entraron los episodios nuevos
+        target = new_eps[-1].get("season") if new_eps else "auto"
+        self.f_audio.set(self.data.get("audio", "Sub"))
+        self.update_season_view(select=target)
+        self.save_btn.config(state="normal" if eps else "disabled")
         dst = f"«{dest}»" if custom else "temporada asignada por número"
         self.log(f"➕ {len(new_eps)} episodio(s) nuevo(s) → {dst}. Revisa y pulsa «Guardar en la web».")
-        self.after_episodes()
 
     def render_meta(self):
         """Rellena la ficha del anime en cuanto llega la metadata (rápido)."""
@@ -1213,8 +1228,10 @@ class App:
         eps = (self.data or {}).get("episodes") or []
         return sorted({e.get("season") for e in eps if e.get("season")}, key=self._season_key)
 
-    def update_season_view(self):
-        """Rellena el navegador de temporadas con las del anime cargado/construido."""
+    def update_season_view(self, select="auto"):
+        """Rellena el navegador con TODAS las temporadas del anime (cualquier formato:
+        «Temporada N», «Season N» o nombre personalizado) y renderiza una selección.
+        select: 'auto' (última temporada si hay varias), 'Todas', o un nombre de temporada."""
         seasons = self._distinct_seasons()
         counts = {}
         for e in (self.data or {}).get("episodes") or []:
@@ -1222,10 +1239,26 @@ class App:
             if s: counts[s] = counts.get(s, 0) + 1
         vals = [f"Todas ({sum(counts.values())})"] + [f"{s}  ({counts.get(s, 0)})" for s in seasons]
         self.season_view.config(values=vals)
-        self.season_view.set(vals[0])
         self.season_info.config(text=(f"{len(seasons)} temporada(s)" if seasons else ""))
         # sincroniza también el selector de temporada DESTINO con los nombres reales
         self.dest_season.config(values=["(automática por número)"] + seasons)
+        # decide qué mostrar: por defecto la ÚLTIMA temporada (como el sitio; además evita
+        # dibujar cientos de filas de golpe en animes enormes como One Piece).
+        if select == "auto":
+            sel = seasons[-1] if len(seasons) >= 2 else None
+        elif select in ("Todas", None):
+            sel = None
+        else:
+            sel = select if select in seasons else (seasons[-1] if seasons else None)
+        if sel is None:
+            self.season_view.set(vals[0]); self.refresh_tree(None)
+        else:
+            self.season_view.set(f"{sel}  ({counts.get(sel, 0)})"); self.dest_season.set(sel); self.refresh_tree(sel)
+
+    def _current_season_sel(self):
+        sel = self.season_view.get()
+        if not sel or sel.startswith("Todas"): return "Todas"
+        return re.sub(r"\s*\(\d+\)\s*$", "", sel)
 
     def on_season_view(self, ev=None):
         """Al elegir una temporada: filtra el listado y la fija como temporada destino."""
@@ -1333,6 +1366,109 @@ class App:
             except Exception as e: self.log("ERROR revertir: " + str(e))
         threading.Thread(target=work, daemon=True).start()
 
+    def _ensure_sources(self):
+        """Resuelve y cachea imdb + slugs de jkanime/animeav1 + stills de TMDB para el anime
+        actual (necesario para reparar/agregar servidores o imágenes por episodio)."""
+        if self.data.get("_src_ready"): return
+        title = self.data.get("real_title") or self.title.get().strip()
+        key = self.tmdb.get().strip()
+        info = self.data.get("info") or {}
+        imdb = info.get("imdb")
+        stills = info.get("stills") or {}
+        tmdb = self.data.get("tmdb")
+        if not imdb or not stills:
+            tmdb = tmdb or tmdb_resolve(title, key)
+            full = tmdb_full(tmdb, key) if tmdb else {}
+            imdb = imdb or full.get("imdb") or imdb_suggest(title)
+            if full.get("stills"): stills = full["stills"]; info["stills"] = stills
+            info["imdb"] = imdb; self.data["tmdb"] = tmdb; self.data["info"] = info
+        slug = (self.srcslug.get().strip() or "")
+        slug = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", slug).strip("/").split("/")[0].split("?")[0] if slug else ""
+        self.data["_jkslug"] = slug or (jk_search(title) if self.jk.get() else "")
+        self.data["_avslug"] = slug or (av1_search(title) if self.av1.get() else "")
+        self.data["_src_ready"] = True
+        self.log(f"Fuentes: imdb={imdb or '—'} jk={self.data['_jkslug'] or '—'} av1={self.data['_avslug'] or '—'}")
+
+    def _fetch_ep_servers(self, ep):
+        """Trae los servidores de un episodio concreto desde las fuentes activas."""
+        imdb = (self.data.get("info") or {}).get("imdb"); jks = self.data.get("_jkslug"); avs = self.data.get("_avslug")
+        try: num = int(ep.get("number"))
+        except (TypeError, ValueError): return []
+        servers = []
+        if self.e69.get() and imdb:
+            cands = [(1, num)]
+            m = re.search(r"(\d+)", str(ep.get("season", "")))
+            if m and int(m.group(1)) != 1: cands.append((int(m.group(1)), num))
+            for s, n in cands:
+                try:
+                    r = embed69_lat(imdb, s, n)
+                    if r: servers.append(r); break
+                except Exception: pass
+                time.sleep(0.4)
+        if self.av1.get() and avs:
+            try: servers += (av1_servers(avs, num) or [])
+            except Exception: pass
+        if self.jk.get() and jks:
+            try: servers += (jk_servers(jks, num) or [])
+            except Exception: pass
+        return servers
+
+    def repair_selected(self, mode):
+        """Repara/añade en los episodios MARCADOS del listado. mode: 'latino' | 'servers' | 'image'.
+        Siempre pide confirmación y nunca borra las subidas propias (Vidara)."""
+        if not self.data or not self.data.get("episodes"):
+            messagebox.showinfo("Reparar selección", "Primero carga o construye un anime."); return
+        iids = self.tree.selection()
+        eps = []
+        for iid in iids:
+            try: eps.append(self._tree_eps[int(iid)])
+            except (IndexError, ValueError): pass
+        if not eps:
+            messagebox.showinfo("Reparar selección", "Marca uno o varios episodios en el listado (Ctrl/Shift+clic)."); return
+        labels = {"latino": "AGREGAR Latino a", "servers": "REPARAR (reemplazar) servers de", "image": "REPARAR imagen/título de"}
+        msg = f"{labels[mode]} {len(eps)} episodio(s) seleccionados."
+        if mode == "servers": msg += "\n\n(Se conservan tus subidas de Vidara; se reemplazan los demás por los de las fuentes.)"
+        if mode == "latino": msg += "\n\n(Solo AÑADE pistas en Latino; no toca nada de lo existente.)"
+        if not messagebox.askyesno("Confirmar", msg + "\n\n¿Continuar?"): return
+        self.log(f"{labels[mode]} {len(eps)} episodio(s)…")
+        def work():
+            try:
+                if mode != "image": self._ensure_sources()
+                elif not (self.data.get("info") or {}).get("stills"): self._ensure_sources()
+                stills = (self.data.get("info") or {}).get("stills") or {}
+                changed = 0
+                for ep in eps:
+                    if mode == "image":
+                        sm = re.search(r"(\d+)", str(ep.get("season", "1"))); s = sm.group(1) if sm else "1"
+                        st = stills.get(f"{s}x{ep.get('number')}") or stills.get(f"1x{ep.get('number')}")
+                        if st and st.get("still"):
+                            ep["img"] = st["still"]; changed += 1
+                            if not ep.get("title") or re.match(r"(?i)^episodio?\s*\d+$", str(ep.get("title", ""))): ep["title"] = st.get("title") or ep["title"]
+                            if not ep.get("description"): ep["description"] = st.get("overview", "")
+                        continue
+                    found = self._fetch_ep_servers(ep)
+                    if mode == "latino":
+                        lat = [s for s in found if s.get("lang") == "Latino"]
+                        have = {(s.get("name"), s.get("url")) for s in (ep.get("servers") or [])}
+                        add = [s for s in lat if (s.get("name"), s.get("url")) not in have]
+                        if add:
+                            ep["servers"] = prioritize((ep.get("servers") or []) + add, self.prefer.get().split(","))
+                            if not re.search(r"latino|dob", ep.get("language", ""), re.I):
+                                ep["language"] = "Sub | Dob" if ep.get("language") else "Latino"
+                            changed += 1
+                    else:  # servers → reemplaza conservando Vidara
+                        if found:
+                            keep = [s for s in (ep.get("servers") or []) if re.search(r"vidara", s.get("url", ""), re.I)]
+                            ep["servers"] = prioritize(keep + found, self.prefer.get().split(","), self.only.get())
+                            ep["language"] = "Latino" if any(s["lang"] == "Latino" for s in ep["servers"]) else "Sub"
+                            changed += 1
+                    self.log(f"  E{ep.get('number')}: {len(found)} server(s) de fuente")
+                self.root.after(0, lambda: (self.update_season_view(select=self._current_season_sel()),
+                                            self.log(f"✅ {changed}/{len(eps)} episodio(s) actualizados. Revisa y pulsa «Guardar en la web».")))
+            except Exception as e:
+                self.log("ERROR reparar selección: " + str(e))
+        threading.Thread(target=work, daemon=True).start()
+
     def do_fix_images(self):
         if not self.data or not self.data.get("episodes"):
             messagebox.showinfo("Reparar imágenes", "Primero carga o construye un anime."); return
@@ -1354,7 +1490,7 @@ class App:
                         if not e.get("title") or str(e["title"]).startswith("Episodio "): e["title"] = st.get("title") or e["title"]
                         if not e.get("description"): e["description"] = st.get("overview", "")
                 def refresh():
-                    self.refresh_tree(None); self.update_season_view()
+                    self.update_season_view(select=self._current_season_sel())
                     self.log(f"Imágenes/descripciones reparadas: {fixed} episodios. Ajusta alguna con doble clic. Pulsa Guardar para aplicar.")
                 self.root.after(0, refresh)
             except Exception as e: self.log("ERROR reparar imágenes: " + str(e))

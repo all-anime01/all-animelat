@@ -4,6 +4,21 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v13
+
+- **Títulos de episodio en español (prioridad).** Se piden a TMDB en es-ES y los genéricos
+  en inglés («Episode 5») se convierten a «Episodio 5»; los títulos reales en español se
+  respetan.
+- **Ver temporada arreglado.** Al cargar se muestra por defecto la **última** temporada
+  (rápido incluso en One Piece con 1174 eps) y el desplegable lista **todas** — se reconoce
+  cualquier formato: «Temporada N», «Season N» o nombre personalizado («Temporada 22:
+  Elbaph»). «Todas» muestra el listado completo.
+- **Reparación manual por selección (nuevo).** Marca uno o varios episodios del listado
+  (Ctrl/Shift+clic) y usa: **➕ Agregar Latino** (solo añade la pista Latino si ya salió el
+  doblaje), **🔧 Reparar servers** (reemplaza los rotos conservando tus subidas de Vidara) o
+  **🖼 Reparar imagen**. **Siempre pregunta antes** de cambiar nada.
+- Se corrigió el nº de temporadas en el sitio de 13 animes (One Piece 21→22, etc.).
+
 ## Novedades v12
 
 - **Navegador de temporadas.** Al cargar un anime aparecen TODAS sus temporadas (se leen de
