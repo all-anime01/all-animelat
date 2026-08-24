@@ -46,6 +46,28 @@ def save_cfg(c):
         with open(CFG_PATH, "w", encoding="utf-8") as f: json.dump(c, f)
     except Exception: pass
 
+# --- Respaldos locales (para REVERTIR cambios) ---
+BACKUP_DIR = os.path.join(os.path.expanduser("~"), ".allanime_backups")
+def backup_doc(aid, doc):
+    """Guarda el estado ACTUAL del anime antes de modificarlo, para poder revertir."""
+    try:
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+        p = os.path.join(BACKUP_DIR, f"{aid}__{int(time.time())}.json")
+        with open(p, "w", encoding="utf-8") as f: json.dump(doc, f, ensure_ascii=False)
+        # conserva solo los últimos 6 respaldos por anime
+        bks = sorted([x for x in os.listdir(BACKUP_DIR) if x.startswith(aid + "__")])
+        for old in bks[:-6]:
+            try: os.remove(os.path.join(BACKUP_DIR, old))
+            except Exception: pass
+        return p
+    except Exception: return None
+def latest_backup(aid):
+    try:
+        bks = sorted([x for x in os.listdir(BACKUP_DIR) if x.startswith(aid + "__")])
+        if not bks: return None
+        with open(os.path.join(BACKUP_DIR, bks[-1]), encoding="utf-8") as f: return json.load(f)
+    except Exception: return None
+
 # ------------------------------------------------------------------ HTTP
 def http(url, data=None, headers=None, referer=None, method=None, timeout=25):
     h = {"User-Agent": UA, "Accept-Language": "es-ES,es;q=0.9"}
@@ -156,7 +178,16 @@ def tmdb_resolve(title, key):
     if key:
         j = get_json(f"https://api.themoviedb.org/3/search/tv?api_key={key}&language=es-ES&query={urllib.parse.quote(title)}")
         r = (j.get("results") or [])
-        return str(r[0]["id"]) if r else None
+        if not r: return None
+        # PREFERIR anime: género Animación (16) y/o idioma original japonés → evita el
+        # "live action" (ej. One Piece de Netflix) cuando el título coincide.
+        def score(x):
+            s = 0
+            if 16 in (x.get("genre_ids") or []): s += 2
+            if x.get("original_language") == "ja": s += 1
+            return s
+        r = sorted(r, key=score, reverse=True)
+        return str(r[0]["id"])
     t = get_text(f"https://www.themoviedb.org/search/tv?query={urllib.parse.quote(title)}")
     m = re.search(r'href="/tv/(\d+)', t); return m.group(1) if m else None
 
@@ -432,6 +463,8 @@ def save(data, token, replace, log):
     aid = data["aid"]; built = data["episodes"]; info = data["info"]
     if not built: log("Nada que guardar."); return
     existing = get_doc(f"animes/{aid}", token)
+    if existing:  # RESPALDA el estado actual antes de tocarlo (para poder revertir)
+        if backup_doc(aid, existing): log("Respaldo guardado (puedes revertir este cambio).")
     if existing and existing.get("episodes"):
         ex = existing["episodes"]; idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
         added = replaced = 0
@@ -594,6 +627,7 @@ class App:
         self.tree.bind("<MouseWheel>", lambda e: (self.tree.yview_scroll(int(-1 * (e.delta / 120)), "units"), "break")[1])
         bb = tk.Frame(pv, bg=CARD); bb.pack(fill="x", padx=14, pady=10)
         self.save_btn = ttk.Button(bb, text="Guardar en la web", style="Grn.TButton", command=self.do_save, state="disabled"); self.save_btn.pack(side="left")
+        ttk.Button(bb, text="↶ Revertir último cambio", command=self.do_revert).pack(side="left", padx=10)
         ttk.Label(bb, text="  (aplica lo que edites arriba)", style="Mut.TLabel").pack(side="left")
 
     def _field(self, parent, label, r, w=None):
@@ -711,6 +745,28 @@ class App:
                 self.root.after(0, fill)
             except Exception as e:
                 self.log("ERROR detectar: " + str(e))
+        threading.Thread(target=work, daemon=True).start()
+
+    def do_revert(self):
+        if not self.token: messagebox.showwarning("Revertir", "Inicia sesión primero."); return
+        aid = slugify((self.f_title.get().strip() or self.title.get().strip()))
+        if not aid: messagebox.showwarning("Revertir", "Escribe/construye primero el anime a revertir."); return
+        bk = latest_backup(aid)
+        if not bk: messagebox.showinfo("Revertir", f"No hay respaldo de '{aid}'.\n(Se crea uno cada vez que guardas.)"); return
+        n = len(bk.get("episodes", []))
+        if not messagebox.askyesno("Revertir", f"¿Restaurar '{bk.get('title', aid)}' al estado anterior?\n({n} episodios). Esto deshace el último cambio."): return
+        def work():
+            try:
+                st, t = patch_fields(f"animes/{aid}", bk, self.token)
+                if st != 200: self.log(f"ERROR revertir: {st} {t[:120]}"); return
+                cat = get_catalog(); light = {k: v for k, v in bk.items() if k != "episodes"}
+                i = next((j for j, x in enumerate(cat) if x.get("id") == aid), -1)
+                if i >= 0: cat[i] = light
+                else: cat.append(light)
+                patch_fields("catalog/index", {"items": cat}, self.token)
+                patch_fields("meta/catalog", {"version": int(time.time() * 1000)}, self.token)
+                self.log(f"↶ REVERTIDO: {aid} restaurado ({n} episodios).")
+            except Exception as e: self.log("ERROR revertir: " + str(e))
         threading.Thread(target=work, daemon=True).start()
 
     def edit_episode(self, ev):
