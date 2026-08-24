@@ -4,6 +4,15 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v7
+
+- **Secuelas como temporadas:** en el campo de slug puedes poner VARIOS separados por
+  coma (uno por temporada, en orden) y se ensamblan como temporadas del mismo anime
+  (ej. `beyblade-burst, beyblade-burst-god, beyblade-burst-chouzetsu`). Cada uno se numera
+  por temporada y se corta solo al acabarse.
+- El build se DETIENE cuando la fuente se acaba y OMITE fuentes que no tienen el anime
+  (evita construir cientos de episodios vacíos en franquicias).
+
 ## Novedades v6
 
 - Campo **Temporada** junto a "Episodios a agregar": si lo indicas, el rango de episodios

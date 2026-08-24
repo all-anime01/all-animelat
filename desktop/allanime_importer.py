@@ -422,16 +422,25 @@ def build_episodes(data, opts, log, prog, on_ep):
     """FASE 2 (lenta): servidores por episodio, se van mostrando en vivo."""
     info = data["info"]; imdb = info["imdb"]; seasons = data["seasons"]; aid = data["aid"]
     title = data["real_title"]
-    # SLUG/URL manual de la fuente (para temporadas separadas como animes distintos).
-    # Si se da, se usa tal cual y se numera POR TEMPORADA (esos slugs empiezan en ep 1).
-    src_slug = (opts.get("src_slug") or "").strip()
-    if src_slug:
-        src_slug = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", src_slug).strip("/").split("/")[0].split("?")[0]
+    # SLUG/URL manual de la fuente. Acepta VARIOS separados por coma (uno por temporada,
+    # en orden) → así se ensamblan las SECUELAS como temporadas del mismo anime
+    # (ej. beyblade-burst, beyblade-burst-god, beyblade-burst-chouzetsu…). Cada slug se
+    # numera POR TEMPORADA (empiezan en ep 1).
+    def _clean(s): return re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", s.strip()).strip("/").split("/")[0].split("?")[0]
+    src_slugs = [_clean(x) for x in (opts.get("src_slug") or "").split(",") if x.strip()]
+    multi = len(src_slugs) > 1
+    if multi:
+        # cada slug = una temporada; cuenta amplia (se corta solo al acabarse la fuente)
+        seasons = [{"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "slug": s} for i, s in enumerate(src_slugs)]
+        per_season_num = True
+        log(f"SECUELAS como temporadas: {len(src_slugs)} → {', '.join(src_slugs)}")
+    src_slug = src_slugs[0] if (src_slugs and not multi) else ""
     jkslug = src_slug if src_slug else (jk_search(title) if opts["jk"] else None)
     avslug = src_slug if src_slug else (av1_search(title) if opts["av1"] else None)
-    per_season_num = bool(src_slug)   # slug manual → numeración por temporada (n), no absoluta
-    if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}" + (" [slug manual · nº por temporada]" if src_slug else ""))
-    if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
+    per_season_num = bool(src_slug or multi)   # slug(s) manual → numeración por temporada
+    if not multi:
+        if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}" + (" [slug manual · nº por temporada]" if src_slug else ""))
+        if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
     episodes = data["episodes"]
     manual = {}
     if opts["manual"]:
@@ -461,7 +470,12 @@ def build_episodes(data, opts, log, prog, on_ep):
     empty_streak = 0; stop = False
     for S in seasons:
         if stop: break
-        sname = f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1"
+        sname = S.get("name") or (f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1")
+        jkcur = S.get("slug") or jkslug          # slug de esta temporada (secuela) o el general
+        avcur = S.get("slug") or avslug
+        if multi:  # cada secuela es independiente: reinicia guardas
+            skip = {"e69": False, "av1": False, "jk": False}; miss = {"e69": 0, "av1": 0, "jk": 0}; empty_streak = 0
+            log(f"— {sname}: {jkcur}")
         if season_sel and str(S["season"]) != season_sel:
             absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
         for n in range(1, S["count"] + 1):
@@ -475,21 +489,21 @@ def build_episodes(data, opts, log, prog, on_ep):
                     if r: servers.append(r); ce = 1
                 except Exception as ex: log(f"  (embed69 err: {str(ex)[:40]})")
                 miss["e69"] = 0 if ce else miss["e69"] + 1
-                if miss["e69"] >= 6: skip["e69"] = True; log("  embed69 no tiene este anime → se omite")
+                if miss["e69"] >= 6: skip["e69"] = True
                 time.sleep(0.6)
-            if opts["av1"] and avslug and not skip["av1"]:
+            if opts["av1"] and avcur and not skip["av1"]:
                 try:
-                    a = av1_servers(avslug, src_num); servers += (a or []); ca = len(a or [])
+                    a = av1_servers(avcur, src_num); servers += (a or []); ca = len(a or [])
                 except Exception as ex: log(f"  (animeav1 err: {str(ex)[:40]})")
                 miss["av1"] = 0 if ca else miss["av1"] + 1
-                if miss["av1"] >= 6: skip["av1"] = True; log("  animeav1 no tiene este anime → se omite")
+                if miss["av1"] >= 6: skip["av1"] = True
                 time.sleep(0.3)
-            if opts["jk"] and jkslug and not skip["jk"]:
+            if opts["jk"] and jkcur and not skip["jk"]:
                 try:
-                    js = jk_servers(jkslug, src_num) or []; servers += js; cj = len(js)
+                    js = jk_servers(jkcur, src_num) or []; servers += js; cj = len(js)
                 except Exception as ex: log(f"  (jkanime err: {str(ex)[:40]})")
                 miss["jk"] = 0 if cj else miss["jk"] + 1
-                if miss["jk"] >= 6: skip["jk"] = True; log("  jkanime no tiene este anime → se omite")
+                if miss["jk"] >= 6: skip["jk"] = True
                 time.sleep(0.3)
             if opts["manual"] and absn in manual:
                 servers.append({"url": manual[absn], "name": nm(manual[absn]), "lang": "Latino", "desc": ""})
@@ -499,9 +513,10 @@ def build_episodes(data, opts, log, prog, on_ep):
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
                 empty_streak += 1
-                # sin rango/temporada fijos: si se acaban las fuentes, terminar (fin del anime)
-                if empty_streak >= 10 and not rng and not season_sel:
-                    log(f"  fin del anime (10 episodios seguidos sin servers) — construidos {len(episodes)}"); stop = True; break
+                if empty_streak >= (4 if multi else 10) and not rng and not season_sel:
+                    if multi:
+                        log(f"  fin de {sname} — se pasa a la siguiente"); break   # siguiente secuela/temporada
+                    log(f"  fin del anime (sin servers) — construidos {len(episodes)}"); stop = True; break
                 continue
             empty_streak = 0
             em = info["stills"].get(f"{S['season']}x{n}", {})
@@ -662,9 +677,9 @@ class App:
         self.rangef = ttk.Entry(rg, width=18); self.rangef.pack(side="left", padx=6)
         ttk.Button(rg, text="Detectar faltantes", command=self.detect_missing).pack(side="left")
         sg = tk.Frame(sc, bg=CARD); sg.pack(fill="x", padx=14, pady=(0, 8))
-        ttk.Label(sg, text="Slug/URL exacta de la fuente (opcional · para temporadas separadas):").pack(side="left")
-        self.srcslug = ttk.Entry(sg, width=34); self.srcslug.pack(side="left", padx=6)
-        ttk.Label(sg, text="↳ jkanime/animeav1; numera por temporada", style="Mut.TLabel").pack(side="left")
+        ttk.Label(sg, text="Slug(s) de la fuente (opcional · varios por coma = secuelas como temporadas):").pack(side="left")
+        self.srcslug = ttk.Entry(sg, width=44); self.srcslug.pack(side="left", padx=6)
+        ttk.Label(sg, text="↳ ej: beyblade-burst, beyblade-burst-god, beyblade-burst-chouzetsu", style="Mut.TLabel").pack(side="left")
         self.manbox = tk.Frame(sc, bg=CARD)
         ttk.Label(self.manbox, text="URLs manuales (N|URL por línea)", style="Mut.TLabel").pack(anchor="w", padx=14)
         self.mantext = tk.Text(self.manbox, height=3, bg="#101015", fg=TXT, insertbackground=TXT, relief="flat"); self.mantext.pack(fill="x", padx=14, pady=(0, 8))
