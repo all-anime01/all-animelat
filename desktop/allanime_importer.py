@@ -673,7 +673,24 @@ def save(data, token, replace, log):
     if existing:  # RESPALDA el estado actual antes de tocarlo (para poder revertir)
         if backup_doc(aid, existing): log("Respaldo guardado (puedes revertir este cambio).")
     if existing and existing.get("episodes"):
-        ex = existing["episodes"]; idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
+        ex = existing["episodes"]
+        # Al ACTUALIZAR (añadir episodios a un anime del catálogo): coloca cada episodio nuevo
+        # en la temporada EXISTENTE que le corresponde por número, para no crear temporadas
+        # duplicadas ("Temporada 22" junto a "Temporada 22: Elbaph"). Si el número es nuevo
+        # (más reciente), usa el nombre de la temporada del episodio de mayor número.
+        if data.get("_update_only") and ex:
+            by_num = {}
+            for e in ex:
+                try: by_num[int(e.get("number"))] = e.get("season")
+                except (TypeError, ValueError): pass
+            last_season = None
+            if by_num: last_season = by_num[max(by_num)]
+            for b in built:
+                try: bn = int(b.get("number"))
+                except (TypeError, ValueError): continue
+                if bn in by_num: b["season"] = by_num[bn]
+                elif last_season: b["season"] = last_season
+        idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
         added = replaced = 0
         for b in built:
             k = f"{b['season']}|{b['number']}"
@@ -695,12 +712,14 @@ def save(data, token, replace, log):
                "tags": [], "seasons": len(data["seasons"]), "rating": 4.4, "ratingCount": 300, "contentWarning": "",
                "description": info["description"], "img": info["poster"], "imgMobile": info["poster"],
                "heroImg": info["backdrop"], "fonImg": info["backdrop"], "logoImg": info["logo"], "trailerUrl": ""}
-    # aplica los datos/ediciones del anime siempre
-    doc["title"] = data["real_title"]; doc["img"] = info["poster"]; doc["imgMobile"] = info["poster"]
-    doc["heroImg"] = info["backdrop"]; doc["fonImg"] = info["backdrop"]; doc["logoImg"] = info["logo"]
-    doc["altTitles"] = data.get("altTitles", []); doc["audio"] = data.get("audio", "Sub")
-    if data.get("creator"): doc["creator"] = data["creator"]
-    if info.get("description") and not doc.get("description"): doc["description"] = info["description"]
+    # Al ACTUALIZAR un anime cargado del catálogo (añadir episodios) NO se cambia su
+    # info/imágenes/título — solo se guardan los episodios. Evita duplicar y respeta lo que hay.
+    if not (data.get("_update_only") and existing):
+        doc["title"] = data["real_title"]; doc["img"] = info["poster"]; doc["imgMobile"] = info["poster"]
+        doc["heroImg"] = info["backdrop"]; doc["fonImg"] = info["backdrop"]; doc["logoImg"] = info["logo"]
+        doc["altTitles"] = data.get("altTitles", []); doc["audio"] = data.get("audio", "Sub")
+        if data.get("creator"): doc["creator"] = data["creator"]
+        if info.get("description") and not doc.get("description"): doc["description"] = info["description"]
     doc["episodes"] = episodes; doc["episodesTotal"] = len(episodes); doc["episodesCount"] = len(episodes)
     st, t = patch_fields(f"animes/{aid}", doc, token)
     if st != 200: log(f"ERROR guardar: {st} {t[:150]}"); return
@@ -725,6 +744,7 @@ def _icon_path():
 class App:
     def __init__(self, root):
         self.root = root; self.token = None; self.data = None; self.cfg = load_cfg()
+        self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
         root.title("All-Anime · Importador"); root.geometry("980x740"); root.configure(bg=BG); root.minsize(880, 640)
         try:
             ip = _icon_path()
@@ -918,6 +938,8 @@ class App:
                 self.data = {"aid": aid, "info": info, "real_title": d.get("title", aid),
                              "seasons": [{"season": s, "count": 0} for s in seasons_names], "episodes": list(eps),
                              "audio": d.get("audio", "Sub"), "altTitles": d.get("altTitles", []), "creator": d.get("creator", ""), "tmdb": None}
+                # Recuerda el anime cargado → al construir se ACTUALIZA este (no se duplica).
+                self.loaded_aid = aid; self.loaded_title = d.get("title", ""); self._loaded_info = dict(info)
                 def show():
                     self.title.delete(0, "end"); self.title.insert(0, d.get("title", ""))
                     self.render_meta()
@@ -941,12 +963,22 @@ class App:
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
                 "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip()}
         kind = self.kind.get()
+        # ¿Actualizar el anime cargado del catálogo? (mismo título) → NO crear duplicado.
+        updating = bool(self.loaded_aid and t == self.loaded_title)
+        def _keep_loaded():
+            self.data["aid"] = self.loaded_aid
+            self.data["real_title"] = self.loaded_title
+            for k in ("poster", "backdrop", "logo"):
+                if self._loaded_info.get(k): self.data["info"][k] = self._loaded_info[k]
+            self.data["_update_only"] = True   # save() solo añade episodios, no cambia la info
+            self.log(f"Actualizando '{self.loaded_aid}' (no se crea duplicado).")
         def work():
             try:
                 is_movie = (kind == "Película") or (kind == "Auto" and guess_kind(t) == "movie")
                 if is_movie:
                     self.log("Detectado: PELÍCULA de anime")
                     self.data = build_movie(t, opts, self.log)
+                    if updating: _keep_loaded()
                     self.root.after(0, self.render_meta)
                     for e in self.data["episodes"]:
                         self.root.after(0, lambda ep=e: self.add_ep_row(ep))
@@ -954,6 +986,7 @@ class App:
                     return
                 # FASE 1: metadata → rellena la ficha AL INSTANTE
                 self.data = build_meta(t, opts, self.log)
+                if updating: _keep_loaded()
                 self.root.after(0, self.render_meta)
                 # FASE 2: episodios en vivo
                 build_episodes(self.data, opts, self.log, self.prog,

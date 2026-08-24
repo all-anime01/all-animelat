@@ -4,6 +4,16 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v8
+
+- **Cargar del catálogo + agregar episodio = ACTUALIZA (ya no duplica).** Antes, al cargar
+  un anime del catálogo y construir para añadir un episodio nuevo, la app creaba un anime
+  duplicado con el nombre real/japonés. Ahora, si el título coincide con el anime cargado,
+  guarda sobre **ese mismo** anime: solo añade los episodios y **no cambia** su título,
+  imágenes ni información.
+- El episodio nuevo entra en la **temporada existente** que le corresponde por número
+  (no crea una temporada duplicada tipo "Temporada 22" junto a "Temporada 22: Elbaph").
+
 ## Novedades v7
 
 - **Secuelas como temporadas:** en el campo de slug puedes poner VARIOS separados por
