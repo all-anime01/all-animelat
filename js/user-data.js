@@ -219,3 +219,82 @@ export async function setRating(animeId, stars) {
   });
   return getRatingState(animeId);
 }
+
+// ---- REACCIONES estilo Netflix: 👎 No es para mí / 👍 Me gusta / ❤️ Me encanta
+// users/{uid}/reactions/{animeId} = { value:'dislike'|'like'|'love', genres, at }
+// Alimenta las recomendaciones (like/love = semillas fuertes; dislike = excluir).
+export const REACTIONS = ["dislike", "like", "love"];
+function reactionRef(uid, id) { return doc(db, "users", uid, "reactions", id); }
+
+export async function getReaction(id) {
+  await userReady;
+  if (!currentUser) return null;
+  try { const s = await getDoc(reactionRef(currentUser.uid, id)); return s.exists() ? (s.data().value || null) : null; }
+  catch { return null; }
+}
+// value=null limpia la reacción. Devuelve el valor final ('dislike'|'like'|'love'|null).
+export async function setReaction(anime, value) {
+  if (!currentUser) throw new Error("login");
+  const ref = reactionRef(currentUser.uid, anime.id);
+  if (!value || !REACTIONS.includes(value)) { await deleteDoc(ref); return null; }
+  await setDoc(ref, {
+    value, id: anime.id, title: anime.title || "", img: anime.img || anime.imgMobile || "",
+    genres: anime.genres || [], at: serverTimestamp(),
+  });
+  return value;
+}
+export async function listReactions() {
+  await userReady;
+  if (!currentUser) return [];
+  try { const snap = await getDocs(collection(db, "users", currentUser.uid, "reactions")); return snap.docs.map((d) => d.data()); }
+  catch { return []; }
+}
+
+// ---- CAMPANITA / SEGUIR: avísame cuando suba nuevo contenido de este anime ---
+// users/{uid}/follows/{animeId} = { id, title, img, seenCount, at }
+// seenCount = nº de episodios que había cuando lo empezó a seguir / lo revisó.
+export function animeEpisodeCount(a) {
+  return Number(a?.episodesCount ?? a?.episodesTotal ?? (a?.episodes ? a.episodes.length : 0)) || 0;
+}
+function followRef(uid, id) { return doc(db, "users", uid, "follows", id); }
+
+export async function isFollowing(id) {
+  await userReady;
+  if (!currentUser) return false;
+  try { return (await getDoc(followRef(currentUser.uid, id))).exists(); } catch { return false; }
+}
+export async function toggleFollow(anime) {
+  if (!currentUser) throw new Error("login");
+  const ref = followRef(currentUser.uid, anime.id);
+  if ((await getDoc(ref)).exists()) { await deleteDoc(ref); return false; }
+  await setDoc(ref, {
+    id: anime.id, title: anime.title || "", img: anime.img || anime.imgMobile || "",
+    seenCount: animeEpisodeCount(anime), at: serverTimestamp(),
+  });
+  return true;
+}
+export async function listFollows() {
+  await userReady;
+  if (!currentUser) return [];
+  try { const snap = await getDocs(collection(db, "users", currentUser.uid, "follows")); return snap.docs.map((d) => d.data()); }
+  catch { return []; }
+}
+// Compara lo seguido con el catálogo actual → animes con episodios nuevos.
+export async function getFollowUpdates(animeData) {
+  const follows = await listFollows();
+  if (!follows.length || !Array.isArray(animeData)) return [];
+  const byId = {}; animeData.forEach((a) => { byId[a.id] = a; });
+  const out = [];
+  for (const f of follows) {
+    const a = byId[f.id]; if (!a) continue;
+    const cur = animeEpisodeCount(a), seen = Number(f.seenCount || 0);
+    if (cur > seen) out.push({ id: f.id, title: f.title || a.title, img: f.img || a.img || a.imgMobile || "", newCount: cur - seen, total: cur });
+  }
+  return out;
+}
+// Marca como "visto" (pone seenCount al día) uno o todos los seguidos.
+export async function markFollowSeen(animeId, count) {
+  await userReady;
+  if (!currentUser) return;
+  try { await setDoc(followRef(currentUser.uid, animeId), { seenCount: count }, { merge: true }); } catch {}
+}

@@ -3,7 +3,7 @@
 //  Favoritos, Historial y Notificaciones (reutilizables en páginas propias).
 // ============================================================================
 
-import { listFavAnimes, listFavEpisodes, listHistory } from "./user-data.js";
+import { listFavAnimes, listFavEpisodes, listHistory, listFollows, getFollowUpdates, markFollowSeen, animeEpisodeCount } from "./user-data.js";
 import { getAnimeData } from "./data-provider.js";
 
 export function injectAccountStyles() {
@@ -27,6 +27,11 @@ export function injectAccountStyles() {
   .av-nsec{font-size:15px;color:#f0f0f0;margin:22px 0 8px;display:flex;align-items:center;gap:9px;font-weight:700}
   .av-nsec:first-child{margin-top:2px}
   .av-nsec i{color:#ca3030}
+  .av-follow{align-items:center}
+  .av-follow-acts{margin-left:auto;display:flex;gap:8px;flex:none}
+  .av-mini-btn{background:#2a2a2a;border:1px solid #3a3a3a;color:#f0f0f0;font-size:12px;font-weight:700;
+    padding:6px 12px;border-radius:16px;cursor:pointer;text-decoration:none;white-space:nowrap}
+  .av-mini-btn:hover{background:#ca3030;border-color:#ca3030;color:#fff}
   .av-when{color:#777}
   /* Historial estilo Crunchyroll: tarjetas 16:9 con barra de progreso */
   .cr-hist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px 16px}
@@ -126,8 +131,29 @@ const relTime = (dt) => {
 export async function renderNotifications(host, countEl, opts = {}) {
   injectAccountStyles();
   try {
-    const [animes, favA, hist] = await Promise.all([getAnimeData(), listFavAnimes(), listHistory(200)]);
-    const followed = new Set([...favA.map((a) => a.id), ...hist.map((h) => h.animeId)]);
+    const [animes, favA, hist, follows] = await Promise.all([getAnimeData(), listFavAnimes(), listHistory(200), listFollows()]);
+    const followed = new Set([...favA.map((a) => a.id), ...hist.map((h) => h.animeId), ...follows.map((f) => f.id)]);
+
+    // 🔔 CAMPANITA: animes que el usuario sigue y que tienen episodios NUEVOS
+    // (comparado con lo que había al empezar a seguirlos). Con botón «marcar visto».
+    const byId0 = {}; animes.forEach((a) => (byId0[a.id] = a));
+    let foll023 = [];
+    try { foll023 = await getFollowUpdates(animes); } catch {}
+    const bellSection = () => {
+      if (!foll023.length) return "";
+      const rows = foll023.map((u) => `
+        <div class="av-ep av-follow" data-id="${u.id}" data-total="${u.total}">
+          <img src="${u.img}" loading="lazy" alt="">
+          <div><b>${u.title}</b> <span class="av-new">${u.newCount} NUEVO${u.newCount === 1 ? "" : "S"}</span>
+            <br><small>Tienes episodios nuevos desde que lo sigues · ahora ${u.total} en total</small>
+          </div>
+          <span class="av-follow-acts">
+            <a class="av-mini-btn" href="anime-details.html?id=${u.id}">Ver</a>
+            <button class="av-mini-btn av-seen" title="Marcar como visto">Visto</button>
+          </span>
+        </div>`).join("");
+      return `<h3 class="av-nsec"><i class="fas fa-bell"></i> Sigues estos animes · ¡episodios nuevos!</h3>` + rows;
+    };
     // Géneros preferidos (para personalizar las novedades).
     const likedGenres = {};
     [...favA, ...hist].forEach((x) => {
@@ -154,7 +180,7 @@ export async function renderNotifications(host, countEl, opts = {}) {
 
     const mine = recent.filter((n) => n.followed);
     const news = recent.filter((n) => !n.followed).sort((x, y) => (y.score - x.score) || (y.dt - x.dt)); // recomendado por tus gustos
-    const total = recent.length;
+    const total = recent.length + foll023.length;
     if (countEl) countEl.textContent = total || "";
 
     const item = (n) => `
@@ -169,9 +195,22 @@ export async function renderNotifications(host, countEl, opts = {}) {
       host.innerHTML = '<p class="av-empty">No hay estrenos ni episodios nuevos por ahora. ¡Vuelve pronto!</p>';
       return;
     }
-    let html = "";
-    if (mine.length) html += `<h3 class="av-nsec"><i class="fas fa-bell"></i> Para ti · episodios nuevos de lo que sigues</h3>` + mine.slice(0, 25).map(item).join("");
+    let html = bellSection();
+    if (mine.length) html += `<h3 class="av-nsec"><i class="fas fa-star"></i> Para ti · episodios recientes de lo que ves</h3>` + mine.slice(0, 25).map(item).join("");
     if (news.length) html += `<h3 class="av-nsec"><i class="fas fa-fire"></i> Novedades y estrenos en All-Anime</h3>` + news.slice(0, 25).map(item).join("");
     host.innerHTML = html;
+
+    // Botón «Visto»: pone al día el contador de ese anime (deja de marcarlo nuevo).
+    host.querySelectorAll(".av-follow .av-seen").forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const row = btn.closest(".av-follow");
+        const id = row.dataset.id, count = Number(row.dataset.total || 0);
+        btn.textContent = "…";
+        try { await markFollowSeen(id, count); } catch {}
+        row.style.transition = "opacity .25s ease"; row.style.opacity = "0";
+        setTimeout(() => { row.remove(); if (!host.querySelector(".av-follow")) { const h = host.querySelector(".av-nsec"); if (h && /episodios nuevos/i.test(h.textContent)) h.remove(); } }, 260);
+      });
+    });
   } catch (e) { console.error(e); host.innerHTML = '<p class="av-empty">No se pudieron cargar las notificaciones.</p>'; }
 }

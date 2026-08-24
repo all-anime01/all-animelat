@@ -1226,6 +1226,21 @@ body.red-theme header {
     padding: 1.2rem 2.2rem;
 }
 
+/* Campanita "Avísame" (seguir para recibir aviso de nuevos episodios) */
+.action-btn.notify-btn {
+    background-color: rgba(128, 128, 128, 0.4);
+    color: var(--light-text);
+}
+
+.action-btn.notify-btn:hover {
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+.action-btn.notify-btn.is-following {
+    background-color: var(--secondary-color);
+    color: var(--dark-text);
+}
+
 .action-btn.share-btn {
     background-color: rgba(128, 128, 128, 0.4);
     color: var(--light-text);

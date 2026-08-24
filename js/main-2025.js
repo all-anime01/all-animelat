@@ -3,6 +3,7 @@ import { initPlayerEngagement, clearAutoplay, getWatchedSet, markEpisodeWatched,
 import { episodeId as makeEpId } from "./catalog-utils.js";
 import * as UD from "./user-data.js";
 import { mountRatingWidget } from "./rating-widget.js";
+import { mountReactions } from "./reactions-widget.js";
 import { recommendForUser, rememberSearch } from "./recommend.js";
 import { setupHero } from "./hero.js";
 import { observeAuth, logoutUser } from "./auth.js";
@@ -14,7 +15,12 @@ import { initCardHover } from "./card-hover.js";
 import "./tv-nav.js";  // navegación con control remoto (Fire TV / Android TV)
 import { initMetrics, identify as metricsIdentify, track as metricsTrack, captureError } from "./metrics.js";
 import { applyFlags, recordDevice, recordSearch, recordError } from "./insights.js";
-import { initNotifications } from "./notifications.js";
+import { initNotifications, showNotification } from "./notifications.js";
+
+// Toast rápido reutilizable (usa el sistema de notificaciones existente).
+function showToast(message, style = "info", extra = {}) {
+  try { return showNotification({ id: "t" + Date.now(), message, style, format: "toast", duration: 6, ...extra }); } catch {}
+}
 
 // Coincidencia de búsqueda por el título O cualquier título alternativo
 // (nombre japonés/romaji + internacional + sinónimos). Ej: "Attack on Titan"
@@ -1196,16 +1202,23 @@ $(document).ready(function () {
                 <div class="anime-genre-pills">${(anime.genres || []).map((g) => `<a href="explorar.html">${g}</a>`).join("")}</div>
                 <p class="anime-description">${anime.description}</p>
                 <div id="anime-rating"></div>
+                <div id="anime-reactions"></div>
                 <div class="anime-actions">
                     <button class="action-btn play" id="hero-play-btn"><i class="fas fa-play"></i> <span id="hero-play-label">Reproducir</span></button>
                     <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> Más info</button>
                     ${crossLinkBtn}
                     <button class="action-btn mylist-btn favorite-btn" id="favorite-anime-btn" title="Añadir a Mi lista"><i class="far fa-bookmark"></i> <span class="mylist-label">Mi lista</span></button>
+                    <button class="action-btn notify-btn" id="notify-anime-btn" title="Avísame cuando haya nuevos episodios"><i class="far fa-bell"></i> <span class="notify-label">Avísame</span></button>
                     <button class="action-btn share-btn" id="share-anime-btn" title="Compartir"><i class="fas fa-share-nodes"></i> Compartir</button>
                 </div>
             </div>`;
     container.html(heroContent);
     mountRatingWidget(document.getElementById("anime-rating"), anime);
+    // Reacciones (No es para mí / Me gusta / Me encanta) → alimentan las
+    // recomendaciones (se recalculan en el inicio; aquí solo se guarda la reacción).
+    mountReactions(document.getElementById("anime-reactions"), anime);
+    // Campanita: seguir el anime para recibir aviso de nuevos episodios.
+    setupNotifyButton(anime);
 
     // --- Contenido similar (relacionados por géneros compartidos) ---
     renderRelated(anime);
@@ -1559,6 +1572,30 @@ $(document).ready(function () {
         paintAnimeFav(on);
       }
     });
+
+    // --- CAMPANITA: seguir el anime para recibir aviso de nuevos episodios ---
+    function setupNotifyButton(a) {
+      const btn = document.getElementById("notify-anime-btn");
+      if (!btn) return;
+      const paint = (on) => {
+        btn.classList.toggle("is-following", on);
+        btn.title = on ? "Dejar de seguir (no más avisos)" : "Avísame cuando haya nuevos episodios";
+        btn.querySelector("i").className = on ? "fas fa-bell" : "far fa-bell";
+        const lbl = btn.querySelector(".notify-label"); if (lbl) lbl.textContent = on ? "Siguiendo" : "Avísame";
+      };
+      UD.userReady.then(async () => {
+        if (!UD.isLoggedIn()) { paint(false); return; }
+        try { paint(await UD.isFollowing(a.id)); } catch {}
+      });
+      btn.addEventListener("click", async () => {
+        if (!UD.isLoggedIn()) { location.href = `cuenta.html?redirect=${encodeURIComponent(location.pathname + location.search)}`; return; }
+        try {
+          const on = await UD.toggleFollow(a);
+          paint(on);
+          if (on) showToast(`🔔 Te avisaremos cuando haya nuevos episodios de ${a.title}.`, "success");
+        } catch (err) { console.error(err); }
+      });
+    }
 
     const seasonToOpen = urlParams.get("season");
     const episodeToOpen = urlParams.get("episode");
@@ -1938,14 +1975,56 @@ $(document).ready(function () {
       renderCarousel("#public-favs-row", "#public-favs-section", pop.map((p) => byId.get(p.id)).filter(Boolean).slice(0, 18));
     }
 
-    // Recomendado para ti (personalizado, requiere sesión)
+    // Recomendado para ti (personalizado, requiere sesión).
+    // Semillas: favoritos + historial + "Me gusta"/"Me encanta" (love pesa doble).
+    // Excluidos: lo ya visto/guardado y lo marcado "No es para mí".
     if (UD.isLoggedIn()) {
-      const [favA, hist] = await Promise.all([UD.listFavAnimes(), UD.listHistory(100)]);
-      const seedIds = new Set([...favA.map((a) => a.id), ...hist.map((h) => h.animeId)]);
+      const [favA, hist, reactions] = await Promise.all([UD.listFavAnimes(), UD.listHistory(100), UD.listReactions()]);
+      const likes = reactions.filter((r) => r.value === "like" || r.value === "love");
+      const dislikes = reactions.filter((r) => r.value === "dislike").map((r) => r.id);
+      const seedIds = new Set([...favA.map((a) => a.id), ...hist.map((h) => h.animeId), ...likes.map((r) => r.id)]);
       const seeds = [...seedIds].map((id) => byId.get(id)).filter(Boolean);
-      const recs = recommendForUser(animeData, seeds, [...seedIds], 18);
+      reactions.filter((r) => r.value === "love").forEach((r) => { const a = byId.get(r.id); if (a) seeds.push(a); });
+      const recs = recommendForUser(animeData, seeds, [...new Set([...seedIds, ...dislikes])], 18);
       renderCarousel("#for-you-row", "#for-you-section", recs);
     }
+  }
+
+  // --- CAMPANITA GLOBAL: avisa si algún anime seguido tiene episodios nuevos ---
+  function paintNotifBadge(n) {
+    if (!document.getElementById("notif-badge-style")) {
+      const st = document.createElement("style"); st.id = "notif-badge-style";
+      st.textContent = `.notif-badge{display:inline-block;min-width:17px;height:17px;line-height:17px;padding:0 4px;
+        margin-left:6px;border-radius:9px;background:#ff3b3b;color:#fff;font-size:11px;font-weight:800;text-align:center;vertical-align:middle}`;
+      document.head.appendChild(st);
+    }
+    document.querySelectorAll('a[href="notificaciones.html"]').forEach((a) => {
+      let b = a.querySelector(".notif-badge");
+      if (n > 0) { if (!b) { b = document.createElement("span"); b.className = "notif-badge"; a.appendChild(b); } b.textContent = n > 9 ? "9+" : String(n); }
+      else if (b) b.remove();
+    });
+  }
+  async function checkFollowUpdates() {
+    await UD.userReady;
+    if (!UD.isLoggedIn()) return;
+    let ups = [];
+    try { ups = await UD.getFollowUpdates(animeData); } catch { return; }
+    paintNotifBadge(ups.length);
+    if (!ups.length) return;
+    try {
+      if (sessionStorage.getItem("followToastSeen")) return;   // solo un aviso por sesión
+      sessionStorage.setItem("followToastSeen", "1");
+      const total = ups.reduce((s, u) => s + u.newCount, 0);
+      if (ups.length === 1) {
+        const u = ups[0];
+        showNotification({ id: "fu" + Date.now(), format: "card", style: "new", title: "Nuevo episodio",
+          animeTitle: u.title, poster: u.img, message: `${u.newCount} episodio(s) nuevo(s) disponible(s).`,
+          ctaText: "Ver ahora", ctaUrl: `anime-details.html?id=${u.id}`, duration: 10 });
+      } else {
+        showToast(`🔔 ${ups.length} animes que sigues tienen episodios nuevos (${total} en total).`, "new",
+          { duration: 10, title: "Novedades", ctaText: "Ver", ctaUrl: "notificaciones.html" });
+      }
+    } catch {}
   }
 
   // --- INICIALIZACIÓN DE PÁGINAS ---
@@ -1962,7 +2041,7 @@ $(document).ready(function () {
   populateHistoryPage();
   populateDiscovery();
   // Al confirmarse la sesión, recarga "seguir viendo" y recomendaciones.
-  UD.userReady.then(() => { populateContinueWatching(); populateDiscovery(); });
+  UD.userReady.then(() => { populateContinueWatching(); populateDiscovery(); checkFollowUpdates(); });
 
   // Inicio: se pintó con tarjetas LIGERAS (carga instantánea, sin los ~MB de
   // episodios). Rehidrata en segundo plano, con la colección completa, las
