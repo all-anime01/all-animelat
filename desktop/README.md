@@ -4,6 +4,22 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v15
+
+- **Detecta y agrega TODAS las temporadas automáticamente** — aunque en jkanime/animeav1
+  estén separadas por secuelas (ej. **Ishura** → `ishura` + `ishura-2nd-season` = 2 temporadas;
+  Kingdom → sus 6). Ya no hay que poner los slugs a mano. Lleva el slug de **jkanime Y de
+  animeav1 por separado** (a veces difieren: `kingdom-2` vs `kingdom-2nd-season`).
+  - *Franquicias con nombres raros* (Beyblade: -god, -chouzetsu…) siguen con el campo de
+    slugs manual separados por coma.
+- **Completar un anime incompleto:** cárgalo del catálogo → **➕ Añadir episodios nuevos**;
+  ahora trae también las **temporadas que falten** (compara con lo que ya tienes y solo suma
+  lo que no está, sin tocar el resto).
+- **Conteo al día:** cada temporada se corta sola cuando la fuente se acaba, así que capta
+  los episodios recién salidos (no depende del conteo de TMDB).
+- **Prioridad de servidores actualizada:** Filemoon (byse) → StreamWish → Vidara → PelisPlus
+  /embed69 → HLS (animeav1) → Desu (jkanime) → VidHide.
+
 ## Novedades v14
 
 - **Nombre:** la app ahora se llama **All-Anime Scrapper**.

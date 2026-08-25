@@ -346,7 +346,7 @@ def tmdb_movie(title, key):
 NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "swiftplay": "Streamwish",
         "hglink": "Streamwish", "voe": "VOE", "vidhide": "VidHide", "vidhidevip": "VidHide",
         "filemoon": "Filemoon", "filemooon": "Filemoon", "byse": "Filemoon", "bysc": "Filemoon", "moonplayer": "Filemoon",
-        "streamtape": "Streamtape", "mp4upload": "Mp4upload",
+        "vidara": "Vidara", "streamtape": "Streamtape", "mp4upload": "Mp4upload",
         "zilla": "AnimeAV1 HD", "mediafire": "Mediafire", "mixdrop": "Mixdrop", "mdbekj": "Mixdrop", "mdy48": "Mixdrop",
         "d-s.io": "Doodstream", "dood": "Doodstream", "desu": "Desu", "desuka": "Desu", "okru": "Okru", "ok.ru": "Okru",
         "uqload": "Uqload", "yourupload": "YourUpload"}
@@ -355,8 +355,10 @@ def nm(u):
     for k, v in NAME.items():
         if k in s: return v
     return "Servidor"
-# Orden de calidad por defecto (mejores reproductores primero) si no eliges prioridad.
-QUALITY = ["mega", "streamwish", "voe", "vidhide", "filemoon", "desu", "magi", "streamtape", "mp4upload", "mixdrop", "doodstream", "mediafire"]
+# Prioridad de servidores (los mejores primero) si no eliges una manual. Orden pedido:
+# Filemoon(byse) → StreamWish → Vidara → PelisPlus/embed69 → HLS(animeav1) → Desu(jkanime) → VidHide.
+QUALITY = ["filemoon", "streamwish", "vidara", "pelisplus", "embed69", "animeav1", "hls", "desu",
+           "vidhide", "voe", "mega", "magi", "streamtape", "mp4upload", "mixdrop", "doodstream", "mediafire"]
 def prioritize(servers, prefer=None, only=False, cap=3):
     """Máx `cap` por idioma; LATINO primero; ordenados por tu preferencia o por calidad."""
     prefer = [p.strip().lower() for p in (prefer or []) if p.strip()]
@@ -423,6 +425,49 @@ def jk_search(title):
              if m not in ("buscar", "letra", "genero", "top", "horario", "directorio")]
         if c: return best(c, title)
     return None
+
+# --- Descubrimiento AUTOMÁTICO de temporadas/secuelas -----------------------
+# jkanime/animeav1 separan las temporadas en slugs distintos (ishura, ishura-2nd-season…).
+# Estos helpers buscan TODAS las secuelas de un anime y las devuelven ORDENADAS por
+# temporada, para agregarlas todas sin pedirle los slugs al usuario.
+_SEASONISH = re.compile(r"(?:^|-)(?:2nd|3rd|4th|5th|6th|final|part-?\d|parte-?\d|cour-?\d|season-?\d|temporada-?\d|[2-9]|ii|iii|iv|v|vi)(?:-season|-cour)?$", re.I)
+_NOT_SEQUEL = re.compile(r"(movie|pelicula|ova|oad|especial|special|recap|resumen|-live|latino$)", re.I)
+_ROMAN = {"ii": 2, "iii": 3, "iv": 4, "v": 5, "vi": 6, "vii": 7}
+def _season_rank(slug, base):
+    """Orden de temporada de un slug secuela respecto al base (base=1)."""
+    if slug == base: return 1
+    suf = slug[len(base):].lstrip("-").lower()
+    if "final" in suf: return 89
+    m = re.search(r"(\d+)", suf)
+    if m: return int(m.group(1))
+    for r, v in _ROMAN.items():
+        if re.search(r"\b" + r + r"\b", suf): return v
+    return 50
+def _collect_seasons(base, slugs):
+    """De una lista de slugs candidatos deja los que son SECUELAS del base, ordenados."""
+    if not base: return []
+    found = {base}
+    for s in slugs:
+        if s == base: continue
+        if s.startswith(base + "-") and not _NOT_SEQUEL.search(s) and _SEASONISH.search(s[len(base):]):
+            found.add(s)
+    return sorted(found, key=lambda s: _season_rank(s, base))
+def jk_seasons(title, base):
+    if not base: return []
+    slugs = set()
+    for q in search_variants(title):
+        h = get_text(f"https://jkanime.net/buscar/{urllib.parse.quote(q)}/")
+        for m in re.findall(r'href="https://jkanime\.net/([a-z0-9-]+)/"', h):
+            slugs.add(m)
+    return _collect_seasons(base, slugs)
+def av1_seasons(title, base):
+    if not base: return []
+    slugs = set()
+    for q in search_variants(title):
+        for u in (f"https://animeav1.com/catalogo?search={urllib.parse.quote(q)}", f"https://animeav1.com/catalogo?q={urllib.parse.quote(q)}"):
+            for m in re.findall(r'/media/([a-z0-9-]+)', get_text(u)):
+                slugs.add(m)
+    return _collect_seasons(base, slugs)
 def jk_meta(slug):
     """Poster + sinopsis desde jkanime (fallback cuando TMDB no tiene el anime)."""
     if not slug: return {}
@@ -578,18 +623,39 @@ def build_episodes(data, opts, log, prog, on_ep):
     def _clean(s): return re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", s.strip()).strip("/").split("/")[0].split("?")[0]
     src_slugs = [_clean(x) for x in (opts.get("src_slug") or "").split(",") if x.strip()]
     multi = len(src_slugs) > 1
+    jkslug = avslug = None
     if multi:
-        # cada slug = una temporada; cuenta amplia (se corta solo al acabarse la fuente)
-        seasons = [{"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "slug": s} for i, s in enumerate(src_slugs)]
+        # MANUAL: cada slug = una temporada (para franquicias con nombres arbitrarios,
+        # ej. beyblade-burst, beyblade-burst-god…). Se usa el mismo slug para jk y av.
+        seasons = [{"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "jk": s, "av": s, "e69s": i + 1} for i, s in enumerate(src_slugs)]
         per_season_num = True
-        log(f"SECUELAS como temporadas: {len(src_slugs)} → {', '.join(src_slugs)}")
-    src_slug = src_slugs[0] if (src_slugs and not multi) else ""
-    jkslug = src_slug if src_slug else (jk_search(title) if opts["jk"] else None)
-    avslug = src_slug if src_slug else (av1_search(title) if opts["av1"] else None)
-    per_season_num = bool(src_slug or multi)   # slug(s) manual → numeración por temporada
-    if not multi:
-        if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}" + (" [slug manual · nº por temporada]" if src_slug else ""))
-        if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
+        log(f"SECUELAS como temporadas (manual): {len(src_slugs)} → {', '.join(src_slugs)}")
+    else:
+        src_slug = src_slugs[0] if src_slugs else ""
+        base_jk = src_slug or (jk_search(title) if opts["jk"] else "")
+        base_av = src_slug or (av1_search(title) if opts["av1"] else "")
+        # AUTO: descubre TODAS las secuelas (jkanime/av1 separan por temporada). Así se
+        # agregan completas sin pedir slugs (ej. Ishura → ishura + ishura-2nd-season).
+        jk_list = (jk_seasons(title, base_jk) if (opts["jk"] and base_jk and not src_slug) else ([base_jk] if base_jk else []))
+        av_list = (av1_seasons(title, base_av) if (opts["av1"] and base_av and not src_slug) else ([base_av] if base_av else []))
+        nsrc = max(len(jk_list), len(av_list))
+        tmdb_seasons = list(seasons)   # estructura de TMDB (nº eps por temporada)
+        if nsrc > 1:
+            multi = True; per_season_num = True
+            seasons = []
+            for i in range(nsrc):
+                jk = jk_list[i] if i < len(jk_list) else None
+                av = av_list[i] if i < len(av_list) else None
+                # cuenta ABIERTA (se corta sola al acabarse la fuente) → no cortar por
+                # subconteo de TMDB y captar los episodios recién salidos (al día).
+                e69s = tmdb_seasons[i]["season"] if i < len(tmdb_seasons) else (i + 1)
+                seasons.append({"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "jk": jk, "av": av, "e69s": e69s})
+            log(f"AUTO temporadas: {nsrc} (jk={jk_list} · av={av_list})")
+        else:
+            jkslug = base_jk or None; avslug = base_av or None
+            per_season_num = bool(src_slug)
+            if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}" + (" [slug manual · nº por temporada]" if src_slug else ""))
+            if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
     episodes = data["episodes"]
     manual = {}
     if opts["manual"]:
@@ -623,11 +689,11 @@ def build_episodes(data, opts, log, prog, on_ep):
     for S in seasons:
         if stop: break
         sname = S.get("name") or (f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1")
-        jkcur = S.get("slug") or jkslug          # slug de esta temporada (secuela) o el general
-        avcur = S.get("slug") or avslug
+        jkcur = S.get("jk") or S.get("slug") or jkslug   # slug de jkanime de ESTA temporada
+        avcur = S.get("av") or S.get("slug") or avslug   # slug de animeav1 de ESTA temporada
         if multi:  # cada secuela es independiente: reinicia guardas
             skip = {"e69": False, "av1": False, "jk": False}; miss = {"e69": 0, "av1": 0, "jk": 0}; empty_streak = 0
-            log(f"— {sname}: {jkcur}")
+            log(f"— {sname}: jk={jkcur or '—'} av={avcur or '—'}")
         if season_sel and str(S["season"]) != season_sel:
             absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
         for n in range(1, S["count"] + 1):
@@ -637,7 +703,7 @@ def build_episodes(data, opts, log, prog, on_ep):
             ce = ca = cj = 0
             if opts["e69"] and imdb and not skip["e69"]:
                 try:
-                    r = embed69_lat(imdb, S["season"], n)
+                    r = embed69_lat(imdb, S.get("e69s", S["season"]), n)
                     if r: servers.append(r); ce = 1
                 except Exception as ex: log(f"  (embed69 err: {str(ex)[:40]})")
                 miss["e69"] = 0 if ce else miss["e69"] + 1
@@ -903,7 +969,8 @@ class App:
         ttk.Radiobutton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True).grid(row=0, column=6)
         pr = tk.Frame(sc, bg=CARD); pr.pack(fill="x", padx=14, pady=(0, 10))
         ttk.Label(pr, text="Prioridad de servidores:").pack(side="left")
-        self.prefer = ttk.Entry(pr, width=40); self.prefer.pack(side="left", padx=6); self.prefer.insert(0, "Mega, Streamwish, VOE")
+        self.prefer = ttk.Entry(pr, width=48); self.prefer.pack(side="left", padx=6)
+        self.prefer.insert(0, "Filemoon, Streamwish, Vidara, PelisPlus, HLS, Desu, VidHide")
         self.only = tk.BooleanVar(value=False); ttk.Checkbutton(pr, text="solo estos", variable=self.only).pack(side="left")
         rg = tk.Frame(sc, bg=CARD); rg.pack(fill="x", padx=14, pady=(0, 8))
         ttk.Label(rg, text="Temporada:", style="Mut.TLabel").pack(side="left")
