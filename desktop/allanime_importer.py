@@ -25,31 +25,55 @@ Uso:
          pyinstaller --onefile --noconsole --name AllAnimeImporter allanime_importer.py
 """
 
-import json, re, base64, os, urllib.request, urllib.parse, urllib.error, threading, time, ssl, unicodedata, subprocess
+import json, re, base64, os, urllib.request, urllib.parse, urllib.error, threading, time, ssl, unicodedata, subprocess, tempfile
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 
+_NOWIN = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+
 # ================================================================== Yoru (voz IA)
 class Yoru:
-    """Voz del asistente 'Yoru' — usa la voz del sistema (Windows SAPI vía PowerShell),
-    sin librerías extra. Habla en un hilo aparte para no bloquear la interfaz."""
-    def __init__(self): self.enabled = False
+    """Voz del asistente 'Yoru'. Habla SIEMPRE en ESPAÑOL: usa el TTS de Google (es) y
+    reproduce el audio; si no hay internet, cae a la voz del sistema (Windows SAPI).
+    Se ejecuta en un hilo aparte para no bloquear la interfaz."""
+    def __init__(self): self.enabled = False; self._lock = threading.Lock()
     def say(self, text):
         if not self.enabled or not text: return
-        def run():
-            try:
-                ps = ("$OutputEncoding=[Console]::InputEncoding=[Text.UTF8Encoding]::new();"
-                      "Add-Type -AssemblyName System.Speech;"
-                      "$s=New-Object System.Speech.Synthesis.SpeechSynthesizer;"
-                      "foreach($v in $s.GetInstalledVoices()){if($v.VoiceInfo.Culture.Name -like 'es*'){"
-                      "$s.SelectVoice($v.VoiceInfo.Name);break}};$s.Rate=1;"
-                      "$t=[Console]::In.ReadToEnd();$s.Speak($t)")
-                p = subprocess.Popen(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
-                                     stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                                     creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-                p.communicate(text.encode("utf-8"))
-            except Exception: pass
-        threading.Thread(target=run, daemon=True).start()
+        threading.Thread(target=self._run, args=(text,), daemon=True).start()
+    def _run(self, text):
+        with self._lock:                       # una frase a la vez (no se pisan)
+            if self._google_es(text): return
+            self._sapi(text)                   # respaldo offline
+    def _google_es(self, text):
+        try:
+            ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+            url = "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=" + urllib.parse.quote(text[:200])
+            req = urllib.request.Request(url, headers={"User-Agent": ua})
+            ctx = ssl.create_default_context(); ctx.check_hostname = False; ctx.verify_mode = ssl.CERT_NONE
+            data = urllib.request.urlopen(req, timeout=12, context=ctx).read()
+            if not data or data[:1] == b"<": return False
+            fp = os.path.join(tempfile.gettempdir(), "yoru_tts.mp3")
+            with open(fp, "wb") as f: f.write(data)
+            ps = ("Add-Type -AssemblyName presentationCore;"
+                  "$p=New-Object System.Windows.Media.MediaPlayer;"
+                  f"$p.Open([uri]'{fp}');$p.Play();Start-Sleep -Milliseconds 400;"
+                  "$n=0;while(-not $p.NaturalDuration.HasTimeSpan -and $n -lt 20){Start-Sleep -Milliseconds 100;$n++};"
+                  "if($p.NaturalDuration.HasTimeSpan){Start-Sleep -Seconds ([math]::Ceiling($p.NaturalDuration.TimeSpan.TotalSeconds)+1)}else{Start-Sleep -Seconds 4}")
+            subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=_NOWIN, timeout=40)
+            return True
+        except Exception:
+            return False
+    def _sapi(self, text):
+        try:
+            ps = ("Add-Type -AssemblyName System.Speech;"
+                  "$s=New-Object System.Speech.Synthesis.SpeechSynthesizer;"
+                  "foreach($v in $s.GetInstalledVoices()){if($v.VoiceInfo.Culture.Name -like 'es*'){$s.SelectVoice($v.VoiceInfo.Name);break}};"
+                  "$t=[Console]::In.ReadToEnd();$s.Speak($t)")
+            p = subprocess.Popen(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+                                 stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=_NOWIN)
+            p.communicate(text.encode("utf-8"), timeout=40)
+        except Exception: pass
 
 API_KEY = "AIzaSyDJMJcwFvQCAfp9mXcCvxCQpX-6wy-a4FA"
 PROJECT = "all-anime-eae5b"
@@ -166,6 +190,15 @@ def slugify(s):
     s = unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode()
     return re.sub(r"^-|-$", "", re.sub(r"[^a-z0-9]+", "-", s.lower()))
 MESES = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+def fmt_duration(mins):
+    """Duración en horas y minutos como en el sitio: 95 → '1h 35 min', 24 → '24 min'."""
+    try: mins = int(round(float(mins)))
+    except (TypeError, ValueError): return ""
+    if mins <= 0: return ""
+    h, mm = divmod(mins, 60)
+    if h and mm: return f"{h}h {mm} min"
+    if h: return f"{h}h"
+    return f"{mm} min"
 def es_ep_title(name, n):
     """Prioriza el título en español. Si TMDB no tiene traducción y devuelve el genérico en
     inglés ('Episode 5') o viene vacío, usa 'Episodio N' en español."""
@@ -693,7 +726,7 @@ def build_movie(title, opts, log):
             for x in (jk_servers(jks, 1) or []): servers.append(x)
         except Exception: pass
     servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
-    dur = f"{m['runtime']} min" if m.get("runtime") else "1h 30 min"
+    dur = fmt_duration(m.get("runtime")) or "1h 30 min"
     ep = {"number": 1, "season": "Película", "title": real, "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
           "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote('Película')}&e=1",
           "img": m["backdrop"] or m["poster"], "description": m["description"], "releaseDate": "", "duration": dur, "servers": servers}
@@ -884,7 +917,7 @@ def build_episodes(data, opts, log, prog, on_ep):
                   "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={n}",
                   "img": em.get("still") or info["backdrop"] or info["poster"],
                   "description": em.get("overview") or "", "releaseDate": em.get("air_date") or "",
-                  "duration": f"{rt} min", "servers": servers}
+                  "duration": fmt_duration(rt) or f"{rt} min", "servers": servers}
             episodes.append(ep)
             if on_ep: on_ep(ep)
     langs = list(dict.fromkeys(e["language"] for e in episodes))
@@ -1047,12 +1080,14 @@ class App:
         s.configure("Vertical.TScrollbar", background=CARD2, troughcolor=BG, bordercolor=BG, arrowcolor=MUT)
 
         # ---- Header (barra superior con marca + estado + cerrar sesión) ----
-        hd = tk.Frame(root, bg=HEAD, height=58); hd.pack(fill="x"); hd.pack_propagate(False)
-        badge = tk.Label(hd, text=" ▶ ", fg="#ffffff", bg=RED, font=("Segoe UI", 12, "bold")); badge.pack(side="left", padx=(16, 10), pady=13)
-        tk.Label(hd, text="All-Anime", fg=TXT, bg=HEAD, font=("Segoe UI Semibold", 15)).pack(side="left")
-        tk.Label(hd, text="Scrapper", fg=MUT, bg=HEAD, font=("Segoe UI", 12)).pack(side="left", padx=(6, 0))
+        hd = tk.Frame(root, bg=HEAD, height=62); hd.pack(fill="x"); hd.pack_propagate(False)
+        badge = tk.Label(hd, text=" ▶ ", fg="#ffffff", bg=RED, font=("Segoe UI", 13, "bold")); badge.pack(side="left", padx=(18, 11), pady=14)
+        tk.Label(hd, text="All-Anime", fg=TXT, bg=HEAD, font=("Segoe UI Semibold", 16)).pack(side="left")
+        tk.Label(hd, text="Scrapper", fg=RED, bg=HEAD, font=("Segoe UI Semibold", 16)).pack(side="left", padx=(6, 0))
+        tk.Label(hd, text="con Yoru IA", fg=MUT, bg=HEAD, font=("Segoe UI", 10)).pack(side="left", padx=(10, 0), pady=(6, 0))
         self.logout_btn = ttk.Button(hd, text="Cerrar sesión", style="Ghost.TButton", command=self.logout)
         self.status = tk.Label(hd, text="●  Sin sesión", fg="#ffcf7a", bg=HEAD, font=("Segoe UI Semibold", 10)); self.status.pack(side="right", padx=16)
+        tk.Frame(root, bg=RED, height=2).pack(fill="x")   # línea de acento bajo el header
 
         # Log FIJO abajo
         self.logbox = tk.Text(root, bg="#0a0a0c", fg="#c8c8d0", height=6, font=("Consolas", 9), relief="flat")
