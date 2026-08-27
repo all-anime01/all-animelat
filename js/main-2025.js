@@ -1840,23 +1840,26 @@ $(document).ready(function () {
     rec.onend = () => document.documentElement.classList.remove("aa-voice-listening");
     try { rec.start(); } catch {}
   }
-  function addMic(container, inputEl, onDone) {
+  function addMic(container, inputEl, onDone, beforeEl) {
     if (!SR || !container.length || container.find(".aa-mic").length) return;
-    const mic = $('<i class="fas fa-microphone aa-mic" title="Buscar por voz"></i>');
-    mic.on("click", (e) => { e.stopPropagation(); startVoice(inputEl, onDone); });
-    container.append(mic);
+    const mic = $('<button type="button" class="aa-mic" title="Buscar por voz" aria-label="Buscar por voz"><i class="fas fa-microphone"></i></button>');
+    mic.on("click", (e) => { e.preventDefault(); e.stopPropagation(); startVoice(inputEl, onDone); });
+    if (beforeEl && beforeEl.length) mic.insertBefore(beforeEl); else container.append(mic);
   }
-  // estilos del micro (una vez)
+  // estilos del micro (una vez) — integrado al buscador
   if (SR && !document.getElementById("aa-mic-styles")) {
     const st = document.createElement("style"); st.id = "aa-mic-styles";
-    st.textContent = `.aa-mic{cursor:pointer;color:#9aa0aa;margin-left:.6rem;font-size:1.05em;transition:color .15s}
-      .aa-mic:hover{color:#ff4d5e}
-      html.aa-voice-listening .aa-mic{color:#ff3b5e;animation:aa-mic-pulse 1s infinite}
-      @keyframes aa-mic-pulse{0%,100%{opacity:1}50%{opacity:.35}}`;
+    st.textContent = `.aa-mic{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
+      border:none;background:transparent;color:var(--grey-text,#9aa0aa);cursor:pointer;border-radius:50%;
+      font-size:1em;padding:0;transition:color .15s,background .15s;flex:none}
+      .aa-mic:hover{color:#fff;background:rgba(255,255,255,.08)}
+      html.aa-voice-listening .aa-mic{color:#ff3b5e;background:rgba(255,59,94,.14);animation:aa-mic-pulse 1s infinite}
+      @keyframes aa-mic-pulse{0%,100%{opacity:1}50%{opacity:.4}}
+      .msearch-top .aa-mic{width:38px;height:38px;font-size:1.15em;color:#cfd6e2}`;
     document.head.appendChild(st);
   }
-  // Micro en el buscador de escritorio; al terminar, hace la búsqueda (y en Explorar filtra).
-  addMic($(".search-container"), searchInput, () => { $(".search-container").addClass("active"); performSearch(); });
+  // Micro en el buscador de escritorio, JUNTO al icono de lupa; al terminar, busca.
+  addMic($(".search-container"), searchInput, () => { $(".search-container").addClass("active"); performSearch(); }, $("#search-icon-toggle"));
 
   $(document).on("click", (e) => {
     const c = $(".search-container");
@@ -2138,14 +2141,39 @@ $(document).ready(function () {
       if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
       toast('No encontré "' + text + '". Prueba: «abre películas» o «busca Naruto».'); say("No lo encontré.");
     }
-    fab.addEventListener("click", () => {
-      const rec = new SR(); rec.lang = "es-ES"; rec.interimResults = false; rec.maxAlternatives = 1;
-      fab.classList.add("listening"); toast("Escuchando… di «busca X», «abre películas», «reproduce X»");
-      rec.onresult = (ev) => { const txt = ev.results[0][0].transcript; toast("“" + txt + "”"); handle(txt); };
-      rec.onerror = () => { fab.classList.remove("listening"); toast("No te escuché, intenta de nuevo."); };
-      rec.onend = () => fab.classList.remove("listening");
+    // Escucha CONTINUA de la palabra clave «Yoru». Una vez activada (queda recordada),
+    // se dispara diciendo «Yoru, <lo que quieras>» — sin volver a tocar el botón.
+    let wakeOn = false, rec = null, restartT = null;
+    function startWake() {
+      try { rec = new SR(); } catch { return; }
+      rec.lang = "es-ES"; rec.continuous = true; rec.interimResults = true; rec.maxAlternatives = 1;
+      rec.onresult = (ev) => {
+        for (let i = ev.resultIndex; i < ev.results.length; i++) {
+          if (!ev.results[i].isFinal) continue;
+          const t = norm(ev.results[i][0].transcript);
+          const m = t.match(/\b(?:yoru|yoro|llora|jor[uo]|yolo)\b[\s,]*(.*)/);
+          if (!m) continue;
+          const cmd = (m[1] || "").trim();
+          if (cmd) { toast("“" + cmd + "”"); handle(cmd); }
+          else { say("¿Qué necesitas?"); toast("Dime: «Yoru, busca Naruto» o «Yoru, abre películas»."); }
+        }
+      };
+      rec.onerror = (e) => {
+        if (e && (e.error === "not-allowed" || e.error === "service-not-allowed")) { setWake(false); toast("Permite el micrófono para usar a Yoru."); }
+      };
+      rec.onend = () => { if (wakeOn) { clearTimeout(restartT); restartT = setTimeout(() => { try { rec.start(); } catch {} }, 350); } };
       try { rec.start(); } catch {}
-    });
+    }
+    function setWake(on) {
+      wakeOn = on; fab.classList.toggle("listening", on);
+      fab.title = on ? "Yoru te escucha — di «Yoru …» (clic para apagar)" : "Activar Yoru por voz";
+      try { localStorage.setItem("aa-yoru-wake", on ? "1" : "0"); } catch {}
+      if (on) { toast("Yoru activada. Di «Yoru, busca Naruto» o «Yoru, abre películas»."); say("Hola, soy Yoru. Di mi nombre y tu pedido."); startWake(); }
+      else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); toast("Yoru en pausa."); }
+    }
+    fab.addEventListener("click", () => setWake(!wakeOn));
+    // Si ya la habías activado, se reactiva sola al cargar (el navegador recuerda el permiso).
+    try { if (localStorage.getItem("aa-yoru-wake") === "1") setTimeout(() => setWake(true), 800); } catch {}
   }
   initYoruWeb(animeData);
 

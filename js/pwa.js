@@ -18,6 +18,25 @@ function injectHead() {
   if (!document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')) add("meta", { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" });
   if (!document.querySelector('meta[name="apple-mobile-web-app-title"]')) add("meta", { name: "apple-mobile-web-app-title", content: "All-Anime" });
   if (!document.querySelector('link[rel="apple-touch-icon"]')) add("link", { rel: "apple-touch-icon", href: "/image/logo.png" });
+  forceWideOnBigScreens();
+}
+
+// En la APP (Fire TV / Android TV y tablets grandes) el WebView usaba el ancho del
+// dispositivo y caía en la versión MÓVIL. Se fuerza un viewport ancho para que use el
+// layout de tablet/escritorio. En TELÉFONOS (pantalla pequeña) NO se toca → siguen móvil.
+function forceWideOnBigScreens() {
+  try {
+    const ua = navigator.userAgent || "";
+    const isTVapp = /AllAnimeTV/i.test(ua);
+    const inApp = /AllAnime(App|TV)/i.test(ua);
+    const bigScreen = Math.max(screen.width || 0, screen.height || 0) >= 1000;
+    if (isTVapp || (inApp && bigScreen)) {
+      let vp = document.querySelector('meta[name="viewport"]');
+      if (!vp) { vp = document.createElement("meta"); vp.setAttribute("name", "viewport"); document.head.appendChild(vp); }
+      vp.setAttribute("content", "width=1180, viewport-fit=cover");
+      document.documentElement.classList.add("aa-wide-app");
+    }
+  } catch (e) {}
 }
 
 function injectStyles() {
