@@ -11,7 +11,9 @@ muestra una **vista previa** y guarda directo en tu **Firebase**.
   temporadas por su cadena de secuelas, se busca el slug de **cada temporada por su título**
   → se agregan completas. (Evita falsos matches al slug base.)
 - **Merge por-temporada arreglado:** al completar un anime que numera 1..N por temporada
-  (Tokyo Ghoul), las temporadas nuevas ya no se fusionan mal con las existentes.
+  (Tokyo Ghoul), las temporadas nuevas ya no se fusionan mal con las existentes. Además, si
+  el build trae VARIAS temporadas (completar un anime multi-temporada), su estructura manda
+  y no se remapea por número (arregla casos como Megalo Box → Nomad, Shadowverse, etc.).
 
 ## Novedades v19
 

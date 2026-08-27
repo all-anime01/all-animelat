@@ -897,7 +897,11 @@ def save(data, token, replace, log):
                 nn = int(e.get("number")); _seen[nn] = _seen.get(nn, 0) + 1
                 if _seen[nn] > 1: per_season_existing = True
             except (TypeError, ValueError): pass
-        if data.get("_update_only") and ex and not per_season_existing:
+        built_seasons_n = len({b.get("season") for b in built if b.get("season")})
+        # Solo se remapea cuando el build trae UNA sola temporada genérica (caso "añadir
+        # episodios sueltos"). Si el build ya trae VARIAS temporadas (completar un anime
+        # multi-temporada), su estructura es la autoridad y se respeta tal cual.
+        if data.get("_update_only") and ex and not per_season_existing and built_seasons_n <= 1:
             by_num = {}
             for e in ex:
                 try: by_num[int(e.get("number"))] = e.get("season")
