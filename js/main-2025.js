@@ -2073,6 +2073,82 @@ $(document).ready(function () {
     } catch {}
   }
 
+  // --- YORU (asistente de voz en la web) — 100% local, sin API, sin tokens ---
+  function initYoruWeb(data) {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return; // sin soporte de voz → no se muestra
+    if (document.getElementById("yoru-fab")) return;
+    const fab = document.createElement("button");
+    fab.id = "yoru-fab"; fab.title = "Habla con Yoru"; fab.setAttribute("aria-label", "Habla con Yoru");
+    fab.innerHTML = '<i class="fas fa-microphone"></i>';
+    const st = document.createElement("style");
+    st.textContent = `#yoru-fab{position:fixed;right:18px;bottom:18px;z-index:6000;width:54px;height:54px;border:none;border-radius:50%;
+      cursor:pointer;color:#fff;font-size:20px;background:linear-gradient(135deg,#ca3030,#e23b3b);box-shadow:0 10px 26px rgba(202,48,48,.5);
+      transition:transform .15s ease,filter .15s ease}
+      #yoru-fab:hover{transform:translateY(-2px);filter:brightness(1.08)}
+      #yoru-fab.listening{animation:yoru-p 1s infinite}
+      @keyframes yoru-p{0%,100%{box-shadow:0 0 0 0 rgba(226,59,59,.55)}50%{box-shadow:0 0 0 14px rgba(226,59,59,0)}}
+      #yoru-toast{position:fixed;right:18px;bottom:82px;z-index:6000;max-width:320px;background:#16181d;color:#f2f3f5;
+      border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,.5);
+      opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
+      #yoru-toast.show{opacity:1;transform:translateY(0)}`;
+    document.head.appendChild(st); document.body.appendChild(fab);
+    const say = (m) => { try { const u = new SpeechSynthesisUtterance(m); u.lang = "es-ES"; speechSynthesis.speak(u); } catch {} };
+    let toastT;
+    const toast = (m) => {
+      let el = document.getElementById("yoru-toast");
+      if (!el) { el = document.createElement("div"); el.id = "yoru-toast"; document.body.appendChild(el); }
+      el.textContent = m; requestAnimationFrame(() => el.classList.add("show"));
+      clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("show"), 4000);
+    };
+    const PAGES = { inicio: "index.html", casa: "index.html", explorar: "explorar.html", explora: "explorar.html",
+      "películas": "peliculas.html", peliculas: "peliculas.html", pelis: "peliculas.html", favoritos: "mis-favoritos.html",
+      "mi lista": "mis-favoritos.html", historial: "historial.html", notificaciones: "notificaciones.html", cuenta: "cuenta.html", perfil: "perfil.html" };
+    const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    function findAnime(q) {
+      q = norm(q); if (!q) return null;
+      let best = null, bs = 0;
+      (data || []).forEach((a) => {
+        const t = norm(a.title), alts = (a.altTitles || []).map(norm);
+        let sc = t === q ? 100 : t.includes(q) || q.includes(t) ? 60 : alts.some((x) => x.includes(q)) ? 40 : 0;
+        if (sc > bs) { bs = sc; best = a; }
+      });
+      return bs >= 40 ? best : null;
+    }
+    function handle(text) {
+      const t = norm(text); if (!t) { say("No te entendí."); return; }
+      let m;
+      if ((m = t.match(/(?:llevame|ll[eé]vame|ve|abre|ir|vamos)\s+(?:a\s+)?(?:la\s+|el\s+)?(inicio|casa|explorar|explora|peliculas|pel[ií]culas|pelis|favoritos|mi lista|historial|notificaciones|cuenta|perfil)/))) {
+        const key = Object.keys(PAGES).find((k) => norm(k) === norm(m[1])) || m[1];
+        const url = PAGES[key] || PAGES[norm(m[1])];
+        if (url) { say("Enseguida."); toast("Abriendo " + m[1] + "…"); location.href = url; return; }
+      }
+      if ((m = t.match(/(?:reproduce|ver|abre|pon|mira)\s+(.+)/)) && findAnime(m[1])) {
+        const a = findAnime(m[1]); say("Abriendo " + a.title + "."); toast("Abriendo " + a.title + "…");
+        location.href = "anime-details.html?id=" + a.id; return;
+      }
+      if ((m = t.match(/(?:busca|buscar|encuentra)\s+(.+)/))) {
+        const a = findAnime(m[1]);
+        if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
+        toast('Buscando "' + m[1] + '"…'); const inp = $("#search-input"); if (inp.length) { $(".search-container").addClass("active"); inp.val(m[1]).trigger("input").focus(); } return;
+      }
+      if (/recomi[eé]nda|qu[eé]\s+veo|sorpr[eé]ndeme/.test(t)) { say("Vamos a explorar."); location.href = "explorar.html"; return; }
+      // por defecto: tratar como búsqueda de anime
+      const a = findAnime(text);
+      if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
+      toast('No encontré "' + text + '". Prueba: «abre películas» o «busca Naruto».'); say("No lo encontré.");
+    }
+    fab.addEventListener("click", () => {
+      const rec = new SR(); rec.lang = "es-ES"; rec.interimResults = false; rec.maxAlternatives = 1;
+      fab.classList.add("listening"); toast("Escuchando… di «busca X», «abre películas», «reproduce X»");
+      rec.onresult = (ev) => { const txt = ev.results[0][0].transcript; toast("“" + txt + "”"); handle(txt); };
+      rec.onerror = () => { fab.classList.remove("listening"); toast("No te escuché, intenta de nuevo."); };
+      rec.onend = () => fab.classList.remove("listening");
+      try { rec.start(); } catch {}
+    });
+  }
+  initYoruWeb(animeData);
+
   // --- INICIALIZACIÓN DE PÁGINAS ---
   populateHomePage();
   setupFilterPage("#explore-anime-grid", animeData);
