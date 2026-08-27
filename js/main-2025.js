@@ -1751,7 +1751,6 @@ $(document).ready(function () {
       <div class="msearch-overlay" id="msearch-overlay">
         <div class="msearch-top">
           <input type="text" id="msearch-input" placeholder="Buscar anime…" autocomplete="off">
-          <i class="fas fa-microphone aa-mic aa-mic-m" id="msearch-mic" title="Buscar por voz"></i>
           <button class="msearch-close" id="msearch-close" aria-label="Cerrar">&times;</button>
         </div>
         <div class="msearch-results" id="msearch-results"></div>
@@ -1767,7 +1766,6 @@ $(document).ready(function () {
         : '<p class="msearch-empty">No se encontraron resultados.</p>');
     }, 200);
     mInput.on("input", run);
-    $("#msearch-mic").on("click", (e) => { e.stopPropagation(); if (typeof startVoice === "function") startVoice(mInput, () => run()); });
     $("#msearch-close").on("click", closeMobileSearch);
   }
   function openMobileSearch() {
@@ -1823,43 +1821,6 @@ $(document).ready(function () {
     }, 500);
   }, 300);
   searchInput.on("input", performSearch);
-
-  // --- BÚSQUEDA POR VOZ (como YouTube) — Web Speech API, gratis, en español ---
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  function startVoice(inputEl, onDone) {
-    if (!SR) { alert("Tu navegador no soporta búsqueda por voz."); return; }
-    const rec = new SR();
-    rec.lang = "es-ES"; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = false;
-    document.documentElement.classList.add("aa-voice-listening");
-    rec.onresult = (ev) => {
-      const t = Array.from(ev.results).map((r) => r[0].transcript).join("");
-      inputEl.val(t).trigger("input");
-      if (ev.results[ev.results.length - 1].isFinal && onDone) onDone(t.trim());
-    };
-    rec.onerror = () => document.documentElement.classList.remove("aa-voice-listening");
-    rec.onend = () => document.documentElement.classList.remove("aa-voice-listening");
-    try { rec.start(); } catch {}
-  }
-  function addMic(container, inputEl, onDone, beforeEl) {
-    if (!SR || !container.length || container.find(".aa-mic").length) return;
-    const mic = $('<button type="button" class="aa-mic" title="Buscar por voz" aria-label="Buscar por voz"><i class="fas fa-microphone"></i></button>');
-    mic.on("click", (e) => { e.preventDefault(); e.stopPropagation(); startVoice(inputEl, onDone); });
-    if (beforeEl && beforeEl.length) mic.insertBefore(beforeEl); else container.append(mic);
-  }
-  // estilos del micro (una vez) — integrado al buscador
-  if (SR && !document.getElementById("aa-mic-styles")) {
-    const st = document.createElement("style"); st.id = "aa-mic-styles";
-    st.textContent = `.aa-mic{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
-      border:none;background:transparent;color:var(--grey-text,#9aa0aa);cursor:pointer;border-radius:50%;
-      font-size:1em;padding:0;transition:color .15s,background .15s;flex:none}
-      .aa-mic:hover{color:#fff;background:rgba(255,255,255,.08)}
-      html.aa-voice-listening .aa-mic{color:#ff3b5e;background:rgba(255,59,94,.14);animation:aa-mic-pulse 1s infinite}
-      @keyframes aa-mic-pulse{0%,100%{opacity:1}50%{opacity:.4}}
-      .msearch-top .aa-mic{width:38px;height:38px;font-size:1.15em;color:#cfd6e2}`;
-    document.head.appendChild(st);
-  }
-  // Micro en el buscador de escritorio, JUNTO al icono de lupa; al terminar, busca.
-  addMic($(".search-container"), searchInput, () => { $(".search-container").addClass("active"); performSearch(); }, $("#search-icon-toggle"));
 
   $(document).on("click", (e) => {
     const c = $(".search-container");
@@ -2143,19 +2104,23 @@ $(document).ready(function () {
     }
     // Escucha CONTINUA de la palabra clave «Yoru». Una vez activada (queda recordada),
     // se dispara diciendo «Yoru, <lo que quieras>» — sin volver a tocar el botón.
-    let wakeOn = false, rec = null, restartT = null;
+    let wakeOn = false, rec = null, restartT = null, armed = false, armedT = null;
     function startWake() {
       try { rec = new SR(); } catch { return; }
       rec.lang = "es-ES"; rec.continuous = true; rec.interimResults = true; rec.maxAlternatives = 1;
       rec.onresult = (ev) => {
         for (let i = ev.resultIndex; i < ev.results.length; i++) {
           if (!ev.results[i].isFinal) continue;
-          const t = norm(ev.results[i][0].transcript);
-          const m = t.match(/\b(?:yoru|yoro|llora|jor[uo]|yolo)\b[\s,]*(.*)/);
-          if (!m) continue;
-          const cmd = (m[1] || "").trim();
-          if (cmd) { toast("“" + cmd + "”"); handle(cmd); }
-          else { say("¿Qué necesitas?"); toast("Dime: «Yoru, busca Naruto» o «Yoru, abre películas»."); }
+          const t = norm(ev.results[i][0].transcript).trim();
+          if (!t) continue;
+          const m = t.match(/\b(?:yoru|yoro|yuru|yolo|lloro|llora|loro|joro|yor)\b[\s,]*(.*)/);
+          if (m) {
+            const cmd = (m[1] || "").trim();
+            if (cmd) { toast("Yoru: “" + cmd + "”"); handle(cmd); }
+            else { armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; }, 9000); say("¿Qué necesitas?"); toast("Te escucho… dime tu pedido."); }
+          } else if (armed) {
+            armed = false; clearTimeout(armedT); handle(t);
+          }
         }
       };
       rec.onerror = (e) => {
