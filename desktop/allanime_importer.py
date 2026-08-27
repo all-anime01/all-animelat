@@ -966,7 +966,7 @@ def build_episodes(data, opts, log, prog, on_ep):
     disp_total = max(int(disp_total) or 60, 1)
     # Guardas: dejar de consultar una fuente que claramente NO tiene este anime, y terminar
     # cuando la fuente se acaba (evita construir cientos de episodios vacíos / franquicias).
-    skip = {"e69": False, "av1": False, "jk": False}; miss = {"e69": 0, "av1": 0, "jk": 0}
+    skip = {"e69": False, "av1": False, "jk": False, "yt": False}; miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0}
     empty_streak = 0; stop = False
     for S in seasons:
         if stop: break

@@ -1751,6 +1751,7 @@ $(document).ready(function () {
       <div class="msearch-overlay" id="msearch-overlay">
         <div class="msearch-top">
           <input type="text" id="msearch-input" placeholder="Buscar anime…" autocomplete="off">
+          <i class="fas fa-microphone aa-mic aa-mic-m" id="msearch-mic" title="Buscar por voz"></i>
           <button class="msearch-close" id="msearch-close" aria-label="Cerrar">&times;</button>
         </div>
         <div class="msearch-results" id="msearch-results"></div>
@@ -1766,6 +1767,7 @@ $(document).ready(function () {
         : '<p class="msearch-empty">No se encontraron resultados.</p>');
     }, 200);
     mInput.on("input", run);
+    $("#msearch-mic").on("click", (e) => { e.stopPropagation(); if (typeof startVoice === "function") startVoice(mInput, () => run()); });
     $("#msearch-close").on("click", closeMobileSearch);
   }
   function openMobileSearch() {
@@ -1821,6 +1823,41 @@ $(document).ready(function () {
     }, 500);
   }, 300);
   searchInput.on("input", performSearch);
+
+  // --- BÚSQUEDA POR VOZ (como YouTube) — Web Speech API, gratis, en español ---
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  function startVoice(inputEl, onDone) {
+    if (!SR) { alert("Tu navegador no soporta búsqueda por voz."); return; }
+    const rec = new SR();
+    rec.lang = "es-ES"; rec.interimResults = true; rec.maxAlternatives = 1; rec.continuous = false;
+    document.documentElement.classList.add("aa-voice-listening");
+    rec.onresult = (ev) => {
+      const t = Array.from(ev.results).map((r) => r[0].transcript).join("");
+      inputEl.val(t).trigger("input");
+      if (ev.results[ev.results.length - 1].isFinal && onDone) onDone(t.trim());
+    };
+    rec.onerror = () => document.documentElement.classList.remove("aa-voice-listening");
+    rec.onend = () => document.documentElement.classList.remove("aa-voice-listening");
+    try { rec.start(); } catch {}
+  }
+  function addMic(container, inputEl, onDone) {
+    if (!SR || !container.length || container.find(".aa-mic").length) return;
+    const mic = $('<i class="fas fa-microphone aa-mic" title="Buscar por voz"></i>');
+    mic.on("click", (e) => { e.stopPropagation(); startVoice(inputEl, onDone); });
+    container.append(mic);
+  }
+  // estilos del micro (una vez)
+  if (SR && !document.getElementById("aa-mic-styles")) {
+    const st = document.createElement("style"); st.id = "aa-mic-styles";
+    st.textContent = `.aa-mic{cursor:pointer;color:#9aa0aa;margin-left:.6rem;font-size:1.05em;transition:color .15s}
+      .aa-mic:hover{color:#ff4d5e}
+      html.aa-voice-listening .aa-mic{color:#ff3b5e;animation:aa-mic-pulse 1s infinite}
+      @keyframes aa-mic-pulse{0%,100%{opacity:1}50%{opacity:.35}}`;
+    document.head.appendChild(st);
+  }
+  // Micro en el buscador de escritorio; al terminar, hace la búsqueda (y en Explorar filtra).
+  addMic($(".search-container"), searchInput, () => { $(".search-container").addClass("active"); performSearch(); });
+
   $(document).on("click", (e) => {
     const c = $(".search-container");
     if (!c.is(e.target) && c.has(e.target).length === 0) {
