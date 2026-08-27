@@ -4,6 +4,12 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v18
+
+- **Agregar varios animes a la vez (Lote):** botón **🧾 Lote** junto a «Buscar y construir».
+  Pega un título por línea y construye + **guarda cada uno automáticamente** (series y
+  películas se reconocen solas), con barra de avance. Renueva la sesión entre uno y otro.
+
 ## Novedades v17 (arreglos)
 
 - **Barra de progreso arreglada:** ya no se queda "atascada"; el total se calcula con

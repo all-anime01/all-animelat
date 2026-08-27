@@ -1046,6 +1046,7 @@ class App:
         self.title = ttk.Entry(sr, font=("Segoe UI", 12)); self.title.pack(side="left", fill="x", expand=True, ipady=3)
         self.kind = ttk.Combobox(sr, values=["Auto", "Serie", "Película"], width=9, state="readonly"); self.kind.set("Auto"); self.kind.pack(side="left", padx=(8, 0))
         self.build_btn = ttk.Button(sr, text="Buscar y construir", style="Red.TButton", command=self.do_build, state="disabled"); self.build_btn.pack(side="left", padx=(8, 0))
+        self.batch_btn = ttk.Button(sr, text="🧾 Lote", command=self.do_batch, state="disabled"); self.batch_btn.pack(side="left", padx=(6, 0))
         opt = tk.Frame(sc, bg=CARD); opt.pack(fill="x", padx=14, pady=8)
         self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
         for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("Manual", self.man, self.toggle_manual)]):
@@ -1161,7 +1162,7 @@ class App:
         self.remember.set(False)
         self.status.config(text="●  Sin sesión", fg="#ffcf7a")
         self.logout_btn.pack_forget()
-        for b in (self.build_btn, self.save_btn, self.load_btn, self.addnew_btn):
+        for b in (self.build_btn, self.batch_btn, self.save_btn, self.load_btn, self.addnew_btn):
             try: b.config(state="disabled")
             except Exception: pass
         try: self.cat_list.delete(0, "end"); self.cat_count.config(text="")
@@ -1187,7 +1188,7 @@ class App:
             else: self.cfg.pop("pw", None)
             save_cfg(self.cfg)
             self.logout_btn.pack(side="right", padx=(0, 6), pady=13)
-            self.status.config(text="●  Sesión iniciada", fg="#7ee0a3"); self.build_btn.config(state="normal")
+            self.status.config(text="●  Sesión iniciada", fg="#7ee0a3"); self.build_btn.config(state="normal"); self.batch_btn.config(state="normal")
             # Valida la TMDB API key para que sepas que la está usando.
             if key:
                 def chk():
@@ -1375,6 +1376,54 @@ class App:
         self.save_btn.config(state="normal" if eps else "disabled")
         dst = f"«{dest}»" if custom else "temporada asignada por número"
         self.log(f"➕ {len(new_eps)} episodio(s) nuevo(s) → {dst}. Revisa y pulsa «Guardar en la web».")
+
+    def _batch_opts(self):
+        return {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": False,
+                "manual_text": "", "prefer": self.prefer.get().split(","), "only": self.only.get(),
+                "tmdb_key": self.tmdb.get().strip(), "range": "", "season": "", "src_slug": ""}
+
+    def do_batch(self):
+        """Agrega VARIOS animes a la vez: pega un título por línea y construye + guarda cada
+        uno automáticamente (series y películas se detectan solas)."""
+        if not self.token:
+            messagebox.showinfo("Lote", "Inicia sesión primero."); return
+        win = tk.Toplevel(self.root); win.title("Agregar varios animes (lote)"); win.configure(bg=CARD); win.geometry("560x460")
+        try:
+            ip = _icon_path()
+            if ip: win.iconbitmap(ip)
+        except Exception: pass
+        tk.Label(win, text="Un título por línea. Se construye y GUARDA cada uno automáticamente\ncon las fuentes y la prioridad de arriba. Series y películas se reconocen solas.",
+                 bg=CARD, fg=MUT, justify="left", font=("Segoe UI", 9)).pack(anchor="w", padx=14, pady=(12, 6))
+        txt = tk.Text(win, height=12, bg=FIELD, fg=TXT, insertbackground=TXT, relief="flat", font=("Segoe UI", 10)); txt.pack(fill="both", expand=True, padx=14)
+        bar = ttk.Progressbar(win, style="AA.Horizontal.TProgressbar"); bar.pack(fill="x", padx=14, pady=(8, 4))
+        lbl = tk.Label(win, text="", bg=CARD, fg=TXT, font=("Segoe UI", 9)); lbl.pack(anchor="w", padx=14)
+        def run():
+            titles = [l.strip() for l in txt.get("1.0", "end").splitlines() if l.strip()]
+            if not titles: return
+            go.config(state="disabled"); opts = self._batch_opts()
+            def setp(i, t): lbl.config(text=f"[{i}/{len(titles)}] {t}"); bar.config(maximum=len(titles), value=i - 1)
+            def work():
+                okc = 0
+                for i, t in enumerate(titles, 1):
+                    self.root.after(0, lambda i=i, t=t: setp(i, t))
+                    try:
+                        is_movie = guess_kind(t) == "movie"
+                        d = build_movie(t, opts, self.log) if is_movie else build_meta(t, opts, self.log)
+                        if not is_movie:
+                            build_episodes(d, opts, self.log, lambda n, tt: None, on_ep=None)
+                        if d.get("episodes"):
+                            self._refresh_token()
+                            if save(d, self.token, False, self.log): okc += 1
+                        else:
+                            self.log(f"  (sin episodios, no se guardó: {t})")
+                    except Exception as e:
+                        try: self._refresh_token(force=True)
+                        except Exception: pass
+                        self.log(f"  ERROR con «{t}»: {str(e)[:90]}")
+                    self.root.after(0, lambda i=i: bar.config(value=i))
+                self.root.after(0, lambda: (lbl.config(text=f"✅ Listo: {okc}/{len(titles)} guardados en el sitio."), go.config(state="normal")))
+            threading.Thread(target=work, daemon=True).start()
+        go = ttk.Button(win, text="Procesar y guardar todo", style="Grn.TButton", command=run); go.pack(pady=10)
 
     def render_meta(self):
         """Rellena la ficha del anime en cuanto llega la metadata (rápido)."""
