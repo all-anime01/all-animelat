@@ -45,6 +45,7 @@ import androidx.media3.ui.SubtitleView;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
 import java.util.HashMap;
@@ -83,6 +84,50 @@ public class MainActivity extends Activity {
     private boolean cursorMode = false;
     private float curX, curY;
     private static final int CURSOR_DP = 42;
+
+    // ===== Panel de DIAGNÓSTICO en pantalla (para depurar la extracción de video sin
+    // logcat, que en Android moderno no deja leer el log de otra app). Aparece al intentar
+    // reproducir un server nativo y muestra qué URL prueba y qué captura. El usuario lo ve
+    // y lo comparte por captura de pantalla. =====
+    private TextView debugView;
+    private final StringBuilder dbgBuf = new StringBuilder();
+    private Runnable dbgHide;
+    private void ensureDebugView() {
+        if (debugView != null) return;
+        debugView = new TextView(this);
+        debugView.setTextColor(0xFFB8F0C0);
+        debugView.setBackgroundColor(0xCC000000);
+        debugView.setTypeface(Typeface.MONOSPACE);
+        debugView.setTextSize(12f);
+        debugView.setPadding(18, 14, 18, 14);
+        debugView.setVisibility(View.GONE);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.gravity = Gravity.TOP;
+        rootLayout.addView(debugView, lp);
+    }
+    private void dbg(String s) {
+        runOnUiThread(() -> {
+            ensureDebugView();
+            String[] lines = dbgBuf.toString().split("\n");
+            StringBuilder keep = new StringBuilder();
+            int start = Math.max(0, lines.length - 13);
+            for (int i = start; i < lines.length; i++) if (!lines[i].isEmpty()) keep.append(lines[i]).append("\n");
+            dbgBuf.setLength(0); dbgBuf.append(keep).append(s);
+            debugView.setText("All-Anime · diagnóstico (comparte esta pantalla)\n" + dbgBuf);
+            debugView.setVisibility(View.VISIBLE);
+            debugView.bringToFront();
+            if (dbgHide != null) rootLayout.removeCallbacks(dbgHide);
+        });
+    }
+    private void dbgHideLater(int ms) {
+        runOnUiThread(() -> {
+            if (debugView == null) return;
+            if (dbgHide != null) rootLayout.removeCallbacks(dbgHide);
+            dbgHide = () -> { if (debugView != null) debugView.setVisibility(View.GONE); };
+            rootLayout.postDelayed(dbgHide, ms);
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +196,7 @@ public class MainActivity extends Activity {
             if (url == null || url.isEmpty()) return;
             String h; try { h = new java.net.URL(url).getHost(); } catch (Exception e) { h = url; }
             final String host = h;
+            dbg("▶ server: " + host);
             runOnUiThread(() -> { toast("All-Anime TV: cargando " + host + "…"); startExtraction(url); });
         }
         // La web (main-2025) avisa, al abrir un episodio, la posición para REANUDAR y si
@@ -241,6 +287,7 @@ public class MainActivity extends Activity {
                     // .ass): el m3u8 crudo casi nunca los trae, así que se cargan aparte.
                     if (extracting && isSubtitleUrl(u) && !capturedSubs.contains(u)) capturedSubs.add(u);
                     if (extracting && isStreamUrl(u)) {
+                        try { dbg("  detectó stream: " + new java.net.URL(u).getHost() + " …" + u.substring(Math.max(0, u.length() - 22))); } catch (Exception e) {}
                         extracting = false;
                         final String su = u;
                         final Map<String, String> hh = req.getRequestHeaders();
@@ -323,6 +370,7 @@ public class MainActivity extends Activity {
         if (extractTimeout != null) rootLayout.removeCallbacks(extractTimeout);
         extractTimeout = () -> {
             if (extracting) { extracting = false; stopExtractWv();
+                dbg("❌ no se capturó video en 35s (host bloqueó o usa blob/MSE, sin .m3u8 directo)");
                 toast("No se pudo cargar este servidor — prueba otro"); }
         };
         rootLayout.postDelayed(extractTimeout, 35000);
@@ -338,6 +386,7 @@ public class MainActivity extends Activity {
     @UnstableApi
     private void onStreamFound(String streamUrl, Map<String, String> reqHeaders) {
         if (extractTimeout != null) rootLayout.removeCallbacks(extractTimeout);
+        dbg("✅ video capturado — reproduciendo en ExoPlayer"); dbgHideLater(4000);
         String ref = (reqHeaders != null && reqHeaders.get("Referer") != null) ? reqHeaders.get("Referer") : originOf(currentEmbed);
         Map<String, String> headers = new HashMap<>();
         headers.put("Referer", ref);
