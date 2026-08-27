@@ -1130,7 +1130,42 @@ def save(data, token, replace, log):
     # ej. Mushoku Tensei que tenía "2" cuando en verdad hay 3).
     doc["seasons"] = len({e.get("season") for e in episodes if e.get("season")}) or doc.get("seasons", 1)
     st, t = patch_fields(f"animes/{aid}", doc, token)
+    # Firestore: máx 1 MiB por documento. En animes ENORMES (One Piece, Detective Conan…)
+    # el doc se pasa → 400 "cannot be written / exceeds the maximum size". Si eso ocurre, se
+    # ADELGAZA por pasos (lo menos esencial primero) y se reintenta, sin perder episodios,
+    # el Latino ni las subidas de Vidara.
+    def _too_big(msg): return ("cannot be written" in msg) or ("exceeds the maximum" in msg) or ("1048576" in msg)
+    slim_steps = ["desc", "dates", "srvdesc", "capserv", "img"]
+    si = 0
+    while st == 400 and _too_big(t) and si < len(slim_steps):
+        step = slim_steps[si]; si += 1
+        if step == "desc":
+            for e in episodes: e.pop("description", None)
+            log("Doc muy grande → quito descripciones por episodio y reintento…")
+        elif step == "dates":
+            for e in episodes: e.pop("releaseDate", None)
+            log("… y fecha de emisión por episodio…")
+        elif step == "srvdesc":
+            for e in episodes:
+                for s in (e.get("servers") or []): s.pop("desc", None)
+            log("… y descripciones de los servidores…")
+        elif step == "capserv":
+            for e in episodes:
+                srv = e.get("servers") or []; g = {}
+                for s in srv: g.setdefault(s.get("lang", "Sub"), []).append(s)
+                keep = []
+                for lang in ("Latino", "Castellano", "Sub"): keep += g.get(lang, [])[:2]
+                for s in srv:   # conserva SIEMPRE las subidas de Vidara
+                    if re.search(r"vidara", s.get("url", ""), re.I) and s not in keep: keep.append(s)
+                e["servers"] = keep
+            log("… y limito a 2 servidores por idioma (conservando Latino y Vidara)…")
+        elif step == "img":
+            for e in episodes: e.pop("img", None)
+            log("… y las miniaturas por episodio (usará la portada del anime)…")
+        doc["episodes"] = episodes; doc["episodesTotal"] = len(episodes); doc["episodesCount"] = len(episodes)
+        st, t = patch_fields(f"animes/{aid}", doc, token)
     if st != 200: log(f"ERROR guardar: {st} {t[:150]}"); return False
+    if si: log(f"✓ Guardado ajustado al límite de Firestore (se adelgazó el documento).")
     cat = get_catalog(); light = {k: v for k, v in doc.items() if k != "episodes"}
     i = next((j for j, x in enumerate(cat) if x.get("id") == aid), -1)
     if i >= 0: cat[i] = light
