@@ -4,6 +4,18 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v16
+
+- **Cross-check con AniList** (API pública, muy exacta para anime): al construir un anime se
+  consulta AniList siguiendo la cadena de **secuelas** para saber cuántas temporadas y
+  episodios existen de verdad, y se contrasta con TMDB y las fuentes.
+  - Si AniList ve **más temporadas** que TMDB, la estructura se amplía (con los episodios de
+    AniList) para no quedarse corto.
+  - Al terminar, si AniList indica más temporadas de las que se pudieron armar, **avisa**
+    cuáles pueden faltar (para agregarlas con slug manual si tu fuente las tiene).
+  - Verdad de conteo priorizada: **fuentes al día (jkanime/animeav1) + AniList**, con TMDB
+    de apoyo.
+
 ## Novedades v15
 
 - **Detecta y agrega TODAS las temporadas automáticamente** — aunque en jkanime/animeav1

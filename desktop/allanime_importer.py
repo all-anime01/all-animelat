@@ -468,6 +468,42 @@ def av1_seasons(title, base):
             for m in re.findall(r'/media/([a-z0-9-]+)', get_text(u)):
                 slugs.add(m)
     return _collect_seasons(base, slugs)
+
+# --- AniList: cross-check de veracidad (API pública gratuita, muy exacta para anime) ------
+# Recorre la cadena de SECUELAS para saber cuántas TEMPORADAS y episodios existen de verdad,
+# y contrastarlo con TMDB y las fuentes. https://graphql.anilist.co (GraphQL, sin login).
+_AL_URL = "https://graphql.anilist.co"
+_AL_MEDIA = "{id title{romaji english} format episodes status relations{edges{relationType node{id title{romaji english} format episodes}}}}"
+def _al_query(query, variables):
+    try:
+        st, t = http(_AL_URL, data={"query": query, "variables": variables},
+                     headers={"Accept": "application/json"}, timeout=20)
+        return json.loads(t).get("data") if st == 200 else None
+    except Exception: return None
+def anilist_chain(title):
+    """Devuelve la cadena de temporadas [{title, episodes, format}] siguiendo las SECUELAS
+    de tipo serie (TV/ONA), empezando por el título buscado. [] si no se encuentra."""
+    d = _al_query("query($s:String){Media(search:$s,type:ANIME)" + _AL_MEDIA + "}", {"s": title})
+    base = (d or {}).get("Media") if d else None
+    if not base: return []
+    SERIES = {"TV", "TV_SHORT", "ONA"}
+    chain = [base]; seen = {base["id"]}
+    cur = base
+    for _ in range(8):   # tope de saltos (evita bucles)
+        nxt = None
+        for e in (cur.get("relations", {}).get("edges") or []):
+            if e.get("relationType") == "SEQUEL":
+                nn = e.get("node") or {}
+                if nn.get("format") in SERIES and nn.get("id") not in seen:
+                    nxt = nn; break
+        if not nxt: break
+        seen.add(nxt["id"])
+        full = _al_query("query($id:Int){Media(id:$id)" + _AL_MEDIA + "}", {"id": nxt["id"]})
+        cur = (full or {}).get("Media") or nxt
+        chain.append(cur)
+        time.sleep(0.25)
+    return [{"title": (c["title"].get("romaji") or c["title"].get("english") or ""),
+             "episodes": c.get("episodes"), "format": c.get("format")} for c in chain]
 def jk_meta(slug):
     """Poster + sinopsis desde jkanime (fallback cuando TMDB no tiene el anime)."""
     if not slug: return {}
@@ -564,8 +600,27 @@ def build_meta(title, opts, log):
     log(f"título real: {real_title} | imdb={imdb} | tmdb={tmdb} | logo={'sí' if info['logo'] else 'no'} | img={'sí' if info.get('poster') else 'no'}")
     if not tmdb: log("⚠ TMDB no resolvió el título — se usó jkanime para imagen/descripción si estaba.")
     seasons = info["seasons"] or [{"season": 1, "count": 60}]
+    # CROSS-CHECK con AniList (verdad de anime): nº de temporadas y episodios. Si TMDB
+    # discrepa de AniList, se AJUSTA la estructura de temporadas a la de AniList (más fiable
+    # para anime) para no quedarse corto en temporadas/episodios.
+    al = []
+    try: al = anilist_chain(real_title)
+    except Exception: al = []
+    if al:
+        al_str = " · ".join(f"T{i+1}:{(c['episodes'] or '?')}" for i, c in enumerate(al))
+        log(f"AniList: {len(al)} temporada(s) → {al_str}  (TMDB: {len(seasons)})")
+        # Si AniList ve MÁS temporadas que TMDB, extiende la estructura (con los eps de AniList).
+        if len(al) > len(seasons):
+            for i in range(len(seasons), len(al)):
+                seasons.append({"season": i + 1, "count": al[i]["episodes"] or 24})
+            log(f"→ estructura ampliada a {len(seasons)} temporadas según AniList")
+        # Ajusta el nº de episodios por temporada si AniList lo tiene y TMDB no coincide.
+        for i, c in enumerate(al):
+            if i < len(seasons) and c.get("episodes") and seasons[i].get("count") != c["episodes"]:
+                seasons[i] = {**seasons[i], "count": c["episodes"]}
     return {"aid": slugify(real_title), "info": info, "real_title": real_title, "seasons": seasons,
-            "episodes": [], "audio": "Sub", "altTitles": info.get("altTitles", []), "creator": info.get("creator", ""), "tmdb": tmdb}
+            "episodes": [], "audio": "Sub", "altTitles": info.get("altTitles", []),
+            "creator": info.get("creator", ""), "tmdb": tmdb, "anilist": al}
 
 def build_movie(title, opts, log):
     """Arma una PELÍCULA de anime (1 entrada, type Película)."""
@@ -749,6 +804,13 @@ def build_episodes(data, opts, log, prog, on_ep):
             if on_ep: on_ep(ep)
     langs = list(dict.fromkeys(e["language"] for e in episodes))
     data["audio"] = audio_label(langs)
+    # Aviso de COMPLETITUD vs AniList: si AniList ve más temporadas de las que se armaron,
+    # es que a alguna fuente le falta esa secuela (avisa para agregarla a mano si hace falta).
+    al = data.get("anilist") or []
+    built_seasons = len({e["season"] for e in episodes})
+    if al and len(al) > built_seasons and not season_sel and not rng:
+        faltan = [al[i]["title"] for i in range(built_seasons, len(al))]
+        log(f"⚠ AniList indica {len(al)} temporadas y se armaron {built_seasons}. Puede faltar: {', '.join(faltan)} (agrégalas con slug manual si tu fuente las tiene).")
     log(f"== {len(episodes)} episodios == audio: {data['audio']}")
     return data
 
