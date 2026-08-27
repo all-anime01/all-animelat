@@ -473,7 +473,7 @@ def av1_seasons(title, base):
 # Recorre la cadena de SECUELAS para saber cuántas TEMPORADAS y episodios existen de verdad,
 # y contrastarlo con TMDB y las fuentes. https://graphql.anilist.co (GraphQL, sin login).
 _AL_URL = "https://graphql.anilist.co"
-_AL_MEDIA = "{id title{romaji english} format episodes status relations{edges{relationType node{id title{romaji english} format episodes}}}}"
+_AL_MEDIA = "{id title{romaji english native} synonyms format episodes status relations{edges{relationType node{id title{romaji english native} format episodes}}}}"
 def _al_query(query, variables):
     try:
         st, t = http(_AL_URL, data={"query": query, "variables": variables},
@@ -503,6 +503,8 @@ def anilist_chain(title):
         chain.append(cur)
         time.sleep(0.25)
     return [{"title": (c["title"].get("romaji") or c["title"].get("english") or ""),
+             "romaji": c["title"].get("romaji"), "english": c["title"].get("english"),
+             "native": c["title"].get("native"), "synonyms": (c.get("synonyms") or []),
              "episodes": c.get("episodes"), "format": c.get("format")} for c in chain]
 def jk_meta(slug):
     """Poster + sinopsis desde jkanime (fallback cuando TMDB no tiene el anime)."""
@@ -618,6 +620,12 @@ def build_meta(title, opts, log):
         for i, c in enumerate(al):
             if i < len(seasons) and c.get("episodes") and seasons[i].get("count") != c["episodes"]:
                 seasons[i] = {**seasons[i], "count": c["episodes"]}
+        # TÍTULOS: original (romaji/japonés) + global (inglés) + los de TMDB (otros países).
+        alt = list(info.get("altTitles") or [])
+        b = al[0]
+        for t in [b.get("romaji"), b.get("english"), b.get("native")] + (b.get("synonyms") or [])[:3]:
+            if t and t != real_title and t not in alt: alt.append(t)
+        info["altTitles"] = alt[:12]
     return {"aid": slugify(real_title), "info": info, "real_title": real_title, "seasons": seasons,
             "episodes": [], "audio": "Sub", "altTitles": info.get("altTitles", []),
             "creator": info.get("creator", ""), "tmdb": tmdb, "anilist": al}
@@ -715,8 +723,9 @@ def build_episodes(data, opts, log, prog, on_ep):
     manual = {}
     if opts["manual"]:
         for i, line in enumerate([l.strip() for l in opts["manual_text"].splitlines() if l.strip()]):
-            mm = re.match(r'^(\d+)\s*\|\s*(https?://\S+)', line)
+            mm = re.match(r'^(\d+)\s*\|\s*(\S+)', line)   # "N|URL" (acepta URL directa cualquiera)
             manual[int(mm.group(1)) if mm else i + 1] = (mm.group(2) if mm else line)
+    manual_max = max(manual) if manual else 0
 
     absn = 0
     total = sum(s["count"] for s in seasons) or 60
@@ -737,6 +746,16 @@ def build_episodes(data, opts, log, prog, on_ep):
     rng = parse_range(opts.get("range"), total)
     if season_sel: log(f"solo Temporada {season_sel}" + (f", episodios {opts.get('range')}" if rng else ""))
     elif rng: log(f"solo episodios: {sorted(rng)[:3]}…{sorted(rng)[-1]} ({len(rng)})")
+    # TOTAL REALISTA para la barra de progreso: NO usar el tope abierto (400/temporada), sino
+    # lo que dicen AniList/TMDB; si hay rango, cuántos se pidieron. Así la barra sí coincide.
+    al = data.get("anilist") or []
+    if rng:
+        disp_total = len(rng)
+    elif al:
+        disp_total = sum((c.get("episodes") or 0) for c in al) or sum((s.get("count") or 0) for s in (data.get("seasons") or []))
+    else:
+        disp_total = sum((s.get("count") or 0) for s in (data.get("seasons") or []))
+    disp_total = max(int(disp_total) or 60, 1)
     # Guardas: dejar de consultar una fuente que claramente NO tiene este anime, y terminar
     # cuando la fuente se acaba (evita construir cientos de episodios vacíos / franquicias).
     skip = {"e69": False, "av1": False, "jk": False}; miss = {"e69": 0, "av1": 0, "jk": 0}
@@ -778,15 +797,20 @@ def build_episodes(data, opts, log, prog, on_ep):
                 miss["jk"] = 0 if cj else miss["jk"] + 1
                 if miss["jk"] >= 6: skip["jk"] = True
                 time.sleep(0.3)
-            if opts["manual"] and absn in manual:
-                servers.append({"url": manual[absn], "name": nm(manual[absn]), "lang": "Latino", "desc": ""})
+            key_manual = n if (per_season_num or season_sel) else absn   # el usuario suele numerar 1..N
+            if opts["manual"] and (key_manual in manual or absn in manual):
+                mu = manual.get(key_manual) or manual.get(absn)
+                ml = "Latino" if re.search(r"lat|dob", mu, re.I) else ("Castellano" if re.search(r"cast|españa|castellano", mu, re.I) else "Sub")
+                mname = nm(mu) if nm(mu) != "Servidor" else "Directo"
+                servers.append({"url": mu, "name": mname, "lang": ml, "desc": ""})
             if absn == 1 or (not servers and absn <= 3):
                 log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj}" + (f" · imdb={imdb} jk={jkslug} av1={avslug}" if not servers else ""))
-            prog(absn, total)
+            prog(min(len(episodes) + 1, disp_total), disp_total)
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
                 empty_streak += 1
-                if empty_streak >= (4 if multi else 10) and not rng and not season_sel:
+                # No cortar antes de llegar a los episodios que el usuario puso a mano.
+                if empty_streak >= (6 if multi else 12) and not rng and not season_sel and absn >= manual_max:
                     if multi:
                         log(f"  fin de {sname} — se pasa a la siguiente"); break   # siguiente secuela/temporada
                     log(f"  fin del anime (sin servers) — construidos {len(episodes)}"); stop = True; break
@@ -912,7 +936,7 @@ def _icon_path():
     return None
 class App:
     def __init__(self, root):
-        self.root = root; self.token = None; self.data = None; self.cfg = load_cfg()
+        self.root = root; self.token = None; self._token_at = 0; self.data = None; self.cfg = load_cfg()
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
         self.loaded_seasons = []; self.loaded_season_by_num = {}                 # nombres/rangos reales de temporada del anime cargado
         self._tree_eps = []                                                     # episodios visibles en el listado (mapa fila→episodio)
@@ -1144,9 +1168,18 @@ class App:
         except Exception: pass
         self.log("Sesión cerrada. (La contraseña recordada se borró de este equipo.)")
 
+    def _refresh_token(self, force=False):
+        """Renueva la sesión de Firebase si lleva >45 min (el idToken expira a la hora).
+        Evita el error al guardar tras varias/muy largas construcciones."""
+        if not force and self.token and (time.time() - self._token_at) < 45 * 60: return
+        email = (self.email.get() or self.cfg.get("email", "")).strip()
+        pw = self.pw.get() or _deobf(self.cfg.get("pw", ""))
+        if not email or not pw: return
+        self.token = sign_in(email, pw); self._token_at = time.time()
+
     def login(self, silent=False):
         try:
-            self.token = sign_in(self.email.get().strip(), self.pw.get())
+            self.token = sign_in(self.email.get().strip(), self.pw.get()); self._token_at = time.time()
             key = self.tmdb.get().strip()
             self.cfg.update(email=self.email.get().strip(), tmdb_key=key)
             # Recordar sesión: guarda la contraseña ofuscada (o la borra si se desmarca).
@@ -1705,8 +1738,17 @@ class App:
         self.save_btn.config(state="disabled")
         def work():
             ok = False
-            try: ok = bool(save(self.data, self.token, self.replace.get(), self.log))
-            except Exception as e: self.log("ERROR guardar: " + str(e))
+            try:
+                self._refresh_token()   # el token de Firebase expira ~1h → renovar antes de guardar
+                ok = bool(save(self.data, self.token, self.replace.get(), self.log))
+            except Exception as e:
+                # reintento: casi siempre es sesión expirada → re-login y volver a guardar
+                self.log("Guardado falló (" + str(e)[:80] + "); reintentando con sesión nueva…")
+                try:
+                    self._refresh_token(force=True)
+                    ok = bool(save(self.data, self.token, self.replace.get(), self.log))
+                except Exception as e2:
+                    self.log("ERROR guardar: " + str(e2))
             finally:
                 if ok:
                     # se guardó bien → limpia para no arrastrar estado y evitar conflictos

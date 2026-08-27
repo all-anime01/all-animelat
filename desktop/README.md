@@ -4,6 +4,18 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v17 (arreglos)
+
+- **Barra de progreso arreglada:** ya no se queda "atascada"; el total se calcula con
+  AniList/TMDB (no con el tope interno), así que coincide con lo que carga.
+- **Guardar tras varias/animes largos:** se renueva la sesión de Firebase antes de guardar
+  (el token expira ~1h) y reintenta con sesión nueva si falla → se acabó el error tras 3-4.
+- **Fuente manual:** acepta URL directa o `N|URL`, detecta el idioma por la URL y ya **no
+  corta** antes de llegar a los episodios que pusiste a mano.
+- **Títulos:** incluye el original (romaji/japonés), el global (inglés) y los de otros
+  países (TMDB) como títulos alternativos.
+- Menos recorte de temporadas por fallos transitorios de una fuente.
+
 ## Novedades v16
 
 - **Cross-check con AniList** (API pública, muy exacta para anime): al construir un anime se
