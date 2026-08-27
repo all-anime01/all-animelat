@@ -1010,9 +1010,15 @@ $(document).ready(function () {
       filtersSection = $(".filters-section"),
       sortBar = $(".cr-sort"),
       viewBar = $(".cr-view");
-    let sortMode = "popular";
-    let viewMode = "grid";
+    // Recuerda el orden y la vista (lista/cuadrícula) elegidos, entre visitas.
+    let sortMode = "popular", viewMode = "grid";
+    try { sortMode = localStorage.getItem("aa-sort") || sortMode; viewMode = localStorage.getItem("aa-view") || viewMode; } catch (e) {}
     const renderCard = (a) => viewMode === "list" ? createAnimeListRow(a) : createAnimeCard(a);
+    // Refleja la preferencia guardada en los botones (marca el activo).
+    const syncBars = () => {
+      if (sortBar.length) { sortBar.find(".cr-sort-btn").removeClass("active"); sortBar.find(`.cr-sort-btn[data-sort="${sortMode}"]`).addClass("active"); }
+      if (viewBar.length) { viewBar.find(".cr-view-btn").removeClass("active"); viewBar.find(`.cr-view-btn[data-view="${viewMode}"]`).addClass("active"); }
+    };
 
     if (toggleFiltersBtn.length) {
       filtersSection.hide();
@@ -1104,6 +1110,7 @@ $(document).ready(function () {
         sortBar.find(".cr-sort-btn").removeClass("active");
         $(this).addClass("active");
         sortMode = $(this).data("sort") || "popular";
+        try { localStorage.setItem("aa-sort", sortMode); } catch (e) {}
         applyFilters();
       });
     if (viewBar.length)
@@ -1111,8 +1118,10 @@ $(document).ready(function () {
         viewBar.find(".cr-view-btn").removeClass("active");
         $(this).addClass("active");
         viewMode = $(this).data("view") || "grid";
+        try { localStorage.setItem("aa-view", viewMode); } catch (e) {}
         applyFilters();
       });
+    syncBars();     // marca el orden/vista recordados
     applyFilters();
   }
 
