@@ -4,6 +4,16 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v21
+
+- **Yoru — asistente de voz.** Casilla **🔊 Yoru (voz)**: te avisa cuando inicia la búsqueda,
+  cuántas temporadas encontró y qué va a scrapear, y cuando termina/guarda (también en Lote).
+  Usa la voz del sistema (Windows SAPI), sin librerías extra; habla en español si tienes una
+  voz es-* instalada.
+- **Vista previa mucho más completa:** columnas Temporada · Ep · Título · Duración · Idioma ·
+  Imagen · N° servidores · lista de servidores; los episodios con **Latino** resaltados.
+- **Guía completa de uso:** ver `GUIA.md`.
+
 ## Novedades v20
 
 - **Secuelas con NOMBRE distinto** (Tokyo Ghoul √A / :re, Megalo Box Nomad, InuYasha Final

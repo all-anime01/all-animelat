@@ -25,9 +25,31 @@ Uso:
          pyinstaller --onefile --noconsole --name AllAnimeImporter allanime_importer.py
 """
 
-import json, re, base64, os, urllib.request, urllib.parse, urllib.error, threading, time, ssl, unicodedata
+import json, re, base64, os, urllib.request, urllib.parse, urllib.error, threading, time, ssl, unicodedata, subprocess
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
+
+# ================================================================== Yoru (voz IA)
+class Yoru:
+    """Voz del asistente 'Yoru' — usa la voz del sistema (Windows SAPI vía PowerShell),
+    sin librerías extra. Habla en un hilo aparte para no bloquear la interfaz."""
+    def __init__(self): self.enabled = False
+    def say(self, text):
+        if not self.enabled or not text: return
+        def run():
+            try:
+                ps = ("$OutputEncoding=[Console]::InputEncoding=[Text.UTF8Encoding]::new();"
+                      "Add-Type -AssemblyName System.Speech;"
+                      "$s=New-Object System.Speech.Synthesis.SpeechSynthesizer;"
+                      "foreach($v in $s.GetInstalledVoices()){if($v.VoiceInfo.Culture.Name -like 'es*'){"
+                      "$s.SelectVoice($v.VoiceInfo.Name);break}};$s.Rate=1;"
+                      "$t=[Console]::In.ReadToEnd();$s.Speak($t)")
+                p = subprocess.Popen(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+                                     stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                                     creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                p.communicate(text.encode("utf-8"))
+            except Exception: pass
+        threading.Thread(target=run, daemon=True).start()
 
 API_KEY = "AIzaSyDJMJcwFvQCAfp9mXcCvxCQpX-6wy-a4FA"
 PROJECT = "all-anime-eae5b"
@@ -989,6 +1011,7 @@ def _icon_path():
 class App:
     def __init__(self, root):
         self.root = root; self.token = None; self._token_at = 0; self.data = None; self.cfg = load_cfg()
+        self.yoru = Yoru()   # asistente de voz
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
         self.loaded_seasons = []; self.loaded_season_by_num = {}                 # nombres/rangos reales de temporada del anime cargado
         self._tree_eps = []                                                     # episodios visibles en el listado (mapa fila→episodio)
@@ -1106,6 +1129,12 @@ class App:
         self.replace = tk.BooleanVar(value=False)
         ttk.Radiobutton(opt, text="Añadir nuevo", variable=self.replace, value=False).grid(row=0, column=5, padx=(10, 6))
         ttk.Radiobutton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True).grid(row=0, column=6)
+        self.voz = tk.BooleanVar(value=bool(self.cfg.get("voz")))
+        self.yoru.enabled = self.voz.get()
+        def _togvoz():
+            self.yoru.enabled = self.voz.get(); self.cfg["voz"] = self.voz.get(); save_cfg(self.cfg)
+            if self.voz.get(): self.yoru.say("Hola, soy Yoru. Lista para ayudarte.")
+        ttk.Checkbutton(opt, text="🔊 Yoru (voz)", variable=self.voz, command=_togvoz).grid(row=0, column=7, padx=(14, 0))
         pr = tk.Frame(sc, bg=CARD); pr.pack(fill="x", padx=14, pady=(0, 10))
         ttk.Label(pr, text="Prioridad de servidores:").pack(side="left")
         self.prefer = ttk.Entry(pr, width=48); self.prefer.pack(side="left", padx=6)
@@ -1156,11 +1185,16 @@ class App:
         self.season_info = ttk.Label(svrow, text="", style="Mut.TLabel"); self.season_info.pack(side="left", padx=8)
         tw = tk.Frame(pv, bg=CARD); tw.pack(fill="both", expand=True, padx=14)
         # selectmode extended → puedes marcar VARIOS episodios (Ctrl/Shift+clic) para repararlos.
-        self.tree = ttk.Treeview(tw, columns=("t", "img", "srv"), show="headings", height=9, selectmode="extended")
+        self.tree = ttk.Treeview(tw, columns=("temp", "num", "t", "dur", "lang", "img", "nsrv", "srv"),
+                                 show="headings", height=10, selectmode="extended")
         tvsb = ttk.Scrollbar(tw, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=tvsb.set)
-        for c, txt, w in [("t", "Título", 240), ("img", "Imagen", 120), ("srv", "Servidores", 320)]:
-            self.tree.heading(c, text=txt); self.tree.column(c, width=w)
+        for c, txt, w, anc in [("temp", "Temporada", 120, "w"), ("num", "Ep", 40, "center"),
+                               ("t", "Título", 220, "w"), ("dur", "Dur.", 55, "center"),
+                               ("lang", "Idioma", 80, "center"), ("img", "Img", 42, "center"),
+                               ("nsrv", "N°", 34, "center"), ("srv", "Servidores", 260, "w")]:
+            self.tree.heading(c, text=txt); self.tree.column(c, width=w, anchor=anc)
+        self.tree.tag_configure("lat", foreground="#7ee0a3")   # resalta episodios con Latino
         tvsb.pack(side="right", fill="y"); self.tree.pack(side="left", fill="both", expand=True)
         self.tree.bind("<Double-1>", self.edit_episode)
         # La rueda sobre el listado lo desplaza a ÉL (no al scroll general).
@@ -1374,11 +1408,13 @@ class App:
             if keep_eps:  # conserva los episodios ya cargados y AÑADE los nuevos encima
                 self.data["episodes"] = list(existing_eps)
             self.log(f"Actualizando '{self.loaded_aid}' (no se crea duplicado).")
+        self.yoru.say(f"Iniciando la búsqueda de {t}.")
         def work():
             try:
                 is_movie = (kind == "Película") or (kind == "Auto" and guess_kind(t) == "movie")
                 if is_movie:
                     self.log("Detectado: PELÍCULA de anime")
+                    self.yoru.say(f"{t} es una película. Buscando sus servidores.")
                     self.data = build_movie(t, opts, self.log)
                     if updating: _keep_loaded()
                     self.root.after(0, self.render_meta)
@@ -1389,6 +1425,8 @@ class App:
                 # FASE 1: metadata → rellena la ficha AL INSTANTE
                 self.data = build_meta(t, opts, self.log)
                 if updating: _keep_loaded(keep_eps=add_only)
+                nt = len(self.data.get("seasons") or []); al = self.data.get("anilist") or []
+                self.yoru.say(f"Encontré {self.data.get('real_title', t)}, con {max(nt, len(al)) or 1} temporada. Voy a scrapear los episodios.")
                 self.root.after(0, self.render_meta)
                 # FASE 2: episodios en vivo (en modo añadir, se APILAN sobre los existentes)
                 nbefore = len(self.data.get("episodes") or [])
@@ -1456,8 +1494,10 @@ class App:
             def setp(i, t): lbl.config(text=f"[{i}/{len(titles)}] {t}"); bar.config(maximum=len(titles), value=i - 1)
             def work():
                 okc = 0
+                self.yoru.say(f"Lote iniciado. Voy a agregar {len(titles)} títulos.")
                 for i, t in enumerate(titles, 1):
                     self.root.after(0, lambda i=i, t=t: setp(i, t))
+                    self.yoru.say(f"Buscando {t}.")
                     try:
                         is_movie = guess_kind(t) == "movie"
                         d = build_movie(t, opts, self.log) if is_movie else build_meta(t, opts, self.log)
@@ -1465,7 +1505,7 @@ class App:
                             build_episodes(d, opts, self.log, lambda n, tt: None, on_ep=None)
                         if d.get("episodes"):
                             self._refresh_token()
-                            if save(d, self.token, False, self.log): okc += 1
+                            if save(d, self.token, False, self.log): okc += 1; self.yoru.say(f"{t} guardado.")
                         else:
                             self.log(f"  (sin episodios, no se guardó: {t})")
                     except Exception as e:
@@ -1493,11 +1533,17 @@ class App:
         self._tree_eps = []
 
     def add_ep_row(self, e):
-        """Añade una fila y recuerda a qué episodio corresponde (para editarlo/filtrarlo)."""
-        srv = ", ".join(f"{s['name']}({s['lang'][:3]})" for s in e["servers"])
+        """Añade una fila con la info completa del episodio (temporada, nº, título, duración,
+        idioma, imagen y servidores) y recuerda a qué episodio corresponde."""
+        servers = e.get("servers") or []
+        srv = ", ".join(f"{s['name']}({s['lang'][:3]})" for s in servers)
+        has_lat = any(s.get("lang") == "Latino" for s in servers)
+        lang = e.get("language") or ("Latino" if has_lat else "Sub")
         iid = str(len(self._tree_eps))
-        self.tree.insert("", "end", iid=iid, text="",
-                         values=(f"{e['season']} · E{e['number']} · {e['title']}", "sí" if e["img"] else "—", srv))
+        self.tree.insert("", "end", iid=iid, text="", tags=("lat",) if has_lat else (),
+                         values=(e.get("season", ""), e.get("number", ""), e.get("title", ""),
+                                 (e.get("duration") or "").replace(" min", "m"), lang,
+                                 "🖼" if e.get("img") else "—", len(servers), srv))
         self._tree_eps.append(e)
         total = len(self.data.get("episodes", [])) if self.data else len(self._tree_eps)
         self.count_lbl.config(text=(f"{len(self._tree_eps)} de {total} episodios" if len(self._tree_eps) != total else f"{total} episodios"))
@@ -1566,8 +1612,10 @@ class App:
     def after_episodes(self):
         self.f_audio.set(self.data.get("audio", "Sub"))
         self.update_season_view(select="Todas")
-        self.save_btn.config(state="normal" if self.data["episodes"] else "disabled")
-        if not self.data["episodes"]: self.log("No se encontraron servidores. Revisa fuentes/título.")
+        n = len(self.data["episodes"])
+        self.save_btn.config(state="normal" if n else "disabled")
+        if not n: self.log("No se encontraron servidores. Revisa fuentes/título."); self.yoru.say("No encontré episodios. Revisa el título o las fuentes.")
+        else: self.yoru.say(f"Búsqueda finalizada. {n} episodios listos para revisar y guardar.")
 
     def do_clear(self, silent=False):
         """Deja la app lista para otra operación sin arrastrar el estado anterior (evita
@@ -1818,7 +1866,7 @@ class App:
         new = simpledialog.askstring("Editar imagen del episodio", f"E{ep['number']} — URL de la imagen:", initialvalue=ep["img"], parent=self.root)
         if new is not None:
             ep["img"] = new.strip()
-            self.tree.set(iid, "img", "sí" if ep["img"] else "—")
+            self.tree.set(iid, "img", "🖼" if ep["img"] else "—")
 
     def do_save(self):
         if not self.data: return
@@ -1852,6 +1900,7 @@ class App:
                     self.log("ERROR guardar: " + str(e2))
             finally:
                 if ok:
+                    self.yoru.say(f"{self.data['real_title']} guardado en el catálogo. Ya está en el sitio.")
                     # se guardó bien → limpia para no arrastrar estado y evitar conflictos
                     self.root.after(0, lambda: (self.do_clear(silent=True),
                                                 self.log("✅ Guardado y limpiado. Listo para el siguiente.")))
