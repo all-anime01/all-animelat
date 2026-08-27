@@ -93,9 +93,21 @@ Marca **🔊 Yoru (voz)**. Te avisa cuando **inicia** una búsqueda, cuántas **
 encontró y qué va a scrapear, y cuando **termina** o **guarda**. Usa la voz del sistema
 (Windows); si tienes una voz en español instalada, hablará en español.
 
-> *Nota:* Yoru hoy es el asistente de **voz + estado**. Para hacerlo "más inteligente" de
-> verdad (que interprete pedidos libres) se puede conectar un modelo (API de Claude/OpenAI
-> o un modelo local) — pídemelo y lo integro con tu clave.
+### Hablarle a Yoru (voz → acción)
+Pulsa **🎤 Hablar con Yoru** y di lo que quieres. Entiende, por ejemplo:
+- «**agrega** Naruto» / «**añade la película** Your Name»
+- «**actualiza** / **completa** One Piece»
+- «**repara las imágenes** de Bleach»
+- «**agrega el latino** a Kimetsu no Yaiba»
+
+El reconocimiento de voz es en **español** (gratis, incluido). Usa el micro de tu cámara o
+audífonos. Si corres el `.py` en vez del `.exe`, instala una vez:
+`pip install SpeechRecognition pyaudio`.
+
+### Yoru con IA (Gemini — gratis)
+Para que entienda pedidos libres (no solo las frases de arriba), crea una clave **gratis** en
+**https://aistudio.google.com/apikey** (no pide tarjeta) y pégala en **«Gemini API key»**.
+Consumo de tokens mínimo. Sin clave, Yoru igual funciona con los comandos de arriba.
 
 ---
 

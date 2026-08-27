@@ -4,6 +4,16 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v24 — Yoru habla y ENTIENDE
+
+- **🎤 Hablar con Yoru:** botón que **escucha tu micrófono** (cámara/audífonos) y ejecuta lo
+  que pidas por voz: «agrega Naruto», «añade la película Your Name», «actualiza One Piece»,
+  «repara las imágenes de Bleach», «agrega el latino a Kimetsu». Reconocimiento en español
+  (gratis, ya incluido en el .exe).
+- **Yoru con IA (Gemini, gratis):** pega tu clave de **aistudio.google.com/apikey** (gratis,
+  sin tarjeta) en el campo «Gemini API key». Con ella Yoru entiende pedidos libres (no solo
+  las frases exactas). Sin clave, funciona igual con las frases de arriba. Consumo mínimo.
+
 ## Novedades v23
 
 - **animeyt como fuente principal.** Se logró extraer sus servidores (vienen en `<option>`

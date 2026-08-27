@@ -74,6 +74,51 @@ class Yoru:
                                  stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=_NOWIN)
             p.communicate(text.encode("utf-8"), timeout=40)
         except Exception: pass
+    def listen(self, seconds=7):
+        """Escucha el micrófono y devuelve el texto en español (Google STT gratis)."""
+        try: import speech_recognition as sr
+        except Exception: return "__no_sr__"
+        try:
+            r = sr.Recognizer()
+            with sr.Microphone() as src:
+                r.adjust_for_ambient_noise(src, duration=0.4)
+                audio = r.listen(src, timeout=7, phrase_time_limit=seconds)
+            return r.recognize_google(audio, language="es-ES")
+        except Exception:
+            return None
+
+# ---- Cerebro de Yoru: interpreta el comando (Gemini gratis, o reglas si no hay clave) ----
+def gemini_intent(text, key):
+    if not key or not text: return None
+    try:
+        prompt = ("Eres Yoru, asistente de un scraper de anime. Del texto extrae la intención y el título. "
+                  "Responde SOLO un JSON válido: {\"action\":\"add|movie|update|repair|latino|unknown\",\"title\":\"\"}. "
+                  "add=agregar anime; movie=agregar película; update=completar/actualizar; repair=reparar imágenes; "
+                  "latino=agregar doblaje latino. Texto del usuario: " + text)
+        url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + urllib.parse.quote(key)
+        st, t = http(url, data={"contents": [{"parts": [{"text": prompt}]}],
+                                "generationConfig": {"temperature": 0, "maxOutputTokens": 100}})
+        if st != 200: return None
+        txt = json.loads(t)["candidates"][0]["content"]["parts"][0]["text"]
+        mm = re.search(r"\{[\s\S]*\}", txt)
+        return json.loads(mm.group(0)) if mm else None
+    except Exception:
+        return None
+def parse_command(text):
+    """Interpreta el comando por reglas (funciona SIN IA)."""
+    t = " " + (text or "").lower().strip() + " "
+    t = re.sub(r"\s+(por favor|gracias|al cat[aá]logo|a la p[aá]gina)\s*$", " ", t).strip()
+    def tail(m): return re.sub(r"^(el|la|los|las)\s+", "", m.strip())
+    for pat, act in [
+        (r"(?:agrega|añade|agregar|añadir|sube|pon)\s+(?:la\s+)?pel[ií]cula\s+(.+)", "movie"),
+        (r"(?:actualiza|completa|actualizar|completar)\s+(?:el\s+anime\s+)?(.+)", "update"),
+        (r"(?:repara|arregla|reparar|arreglar)\s+(?:las\s+)?(?:im[aá]genes)\s+(?:de\s+)?(.+)", "repair"),
+        (r"(?:agrega|añade|pon)\s+(?:el\s+)?latino\s+(?:a\s+)?(.+)", "latino"),
+        (r"(?:agrega|añade|agregar|añadir|busca|sube|pon)\s+(?:el\s+anime\s+)?(.+)", "add"),
+    ]:
+        m = re.search(pat, t)
+        if m: return {"action": act, "title": tail(m.group(1))}
+    return {"action": "unknown", "title": text or ""}
 
 API_KEY = "AIzaSyDJMJcwFvQCAfp9mXcCvxCQpX-6wy-a4FA"
 PROJECT = "all-anime-eae5b"
@@ -1122,6 +1167,7 @@ class App:
     def __init__(self, root):
         self.root = root; self.token = None; self._token_at = 0; self.data = None; self.cfg = load_cfg()
         self.yoru = Yoru()   # asistente de voz
+        self._pending_voice = None   # acción por voz a ejecutar tras cargar del catálogo
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
         self.loaded_seasons = []; self.loaded_season_by_num = {}                 # nombres/rangos reales de temporada del anime cargado
         self._tree_eps = []                                                     # episodios visibles en el listado (mapa fila→episodio)
@@ -1207,6 +1253,10 @@ class App:
         self.login_btn = ttk.Button(row, text="Iniciar sesión", style="Red.TButton", command=self.login); self.login_btn.grid(row=1, column=3, padx=(10, 0))
         self.remember = tk.BooleanVar(value=bool(self.cfg.get("pw")))
         ttk.Checkbutton(row, text="Recordar sesión", variable=self.remember).grid(row=1, column=4, padx=(10, 0))
+        # Clave de Yoru IA (Gemini, gratis en aistudio.google.com/apikey) — opcional.
+        ttk.Label(row, text="Gemini API key (Yoru IA · gratis)", style="Mut.TLabel").grid(row=2, column=0, columnspan=2, sticky="w", pady=(8, 0))
+        self.gemini = ttk.Entry(row, width=46); self.gemini.grid(row=3, column=0, columnspan=2, sticky="we", pady=(2, 0)); self.gemini.insert(0, self.cfg.get("gemini_key", ""))
+        ttk.Button(row, text="🎤 Hablar con Yoru", style="Blue.TButton", command=self.do_voice).grid(row=3, column=2, columnspan=2, sticky="w", padx=(8, 0))
 
         # Search card
         sc = card(body); sc.pack(fill="x", pady=(12, 0))
@@ -1381,7 +1431,7 @@ class App:
         try:
             self.token = sign_in(self.email.get().strip(), self.pw.get()); self._token_at = time.time()
             key = self.tmdb.get().strip()
-            self.cfg.update(email=self.email.get().strip(), tmdb_key=key)
+            self.cfg.update(email=self.email.get().strip(), tmdb_key=key, gemini_key=self.gemini.get().strip())
             # Recordar sesión: guarda la contraseña ofuscada (o la borra si se desmarca).
             if self.remember.get(): self.cfg["pw"] = _obf(self.pw.get())
             else: self.cfg.pop("pw", None)
@@ -1469,9 +1519,57 @@ class App:
                     ordered = self._distinct_seasons()
                     self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(ordered)} temporada(s): {', '.join(ordered[:6])}{'…' if len(ordered) > 6 else ''}")
                     self.log("Lista completa cargada; en «Ver temporada» puedes filtrar por temporada.")
+                    if self._pending_voice: self.root.after(400, self._run_pending_voice)   # acción por voz
                 self.root.after(0, show)
             except Exception as e: self.log("ERROR cargar: " + str(e))
         threading.Thread(target=work, daemon=True).start()
+
+    def do_voice(self):
+        """Escucha por micrófono y ejecuta lo pedido (agregar/actualizar/reparar/latino)."""
+        if not self.token: messagebox.showinfo("Yoru", "Inicia sesión primero."); return
+        self.cfg["gemini_key"] = self.gemini.get().strip(); save_cfg(self.cfg)
+        self.log("🎤 Yoru escuchando… (habla ahora)")
+        self.yoru.say("Te escucho.")
+        def work():
+            text = self.yoru.listen()
+            if text == "__no_sr__":
+                self.root.after(0, lambda: self.log("Falta el reconocimiento de voz. Instala: pip install SpeechRecognition pyaudio")); return
+            if not text:
+                self.yoru.say("No te entendí, intenta de nuevo.")
+                self.root.after(0, lambda: self.log("Yoru: no entendí (revisa el micrófono).")); return
+            self.root.after(0, lambda: self.log(f"🎤 Escuché: “{text}”"))
+            cmd = gemini_intent(text, self.gemini.get().strip()) or parse_command(text)
+            self.root.after(0, lambda: self.exec_command(cmd))
+        threading.Thread(target=work, daemon=True).start()
+
+    def exec_command(self, cmd):
+        """Ejecuta el comando interpretado (por voz o IA)."""
+        act = (cmd or {}).get("action", "unknown"); title = ((cmd or {}).get("title") or "").strip()
+        title = re.sub(r"\s+(por favor|gracias)\s*$", "", title, flags=re.I).strip()
+        if not title or act == "unknown":
+            self.yoru.say("No reconocí el comando."); self.log("Yoru: no reconocí el comando."); return
+        self.title.delete(0, "end"); self.title.insert(0, title)
+        if act == "movie":
+            self.kind.set("Película"); self.yoru.say(f"Agregando la película {title}."); self.do_build()
+        elif act == "add":
+            self.kind.set("Auto"); self.yoru.say(f"Agregando {title}."); self.do_build()
+        elif act in ("update", "repair", "latino"):
+            self.yoru.say(f"Buscando {title} en tu catálogo para {'completarlo' if act=='update' else 'repararlo'}.")
+            self._pending_voice = act
+            self.cat_search.delete(0, "end"); self.cat_search.insert(0, title); self._filter_catalog()
+            self.load_from_catalog()   # al terminar de cargar se ejecuta la acción pendiente
+
+    def _run_pending_voice(self):
+        act = self._pending_voice; self._pending_voice = None
+        if act == "update":
+            self.do_build(add_only=True)
+        elif act == "repair":
+            self.do_fix_images()
+        elif act == "latino":
+            try:
+                for iid in self.tree.get_children(): self.tree.selection_add(iid)
+                self.repair_selected("latino")
+            except Exception: pass
 
     def do_add_new(self):
         """Añade SOLO episodios nuevos al anime cargado del catálogo — conserva la lista
