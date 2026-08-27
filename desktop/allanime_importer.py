@@ -417,7 +417,8 @@ def embed69_lat(imdb, s, e):
 def search_variants(title):
     """Variantes de búsqueda: título, parte principal (antes de :/-/(), y primeras palabras."""
     v = [title]
-    main = re.split(r"[:\-–—(|~]", title)[0].strip()
+    if "/" in title: v.append(title.replace("/", " "))   # Fate/Apocrypha → "Fate Apocrypha"
+    main = re.split(r"[:\-–—(|~/]", title)[0].strip()
     if main and main != title: v.append(main)
     words = main.split()
     if len(words) > 2: v.append(" ".join(words[:2]))
