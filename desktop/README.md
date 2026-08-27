@@ -4,6 +4,13 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v19
+
+- **Título en Español (Latinoamérica):** se toma de TMDB por país (MX/AR/CO…) y se agrega a
+  los títulos alternativos (además del original japonés y el global en inglés).
+- **OVAs:** si la fuente tiene OVAs/especiales (`{slug}-ova`, `-ovas`, `-oad`…), se detectan
+  y se **anexan al mismo anime** como bloque «OVAs» con su propia numeración.
+
 ## Novedades v18
 
 - **Agregar varios animes a la vez (Lote):** botón **🧾 Lote** junto a «Buscar y construir».

@@ -221,11 +221,16 @@ def tmdb_full(tv, key):
         if d.get("backdrop_path"): out["backdrop"] = f"{IMG}/w1280{d['backdrop_path']}"
         rt = d.get("episode_run_time") or []; out["runtime"] = rt[0] if rt else 24
         out["creator"] = (d.get("created_by") or [{}])[0].get("name") or (d.get("production_companies") or [{}])[0].get("name") or (d.get("networks") or [{}])[0].get("name") or ""
-        # títulos alternativos (otros países) + original
+        # títulos alternativos (otros países) + original + ESPAÑOL LATINOAMÉRICA (MX/AR/CO…)
         alts = get_json(f"https://api.themoviedb.org/3/tv/{tv}/alternative_titles?api_key={key}")
-        at = [a.get("title") for a in (alts.get("results") or []) if a.get("title")]
+        results = alts.get("results") or []
+        LA = {"MX", "AR", "CO", "CL", "PE", "VE", "EC", "GT", "CU", "BO", "DO", "HN", "PY", "SV", "NI", "CR", "PA", "UY"}
+        es_la = next((a["title"] for a in results if a.get("iso_3166_1") in LA and a.get("title")), "")
+        out["title_es_la"] = es_la
+        at = [a.get("title") for a in results if a.get("title")]
+        if es_la: at.insert(0, es_la)              # el de LatAm, primero entre los alternativos
         if d.get("original_name"): at.insert(0, d["original_name"])
-        seen = set(); out["altTitles"] = [x for x in at if x and x != out["title"] and not (x.lower() in seen or seen.add(x.lower()))][:8]
+        seen = set(); out["altTitles"] = [x for x in at if x and x != out["title"] and not (x.lower() in seen or seen.add(x.lower()))][:10]
         seasons = [s for s in d.get("seasons", []) if s.get("season_number", 0) >= 1 and s.get("episode_count", 0) > 0]
         out["seasons"] = [{"season": s["season_number"], "count": s["episode_count"]} for s in seasons]
         ext = get_json(f"https://api.themoviedb.org/3/tv/{tv}/external_ids?api_key={key}")
@@ -719,6 +724,19 @@ def build_episodes(data, opts, log, prog, on_ep):
             per_season_num = bool(src_slug)
             if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}" + (" [slug manual · nº por temporada]" if src_slug else ""))
             if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
+        # OVAs: si la fuente tiene un slug de OVAs/especiales, se anexan como bloque propio
+        # ("OVAs"), con numeración propia (1..N). embed69 no aplica (e69s=None).
+        if not src_slugs:
+            ova_jk = ova_av = None
+            for suf in ("-ova", "-ovas", "-oad", "-oav", "-especiales", "-specials"):
+                try:
+                    if opts["jk"] and base_jk and not ova_jk and jk_max(base_jk + suf) > 0: ova_jk = base_jk + suf
+                    if opts["av1"] and base_av and not ova_av and av1_max(base_av + suf) > 0: ova_av = base_av + suf
+                except Exception: pass
+            if ova_jk or ova_av:
+                seasons.append({"season": len(seasons) + 1, "count": 60, "name": "OVAs",
+                                "jk": ova_jk, "av": ova_av, "e69s": None, "psn": True})
+                log(f"OVAs detectadas: jk={ova_jk or '—'} av={ova_av or '—'}")
     episodes = data["episodes"]
     manual = {}
     if opts["manual"]:
@@ -765,7 +783,7 @@ def build_episodes(data, opts, log, prog, on_ep):
         sname = S.get("name") or (f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1")
         jkcur = S.get("jk") or S.get("slug") or jkslug   # slug de jkanime de ESTA temporada
         avcur = S.get("av") or S.get("slug") or avslug   # slug de animeav1 de ESTA temporada
-        if multi:  # cada secuela es independiente: reinicia guardas
+        if multi or S.get("psn"):  # secuela/OVA independiente: reinicia guardas
             skip = {"e69": False, "av1": False, "jk": False}; miss = {"e69": 0, "av1": 0, "jk": 0}; empty_streak = 0
             log(f"— {sname}: jk={jkcur or '—'} av={avcur or '—'}")
         if season_sel and str(S["season"]) != season_sel:
@@ -773,9 +791,9 @@ def build_episodes(data, opts, log, prog, on_ep):
         for n in range(1, S["count"] + 1):
             absn += 1; servers = []
             if rng and (n if season_sel else absn) not in rng: continue
-            src_num = n if per_season_num else absn   # nº para jkanime/animeav1
+            src_num = n if (per_season_num or S.get("psn")) else absn   # nº para jkanime/animeav1
             ce = ca = cj = 0
-            if opts["e69"] and imdb and not skip["e69"]:
+            if opts["e69"] and imdb and not skip["e69"] and S.get("e69s", S.get("season")) is not None:
                 try:
                     r = embed69_lat(imdb, S.get("e69s", S["season"]), n)
                     if r: servers.append(r); ce = 1
