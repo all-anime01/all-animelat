@@ -706,6 +706,26 @@ def build_episodes(data, opts, log, prog, on_ep):
         # agregan completas sin pedir slugs (ej. Ishura → ishura + ishura-2nd-season).
         jk_list = (jk_seasons(title, base_jk) if (opts["jk"] and base_jk and not src_slug) else ([base_jk] if base_jk else []))
         av_list = (av1_seasons(title, base_av) if (opts["av1"] and base_av and not src_slug) else ([base_av] if base_av else []))
+        # Si AniList conoce MÁS temporadas que el patrón (secuelas con nombre DISTINTO, ej.
+        # Tokyo Ghoul √A / :re, Megalo Box Nomad, InuYasha Final Act), busca el slug de cada
+        # temporada por su TÍTULO de AniList → capta esas secuelas que el patrón no ve.
+        al = data.get("anilist") or []
+        if not src_slug and len(al) > max(len(jk_list), len(av_list), 1):
+            jk_al, av_al = [], []
+            for idx, c in enumerate(al):
+                t = (c.get("romaji") or c.get("title") or c.get("english") or "").strip()
+                j = jk_search(t) if (opts["jk"] and t) else None
+                a = av1_search(t) if (opts["av1"] and t) else None
+                # el buscador cae al slug BASE cuando la secuela no existe en esa fuente →
+                # en temporadas > 1 eso es un FALSO match: descártalo (evita duplicar la T1).
+                if idx > 0:
+                    if j and j == base_jk: j = None
+                    if a and a == base_av: a = None
+                jk_al.append(j); av_al.append(a)
+            if len([x for x in jk_al if x]) >= len([x for x in jk_list if x]) or \
+               len([x for x in av_al if x]) >= len([x for x in av_list if x]):
+                jk_list, av_list = jk_al, av_al
+                log(f"temporadas por AniList: {len(al)} → jk={jk_list} · av={av_al}")
         nsrc = max(len(jk_list), len(av_list))
         tmdb_seasons = list(seasons)   # estructura de TMDB (nº eps por temporada)
         if nsrc > 1:
@@ -868,7 +888,16 @@ def save(data, token, replace, log):
         # en la temporada EXISTENTE que le corresponde por número, para no crear temporadas
         # duplicadas ("Temporada 22" junto a "Temporada 22: Elbaph"). Si el número es nuevo
         # (más reciente), usa el nombre de la temporada del episodio de mayor número.
-        if data.get("_update_only") and ex:
+        # ¿El anime numera POR TEMPORADA (nº 1..N se repite en cada temporada, ej. Tokyo
+        # Ghoul) o CONTINUO (One Piece)? Con numeración por temporada NO se debe remapear por
+        # número (fusionaría mal las temporadas nuevas) → se respetan los nombres del build.
+        _seen = {}; per_season_existing = False
+        for e in ex:
+            try:
+                nn = int(e.get("number")); _seen[nn] = _seen.get(nn, 0) + 1
+                if _seen[nn] > 1: per_season_existing = True
+            except (TypeError, ValueError): pass
+        if data.get("_update_only") and ex and not per_season_existing:
             by_num = {}
             for e in ex:
                 try: by_num[int(e.get("number"))] = e.get("season")

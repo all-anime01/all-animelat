@@ -4,6 +4,15 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v20
+
+- **Secuelas con NOMBRE distinto** (Tokyo Ghoul √A / :re, Megalo Box Nomad, InuYasha Final
+  Act…): antes la detección por patrón no las veía. Ahora, si **AniList** conoce más
+  temporadas por su cadena de secuelas, se busca el slug de **cada temporada por su título**
+  → se agregan completas. (Evita falsos matches al slug base.)
+- **Merge por-temporada arreglado:** al completar un anime que numera 1..N por temporada
+  (Tokyo Ghoul), las temporadas nuevas ya no se fusionan mal con las existentes.
+
 ## Novedades v19
 
 - **Título en Español (Latinoamérica):** se toma de TMDB por país (MX/AR/CO…) y se agrega a
