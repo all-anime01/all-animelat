@@ -4,6 +4,12 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v25 — Diseño PREMIUM (CustomTkinter)
+
+- La interfaz se **migró a CustomTkinter**: tarjetas y controles con **esquinas redondeadas**,
+  botones y campos modernos, scroll suave y look profesional oscuro. Misma funcionalidad y
+  atajos; la tabla de episodios sigue siendo una tabla (estilizada) porque CTk no tiene una.
+
 ## Novedades v24 — Yoru habla y ENTIENDE
 
 - **🎤 Hablar con Yoru:** botón que **escucha tu micrófono** (cámara/audífonos) y ejecuta lo

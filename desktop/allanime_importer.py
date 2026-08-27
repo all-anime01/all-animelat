@@ -28,6 +28,7 @@ Uso:
 import json, re, base64, os, urllib.request, urllib.parse, urllib.error, threading, time, ssl, unicodedata, subprocess, tempfile
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
+import customtkinter as ctk
 
 _NOWIN = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
@@ -1176,87 +1177,79 @@ class App:
             ip = _icon_path()
             if ip: root.iconbitmap(ip)
         except Exception: pass
-        FBODY = ("Segoe UI", 10); FSMALL = ("Segoe UI", 9); FBOLD = ("Segoe UI Semibold", 10)
-        s = ttk.Style(); s.theme_use("clam")
-        s.configure(".", background=BG, foreground=TXT, fieldbackground=FIELD, font=FBODY)
-        s.configure("Card.TFrame", background=CARD)
-        s.configure("TLabel", background=CARD, foreground=TXT)
-        s.configure("Mut.TLabel", background=CARD, foreground=MUT, font=FSMALL)
-        s.configure("H.TLabel", background=CARD, foreground=TXT, font=("Segoe UI Semibold", 11))
-        # Botones: base (neutro), acento (rojo), guardar (verde), secundario (azul)
-        s.configure("TButton", background="#232838", foreground=TXT, padding=(14, 9), borderwidth=0, font=FBOLD, focuscolor=CARD)
-        s.map("TButton", background=[("active", "#2e3550"), ("pressed", "#2e3550")])
-        s.configure("Red.TButton", background=RED, foreground="#ffffff"); s.map("Red.TButton", background=[("active", REDH), ("pressed", REDH)])
-        s.configure("Grn.TButton", background=GRN, foreground="#062b15"); s.map("Grn.TButton", background=[("active", GRNH), ("pressed", GRNH)])
-        s.configure("Blue.TButton", background=BLUE, foreground="#ffffff"); s.map("Blue.TButton", background=[("active", BLUEH), ("pressed", BLUEH)])
-        s.configure("Ghost.TButton", background=CARD2, foreground=MUT, padding=(10, 7)); s.map("Ghost.TButton", background=[("active", "#242a3b")], foreground=[("active", TXT)])
-        s.configure("AA.Horizontal.TProgressbar", troughcolor=FIELD, bordercolor=FIELD, background=GRN, lightcolor=GRNH, darkcolor="#1aa54f", thickness=14)
-        s.configure("TCheckbutton", background=CARD, foreground=TXT, focuscolor=CARD); s.map("TCheckbutton", background=[("active", CARD)])
-        s.configure("TRadiobutton", background=CARD, foreground=TXT, focuscolor=CARD); s.map("TRadiobutton", background=[("active", CARD)])
-        s.configure("TEntry", fieldbackground=FIELD, foreground=TXT, insertcolor=TXT, borderwidth=1, bordercolor=LINE, padding=5)
-        s.map("TEntry", bordercolor=[("focus", RED)])
-        s.configure("TCombobox", fieldbackground=FIELD, background=FIELD, foreground=TXT, arrowcolor=MUT, bordercolor=LINE, padding=4)
-        s.map("TCombobox", fieldbackground=[("readonly", FIELD)])
-        s.configure("Treeview", background=FIELD, fieldbackground=FIELD, foreground=TXT, rowheight=26, borderwidth=0, font=FSMALL)
-        s.map("Treeview", background=[("selected", "#26314a")], foreground=[("selected", TXT)])
-        s.configure("Treeview.Heading", background=CARD2, foreground=MUT, font=("Segoe UI Semibold", 9), borderwidth=0, padding=6)
+        # ttk.Style SOLO para el Treeview (CTk no tiene tabla); el resto de la UI es CTk.
+        s = ttk.Style()
+        try: s.theme_use("clam")
+        except Exception: pass
+        s.configure("Treeview", background=FIELD, fieldbackground=FIELD, foreground=TXT, rowheight=28, borderwidth=0, font=("Segoe UI", 10))
+        s.map("Treeview", background=[("selected", "#2a3550")], foreground=[("selected", TXT)])
+        s.configure("Treeview.Heading", background=CARD2, foreground=MUT, font=("Segoe UI Semibold", 10), borderwidth=0, padding=6)
         s.configure("Vertical.TScrollbar", background=CARD2, troughcolor=BG, bordercolor=BG, arrowcolor=MUT)
 
+        # ---- Helpers de widgets CustomTkinter (look premium) ----
+        F = lambda sz=13, w="normal": ctk.CTkFont("Segoe UI", sz, weight=w)
+        def card(parent):
+            return ctk.CTkFrame(parent, fg_color=CARD, corner_radius=14, border_width=1, border_color=LINE)
+        def head(c, t, sub=None):
+            hf = ctk.CTkFrame(c, fg_color="transparent"); hf.pack(fill="x", padx=18, pady=(15, 8))
+            ctk.CTkFrame(hf, fg_color=RED, width=4, height=24, corner_radius=2).pack(side="left", padx=(0, 12))
+            box = ctk.CTkFrame(hf, fg_color="transparent"); box.pack(side="left", fill="x")
+            ctk.CTkLabel(box, text=t, text_color=TXT, font=F(16, "bold")).pack(anchor="w")
+            if sub: ctk.CTkLabel(box, text=sub, text_color=MUT, font=F(12)).pack(anchor="w")
+        def lab(parent, text, mut=True):
+            return ctk.CTkLabel(parent, text=text, text_color=(MUT if mut else TXT), font=F(12))
+        def ent(parent, width=200, show=None):
+            return ctk.CTkEntry(parent, width=width, height=32, corner_radius=8, fg_color=FIELD,
+                                border_color=LINE, text_color=TXT, show=show, font=F(12))
+        BTN = {"base": ("#2a3040", "#343c50", TXT), "red": (RED, REDH, "#ffffff"),
+               "grn": (GRN, GRNH, "#062b15"), "blue": (BLUE, BLUEH, "#ffffff"), "ghost": (CARD2, "#2a3040", TXT)}
+        def btn(parent, text, cmd, kind="base"):
+            c = BTN[kind]
+            return ctk.CTkButton(parent, text=text, command=cmd, fg_color=c[0], hover_color=c[1], text_color=c[2],
+                                 corner_radius=8, height=32, font=F(12, "bold"))
+        def combo(parent, values, width=200, command=None, readonly=True):
+            return ctk.CTkComboBox(parent, values=values, width=width, height=32, corner_radius=8, fg_color=FIELD,
+                                   border_color=LINE, button_color=CARD2, button_hover_color="#343c50",
+                                   dropdown_fg_color=CARD2, text_color=TXT, command=command,
+                                   state=("readonly" if readonly else "normal"), font=F(12))
+        def chk(parent, text, var, command=None):
+            return ctk.CTkCheckBox(parent, text=text, variable=var, command=command, font=F(12),
+                                   text_color=TXT, fg_color=RED, hover_color=REDH, checkbox_width=20, checkbox_height=20)
+        self._F = F; self._card = card; self._head = head; self._lab = lab
+        self._ent = ent; self._btn = btn; self._combo = combo; self._chk = chk
+
         # ---- Header (barra superior con marca + estado + cerrar sesión) ----
-        hd = tk.Frame(root, bg=HEAD, height=62); hd.pack(fill="x"); hd.pack_propagate(False)
-        badge = tk.Label(hd, text=" ▶ ", fg="#ffffff", bg=RED, font=("Segoe UI", 13, "bold")); badge.pack(side="left", padx=(18, 11), pady=14)
-        tk.Label(hd, text="All-Anime", fg=TXT, bg=HEAD, font=("Segoe UI Semibold", 16)).pack(side="left")
-        tk.Label(hd, text="Scrapper", fg=RED, bg=HEAD, font=("Segoe UI Semibold", 16)).pack(side="left", padx=(6, 0))
-        tk.Label(hd, text="con Yoru IA", fg=MUT, bg=HEAD, font=("Segoe UI", 10)).pack(side="left", padx=(10, 0), pady=(6, 0))
-        self.logout_btn = ttk.Button(hd, text="Cerrar sesión", style="Ghost.TButton", command=self.logout)
-        self.status = tk.Label(hd, text="●  Sin sesión", fg="#ffcf7a", bg=HEAD, font=("Segoe UI Semibold", 10)); self.status.pack(side="right", padx=16)
-        tk.Frame(root, bg=RED, height=2).pack(fill="x")   # línea de acento bajo el header
+        hd = ctk.CTkFrame(root, fg_color=HEAD, height=64, corner_radius=0); hd.pack(fill="x"); hd.pack_propagate(False)
+        ctk.CTkLabel(hd, text=" ▶ ", fg_color=RED, text_color="#ffffff", corner_radius=7, font=F(15, "bold")).pack(side="left", padx=(18, 11), pady=14)
+        ctk.CTkLabel(hd, text="All-Anime", text_color=TXT, font=F(18, "bold")).pack(side="left")
+        ctk.CTkLabel(hd, text="Scrapper", text_color=RED, font=F(18, "bold")).pack(side="left", padx=(6, 0))
+        ctk.CTkLabel(hd, text="con Yoru IA", text_color=MUT, font=F(12)).pack(side="left", padx=(10, 0))
+        self.logout_btn = btn(hd, "Cerrar sesión", self.logout, "ghost")
+        self.status = ctk.CTkLabel(hd, text="●  Sin sesión", text_color="#ffcf7a", font=F(12, "bold")); self.status.pack(side="right", padx=18)
+        ctk.CTkFrame(root, fg_color=RED, height=2, corner_radius=0).pack(fill="x")   # línea de acento
 
         # Log FIJO abajo
-        self.logbox = tk.Text(root, bg="#0a0a0c", fg="#c8c8d0", height=6, font=("Consolas", 9), relief="flat")
+        self.logbox = ctk.CTkTextbox(root, height=120, fg_color="#0a0a0c", text_color="#c8c8d0", font=("Consolas", 12), corner_radius=10)
         self.logbox.pack(side="bottom", fill="x", padx=14, pady=(0, 12))
-        # Área DESPLAZABLE (scroll) con todo el contenido
-        outer = tk.Frame(root, bg=BG); outer.pack(fill="both", expand=True)
-        canvas = tk.Canvas(outer, bg=BG, highlightthickness=0)
-        vsb = ttk.Scrollbar(outer, orient="vertical", command=canvas.yview)
-        canvas.configure(yscrollcommand=vsb.set)
-        vsb.pack(side="right", fill="y"); canvas.pack(side="left", fill="both", expand=True)
-        _inner = tk.Frame(canvas, bg=BG)
-        _win = canvas.create_window((0, 0), window=_inner, anchor="nw")
-        _inner.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
-        canvas.bind("<Configure>", lambda e: canvas.itemconfig(_win, width=e.width))
-        self._canvas = canvas
-        # Rueda del ratón: desplaza la página. Antes de desplazar cierra cualquier desplegable
-        # abierto (así no queda "flotando") y evita que la rueda sobre un combo cambie su valor.
-        canvas.bind_all("<MouseWheel>", self._wheel)
-        root.bind_class("TCombobox", "<MouseWheel>", self._wheel)
-        body = tk.Frame(_inner, bg=BG); body.pack(fill="both", expand=True, padx=14, pady=12)
-
-        def card(parent):
-            c = tk.Frame(parent, bg=CARD, highlightbackground=LINE, highlightthickness=1); return c
-        def head(c, t, sub=None):
-            hf = tk.Frame(c, bg=CARD); hf.pack(fill="x", padx=16, pady=(14, 8))
-            tk.Frame(hf, bg=RED, width=4, height=18).pack(side="left", padx=(0, 10))
-            box = tk.Frame(hf, bg=CARD); box.pack(side="left", fill="x")
-            tk.Label(box, text=t, bg=CARD, fg=TXT, font=("Segoe UI Semibold", 11)).pack(anchor="w")
-            if sub: tk.Label(box, text=sub, bg=CARD, fg=MUT, font=("Segoe UI", 9)).pack(anchor="w")
+        # Área DESPLAZABLE (scroll) con todo el contenido — CTk lo maneja solo
+        body = ctk.CTkScrollableFrame(root, fg_color=BG, corner_radius=0); body.pack(fill="both", expand=True, padx=8, pady=8)
 
         # Config card (login + tmdb)
         cf = card(body); cf.pack(fill="x")
         head(cf, "Cuenta y ajustes", "Tu sesión y la TMDB API key quedan guardadas en este equipo.")
-        row = tk.Frame(cf, bg=CARD); row.pack(fill="x", padx=16, pady=(0, 14))
-        ttk.Label(row, text="Correo admin", style="Mut.TLabel").grid(row=0, column=0, sticky="w"); ttk.Label(row, text="Contraseña", style="Mut.TLabel").grid(row=0, column=1, sticky="w", padx=(8, 0))
-        ttk.Label(row, text="TMDB API key (opcional, para logo)", style="Mut.TLabel").grid(row=0, column=2, sticky="w", padx=(8, 0))
-        self.email = ttk.Entry(row, width=26); self.email.grid(row=1, column=0, sticky="w", pady=(2, 0)); self.email.insert(0, self.cfg.get("email", ""))
-        self.pw = ttk.Entry(row, width=18, show="•"); self.pw.grid(row=1, column=1, padx=(8, 0), pady=(2, 0)); self.pw.insert(0, _deobf(self.cfg.get("pw", "")))
-        self.tmdb = ttk.Entry(row, width=30); self.tmdb.grid(row=1, column=2, padx=(8, 0), pady=(2, 0)); self.tmdb.insert(0, self.cfg.get("tmdb_key", ""))
-        self.login_btn = ttk.Button(row, text="Iniciar sesión", style="Red.TButton", command=self.login); self.login_btn.grid(row=1, column=3, padx=(10, 0))
+        row = ctk.CTkFrame(cf, fg_color="transparent"); row.pack(fill="x", padx=18, pady=(0, 16))
+        lab(row, "Correo admin").grid(row=0, column=0, sticky="w"); lab(row, "Contraseña").grid(row=0, column=1, sticky="w", padx=(8, 0))
+        lab(row, "TMDB API key (opcional, para logo)").grid(row=0, column=2, sticky="w", padx=(8, 0))
+        self.email = ent(row, 210); self.email.grid(row=1, column=0, sticky="w", pady=(2, 0)); self.email.insert(0, self.cfg.get("email", ""))
+        self.pw = ent(row, 150, show="•"); self.pw.grid(row=1, column=1, padx=(8, 0), pady=(2, 0)); self.pw.insert(0, _deobf(self.cfg.get("pw", "")))
+        self.tmdb = ent(row, 250); self.tmdb.grid(row=1, column=2, padx=(8, 0), pady=(2, 0)); self.tmdb.insert(0, self.cfg.get("tmdb_key", ""))
+        self.login_btn = btn(row, "Iniciar sesión", self.login, "red"); self.login_btn.grid(row=1, column=3, padx=(10, 0))
         self.remember = tk.BooleanVar(value=bool(self.cfg.get("pw")))
-        ttk.Checkbutton(row, text="Recordar sesión", variable=self.remember).grid(row=1, column=4, padx=(10, 0))
+        chk(row, "Recordar sesión", self.remember).grid(row=1, column=4, padx=(12, 0))
         # Clave de Yoru IA (Gemini, gratis en aistudio.google.com/apikey) — opcional.
-        ttk.Label(row, text="Gemini API key (Yoru IA · gratis)", style="Mut.TLabel").grid(row=2, column=0, columnspan=2, sticky="w", pady=(8, 0))
-        self.gemini = ttk.Entry(row, width=46); self.gemini.grid(row=3, column=0, columnspan=2, sticky="we", pady=(2, 0)); self.gemini.insert(0, self.cfg.get("gemini_key", ""))
-        ttk.Button(row, text="🎤 Hablar con Yoru", style="Blue.TButton", command=self.do_voice).grid(row=3, column=2, columnspan=2, sticky="w", padx=(8, 0))
+        lab(row, "Gemini API key (Yoru IA · gratis)").grid(row=2, column=0, columnspan=2, sticky="w", pady=(10, 0))
+        self.gemini = ent(row, 420); self.gemini.grid(row=3, column=0, columnspan=2, sticky="we", pady=(2, 0)); self.gemini.insert(0, self.cfg.get("gemini_key", ""))
+        btn(row, "🎤 Hablar con Yoru", self.do_voice, "blue").grid(row=3, column=2, columnspan=2, sticky="w", padx=(8, 0))
 
         # Search card
         sc = card(body); sc.pack(fill="x", pady=(12, 0))
@@ -1264,89 +1257,83 @@ class App:
         # Catálogo existente (para editar info, reparar servers o añadir episodios).
         # Buscador + lista con scroll PROPIO (evita el bug del antiguo desplegable, que se
         # descolocaba al hacer scroll porque la rueda movía también el fondo).
-        cr = tk.Frame(sc, bg=CARD); cr.pack(fill="x", padx=16, pady=(0, 4))
-        ttk.Label(cr, text="Buscar en tu catálogo:", style="Mut.TLabel").pack(side="left")
-        self.cat_search = ttk.Entry(cr, width=34); self.cat_search.pack(side="left", padx=6)
+        cr = ctk.CTkFrame(sc, fg_color="transparent"); cr.pack(fill="x", padx=18, pady=(0, 4))
+        lab(cr, "Buscar en tu catálogo:").pack(side="left")
+        self.cat_search = ent(cr, 300); self.cat_search.pack(side="left", padx=6)
         self.cat_search.bind("<KeyRelease>", self._filter_catalog)
-        self.load_btn = ttk.Button(cr, text="Cargar", command=self.load_from_catalog, state="disabled"); self.load_btn.pack(side="left")
-        self.addnew_btn = ttk.Button(cr, text="➕ Añadir episodios nuevos", style="Blue.TButton", command=self.do_add_new, state="disabled"); self.addnew_btn.pack(side="left", padx=(8, 0))
-        self.cat_count = ttk.Label(cr, text="", style="Mut.TLabel"); self.cat_count.pack(side="left", padx=(8, 0))
-        lf = tk.Frame(sc, bg=CARD); lf.pack(fill="x", padx=16, pady=(0, 8))
-        self.cat_list = tk.Listbox(lf, height=5, bg=FIELD, fg=TXT, selectbackground="#26314a", selectforeground=TXT,
-                                   relief="flat", highlightthickness=1, highlightbackground=LINE, font=("Segoe UI", 9), activestyle="none")
+        self.load_btn = btn(cr, "Cargar", self.load_from_catalog); self.load_btn.pack(side="left"); self.load_btn.configure(state="disabled")
+        self.addnew_btn = btn(cr, "➕ Añadir episodios nuevos", self.do_add_new, "blue"); self.addnew_btn.pack(side="left", padx=(8, 0)); self.addnew_btn.configure(state="disabled")
+        self.cat_count = lab(cr, ""); self.cat_count.pack(side="left", padx=(8, 0))
+        lf = ctk.CTkFrame(sc, fg_color="transparent"); lf.pack(fill="x", padx=18, pady=(0, 8))
+        self.cat_list = tk.Listbox(lf, height=5, bg=FIELD, fg=TXT, selectbackground="#2a3550", selectforeground=TXT,
+                                   relief="flat", highlightthickness=1, highlightbackground=LINE, font=("Segoe UI", 10), activestyle="none")
         clsb = ttk.Scrollbar(lf, orient="vertical", command=self.cat_list.yview); self.cat_list.configure(yscrollcommand=clsb.set)
         clsb.pack(side="right", fill="y"); self.cat_list.pack(side="left", fill="x", expand=True)
         self.cat_list.bind("<Double-1>", lambda e: self.load_from_catalog())
-        # la rueda sobre la lista la desplaza a ELLA (no al fondo) → sin descolocarse
         self.cat_list.bind("<MouseWheel>", lambda e: (self.cat_list.yview_scroll(int(-1 * (e.delta / 120)), "units"), "break")[1])
-        sr = tk.Frame(sc, bg=CARD); sr.pack(fill="x", padx=16, pady=(2, 0))
-        self.title = ttk.Entry(sr, font=("Segoe UI", 12)); self.title.pack(side="left", fill="x", expand=True, ipady=3)
-        self.kind = ttk.Combobox(sr, values=["Auto", "Serie", "Película"], width=9, state="readonly"); self.kind.set("Auto"); self.kind.pack(side="left", padx=(8, 0))
-        self.build_btn = ttk.Button(sr, text="Buscar y construir", style="Red.TButton", command=self.do_build, state="disabled"); self.build_btn.pack(side="left", padx=(8, 0))
-        self.batch_btn = ttk.Button(sr, text="🧾 Lote", command=self.do_batch, state="disabled"); self.batch_btn.pack(side="left", padx=(6, 0))
-        opt = tk.Frame(sc, bg=CARD); opt.pack(fill="x", padx=14, pady=8)
+        sr = ctk.CTkFrame(sc, fg_color="transparent"); sr.pack(fill="x", padx=18, pady=(2, 0))
+        self.title = ent(sr, 200); self.title.configure(font=F(15)); self.title.pack(side="left", fill="x", expand=True)
+        self.kind = combo(sr, ["Auto", "Serie", "Película"], 110); self.kind.set("Auto"); self.kind.pack(side="left", padx=(8, 0))
+        self.build_btn = btn(sr, "Buscar y construir", self.do_build, "red"); self.build_btn.pack(side="left", padx=(8, 0)); self.build_btn.configure(state="disabled")
+        self.batch_btn = btn(sr, "🧾 Lote", self.do_batch); self.batch_btn.pack(side="left", padx=(6, 0)); self.batch_btn.configure(state="disabled")
+        opt = ctk.CTkFrame(sc, fg_color="transparent"); opt.pack(fill="x", padx=16, pady=8)
         self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True)
         self.yt = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
         for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual)]):
-            ttk.Checkbutton(opt, text=t, variable=v, command=cmd or (lambda: None)).grid(row=0, column=i, sticky="w", padx=(0, 14))
+            chk(opt, t, v, command=cmd).grid(row=0, column=i, sticky="w", padx=(0, 14))
         self.replace = tk.BooleanVar(value=False)
-        ttk.Radiobutton(opt, text="Añadir nuevo", variable=self.replace, value=False).grid(row=0, column=5, padx=(10, 6))
-        ttk.Radiobutton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True).grid(row=0, column=6)
+        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=5, padx=(10, 6))
+        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=6)
         self.voz = tk.BooleanVar(value=bool(self.cfg.get("voz")))
         self.yoru.enabled = self.voz.get()
         def _togvoz():
             self.yoru.enabled = self.voz.get(); self.cfg["voz"] = self.voz.get(); save_cfg(self.cfg)
             if self.voz.get(): self.yoru.say("Hola, soy Yoru. Lista para ayudarte.")
-        ttk.Checkbutton(opt, text="🔊 Yoru (voz)", variable=self.voz, command=_togvoz).grid(row=0, column=7, padx=(14, 0))
-        pr = tk.Frame(sc, bg=CARD); pr.pack(fill="x", padx=14, pady=(0, 10))
-        ttk.Label(pr, text="Prioridad de servidores:").pack(side="left")
-        self.prefer = ttk.Entry(pr, width=48); self.prefer.pack(side="left", padx=6)
+        chk(opt, "🔊 Yoru (voz)", self.voz, command=_togvoz).grid(row=0, column=7, padx=(14, 0))
+        pr = ctk.CTkFrame(sc, fg_color="transparent"); pr.pack(fill="x", padx=16, pady=(0, 10))
+        lab(pr, "Prioridad de servidores:", ).pack(side="left")
+        self.prefer = ent(pr, 430); self.prefer.pack(side="left", padx=6)
         self.prefer.insert(0, "Filemoon, Streamwish, Vidara, PelisPlus, HLS, Desu, VidHide")
-        self.only = tk.BooleanVar(value=False); ttk.Checkbutton(pr, text="solo estos", variable=self.only).pack(side="left")
-        rg = tk.Frame(sc, bg=CARD); rg.pack(fill="x", padx=14, pady=(0, 8))
-        ttk.Label(rg, text="Temporada:", style="Mut.TLabel").pack(side="left")
-        self.seasonf = ttk.Entry(rg, width=5); self.seasonf.pack(side="left", padx=(4, 10))
-        ttk.Label(rg, text="Episodios a agregar (ej: 5-12 · vacío = todos):", style="Mut.TLabel").pack(side="left")
-        self.rangef = ttk.Entry(rg, width=16); self.rangef.pack(side="left", padx=6)
-        ttk.Button(rg, text="Detectar faltantes", style="Ghost.TButton", command=self.detect_missing).pack(side="left")
-        # Temporada DESTINO (nombre personalizado, ej. "Temporada 22: Elbaph"). Se llena con
-        # los nombres reales del anime al cargarlo; editable para crear una temporada nueva.
-        dr = tk.Frame(sc, bg=CARD); dr.pack(fill="x", padx=14, pady=(0, 8))
-        ttk.Label(dr, text="Temporada destino (para «Añadir episodios nuevos»):", style="Mut.TLabel").pack(side="left")
-        self.dest_season = ttk.Combobox(dr, width=34, values=["(automática por número)"]); self.dest_season.set("(automática por número)")
+        self.only = tk.BooleanVar(value=False); chk(pr, "solo estos", self.only).pack(side="left")
+        rg = ctk.CTkFrame(sc, fg_color="transparent"); rg.pack(fill="x", padx=16, pady=(0, 8))
+        lab(rg, "Temporada:").pack(side="left")
+        self.seasonf = ent(rg, 55); self.seasonf.pack(side="left", padx=(4, 10))
+        lab(rg, "Episodios a agregar (ej: 5-12 · vacío = todos):").pack(side="left")
+        self.rangef = ent(rg, 140); self.rangef.pack(side="left", padx=6)
+        btn(rg, "Detectar faltantes", self.detect_missing, "ghost").pack(side="left")
+        dr = ctk.CTkFrame(sc, fg_color="transparent"); dr.pack(fill="x", padx=16, pady=(0, 8))
+        lab(dr, "Temporada destino (para «Añadir episodios nuevos»):").pack(side="left")
+        self.dest_season = combo(dr, ["(automática por número)"], 300, readonly=False); self.dest_season.set("(automática por número)")
         self.dest_season.pack(side="left", padx=6)
-        ttk.Label(dr, text="↳ respeta nombres como «Temporada 22: Elbaph»", style="Mut.TLabel").pack(side="left")
-        sg = tk.Frame(sc, bg=CARD); sg.pack(fill="x", padx=14, pady=(0, 8))
-        ttk.Label(sg, text="Slug(s) de la fuente (opcional · varios por coma = secuelas como temporadas):").pack(side="left")
-        self.srcslug = ttk.Entry(sg, width=44); self.srcslug.pack(side="left", padx=6)
-        ttk.Label(sg, text="↳ ej: beyblade-burst, beyblade-burst-god, beyblade-burst-chouzetsu", style="Mut.TLabel").pack(side="left")
-        self.manbox = tk.Frame(sc, bg=CARD)
-        ttk.Label(self.manbox, text="URLs manuales (N|URL por línea)", style="Mut.TLabel").pack(anchor="w", padx=14)
-        self.mantext = tk.Text(self.manbox, height=3, bg="#101015", fg=TXT, insertbackground=TXT, relief="flat"); self.mantext.pack(fill="x", padx=14, pady=(0, 8))
+        lab(dr, "↳ respeta nombres como «Temporada 22: Elbaph»").pack(side="left")
+        sg = ctk.CTkFrame(sc, fg_color="transparent"); sg.pack(fill="x", padx=16, pady=(0, 8))
+        lab(sg, "Slug(s) de la fuente (opcional · varios por coma = secuelas como temporadas):").pack(side="left")
+        self.srcslug = ent(sg, 400); self.srcslug.pack(side="left", padx=6)
+        lab(sg, "↳ ej: beyblade-burst, beyblade-burst-god").pack(side="left")
+        self.manbox = ctk.CTkFrame(sc, fg_color="transparent")
+        lab(self.manbox, "URLs manuales (N|URL por línea)").pack(anchor="w", padx=16)
+        self.mantext = ctk.CTkTextbox(self.manbox, height=64, fg_color="#101015", text_color=TXT, corner_radius=8); self.mantext.pack(fill="x", padx=16, pady=(0, 8))
 
         # Preview card (anime editable + episodes)
         pv = card(body); pv.pack(fill="both", expand=True, pady=(12, 0))
         head(pv, "Vista previa", "Todo es editable · doble clic en un episodio para cambiar su imagen.")
-        af = tk.Frame(pv, bg=CARD); af.pack(fill="x", padx=14)
+        af = ctk.CTkFrame(pv, fg_color="transparent"); af.pack(fill="x", padx=16)
         self.f_title = self._field(af, "Título", 0); self.f_year = self._field(af, "Año", 1, w=8)
         self.f_alt = self._field(af, "Títulos alternativos (coma)", 2)
-        ttk.Label(af, text="Audio", style="Mut.TLabel").grid(row=3, column=0, sticky="w", pady=2)
-        self.f_audio = ttk.Combobox(af, values=AUDIOS, width=16, state="readonly"); self.f_audio.grid(row=3, column=1, sticky="w", padx=8, pady=2); self.f_audio.set("Sub")
+        lab(af, "Audio").grid(row=3, column=0, sticky="w", pady=3)
+        self.f_audio = combo(af, AUDIOS, 170); self.f_audio.grid(row=3, column=1, sticky="w", padx=8, pady=3); self.f_audio.set("Sub")
         self.f_creator = self._field(af, "Estudio/Creador", 4)
-        self.f_poster = self._field(af, "Portada (img)", 5, w=40); self.f_back = self._field(af, "Fondo (heroImg)", 6, w=40)
-        self.f_logo = self._field(af, "Logo (logoImg)", 7, w=40)
-        pgrow = tk.Frame(pv, bg=CARD); pgrow.pack(fill="x", padx=14, pady=8)
-        self.bar = ttk.Progressbar(pgrow, style="AA.Horizontal.TProgressbar"); self.bar.pack(side="left", fill="x", expand=True)
-        self.count_lbl = ttk.Label(pgrow, text="0 episodios", style="Mut.TLabel"); self.count_lbl.pack(side="left", padx=10)
-        # Navegador de TEMPORADAS: se llena con las temporadas del anime; al elegir una, el
-        # listado de abajo muestra solo esa temporada y pasa a ser la temporada destino.
-        svrow = tk.Frame(pv, bg=CARD); svrow.pack(fill="x", padx=14, pady=(0, 4))
-        ttk.Label(svrow, text="Ver temporada:", style="Mut.TLabel").pack(side="left")
-        self.season_view = ttk.Combobox(svrow, width=32, state="readonly", values=["Todas"]); self.season_view.set("Todas")
+        self.f_poster = self._field(af, "Portada (img)", 5); self.f_back = self._field(af, "Fondo (heroImg)", 6)
+        self.f_logo = self._field(af, "Logo (logoImg)", 7)
+        pgrow = ctk.CTkFrame(pv, fg_color="transparent"); pgrow.pack(fill="x", padx=16, pady=8)
+        self.bar = ctk.CTkProgressBar(pgrow, progress_color=GRN, fg_color=FIELD, height=14, corner_radius=7); self.bar.set(0); self.bar.pack(side="left", fill="x", expand=True)
+        self.count_lbl = lab(pgrow, "0 episodios"); self.count_lbl.pack(side="left", padx=12)
+        svrow = ctk.CTkFrame(pv, fg_color="transparent"); svrow.pack(fill="x", padx=16, pady=(0, 4))
+        lab(svrow, "Ver temporada:").pack(side="left")
+        self.season_view = combo(svrow, ["Todas"], 300, command=self.on_season_view); self.season_view.set("Todas")
         self.season_view.pack(side="left", padx=6)
-        self.season_view.bind("<<ComboboxSelected>>", self.on_season_view)
-        self.season_info = ttk.Label(svrow, text="", style="Mut.TLabel"); self.season_info.pack(side="left", padx=8)
-        tw = tk.Frame(pv, bg=CARD); tw.pack(fill="both", expand=True, padx=14)
+        self.season_info = lab(svrow, ""); self.season_info.pack(side="left", padx=8)
+        tw = ctk.CTkFrame(pv, fg_color="transparent"); tw.pack(fill="both", expand=True, padx=16)
         # selectmode extended → puedes marcar VARIOS episodios (Ctrl/Shift+clic) para repararlos.
         self.tree = ttk.Treeview(tw, columns=("temp", "num", "t", "dur", "lang", "img", "nsrv", "srv"),
                                  show="headings", height=10, selectmode="extended")
@@ -1363,22 +1350,21 @@ class App:
         # La rueda sobre el listado lo desplaza a ÉL (no al scroll general).
         self.tree.bind("<MouseWheel>", lambda e: (self.tree.yview_scroll(int(-1 * (e.delta / 120)), "units"), "break")[1])
         # Barra de REPARACIÓN MANUAL por selección (marca uno o varios episodios arriba)
-        rr = tk.Frame(pv, bg=CARD); rr.pack(fill="x", padx=14, pady=(8, 0))
-        ttk.Label(rr, text="Seleccionados:", style="Mut.TLabel").pack(side="left")
-        ttk.Button(rr, text="➕ Agregar Latino", style="Blue.TButton", command=lambda: self.repair_selected("latino")).pack(side="left", padx=(6, 0))
-        ttk.Button(rr, text="🔧 Reparar servers", command=lambda: self.repair_selected("servers")).pack(side="left", padx=6)
-        ttk.Button(rr, text="🖼 Reparar imagen", command=lambda: self.repair_selected("image")).pack(side="left")
-        ttk.Label(rr, text="  (marca uno o varios con Ctrl/Shift+clic · siempre pregunta antes)", style="Mut.TLabel").pack(side="left", padx=8)
-        bb = tk.Frame(pv, bg=CARD); bb.pack(fill="x", padx=14, pady=10)
-        self.save_btn = ttk.Button(bb, text="Guardar en la web", style="Grn.TButton", command=self.do_save, state="disabled"); self.save_btn.pack(side="left")
-        ttk.Button(bb, text="🖼 Reparar imágenes", command=self.do_fix_images).pack(side="left", padx=10)
-        ttk.Button(bb, text="↶ Revertir último cambio", command=self.do_revert).pack(side="left", padx=10)
-        ttk.Button(bb, text="🧹 Limpiar", style="Ghost.TButton", command=self.do_clear).pack(side="left", padx=10)
-        ttk.Label(bb, text="  (aplica lo que edites arriba)", style="Mut.TLabel").pack(side="left")
+        rr = ctk.CTkFrame(pv, fg_color="transparent"); rr.pack(fill="x", padx=16, pady=(8, 0))
+        lab(rr, "Seleccionados:").pack(side="left")
+        btn(rr, "➕ Agregar Latino", lambda: self.repair_selected("latino"), "blue").pack(side="left", padx=(6, 0))
+        btn(rr, "🔧 Reparar servers", lambda: self.repair_selected("servers")).pack(side="left", padx=6)
+        btn(rr, "🖼 Reparar imagen", lambda: self.repair_selected("image")).pack(side="left")
+        lab(rr, "  (Ctrl/Shift+clic · siempre pregunta antes)").pack(side="left", padx=8)
+        bb = ctk.CTkFrame(pv, fg_color="transparent"); bb.pack(fill="x", padx=16, pady=10)
+        self.save_btn = btn(bb, "Guardar en la web", self.do_save, "grn"); self.save_btn.pack(side="left"); self.save_btn.configure(state="disabled")
+        btn(bb, "🖼 Reparar imágenes", self.do_fix_images).pack(side="left", padx=10)
+        btn(bb, "↶ Revertir", self.do_revert, "ghost").pack(side="left", padx=10)
+        btn(bb, "🧹 Limpiar", self.do_clear, "ghost").pack(side="left", padx=10)
 
     def _field(self, parent, label, r, w=None):
-        ttk.Label(parent, text=label, style="Mut.TLabel").grid(row=r, column=0, sticky="w", pady=2)
-        e = ttk.Entry(parent, width=w or 60); e.grid(row=r, column=1, sticky="we", padx=8, pady=2); parent.columnconfigure(1, weight=1)
+        self._lab(parent, label).grid(row=r, column=0, sticky="w", pady=3)
+        e = self._ent(parent, 360); e.grid(row=r, column=1, sticky="we", padx=8, pady=3); parent.columnconfigure(1, weight=1)
         return e
 
     def toggle_manual(self):
@@ -1396,7 +1382,10 @@ class App:
         return "break"
 
     def log(self, m): self.logbox.insert("end", m + "\n"); self.logbox.see("end"); self.root.update_idletasks()
-    def prog(self, n, t): self.bar["maximum"] = t; self.bar["value"] = n; self.root.update_idletasks()
+    def prog(self, n, t):
+        try: self.bar.set(min(max(n / t, 0), 1) if t else 0)
+        except Exception: pass
+        self.root.update_idletasks()
 
     def _auto_login(self):
         """Inicia sesión sola al abrir si hay credenciales recordadas."""
@@ -1409,12 +1398,12 @@ class App:
         self.token = None
         self.cfg.pop("pw", None); save_cfg(self.cfg)
         self.remember.set(False)
-        self.status.config(text="●  Sin sesión", fg="#ffcf7a")
+        self.status.configure(text="●  Sin sesión", text_color="#ffcf7a")
         self.logout_btn.pack_forget()
         for b in (self.build_btn, self.batch_btn, self.save_btn, self.load_btn, self.addnew_btn):
-            try: b.config(state="disabled")
+            try: b.configure(state="disabled")
             except Exception: pass
-        try: self.cat_list.delete(0, "end"); self.cat_count.config(text="")
+        try: self.cat_list.delete(0, "end"); self.cat_count.configure(text="")
         except Exception: pass
         self.log("Sesión cerrada. (La contraseña recordada se borró de este equipo.)")
 
@@ -1437,7 +1426,7 @@ class App:
             else: self.cfg.pop("pw", None)
             save_cfg(self.cfg)
             self.logout_btn.pack(side="right", padx=(0, 6), pady=13)
-            self.status.config(text="●  Sesión iniciada", fg="#7ee0a3"); self.build_btn.config(state="normal"); self.batch_btn.config(state="normal")
+            self.status.configure(text="●  Sesión iniciada", text_color="#7ee0a3"); self.build_btn.configure(state="normal"); self.batch_btn.configure(state="normal")
             # Valida la TMDB API key para que sepas que la está usando.
             if key:
                 def chk():
@@ -1454,13 +1443,13 @@ class App:
                     cat = get_catalog()
                     self._catalog = sorted(cat, key=lambda x: (x.get("title") or "").lower())
                     self.root.after(0, lambda: (self._filter_catalog(),
-                                                self.load_btn.config(state="normal"),
+                                                self.load_btn.configure(state="normal"),
                                                 self.log(f"Catálogo cargado: {len(self._catalog)} animes (escribe arriba para buscar).")))
                 except Exception as e: self.root.after(0, lambda: self.log("No se pudo cargar el catálogo: " + str(e)))
             threading.Thread(target=loadcat, daemon=True).start()
         except Exception as e:
             self.token = None
-            self.status.config(text="●  Sin sesión", fg="#ff9a9a")
+            self.status.configure(text="●  Sin sesión", text_color="#ff9a9a")
             if silent: self.log("No se pudo iniciar sesión automáticamente: " + str(e))
             else: messagebox.showerror("Login", str(e))
 
@@ -1472,7 +1461,7 @@ class App:
         self.cat_list.delete(0, "end")
         for c in self._filtered:
             self.cat_list.insert("end", f"{c.get('title')}   ·   {c.get('id')}")
-        self.cat_count.config(text=f"{len(self._filtered)} de {len(self._catalog)}")
+        self.cat_count.configure(text=f"{len(self._filtered)} de {len(self._catalog)}")
 
     def load_from_catalog(self):
         if not self.token: return
@@ -1515,7 +1504,7 @@ class App:
                     self.update_season_view(select="Todas")   # muestra la LISTA COMPLETA al cargar
                     if not self._tree_eps and eps:            # red de seguridad: nunca dejar la lista vacía
                         self.refresh_tree(None)
-                    self.save_btn.config(state="normal"); self.addnew_btn.config(state="normal")
+                    self.save_btn.configure(state="normal"); self.addnew_btn.configure(state="normal")
                     ordered = self._distinct_seasons()
                     self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(ordered)} temporada(s): {', '.join(ordered[:6])}{'…' if len(ordered) > 6 else ''}")
                     self.log("Lista completa cargada; en «Ver temporada» puedes filtrar por temporada.")
@@ -1593,7 +1582,7 @@ class App:
         if add_only and not self.loaded_aid:
             messagebox.showinfo("Añadir episodios nuevos", "Carga primero el anime del catálogo."); return
         self.cfg["tmdb_key"] = self.tmdb.get().strip(); save_cfg(self.cfg)
-        self.build_btn.config(state="disabled"); self.save_btn.config(state="disabled"); self.addnew_btn.config(state="disabled")
+        self.build_btn.configure(state="disabled"); self.save_btn.configure(state="disabled"); self.addnew_btn.configure(state="disabled")
         # En modo "añadir episodios" NO se borra la lista existente (se conserva a la vista);
         # en modo construir normal, se limpia para reconstruir desde cero.
         existing_eps = []
@@ -1650,8 +1639,8 @@ class App:
             except Exception as e:
                 self.log("ERROR: " + str(e))
             finally:
-                self.root.after(0, lambda: (self.build_btn.config(state="normal"),
-                                            self.addnew_btn.config(state="normal" if self.loaded_aid else "disabled")))
+                self.root.after(0, lambda: (self.build_btn.configure(state="normal"),
+                                            self.addnew_btn.configure(state="normal" if self.loaded_aid else "disabled")))
         threading.Thread(target=work, daemon=True).start()
 
     def _finish_add(self, nbefore):
@@ -1674,7 +1663,7 @@ class App:
         target = new_eps[-1].get("season") if new_eps else "auto"
         self.f_audio.set(self.data.get("audio", "Sub"))
         self.update_season_view(select=target)
-        self.save_btn.config(state="normal" if eps else "disabled")
+        self.save_btn.configure(state="normal" if eps else "disabled")
         dst = f"«{dest}»" if custom else "temporada asignada por número"
         self.log(f"➕ {len(new_eps)} episodio(s) nuevo(s) → {dst}. Revisa y pulsa «Guardar en la web».")
 
@@ -1688,21 +1677,21 @@ class App:
         uno automáticamente (series y películas se detectan solas)."""
         if not self.token:
             messagebox.showinfo("Lote", "Inicia sesión primero."); return
-        win = tk.Toplevel(self.root); win.title("Agregar varios animes (lote)"); win.configure(bg=CARD); win.geometry("560x460")
+        win = ctk.CTkToplevel(self.root); win.title("Agregar varios animes (lote)"); win.configure(fg_color=CARD); win.geometry("580x480")
         try:
             ip = _icon_path()
-            if ip: win.iconbitmap(ip)
+            if ip: win.after(300, lambda: win.iconbitmap(ip))
         except Exception: pass
-        tk.Label(win, text="Un título por línea. Se construye y GUARDA cada uno automáticamente\ncon las fuentes y la prioridad de arriba. Series y películas se reconocen solas.",
-                 bg=CARD, fg=MUT, justify="left", font=("Segoe UI", 9)).pack(anchor="w", padx=14, pady=(12, 6))
-        txt = tk.Text(win, height=12, bg=FIELD, fg=TXT, insertbackground=TXT, relief="flat", font=("Segoe UI", 10)); txt.pack(fill="both", expand=True, padx=14)
-        bar = ttk.Progressbar(win, style="AA.Horizontal.TProgressbar"); bar.pack(fill="x", padx=14, pady=(8, 4))
-        lbl = tk.Label(win, text="", bg=CARD, fg=TXT, font=("Segoe UI", 9)); lbl.pack(anchor="w", padx=14)
+        ctk.CTkLabel(win, text="Un título por línea. Se construye y GUARDA cada uno automáticamente\ncon las fuentes y la prioridad de arriba. Series y películas se reconocen solas.",
+                     text_color=MUT, justify="left", font=self._F(12)).pack(anchor="w", padx=16, pady=(14, 6))
+        txt = ctk.CTkTextbox(win, fg_color=FIELD, text_color=TXT, corner_radius=8, font=self._F(13)); txt.pack(fill="both", expand=True, padx=16)
+        bar = ctk.CTkProgressBar(win, progress_color=GRN, fg_color=FIELD); bar.set(0); bar.pack(fill="x", padx=16, pady=(10, 4))
+        lbl = ctk.CTkLabel(win, text="", text_color=TXT, font=self._F(12)); lbl.pack(anchor="w", padx=16)
         def run():
             titles = [l.strip() for l in txt.get("1.0", "end").splitlines() if l.strip()]
             if not titles: return
-            go.config(state="disabled"); opts = self._batch_opts()
-            def setp(i, t): lbl.config(text=f"[{i}/{len(titles)}] {t}"); bar.config(maximum=len(titles), value=i - 1)
+            go.configure(state="disabled"); opts = self._batch_opts()
+            def setp(i, t): lbl.configure(text=f"[{i}/{len(titles)}] {t}"); bar.set((i - 1) / max(len(titles), 1))
             def work():
                 okc = 0
                 self.yoru.say(f"Lote iniciado. Voy a agregar {len(titles)} títulos.")
@@ -1723,10 +1712,10 @@ class App:
                         try: self._refresh_token(force=True)
                         except Exception: pass
                         self.log(f"  ERROR con «{t}»: {str(e)[:90]}")
-                    self.root.after(0, lambda i=i: bar.config(value=i))
-                self.root.after(0, lambda: (lbl.config(text=f"✅ Listo: {okc}/{len(titles)} guardados en el sitio."), go.config(state="normal")))
+                    self.root.after(0, lambda i=i: bar.set(i / max(len(titles), 1)))
+                self.root.after(0, lambda: (lbl.configure(text=f"✅ Listo: {okc}/{len(titles)} guardados en el sitio."), go.configure(state="normal")))
             threading.Thread(target=work, daemon=True).start()
-        go = ttk.Button(win, text="Procesar y guardar todo", style="Grn.TButton", command=run); go.pack(pady=10)
+        go = self._btn(win, "Procesar y guardar todo", run, "grn"); go.pack(pady=12)
 
     def render_meta(self):
         """Rellena la ficha del anime en cuanto llega la metadata (rápido)."""
@@ -1757,8 +1746,8 @@ class App:
                                  "🖼" if e.get("img") else "—", len(servers), srv))
         self._tree_eps.append(e)
         total = len(self.data.get("episodes", [])) if self.data else len(self._tree_eps)
-        self.count_lbl.config(text=(f"{len(self._tree_eps)} de {total} episodios" if len(self._tree_eps) != total else f"{total} episodios"))
-        self.save_btn.config(state="normal")
+        self.count_lbl.configure(text=(f"{len(self._tree_eps)} de {total} episodios" if len(self._tree_eps) != total else f"{total} episodios"))
+        self.save_btn.configure(state="normal")
 
     @staticmethod
     def _season_key(s):
@@ -1780,10 +1769,10 @@ class App:
             s = e.get("season")
             if s: counts[s] = counts.get(s, 0) + 1
         vals = [f"Todas ({sum(counts.values())})"] + [f"{s}  ({counts.get(s, 0)})" for s in seasons]
-        self.season_view.config(values=vals)
-        self.season_info.config(text=(f"{len(seasons)} temporada(s)" if seasons else ""))
+        self.season_view.configure(values=vals)
+        self.season_info.configure(text=(f"{len(seasons)} temporada(s)" if seasons else ""))
         # sincroniza también el selector de temporada DESTINO con los nombres reales
-        self.dest_season.config(values=["(automática por número)"] + seasons)
+        self.dest_season.configure(values=["(automática por número)"] + seasons)
         # decide qué mostrar: por defecto la ÚLTIMA temporada (como el sitio; además evita
         # dibujar cientos de filas de golpe en animes enormes como One Piece).
         if select == "auto":
@@ -1824,7 +1813,7 @@ class App:
         self.f_audio.set(self.data.get("audio", "Sub"))
         self.update_season_view(select="Todas")
         n = len(self.data["episodes"])
-        self.save_btn.config(state="normal" if n else "disabled")
+        self.save_btn.configure(state="normal" if n else "disabled")
         if not n: self.log("No se encontraron servidores. Revisa fuentes/título."); self.yoru.say("No encontré episodios. Revisa el título o las fuentes.")
         else: self.yoru.say(f"Búsqueda finalizada. {n} episodios listos para revisar y guardar.")
 
@@ -1840,12 +1829,12 @@ class App:
             try: e.delete(0, "end")
             except Exception: pass
         self.f_audio.set("Sub"); self.kind.set("Auto")
-        self.season_view.config(values=["Todas"]); self.season_view.set("Todas"); self.season_info.config(text="")
-        self.dest_season.config(values=["(automática por número)"]); self.dest_season.set("(automática por número)")
-        self.bar["value"] = 0; self.count_lbl.config(text="0 episodios")
+        self.season_view.configure(values=["Todas"]); self.season_view.set("Todas"); self.season_info.configure(text="")
+        self.dest_season.configure(values=["(automática por número)"]); self.dest_season.set("(automática por número)")
+        self.bar.set(0); self.count_lbl.configure(text="0 episodios")
         try: self.cat_search.delete(0, "end"); self._filter_catalog()
         except Exception: pass
-        self.save_btn.config(state="disabled"); self.addnew_btn.config(state="disabled")
+        self.save_btn.configure(state="disabled"); self.addnew_btn.configure(state="disabled")
         if not silent: self.log("🧹 Limpio. Listo para cargar/buscar otro anime.")
 
     def detect_missing(self):
@@ -2105,7 +2094,7 @@ class App:
         self.data["altTitles"] = [x.strip() for x in self.f_alt.get().split(",") if x.strip()]
         self.data["audio"] = self.f_audio.get().strip() or self.data.get("audio", "Sub")
         self.data["creator"] = self.f_creator.get().strip()
-        self.save_btn.config(state="disabled")
+        self.save_btn.configure(state="disabled")
         def work():
             ok = False
             try:
@@ -2126,10 +2115,11 @@ class App:
                     self.root.after(0, lambda: (self.do_clear(silent=True),
                                                 self.log("✅ Guardado y limpiado. Listo para el siguiente.")))
                 else:
-                    self.root.after(0, lambda: self.save_btn.config(state="normal"))
+                    self.root.after(0, lambda: self.save_btn.configure(state="normal"))
         threading.Thread(target=work, daemon=True).start()
 
 if __name__ == "__main__":
-    r = tk.Tk(); app = App(r)
+    ctk.set_appearance_mode("dark")
+    r = ctk.CTk(); app = App(r)
     r.after(400, app._auto_login)   # inicia sesión sola si hay credenciales recordadas
     r.mainloop()
