@@ -4,6 +4,16 @@ App **nativa** (sin navegador, sin CORS) que hace lo mismo que el asistente al a
 anime: resuelve metadata + imágenes, extrae los servidores por episodio de varias fuentes,
 muestra una **vista previa** y guarda directo en tu **Firebase**.
 
+## Novedades v23
+
+- **animeyt como fuente principal.** Se logró extraer sus servidores (vienen en `<option>`
+  en base64 → iframe real: mp4upload, ok.ru, mega, streamtape, yourupload, animeyt2…; el
+  "omega2" cifrado se omite). Nueva casilla **animeyt (Sub)**; resuelve slug por temporada.
+- **Fate/stay night: Heaven's Feel III** ya tiene servidores (animeav1).
+- **Duración en horas y minutos** (95 → «1h 35 min»), como en el sitio.
+- **Yoru habla en español** aunque no tengas voz es-* instalada (usa TTS de Google; respaldo
+  a la voz del sistema sin internet).
+
 ## Novedades v21
 
 - **Yoru — asistente de voz.** Casilla **🔊 Yoru (voz)**: te avisa cuando inicia la búsqueda,

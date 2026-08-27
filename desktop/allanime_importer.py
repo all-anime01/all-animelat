@@ -640,6 +640,51 @@ def av1_servers(slug, n):
             seen.add(name); res.append({"url": url, "name": name, "lang": tag, "desc": ""})
     return res
 
+# ------------------------------------------------------------------ animeyt (fuente principal)
+# animeyt.cc guarda cada servidor como <option value="BASE64"> que decodifica al iframe con la
+# URL real del host (mp4upload, ok.ru, mega, streamtape, yourupload, animeyt2…). El "omega2"
+# va cifrado → se omite. Las temporadas usan slug propio (/tv/{slug}[-temporada-N]/).
+YT = "https://animeyt.cc"
+def yt_search(title):
+    for q in search_variants(title):
+        h = get_text(f"{YT}/?s={urllib.parse.quote(q)}")
+        c = list(dict.fromkeys(re.findall(r'href="https://animeyt\.cc/tv/([a-z0-9-]+)/"', h)))
+        if c: return best(c, title)
+    return None
+def yt_episode_map(slug):
+    """{número de episodio → URL de la página del episodio} desde /tv/{slug}/."""
+    if not slug: return {}
+    h = get_text(f"{YT}/tv/{slug}/")
+    out = {}
+    for m in re.finditer(r'href="(https://animeyt\.cc/\d+/anime/[a-z0-9-]+-capitulo-(\d+)[^"]*)"', h):
+        out[int(m.group(2))] = m.group(1)
+    return out
+def yt_max(slug):
+    mp = yt_episode_map(slug); return max(mp) if mp else 0
+def yt_servers_url(epurl):
+    if not epurl: return []
+    h = get_text(epurl, referer=YT + "/")
+    out, seen = [], set()
+    for b in re.findall(r'<option[^>]*value="([A-Za-z0-9+/=]{40,})"', h):
+        try: frag = base64.b64decode(b).decode("utf-8", "replace")
+        except Exception: continue
+        mm = re.search(r'(?:src|SRC)\s*=\s*["\']([^"\']+)["\']', frag)
+        if not mm: continue
+        u = mm.group(1).strip()
+        if u.startswith("//"): u = "https:" + u
+        if not u.startswith("http") or "redirector.php" in u: continue   # omega2 cifrado → fuera
+        name = nm(u)
+        if name == "Servidor":
+            low = u.lower()
+            if "ok.ru" in low or "odnoklassniki" in low: name = "Okru"
+            elif "mail.ru" in low: name = "MailRu"
+            elif "short.ink" in low: name = "Short"
+            elif "animeyt2" in low or "mytsumi" in low or "ytlinker" in low: name = "AnimeYT"
+            else: continue
+        if name in seen: continue
+        seen.add(name); out.append({"url": u, "name": name, "lang": "Sub", "desc": ""})
+    return out
+
 # ------------------------------------------------------------------ Construir (2 fases)
 def build_meta(title, opts, log):
     """FASE 1 (rápida): metadata + imágenes. Rellena la ficha al instante."""
@@ -725,6 +770,11 @@ def build_movie(title, opts, log):
         try:
             for x in (jk_servers(jks, 1) or []): servers.append(x)
         except Exception: pass
+    if opts.get("yt"):
+        try:
+            yts = yt_search(title); mp = yt_episode_map(yts) if yts else {}
+            if mp: servers += (yt_servers_url(mp.get(min(mp))) or [])
+        except Exception: pass
     servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
     dur = fmt_duration(m.get("runtime")) or "1h 30 min"
     ep = {"number": 1, "season": "Película", "title": real, "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
@@ -747,7 +797,17 @@ def build_episodes(data, opts, log, prog, on_ep):
     def _clean(s): return re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", s.strip()).strip("/").split("/")[0].split("?")[0]
     src_slugs = [_clean(x) for x in (opts.get("src_slug") or "").split(",") if x.strip()]
     multi = len(src_slugs) > 1
-    jkslug = avslug = None
+    jkslug = avslug = ytslug = None
+    yt_maps = {}
+    def yt_srv(ytsl, num):
+        """Servidores de animeyt para (slug, nº), con caché del mapa de episodios."""
+        if not (opts.get("yt") and ytsl): return []
+        if ytsl not in yt_maps:
+            try: yt_maps[ytsl] = yt_episode_map(ytsl)
+            except Exception: yt_maps[ytsl] = {}
+        u = yt_maps[ytsl].get(num)
+        try: return yt_servers_url(u) if u else []
+        except Exception: return []
     if multi:
         # MANUAL: cada slug = una temporada (para franquicias con nombres arbitrarios,
         # ej. beyblade-burst, beyblade-burst-god…). Se usa el mismo slug para jk y av.
@@ -793,10 +853,16 @@ def build_episodes(data, opts, log, prog, on_ep):
                 # cuenta ABIERTA (se corta sola al acabarse la fuente) → no cortar por
                 # subconteo de TMDB y captar los episodios recién salidos (al día).
                 e69s = tmdb_seasons[i]["season"] if i < len(tmdb_seasons) else (i + 1)
-                seasons.append({"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "jk": jk, "av": av, "e69s": e69s})
+                yt = None
+                if opts.get("yt"):
+                    t = (al[i].get("romaji") or al[i].get("title") or al[i].get("english")) if i < len(al) else None
+                    try: yt = yt_search(t) if t else (yt_search(title) if i == 0 else None)
+                    except Exception: yt = None
+                seasons.append({"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "jk": jk, "av": av, "yt": yt, "e69s": e69s})
             log(f"AUTO temporadas: {nsrc} (jk={jk_list} · av={av_list})")
         else:
             jkslug = base_jk or None; avslug = base_av or None
+            ytslug = (yt_search(title) if (opts.get("yt") and not src_slug) else None)
             per_season_num = bool(src_slug)
             if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}" + (" [slug manual · nº por temporada]" if src_slug else ""))
             if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
@@ -829,7 +895,9 @@ def build_episodes(data, opts, log, prog, on_ep):
     # ajusta la última temporada para que el total coincida con lo que hay hoy en las fuentes.
     if not per_season_num and not season_sel:
         try:
-            smax = max(jk_max(jkslug) if (opts["jk"] and jkslug) else 0, av1_max(avslug) if (opts["av1"] and avslug) else 0)
+            smax = max(jk_max(jkslug) if (opts["jk"] and jkslug) else 0,
+                       av1_max(avslug) if (opts["av1"] and avslug) else 0,
+                       yt_max(ytslug) if (opts.get("yt") and ytslug) else 0)
             if smax > 0 and abs(smax - total) <= 400 and seasons:   # confía en la fuente; cap anti-datos-raros
                 diff = smax - total
                 if diff != 0:
@@ -859,8 +927,9 @@ def build_episodes(data, opts, log, prog, on_ep):
         sname = S.get("name") or (f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1")
         jkcur = S.get("jk") or S.get("slug") or jkslug   # slug de jkanime de ESTA temporada
         avcur = S.get("av") or S.get("slug") or avslug   # slug de animeav1 de ESTA temporada
+        ytcur = S.get("yt") or (ytslug if not multi else None)   # slug de animeyt de ESTA temporada
         if multi or S.get("psn"):  # secuela/OVA independiente: reinicia guardas
-            skip = {"e69": False, "av1": False, "jk": False}; miss = {"e69": 0, "av1": 0, "jk": 0}; empty_streak = 0
+            skip = {"e69": False, "av1": False, "jk": False, "yt": False}; miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0}; empty_streak = 0
             log(f"— {sname}: jk={jkcur or '—'} av={avcur or '—'}")
         if season_sel and str(S["season"]) != season_sel:
             absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
@@ -891,6 +960,14 @@ def build_episodes(data, opts, log, prog, on_ep):
                 miss["jk"] = 0 if cj else miss["jk"] + 1
                 if miss["jk"] >= 6: skip["jk"] = True
                 time.sleep(0.3)
+            cy = 0
+            if opts.get("yt") and ytcur and not skip["yt"]:
+                try:
+                    ys = yt_srv(ytcur, src_num); servers += ys; cy = len(ys)
+                except Exception as ex: log(f"  (animeyt err: {str(ex)[:40]})")
+                miss["yt"] = 0 if cy else miss["yt"] + 1
+                if miss["yt"] >= 6: skip["yt"] = True
+                time.sleep(0.2)
             key_manual = n if (per_season_num or season_sel) else absn   # el usuario suele numerar 1..N
             if opts["manual"] and (key_manual in manual or absn in manual):
                 mu = manual.get(key_manual) or manual.get(absn)
@@ -898,7 +975,7 @@ def build_episodes(data, opts, log, prog, on_ep):
                 mname = nm(mu) if nm(mu) != "Servidor" else "Directo"
                 servers.append({"url": mu, "name": mname, "lang": ml, "desc": ""})
             if absn == 1 or (not servers and absn <= 3):
-                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj}" + (f" · imdb={imdb} jk={jkslug} av1={avslug}" if not servers else ""))
+                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug}" if not servers else ""))
             prog(min(len(episodes) + 1, disp_total), disp_total)
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
@@ -1158,8 +1235,9 @@ class App:
         self.build_btn = ttk.Button(sr, text="Buscar y construir", style="Red.TButton", command=self.do_build, state="disabled"); self.build_btn.pack(side="left", padx=(8, 0))
         self.batch_btn = ttk.Button(sr, text="🧾 Lote", command=self.do_batch, state="disabled"); self.batch_btn.pack(side="left", padx=(6, 0))
         opt = tk.Frame(sc, bg=CARD); opt.pack(fill="x", padx=14, pady=8)
-        self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
-        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("Manual", self.man, self.toggle_manual)]):
+        self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True)
+        self.yt = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
+        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual)]):
             ttk.Checkbutton(opt, text=t, variable=v, command=cmd or (lambda: None)).grid(row=0, column=i, sticky="w", padx=(0, 14))
         self.replace = tk.BooleanVar(value=False)
         ttk.Radiobutton(opt, text="Añadir nuevo", variable=self.replace, value=False).grid(row=0, column=5, padx=(10, 6))
@@ -1427,7 +1505,7 @@ class App:
         else:
             self.clear_tree()
         self.logbox.delete("1.0", "end")
-        opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": self.man.get(),
+        opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": self.man.get(),
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
                 "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip()}
@@ -1503,7 +1581,7 @@ class App:
         self.log(f"➕ {len(new_eps)} episodio(s) nuevo(s) → {dst}. Revisa y pulsa «Guardar en la web».")
 
     def _batch_opts(self):
-        return {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "manual": False,
+        return {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": False,
                 "manual_text": "", "prefer": self.prefer.get().split(","), "only": self.only.get(),
                 "tmdb_key": self.tmdb.get().strip(), "range": "", "season": "", "src_slug": ""}
 
@@ -1777,8 +1855,10 @@ class App:
         slug = re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", slug).strip("/").split("/")[0].split("?")[0] if slug else ""
         self.data["_jkslug"] = slug or (jk_search(title) if self.jk.get() else "")
         self.data["_avslug"] = slug or (av1_search(title) if self.av1.get() else "")
+        self.data["_ytslug"] = slug or (yt_search(title) if self.yt.get() else "")
+        self.data["_ytmap"] = {}
         self.data["_src_ready"] = True
-        self.log(f"Fuentes: imdb={imdb or '—'} jk={self.data['_jkslug'] or '—'} av1={self.data['_avslug'] or '—'}")
+        self.log(f"Fuentes: imdb={imdb or '—'} jk={self.data['_jkslug'] or '—'} av1={self.data['_avslug'] or '—'} yt={self.data['_ytslug'] or '—'}")
 
     def _fetch_ep_servers(self, ep):
         """Trae los servidores de un episodio concreto desde TODAS las fuentes activas
@@ -1807,8 +1887,16 @@ class App:
         if self.jk.get() and jks:
             try: j = jk_servers(jks, num) or []; servers += j; cj = len(j)
             except Exception: pass
+        cy = 0
+        if self.yt.get() and self.data.get("_ytslug"):
+            try:
+                yts = self.data["_ytslug"]
+                if not self.data["_ytmap"]: self.data["_ytmap"] = yt_episode_map(yts)
+                u = self.data["_ytmap"].get(num)
+                y = yt_servers_url(u) if u else []; servers += y; cy = len(y)
+            except Exception: pass
         lat = sum(1 for s in servers if s.get("lang") == "Latino")
-        self.log(f"  E{num}: embed69={ce} av1={ca} jk={cj} · Latino={lat}" + ("" if servers else f"  (imdb={imdb or '—'} jk={jks or '—'} av1={avs or '—'})"))
+        self.log(f"  E{num}: embed69={ce} av1={ca} jk={cj} yt={cy} · Latino={lat}" + ("" if servers else f"  (imdb={imdb or '—'} jk={jks or '—'} av1={avs or '—'} yt={self.data.get('_ytslug') or '—'})"))
         return servers
 
     def repair_selected(self, mode):
