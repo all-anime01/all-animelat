@@ -2078,7 +2078,7 @@ $(document).ready(function () {
     document.body.appendChild(ind);
     const indTxt = () => ind.querySelector("#yoru-ind-txt");
     let indT;
-    const indIdle = () => { clearTimeout(indT); ind.classList.remove("hearing"); ind.classList.add("show"); const e = indTxt(); if (e) e.textContent = "Yoru"; };
+    const indIdle = () => { clearTimeout(indT); ind.classList.remove("hearing"); ind.classList.add("show"); const e = indTxt(); if (e) e.textContent = "Endo"; };
     const indHearing = (txt) => { clearTimeout(indT); ind.classList.add("show", "hearing"); const e = indTxt(); if (e) e.textContent = txt || "Escuchando…"; };
     const indMsg = (txt, ms) => { clearTimeout(indT); ind.classList.add("show"); ind.classList.remove("hearing"); const e = indTxt(); if (e) e.textContent = txt; indT = setTimeout(indIdle, ms || 2600); };
     const indOff = () => { clearTimeout(indT); ind.classList.remove("show", "hearing"); };
@@ -2247,21 +2247,20 @@ $(document).ready(function () {
     // Procesa un texto reconocido. requireWake=true (navegador, escucha continua): SOLO actúa si
     // dijiste «Yoru» (así no queda ejecutando todo lo que oye). requireWake=false (app, un toque):
     // ejecuta directo porque el toque ya fue la activación.
-    // Verbos de orden + detección del nombre «Yoru» (tolerante a cómo lo transcribe el navegador).
+    // Verbos de orden + detección del nombre «Endo» (tolerante a cómo lo transcribe el navegador).
     const CMD = "abre|busca|encuentra|pon|reproduce|ver|ve|ir|vamos|mira|ll[eé]vame|coloca|dale|siguiente|pr[oó]ximo|proximo|contin[uú]a|continuar|reanuda|sigue|trailer|tr[aá]iler|avance|pasa|el\\s+episodio|el\\s+cap|pel[ií]cula|explorar|inicio";
-    const WAKE_RE = /\b(yoru|yoro|yuru|yolu|yoli|yori|joru|jori|yolo|lloru|lloro|llora|jora|yhoru|yaru|yola|yoyu|loru|yoly)\b/;
-    const YO_RE = new RegExp("\\b(?:yo|you|yu|jo|yio)\\s+(?=(?:" + CMD + ")\\b)");
+    const WAKE_RE = /\b(endo|end[oó]|endou|endoh|endon|hendo|hendou|engo|edo|indo|lendo|nendo|endio)\b/;
     const CMD_RE = new RegExp("\\b(?:" + CMD + ")\\b");
-    const detectWake = (t) => t.match(WAKE_RE) || t.match(YO_RE);
+    const detectWake = (t) => t.match(WAKE_RE);
     // Vocabulario para la gramática de Vosk (Brave/Edge): órdenes + títulos → mucha más precisión.
     function buildGrammar() {
       const words = new Set();
       const add = (s) => norm(s).split(/[^a-z0-9]+/i).forEach((w) => { if (w && w.length > 1) words.add(w); });
-      add("yoru yoro yolo yolu busca buscar encuentra abre pon reproduce ver ve ir vamos mira llevame coloca dale siguiente proximo continua continuar reanuda sigue trailer avance pasa cierra atras volver regresa episodio capitulo pelicula peliculas explorar inicio casa favoritos historial cuenta perfil notificaciones recomiendame que necesitas el la los las de del uno dos tres cuatro cinco seis siete ocho nueve diez once doce");
+      add("endo busca buscar encuentra abre pon reproduce ver ve ir vamos mira llevame coloca dale siguiente proximo continua continuar reanuda sigue trailer avance pasa cierra atras volver regresa episodio capitulo pelicula peliculas explorar inicio casa favoritos historial cuenta perfil notificaciones recomiendame que necesitas el la los las de del uno dos tres cuatro cinco seis siete ocho nueve diez once doce");
       (data || []).forEach((a) => { add(a.title); (a.altTitles || []).slice(0, 1).forEach(add); });
       try { return JSON.stringify([...words].slice(0, 1800).concat("[unk]")); } catch (e) { return null; }
     }
-    // Reacción INSTANTÁNEA: en cuanto el parcial contiene «Yoru», muestra «Escuchando…».
+    // Reacción INSTANTÁNEA: en cuanto el parcial contiene «Endo», muestra «Escuchando…».
     function reactToInterim(raw) {
       const t = norm(raw || "");
       if (armed || detectWake(t)) indHearing("Escuchando…");
@@ -2274,7 +2273,7 @@ $(document).ready(function () {
       let cmd = said ? t.slice(wake.index + wake[0].length).replace(/^[\s,]+/, "").trim() : t;
       // En navegador SOLO obedece si mencionaste «Yoru» (o si ya quedó armado con «Yoru» a secas).
       if (requireWake && !said && !armed) {
-        if (CMD_RE.test(t)) indMsg("Di «Yoru» y luego tu orden", 2200);
+        if (CMD_RE.test(t)) indMsg("Di «Endo» y luego tu orden", 2200);
         return;
       }
       if (said && !cmd) { // dijo solo «Yoru» → REACCIÓN VISUAL + queda a la espera del comando
@@ -2283,7 +2282,7 @@ $(document).ready(function () {
       }
       const finalCmd = said ? cmd : t;   // si venía armado, la frase completa es el comando
       clearTimeout(armedT); armed = false;
-      indMsg("Yoru: " + finalCmd, 2800); toast("Yoru: “" + finalCmd + "”"); handle(finalCmd);
+      indMsg("Endo: " + finalCmd, 2800); toast("Endo: “" + finalCmd + "”"); handle(finalCmd);
     }
     // Puente para la APP nativa (Android/Fire TV): el WebView NO tiene Web Speech API, así que
     // la app reconoce con el micrófono nativo y nos entrega el texto por aquí (un toque = una orden).
@@ -2293,7 +2292,9 @@ $(document).ready(function () {
       try { if (rec) { rec.onend = null; rec.stop(); } } catch (e) {}   // cierra uno previo
       try { rec = new SR(); } catch { toast("Este navegador no soporta reconocimiento de voz."); return; }
       // continuous=false es MÁS fiable en Android/móvil: 1 frase por sesión y se reinicia solo.
-      rec.lang = "es-ES"; rec.continuous = false; rec.interimResults = true; rec.maxAlternatives = 3;
+      // continuous=true: NO corta entre el nombre y la orden → ya no se pierde el comando
+      // si no lo dices pegado a «Endo».
+      rec.lang = "es-ES"; rec.continuous = true; rec.interimResults = true; rec.maxAlternatives = 3;
       rec.onstart = () => confirmListening();
       rec.onresult = (ev) => {
         if (speaking) return;
@@ -2308,7 +2309,7 @@ $(document).ready(function () {
       };
       rec.onerror = (e) => {
         const err = e && e.error;
-        if (err === "not-allowed" || err === "service-not-allowed") { setWake(false); toast("Debes PERMITIR el micrófono para usar a Yoru."); }
+        if (err === "not-allowed" || err === "service-not-allowed") { setWake(false); toast("Debes PERMITIR el micrófono para usar a Endo."); }
         else if (err === "audio-capture") { setWake(false); toast("No se detecta micrófono en este dispositivo."); }
         else if (err === "network") {
           // Brave/Edge/Firefox no tienen el motor de voz de Google → cambia YA a la voz OFFLINE
@@ -2318,7 +2319,7 @@ $(document).ready(function () {
           toast("Cambiando a voz offline (funciona en este navegador)…");
           startVosk();
         }
-        else if (err && err !== "no-speech" && err !== "aborted") { toast("Yoru: error de voz (" + err + ")"); }
+        else if (err && err !== "no-speech" && err !== "aborted") { toast("Endo: error de voz (" + err + ")"); }
       };
       rec.onend = () => { if (wakeOn && !speaking && !usingVosk) restartRec(); };
       try { rec.start(); } catch (e) {}
@@ -2333,7 +2334,7 @@ $(document).ready(function () {
         usingVosk = true;
         await v.voskStart(
           (textHeard) => onHeard(textHeard, true),
-          (msg) => { if (msg) toast("Yoru (voz): " + msg); },
+          (msg) => { if (msg) toast("Endo (voz): " + msg); },
           (status) => { if (status === "listo") { confirmListening(); indIdle(); } else if (status) indMsg(status, 4000); },
           (partial) => reactToInterim(partial),        // reacción instantánea al oír «Yoru»
           buildGrammar()                               // vocabulario acotado → más precisión

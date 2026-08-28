@@ -4,14 +4,14 @@
 // ============================================================================
 
 const CMDS = [
-  ["🔍", "Buscar", "«Yoru, busca One Piece»"],
-  ["▶️", "Abrir un anime", "«Yoru, abre Naruto»"],
-  ["🎬", "Poner un episodio", "«Yoru, pon el episodio 5 de Naruto»"],
-  ["⏭️", "Siguiente episodio", "«Yoru, siguiente episodio»"],
-  ["⏯️", "Continuar viendo", "«Yoru, continuar» (retoma lo último)"],
-  ["🎞️", "Ver el tráiler", "«Yoru, ver el tráiler de One Piece»"],
-  ["🧭", "Navegar", "«Yoru, ve a explorar / películas / inicio / favoritos»"],
-  ["🎲", "Recomendación", "«Yoru, recomiéndame algo»"],
+  ["🔍", "Buscar", "«Endo, busca One Piece»"],
+  ["▶️", "Abrir un anime", "«Endo, abre Naruto»"],
+  ["🎬", "Poner un episodio", "«Endo, pon el episodio 5 de Naruto»"],
+  ["⏭️", "Siguiente episodio", "«Endo, siguiente episodio»"],
+  ["⏯️", "Continuar viendo", "«Endo, continuar» (retoma lo último)"],
+  ["🎞️", "Ver el tráiler", "«Endo, ver el tráiler de One Piece»"],
+  ["🧭", "Navegar", "«Endo, ve a explorar / películas / inicio / favoritos»"],
+  ["🎲", "Recomendación", "«Endo, recomiéndame algo»"],
 ];
 
 export function showYoruManual() {
@@ -32,19 +32,19 @@ export function showYoruManual() {
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
         <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#ca3030,#e23b3b);display:flex;align-items:center;justify-content:center;font-size:20px">🎙️</div>
         <div>
-          <h2 style="font-family:Poppins,sans-serif;margin:0;font-size:20px">Yoru · tu asistente de voz</h2>
+          <h2 style="font-family:Poppins,sans-serif;margin:0;font-size:20px">Endo · tu asistente de voz</h2>
           <div style="color:#9aa4b2;font-size:13px">Controla la página hablando</div>
         </div>
       </div>
       <p style="color:#cdd5df;font-size:15px;line-height:1.6;margin:14px 0 6px">
-        Di <b style="color:#fff">«Yoru»</b> y tu orden. Cuando te escuche aparecerá el indicador
+        Di <b style="color:#fff">«Endo»</b> y tu orden. Cuando te escuche aparecerá el indicador
         <span style="display:inline-block;vertical-align:middle;background:rgba(226,59,59,.18);border:1px solid rgba(226,59,59,.5);color:#ff8a8a;border-radius:20px;padding:1px 9px;font-size:12px;font-weight:700">● Escuchando</span>.
         La primera vez, tu navegador te pedirá permiso del <b>micrófono</b>: acéptalo.
       </p>
       <div style="margin:8px 0 4px">${rows}</div>
       <p style="color:#7f8896;font-size:12.5px;line-height:1.5;margin:14px 0 0;border-top:1px solid rgba(255,255,255,.08);padding-top:12px">
         Funciona en todos los navegadores (en Brave/Edge usa un motor de voz que se descarga una sola vez).
-        Puedes activar o desactivar a Yoru, y volver a ver este manual, desde <b>Perfil → Configuración</b>.
+        Puedes activar o desactivar a Endo, y volver a ver este manual, desde <b>Perfil → Configuración</b>.
       </p>
       <button id="yoru-manual-close" style="margin-top:18px;width:100%;background:#ca3030;color:#fff;border:none;padding:13px;border-radius:40px;font-weight:700;font-size:15px;cursor:pointer">Entendido</button>
     </div>`;
