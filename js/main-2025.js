@@ -2226,23 +2226,43 @@ $(document).ready(function () {
         if (err === "not-allowed" || err === "service-not-allowed") { setWake(false); toast("Debes PERMITIR el micrófono para usar a Yoru."); }
         else if (err === "audio-capture") { setWake(false); toast("No se detecta micrófono en este dispositivo."); }
         else if (err === "network") {
-          // El backend de voz del navegador no respondió. Reintenta unas veces (puede ser
-          // transitorio); si persiste, avisa con una salida clara (navegador/red que lo bloquea).
-          netRetries++;
-          if (netRetries > 4) { setWake(false); toast("El servicio de voz de este navegador está bloqueado (pasa en Brave/Opera/Edge o con VPN). Abre el sitio en Chrome, o usa la app: tiene voz nativa."); }
-          else { toast("Reconectando el servicio de voz… (" + netRetries + "/4)"); }
+          // Brave/Edge/Firefox no tienen el motor de voz de Google → cambia YA a la voz OFFLINE
+          // (Vosk WASM), que funciona en cualquier navegador. Chrome no cae aquí.
+          try { rec.onend = null; rec.stop(); } catch (e) {}
+          clearTimeout(restartT);
+          toast("Cambiando a voz offline (funciona en este navegador)…");
+          startVosk();
         }
         else if (err && err !== "no-speech" && err !== "aborted") { toast("Yoru: error de voz (" + err + ")"); }
       };
-      rec.onend = () => { if (wakeOn && !speaking) restartRec(); };
+      rec.onend = () => { if (wakeOn && !speaking && !usingVosk) restartRec(); };
       try { rec.start(); } catch (e) {}
     }
+    // --- Motor OFFLINE (Vosk) para navegadores sin Web Speech (Brave/Edge/Firefox) ---
+    let _voskMod = null, usingVosk = false;
+    async function startVosk() {
+      if (usingVosk) return;
+      try {
+        const v = _voskMod || (_voskMod = await import("./yoru-vosk.js"));
+        if (!v.voskAvailable()) { toast("Este navegador no permite la voz (necesita micrófono y HTTPS)."); return; }
+        usingVosk = true;
+        await v.voskStart(
+          (textHeard) => onHeard(textHeard, true),
+          (msg) => { toast("Yoru (voz): " + msg); },
+          (status) => { if (status && status !== "listo") toast("Yoru: " + status); }
+        );
+        if (wakeOn) toast("Yoru lista (voz offline). Di «Yoru» y tu orden.");
+      } catch (e) { usingVosk = false; toast("No se pudo iniciar la voz offline. Reintenta o usa Chrome."); }
+    }
+    function stopVosk() { try { if (_voskMod && usingVosk) _voskMod.voskStop(); } catch (e) {} usingVosk = false; }
+    // Arranca el mejor motor disponible: Web Speech (rápido, Chrome) o directamente Vosk si no hay.
+    function startEngine() { if (SR) startWake(); else startVosk(); }
     function setWake(on) {
       wakeOn = on; fab.classList.toggle("listening", on);
       fab.title = on ? "Yoru te escucha — di «Yoru …» (clic para apagar)" : "Activar Yoru por voz";
       try { localStorage.setItem("aa-yoru-wake", on ? "1" : "0"); } catch {}
-      if (on) { armed = false; toast("Yoru activada. Di «Yoru» y tu orden: «Yoru, abre Naruto», «Yoru, pon el episodio 5 de Naruto», «Yoru, siguiente episodio»."); say("Hola, soy Yoru. Di mi nombre y tu pedido."); startWake(); }
-      else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); toast("Yoru en pausa."); }
+      if (on) { armed = false; toast("Yoru activada. Di «Yoru» y tu orden: «Yoru, abre Naruto», «Yoru, pon el episodio 5 de Naruto», «Yoru, siguiente episodio»."); say("Hola, soy Yoru. Di mi nombre y tu pedido."); startEngine(); }
+      else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); stopVosk(); toast("Yoru en pausa."); }
     }
     // Un toque: en la APP (voz nativa) escucha UNA orden; en navegador alterna el modo continuo.
     function nativeListenOnce() {
