@@ -2126,15 +2126,35 @@ $(document).ready(function () {
       "películas": "peliculas.html", peliculas: "peliculas.html", pelis: "peliculas.html", favoritos: "mis-favoritos.html",
       "mi lista": "mis-favoritos.html", historial: "historial.html", notificaciones: "notificaciones.html", cuenta: "cuenta.html", perfil: "perfil.html" };
     const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    // Empareja lo dicho con un anime del catálogo. Estricto: por PALABRAS (no subcadenas sueltas),
+    // para no abrir un anime al azar cuando el reconocimiento falla. Si no hay match claro → null
+    // (Endo dirá que no está en el catálogo).
+    const STOP = new Set(["el", "la", "los", "las", "un", "una", "de", "del", "y", "a", "anime", "serie"]);
     function findAnime(q) {
-      q = norm(q); if (!q) return null;
+      q = norm(q).replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+      if (!q) return null;
+      const qw = q.split(" ").filter((w) => w.length > 1 && !STOP.has(w));
+      if (!qw.length) return null;
       let best = null, bs = 0;
       (data || []).forEach((a) => {
-        const t = norm(a.title), alts = (a.altTitles || []).map(norm);
-        let sc = t === q ? 100 : t.includes(q) || q.includes(t) ? 60 : alts.some((x) => x.includes(q)) ? 40 : 0;
+        const titles = [a.title, ...(a.altTitles || [])].map((x) => norm(x || "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim());
+        let sc = 0;
+        for (const t of titles) {
+          if (!t) continue;
+          if (t === q) { sc = 100; break; }
+          if (q.length >= 4 && (t === q || t.includes(" " + q + " ") || t.startsWith(q + " ") || t.endsWith(" " + q) || t.includes(q) && q.split(" ").length >= 2)) sc = Math.max(sc, 88);
+          const tw = t.split(" ");
+          const tset = new Set(tw);
+          const hits = qw.filter((w) => tset.has(w)).length;               // palabras exactas en común
+          if (qw.length) {
+            const covQ = hits / qw.length;                                  // cuánto de lo dicho está en el título
+            const covT = hits / Math.max(1, tw.filter((w) => !STOP.has(w)).length);
+            sc = Math.max(sc, Math.round(80 * covQ * (0.6 + 0.4 * covT)));
+          }
+        }
         if (sc > bs) { bs = sc; best = a; }
       });
-      return bs >= 40 ? best : null;
+      return bs >= 62 ? best : null;   // umbral estricto → evita falsos positivos
     }
     // Ejecuta una búsqueda en el buscador REAL de la página. En móvil/app/TV el buscador
     // activo es el overlay (#msearch-input); en escritorio es la barra (#search-input).
@@ -2217,21 +2237,24 @@ $(document).ready(function () {
         const url = PAGES[key] || PAGES[norm(m[1])];
         if (url) { say("Enseguida."); toast("Abriendo " + m[1] + "…"); location.href = url; return; }
       }
-      if ((m = t.match(/(?:reproduce|ver|abre|pon|mira)\s+(.+)/)) && findAnime(m[1])) {
-        const a = findAnime(m[1]); say("Abriendo " + a.title + "."); toast("Abriendo " + a.title + "…");
-        location.href = "anime-details.html?id=" + a.id; return;
+      // ABRIR / REPRODUCIR un anime (acepta infinitivos: abrir, reproducir, poner, mirar).
+      if ((m = t.match(/(?:reproduce|reproducir|ver|abre|abrir|pon|poner|mira|mirar|dale|quiero ver)\s+(.+)/))) {
+        const q = m[1].trim(); const a = findAnime(q);
+        if (a) { say("Abriendo " + a.title + "."); toast("Abriendo " + a.title + "…"); location.href = "anime-details.html?id=" + a.id; return; }
+        say(q + " no está en el catálogo."); toast('«' + q + '» no está en el catálogo de All-Anime.'); return;
       }
-      if ((m = t.match(/(?:busca|buscar|encuentra|b[uú]scame|buscame)\s+(.+)/))) {
+      // BUSCAR: si calza un anime lo abre; si no, muestra el buscador con lo dicho.
+      if ((m = t.match(/(?:busca|buscar|encuentra|encontrar|b[uú]scame|buscame)\s+(.+)/))) {
         const q = m[1].trim();
         const a = findAnime(q);
         if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
         say("Buscando " + q + "."); toast('Buscando "' + q + '"…'); doSearch(q); return;
       }
       if (/recomi[eé]nda|qu[eé]\s+veo|sorpr[eé]ndeme/.test(t)) { say("Vamos a explorar."); location.href = "explorar.html"; return; }
-      // por defecto: tratar como búsqueda de anime (si no calza un anime exacto, buscar igual)
+      // por defecto: si calza un anime del catálogo, lo abre; si no, dice que no está.
       const a = findAnime(text);
-      if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
-      say("Buscando " + text + "."); toast('Buscando "' + text + '"…'); doSearch(text);
+      if (a) { say("Abriendo " + a.title + "."); toast("Abriendo " + a.title + "…"); location.href = "anime-details.html?id=" + a.id; return; }
+      say("No encontré «" + text + "» en el catálogo."); toast('No encontré «' + text + '» en el catálogo. Prueba: «Endo, busca …».');
     }
     // Reconocimiento de voz. Al ACTIVAR (clic o al decir «Yoru»), queda escuchando y ejecuta
     // CADA frase como una orden — ya NO hay que repetir «Yoru» en cada pedido (ese paso doble

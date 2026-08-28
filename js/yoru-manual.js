@@ -14,9 +14,28 @@ const CMDS = [
   ["🎲", "Recomendación", "«Endo, recomiéndame algo»"],
 ];
 
+// Consejo específico según la plataforma en la que se abre el manual.
+function platformTip() {
+  const ua = navigator.userAgent || "";
+  const isTV = /AllAnimeTV|AFT[A-Z0-9]|Fire\s?TV|Android ?TV|Google ?TV|BRAVIA|leanback/i.test(ua);
+  const inApp = /AllAnime(App|TV)/i.test(ua);
+  if (isTV) return { icon: "📺", t: "En tu Smart TV / Fire TV",
+    d: "El botón de micrófono del <b>control remoto</b> es de <b>Alexa/Google</b>, no de Endo. Para usar Endo, mueve el foco con las flechas hasta el <b>botón 🎙️ de Endo en pantalla</b> y pulsa <b>OK/Select</b>; luego di tu orden. (Si tu TV no trae motor de voz, Endo por voz no estará disponible ahí.)" };
+  if (inApp) return { icon: "📱", t: "En la app de Android",
+    d: "Toca el <b>botón 🎙️ de Endo</b> (abajo a la derecha) y di tu orden. La 1ª vez acepta el permiso de <b>micrófono</b>." };
+  const ua2 = ua.toLowerCase();
+  if (/edg\//.test(ua2)) return { icon: "🌐", t: "En Microsoft Edge",
+    d: "Endo usa un motor de voz que se <b>descarga una sola vez</b>. Solo di «Endo» y tu orden (sin botón)." };
+  if (navigator.brave || /brave/.test(ua2)) return { icon: "🦁", t: "En Brave",
+    d: "Endo usa un motor de voz <b>offline</b> que se descarga una vez. Di «Endo» y tu orden. Acepta el permiso del micrófono la 1ª vez." };
+  return { icon: "💻", t: "En tu navegador",
+    d: "Endo se activa sola. Solo di «Endo» y tu orden. La 1ª vez, acepta el permiso del <b>micrófono</b>." };
+}
+
 export function showYoruManual() {
   const old = document.getElementById("yoru-manual");
   if (old) old.remove();
+  const tip = platformTip();
   const ov = document.createElement("div");
   ov.id = "yoru-manual";
   ov.setAttribute("role", "dialog");
@@ -41,6 +60,10 @@ export function showYoruManual() {
         <span style="display:inline-block;vertical-align:middle;background:rgba(226,59,59,.18);border:1px solid rgba(226,59,59,.5);color:#ff8a8a;border-radius:20px;padding:1px 9px;font-size:12px;font-weight:700">● Escuchando</span>.
         La primera vez, tu navegador te pedirá permiso del <b>micrófono</b>: acéptalo.
       </p>
+      <div style="margin:12px 0;padding:12px 14px;border-radius:12px;background:rgba(226,59,59,.1);border:1px solid rgba(226,59,59,.3)">
+        <div style="font-weight:700;color:#fff;font-size:14px">${tip.icon} ${tip.t}</div>
+        <div style="color:#cdd5df;font-size:13.5px;line-height:1.55;margin-top:4px">${tip.d}</div>
+      </div>
       <div style="margin:8px 0 4px">${rows}</div>
       <p style="color:#7f8896;font-size:12.5px;line-height:1.5;margin:14px 0 0;border-top:1px solid rgba(255,255,255,.08);padding-top:12px">
         Funciona en todos los navegadores (en Brave/Edge usa un motor de voz que se descarga una sola vez).
