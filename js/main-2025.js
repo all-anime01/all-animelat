@@ -2201,8 +2201,8 @@ $(document).ready(function () {
       try { window.AAApp.startVoice(); } catch { fab.classList.remove("listening"); toast("La app no pudo abrir el micrófono."); }
     }
     fab.addEventListener("click", () => { if (nativeVoice()) nativeListenOnce(); else setWake(!wakeOn); });
-    // En navegador, si ya la habías activado, se reactiva sola al cargar (recuerda el permiso).
-    if (SR) { try { if (localStorage.getItem("aa-yoru-wake") === "1") setTimeout(() => setWake(true), 800); } catch {} }
+    // En navegador (no en la app nativa), si ya la habías activado, se reactiva sola al cargar.
+    if (SR && !nativeVoice()) { try { if (localStorage.getItem("aa-yoru-wake") === "1") setTimeout(() => setWake(true), 800); } catch {} }
   }
   initYoruWeb(animeData);
 
