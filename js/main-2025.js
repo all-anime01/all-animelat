@@ -2040,7 +2040,9 @@ $(document).ready(function () {
   // --- YORU (asistente de voz en la web) — 100% local, sin API, sin tokens ---
   function initYoruWeb(data) {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) return; // sin soporte de voz → no se muestra
+    // Voz nativa de la app (Android/Fire TV) vía puente AAApp — el WebView no tiene Web Speech API.
+    const nativeVoice = () => { try { return !!(window.AAApp && typeof window.AAApp.startVoice === "function"); } catch { return false; } };
+    if (!SR && !nativeVoice()) return; // ninguna vía de voz disponible → no se muestra
     if (document.getElementById("yoru-fab")) return;
     const fab = document.createElement("button");
     fab.id = "yoru-fab"; fab.title = "Habla con Yoru"; fab.setAttribute("aria-label", "Habla con Yoru");
@@ -2151,28 +2153,39 @@ $(document).ready(function () {
       clearTimeout(restartT);
       restartT = setTimeout(() => { try { rec && rec.start(); } catch {} }, 250);
     }
+    // Procesa un texto reconocido (venga del navegador o del puente nativo de la app).
+    function onHeard(raw) {
+      let t = norm(raw || "").trim();
+      if (!t) { toast("No te entendí, repite."); return; }
+      // quita un «Yoru» inicial si viene (acepta «Yoru, busca X» o directamente «busca X»)
+      const m = t.match(/^(?:yoru|yoro|yuru|yolo|lloro|llora|loro|joro|yor|yola|jora)\b[\s,]*(.*)$/);
+      if (m) t = (m[1] || "").trim();
+      if (!t) { armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; }, 12000); toast("Te escucho… dime tu pedido."); say("¿Qué necesitas?"); return; }
+      clearTimeout(armedT); armed = false;
+      toast("Yoru: “" + t + "”"); handle(t);
+    }
+    // Puente para la APP nativa (Android/Fire TV): el WebView NO tiene Web Speech API, así que
+    // la app reconoce con el micrófono nativo y nos entrega el texto por aquí.
+    window.__yoruOnResult = (text) => { try { fab.classList.remove("listening"); } catch {} onHeard(text); };
+    window.__yoruOnError = (msg) => { try { fab.classList.remove("listening"); } catch {} if (msg && !/no-speech|no_match|1_?11|7\b/i.test(msg)) toast("Yoru: " + msg); };
     function startWake() {
-      try { rec = new SR(); } catch { return; }
-      rec.lang = "es-ES"; rec.continuous = true; rec.interimResults = false; rec.maxAlternatives = 1;
+      try { rec = new SR(); } catch { toast("Este navegador no soporta reconocimiento de voz."); return; }
+      // continuous=false es MÁS fiable en Android/móvil: 1 frase por sesión y se reinicia solo.
+      rec.lang = "es-ES"; rec.continuous = false; rec.interimResults = false; rec.maxAlternatives = 3;
       rec.onresult = (ev) => {
-        for (let i = ev.resultIndex; i < ev.results.length; i++) {
-          if (!ev.results[i].isFinal) continue;
-          if (speaking) continue;                  // ignora su propia voz mientras habla
-          let t = norm(ev.results[i][0].transcript).trim();
-          if (!t) continue;
-          // quita un «Yoru» inicial si viene (acepta «Yoru, busca X» o directamente «busca X»)
-          const m = t.match(/^(?:yoru|yoro|yuru|yolo|lloro|llora|loro|joro|yor|yola|jora)\b[\s,]*(.*)$/);
-          if (m) t = (m[1] || "").trim();
-          if (!t) { armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; }, 12000); toast("Te escucho… dime tu pedido."); say("¿Qué necesitas?"); continue; }
-          clearTimeout(armedT); armed = false;
-          toast("Yoru: “" + t + "”"); handle(t);
-        }
+        if (speaking) return;
+        let raw = "";
+        try { raw = ev.results[ev.results.length - 1][0].transcript || ""; } catch {}
+        onHeard(raw);
       };
       rec.onerror = (e) => {
-        if (e && (e.error === "not-allowed" || e.error === "service-not-allowed")) { setWake(false); toast("Permite el micrófono para usar a Yoru."); }
+        const err = e && e.error;
+        if (err === "not-allowed" || err === "service-not-allowed") { setWake(false); toast("Debes PERMITIR el micrófono para usar a Yoru."); }
+        else if (err === "audio-capture") { setWake(false); toast("No se detecta micrófono en este dispositivo."); }
+        else if (err && err !== "no-speech" && err !== "aborted") { toast("Yoru: error de voz (" + err + ")"); }
       };
       rec.onend = () => { if (wakeOn && !speaking) restartRec(); };
-      try { rec.start(); } catch {}
+      try { rec.start(); } catch (e) {}
     }
     function setWake(on) {
       wakeOn = on; fab.classList.toggle("listening", on);
@@ -2181,9 +2194,15 @@ $(document).ready(function () {
       if (on) { armed = true; toast("Yoru activada. Dime: «busca Naruto», «abre películas», «ve al inicio»."); say("Hola, soy Yoru. ¿Qué quieres ver?"); startWake(); }
       else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); toast("Yoru en pausa."); }
     }
-    fab.addEventListener("click", () => setWake(!wakeOn));
-    // Si ya la habías activado, se reactiva sola al cargar (el navegador recuerda el permiso).
-    try { if (localStorage.getItem("aa-yoru-wake") === "1") setTimeout(() => setWake(true), 800); } catch {}
+    // Un toque: en la APP (voz nativa) escucha UNA orden; en navegador alterna el modo continuo.
+    function nativeListenOnce() {
+      fab.classList.add("listening");
+      toast("🎤 Escuchando… dime tu pedido");
+      try { window.AAApp.startVoice(); } catch { fab.classList.remove("listening"); toast("La app no pudo abrir el micrófono."); }
+    }
+    fab.addEventListener("click", () => { if (nativeVoice()) nativeListenOnce(); else setWake(!wakeOn); });
+    // En navegador, si ya la habías activado, se reactiva sola al cargar (recuerda el permiso).
+    if (SR) { try { if (localStorage.getItem("aa-yoru-wake") === "1") setTimeout(() => setWake(true), 800); } catch {} }
   }
   initYoruWeb(animeData);
 
