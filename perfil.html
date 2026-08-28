@@ -49,6 +49,12 @@
         .theme-opt .dot { width: 22px; height: 22px; border-radius: 50%; margin: 0 auto 8px; }
         .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-top: 1px solid var(--border); }
         .settings-row:first-of-type { border-top: none; }
+        .yoru-switch { position: relative; display: inline-block; width: 50px; height: 28px; flex: 0 0 auto; }
+        .yoru-switch input { opacity: 0; width: 0; height: 0; }
+        .yoru-slider { position: absolute; cursor: pointer; inset: 0; background: #444; border-radius: 28px; transition: .2s; }
+        .yoru-slider::before { content: ""; position: absolute; height: 22px; width: 22px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+        .yoru-switch input:checked + .yoru-slider { background: #ca3030; }
+        .yoru-switch input:checked + .yoru-slider::before { transform: translateX(22px); }
         .fav-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
         .fav-tab { background: var(--card2, #161616); border: 1px solid var(--border); color: var(--grey); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 13px; }
         .fav-tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
@@ -142,6 +148,15 @@
                     <div class="theme-opt" data-theme="red-theme"><div class="dot" style="background:#ca3030"></div>Rojo</div>
                 </div>
             </div>
+            <div class="settings-row">
+                <span><i class="fas fa-microphone"></i> Asistente de voz Yoru
+                    <small style="display:block;color:var(--muted,#9aa4b2);font-weight:400;margin-top:2px">Di «Yoru» y tu orden para controlar la página por voz.</small>
+                </span>
+                <label class="yoru-switch" title="Activar/desactivar Yoru">
+                    <input type="checkbox" id="yoru-toggle" checked>
+                    <span class="yoru-slider"></span>
+                </label>
+            </div>
             <div class="settings-row" id="admin-row" style="display:none">
                 <span><i class="fas fa-user-shield"></i> Panel de administración</span>
                 <a class="btn admin-link" href="admin/index.html">Abrir</a>
@@ -157,6 +172,7 @@
         import { observeAuth, logoutUser, updateUserProfile, resendVerification, isAdmin, reloadUser, changePassword } from "./js/auth.js";
         import { AVATARS } from "./js/avatars.js";
         import { FIREBASE_CONFIGURED } from "./js/firebase-config.js";
+        import { getYoruEnabled, setYoruEnabled } from "./js/user-data.js";
 
         const $ = (id) => document.getElementById(id);
         let currentUser = null;
@@ -247,6 +263,16 @@
             markSelected(url);
             renderVerify(user);
             $("admin-row").style.display = isAdmin(user) ? "flex" : "none";
+            // Toggle de Yoru (activo por defecto). Guarda en el perfil del usuario.
+            const yt = $("yoru-toggle");
+            if (yt) {
+                getYoruEnabled().then((on) => { yt.checked = !!on; }).catch(() => {});
+                yt.addEventListener("change", async () => {
+                    await setYoruEnabled(yt.checked);
+                    const msg = $("profile-msg");
+                    if (msg) { msg.textContent = yt.checked ? "Yoru activada. Se aplica al recargar la página." : "Yoru desactivada. Se aplica al recargar la página."; msg.className = "msg ok"; }
+                });
+            }
         });
 
         // ---- Guardar ----

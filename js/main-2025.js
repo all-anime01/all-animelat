@@ -2048,10 +2048,8 @@ $(document).ready(function () {
     // Voz nativa de la app (Android/Fire TV) vía puente AAApp — el WebView no tiene Web Speech API.
     const nativeVoice = () => { try { return !!(window.AAApp && typeof window.AAApp.startVoice === "function"); } catch { return false; } };
     if (!SR && !nativeVoice()) return; // ninguna vía de voz disponible → no se muestra
-    if (document.getElementById("yoru-fab")) return;
-    const fab = document.createElement("button");
-    fab.id = "yoru-fab"; fab.title = "Habla con Yoru"; fab.setAttribute("aria-label", "Habla con Yoru");
-    fab.innerHTML = '<i class="fas fa-microphone"></i>';
+    if (document.getElementById("yoru-ind")) return;
+    const inApp = nativeVoice();
     const st = document.createElement("style");
     st.textContent = `#yoru-fab{position:fixed;right:18px;bottom:18px;z-index:6000;width:54px;height:54px;border:none;border-radius:50%;
       cursor:pointer;color:#fff;font-size:20px;background:linear-gradient(135deg,#ca3030,#e23b3b);box-shadow:0 10px 26px rgba(202,48,48,.5);
@@ -2059,11 +2057,36 @@ $(document).ready(function () {
       #yoru-fab:hover{transform:translateY(-2px);filter:brightness(1.08)}
       #yoru-fab.listening{animation:yoru-p 1s infinite}
       @keyframes yoru-p{0%,100%{box-shadow:0 0 0 0 rgba(226,59,59,.55)}50%{box-shadow:0 0 0 14px rgba(226,59,59,0)}}
-      #yoru-toast{position:fixed;right:18px;bottom:82px;z-index:6000;max-width:320px;background:#16181d;color:#f2f3f5;
-      border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,.5);
-      opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
-      #yoru-toast.show{opacity:1;transform:translateY(0)}`;
-    document.head.appendChild(st); document.body.appendChild(fab);
+      /* Indicador VISUAL de escucha: aparece SOLO cuando Yoru oye su nombre (sin botón fijo). */
+      #yoru-ind{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:6001;display:flex;align-items:center;gap:11px;
+        padding:12px 20px;border-radius:40px;background:rgba(20,22,27,.97);color:#fff;font-size:15px;font-weight:600;
+        box-shadow:0 14px 40px rgba(202,48,48,.4),0 0 0 1px rgba(255,255,255,.08);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+      #yoru-ind.show{opacity:1;transform:translate(-50%,0)}
+      #yoru-ind .yoru-orb{width:15px;height:15px;border-radius:50%;background:#e23b3b;animation:yoru-p 1.1s infinite}
+      #yoru-toast{position:fixed;left:50%;bottom:80px;transform:translate(-50%,8px);z-index:6000;max-width:min(90vw,360px);background:#16181d;color:#f2f3f5;
+      border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:11px 16px;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,.5);
+      opacity:0;transition:opacity .25s,transform .25s;text-align:center}
+      #yoru-toast.show{opacity:1;transform:translate(-50%,0)}`;
+    document.head.appendChild(st);
+    // Indicador visual (la «reacción» al oír «Yoru»).
+    const ind = document.createElement("div");
+    ind.id = "yoru-ind";
+    ind.innerHTML = '<span class="yoru-orb"></span><span id="yoru-ind-txt">Escuchando…</span>';
+    document.body.appendChild(ind);
+    let indT;
+    const showInd = (txt, ms) => {
+      const el = ind.querySelector("#yoru-ind-txt"); if (el) el.textContent = txt || "Escuchando…";
+      ind.classList.add("show"); clearTimeout(indT); if (ms) indT = setTimeout(() => ind.classList.remove("show"), ms);
+    };
+    const hideInd = () => { clearTimeout(indT); ind.classList.remove("show"); };
+    // Botón SOLO en la app (voz nativa de un toque; en TV hace falta algo enfocable).
+    let fab = null;
+    if (inApp) {
+      fab = document.createElement("button");
+      fab.id = "yoru-fab"; fab.title = "Habla con Yoru"; fab.setAttribute("aria-label", "Habla con Yoru");
+      fab.innerHTML = '<i class="fas fa-microphone"></i>';
+      document.body.appendChild(fab);
+    }
     // Voz más NATURAL: elige una voz española de alta calidad (Google/neural/online) si existe,
     // en vez de la voz robótica por defecto. Y pausa el micrófono mientras Yoru habla para que
     // no se corte ni se oiga a sí misma (causa típica de que «no ejecutara» en móvil).
@@ -2133,6 +2156,23 @@ $(document).ready(function () {
         if (currentPlayerAnime && currentNextEpisode) { say("Siguiente episodio."); toast("Siguiente episodio…"); openPlayer(currentPlayerAnime, currentNextEpisode); return; }
         toast("No hay un episodio en reproducción."); say("No hay ningún episodio reproduciéndose."); return;
       }
+      // CONTINUAR: reanuda lo último que veías (usa el historial del usuario)
+      if (/(?:contin[uú]a|continuar|seguir viendo|sigue viendo|reanuda|retoma|donde me qued[eé])/.test(t)) {
+        say("Continuando lo último que viste."); toast("Buscando tu último episodio…");
+        (async () => {
+          try {
+            const hist = UD.isLoggedIn() ? await UD.listHistory(1) : [];
+            const h = hist && hist[0];
+            if (!h) { toast("No hay nada reciente para continuar."); say("No encontré nada reciente."); return; }
+            const a = (data || []).find((x) => x.id === h.animeId);
+            if (!a) { location.href = "historial.html"; return; }
+            const ep = a.episodes.find((e) => e.season === h.season && e.number == h.number) || a.episodes.find((e) => e.number == h.number);
+            if (ep) { toast("Continuando: " + a.title + " · ep " + h.number); openPlayer(a, ep); }
+            else location.href = "anime-details.html?id=" + a.id;
+          } catch (e) { location.href = "historial.html"; }
+        })();
+        return;
+      }
       // TRAILER de un anime (nombrado, o el de la página actual)
       if ((m = t.match(/(?:mira|ver|pon|reproduce|muestra|dame|quiero ver)?\s*(?:el\s+)?(?:trailer|tr[aá]iler|avance)\s*(?:de\s+|del\s+)?(.*)$/))) {
         const q = (m[1] || "").trim();
@@ -2192,24 +2232,30 @@ $(document).ready(function () {
     // dijiste «Yoru» (así no queda ejecutando todo lo que oye). requireWake=false (app, un toque):
     // ejecuta directo porque el toque ya fue la activación.
     function onHeard(raw, requireWake) {
-      let t = norm(raw || "").trim();
+      const t = norm(raw || "").trim();
       if (!t) return;
-      const m = t.match(/^(?:yoru|yoro|yuru|yolo|lloro|llora|loro|joro|yor|yola|jora)\b[\s,]*(.*)$/);
-      const saidName = !!m;
-      if (m) t = (m[1] || "").trim();
-      // En navegador solo obedece si mencionaste «Yoru» (o si ya quedó armado con «Yoru» a secas).
-      if (requireWake && !saidName && !armed) return;
-      if (!t) { // dijo solo «Yoru» → queda a la espera de la siguiente frase
-        armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; }, 12000);
-        toast("Te escucho… dime tu pedido."); say("¿Qué necesitas?"); return;
+      // Detecta «Yoru» en CUALQUIER parte de la frase, tolerante a cómo lo transcribe el
+      // navegador. El comando es lo que va DESPUÉS del nombre.
+      const wake = t.match(/\b(yoru|yoro|yuru|yolu|yoli|yori|joru|jori|yolo|lloru|lloro|llora|jora|yhoru|yaru|yola|yoyu|loru)\b/);
+      const said = !!wake;
+      let cmd = said ? t.slice(wake.index + wake[0].length).replace(/^[\s,]+/, "").trim() : t;
+      // En navegador SOLO obedece si mencionaste «Yoru» (o si ya quedó armado con «Yoru» a secas).
+      if (requireWake && !said && !armed) {
+        if (/^(abre|busca|pon|reproduce|ve |ir |vamos|siguiente|contin[uú]a|continuar|trailer|tr[aá]iler|mira|ver |ll[eé]vame|pasa)/.test(t)) showInd("Di «Yoru» y luego tu orden", 2200);
+        return;
       }
+      if (said && !cmd) { // dijo solo «Yoru» → REACCIÓN VISUAL + queda a la espera del comando
+        armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; hideInd(); }, 12000);
+        showInd("Escuchando… dime tu orden"); return;
+      }
+      const finalCmd = said ? cmd : t;   // si venía armado, la frase completa es el comando
       clearTimeout(armedT); armed = false;
-      toast("Yoru: “" + t + "”"); handle(t);
+      showInd("Yoru: " + finalCmd, 2800); toast("Yoru: “" + finalCmd + "”"); handle(finalCmd);
     }
     // Puente para la APP nativa (Android/Fire TV): el WebView NO tiene Web Speech API, así que
     // la app reconoce con el micrófono nativo y nos entrega el texto por aquí (un toque = una orden).
-    window.__yoruOnResult = (text) => { try { fab.classList.remove("listening"); } catch {} onHeard(text, false); };
-    window.__yoruOnError = (msg) => { try { fab.classList.remove("listening"); } catch {} if (msg && !/no-speech|no_match|1_?11|7\b/i.test(msg)) toast("Yoru: " + msg); };
+    window.__yoruOnResult = (text) => { try { if (fab) fab.classList.remove("listening"); } catch {} onHeard(text, false); };
+    window.__yoruOnError = (msg) => { try { if (fab) fab.classList.remove("listening"); } catch {} if (msg && !/no-speech|no_match|1_?11|7\b/i.test(msg)) toast("Yoru: " + msg); };
     function startWake() {
       try { rec = new SR(); } catch { toast("Este navegador no soporta reconocimiento de voz."); return; }
       // continuous=false es MÁS fiable en Android/móvil: 1 frase por sesión y se reinicia solo.
@@ -2258,23 +2304,40 @@ $(document).ready(function () {
     // Arranca el mejor motor disponible: Web Speech (rápido, Chrome) o directamente Vosk si no hay.
     function startEngine() { if (SR) startWake(); else startVosk(); }
     function setWake(on) {
-      wakeOn = on; fab.classList.toggle("listening", on);
-      fab.title = on ? "Yoru te escucha — di «Yoru …» (clic para apagar)" : "Activar Yoru por voz";
+      wakeOn = on; if (fab) fab.classList.toggle("listening", on);
       try { localStorage.setItem("aa-yoru-wake", on ? "1" : "0"); } catch {}
-      if (on) { armed = false; toast("Yoru activada. Di «Yoru» y tu orden: «Yoru, abre Naruto», «Yoru, pon el episodio 5 de Naruto», «Yoru, siguiente episodio»."); say("Hola, soy Yoru. Di mi nombre y tu pedido."); startEngine(); }
-      else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); stopVosk(); toast("Yoru en pausa."); }
+      if (on) { armed = false; showInd("Yoru activa · di «Yoru» y tu orden", 3800); startEngine(); }
+      else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); stopVosk(); hideInd(); }
     }
-    // Un toque: en la APP (voz nativa) escucha UNA orden; en navegador alterna el modo continuo.
+    // App (voz nativa): un toque del botón = una orden.
     function nativeListenOnce() {
-      fab.classList.add("listening");
-      toast("🎤 Escuchando… dime tu pedido");
-      try { window.AAApp.startVoice(); } catch { fab.classList.remove("listening"); toast("La app no pudo abrir el micrófono."); }
+      if (fab) fab.classList.add("listening");
+      showInd("Escuchando… dime tu orden");
+      try { window.AAApp.startVoice(); } catch { if (fab) fab.classList.remove("listening"); toast("La app no pudo abrir el micrófono."); }
     }
-    fab.addEventListener("click", () => { if (nativeVoice()) nativeListenOnce(); else setWake(!wakeOn); });
-    // En navegador (no en la app nativa), si ya la habías activado, se reactiva sola al cargar.
-    if (SR && !nativeVoice()) { try { if (localStorage.getItem("aa-yoru-wake") === "1") setTimeout(() => setWake(true), 800); } catch {} }
+    if (inApp) {
+      fab.addEventListener("click", nativeListenOnce);
+    } else {
+      // Navegador: SIN botón permanente. Empieza a escuchar en segundo plano tras el PRIMER
+      // gesto del usuario (el navegador exige un gesto para el micrófono). Luego, hands-free:
+      // di «Yoru» y aparece el indicador visual de escucha.
+      const kick = () => {
+        document.removeEventListener("pointerdown", kick); document.removeEventListener("keydown", kick);
+        if (!wakeOn) setWake(true);
+      };
+      document.addEventListener("pointerdown", kick, { once: true });
+      document.addEventListener("keydown", kick, { once: true });
+    }
   }
-  initYoruWeb(animeData);
+  // Yoru es SOLO para usuarios registrados y se activa/desactiva desde el perfil (activo por
+  // defecto). No aparece para visitantes sin sesión.
+  UD.userReady.then(async () => {
+    try {
+      if (!UD.isLoggedIn()) return;
+      const enabled = await UD.getYoruEnabled();
+      if (enabled) initYoruWeb(animeData);
+    } catch (e) {}
+  });
 
   // --- INICIALIZACIÓN DE PÁGINAS ---
   populateHomePage();

@@ -164,6 +164,32 @@ export async function listHistory(max = 60) {
   } catch (e) { return []; }
 }
 
+// ---- PREFERENCIAS DEL USUARIO (asistente Yoru) ------------------------------
+// Se guardan en el propio doc users/{uid}. Yoru está ACTIVO por defecto.
+export async function getYoruEnabled() {
+  await userReady;
+  if (!currentUser) return false;
+  // caché local para respuesta instantánea (evita esperar a Firestore en cada carga)
+  try {
+    const cached = localStorage.getItem("aa-yoru-" + currentUser.uid);
+    if (cached === "0") return false;
+    if (cached === "1") return true;
+  } catch (e) {}
+  try {
+    const snap = await getDoc(doc(db, "users", currentUser.uid));
+    const v = snap.exists() ? snap.data().yoruEnabled : undefined;
+    const on = v === undefined ? true : !!v;   // por defecto: ACTIVO
+    try { localStorage.setItem("aa-yoru-" + currentUser.uid, on ? "1" : "0"); } catch (e) {}
+    return on;
+  } catch (e) { return true; }
+}
+export async function setYoruEnabled(on) {
+  await userReady;
+  if (!currentUser) return;
+  try { localStorage.setItem("aa-yoru-" + currentUser.uid, on ? "1" : "0"); } catch (e) {}
+  try { await setDoc(doc(db, "users", currentUser.uid), { yoruEnabled: !!on }, { merge: true }); } catch (e) {}
+}
+
 // ---- CALIFICACIÓN CON ESTRELLAS (agregada entre todos) ----------------------
 // animeStats/{id} = { ratingSum, ratingCount }  →  promedio = sum / count
 function animeStatsRef(id) { return doc(db, "animeStats", id); }
