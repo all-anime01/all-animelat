@@ -25,6 +25,13 @@ import android.widget.Toast;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.util.TypedValue;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.speech.SpeechRecognizer;
+import android.speech.RecognizerIntent;
+import android.speech.RecognitionListener;
+import java.util.ArrayList;
 
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.util.UnstableApi;
@@ -203,6 +210,82 @@ public class MainActivity extends Activity {
         // hay episodio SIGUIENTE (para el autoplay con conteo). Se aplica al reproducir.
         @JavascriptInterface public void nativeContext(String episodeId, int startSec, boolean hasNext) {
             runOnUiThread(() -> { aaEpisodeId = episodeId; aaStartSec = Math.max(0, startSec); aaHasNext = hasNext; aaCountdownActive = false; });
+        }
+        // Yoru (asistente de voz): el WebView NO tiene Web Speech API, así que reconocemos con
+        // el micrófono NATIVO de Android y devolvemos el texto a la web (window.__yoruOnResult).
+        @JavascriptInterface public void startVoice() { runOnUiThread(() -> startNativeVoice()); }
+    }
+
+    // ---- Yoru: reconocimiento de voz nativo (Android SpeechRecognizer) ----
+    private SpeechRecognizer speechRec;
+    private boolean voicePending = false;   // esperando el permiso de micrófono para arrancar
+
+    private void startNativeVoice() {
+        // API 23+: permiso de micrófono en tiempo de ejecución (en API <23 se concede al instalar).
+        if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            voicePending = true;
+            requestPermissions(new String[]{ Manifest.permission.RECORD_AUDIO }, 4711);
+            return;
+        }
+        if (!SpeechRecognizer.isRecognitionAvailable(this)) { sendVoiceError("sin reconocimiento de voz en el dispositivo"); return; }
+        try {
+            if (speechRec != null) { try { speechRec.destroy(); } catch (Exception e) {} speechRec = null; }
+            speechRec = SpeechRecognizer.createSpeechRecognizer(this);
+            speechRec.setRecognitionListener(new RecognitionListener() {
+                @Override public void onResults(Bundle b) {
+                    ArrayList<String> res = b != null ? b.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION) : null;
+                    if (res != null && !res.isEmpty()) sendVoiceResult(res.get(0));
+                    else sendVoiceError("no-speech");
+                }
+                @Override public void onError(int err) { sendVoiceError("error " + err); }
+                @Override public void onReadyForSpeech(Bundle p) {}
+                @Override public void onBeginningOfSpeech() {}
+                @Override public void onRmsChanged(float r) {}
+                @Override public void onBufferReceived(byte[] buf) {}
+                @Override public void onEndOfSpeech() {}
+                @Override public void onPartialResults(Bundle p) {}
+                @Override public void onEvent(int e, Bundle p) {}
+            });
+            Intent it = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            it.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            it.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "es-ES");
+            it.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, false);
+            it.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
+            speechRec.startListening(it);
+        } catch (Exception e) { sendVoiceError("no se pudo iniciar el micrófono"); }
+    }
+
+    private void sendVoiceResult(String text) {
+        if (webView == null || text == null) return;
+        final String js = "window.__yoruOnResult && window.__yoruOnResult(" + jsStr(text) + ")";
+        runOnUiThread(() -> { try { webView.evaluateJavascript(js, null); } catch (Exception e) {} });
+    }
+    private void sendVoiceError(String msg) {
+        if (webView == null) return;
+        final String js = "window.__yoruOnError && window.__yoruOnError(" + jsStr(msg == null ? "" : msg) + ")";
+        runOnUiThread(() -> { try { webView.evaluateJavascript(js, null); } catch (Exception e) {} });
+    }
+    // Escapa un String para incrustarlo como literal JS seguro.
+    private static String jsStr(String s) {
+        StringBuilder sb = new StringBuilder("\"");
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '\\' || c == '"') sb.append('\\').append(c);
+            else if (c == '\n') sb.append("\\n");
+            else if (c == '\r') sb.append("\\r");
+            else if (c < 0x20) sb.append(String.format("\\u%04x", (int) c));
+            else sb.append(c);
+        }
+        return sb.append('"').toString();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int req, String[] perms, int[] results) {
+        super.onRequestPermissionsResult(req, perms, results);
+        if (req == 4711) {
+            boolean granted = results != null && results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED;
+            if (granted && voicePending) { voicePending = false; startNativeVoice(); }
+            else if (!granted) { voicePending = false; sendVoiceError("permiso de micrófono denegado"); }
         }
     }
 
@@ -1153,6 +1236,7 @@ public class MainActivity extends Activity {
     @Override protected void onDestroy() {
         try { if (exo != null) { exo.release(); exo = null; } } catch (Exception ignored) {}
         try { if (popupView != null) { popupView.destroy(); popupView = null; } } catch (Exception ignored) {}
+        try { if (speechRec != null) { speechRec.destroy(); speechRec = null; } } catch (Exception ignored) {}
         if (webView != null) { webView.destroy(); webView = null; }
         super.onDestroy();
     }
