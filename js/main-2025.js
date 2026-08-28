@@ -2147,11 +2147,13 @@ $(document).ready(function () {
     // Reconocimiento de voz. Al ACTIVAR (clic o al decir «Yoru»), queda escuchando y ejecuta
     // CADA frase como una orden — ya NO hay que repetir «Yoru» en cada pedido (ese paso doble
     // fallaba en móvil y por eso «no ejecutaba»). El prefijo «Yoru» es opcional; si lo dices, se ignora.
-    let wakeOn = false, rec = null, restartT = null, armed = false, armedT = null;
+    let wakeOn = false, rec = null, restartT = null, armed = false, armedT = null, netRetries = 0;
     function restartRec() {
       if (!wakeOn) return;
       clearTimeout(restartT);
-      restartT = setTimeout(() => { try { rec && rec.start(); } catch {} }, 250);
+      // backoff si hubo errores de red (no martillar el servicio de voz de Google)
+      const delay = netRetries > 0 ? Math.min(500 * netRetries, 2500) : 300;
+      restartT = setTimeout(() => { try { rec && rec.start(); } catch {} }, delay);
     }
     // Procesa un texto reconocido (venga del navegador o del puente nativo de la app).
     function onHeard(raw) {
@@ -2174,6 +2176,7 @@ $(document).ready(function () {
       rec.lang = "es-ES"; rec.continuous = false; rec.interimResults = false; rec.maxAlternatives = 3;
       rec.onresult = (ev) => {
         if (speaking) return;
+        netRetries = 0;                         // conexión OK → reinicia el contador de red
         let raw = "";
         try { raw = ev.results[ev.results.length - 1][0].transcript || ""; } catch {}
         onHeard(raw);
@@ -2182,6 +2185,13 @@ $(document).ready(function () {
         const err = e && e.error;
         if (err === "not-allowed" || err === "service-not-allowed") { setWake(false); toast("Debes PERMITIR el micrófono para usar a Yoru."); }
         else if (err === "audio-capture") { setWake(false); toast("No se detecta micrófono en este dispositivo."); }
+        else if (err === "network") {
+          // El backend de voz del navegador no respondió. Reintenta unas veces (puede ser
+          // transitorio); si persiste, avisa con una salida clara (navegador/red que lo bloquea).
+          netRetries++;
+          if (netRetries > 4) { setWake(false); toast("El servicio de voz de este navegador está bloqueado (pasa en Brave/Opera/Edge o con VPN). Abre el sitio en Chrome, o usa la app: tiene voz nativa."); }
+          else { toast("Reconectando el servicio de voz… (" + netRetries + "/4)"); }
+        }
         else if (err && err !== "no-speech" && err !== "aborted") { toast("Yoru: error de voz (" + err + ")"); }
       };
       rec.onend = () => { if (wakeOn && !speaking) restartRec(); };
