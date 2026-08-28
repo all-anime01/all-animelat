@@ -2057,7 +2057,31 @@ $(document).ready(function () {
       opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
       #yoru-toast.show{opacity:1;transform:translateY(0)}`;
     document.head.appendChild(st); document.body.appendChild(fab);
-    const say = (m) => { try { const u = new SpeechSynthesisUtterance(m); u.lang = "es-ES"; speechSynthesis.speak(u); } catch {} };
+    // Voz más NATURAL: elige una voz española de alta calidad (Google/neural/online) si existe,
+    // en vez de la voz robótica por defecto. Y pausa el micrófono mientras Yoru habla para que
+    // no se corte ni se oiga a sí misma (causa típica de que «no ejecutara» en móvil).
+    let _voices = [];
+    const loadVoices = () => { try { _voices = speechSynthesis.getVoices() || []; } catch { _voices = []; } };
+    loadVoices(); try { speechSynthesis.onvoiceschanged = loadVoices; } catch {}
+    const pickVoice = () => {
+      const es = _voices.filter((v) => /^es(-|_|$)/i.test(v.lang) || /spanish|español/i.test(v.name));
+      return es.find((v) => /google/i.test(v.name))
+        || es.find((v) => /(neural|natural|online|sabina|dalia|helena|laura|elvira|paloma|jorge|juan)/i.test(v.name))
+        || es.find((v) => /es-US|es-MX/i.test(v.lang))
+        || es[0] || null;
+    };
+    let speaking = false;
+    const say = (m) => {
+      try {
+        const u = new SpeechSynthesisUtterance(m);
+        const v = pickVoice(); if (v) { u.voice = v; u.lang = v.lang; } else u.lang = "es-ES";
+        u.rate = 1.02; u.pitch = 1.05; u.volume = 1;
+        speaking = true; try { if (rec) rec.abort(); } catch {}
+        u.onend = u.onerror = () => { speaking = false; if (wakeOn) restartRec(); };
+        try { speechSynthesis.cancel(); } catch {}
+        speechSynthesis.speak(u);
+      } catch { speaking = false; }
+    };
     let toastT;
     const toast = (m) => {
       let el = document.getElementById("yoru-toast");
@@ -2118,38 +2142,43 @@ $(document).ready(function () {
       if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
       say("Buscando " + text + "."); toast('Buscando "' + text + '"…'); doSearch(text);
     }
-    // Escucha CONTINUA de la palabra clave «Yoru». Una vez activada (queda recordada),
-    // se dispara diciendo «Yoru, <lo que quieras>» — sin volver a tocar el botón.
+    // Reconocimiento de voz. Al ACTIVAR (clic o al decir «Yoru»), queda escuchando y ejecuta
+    // CADA frase como una orden — ya NO hay que repetir «Yoru» en cada pedido (ese paso doble
+    // fallaba en móvil y por eso «no ejecutaba»). El prefijo «Yoru» es opcional; si lo dices, se ignora.
     let wakeOn = false, rec = null, restartT = null, armed = false, armedT = null;
+    function restartRec() {
+      if (!wakeOn) return;
+      clearTimeout(restartT);
+      restartT = setTimeout(() => { try { rec && rec.start(); } catch {} }, 250);
+    }
     function startWake() {
       try { rec = new SR(); } catch { return; }
-      rec.lang = "es-ES"; rec.continuous = true; rec.interimResults = true; rec.maxAlternatives = 1;
+      rec.lang = "es-ES"; rec.continuous = true; rec.interimResults = false; rec.maxAlternatives = 1;
       rec.onresult = (ev) => {
         for (let i = ev.resultIndex; i < ev.results.length; i++) {
           if (!ev.results[i].isFinal) continue;
-          const t = norm(ev.results[i][0].transcript).trim();
+          if (speaking) continue;                  // ignora su propia voz mientras habla
+          let t = norm(ev.results[i][0].transcript).trim();
           if (!t) continue;
-          const m = t.match(/\b(?:yoru|yoro|yuru|yolo|lloro|llora|loro|joro|yor)\b[\s,]*(.*)/);
-          if (m) {
-            const cmd = (m[1] || "").trim();
-            if (cmd) { toast("Yoru: “" + cmd + "”"); handle(cmd); }
-            else { armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; }, 9000); say("¿Qué necesitas?"); toast("Te escucho… dime tu pedido."); }
-          } else if (armed) {
-            armed = false; clearTimeout(armedT); handle(t);
-          }
+          // quita un «Yoru» inicial si viene (acepta «Yoru, busca X» o directamente «busca X»)
+          const m = t.match(/^(?:yoru|yoro|yuru|yolo|lloro|llora|loro|joro|yor|yola|jora)\b[\s,]*(.*)$/);
+          if (m) t = (m[1] || "").trim();
+          if (!t) { armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; }, 12000); toast("Te escucho… dime tu pedido."); say("¿Qué necesitas?"); continue; }
+          clearTimeout(armedT); armed = false;
+          toast("Yoru: “" + t + "”"); handle(t);
         }
       };
       rec.onerror = (e) => {
         if (e && (e.error === "not-allowed" || e.error === "service-not-allowed")) { setWake(false); toast("Permite el micrófono para usar a Yoru."); }
       };
-      rec.onend = () => { if (wakeOn) { clearTimeout(restartT); restartT = setTimeout(() => { try { rec.start(); } catch {} }, 350); } };
+      rec.onend = () => { if (wakeOn && !speaking) restartRec(); };
       try { rec.start(); } catch {}
     }
     function setWake(on) {
       wakeOn = on; fab.classList.toggle("listening", on);
-      fab.title = on ? "Yoru te escucha — di «Yoru …» (clic para apagar)" : "Activar Yoru por voz";
+      fab.title = on ? "Yoru te escucha — dime tu pedido (clic para apagar)" : "Activar Yoru por voz";
       try { localStorage.setItem("aa-yoru-wake", on ? "1" : "0"); } catch {}
-      if (on) { toast("Yoru activada. Di «Yoru, busca Naruto» o «Yoru, abre películas»."); say("Hola, soy Yoru. Di mi nombre y tu pedido."); startWake(); }
+      if (on) { armed = true; toast("Yoru activada. Dime: «busca Naruto», «abre películas», «ve al inicio»."); say("Hola, soy Yoru. ¿Qué quieres ver?"); startWake(); }
       else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); toast("Yoru en pausa."); }
     }
     fab.addEventListener("click", () => setWake(!wakeOn));
