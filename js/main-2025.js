@@ -2079,6 +2079,21 @@ $(document).ready(function () {
       });
       return bs >= 40 ? best : null;
     }
+    // Ejecuta una búsqueda en el buscador REAL de la página. En móvil/app/TV el buscador
+    // activo es el overlay (#msearch-input); en escritorio es la barra (#search-input).
+    // Antes Yoru solo llenaba #search-input → en móvil/TV no pasaba nada (por eso «no busca»).
+    function doSearch(q) {
+      q = (q || "").trim(); if (!q) return;
+      const small = window.innerWidth <= 768 || document.documentElement.classList.contains("aa-tv");
+      const useOverlay = () => {
+        try { openMobileSearch(); setTimeout(() => { const mi = $("#msearch-input"); if (mi.length) mi.val(q).trigger("input").focus(); }, 150); return true; }
+        catch (e) { return false; }
+      };
+      if (small && useOverlay()) return;
+      const inp = $("#search-input");
+      if (inp.length) { $(".search-container").addClass("active"); inp.val(q).trigger("input").focus(); return; }
+      useOverlay(); // páginas sin barra propia (p. ej. explorar) → overlay
+    }
     function handle(text) {
       const t = norm(text); if (!t) { say("No te entendí."); return; }
       let m;
@@ -2091,16 +2106,17 @@ $(document).ready(function () {
         const a = findAnime(m[1]); say("Abriendo " + a.title + "."); toast("Abriendo " + a.title + "…");
         location.href = "anime-details.html?id=" + a.id; return;
       }
-      if ((m = t.match(/(?:busca|buscar|encuentra)\s+(.+)/))) {
-        const a = findAnime(m[1]);
+      if ((m = t.match(/(?:busca|buscar|encuentra|b[uú]scame|buscame)\s+(.+)/))) {
+        const q = m[1].trim();
+        const a = findAnime(q);
         if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
-        toast('Buscando "' + m[1] + '"…'); const inp = $("#search-input"); if (inp.length) { $(".search-container").addClass("active"); inp.val(m[1]).trigger("input").focus(); } return;
+        say("Buscando " + q + "."); toast('Buscando "' + q + '"…'); doSearch(q); return;
       }
       if (/recomi[eé]nda|qu[eé]\s+veo|sorpr[eé]ndeme/.test(t)) { say("Vamos a explorar."); location.href = "explorar.html"; return; }
-      // por defecto: tratar como búsqueda de anime
+      // por defecto: tratar como búsqueda de anime (si no calza un anime exacto, buscar igual)
       const a = findAnime(text);
       if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
-      toast('No encontré "' + text + '". Prueba: «abre películas» o «busca Naruto».'); say("No lo encontré.");
+      say("Buscando " + text + "."); toast('Buscando "' + text + '"…'); doSearch(text);
     }
     // Escucha CONTINUA de la palabra clave «Yoru». Una vez activada (queda recordada),
     // se dispara diciendo «Yoru, <lo que quieras>» — sin volver a tocar el botón.
