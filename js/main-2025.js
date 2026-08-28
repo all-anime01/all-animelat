@@ -308,6 +308,7 @@ $(document).ready(function () {
   let currentPlayerAnime = null;
   let currentPlayerEpisode = null;
   let currentNextEpisode = null;   // siguiente episodio (para autoplay del reproductor nativo)
+  let currentDetailsAnime = null;  // anime de la página de detalles abierta (para Yoru)
 
   function setEpisodeFavLocal(episodeId, on) {
     let f = getFavoriteEpisodes();
@@ -1606,15 +1607,19 @@ $(document).ready(function () {
       });
     }
 
+    currentDetailsAnime = anime;   // para que Yoru pueda usar «ver trailer» / «siguiente episodio» aquí
     const seasonToOpen = urlParams.get("season");
     const episodeToOpen = urlParams.get("episode");
-    if (seasonToOpen && episodeToOpen) {
+    if (episodeToOpen) {
+      // Con temporada: exacto. Sin temporada (p. ej. Yoru «pon el episodio 5»): 1er ep con ese número.
       const episode = anime.episodes.find(
-        (ep) =>
-          ep.season === decodeURIComponent(seasonToOpen) &&
-          ep.number == episodeToOpen
-      );
+        (ep) => (!seasonToOpen || ep.season === decodeURIComponent(seasonToOpen)) && ep.number == episodeToOpen
+      ) || anime.episodes.find((ep) => ep.number == episodeToOpen);
       if (episode) setTimeout(() => openPlayer(anime, episode), 100);
+    }
+    // Yoru: «ver el trailer de X» navega aquí con ?trailer=1 → abre el modal del trailer.
+    if (urlParams.get("trailer") === "1" && anime.trailerUrl) {
+      setTimeout(() => { try { $("#open-trailer-modal").trigger("click"); } catch (e) {} }, 500);
     }
   }
 
@@ -2123,6 +2128,34 @@ $(document).ready(function () {
     function handle(text) {
       const t = norm(text); if (!t) { say("No te entendí."); return; }
       let m;
+      // SIGUIENTE EPISODIO (solo si hay uno reproduciéndose / en la página de detalles)
+      if (/(?:siguiente|pr[oó]ximo|proximo|otro)\s+(?:episodio|cap[ií]tulo|capitulo|cap)|pasa(?:r)?\s+al?\s+(?:siguiente|pr[oó]ximo|proximo)/.test(t)) {
+        if (currentPlayerAnime && currentNextEpisode) { say("Siguiente episodio."); toast("Siguiente episodio…"); openPlayer(currentPlayerAnime, currentNextEpisode); return; }
+        toast("No hay un episodio en reproducción."); say("No hay ningún episodio reproduciéndose."); return;
+      }
+      // TRAILER de un anime (nombrado, o el de la página actual)
+      if ((m = t.match(/(?:mira|ver|pon|reproduce|muestra|dame|quiero ver)?\s*(?:el\s+)?(?:trailer|tr[aá]iler|avance)\s*(?:de\s+|del\s+)?(.*)$/))) {
+        const q = (m[1] || "").trim();
+        const a = q ? findAnime(q) : (currentDetailsAnime || currentPlayerAnime);
+        if (a) {
+          say("Trailer de " + a.title + ".");
+          if (currentDetailsAnime && a.id === currentDetailsAnime.id && a.trailerUrl) { try { $("#open-trailer-modal").trigger("click"); return; } catch (e) {} }
+          location.href = "anime-details.html?id=" + a.id + "&trailer=1"; return;
+        }
+        toast("¿De qué anime quieres el trailer?"); say("¿De qué anime?"); return;
+      }
+      // PONER UN EPISODIO CONCRETO: «pon el episodio 5 de Naruto»
+      if ((m = t.match(/(?:pon|reproduce|ver|abre|quiero ver|coloca|dale|ir al)\s+(?:el\s+)?(?:episodio|cap[ií]tulo|capitulo|cap)\s+(\d+)\s*(?:de\s+|del\s+)?(.*)$/))) {
+        const n = m[1]; const q = (m[2] || "").trim();
+        const a = q ? findAnime(q) : (currentDetailsAnime || currentPlayerAnime);
+        if (a) { say("Episodio " + n + " de " + a.title + "."); toast("Episodio " + n + " de " + a.title + "…"); location.href = "anime-details.html?id=" + a.id + "&episode=" + n; return; }
+        toast("¿De qué anime el episodio " + n + "?"); say("¿De qué anime?"); return;
+      }
+      // …o el orden inverso: «pon Naruto episodio 5»
+      if ((m = t.match(/(?:pon|reproduce|ver|abre|coloca|dale)\s+(.+?)\s+(?:episodio|cap[ií]tulo|capitulo|cap)\s+(\d+)/))) {
+        const q = m[1].trim(); const n = m[2]; const a = findAnime(q);
+        if (a) { say("Episodio " + n + " de " + a.title + "."); toast("Episodio " + n + " de " + a.title + "…"); location.href = "anime-details.html?id=" + a.id + "&episode=" + n; return; }
+      }
       if ((m = t.match(/(?:llevame|ll[eé]vame|ve|abre|ir|vamos)\s+(?:a\s+)?(?:la\s+|el\s+)?(inicio|casa|explorar|explora|peliculas|pel[ií]culas|pelis|favoritos|mi lista|historial|notificaciones|cuenta|perfil)/))) {
         const key = Object.keys(PAGES).find((k) => norm(k) === norm(m[1])) || m[1];
         const url = PAGES[key] || PAGES[norm(m[1])];
@@ -2155,20 +2188,27 @@ $(document).ready(function () {
       const delay = netRetries > 0 ? Math.min(500 * netRetries, 2500) : 300;
       restartT = setTimeout(() => { try { rec && rec.start(); } catch {} }, delay);
     }
-    // Procesa un texto reconocido (venga del navegador o del puente nativo de la app).
-    function onHeard(raw) {
+    // Procesa un texto reconocido. requireWake=true (navegador, escucha continua): SOLO actúa si
+    // dijiste «Yoru» (así no queda ejecutando todo lo que oye). requireWake=false (app, un toque):
+    // ejecuta directo porque el toque ya fue la activación.
+    function onHeard(raw, requireWake) {
       let t = norm(raw || "").trim();
-      if (!t) { toast("No te entendí, repite."); return; }
-      // quita un «Yoru» inicial si viene (acepta «Yoru, busca X» o directamente «busca X»)
+      if (!t) return;
       const m = t.match(/^(?:yoru|yoro|yuru|yolo|lloro|llora|loro|joro|yor|yola|jora)\b[\s,]*(.*)$/);
+      const saidName = !!m;
       if (m) t = (m[1] || "").trim();
-      if (!t) { armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; }, 12000); toast("Te escucho… dime tu pedido."); say("¿Qué necesitas?"); return; }
+      // En navegador solo obedece si mencionaste «Yoru» (o si ya quedó armado con «Yoru» a secas).
+      if (requireWake && !saidName && !armed) return;
+      if (!t) { // dijo solo «Yoru» → queda a la espera de la siguiente frase
+        armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; }, 12000);
+        toast("Te escucho… dime tu pedido."); say("¿Qué necesitas?"); return;
+      }
       clearTimeout(armedT); armed = false;
       toast("Yoru: “" + t + "”"); handle(t);
     }
     // Puente para la APP nativa (Android/Fire TV): el WebView NO tiene Web Speech API, así que
-    // la app reconoce con el micrófono nativo y nos entrega el texto por aquí.
-    window.__yoruOnResult = (text) => { try { fab.classList.remove("listening"); } catch {} onHeard(text); };
+    // la app reconoce con el micrófono nativo y nos entrega el texto por aquí (un toque = una orden).
+    window.__yoruOnResult = (text) => { try { fab.classList.remove("listening"); } catch {} onHeard(text, false); };
     window.__yoruOnError = (msg) => { try { fab.classList.remove("listening"); } catch {} if (msg && !/no-speech|no_match|1_?11|7\b/i.test(msg)) toast("Yoru: " + msg); };
     function startWake() {
       try { rec = new SR(); } catch { toast("Este navegador no soporta reconocimiento de voz."); return; }
@@ -2179,7 +2219,7 @@ $(document).ready(function () {
         netRetries = 0;                         // conexión OK → reinicia el contador de red
         let raw = "";
         try { raw = ev.results[ev.results.length - 1][0].transcript || ""; } catch {}
-        onHeard(raw);
+        onHeard(raw, true);   // navegador: solo obedece si dijiste «Yoru»
       };
       rec.onerror = (e) => {
         const err = e && e.error;
@@ -2199,9 +2239,9 @@ $(document).ready(function () {
     }
     function setWake(on) {
       wakeOn = on; fab.classList.toggle("listening", on);
-      fab.title = on ? "Yoru te escucha — dime tu pedido (clic para apagar)" : "Activar Yoru por voz";
+      fab.title = on ? "Yoru te escucha — di «Yoru …» (clic para apagar)" : "Activar Yoru por voz";
       try { localStorage.setItem("aa-yoru-wake", on ? "1" : "0"); } catch {}
-      if (on) { armed = true; toast("Yoru activada. Dime: «busca Naruto», «abre películas», «ve al inicio»."); say("Hola, soy Yoru. ¿Qué quieres ver?"); startWake(); }
+      if (on) { armed = false; toast("Yoru activada. Di «Yoru» y tu orden: «Yoru, abre Naruto», «Yoru, pon el episodio 5 de Naruto», «Yoru, siguiente episodio»."); say("Hola, soy Yoru. Di mi nombre y tu pedido."); startWake(); }
       else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); toast("Yoru en pausa."); }
     }
     // Un toque: en la APP (voz nativa) escucha UNA orden; en navegador alterna el modo continuo.
