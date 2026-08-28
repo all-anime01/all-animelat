@@ -2236,12 +2236,16 @@ $(document).ready(function () {
       if (!t) return;
       // Detecta «Yoru» en CUALQUIER parte de la frase, tolerante a cómo lo transcribe el
       // navegador. El comando es lo que va DESPUÉS del nombre.
-      const wake = t.match(/\b(yoru|yoro|yuru|yolu|yoli|yori|joru|jori|yolo|lloru|lloro|llora|jora|yhoru|yaru|yola|yoyu|loru)\b/);
+      const CMD = "abre|busca|encuentra|pon|reproduce|ver|ve|ir|vamos|mira|ll[eé]vame|coloca|dale|siguiente|pr[oó]ximo|proximo|contin[uú]a|continuar|reanuda|sigue|trailer|tr[aá]iler|avance|pasa|el\\s+episodio|el\\s+cap|pel[ií]cula|explorar|inicio";
+      // Detecta «Yoru» en cualquier parte (con variantes de cómo lo transcribe el navegador).
+      // También «yo/you/yu» PERO solo si va seguido de un verbo de orden (así «yo quiero…» no dispara).
+      const wake = t.match(/\b(yoru|yoro|yuru|yolu|yoli|yori|joru|jori|yolo|lloru|lloro|llora|jora|yhoru|yaru|yola|yoyu|loru)\b/)
+        || t.match(new RegExp("\\b(?:yo|you|yu|jo|yio)\\s+(?=(?:" + CMD + ")\\b)"));
       const said = !!wake;
       let cmd = said ? t.slice(wake.index + wake[0].length).replace(/^[\s,]+/, "").trim() : t;
       // En navegador SOLO obedece si mencionaste «Yoru» (o si ya quedó armado con «Yoru» a secas).
       if (requireWake && !said && !armed) {
-        if (/^(abre|busca|pon|reproduce|ve |ir |vamos|siguiente|contin[uú]a|continuar|trailer|tr[aá]iler|mira|ver |ll[eé]vame|pasa)/.test(t)) showInd("Di «Yoru» y luego tu orden", 2200);
+        if (new RegExp("\\b(?:" + CMD + ")\\b").test(t)) showInd("Di «Yoru» y luego tu orden", 2200);
         return;
       }
       if (said && !cmd) { // dijo solo «Yoru» → REACCIÓN VISUAL + queda a la espera del comando
