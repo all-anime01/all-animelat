@@ -150,7 +150,9 @@
             </div>
             <div class="settings-row">
                 <span><i class="fas fa-microphone"></i> Asistente de voz Yoru
-                    <small style="display:block;color:var(--muted,#9aa4b2);font-weight:400;margin-top:2px">Di «Yoru» y tu orden para controlar la página por voz.</small>
+                    <small style="display:block;color:var(--muted,#9aa4b2);font-weight:400;margin-top:2px">Di «Yoru» y tu orden para controlar la página por voz.
+                        <a href="#" id="yoru-manual-link" style="color:#e23b3b;font-weight:600">Ver manual</a>
+                    </small>
                 </span>
                 <label class="yoru-switch" title="Activar/desactivar Yoru">
                     <input type="checkbox" id="yoru-toggle" checked>
@@ -173,6 +175,11 @@
         import { AVATARS } from "./js/avatars.js";
         import { FIREBASE_CONFIGURED } from "./js/firebase-config.js";
         import { getYoruEnabled, setYoruEnabled } from "./js/user-data.js";
+        import { showYoruManual } from "./js/yoru-manual.js";
+        document.addEventListener("click", (e) => {
+            const l = e.target.closest && e.target.closest("#yoru-manual-link");
+            if (l) { e.preventDefault(); showYoruManual(); }
+        });
 
         const $ = (id) => document.getElementById(id);
         let currentUser = null;

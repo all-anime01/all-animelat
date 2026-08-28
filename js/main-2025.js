@@ -2057,28 +2057,31 @@ $(document).ready(function () {
       #yoru-fab:hover{transform:translateY(-2px);filter:brightness(1.08)}
       #yoru-fab.listening{animation:yoru-p 1s infinite}
       @keyframes yoru-p{0%,100%{box-shadow:0 0 0 0 rgba(226,59,59,.55)}50%{box-shadow:0 0 0 14px rgba(226,59,59,0)}}
-      /* Indicador VISUAL de escucha: aparece SOLO cuando Yoru oye su nombre (sin botón fijo). */
-      #yoru-ind{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:6001;display:flex;align-items:center;gap:11px;
-        padding:12px 20px;border-radius:40px;background:rgba(20,22,27,.97);color:#fff;font-size:15px;font-weight:600;
-        box-shadow:0 14px 40px rgba(202,48,48,.4),0 0 0 1px rgba(255,255,255,.08);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
-      #yoru-ind.show{opacity:1;transform:translate(-50%,0)}
-      #yoru-ind .yoru-orb{width:15px;height:15px;border-radius:50%;background:#e23b3b;animation:yoru-p 1.1s infinite}
+      /* Indicador de estado de Yoru: pequeño y tenue cuando espera, grande y rojo cuando escucha. */
+      #yoru-ind{position:fixed;left:50%;bottom:20px;transform:translate(-50%,16px);z-index:6001;display:none;align-items:center;gap:9px;
+        padding:8px 15px;border-radius:40px;background:rgba(20,22,27,.92);color:#fff;font-size:13px;font-weight:600;
+        box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.07);opacity:0;pointer-events:none;
+        transition:opacity .2s,transform .2s,padding .2s,font-size .2s}
+      #yoru-ind.show{display:inline-flex;opacity:.5;transform:translate(-50%,0)}
+      #yoru-ind.show.hearing{opacity:1;padding:11px 20px;font-size:15px;box-shadow:0 14px 42px rgba(202,48,48,.5),0 0 0 1px rgba(226,59,59,.55)}
+      #yoru-ind .yoru-orb{width:11px;height:11px;border-radius:50%;background:#7a828e;transition:background .2s,width .2s,height .2s}
+      #yoru-ind.hearing .yoru-orb{width:14px;height:14px;background:#e23b3b;animation:yoru-p 1.1s infinite}
       #yoru-toast{position:fixed;left:50%;bottom:80px;transform:translate(-50%,8px);z-index:6000;max-width:min(90vw,360px);background:#16181d;color:#f2f3f5;
       border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:11px 16px;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,.5);
       opacity:0;transition:opacity .25s,transform .25s;text-align:center}
       #yoru-toast.show{opacity:1;transform:translate(-50%,0)}`;
     document.head.appendChild(st);
-    // Indicador visual (la «reacción» al oír «Yoru»).
+    // Indicador de estado. idle = tenue «Yoru» (esperando su nombre); hearing = rojo «Escuchando…».
     const ind = document.createElement("div");
     ind.id = "yoru-ind";
-    ind.innerHTML = '<span class="yoru-orb"></span><span id="yoru-ind-txt">Escuchando…</span>';
+    ind.innerHTML = '<span class="yoru-orb"></span><span id="yoru-ind-txt">Yoru</span>';
     document.body.appendChild(ind);
+    const indTxt = () => ind.querySelector("#yoru-ind-txt");
     let indT;
-    const showInd = (txt, ms) => {
-      const el = ind.querySelector("#yoru-ind-txt"); if (el) el.textContent = txt || "Escuchando…";
-      ind.classList.add("show"); clearTimeout(indT); if (ms) indT = setTimeout(() => ind.classList.remove("show"), ms);
-    };
-    const hideInd = () => { clearTimeout(indT); ind.classList.remove("show"); };
+    const indIdle = () => { clearTimeout(indT); ind.classList.remove("hearing"); ind.classList.add("show"); const e = indTxt(); if (e) e.textContent = "Yoru"; };
+    const indHearing = (txt) => { clearTimeout(indT); ind.classList.add("show", "hearing"); const e = indTxt(); if (e) e.textContent = txt || "Escuchando…"; };
+    const indMsg = (txt, ms) => { clearTimeout(indT); ind.classList.add("show"); ind.classList.remove("hearing"); const e = indTxt(); if (e) e.textContent = txt; indT = setTimeout(indIdle, ms || 2600); };
+    const indOff = () => { clearTimeout(indT); ind.classList.remove("show", "hearing"); };
     // Botón SOLO en la app (voz nativa de un toque; en TV hace falta algo enfocable).
     let fab = null;
     if (inApp) {
@@ -2151,6 +2154,19 @@ $(document).ready(function () {
     function handle(text) {
       const t = norm(text); if (!t) { say("No te entendí."); return; }
       let m;
+      // CERRAR / ATRÁS: cierra el reproductor o el modal de trailer abierto, o vuelve atrás.
+      if (/^(cierra|cerrar|quita|salir|sal del|cierra el)\b|^(atr[aá]s|volver|regresa|vuelve|ret[oó]rnate)\b/.test(t)) {
+        const pm = $("#episode-player-modal"); const tm = $("#trailer-modal");
+        if (pm.length && (pm.is(":visible") || pm.css("display") !== "none")) { $("#close-player, #episode-player-modal .close, #close-episode-player").first().trigger("click"); say("Cerrado."); return; }
+        if (tm.length && tm.is(":visible")) { $("#close-trailer-modal").trigger("click"); say("Cerrado."); return; }
+        say("Volviendo."); history.back(); return;
+      }
+      // NAVEGACIÓN por nombre suelto: «Yoru, explorar» / «Yoru, inicio» / «películas»…
+      if ((m = t.match(/^(?:la\s+|el\s+)?(inicio|casa|explorar|explora|peliculas|pel[ií]culas|pelis|favoritos|mi lista|mis favoritos|historial|notificaciones|cuenta|perfil)$/))) {
+        const key = Object.keys(PAGES).find((k) => norm(k) === norm(m[1])) || m[1];
+        const url = PAGES[key] || PAGES[norm(m[1])];
+        if (url) { say("Enseguida."); toast("Abriendo " + m[1] + "…"); location.href = url; return; }
+      }
       // SIGUIENTE EPISODIO (solo si hay uno reproduciéndose / en la página de detalles)
       if (/(?:siguiente|pr[oó]ximo|proximo|otro)\s+(?:episodio|cap[ií]tulo|capitulo|cap)|pasa(?:r)?\s+al?\s+(?:siguiente|pr[oó]ximo|proximo)/.test(t)) {
         if (currentPlayerAnime && currentNextEpisode) { say("Siguiente episodio."); toast("Siguiente episodio…"); openPlayer(currentPlayerAnime, currentNextEpisode); return; }
@@ -2231,45 +2247,64 @@ $(document).ready(function () {
     // Procesa un texto reconocido. requireWake=true (navegador, escucha continua): SOLO actúa si
     // dijiste «Yoru» (así no queda ejecutando todo lo que oye). requireWake=false (app, un toque):
     // ejecuta directo porque el toque ya fue la activación.
+    // Verbos de orden + detección del nombre «Yoru» (tolerante a cómo lo transcribe el navegador).
+    const CMD = "abre|busca|encuentra|pon|reproduce|ver|ve|ir|vamos|mira|ll[eé]vame|coloca|dale|siguiente|pr[oó]ximo|proximo|contin[uú]a|continuar|reanuda|sigue|trailer|tr[aá]iler|avance|pasa|el\\s+episodio|el\\s+cap|pel[ií]cula|explorar|inicio";
+    const WAKE_RE = /\b(yoru|yoro|yuru|yolu|yoli|yori|joru|jori|yolo|lloru|lloro|llora|jora|yhoru|yaru|yola|yoyu|loru|yoly)\b/;
+    const YO_RE = new RegExp("\\b(?:yo|you|yu|jo|yio)\\s+(?=(?:" + CMD + ")\\b)");
+    const CMD_RE = new RegExp("\\b(?:" + CMD + ")\\b");
+    const detectWake = (t) => t.match(WAKE_RE) || t.match(YO_RE);
+    // Vocabulario para la gramática de Vosk (Brave/Edge): órdenes + títulos → mucha más precisión.
+    function buildGrammar() {
+      const words = new Set();
+      const add = (s) => norm(s).split(/[^a-z0-9]+/i).forEach((w) => { if (w && w.length > 1) words.add(w); });
+      add("yoru yoro yolo yolu busca buscar encuentra abre pon reproduce ver ve ir vamos mira llevame coloca dale siguiente proximo continua continuar reanuda sigue trailer avance pasa cierra atras volver regresa episodio capitulo pelicula peliculas explorar inicio casa favoritos historial cuenta perfil notificaciones recomiendame que necesitas el la los las de del uno dos tres cuatro cinco seis siete ocho nueve diez once doce");
+      (data || []).forEach((a) => { add(a.title); (a.altTitles || []).slice(0, 1).forEach(add); });
+      try { return JSON.stringify([...words].slice(0, 1800).concat("[unk]")); } catch (e) { return null; }
+    }
+    // Reacción INSTANTÁNEA: en cuanto el parcial contiene «Yoru», muestra «Escuchando…».
+    function reactToInterim(raw) {
+      const t = norm(raw || "");
+      if (armed || detectWake(t)) indHearing("Escuchando…");
+    }
     function onHeard(raw, requireWake) {
       const t = norm(raw || "").trim();
       if (!t) return;
-      // Detecta «Yoru» en CUALQUIER parte de la frase, tolerante a cómo lo transcribe el
-      // navegador. El comando es lo que va DESPUÉS del nombre.
-      const CMD = "abre|busca|encuentra|pon|reproduce|ver|ve|ir|vamos|mira|ll[eé]vame|coloca|dale|siguiente|pr[oó]ximo|proximo|contin[uú]a|continuar|reanuda|sigue|trailer|tr[aá]iler|avance|pasa|el\\s+episodio|el\\s+cap|pel[ií]cula|explorar|inicio";
-      // Detecta «Yoru» en cualquier parte (con variantes de cómo lo transcribe el navegador).
-      // También «yo/you/yu» PERO solo si va seguido de un verbo de orden (así «yo quiero…» no dispara).
-      const wake = t.match(/\b(yoru|yoro|yuru|yolu|yoli|yori|joru|jori|yolo|lloru|lloro|llora|jora|yhoru|yaru|yola|yoyu|loru)\b/)
-        || t.match(new RegExp("\\b(?:yo|you|yu|jo|yio)\\s+(?=(?:" + CMD + ")\\b)"));
+      const wake = detectWake(t);
       const said = !!wake;
       let cmd = said ? t.slice(wake.index + wake[0].length).replace(/^[\s,]+/, "").trim() : t;
       // En navegador SOLO obedece si mencionaste «Yoru» (o si ya quedó armado con «Yoru» a secas).
       if (requireWake && !said && !armed) {
-        if (new RegExp("\\b(?:" + CMD + ")\\b").test(t)) showInd("Di «Yoru» y luego tu orden", 2200);
+        if (CMD_RE.test(t)) indMsg("Di «Yoru» y luego tu orden", 2200);
         return;
       }
       if (said && !cmd) { // dijo solo «Yoru» → REACCIÓN VISUAL + queda a la espera del comando
-        armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; hideInd(); }, 12000);
-        showInd("Escuchando… dime tu orden"); return;
+        armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; indIdle(); }, 12000);
+        indHearing("Escuchando… dime tu orden"); return;
       }
       const finalCmd = said ? cmd : t;   // si venía armado, la frase completa es el comando
       clearTimeout(armedT); armed = false;
-      showInd("Yoru: " + finalCmd, 2800); toast("Yoru: “" + finalCmd + "”"); handle(finalCmd);
+      indMsg("Yoru: " + finalCmd, 2800); toast("Yoru: “" + finalCmd + "”"); handle(finalCmd);
     }
     // Puente para la APP nativa (Android/Fire TV): el WebView NO tiene Web Speech API, así que
     // la app reconoce con el micrófono nativo y nos entrega el texto por aquí (un toque = una orden).
     window.__yoruOnResult = (text) => { try { if (fab) fab.classList.remove("listening"); } catch {} onHeard(text, false); };
     window.__yoruOnError = (msg) => { try { if (fab) fab.classList.remove("listening"); } catch {} if (msg && !/no-speech|no_match|1_?11|7\b/i.test(msg)) toast("Yoru: " + msg); };
     function startWake() {
+      try { if (rec) { rec.onend = null; rec.stop(); } } catch (e) {}   // cierra uno previo
       try { rec = new SR(); } catch { toast("Este navegador no soporta reconocimiento de voz."); return; }
       // continuous=false es MÁS fiable en Android/móvil: 1 frase por sesión y se reinicia solo.
-      rec.lang = "es-ES"; rec.continuous = false; rec.interimResults = false; rec.maxAlternatives = 3;
+      rec.lang = "es-ES"; rec.continuous = false; rec.interimResults = true; rec.maxAlternatives = 3;
+      rec.onstart = () => confirmListening();
       rec.onresult = (ev) => {
         if (speaking) return;
         netRetries = 0;                         // conexión OK → reinicia el contador de red
-        let raw = "";
-        try { raw = ev.results[ev.results.length - 1][0].transcript || ""; } catch {}
-        onHeard(raw, true);   // navegador: solo obedece si dijiste «Yoru»
+        let interim = "", final = "";
+        for (let i = ev.resultIndex; i < ev.results.length; i++) {
+          const r = ev.results[i];
+          if (r.isFinal) final += r[0].transcript; else interim += r[0].transcript;
+        }
+        if (final) onHeard(final, true);              // ejecuta al tener la frase final
+        else if (interim) reactToInterim(interim);    // reacción visual instantánea al oír «Yoru»
       };
       rec.onerror = (e) => {
         const err = e && e.error;
@@ -2298,39 +2333,54 @@ $(document).ready(function () {
         usingVosk = true;
         await v.voskStart(
           (textHeard) => onHeard(textHeard, true),
-          (msg) => { toast("Yoru (voz): " + msg); },
-          (status) => { if (status && status !== "listo") toast("Yoru: " + status); }
+          (msg) => { if (msg) toast("Yoru (voz): " + msg); },
+          (status) => { if (status === "listo") { confirmListening(); indIdle(); } else if (status) indMsg(status, 4000); },
+          (partial) => reactToInterim(partial),        // reacción instantánea al oír «Yoru»
+          buildGrammar()                               // vocabulario acotado → más precisión
         );
-        if (wakeOn) toast("Yoru lista (voz offline). Di «Yoru» y tu orden.");
-      } catch (e) { usingVosk = false; toast("No se pudo iniciar la voz offline. Reintenta o usa Chrome."); }
+      } catch (e) { usingVosk = false; indMsg("No se pudo iniciar la voz offline.", 3500); }
     }
     function stopVosk() { try { if (_voskMod && usingVosk) _voskMod.voskStop(); } catch (e) {} usingVosk = false; }
     // Arranca el mejor motor disponible: Web Speech (rápido, Chrome) o directamente Vosk si no hay.
     function startEngine() { if (SR) startWake(); else startVosk(); }
+    // Se llama cuando el micrófono realmente arrancó → deja de esperar un gesto y muestra idle.
+    let listeningConfirmed = false;
+    function confirmListening() {
+      listeningConfirmed = true;
+      indIdle();
+      document.removeEventListener("pointerdown", kick);
+      document.removeEventListener("keydown", kick);
+      // Manual de instrucciones la PRIMERA vez que Yoru queda activa.
+      try {
+        if (localStorage.getItem("aa-yoru-manual") !== "1") {
+          localStorage.setItem("aa-yoru-manual", "1");
+          import("./yoru-manual.js").then((m) => setTimeout(() => m.showYoruManual(), 400)).catch(() => {});
+        }
+      } catch (e) {}
+    }
     function setWake(on) {
       wakeOn = on; if (fab) fab.classList.toggle("listening", on);
       try { localStorage.setItem("aa-yoru-wake", on ? "1" : "0"); } catch {}
-      if (on) { armed = false; showInd("Yoru activa · di «Yoru» y tu orden", 3800); startEngine(); }
-      else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); stopVosk(); hideInd(); }
+      if (on) { armed = false; indIdle(); startEngine(); }
+      else { try { if (rec) { rec.onend = null; rec.stop(); } } catch {} clearTimeout(restartT); stopVosk(); indOff(); }
     }
     // App (voz nativa): un toque del botón = una orden.
     function nativeListenOnce() {
       if (fab) fab.classList.add("listening");
-      showInd("Escuchando… dime tu orden");
+      indHearing("Escuchando… dime tu orden");
       try { window.AAApp.startVoice(); } catch { if (fab) fab.classList.remove("listening"); toast("La app no pudo abrir el micrófono."); }
     }
+    // Respaldo: si el navegador exigió un gesto (1ª vez), cualquier clic/tecla activa a Yoru,
+    // reintentando hasta que el micrófono confirme que arrancó.
+    function kick() { if (!listeningConfirmed) setWake(true); }
     if (inApp) {
       fab.addEventListener("click", nativeListenOnce);
     } else {
-      // Navegador: SIN botón permanente. Empieza a escuchar en segundo plano tras el PRIMER
-      // gesto del usuario (el navegador exige un gesto para el micrófono). Luego, hands-free:
-      // di «Yoru» y aparece el indicador visual de escucha.
-      const kick = () => {
-        document.removeEventListener("pointerdown", kick); document.removeEventListener("keydown", kick);
-        if (!wakeOn) setWake(true);
-      };
-      document.addEventListener("pointerdown", kick, { once: true });
-      document.addEventListener("keydown", kick, { once: true });
+      // Navegador: SIN botón. Intenta arrancar YA (sin clic) — funciona si ya diste permiso
+      // antes. Si el navegador exige un gesto la 1ª vez, el primer clic/tecla lo activa.
+      document.addEventListener("pointerdown", kick);
+      document.addEventListener("keydown", kick);
+      setWake(true);
     }
   }
   // Yoru es SOLO para usuarios registrados y se activa/desactiva desde el perfil (activo por

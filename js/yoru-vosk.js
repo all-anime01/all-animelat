@@ -42,19 +42,27 @@ export async function voskInit(onStatus) {
   _model = await _lib.createModel(MODEL_URL);
 }
 
-// Arranca la escucha continua. onText(frase) por cada frase final reconocida.
-export async function voskStart(onText, onError, onStatus) {
+// Arranca la escucha continua. onText(frase) por cada frase final; onPartial(txt) en vivo.
+// grammar (opcional): JSON string con el vocabulario permitido → más precisión con modelo pequeño.
+export async function voskStart(onText, onError, onStatus, onPartial, grammar) {
   if (_running) return;
   await voskInit(onStatus);
   _stream = await navigator.mediaDevices.getUserMedia({
     audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
   });
   _ctx = new (window.AudioContext || window.webkitAudioContext)();
-  _rec = new _model.KaldiRecognizer(_ctx.sampleRate);
+  // Con gramática (vocabulario acotado) el modelo pequeño acierta mucho más; si el motor no la
+  // acepta, cae a reconocimiento libre.
+  try { _rec = grammar ? new _model.KaldiRecognizer(_ctx.sampleRate, grammar) : new _model.KaldiRecognizer(_ctx.sampleRate); }
+  catch (e) { _rec = new _model.KaldiRecognizer(_ctx.sampleRate); }
   try { _rec.setWords(false); } catch (e) {}
   _rec.on("result", (msg) => {
     const txt = msg && msg.result && msg.result.text;
     if (txt && txt.trim()) onText(txt.trim());
+  });
+  _rec.on("partialresult", (msg) => {
+    const p = msg && msg.result && msg.result.partial;
+    if (p && p.trim() && onPartial) onPartial(p.trim());
   });
   _rec.on("error", (e) => { if (onError) onError((e && e.message) || "error de voz"); });
   _source = _ctx.createMediaStreamSource(_stream);
