@@ -24,6 +24,72 @@ function hostKey(url) { try { return new URL(url, location.href).host.replace(/[
 
 // Puente con la APP nativa (Fire TV / Android TV / Android).
 function aaBridge() { try { return window.AAApp || (window.top && window.top.AAApp) || null; } catch { return null; } }
+
+// ============================================================================
+//  REPRODUCTOR PROPIO (web): extrae el .m3u8 vía el Worker y lo reproduce en un
+//  <video> propio (con controles, sin publicidad, y controlable por voz con Endo).
+//  Solo se activa si hay Worker configurado (window.__AA_WK). Si falla o no está,
+//  cae al iframe del servidor de siempre → nunca rompe la reproducción actual.
+// ============================================================================
+function aaWorkerUrl() {
+  try { return (window.__AA_WK || localStorage.getItem("aa_wk_url") || localStorage.getItem("aa-wk") || "").replace(/\/+$/, ""); } catch { return ""; }
+}
+function aaLoadHls() {
+  return new Promise((res) => {
+    if (window.Hls) return res(window.Hls);
+    const s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js";
+    s.onload = () => res(window.Hls || null); s.onerror = () => res(null);
+    document.head.appendChild(s);
+  });
+}
+function aaPlayHls(src, type, container) {
+  return new Promise(async (resolve) => {
+    container.innerHTML = `<span id="backToPlayers" onclick="listPlayer();"></span>
+      <video id="aaVideo" playsinline controls autoplay style="width:100%;height:100%;background:#000"></video>`;
+    const v = document.getElementById("aaVideo");
+    if (!v) return resolve(false);
+    let done = false; const finish = (ok) => { if (!done) { done = true; resolve(ok); } };
+    setTimeout(() => finish(false), 13000);            // si no arranca en 13s → fallback iframe
+    v.addEventListener("error", () => finish(false));
+    if (type === "mp4") { v.src = src; v.addEventListener("loadeddata", () => { v.play().catch(() => {}); finish(true); }); return; }
+    const Hls = await aaLoadHls();
+    if (Hls && Hls.isSupported()) {
+      try { if (window.__aaHls) window.__aaHls.destroy(); } catch {}
+      const hls = new Hls({ maxBufferLength: 30 }); window.__aaHls = hls;
+      hls.on(Hls.Events.MANIFEST_PARSED, () => { v.play().catch(() => {}); finish(true); });
+      hls.on(Hls.Events.ERROR, (_e, d) => { if (d && d.fatal) finish(false); });
+      hls.loadSource(src); hls.attachMedia(v);
+    } else if (v.canPlayType("application/vnd.apple.mpegurl")) {
+      v.src = src; v.addEventListener("loadeddata", () => { v.play().catch(() => {}); finish(true); });
+    } else finish(false);
+  });
+}
+// Intenta el reproductor propio. Devuelve true si logró reproducir; false → usar iframe.
+async function aaTryOwnPlayer(url) {
+  const wk = aaWorkerUrl(); if (!wk) return false;
+  const displayVideo = document.querySelector(".DisplayVideo");
+  const playerDisplay = document.getElementById("PlayerDisplay");
+  if (!displayVideo) return false;
+  if (playerDisplay) playerDisplay.classList.add("is-loading");
+  try {
+    const r = await fetch(`${wk}/stream?url=${encodeURIComponent(url)}`, { cache: "no-store" });
+    const j = await r.json();
+    if (!j || !j.stream) return false;
+    const proxied = `${wk}/hls?ref=${encodeURIComponent(j.ref || "")}&url=${encodeURIComponent(j.stream)}`;
+    const ok = await aaPlayHls(proxied, j.type || "hls", displayVideo);
+    if (ok && playerDisplay) playerDisplay.classList.remove("is-loading");
+    return ok;
+  } catch (e) { return false; }
+}
+// Control por voz (Endo): pausa/play del <video> propio cuando está activo.
+window.addEventListener("message", (e) => {
+  const d = e && e.data;
+  if (d && d.aa === "media") {
+    const v = document.getElementById("aaVideo"); if (!v) return;
+    if (d.action === "pause") v.pause(); else if (d.action === "play") v.play().catch(() => {}); else (v.paused ? v.play().catch(() => {}) : v.pause());
+  }
+});
 // Hosts que SÍ se ven bien dentro de la WebView (no necesitan el reproductor nativo):
 // YouTube y PelisPlus/PelisPlusHD. El resto (Filemoon, Streamwish, VOE, Vidara,
 // VidHide…) quedan en negro en la WebView → los reproduce el nativo (ExoPlayer).
@@ -131,7 +197,7 @@ function aaIframeMarkup(url) {
 }
 
 // --- FUNCIÓN MODIFICADA PARA CARGA DE 4 SEGUNDOS ---
-function go_to_player(url) {
+function go_to_player(url, _skipOwn) {
   AA_currentUrl = url;
   // APP nativa: le pedimos que EXTRAIGA y reproduzca el video en ExoPlayer (la WebView
   // deja estos hosts en negro). Si la app logra extraer, superpone su reproductor; si
@@ -161,6 +227,16 @@ function go_to_player(url) {
   if (displayVideo) {
     displayVideo.classList.add("DisplayVideoA");
     displayVideo.style.zIndex = "9999";
+  }
+
+  // WEB: intenta el REPRODUCTOR PROPIO (Worker extrae el .m3u8) antes del iframe del server.
+  // Si no hay Worker o no logra extraer, cae al iframe de siempre (no rompe nada).
+  if (!nativeMode && !_skipOwn && aaWorkerUrl()) {
+    aaTryOwnPlayer(url).then((ok) => {
+      if (ok) { if (playerDisplay) playerDisplay.classList.remove("is-loading"); }
+      else { go_to_player(url, true); }   // fallback: iframe del servidor
+    });
+    return;
   }
 
   // MODO NATIVO: pantalla propia de All-Anime TV (sin iframe del server).

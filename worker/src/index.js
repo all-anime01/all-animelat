@@ -125,6 +125,69 @@ async function extractGeneric(url) {
   return { embeds, m3u8, e69, imdb, iframeCount: iframes.length };
 }
 
+// ---------- REPRODUCTOR PROPIO: resolver un embed a su .m3u8/.mp4 + proxy HLS con CORS ----------
+// Desempaqueta scripts "packed" (Dean Edwards) que usan Streamwish/Filemoon/Dood y muchos más.
+function unpackPacked(src) {
+  const m = src.match(/\}\s*\(\s*'([\s\S]*?)'\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*'([\s\S]*?)'\.split\('\|'\)/);
+  if (!m) return "";
+  let payload = m[1]; const radix = +m[2], count = +m[3]; const words = m[4].split("|");
+  payload = payload.replace(/\\'/g, "'").replace(/\\\\/g, "\\");
+  const enc = (c) => (c < radix ? "" : enc(Math.floor(c / radix))) + ((c = c % radix) > 35 ? String.fromCharCode(c + 29) : c.toString(36));
+  const dict = {}; for (let i = count - 1; i >= 0; i--) { const k = enc(i); dict[k] = words[i] || k; }
+  return payload.replace(/\b\w+\b/g, (w) => dict[w] || w);
+}
+function findStream(text) {
+  let m = text.match(/["'](https?:\/\/[^"'\\\s]+\.m3u8[^"'\\\s]*)["']/i) || text.match(/(https?:\/\/[^"'\\\s]+\.m3u8[^"'\\\s]*)/i);
+  if (m) return { stream: m[1], type: "hls" };
+  m = text.match(/file\s*:\s*["'](https?:\/\/[^"']+\.mp4[^"']*)["']/i) || text.match(/["'](https?:\/\/[^"'\\\s]+\.mp4[^"'\\\s]*)["']/i);
+  if (m) return { stream: m[1], type: "mp4" };
+  return null;
+}
+// Devuelve { stream, type, ref } o { stream:null }. Sigue un iframe interno una vez (Filemoon).
+async function resolveStream(embedUrl) {
+  if (!embedUrl) return { error: "no_url", stream: null };
+  let url = embedUrl, ref = new URL(url).origin + "/";
+  let { text } = await fetchText(url, ref);
+  const inner = (text.match(/<iframe[^>]+src=["']([^"']+)["']/i) || [])[1];
+  if (inner) {
+    const iu = inner.startsWith("//") ? "https:" + inner : (inner.startsWith("http") ? inner : new URL(inner, url).href);
+    if (iu !== url && /(\/e\/|\/embed|filemoon|filemooon|moon|dood|swish|wish|vidhide|vid|player)/i.test(iu)) {
+      url = iu; ref = new URL(url).origin + "/";
+      try { text = (await fetchText(url, ref)).text; } catch {}
+    }
+  }
+  const bodies = [text];
+  for (const p of text.matchAll(/eval\(function\(p,a,c,k,e,[dr]\)\{[\s\S]*?\}\([\s\S]*?\.split\('\|'\)[\s\S]*?\)\)/g)) {
+    try { const u = unpackPacked(p[0]); if (u) bodies.push(u); } catch {}
+  }
+  for (const b of bodies) { const s = findStream(b); if (s) return { ...s, ref }; }
+  return { stream: null, ref };
+}
+// Proxy HLS: reescribe la playlist para que los segmentos/subplaylists pasen también por aquí
+// (soluciona el CORS que impide reproducir el .m3u8 del host en un <video> propio).
+async function hlsProxy(target, workerOrigin, ref) {
+  if (!target) return new Response("no url", { status: 400 });
+  const r = await fetch(target, { headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36", "Referer": ref || new URL(target).origin + "/", "Accept": "*/*" } });
+  const ct = (r.headers.get("content-type") || "").toLowerCase();
+  const isList = /mpegurl|m3u8/.test(ct) || /\.m3u8(\?|$)/i.test(target);
+  if (!isList) {
+    const h = new Headers(r.headers); h.set("Access-Control-Allow-Origin", "*"); h.delete("content-security-policy");
+    return new Response(r.body, { status: r.status, headers: h });
+  }
+  let text = await r.text();
+  const base = target.replace(/[^/]*(\?.*)?$/, "");
+  const org = new URL(target).origin;
+  const abs = (u) => u.startsWith("http") ? u : (u.startsWith("/") ? org + u : base + u);
+  const wrap = (u) => `${workerOrigin}/hls?ref=${encodeURIComponent(ref || "")}&url=${encodeURIComponent(abs(u))}`;
+  text = text.split("\n").map((line) => {
+    const t = line.trim();
+    if (!t) return line;
+    if (t.startsWith("#")) return t.replace(/URI="([^"]+)"/g, (_, u) => `URI="${wrap(u)}"`);
+    return wrap(t);
+  }).join("\n");
+  return new Response(text, { headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/vnd.apple.mpegurl" } });
+}
+
 // ---------- Búsqueda de slug por título en cada fuente ----------
 const normTitle = (s) => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
 function bestSlug(cands, title) {
@@ -215,7 +278,13 @@ export default {
     if (request.method === "OPTIONS") return new Response(null, { headers: ch });
     const url = new URL(request.url);
     const q = url.searchParams;
-    // Auth
+    // Rutas PÚBLICAS del reproductor propio (sin clave: las llama el <video> de cualquier usuario).
+    const pubPath = url.pathname.replace(/\/+$/, "");
+    try {
+      if (pubPath === "/stream") return json(await resolveStream(q.get("url")), ch);
+      if (pubPath === "/hls") return await hlsProxy(q.get("url"), url.origin, q.get("ref"));
+    } catch (e) { return json({ error: String(e && e.message || e).slice(0, 200), stream: null }, ch); }
+    // Auth (resto de endpoints: solo admin)
     const key = q.get("key") || request.headers.get("X-API-Key") || "";
     if (env.API_KEY && key !== env.API_KEY) return json({ error: "unauthorized" }, ch);
     try {

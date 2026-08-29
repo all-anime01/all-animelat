@@ -2177,6 +2177,14 @@ $(document).ready(function () {
     // o un <video> propio dentro del iframe same-origin). Los embeds externos (VOE, Filemoon…) NO.
     function mediaControl(action) {
       try { if (window.AAApp && typeof window.AAApp.mediaControl === "function") { window.AAApp.mediaControl(action); return true; } } catch (e) {}
+      // Reproductor PROPIO web (<video> dentro del iframe de frame/player): controlable por voz.
+      try {
+        const ifr = document.getElementById("episode-iframe");
+        if (ifr && ifr.contentWindow && (ifr.src || "").indexOf("frame/player") !== -1) {
+          ifr.contentWindow.postMessage({ aa: "media", action: action }, location.origin);
+          return true;
+        }
+      } catch (e) {}
       return false;
     }
     function handle(text) {
