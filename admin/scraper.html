@@ -141,7 +141,9 @@
 
         // Worker client
         const wk = async (path, params) => {
-            const base = $("wk-url").value.trim().replace(/\/+$/, "");
+            let base = $("wk-url").value.trim().replace(/\/+$/, "");
+            if (base && !/^https?:\/\//i.test(base)) base = "https://" + base;   // acepta URL sin https://
+            $("wk-url").value = base;                                             // normaliza lo que se ve
             const key = $("wk-key").value.trim();
             if (!base) throw new Error("Falta la URL del Worker");
             localStorage.setItem("aa_wk_url", base); localStorage.setItem("aa_wk_key", key);
