@@ -2319,22 +2319,34 @@ $(document).ready(function () {
       const t = norm(raw || "");
       if (armed || detectWake(t)) indHearing("Escuchando…");
     }
+    const _stripVerb = (s) => (s || "").replace(/^(?:reproduce|reproducir|ver|abre|abrir|pon|poner|mira|mirar|dale|coloca|busca|buscar|encuentra|encontrar|quiero ver)\s+/, "").trim();
+    const _cmdMatchesAnime = (cmd) => !!cmd && !!(findAnime(_stripVerb(cmd)) || findAnime(cmd));
+    function _parseCand(t) {
+      const wake = detectWake(t); const said = !!wake;
+      return { said, cmd: said ? t.slice(wake.index + wake[0].length).replace(/^[\s,]+/, "").trim() : t };
+    }
+    // Acepta un texto o VARIAS alternativas del reconocedor; elige la que MEJOR calce con el
+    // catálogo (más preciso: si el navegador oyó mal, otra alternativa suele acertar).
     function onHeard(raw, requireWake) {
-      const t = norm(raw || "").trim();
-      if (!t) return;
-      const wake = detectWake(t);
-      const said = !!wake;
-      let cmd = said ? t.slice(wake.index + wake[0].length).replace(/^[\s,]+/, "").trim() : t;
-      // En navegador SOLO obedece si mencionaste «Yoru» (o si ya quedó armado con «Yoru» a secas).
-      if (requireWake && !said && !armed) {
-        if (CMD_RE.test(t)) indMsg("Di «Endo» y luego tu orden", 2200);
+      const cands = (Array.isArray(raw) ? raw : [raw]).map((x) => norm(x || "").trim()).filter(Boolean);
+      if (!cands.length) return;
+      let best = null, firstValid = null;
+      for (const t of cands) {
+        const p = _parseCand(t);
+        if (requireWake && !p.said && !armed) continue;
+        if (!firstValid) firstValid = p;
+        if (p.cmd && _cmdMatchesAnime(p.cmd)) { best = p; break; }   // prioriza la que apunta a un anime real
+      }
+      const pick = best || firstValid;
+      if (!pick) {                                    // ninguna mencionó «Endo»
+        if (requireWake && CMD_RE.test(cands[0])) indMsg("Di «Endo» y luego tu orden", 2200);
         return;
       }
-      if (said && !cmd) { // dijo solo «Yoru» → REACCIÓN VISUAL + queda a la espera del comando
+      if (pick.said && !pick.cmd) {                   // dijo solo «Endo» → a la espera del comando
         armed = true; clearTimeout(armedT); armedT = setTimeout(() => { armed = false; indIdle(); }, 12000);
         indHearing("Escuchando… dime tu orden"); return;
       }
-      const finalCmd = said ? cmd : t;   // si venía armado, la frase completa es el comando
+      const finalCmd = pick.cmd || cands[0];
       clearTimeout(armedT); armed = false;
       indMsg("Endo: " + finalCmd, 2800); toast("Endo: “" + finalCmd + "”"); handle(finalCmd);
     }
@@ -2353,13 +2365,14 @@ $(document).ready(function () {
       rec.onresult = (ev) => {
         if (speaking) return;
         netRetries = 0;                         // conexión OK → reinicia el contador de red
-        let interim = "", final = "";
+        let interim = "", finalAlts = null;
         for (let i = ev.resultIndex; i < ev.results.length; i++) {
           const r = ev.results[i];
-          if (r.isFinal) final += r[0].transcript; else interim += r[0].transcript;
+          if (r.isFinal) { finalAlts = []; for (let k = 0; k < r.length; k++) finalAlts.push(r[k].transcript); }
+          else interim += r[0].transcript;
         }
-        if (final) onHeard(final, true);              // ejecuta al tener la frase final
-        else if (interim) reactToInterim(interim);    // reacción visual instantánea al oír «Yoru»
+        if (finalAlts) onHeard(finalAlts, true);      // pasa TODAS las alternativas → más preciso
+        else if (interim) reactToInterim(interim);    // reacción visual instantánea al oír «Endo»
       };
       rec.onerror = (e) => {
         const err = e && e.error;
