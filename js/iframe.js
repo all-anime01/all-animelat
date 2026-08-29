@@ -50,7 +50,7 @@ function aaPlayHls(src, type, container) {
     const v = document.getElementById("aaVideo");
     if (!v) return resolve(false);
     let done = false; const finish = (ok) => { if (!done) { done = true; resolve(ok); } };
-    setTimeout(() => finish(false), 13000);            // si no arranca en 13s → fallback iframe
+    setTimeout(() => finish(false), 8000);             // si no arranca en 8s → fallback iframe
     v.addEventListener("error", () => finish(false));
     if (type === "mp4") { v.src = src; v.addEventListener("loadeddata", () => { v.play().catch(() => {}); finish(true); }); return; }
     const Hls = await aaLoadHls();

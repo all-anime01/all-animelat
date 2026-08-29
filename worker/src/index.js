@@ -169,12 +169,17 @@ async function hlsProxy(target, workerOrigin, ref) {
   if (!target) return new Response("no url", { status: 400 });
   const r = await fetch(target, { headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36", "Referer": ref || new URL(target).origin + "/", "Accept": "*/*" } });
   const ct = (r.headers.get("content-type") || "").toLowerCase();
-  const isList = /mpegurl|m3u8/.test(ct) || /\.m3u8(\?|$)/i.test(target);
-  if (!isList) {
+  const looksList = /mpegurl|m3u8/.test(ct) || /\.m3u8(\?|$)/i.test(target);
+  if (!looksList) {
     const h = new Headers(r.headers); h.set("Access-Control-Allow-Origin", "*"); h.delete("content-security-policy");
     return new Response(r.body, { status: r.status, headers: h });
   }
   let text = await r.text();
+  // Si el host respondió un error (403/HTML) en vez de una playlist, no lo reescribas: reenvía
+  // el estado real para que el reproductor caiga al iframe de inmediato (sin colgarse).
+  if (r.status !== 200 || !/#EXTM3U/.test(text)) {
+    return new Response(text.slice(0, 500), { status: r.status === 200 ? 502 : r.status, headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "text/plain" } });
+  }
   const base = target.replace(/[^/]*(\?.*)?$/, "");
   const org = new URL(target).origin;
   const abs = (u) => u.startsWith("http") ? u : (u.startsWith("/") ? org + u : base + u);
