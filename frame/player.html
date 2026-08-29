@@ -288,8 +288,18 @@
                     <div class="ph-sub">${esc(ep.title || "Elige un servidor para reproducir")}</div>
                 </div>`;
 
-            const servers = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url) : [];
+            let servers = Array.isArray(ep.servers) ? ep.servers.filter((s) => s && s.url) : [];
             if (!servers.length) { showEmpty("Este episodio aún no tiene servidores de video disponibles."); document.title = anime.title; return; }
+
+            // EN LA APP (Fire TV / Android / Smart TV / tablet): oculta los servidores que NO
+            // reproducen ahí (Mega, VOE, Filemoon blob «byse…», Vidara). En PC/escritorio se
+            // muestran TODOS (el iframe del host funciona desde el navegador).
+            const inApp = document.documentElement.classList.contains("aa-tv") || /AllAnime(App|TV)/i.test(navigator.userAgent || "");
+            const APP_HIDE = /(mega\.nz|\bvoe\b|voe\.sx|bysekoze|bysesukior|byse[a-z]*\.|vidara)/i;
+            if (inApp) {
+                const filtered = servers.filter((s) => !APP_HIDE.test((s.name || "") + " " + (s.url || "")));
+                if (filtered.length) servers = filtered;   // si quedaría vacío, deja todos (mejor algo que nada)
+            }
 
             // Instrucciones de uso (distintas en TV y en escritorio).
             const _help = document.getElementById("player-help");
@@ -327,7 +337,16 @@
                 : "";
 
             const cont = document.getElementById("serverContainer");
-            cont.innerHTML = langs.map((l, i) => `
+            // OPCIÓN «Shyru» (solo PC con Worker configurado): reproductor propio, sin anuncios.
+            const hasShyru = !inApp && !!localStorage.getItem("aa_wk_url");
+            const shyruUrls = servers.slice().sort((a, b) => srvRank(a.name) - srvRank(b.name)).map((s) => s.url);
+            const shyruBtn = hasShyru ? `<ul class="shyru-wrap" style="list-style:none;padding:0;margin:0 0 8px 0">
+                <li class="shyru-opt" onclick="shyruPlay('${esc(encodeURIComponent(JSON.stringify(shyruUrls)))}')" style="cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(226,59,59,.12);border:1px solid rgba(226,59,59,.35);border-radius:10px">
+                    <div class="srv-ico" style="width:34px;height:34px;flex:0 0 auto;background:linear-gradient(135deg,#ca3030,#e23b3b);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="fas fa-bolt"></i></div>
+                    <div class="srv-info"><span style="font-weight:700">Shyru — reproductor propio</span>
+                        <div class="srv-badges"><span class="srv-badge q">sin anuncios · beta</span></div></div>
+                </li></ul>` : "";
+            cont.innerHTML = shyruBtn + langs.map((l, i) => `
                 <div class="OD OD_${esc(slug(l))} ${i === 0 ? "REactiv" : ""}">
                     ${byLang[l].map((s) => {
                         const note = s.desc || s.quality || "";

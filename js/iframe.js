@@ -82,6 +82,27 @@ async function aaTryOwnPlayer(url) {
     return ok;
   } catch (e) { return false; }
 }
+// SHYRU (reproductor propio): prueba los servidores en orden con el Worker hasta que uno
+// reproduzca en nuestro <video>. Si ninguno se puede (CDN que bloquea servidores), avisa.
+window.shyruPlay = async function (urlsJson) {
+  let urls = [];
+  try { urls = JSON.parse(decodeURIComponent(urlsJson)); } catch { try { urls = JSON.parse(urlsJson); } catch {} }
+  if (!urls || !urls.length) return;
+  const displayVideo = document.querySelector(".DisplayVideo");
+  const playerDisplay = document.getElementById("PlayerDisplay");
+  if (displayVideo) { displayVideo.classList.add("DisplayVideoA"); displayVideo.style.zIndex = "9999"; }
+  if (playerDisplay) playerDisplay.classList.add("is-loading");
+  if (displayVideo) displayVideo.innerHTML = `<span id="backToPlayers" onclick="listPlayer();"></span>
+     <div class="loading-overlay" id="shyruMsg"><div class="spinner"></div><p>Shyru: preparando el mejor servidor…</p></div>`;
+  for (const u of urls) {
+    AA_currentUrl = u;
+    const ok = await aaTryOwnPlayer(u);
+    if (ok) { if (playerDisplay) playerDisplay.classList.remove("is-loading"); return; }
+  }
+  if (playerDisplay) playerDisplay.classList.remove("is-loading");
+  if (displayVideo) displayVideo.innerHTML = `<span id="backToPlayers" onclick="listPlayer();"></span>
+     <div class="player-empty" style="padding:24px;text-align:center">Shyru no pudo reproducir este episodio (los servidores bloquean la reproducción directa). Vuelve con <b>ATRÁS</b> y elige un servidor de la lista.</div>`;
+};
 // Control por voz (Endo): pausa/play del <video> propio cuando está activo.
 window.addEventListener("message", (e) => {
   const d = e && e.data;
@@ -227,16 +248,6 @@ function go_to_player(url, _skipOwn) {
   if (displayVideo) {
     displayVideo.classList.add("DisplayVideoA");
     displayVideo.style.zIndex = "9999";
-  }
-
-  // WEB: intenta el REPRODUCTOR PROPIO (Worker extrae el .m3u8) antes del iframe del server.
-  // Si no hay Worker o no logra extraer, cae al iframe de siempre (no rompe nada).
-  if (!nativeMode && !_skipOwn && aaWorkerUrl()) {
-    aaTryOwnPlayer(url).then((ok) => {
-      if (ok) { if (playerDisplay) playerDisplay.classList.remove("is-loading"); }
-      else { go_to_player(url, true); }   // fallback: iframe del servidor
-    });
-    return;
   }
 
   // MODO NATIVO: pantalla propia de All-Anime TV (sin iframe del server).
