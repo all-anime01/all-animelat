@@ -1102,9 +1102,15 @@ def save(data, token, replace, log):
             if k in idx:
                 if replace:
                     # Al reemplazar, CONSERVA las subidas propias del usuario (Vidara/Filemoon/
-                    # Streamwish subidos) — nunca se tocan sin preguntar. Se añaden las nuevas.
-                    keep = [s for s in (idx[k].get("servers") or []) if re.search(r"vidara", s.get("url", ""), re.I)]
-                    idx[k]["servers"] = prioritize(keep + b["servers"]); idx[k]["language"] = b["language"]
+                    # Streamwish) — por NOMBRE o por dominio del host. Nunca se borran. Se añaden
+                    # las nuevas encima (sin duplicar por URL).
+                    def _is_user_upload(s):
+                        blob = (str(s.get("name", "")) + " " + str(s.get("url", ""))).lower()
+                        return bool(re.search(r"vidara|filemoon|file-moon|moonfile|streamwish|swish|sfastwish|bysekoze|kswplayer|wishonly|embedwish", blob))
+                    keep = [s for s in (idx[k].get("servers") or []) if _is_user_upload(s)]
+                    keep_urls = {s.get("url", "") for s in keep}
+                    new_srv = [s for s in b["servers"] if s.get("url", "") not in keep_urls]
+                    idx[k]["servers"] = prioritize(keep + new_srv); idx[k]["language"] = b["language"]
                     if b.get("img"): idx[k]["img"] = b["img"]
                     replaced += 1
             else: ex.append(b); added += 1
@@ -2115,10 +2121,30 @@ class App:
 
     def do_save(self):
         if not self.data: return
-        if self.replace.get():
+        # Si el anime YA está en el catálogo (cargado desde «Del catálogo»), SIEMPRE preguntar:
+        # solo agregar los episodios nuevos (sin tocar tus servers) o reemplazar todo.
+        if self.loaded_aid:
+            ans = messagebox.askyesnocancel(
+                "Este anime ya está en el catálogo",
+                f"«{self.loaded_title or self.data.get('real_title', '')}» ya existe en la web.\n\n"
+                "¿Qué quieres hacer?\n\n"
+                "• SÍ  →  Agregar SOLO los episodios que NO están en la lista.\n"
+                "         (NO toca tus episodios ni tus servers actuales.)\n\n"
+                "• NO  →  Reemplazar los servidores de los episodios que coincidan.\n"
+                "         (Se CONSERVAN tus subidas de Vidara, Filemoon y Streamwish.)\n\n"
+                "• Cancelar  →  No guardar nada.")
+            if ans is None:
+                self.save_btn.configure(state="normal"); return
+            if ans:
+                self.replace.set(False); self.data["_update_only"] = True
+                self.log("Guardando SOLO episodios nuevos (no se toca lo existente).")
+            else:
+                self.replace.set(True)
+                self.log("Reemplazando servidores coincidentes (se conservan tus subidas).")
+        elif self.replace.get():
             if not messagebox.askyesno("Reemplazar enlaces",
                     "Modo REEMPLAZAR: cambiará los servidores de los episodios que coincidan.\n"
-                    "(Se conservan tus subidas de Vidara.)\n\n¿Continuar?"):
+                    "(Se conservan tus subidas de Vidara, Filemoon y Streamwish.)\n\n¿Continuar?"):
                 return
         # aplica ediciones del anime
         info = self.data["info"]
