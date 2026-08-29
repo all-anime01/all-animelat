@@ -211,6 +211,17 @@ public class MainActivity extends Activity {
         @JavascriptInterface public void nativeContext(String episodeId, int startSec, boolean hasNext) {
             runOnUiThread(() -> { aaEpisodeId = episodeId; aaStartSec = Math.max(0, startSec); aaHasNext = hasNext; aaCountdownActive = false; });
         }
+        // Endo (voz): play/pausa del reproductor NATIVO (ExoPlayer). Los servers en WebView no aplican.
+        @JavascriptInterface public void mediaControl(String action) {
+            runOnUiThread(() -> {
+                try {
+                    if (exo == null) return;
+                    if ("pause".equals(action)) exo.setPlayWhenReady(false);
+                    else if ("play".equals(action)) exo.setPlayWhenReady(true);
+                    else exo.setPlayWhenReady(!exo.getPlayWhenReady());
+                } catch (Exception e) {}
+            });
+        }
         // Yoru (asistente de voz): el WebView NO tiene Web Speech API, así que reconocemos con
         // el micrófono NATIVO de Android y devolvemos el texto a la web (window.__yoruOnResult).
         @JavascriptInterface public void startVoice() { runOnUiThread(() -> startNativeVoice()); }
