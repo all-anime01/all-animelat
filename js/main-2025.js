@@ -308,6 +308,7 @@ $(document).ready(function () {
   let currentPlayerAnime = null;
   let currentPlayerEpisode = null;
   let currentNextEpisode = null;   // siguiente episodio (para autoplay del reproductor nativo)
+  let currentPrevEpisode = null;   // episodio anterior (para el comando de voz «anterior»)
   let currentDetailsAnime = null;  // anime de la página de detalles abierta (para Yoru)
 
   function setEpisodeFavLocal(episodeId, on) {
@@ -658,6 +659,7 @@ $(document).ready(function () {
     const prevEpisode = seasonEpisodes[currentEpisodeIndex - 1];
     const nextEpisode = seasonEpisodes[currentEpisodeIndex + 1];
     currentNextEpisode = nextEpisode || null;
+    currentPrevEpisode = prevEpisode || null;
 
     // APP nativa: avisa al reproductor la posición para REANUDAR y si hay siguiente
     // (para el autoplay con conteo, que dibuja el propio ExoPlayer). Solo en la app.
@@ -2171,9 +2173,30 @@ $(document).ready(function () {
       if (inp.length) { $(".search-container").addClass("active"); inp.val(q).trigger("input").focus(); return; }
       useOverlay(); // páginas sin barra propia (p. ej. explorar) → overlay
     }
+    // Play/pausa: solo funciona sobre un reproductor que controlemos (ExoPlayer nativo de la app,
+    // o un <video> propio dentro del iframe same-origin). Los embeds externos (VOE, Filemoon…) NO.
+    function mediaControl(action) {
+      try { if (window.AAApp && typeof window.AAApp.mediaControl === "function") { window.AAApp.mediaControl(action); return true; } } catch (e) {}
+      return false;
+    }
     function handle(text) {
       const t = norm(text); if (!t) { say("No te entendí."); return; }
       let m;
+      // EPISODIO ANTERIOR (antes que «atrás» para no confundir «regresa el episodio anterior»)
+      if (/(?:episodio|cap[ií]tulo|capitulo|cap)\s+anterior|anterior\s+(?:episodio|cap[ií]tulo|capitulo|cap)|(?:pon|dale|ve|regresa|vuelve|reproduce)\s+(?:el\s+|al\s+)?(?:episodio\s+|cap[ií]tulo\s+)?anterior|episodio previo|cap[ií]tulo previo/.test(t)) {
+        if (currentPlayerAnime && currentPrevEpisode) { say("Episodio anterior."); toast("Episodio anterior…"); openPlayer(currentPlayerAnime, currentPrevEpisode); return; }
+        toast("No hay un episodio anterior."); say("No hay episodio anterior."); return;
+      }
+      // PAUSAR el episodio (solo el reproductor NATIVO de la app; en web el servidor es externo).
+      if (/^(pausa|pausar|paus[ae]|det[eé]n|detener|quieto)\b|pausa (?:el|la) (?:video|v[ií]deo|episodio|cap[ií]tulo|reproducci[oó]n)|para (?:el|la) (?:video|v[ií]deo|reproducci[oó]n)/.test(t)) {
+        if (mediaControl("pause")) { indMsg("Pausado", 1800); return; }
+        toast("Solo puedo pausar en la app All-Anime; este servidor de video no se controla por voz."); say("No puedo controlar este reproductor."); return;
+      }
+      // DAR PLAY al episodio (reproductor nativo de la app).
+      if (/^(dale play|play|reproduce el (?:video|v[ií]deo)|quita la pausa|contin[uú]a el (?:video|v[ií]deo|episodio)|reanuda (?:el (?:video|v[ií]deo)|la reproducci[oó]n)|sigue el (?:video|v[ií]deo))\b/.test(t)) {
+        if (mediaControl("play")) { indMsg("Reproduciendo", 1800); return; }
+        toast("Solo puedo dar play en la app All-Anime; este servidor de video no se controla por voz."); say("No puedo controlar este reproductor."); return;
+      }
       // CERRAR / ATRÁS: cierra el reproductor o el modal de trailer abierto, o vuelve atrás.
       if (/^(cierra|cerrar|quita|salir|sal del|cierra el)\b|^(atr[aá]s|volver|regresa|vuelve|ret[oó]rnate)\b/.test(t)) {
         const pm = $("#episode-player-modal"); const tm = $("#trailer-modal");

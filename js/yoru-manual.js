@@ -8,6 +8,8 @@ const CMDS = [
   ["▶️", "Abrir un anime", "«Endo, abre Naruto»"],
   ["🎬", "Poner un episodio", "«Endo, pon el episodio 5 de Naruto»"],
   ["⏭️", "Siguiente episodio", "«Endo, siguiente episodio»"],
+  ["⏮️", "Episodio anterior", "«Endo, episodio anterior»"],
+  ["⏸️", "Pausar / reanudar", "«Endo, pausa» · «Endo, dale play» (en la app)"],
   ["⏯️", "Continuar viendo", "«Endo, continuar» (retoma lo último)"],
   ["🎞️", "Ver el tráiler", "«Endo, ver el tráiler de One Piece»"],
   ["🧭", "Navegar", "«Endo, ve a explorar / películas / inicio / favoritos»"],
