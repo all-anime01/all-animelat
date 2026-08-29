@@ -295,7 +295,7 @@
             // reproducen ahí (Mega, VOE, Filemoon blob «byse…», Vidara). En PC/escritorio se
             // muestran TODOS (el iframe del host funciona desde el navegador).
             const inApp = document.documentElement.classList.contains("aa-tv") || /AllAnime(App|TV)/i.test(navigator.userAgent || "");
-            const APP_HIDE = /(mega\.nz|\bvoe\b|voe\.sx|bysekoze|bysesukior|byse[a-z]*\.|vidara)/i;
+            const APP_HIDE = /(mega\.nz|\bvoe\b|voe\.sx|bysekoze|bysesukior|byse[a-z]*\.)/i;
             if (inApp) {
                 const filtered = servers.filter((s) => !APP_HIDE.test((s.name || "") + " " + (s.url || "")));
                 if (filtered.length) servers = filtered;   // si quedaría vacío, deja todos (mejor algo que nada)
