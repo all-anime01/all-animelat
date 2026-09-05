@@ -339,7 +339,25 @@
             const cont = document.getElementById("serverContainer");
             // OPCIÓN «Shyru» (solo PC con Worker configurado): reproductor propio, sin anuncios.
             const hasShyru = !inApp && !!localStorage.getItem("aa_wk_url");
-            const shyruUrls = servers.slice().sort((a, b) => srvRank(a.name) - srvRank(b.name)).map((s) => s.url);
+            // Orden PROPIO de Shyru: primero los hosts que el Worker SÍ sabe extraer (JS empaquetado
+            // o .m3u8 directo). Se EXCLUYEN los imposibles: Mega (cifrado en el navegador) y
+            // YouTube (solo embed). Así no desperdicia intentos.
+            const shyruRank = (name, url) => {
+                const n = (String(name || "") + " " + String(url || "")).toLowerCase();
+                if (/mega\.nz|youtube|youtu\.be/.test(n)) return -1;               // imposible → se descarta
+                if (/streamwish|sfastwish|swish|wish/.test(n)) return 1;
+                if (/filemoon|filemooon|moon|hgcloud/.test(n)) return 2;
+                if (/vidhide|vidhidevip|streamhg/.test(n)) return 3;
+                if (/dood|streamtape|mp4upload/.test(n)) return 4;
+                if (/vidara/.test(n)) return 5;                                     // tus subidas
+                if (/voe/.test(n)) return 8;                                        // aún sin desofuscar
+                return 6;
+            };
+            const shyruUrls = servers
+                .map((s) => ({ s, r: shyruRank(s.name, s.url) }))
+                .filter((x) => x.r >= 0)
+                .sort((a, b) => a.r - b.r)
+                .map((x) => x.s.url);
             const shyruBtn = hasShyru ? `<ul class="shyru-wrap" style="list-style:none;padding:0;margin:0 0 8px 0">
                 <li class="shyru-opt" onclick="shyruPlay('${esc(encodeURIComponent(JSON.stringify(shyruUrls)))}')" style="cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(226,59,59,.12);border:1px solid rgba(226,59,59,.35);border-radius:10px">
                     <div class="srv-ico" style="width:34px;height:34px;flex:0 0 auto;background:linear-gradient(135deg,#ca3030,#e23b3b);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center"><i class="fas fa-bolt"></i></div>

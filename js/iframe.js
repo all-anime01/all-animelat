@@ -46,7 +46,10 @@ function aaLoadHls() {
 function aaPlayHls(src, type, container) {
   return new Promise(async (resolve) => {
     container.innerHTML = `<span id="backToPlayers" onclick="listPlayer();"></span>
-      <video id="aaVideo" playsinline controls autoplay style="width:100%;height:100%;background:#000"></video>`;
+      <div id="shyruBox" style="position:relative;width:100%;height:100%;background:#000">
+        <video id="aaVideo" playsinline controls autoplay crossorigin="anonymous"
+               style="width:100%;height:100%;background:#000"></video>
+      </div>`;
     const v = document.getElementById("aaVideo");
     if (!v) return resolve(false);
     let done = false; const finish = (ok) => { if (!done) { done = true; resolve(ok); } };
@@ -55,9 +58,19 @@ function aaPlayHls(src, type, container) {
     if (type === "mp4") { v.src = src; v.addEventListener("loadeddata", () => { v.play().catch(() => {}); finish(true); }); return; }
     const Hls = await aaLoadHls();
     if (Hls && Hls.isSupported()) {
-      try { if (window.__aaHls) window.__aaHls.destroy(); } catch {}
-      const hls = new Hls({ maxBufferLength: 30 }); window.__aaHls = hls;
-      hls.on(Hls.Events.MANIFEST_PARSED, () => { v.play().catch(() => {}); finish(true); });
+      try { if (window.__aaHls) window.__aaHls.destroy(); } catch (e) {}
+      const hls = new Hls({ maxBufferLength: 30, enableWebVTT: true, renderTextTracksNatively: false });
+      window.__aaHls = hls;
+      hls.subtitleDisplay = true;                      // muestra los subtítulos del stream
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        v.play().catch(() => {});
+        try { aaTrackUI(hls, v); } catch (e) {}
+        finish(true);
+      });
+      // Algunas pistas llegan después del manifest → refresca el menú cuando aparezcan.
+      const refresh = () => { try { aaTrackUI(hls, v); } catch (e) {} };
+      hls.on(Hls.Events.AUDIO_TRACKS_UPDATED, refresh);
+      hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, refresh);
       hls.on(Hls.Events.ERROR, (_e, d) => { if (d && d.fatal) finish(false); });
       hls.loadSource(src); hls.attachMedia(v);
     } else if (v.canPlayType("application/vnd.apple.mpegurl")) {
@@ -65,23 +78,49 @@ function aaPlayHls(src, type, container) {
     } else finish(false);
   });
 }
-// Intenta el reproductor propio. Devuelve true si logró reproducir; false → usar iframe.
-async function aaTryOwnPlayer(url) {
-  const wk = aaWorkerUrl(); if (!wk) return false;
-  const displayVideo = document.querySelector(".DisplayVideo");
-  const playerDisplay = document.getElementById("PlayerDisplay");
-  if (!displayVideo) return false;
-  if (playerDisplay) playerDisplay.classList.add("is-loading");
-  try {
-    const r = await fetch(`${wk}/stream?url=${encodeURIComponent(url)}`, { cache: "no-store" });
-    const j = await r.json();
-    if (!j || !j.stream) return false;
-    const proxied = `${wk}/hls?ref=${encodeURIComponent(j.ref || "")}&url=${encodeURIComponent(j.stream)}`;
-    const ok = await aaPlayHls(proxied, j.type || "hls", displayVideo);
-    if (ok && playerDisplay) playerDisplay.classList.remove("is-loading");
-    return ok;
-  } catch (e) { return false; }
+
+// Menú de AUDIO y SUBTÍTULOS del reproductor propio (solo aparece si el stream trae varias
+// pistas). HLS.js expone hls.audioTracks / hls.subtitleTracks del propio .m3u8.
+function aaTrackUI(hls, video) {
+  const box = document.getElementById("shyruBox");
+  if (!box) return;
+  const audios = (hls.audioTracks || []);
+  const subs = (hls.subtitleTracks || []);
+  const old = document.getElementById("shyruTracks");
+  if (audios.length <= 1 && subs.length === 0) { if (old) old.remove(); return; }
+  if (old) old.remove();
+  const wrap = document.createElement("div");
+  wrap.id = "shyruTracks";
+  wrap.style.cssText = "position:absolute;top:12px;right:12px;z-index:40;display:flex;gap:8px;font-family:Roboto,sans-serif";
+  const mkSel = (label, opts, current, onPick) => {
+    const sel = document.createElement("select");
+    sel.title = label;
+    sel.style.cssText = "background:rgba(15,17,21,.92);color:#fff;border:1px solid rgba(255,255,255,.22);" +
+      "border-radius:8px;padding:6px 9px;font-size:13px;font-weight:600;cursor:pointer;max-width:190px";
+    opts.forEach((o) => {
+      const op = document.createElement("option");
+      op.value = String(o.value); op.textContent = o.text;
+      if (o.value === current) op.selected = true;
+      sel.appendChild(op);
+    });
+    sel.addEventListener("change", () => onPick(parseInt(sel.value, 10)));
+    return sel;
+  };
+  const nameOf = (t, i, pre) => t.name || t.lang || (pre + " " + (i + 1));
+  if (audios.length > 1) {
+    wrap.appendChild(mkSel("Audio",
+      audios.map((t, i) => ({ value: i, text: "🔊 " + nameOf(t, i, "Audio") })),
+      hls.audioTrack, (i) => { try { hls.audioTrack = i; } catch (e) {} }));
+  }
+  if (subs.length) {
+    wrap.appendChild(mkSel("Subtítulos",
+      [{ value: -1, text: "💬 Sin subtítulos" }].concat(subs.map((t, i) => ({ value: i, text: "💬 " + nameOf(t, i, "Subtítulo") }))),
+      typeof hls.subtitleTrack === "number" ? hls.subtitleTrack : -1,
+      (i) => { try { hls.subtitleDisplay = i >= 0; hls.subtitleTrack = i; } catch (e) {} }));
+  }
+  box.appendChild(wrap);
 }
+
 // SHYRU (reproductor propio): prueba los servidores en orden con el Worker hasta que uno
 // reproduzca en nuestro <video>. Si ninguno se puede (CDN que bloquea servidores), avisa.
 window.shyruPlay = async function (urlsJson) {

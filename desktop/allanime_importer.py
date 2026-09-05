@@ -466,7 +466,9 @@ def nm(u):
 QUALITY = ["filemoon", "streamwish", "vidara", "pelisplus", "embed69", "animeav1", "hls", "desu",
            "vidhide", "voe", "mega", "magi", "streamtape", "mp4upload", "mixdrop", "doodstream", "mediafire"]
 def prioritize(servers, prefer=None, only=False, cap=3):
-    """Máx `cap` por idioma; LATINO primero; ordenados por tu preferencia o por calidad."""
+    """Máx `cap` por idioma; LATINO primero; ordenados por tu preferencia o por calidad.
+    SIN REPETIDOS: descarta la misma URL exacta y el mismo servidor repetido dentro de un
+    idioma (antes un episodio podía quedar con «Filemoon, Filemoon, Filemoon»)."""
     prefer = [p.strip().lower() for p in (prefer or []) if p.strip()]
     order = prefer if prefer else QUALITY
     def rank(s):
@@ -475,12 +477,23 @@ def prioritize(servers, prefer=None, only=False, cap=3):
             if p in n: return i
         return len(order) + 5
     g = {}
+    seen_urls = set()
     for s in servers:
+        u = (s.get("url") or "").strip()
+        if not u or u in seen_urls: continue                  # misma URL exacta → repetido
+        seen_urls.add(u)
         if only and prefer and not any(p in s["name"].lower() for p in prefer): continue
         g.setdefault(s.get("lang", "Sub"), []).append(s)
     out = []
     for lang in ["Latino", "Castellano", "Sub"] + [k for k in g if k not in ("Latino", "Castellano", "Sub")]:
-        if lang in g: out += sorted(g[lang], key=rank)[:cap]
+        if lang not in g: continue
+        seen_names, picked = set(), []
+        for s in sorted(g[lang], key=rank):
+            key = re.sub(r"[^a-z0-9]", "", str(s.get("name", "")).lower())
+            if key and key in seen_names: continue            # mismo servidor repetido en el idioma
+            seen_names.add(key); picked.append(s)
+            if len(picked) >= cap: break
+        out += picked
     return out
 
 def embed69_movie(imdb):
