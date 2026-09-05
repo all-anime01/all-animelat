@@ -169,9 +169,9 @@ public class MainActivity extends Activity {
         // usaba LOAD_NO_CACHE, que RE-DESCARGABA TODO en cada navegación: la causa principal
         // de que la app se sintiera lenta en Fire TV / Smart TV.
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
-        // Mantiene la capa rasterizada fuera de pantalla: scroll más fluido y menos "pantalla
-        // negra hasta que haces scroll" en las WebView de TV.
-        try { if (Build.VERSION.SDK_INT >= 23) webView.getSettings().setOffscreenPreRaster(true); } catch (Exception ignored) {}
+        // NOTA: se probó setOffscreenPreRaster(true) para suavizar el scroll, pero DISPARA el
+        // uso de memoria del WebView y en un Fire TV Stick (~1 GB) el proceso de render se
+        // degrada y la navegación con el control deja de responder. Queda DESACTIVADO.
         // UA igual que en las primeras versiones que SÍ reproducían (el "wv" NO era el
         // problema: esa versión lo tenía y funcionaba). Sufijo para que el sitio sepa
         // que es la app; detección también por el puente window.AAApp.
@@ -917,6 +917,17 @@ public class MainActivity extends Activity {
         @Override
         public void onPageFinished(WebView view, String url) {
             if (main) refreshAdFree();
+            // GARANTÍA DE FOCO (TV): tras cargar, la WebView debe poder recibir el D-pad.
+            // Si quedó no-enfocable por un reproductor/cursor que no se cerró bien, la
+            // navegación con el control moría. Aquí se restaura salvo que el reproductor
+            // nativo o el cursor estén realmente activos.
+            if (main && !exoOpen && !cursorMode) {
+                try {
+                    view.setFocusable(true);
+                    view.setFocusableInTouchMode(true);
+                    view.requestFocus();
+                } catch (Exception ignored) {}
+            }
         }
     }
 
