@@ -39,6 +39,7 @@ import androidx.media3.datasource.DefaultHttpDataSource;
 import androidx.media3.common.MimeTypes;
 import androidx.media3.common.PlaybackException;
 import androidx.media3.common.Player;
+import androidx.media3.exoplayer.DefaultLoadControl;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.exoplayer.hls.HlsMediaSource;
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
@@ -162,9 +163,15 @@ public class MainActivity extends Activity {
         s.setSupportMultipleWindows(true);              // para interceptar popups de anuncios
         s.setJavaScriptCanOpenWindowsAutomatically(false);
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
-        // SIEMPRE contenido actual: no servir HTML/JS cacheado (así toda actualización del
-        // sitio se ve de inmediato en la app, en cualquier plataforma).
-        s.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        // RENDIMIENTO: usar la caché normal respetando las cabeceras del sitio. El HTML/JS/CSS
+        // se sirven con "no-cache, must-revalidate" (siempre se revalidan → contenido al día,
+        // pero con respuesta 304 rapidísima) y las imágenes/fuentes se cachean 1 día. Antes se
+        // usaba LOAD_NO_CACHE, que RE-DESCARGABA TODO en cada navegación: la causa principal
+        // de que la app se sintiera lenta en Fire TV / Smart TV.
+        s.setCacheMode(WebSettings.LOAD_DEFAULT);
+        // Mantiene la capa rasterizada fuera de pantalla: scroll más fluido y menos "pantalla
+        // negra hasta que haces scroll" en las WebView de TV.
+        try { if (Build.VERSION.SDK_INT >= 23) webView.getSettings().setOffscreenPreRaster(true); } catch (Exception ignored) {}
         // UA igual que en las primeras versiones que SÍ reproducían (el "wv" NO era el
         // problema: esa versión lo tenía y funcionaba). Sufijo para que el sitio sepa
         // que es la app; detección también por el puente window.AAApp.
@@ -178,9 +185,10 @@ public class MainActivity extends Activity {
         // como el video se veía bien antes.
         // (Se probó LAYER_TYPE_SOFTWARE y fue PEOR: no pintaba y muy lento. Revertido:
         //  se deja la aceleración por hardware por defecto.)
-        // Borra la caché al abrir → la app siempre carga la ÚLTIMA versión del sitio
-        // (JS/CSS), así los arreglos web se aplican SIN tener que reinstalar la APK.
-        webView.clearCache(true);
+        // NO se borra la caché: el sitio envía "no-cache, must-revalidate" en HTML/JS/CSS,
+        // así que esos SIEMPRE se revalidan (contenido al día, respuesta 304 instantánea) y las
+        // imágenes/fuentes quedan cacheadas. Borrarla obligaba a re-descargar TODO en cada
+        // arranque — una de las causas de la lentitud en Fire TV / Smart TV.
         webView.setWebViewClient(new AppClient(true));
         webView.setWebChromeClient(new AppChrome());
         // Puente JS: la web (botón "Cursor" en el reproductor de TV) puede activar
@@ -519,7 +527,18 @@ public class MainActivity extends Activity {
                 .setPreferredTextLanguages("es", "spa", "lat", "es-419")
                 .setPreferredAudioLanguages("es", "spa", "lat")
                 .setSelectUndeterminedTextLanguage(true));
-        exo = new ExoPlayer.Builder(this).setTrackSelector(trackSelector).build();
+        // Buffers AMPLIOS: hasta 2 min en memoria → muchos menos cortes en el wifi de una TV.
+        // Y saltos cómodos con el control: 10 s atrás / 30 s adelante.
+        DefaultLoadControl loadControl = new DefaultLoadControl.Builder()
+                .setBufferDurationsMs(30000, 120000, 2500, 5000)
+                .setPrioritizeTimeOverSizeThresholds(true)
+                .build();
+        exo = new ExoPlayer.Builder(this)
+                .setTrackSelector(trackSelector)
+                .setLoadControl(loadControl)
+                .setSeekBackIncrementMs(10000)
+                .setSeekForwardIncrementMs(30000)
+                .build();
         // Si el stream falla (host caído, cabeceras, formato), avisa y cierra en vez de
         // quedarse cargando para siempre.
         exo.addListener(new Player.Listener() {
@@ -788,7 +807,7 @@ public class MainActivity extends Activity {
         if (popupOpen) closePopup();
         if (customView != null) hideCustomVideo();
         if (cursorMode) toggleCursor();
-        if (webView != null) { webView.clearCache(true); webView.loadUrl(SITE_URL); }
+        if (webView != null) webView.loadUrl(SITE_URL);   // revalida solo lo necesario (rápido)
     }
 
     // Dominios de anuncios/tracking a bloquear cuando el usuario tiene adFree.
@@ -1241,7 +1260,7 @@ public class MainActivity extends Activity {
         // (No recarga en cambios de foco breves, solo tras un onStop real.)
         if (wasStopped) {
             wasStopped = false;
-            if (webView != null) { webView.clearCache(true); webView.loadUrl(SITE_URL); }
+            if (webView != null) webView.loadUrl(SITE_URL);   // revalida solo lo necesario (rápido)
         }
     }
     @Override protected void onDestroy() {
