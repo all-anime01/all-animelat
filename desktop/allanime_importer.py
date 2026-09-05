@@ -1063,38 +1063,38 @@ def save(data, token, replace, log):
         if backup_doc(aid, existing): log("Respaldo guardado (puedes revertir este cambio).")
     if existing and existing.get("episodes"):
         ex = existing["episodes"]
-        # Al ACTUALIZAR (añadir episodios a un anime del catálogo): coloca cada episodio nuevo
-        # en la temporada EXISTENTE que le corresponde por número, para no crear temporadas
-        # duplicadas ("Temporada 22" junto a "Temporada 22: Elbaph"). Si el número es nuevo
-        # (más reciente), usa el nombre de la temporada del episodio de mayor número.
-        # ¿El anime numera POR TEMPORADA (nº 1..N se repite en cada temporada, ej. Tokyo
-        # Ghoul) o CONTINUO (One Piece)? Con numeración por temporada NO se debe remapear por
-        # número (fusionaría mal las temporadas nuevas) → se respetan los nombres del build.
+        # Al ACTUALIZAR un anime del catálogo: los episodios nuevos van SIEMPRE a una temporada
+        # que YA EXISTE — nunca se inventa una nueva. La fuente (TMDB/AniList) cuenta los ARCOS
+        # como temporadas (ej. Link Click: «Bridon Arc» le suma una), por eso su «Temporada N»
+        # se mapea POR POSICIÓN al grupo real existente, respetando los nombres propios
+        # («Bridon Arc», «OVAs», «Temporada 22: Elbaph»). ¿Quieres una temporada NUEVA?
+        # Escribe su nombre en el campo «Nombre temporada».
+        groups = []            # nombres de temporada existentes, EN ORDEN de aparición
+        by_num = {}            # nº de episodio -> temporada (para numeración continua)
         _seen = {}; per_season_existing = False
         for e in ex:
+            _s = e.get("season")
+            if _s not in groups: groups.append(_s)
             try:
                 nn = int(e.get("number")); _seen[nn] = _seen.get(nn, 0) + 1
-                if _seen[nn] > 1: per_season_existing = True
+                if _seen[nn] > 1: per_season_existing = True   # numera POR temporada (1..N por cada una)
+                by_num.setdefault(nn, _s)
             except (TypeError, ValueError): pass
+        last_group = groups[-1] if groups else None
         built_seasons_n = len({b.get("season") for b in built if b.get("season")})
-        # Solo se remapea cuando el build trae UNA sola temporada genérica (caso "añadir
-        # episodios sueltos"). Si el build ya trae VARIAS temporadas (completar un anime
-        # multi-temporada), su estructura es la autoridad y se respeta tal cual.
-        if data.get("_update_only") and ex and not per_season_existing and built_seasons_n <= 1:
-            by_num = {}
-            for e in ex:
-                try: by_num[int(e.get("number"))] = e.get("season")
-                except (TypeError, ValueError): pass
-            last_season = None
-            if by_num: last_season = by_num[max(by_num)]
+        if data.get("_update_only") and groups:
             for b in built:
-                # Solo se corrige el nombre GENÉRICO de TMDB ("Temporada 5"); si ya trae un
-                # nombre personalizado (ej. "Temporada 22: Elbaph"), se respeta tal cual.
-                if not re.match(r"^Temporada\s+\d+$", str(b.get("season", ""))): continue
-                try: bn = int(b.get("number"))
-                except (TypeError, ValueError): continue
-                if bn in by_num: b["season"] = by_num[bn]
-                elif last_season: b["season"] = last_season
+                m = re.match(r"^Temporada\s+(\d+)$", str(b.get("season", "")))
+                if not m: continue          # nombre personalizado del usuario → se respeta tal cual
+                idx_s = int(m.group(1))
+                if built_seasons_n <= 1 and not per_season_existing:
+                    # Numeración CONTINUA (One Piece): el nº de episodio dice la temporada real.
+                    try: bn = int(b.get("number"))
+                    except (TypeError, ValueError): bn = None
+                    b["season"] = by_num.get(bn) or last_group
+                else:
+                    # Numeración POR TEMPORADA: mapea por POSICIÓN al grupo existente.
+                    b["season"] = groups[idx_s - 1] if 1 <= idx_s <= len(groups) else last_group
         idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
         added = replaced = 0
         for b in built:
