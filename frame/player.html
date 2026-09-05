@@ -345,11 +345,11 @@
             const shyruRank = (name, url) => {
                 const n = (String(name || "") + " " + String(url || "")).toLowerCase();
                 if (/mega\.nz|youtube|youtu\.be/.test(n)) return -1;               // imposible → se descarta
+                if (/vidara/.test(n)) return 0;                                     // 1º: TUS subidas propias
                 if (/streamwish|sfastwish|swish|wish/.test(n)) return 1;
                 if (/filemoon|filemooon|moon|hgcloud/.test(n)) return 2;
                 if (/vidhide|vidhidevip|streamhg/.test(n)) return 3;
                 if (/dood|streamtape|mp4upload/.test(n)) return 4;
-                if (/vidara/.test(n)) return 5;                                     // tus subidas
                 if (/voe/.test(n)) return 8;                                        // aún sin desofuscar
                 return 6;
             };

@@ -699,6 +699,59 @@ def av1_servers(slug, n):
             seen.add(name); res.append({"url": url, "name": name, "lang": tag, "desc": ""})
     return res
 
+# ---------- animelatinohd (fuente PRINCIPAL de LATINO) ----------
+# /directorio?search=TÍTULO  -> catálogo embebido con {"name","slug"}
+# /anime/{slug}              -> enlaces /ver/{slug}/{n}  (último episodio publicado)
+# /ver/{slug}/{n}            -> "players":[{language:LAT|ESP|SUB, server_name, bridge_url}]
+ALHD = "https://www.animelatinohd.com"
+_ALHD_LANG = {"LAT": "Latino", "ESP": "Castellano", "SUB": "Sub"}
+
+def alhd_search(title):
+    """Slug de animelatinohd que mejor coincide con el título."""
+    try:
+        h = get_text(f"{ALHD}/directorio?search={urllib.parse.quote(title)}", referer=ALHD + "/")
+    except Exception:
+        return None
+    t = h.replace('\\"', '"')
+    pairs = re.findall(r'"name":"([^"]{2,90})"[\s\S]{0,400}?"slug":"([a-z0-9\-]+)"', t)
+    if not pairs:
+        sl = list(dict.fromkeys(re.findall(r'"slug":"([a-z0-9\-]+)"', t)))
+        return sl[0] if sl else None
+    want = norm(title); best, bs = None, -1
+    for name, slug in pairs:
+        cn = norm(name)
+        sc = 100 if cn == want else (70 if (want in cn or cn in want) else len(set(want.split()) & set(cn.split())))
+        if sc > bs: bs, best = sc, slug
+    return best
+
+def alhd_max(slug):
+    """Nº del último episodio publicado."""
+    if not slug: return 0
+    try: h = get_text(f"{ALHD}/anime/{slug}", referer=ALHD + "/")
+    except Exception: return 0
+    ns = [int(x) for x in re.findall(r"/ver/" + re.escape(slug) + r"/(\d+)", h)]
+    return max(ns) if ns else 0
+
+def alhd_servers(slug, n):
+    """Servidores del episodio (el bridge_url es la página reproducible del propio sitio)."""
+    if not slug: return []
+    try: h = get_text(f"{ALHD}/ver/{slug}/{n}", referer=f"{ALHD}/anime/{slug}")
+    except Exception: return []
+    t = h.replace('\\"', '"')
+    m = re.search(r'"players":(\[[\s\S]*?\}\])', t)
+    if not m: return []
+    try: arr = json.loads(m.group(1))
+    except Exception: return []
+    out, seen = [], set()
+    for pl in arr:
+        u = str(pl.get("bridge_url") or "").strip()
+        if not u.startswith("http") or u in seen: continue
+        seen.add(u)
+        lang = _ALHD_LANG.get(str(pl.get("language", "")).upper(), "Sub")
+        sv = str(pl.get("server_name") or "Player").strip()
+        out.append({"url": u, "name": f"AnimeLatinoHD {sv}", "lang": lang, "desc": ""})
+    return out
+
 # ------------------------------------------------------------------ animeyt (fuente principal)
 # animeyt.cc guarda cada servidor como <option value="BASE64"> que decodifica al iframe con la
 # URL real del host (mp4upload, ok.ru, mega, streamtape, yourupload, animeyt2…). El "omega2"
@@ -857,6 +910,7 @@ def build_episodes(data, opts, log, prog, on_ep):
     src_slugs = [_clean(x) for x in (opts.get("src_slug") or "").split(",") if x.strip()]
     multi = len(src_slugs) > 1
     jkslug = avslug = ytslug = None
+    base_alhd = ""
     yt_maps = {}
     def yt_srv(ytsl, num):
         """Servidores de animeyt para (slug, nº), con caché del mapa de episodios."""
@@ -873,10 +927,12 @@ def build_episodes(data, opts, log, prog, on_ep):
         seasons = [{"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "jk": s, "av": s, "e69s": i + 1} for i, s in enumerate(src_slugs)]
         per_season_num = True
         log(f"SECUELAS como temporadas (manual): {len(src_slugs)} → {', '.join(src_slugs)}")
+        base_alhd = (alhd_search(title) if opts.get("alhd") else "") or ""
     else:
         src_slug = src_slugs[0] if src_slugs else ""
         base_jk = src_slug or (jk_search(title) if opts["jk"] else "")
         base_av = src_slug or (av1_search(title) if opts["av1"] else "")
+        base_alhd = (alhd_search(title) if opts.get("alhd") else "") or ""   # LATINO principal
         # AUTO: descubre TODAS las secuelas (jkanime/av1 separan por temporada). Así se
         # agregan completas sin pedir slugs (ej. Ishura → ishura + ishura-2nd-season).
         jk_list = (jk_seasons(title, base_jk) if (opts["jk"] and base_jk and not src_slug) else ([base_jk] if base_jk else []))
@@ -979,7 +1035,7 @@ def build_episodes(data, opts, log, prog, on_ep):
     disp_total = max(int(disp_total) or 60, 1)
     # Guardas: dejar de consultar una fuente que claramente NO tiene este anime, y terminar
     # cuando la fuente se acaba (evita construir cientos de episodios vacíos / franquicias).
-    skip = {"e69": False, "av1": False, "jk": False, "yt": False}; miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0}
+    skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False}; miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0}
     empty_streak = 0; stop = False
     for S in seasons:
         if stop: break
@@ -987,8 +1043,9 @@ def build_episodes(data, opts, log, prog, on_ep):
         jkcur = S.get("jk") or S.get("slug") or jkslug   # slug de jkanime de ESTA temporada
         avcur = S.get("av") or S.get("slug") or avslug   # slug de animeav1 de ESTA temporada
         ytcur = S.get("yt") or (ytslug if not multi else None)   # slug de animeyt de ESTA temporada
+        alhdcur = S.get("alhd") or (base_alhd if not multi else None)   # slug de animelatinohd
         if multi or S.get("psn"):  # secuela/OVA independiente: reinicia guardas
-            skip = {"e69": False, "av1": False, "jk": False, "yt": False}; miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0}; empty_streak = 0
+            skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False}; miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0}; empty_streak = 0
             log(f"— {sname}: jk={jkcur or '—'} av={avcur or '—'}")
         if season_sel and str(S["season"]) != season_sel:
             absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
@@ -1027,6 +1084,14 @@ def build_episodes(data, opts, log, prog, on_ep):
                 miss["yt"] = 0 if cy else miss["yt"] + 1
                 if miss["yt"] >= 6: skip["yt"] = True
                 time.sleep(0.2)
+            cl = 0
+            if opts.get("alhd") and alhdcur and not skip["alhd"]:
+                try:
+                    ls = alhd_servers(alhdcur, src_num) or []; servers += ls; cl = len(ls)
+                except Exception as ex: log(f"  (animelatinohd err: {str(ex)[:40]})")
+                miss["alhd"] = 0 if cl else miss["alhd"] + 1
+                if miss["alhd"] >= 6: skip["alhd"] = True
+                time.sleep(0.3)
             key_manual = n if (per_season_num or season_sel) else absn   # el usuario suele numerar 1..N
             if opts["manual"] and (key_manual in manual or absn in manual):
                 mu = manual.get(key_manual) or manual.get(absn)
@@ -1034,7 +1099,7 @@ def build_episodes(data, opts, log, prog, on_ep):
                 mname = nm(mu) if nm(mu) != "Servidor" else "Directo"
                 servers.append({"url": mu, "name": mname, "lang": ml, "desc": ""})
             if absn == 1 or (not servers and absn <= 3):
-                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug}" if not servers else ""))
+                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy} alhd={cl}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug}" if not servers else ""))
             prog(min(len(episodes) + 1, disp_total), disp_total)
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
@@ -1333,11 +1398,12 @@ class App:
         opt = ctk.CTkFrame(sc, fg_color="transparent"); opt.pack(fill="x", padx=16, pady=8)
         self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True)
         self.yt = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
-        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual)]):
+        self.alhd = tk.BooleanVar(value=True)   # animelatinohd: fuente PRINCIPAL de Latino
+        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual)]):
             chk(opt, t, v, command=cmd).grid(row=0, column=i, sticky="w", padx=(0, 14))
         self.replace = tk.BooleanVar(value=False)
-        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=5, padx=(10, 6))
-        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=6)
+        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=6, padx=(10, 6))
+        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=7)
         self.voz = tk.BooleanVar(value=bool(self.cfg.get("voz")))
         self.yoru.enabled = self.voz.get()
         def _togvoz():
@@ -1646,7 +1712,7 @@ class App:
         else:
             self.clear_tree()
         self.logbox.delete("1.0", "end")
-        opts = {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": self.man.get(),
+        opts = {"e69": self.e69.get(), "alhd": self.alhd.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": self.man.get(),
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
                 "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip()}
@@ -1722,7 +1788,7 @@ class App:
         self.log(f"➕ {len(new_eps)} episodio(s) nuevo(s) → {dst}. Revisa y pulsa «Guardar en la web».")
 
     def _batch_opts(self):
-        return {"e69": self.e69.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": False,
+        return {"e69": self.e69.get(), "alhd": self.alhd.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": False,
                 "manual_text": "", "prefer": self.prefer.get().split(","), "only": self.only.get(),
                 "tmdb_key": self.tmdb.get().strip(), "range": "", "season": "", "src_slug": ""}
 
