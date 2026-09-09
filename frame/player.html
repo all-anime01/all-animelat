@@ -338,7 +338,7 @@
 
             const cont = document.getElementById("serverContainer");
             // OPCIÓN «Shyru» (solo PC con Worker configurado): reproductor propio, sin anuncios.
-            const hasShyru = !inApp && !!localStorage.getItem("aa_wk_url");
+            const hasShyru = !inApp && !!(window.__AA_WK || (() => { try { return localStorage.getItem("aa_wk_url"); } catch (e) { return ""; } })());
             // Orden PROPIO de Shyru: primero los hosts que el Worker SÍ sabe extraer (JS empaquetado
             // o .m3u8 directo). Se EXCLUYEN los imposibles: Mega (cifrado en el navegador) y
             // YouTube (solo embed). Así no desperdicia intentos.
@@ -460,6 +460,13 @@
                 const snap = await getDoc(doc(db, "animes", animeId));
                 if (!snap.exists()) { showEmpty("No se encontró el contenido."); return; }
                 const anime = snap.data();
+                // La URL del Worker (reproductor Shyru) vive en config/worker, no en el
+                // localStorage de UN navegador: asi Shyru sale en Brave, Edge, movil, etc.
+                try {
+                    const wk = await getDoc(doc(db, "config", "worker"));
+                    const u = wk.exists() ? String(wk.data().url || "").trim() : "";
+                    if (u) { window.__AA_WK = u.replace(/\/+$/, ""); try { localStorage.setItem("aa_wk_url", window.__AA_WK); } catch (e) {} }
+                } catch (e) { console.warn("config/worker", e); }
                 // Animes enormes: los episodios que no caben en el documento (límite 1 MiB de
                 // Firestore) viven en la subcolección animes/{id}/eps. Se unen aquí.
                 if (anime.epChunks) {

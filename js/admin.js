@@ -341,6 +341,21 @@ export async function exportAllAnimes() {
   return out;
 }
 
+// ---- Worker del reproductor propio (Shyru) ---------------------------------
+// La URL del Worker se guarda en config/worker para que Shyru aparezca en TODOS
+// los navegadores y dispositivos (antes vivia en el localStorage de uno solo, por
+// eso no salia en Brave). La CLAVE del Worker NO se publica: se queda en el
+// navegador del admin (las rutas /stream y /hls no la necesitan).
+export async function getWorkerUrl() {
+  const snap = await getDoc(doc(db, "config", "worker"));
+  return snap.exists() ? String(snap.data().url || "") : "";
+}
+export async function saveWorkerUrl(url) {
+  const clean = String(url || "").trim().replace(/\/+$/, "");
+  await setDoc(doc(db, "config", "worker"), { url: clean, updatedAt: serverTimestamp() }, { merge: true });
+  return clean;
+}
+
 // ---- Portada (hero) --------------------------------------------------------
 export async function getHeroSlides() {
   const snap = await getDoc(doc(db, "config", "hero"));

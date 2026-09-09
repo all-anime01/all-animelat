@@ -123,7 +123,7 @@
     <script type="module">
         import { db, isAdmin } from "../js/firebase-config.js";
         import { observeAuth } from "../js/auth.js";
-        import { saveAnime, getAnime } from "../js/admin.js";
+        import { saveAnime, getAnime, getWorkerUrl, saveWorkerUrl } from "../js/admin.js";
         const $ = (id) => document.getElementById(id);
         const logEl = $("log");
         const log = (m) => { logEl.textContent += m + "\n"; logEl.scrollTop = logEl.scrollHeight; };
@@ -135,8 +135,10 @@
             if (!user) { $("gate").innerHTML = 'Inicia sesión como admin. <a href="../cuenta.html?redirect=admin/scraper.html">Login</a>'; return; }
             if (!isAdmin(user)) { $("gate").innerHTML = 'La cuenta <b>' + user.email + '</b> no es administrador.'; return; }
             $("gate").style.display = "none"; $("app").style.display = "block";
-            $("wk-url").value = localStorage.getItem("aa_wk_url") || "";
             $("wk-key").value = localStorage.getItem("aa_wk_key") || "";
+            // La URL del Worker es del SITIO, no de este navegador.
+            getWorkerUrl().then((u) => { $("wk-url").value = u || localStorage.getItem("aa_wk_url") || ""; })
+                          .catch(() => { $("wk-url").value = localStorage.getItem("aa_wk_url") || ""; });
         });
 
         // Worker client
@@ -147,6 +149,7 @@
             const key = $("wk-key").value.trim();
             if (!base) throw new Error("Falta la URL del Worker");
             localStorage.setItem("aa_wk_url", base); localStorage.setItem("aa_wk_key", key);
+            saveWorkerUrl(base).catch(() => {});   // que Shyru la vea en todos los navegadores
             const u = new URL(base + path); u.searchParams.set("key", key);
             for (const k in params) if (params[k] != null) u.searchParams.set(k, params[k]);
             const r = await fetch(u.toString());
