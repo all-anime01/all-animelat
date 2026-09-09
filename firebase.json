@@ -11,6 +11,10 @@
       "package.json",
       "package-lock.json",
       "firestore.rules",
+      "desktop/**",
+      "androidtv/**",
+      "worker/**",
+      "automation/**",
       "FIREBASE-SETUP.md",
       "MIGRACION-HOSTING.md",
       "README.md"
