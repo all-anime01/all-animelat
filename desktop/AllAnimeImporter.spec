@@ -10,7 +10,9 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=[],
+    # Paquetes que speech_recognition arrastra pero la app NO usa (pesaban 93 MB de mas).
+    excludes=['pyarrow', 'pandas', 'matplotlib', 'scipy', 'IPython', 'torch',
+              'pocketsphinx', 'setuptools', 'pytest', 'notebook'],
     noarchive=False,
     optimize=0,
 )

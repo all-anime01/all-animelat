@@ -29,10 +29,81 @@ export async function getCatalogIndex() {
   return snap.exists() ? snap.data() : { items: [], count: 0, version: 0 };
 }
 
-// Lee un anime completo.
+// ---- Animes ENORMES: episodios repartidos en varios documentos --------------
+// Firestore limita cada documento a 1 MiB y animes como Detective Conan (1200+
+// episodios) no caben. El documento principal guarda la info del anime y los
+// episodios que quepan; el resto vive en la subcoleccion animes/{id}/eps/{i}
+// como {i, items:[...]}. Todo el panel lee y escribe a traves de estas dos
+// funciones, asi que nunca se pierde ni se duplica un episodio.
+const FS_BUDGET = 900 * 1024;          // margen bajo el limite de 1 MiB
+const FS_HEAD = 40 * 1024;             // sitio reservado para la info del anime
+const _enc = new TextEncoder();
+function fsSize(v, key) {
+  let n = key ? _enc.encode(key).length + 1 : 0;
+  if (v === null || v === undefined || typeof v === "boolean") return n + 1;
+  if (typeof v === "number") return n + 8;
+  if (typeof v === "string") return n + _enc.encode(v).length + 1;
+  if (Array.isArray(v)) { for (const x of v) n += fsSize(x); return n; }
+  if (typeof v === "object") { for (const k of Object.keys(v)) if (v[k] !== undefined) n += fsSize(v[k], k); return n; }
+  return n + 1;
+}
+
+// Devuelve la lista COMPLETA de episodios (uniendo las partes si las hay).
+export async function readEpisodes(animeId, anime) {
+  const eps = Array.isArray(anime && anime.episodes) ? anime.episodes.slice() : [];
+  if (!anime || !anime.epChunks) return eps;
+  const snap = await getDocs(collection(db, "animes", animeId, "eps"));
+  const parts = [];
+  snap.forEach((d) => {
+    const v = d.data();
+    if (v && Array.isArray(v.items)) parts.push([Number(v.i != null ? v.i : d.id) || 0, v.items]);
+  });
+  parts.sort((a, b) => a[0] - b[0]);
+  for (const p of parts) for (const it of p[1]) eps.push(it);
+  return eps;
+}
+
+// Guarda la lista COMPLETA de episodios, repartiendola si no cabe en un documento.
+async function writeEpisodes(animeId, episodes, extra) {
+  const room = FS_BUDGET - FS_HEAD;
+  const keep = [], rest = [];
+  let used = 0;
+  for (const e of episodes) {
+    const s = fsSize(e);
+    if (!rest.length && used + s <= room) { keep.push(e); used += s; }
+    else rest.push(e);
+  }
+  const chunks = [];
+  let cur = [], curN = 0;
+  for (const e of rest) {
+    const s = fsSize(e);
+    if (cur.length && curN + s > FS_BUDGET - 8192) { chunks.push(cur); cur = []; curN = 0; }
+    cur.push(e); curN += s;
+  }
+  if (cur.length) chunks.push(cur);
+  // 1) primero las partes, para que el sitio no vea episodios a medias
+  for (let i = 0; i < chunks.length; i++) {
+    await setDoc(doc(db, "animes", animeId, "eps", String(i)), { i, items: chunks[i] });
+  }
+  // 2) el documento principal, ya con la marca de cuantas partes hay
+  await updateDoc(doc(db, "animes", animeId), Object.assign({
+    episodes: keep, epChunks: chunks.length, episodesTotal: episodes.length, updatedAt: serverTimestamp(),
+  }, extra || {}));
+  // 3) limpia las partes viejas que ya no se usan
+  const old = await getDocs(collection(db, "animes", animeId, "eps"));
+  for (const d of old.docs) {
+    const n = Number(d.id);
+    if (!Number.isNaN(n) && n >= chunks.length) await deleteDoc(d.ref);
+  }
+}
+
+// Lee un anime completo (con sus episodios ya unidos si estaban repartidos).
 export async function getAnime(animeId) {
   const snap = await getDoc(doc(db, "animes", animeId));
-  return snap.exists() ? snap.data() : null;
+  if (!snap.exists()) return null;
+  const data = snap.data();
+  if (data.epChunks) data.episodes = await readEpisodes(animeId, data);
+  return data;
 }
 
 // Inserta o reemplaza la tarjeta de un anime dentro de catalog/index.
@@ -58,14 +129,16 @@ export async function saveAnime(anime) {
   if (!anime.id) anime.id = slugify(anime.title);
   const hasEpisodes = Array.isArray(anime.episodes) && anime.episodes.length > 0;
   const payload = { ...anime, updatedAt: serverTimestamp() };
+  delete payload.episodes;                         // los episodios se guardan aparte (pueden ir por partes)
   if (hasEpisodes) payload.episodesTotal = anime.episodes.length;
-  else delete payload.episodes;                    // preserva los episodios existentes
   await setDoc(doc(db, "animes", anime.id), payload, { merge: true });
+  if (hasEpisodes) await writeEpisodes(anime.id, anime.episodes);
   // La tarjeta del catálogo necesita el conteo REAL de episodios.
   let cardAnime = anime;
   if (!hasEpisodes) {
     const snap = await getDoc(doc(db, "animes", anime.id));
-    cardAnime = { ...anime, episodes: snap.exists() ? (snap.data().episodes || []) : [] };
+    const cur = snap.exists() ? snap.data() : null;
+    cardAnime = { ...anime, episodes: cur ? await readEpisodes(anime.id, cur) : [] };
   }
   await upsertCatalogCard(cardAnime);
   return anime.id;
@@ -77,7 +150,7 @@ export async function addEpisodes(animeId, newEpisodes) {
   const snap = await getDoc(ref);
   if (!snap.exists()) throw new Error("El anime no existe: " + animeId);
   const anime = snap.data();
-  const episodes = Array.isArray(anime.episodes) ? anime.episodes : [];
+  const episodes = await readEpisodes(animeId, anime);
 
   for (const ep of newEpisodes) {
     // Evita duplicar el mismo episodio (misma temporada + número).
@@ -89,11 +162,7 @@ export async function addEpisodes(animeId, newEpisodes) {
   }
 
   const sorted = orderedEpisodes({ episodes });
-  await updateDoc(ref, {
-    episodes: sorted,
-    episodesTotal: sorted.length,
-    updatedAt: serverTimestamp(),
-  });
+  await writeEpisodes(animeId, sorted);
   await upsertCatalogCard({ ...anime, episodes: sorted });
   return sorted.length;
 }
@@ -107,7 +176,7 @@ export async function importEpisodes(animeId, incoming) {
   const snap = await getDoc(ref);
   if (!snap.exists()) throw new Error("El anime no existe: " + animeId);
   const anime = snap.data();
-  const episodes = Array.isArray(anime.episodes) ? anime.episodes.slice() : [];
+  const episodes = await readEpisodes(animeId, anime);
   const idx = new Map(episodes.map((e, i) => [String(e.season) + "::" + Number(e.number), i]));
   let added = 0, updated = 0;
   const seen = new Set();
@@ -129,7 +198,7 @@ export async function importEpisodes(animeId, incoming) {
     }
   }
   const sorted = orderedEpisodes({ episodes });
-  await updateDoc(ref, { episodes: sorted, episodesTotal: sorted.length, updatedAt: serverTimestamp() });
+  await writeEpisodes(animeId, sorted);
   await upsertCatalogCard({ ...anime, episodes: sorted });
   return { added, updated, total: sorted.length };
 }
@@ -171,7 +240,7 @@ export async function updateEpisode(animeId, origSeason, origNumber, newEp) {
   const snap = await getDoc(ref);
   if (!snap.exists()) throw new Error("El anime no existe.");
   const anime = snap.data();
-  const episodes = Array.isArray(anime.episodes) ? [...anime.episodes] : [];
+  const episodes = await readEpisodes(animeId, anime);
   const idx = episodes.findIndex(
     (e) => String(e.season) === String(origSeason) && Number(e.number) === Number(origNumber)
   );
@@ -183,7 +252,7 @@ export async function updateEpisode(animeId, origSeason, origNumber, newEp) {
   if (dup) throw new Error(`Ya existe ${newEp.season} episodio ${newEp.number}.`);
   episodes[idx] = { ...episodes[idx], ...newEp };
   const sorted = orderedEpisodes({ episodes });
-  await updateDoc(ref, { episodes: sorted, episodesTotal: sorted.length, updatedAt: serverTimestamp() });
+  await writeEpisodes(animeId, sorted);
   await upsertCatalogCard({ ...anime, episodes: sorted });
   return sorted.length;
 }
@@ -200,7 +269,7 @@ export async function renameSeason(animeId, oldSeason, newSeason) {
   const snap = await getDoc(ref);
   if (!snap.exists()) throw new Error("El anime no existe.");
   const anime = snap.data();
-  const eps = Array.isArray(anime.episodes) ? anime.episodes : [];
+  const eps = await readEpisodes(animeId, anime);
   if (eps.some((e) => String(e.season) === newS)) throw new Error(`Ya existe una temporada llamada "${newS}".`);
   let changed = 0;
   const updated = eps.map((e) => {
@@ -214,7 +283,7 @@ export async function renameSeason(animeId, oldSeason, newSeason) {
   });
   if (!changed) throw new Error(`No hay episodios en la temporada "${oldS}".`);
   // NO se reordena: se conserva el orden actual (renombrar no cambia el orden).
-  await updateDoc(ref, { episodes: updated, episodesTotal: updated.length, updatedAt: serverTimestamp() });
+  await writeEpisodes(animeId, updated);
   await upsertCatalogCard({ ...anime, episodes: updated });
   return changed;
 }
@@ -225,10 +294,10 @@ export async function deleteEpisode(animeId, season, number) {
   const snap = await getDoc(ref);
   if (!snap.exists()) throw new Error("El anime no existe.");
   const anime = snap.data();
-  const episodes = (anime.episodes || []).filter(
+  const episodes = (await readEpisodes(animeId, anime)).filter(
     (e) => !(e.season === season && Number(e.number) === Number(number))
   );
-  await updateDoc(ref, { episodes, episodesTotal: episodes.length, updatedAt: serverTimestamp() });
+  await writeEpisodes(animeId, episodes);
   await upsertCatalogCard({ ...anime, episodes });
   return episodes.length;
 }
@@ -242,7 +311,9 @@ export async function importAnime(obj) {
   if (!obj.id) obj.id = slugify(obj.title);
   if (!Array.isArray(obj.episodes)) obj.episodes = [];
   if (obj.episodesTotal == null) obj.episodesTotal = obj.episodes.length;
-  await setDoc(doc(db, "animes", obj.id), { ...obj, updatedAt: serverTimestamp() }, { merge: true });
+  const { episodes, ...head } = obj;               // los episodios pueden ir por partes
+  await setDoc(doc(db, "animes", obj.id), { ...head, episodes: [], updatedAt: serverTimestamp() }, { merge: true });
+  await writeEpisodes(obj.id, episodes);
   await upsertCatalogCard({ ...obj });
   return obj.id;
 }
@@ -261,7 +332,13 @@ export async function importAnimes(data) {
 // Exporta todo el catálogo (con episodios) como arreglo de objetos.
 export async function exportAllAnimes() {
   const snap = await getDocs(collection(db, "animes"));
-  return snap.docs.map((d) => { const { updatedAt, ...rest } = d.data(); return rest; });
+  const out = [];
+  for (const d of snap.docs) {
+    const { updatedAt, ...rest } = d.data();
+    if (rest.epChunks) rest.episodes = await readEpisodes(d.id, rest);   // une las partes
+    out.push(rest);
+  }
+  return out;
 }
 
 // ---- Portada (hero) --------------------------------------------------------

@@ -24,6 +24,13 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // Episodios repartidos en partes para animes enormes (Detective Conan, One Piece…),
+    // porque un documento de Firestore no puede superar 1 MiB.
+    match /animes/{animeId}/eps/{chunkId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
     // ---- Índice ligero del catálogo (una sola lectura para los listados) ----
     match /catalog/{docId} {
       allow read: if true;

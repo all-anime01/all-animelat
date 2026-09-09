@@ -228,6 +228,98 @@ def patch_fields(path, fields, token):
                 headers={"Authorization": "Bearer " + token}, method="PATCH")
 def get_catalog():
     d = get_doc("catalog/index"); return (d or {}).get("items", []) if d else []
+def delete_doc(path, token):
+    return http(f"{FS}/{path}", headers={"Authorization": "Bearer " + token}, method="DELETE")
+
+# --- Animes ENORMES: episodios repartidos en varios documentos ---------------
+# Firestore limita cada documento a 1 MiB. Detective Conan (1200+ eps) o One Piece
+# se pasan de largo. Solución: el documento principal guarda la info + los primeros
+# episodios que quepan, y el resto va a la subcolección animes/{id}/eps/{i} como
+# {i, items:[…]}. El sitio y el reproductor los vuelven a unir al leer.
+FS_DOC_LIMIT = 1048576          # 1 MiB por documento (límite duro de Firestore)
+FS_BUDGET    = 900 * 1024       # margen de seguridad para no rozar el límite
+def fs_size(v, key=None):
+    """Tamaño que Firestore le cuenta a un valor (no el JSON del REST, que abulta más)."""
+    n = (len(key.encode("utf-8")) + 1) if key else 0
+    if v is None or isinstance(v, bool): return n + 1
+    if isinstance(v, int) or isinstance(v, float): return n + 8
+    if isinstance(v, str): return n + len(v.encode("utf-8")) + 1
+    if isinstance(v, list): return n + sum(fs_size(x) for x in v)
+    if isinstance(v, dict): return n + sum(fs_size(x, k) for k, x in v.items() if x is not None)
+    return n + 1
+def doc_size(path, fields):
+    """Tamaño total del documento: nombre + campos + 32 bytes de sobrecarga."""
+    return len(path.encode("utf-8")) + 16 + sum(fs_size(v, k) for k, v in fields.items()) + 32
+def list_chunk_ids(aid, token):
+    """IDs de los trozos de episodios ya guardados en animes/{aid}/eps."""
+    ids, page = [], ""
+    while True:
+        url = f"{FS}/animes/{aid}/eps?pageSize=300&mask.fieldPaths=i" + (f"&pageToken={page}" if page else "")
+        st, t = http(url, headers={"Authorization": "Bearer " + token})
+        if st != 200: break
+        j = json.loads(t or "{}")
+        for d in j.get("documents", []): ids.append(d["name"].rsplit("/", 1)[-1])
+        page = j.get("nextPageToken") or ""
+        if not page: break
+    return ids
+def get_chunked_episodes(aid, base, token=None):
+    """Devuelve la lista COMPLETA de episodios uniendo el doc principal con sus trozos."""
+    eps = list(base.get("episodes") or [])
+    if not base.get("epChunks"): return eps
+    parts = []
+    page = ""
+    h = {"Authorization": "Bearer " + token} if token else None
+    while True:
+        url = f"{FS}/animes/{aid}/eps?pageSize=300" + (f"&pageToken={page}" if page else "")
+        st, t = http(url, headers=h)
+        if st != 200: break
+        j = json.loads(t or "{}")
+        for d in j.get("documents", []):
+            f = {k: fv(x) for k, x in (d.get("fields") or {}).items()}
+            if isinstance(f.get("items"), list):
+                parts.append((int(f.get("i") or 0), f["items"]))
+        page = j.get("nextPageToken") or ""
+        if not page: break
+    parts.sort(key=lambda p: p[0])
+    for _, items in parts: eps.extend(items)
+    return eps
+def save_big_doc(aid, doc, episodes, token, log):
+    """Guarda el anime repartiendo los episodios en varios documentos si hace falta.
+    NO borra nada: si cabe entero, se guarda entero y se limpian los trozos sobrantes."""
+    path = f"animes/{aid}"
+    head = {k: v for k, v in doc.items() if k != "episodes"}
+    room = FS_BUDGET - doc_size(path, dict(head, episodes=[], epChunks=0))
+    keep, rest, used = [], [], 0
+    for e in episodes:
+        s = fs_size(e)
+        if used + s <= room: keep.append(e); used += s
+        else: rest.append(e)
+    chunks = []
+    if rest:
+        cur, cur_n = [], 0
+        for e in rest:
+            s = fs_size(e)
+            if cur and cur_n + s > FS_BUDGET - 4096: chunks.append(cur); cur, cur_n = [], 0
+            cur.append(e); cur_n += s
+        if cur: chunks.append(cur)
+        log(f"Anime enorme ({len(episodes)} eps): {len(keep)} en el documento principal y "
+            f"{len(rest)} repartidos en {len(chunks)} partes (sin perder nada).")
+    # 1) primero los trozos, para que el sitio nunca vea episodios que aún no existen
+    for i, part in enumerate(chunks):
+        st, t = patch_fields(f"animes/{aid}/eps/{i}", {"i": i, "items": part}, token)
+        if st != 200:
+            log(f"ERROR guardando la parte {i}: {st} {t[:150]}"); return False, t
+        log(f"  parte {i + 1}/{len(chunks)} guardada ({len(part)} eps)")
+    # 2) el documento principal, ya con la marca de cuántas partes hay
+    doc["episodes"] = keep; doc["epChunks"] = len(chunks)
+    st, t = patch_fields(path, doc, token)
+    if st != 200: return False, t
+    # 3) limpia trozos viejos que ya no se usan (p. ej. si el anime encogió)
+    for cid in list_chunk_ids(aid, token):
+        try: n = int(cid)
+        except ValueError: continue
+        if n >= len(chunks): delete_doc(f"animes/{aid}/eps/{cid}", token)
+    return True, ""
 
 # ------------------------------------------------------------------ util
 def norm(s): return re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).strip()
@@ -1137,6 +1229,8 @@ def save(data, token, replace, log):
     aid = data["aid"]; built = data["episodes"]; info = data["info"]
     if not built: log("Nada que guardar."); return
     existing = get_doc(f"animes/{aid}", token)
+    if existing and existing.get("epChunks"):
+        existing["episodes"] = get_chunked_episodes(aid, existing, token)   # anime enorme: une sus partes
     if existing:  # RESPALDA el estado actual antes de tocarlo (para poder revertir)
         if backup_doc(aid, existing): log("Respaldo guardado (puedes revertir este cambio).")
     if existing and existing.get("episodes"):
@@ -1213,11 +1307,13 @@ def save(data, token, replace, log):
     # Recalcula el nº de temporadas a partir de los episodios reales (corrige datos viejos,
     # ej. Mushoku Tensei que tenía "2" cuando en verdad hay 3).
     doc["seasons"] = len({e.get("season") for e in episodes if e.get("season")}) or doc.get("seasons", 1)
-    st, t = patch_fields(f"animes/{aid}", doc, token)
-    # Firestore: máx 1 MiB por documento. En animes ENORMES (One Piece, Detective Conan…)
-    # el doc se pasa → 400 "cannot be written / exceeds the maximum size". Si eso ocurre, se
-    # ADELGAZA por pasos (lo menos esencial primero) y se reintenta, sin perder episodios,
-    # el Latino ni las subidas de Vidara.
+    # Firestore: máx 1 MiB por documento. En animes ENORMES (Detective Conan, One Piece…)
+    # NO se recorta nada: los episodios que no caben se guardan en varios documentos
+    # (animes/{id}/eps/{i}) y el sitio los vuelve a unir al leer.
+    ok, t = save_big_doc(aid, doc, episodes, token, log)
+    st = 200 if ok else 400
+    # Red de seguridad: si aun así Firestore se queja del tamaño, se ADELGAZA por pasos
+    # (lo menos esencial primero), sin perder episodios, el Latino ni las subidas de Vidara.
     def _too_big(msg): return ("cannot be written" in msg) or ("exceeds the maximum" in msg) or ("1048576" in msg)
     slim_steps = ["desc", "dates", "srvdesc", "capserv", "img"]
     si = 0
@@ -1246,8 +1342,9 @@ def save(data, token, replace, log):
         elif step == "img":
             for e in episodes: e.pop("img", None)
             log("… y las miniaturas por episodio (usará la portada del anime)…")
-        doc["episodes"] = episodes; doc["episodesTotal"] = len(episodes); doc["episodesCount"] = len(episodes)
-        st, t = patch_fields(f"animes/{aid}", doc, token)
+        doc["episodesTotal"] = len(episodes); doc["episodesCount"] = len(episodes)
+        ok, t = save_big_doc(aid, doc, episodes, token, log)
+        st = 200 if ok else 400
     if st != 200: log(f"ERROR guardar: {st} {t[:150]}"); return False
     if si: log(f"✓ Guardado ajustado al límite de Firestore (se adelgazó el documento).")
     cat = get_catalog(); light = {k: v for k, v in doc.items() if k != "episodes"}
@@ -1600,6 +1697,9 @@ class App:
             try:
                 d = get_doc(f"animes/{aid}", self.token)
                 if not d: self.log("No se encontró el anime en la base."); return
+                if d.get("epChunks"):
+                    d["episodes"] = get_chunked_episodes(aid, d, self.token)
+                    self.log(f"Anime enorme: unidas {d.get('epChunks')} partes → {len(d['episodes'])} episodios.")
                 eps = d.get("episodes") or []
                 seasons_names = list(dict.fromkeys(e.get("season") for e in eps if e.get("season")))
                 # Recuerda los nombres REALES de temporada y el rango de nº de cada una
@@ -1997,6 +2097,8 @@ class App:
                 # puede ser personalizado como «Temporada 22: Elbaph») → así no marca como
                 # faltantes los 1174 que One Piece ya tiene.
                 existing = get_doc(f"animes/{aid}", self.token)
+                if existing and existing.get("epChunks"):
+                    existing["episodes"] = get_chunked_episodes(aid, existing, self.token)
                 have = set()
                 if existing and existing.get("episodes"):
                     for e in existing["episodes"]:

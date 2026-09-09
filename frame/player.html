@@ -255,7 +255,7 @@
     <script src="/js/tv-nav.js"></script>
     <script type="module">
         import { db } from "/js/firebase-config.js";
-        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const p = new URLSearchParams(location.search);
         const animeId = p.get("a");
@@ -460,6 +460,21 @@
                 const snap = await getDoc(doc(db, "animes", animeId));
                 if (!snap.exists()) { showEmpty("No se encontró el contenido."); return; }
                 const anime = snap.data();
+                // Animes enormes: los episodios que no caben en el documento (límite 1 MiB de
+                // Firestore) viven en la subcolección animes/{id}/eps. Se unen aquí.
+                if (anime.epChunks) {
+                    try {
+                        const cs = await getDocs(collection(db, "animes", animeId, "eps"));
+                        const parts = [];
+                        cs.forEach((d) => {
+                            const v = d.data();
+                            if (v && Array.isArray(v.items)) parts.push([Number(v.i != null ? v.i : d.id) || 0, v.items]);
+                        });
+                        parts.sort((a, b) => a[0] - b[0]);
+                        const base = Array.isArray(anime.episodes) ? anime.episodes : [];
+                        anime.episodes = base.concat.apply(base, parts.map((x) => x[1]));
+                    } catch (e) { console.warn("episodios por partes", e); }
+                }
                 const ep = (anime.episodes || []).find((e) =>
                     (!season || String(e.season) === String(season)) && Number(e.number) === Number(number));
                 if (!ep) { showEmpty("No se encontró el episodio."); return; }

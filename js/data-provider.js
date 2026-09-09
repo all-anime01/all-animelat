@@ -143,7 +143,12 @@ export async function getFullAnime(id) {
   if (FIREBASE_CONFIGURED) {
     try {
       const snap = await getDoc(doc(db, "animes", id));
-      if (snap.exists()) { const data = snap.data(); idbSet("anime:" + id, { data, ts: Date.now() }); return data; }
+      if (snap.exists()) {
+        const data = snap.data();
+        await mergeEpisodeChunks(id, data);   // animes enormes: episodios repartidos en varios docs
+        idbSet("anime:" + id, { data, ts: Date.now() });
+        return data;
+      }
     } catch (e) {
       const c = await idbGet("anime:" + id);           // sin red → última copia
       if (c && c.data) return c.data;
@@ -152,6 +157,24 @@ export async function getFullAnime(id) {
   }
   const bundled = await getBundled();
   return bundled.find((a) => a.id === id) || null;
+}
+
+// Un documento de Firestore no puede pasar de 1 MiB, y animes MUY largos (Detective
+// Conan, One Piece…) no caben. Los episodios que sobran se guardan en la subcolección
+// animes/{id}/eps y aquí se vuelven a unir: el resto del sitio no nota la diferencia.
+async function mergeEpisodeChunks(id, data) {
+  if (!data || !data.epChunks) return;
+  try {
+    const snap = await getDocs(collection(db, "animes", id, "eps"));
+    const parts = [];
+    snap.forEach((d) => {
+      const v = d.data();
+      if (v && Array.isArray(v.items)) parts.push([Number(v.i != null ? v.i : d.id) || 0, v.items]);
+    });
+    parts.sort((a, b) => a[0] - b[0]);
+    const base = Array.isArray(data.episodes) ? data.episodes : [];
+    data.episodes = base.concat.apply(base, parts.map((x) => x[1]));
+  } catch (e) { console.warn("[data-provider] no se pudieron unir los episodios por partes", e); }
 }
 
 /** Fuerza recarga del catálogo desde Firestore (ignora la caché). */
