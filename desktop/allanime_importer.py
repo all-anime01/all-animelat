@@ -1252,7 +1252,16 @@ def save(data, token, replace, log):
                 if _seen[nn] > 1: per_season_existing = True   # numera POR temporada (1..N por cada una)
                 by_num.setdefault(nn, _s)
             except (TypeError, ValueError): pass
-        last_group = groups[-1] if groups else None
+        # TEMPORADAS CERRADAS (lockedSeasons) y TEMPORADA DESTINO (defaultSeason).
+        # Se guardan en el propio anime. Un arco que ya terminó NUNCA debe crecer:
+        # Link Click tiene «Bridon Arc» con 6 episodios y punto — lo nuevo va a la
+        # «Temporada 3». Sin esto, el mapeo por posición metía la temporada 2 dentro
+        # del arco y salían 12 episodios repetidos.
+        cerradas = [str(x) for x in (existing.get("lockedSeasons") or []) if x]
+        destino = str(existing.get("defaultSeason") or "").strip() or None
+        if cerradas: log("Temporadas cerradas (no se les añade nada): " + ", ".join(cerradas))
+        abiertos = [g for g in groups if g not in cerradas] or groups
+        last_group = (destino if destino in groups else None) or (abiertos[-1] if abiertos else None)
         built_seasons_n = len({b.get("season") for b in built if b.get("season")})
         if data.get("_update_only") and groups:
             for b in built:
@@ -1264,9 +1273,23 @@ def save(data, token, replace, log):
                     try: bn = int(b.get("number"))
                     except (TypeError, ValueError): bn = None
                     b["season"] = by_num.get(bn) or last_group
+                elif built_seasons_n <= 1 and destino:
+                    # Se scrapeó UNA sola temporada (la que está en emisión) y el anime
+                    # tiene varias: va a la temporada destino, no a la primera. Sin esto,
+                    # el episodio nuevo de Link Click caía en la «Temporada 1».
+                    b["season"] = destino
                 else:
-                    # Numeración POR TEMPORADA: mapea por POSICIÓN al grupo existente.
-                    b["season"] = groups[idx_s - 1] if 1 <= idx_s <= len(groups) else last_group
+                    # Numeración POR TEMPORADA: mapea por POSICIÓN, saltándose las cerradas.
+                    b["season"] = abiertos[idx_s - 1] if 1 <= idx_s <= len(abiertos) else last_group
+        # Red de seguridad: pase lo que pase, a una temporada cerrada no entra nada
+        # que no estuviera ya en ella.
+        if cerradas:
+            ya = {(e.get("season"), str(e.get("number"))) for e in ex}
+            movidos = 0
+            for b in built:
+                if b.get("season") in cerradas and (b.get("season"), str(b.get("number"))) not in ya:
+                    b["season"] = last_group; movidos += 1
+            if movidos: log(f"{movidos} episodios se movieron fuera de una temporada cerrada → «{last_group}».")
         idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
         added = replaced = 0
         for b in built:
@@ -1387,6 +1410,7 @@ class App:
         self._pending_voice = None   # acción por voz a ejecutar tras cargar del catálogo
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}   # anime cargado del catálogo (para actualizar, no duplicar)
         self.loaded_seasons = []; self.loaded_season_by_num = {}                 # nombres/rangos reales de temporada del anime cargado
+        self.loaded_locked = []; self.loaded_default = ""                        # temporadas cerradas / destino de lo nuevo
         self._tree_eps = []                                                     # episodios visibles en el listado (mapa fila→episodio)
         root.title("All-Anime Scrapper"); root.geometry("1020x780"); root.configure(bg=BG); root.minsize(900, 660)
         try:
@@ -1705,6 +1729,15 @@ class App:
                 # Recuerda los nombres REALES de temporada y el rango de nº de cada una
                 # (para colocar/mostrar los episodios nuevos en «Temporada 22: Elbaph», etc.).
                 self.loaded_seasons = seasons_names
+                # Reglas guardadas en el propio anime: temporadas CERRADAS (arcos que
+                # ya terminaron, como «Bridon Arc» de Link Click con sus 6 episodios)
+                # y temporada DESTINO para lo nuevo.
+                self.loaded_locked = [str(x) for x in (d.get("lockedSeasons") or []) if x]
+                self.loaded_default = str(d.get("defaultSeason") or "").strip()
+                if self.loaded_locked:
+                    self.log("Temporadas cerradas (no se les añade nada): " + ", ".join(self.loaded_locked))
+                if self.loaded_default:
+                    self.log(f"Los episodios nuevos van a «{self.loaded_default}».")
                 self.loaded_season_by_num = {}
                 for e in eps:
                     try: self.loaded_season_by_num[int(e.get("number"))] = e.get("season")
@@ -1874,9 +1907,15 @@ class App:
         for e in new_eps:
             try: num = int(e.get("number"))
             except (TypeError, ValueError): num = None
+            abiertas = [x for x in self.loaded_seasons if x not in self.loaded_locked] or self.loaded_seasons
+            porDefecto = self.loaded_default if self.loaded_default in self.loaded_seasons else (abiertas[-1] if abiertas else None)
             if custom: e["season"] = dest
-            elif num is not None and num in self.loaded_season_by_num: e["season"] = self.loaded_season_by_num[num]
-            elif self.loaded_seasons: e["season"] = self.loaded_seasons[-1]
+            elif num is not None and self.loaded_season_by_num.get(num) not in (None, *self.loaded_locked):
+                e["season"] = self.loaded_season_by_num[num]
+            elif porDefecto: e["season"] = porDefecto
+            # Un arco cerrado no crece nunca, ni siquiera si el usuario lo eligió a mano.
+            if e.get("season") in self.loaded_locked and porDefecto:
+                e["season"] = porDefecto
             # el videoUrl codifica el nombre de temporada → mantenerlo en sintonía
             e["videoUrl"] = f"frame/player.html?a={self.loaded_aid}&s={urllib.parse.quote(str(e.get('season', '')))}&e={e.get('number')}"
         # muestra la temporada donde entraron los episodios nuevos
@@ -2043,6 +2082,7 @@ class App:
         self.data = None
         self.loaded_aid = None; self.loaded_title = ""; self._loaded_info = {}
         self.loaded_seasons = []; self.loaded_season_by_num = {}
+        self.loaded_locked = []; self.loaded_default = ""
         self.clear_tree()
         for e in (self.f_title, self.f_year, self.f_alt, self.f_creator, self.f_poster, self.f_back, self.f_logo,
                   self.title, self.rangef, self.seasonf, self.srcslug):
