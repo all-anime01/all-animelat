@@ -73,6 +73,10 @@ async function getRemoteVersion() {
   return snap.exists() ? snap.data().version || null : null;
 }
 
+// Versión del FORMATO de la caché local. Al subirla, las copias viejas del
+// navegador se descartan y se vuelve a bajar el catálogo.
+const CACHE_SCHEMA = 2;
+
 // ---- Descarga completa del catálogo y lo guarda en caché -------------------
 async function fetchFresh() {
   if (!FIREBASE_CONFIGURED) return { data: await getBundled(), version: null };
@@ -81,7 +85,11 @@ async function fetchFresh() {
     const snap = await getDocs(collection(db, "animes"));
     if (snap.empty) return { data: await getBundled(), version: null };
     const data = snap.docs.map((d) => d.data());
-    await idbSet("catalog", { version, data, ts: Date.now() });
+    // Animes enormes (One Piece): sus últimos episodios viven en la subcolección
+    // «eps». Sin esto, el inicio, el calendario y explorar se quedaban con los
+    // episodios del documento base (a One Piece le faltaban del 1082 en adelante).
+    await Promise.all(data.filter((a) => a && a.epChunks).map((a) => mergeEpisodeChunks(a.id, a)));
+    await idbSet("catalog", { schema: CACHE_SCHEMA, version, data, ts: Date.now() });
     return { data, version };
   } catch (e) {
     console.warn("[data-provider] Firestore no disponible; usando database.js", e);
@@ -106,7 +114,9 @@ async function revalidate(cachedVersion) {
  */
 export async function getAnimeData() {
   const cached = await idbGet("catalog");
-  if (cached && Array.isArray(cached.data) && cached.data.length) {
+  // Si la caché es de una versión anterior del formato se tira: la de antes de
+  // unir los episodios por partes dejaba a One Piece sin sus últimos capítulos.
+  if (cached && cached.schema === CACHE_SCHEMA && Array.isArray(cached.data) && cached.data.length) {
     revalidate(cached.version); // fire-and-forget
     return cached.data;
   }

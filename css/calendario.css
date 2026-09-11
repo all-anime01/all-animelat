@@ -1,0 +1,365 @@
+/* ============================================================================
+   CALENDARIO DE ESTRENOS  —  All-Anime
+   Horario semanal: un bloque por día, con el día de hoy destacado.
+   Usa las variables de css/index-css.css para no salirse de la marca.
+   ========================================================================== */
+
+.cal-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    /* La cabecera del sitio es fija: hay que dejarle sitio (como .page-header). */
+    padding: 14rem 0 1.8rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cal-head h1 {
+    font-family: var(--font-headings);
+    font-size: clamp(2.6rem, 4.5vw, 4rem);
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.cal-head h1::after {
+    /* Acento de marca bajo el título */
+    content: "";
+    display: block;
+    width: 5.6rem;
+    height: 4px;
+    margin-top: 1rem;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+}
+
+#cal-sub {
+    color: var(--grey-text);
+    font-size: 1.5rem;
+    margin: 1rem 0 0;
+}
+
+.cal-today-chip {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.9rem 1.6rem;
+    font-size: 1.4rem;
+    color: var(--grey-text);
+    white-space: nowrap;
+}
+
+.cal-today-chip b {
+    color: var(--light-text);
+    text-transform: capitalize;
+}
+
+.cal-today-chip .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(202, 48, 48, 0.18);
+}
+
+/* --- Barra de días ------------------------------------------------------- */
+.cal-rail {
+    position: sticky;
+    top: 78px;   /* justo debajo de la cabecera fija (.scrolled ≈ 75px) */
+    z-index: 40;
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 1.4rem 0;
+    margin-bottom: 1rem;
+    background: linear-gradient(var(--dark-bg) 78%, transparent);
+}
+
+.cal-rail::-webkit-scrollbar {
+    display: none;
+}
+
+.cal-day-btn {
+    flex: 1 0 auto;
+    min-width: 9.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    background: var(--light-bg);
+    color: var(--grey-text);
+    font-family: var(--font-main);
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.cal-day-btn:hover {
+    transform: translateY(-2px);
+    border-color: #4a4a4a;
+    color: var(--light-text);
+}
+
+.cal-day-btn .d-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.cal-day-btn .d-count {
+    font-size: 1.2rem;
+    opacity: 0.75;
+}
+
+.cal-day-btn.is-today {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+.cal-day-btn.is-today .d-count {
+    opacity: 0.9;
+}
+
+.cal-day-btn.is-empty {
+    opacity: 0.45;
+}
+
+/* --- Bloque de un día ---------------------------------------------------- */
+.cal-day {
+    padding: 2.2rem 0 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.cal-day:first-child {
+    border-top: 0;
+}
+
+.cal-day-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1.4rem;
+    margin-bottom: 1.6rem;
+}
+
+.cal-day-head h2 {
+    font-family: var(--font-headings);
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    margin: 0;
+    text-transform: capitalize;
+    letter-spacing: -0.01em;
+}
+
+.cal-day-head .n {
+    color: var(--grey-text);
+    font-size: 1.4rem;
+}
+
+.cal-day-head .hoy {
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+}
+
+.cal-day.today .cal-day-head h2 {
+    color: var(--primary-color);
+}
+
+.cal-empty {
+    color: var(--grey-text);
+    font-size: 1.4rem;
+    padding: 0.6rem 0 1.4rem;
+    opacity: 0.7;
+}
+
+/* --- Tarjetas ------------------------------------------------------------ */
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
+    gap: 1.6rem;
+}
+
+.cal-card {
+    position: relative;
+    display: block;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cal-card:hover,
+.cal-card:focus-visible {
+    transform: translateY(-4px);
+    border-color: #4a4a4a;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+    outline: none;
+}
+
+.cal-card:focus-visible {
+    border-color: var(--primary-color);
+}
+
+.cal-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.cal-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cal-card:hover .cal-thumb img {
+    opacity: 0.85;
+}
+
+.cal-time {
+    position: absolute;
+    left: 0.9rem;
+    top: 0.9rem;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(3px);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    font-variant-numeric: tabular-nums;
+}
+
+.cal-state {
+    position: absolute;
+    right: 0.9rem;
+    top: 0.9rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    color: #fff;
+}
+
+.cal-state.ya {
+    background: rgba(16, 122, 60, 0.92);
+}
+
+.cal-state.hoy {
+    background: var(--primary-color);
+}
+
+.cal-state.pronto {
+    background: rgba(180, 110, 9, 0.95);
+}
+
+.cal-state.futuro {
+    background: rgba(40, 40, 40, 0.9);
+    color: #d5d5d5;
+}
+
+.cal-info {
+    padding: 1.1rem 1.2rem 1.3rem;
+}
+
+.cal-anime {
+    font-family: var(--font-headings);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.35rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cal-ep {
+    color: var(--grey-text);
+    font-size: 1.3rem;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cal-ep b {
+    color: var(--light-text);
+    font-variant-numeric: tabular-nums;
+}
+
+.cal-tags {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.cal-tag {
+    font-size: 1.1rem;
+    color: var(--grey-text);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.2rem 0.6rem;
+}
+
+/* Episodio aún sin estrenar: se ve, pero no se puede abrir. */
+.cal-card.locked {
+    cursor: not-allowed;
+}
+
+.cal-card.locked .cal-thumb img {
+    filter: grayscale(0.85) brightness(0.5);
+}
+
+.cal-card.locked .cal-anime {
+    opacity: 0.75;
+}
+
+@media (max-width: 600px) {
+    .cal-grid {
+        grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+        gap: 1.2rem;
+    }
+
+    .cal-head {
+        padding: 11rem 0 1.4rem;
+    }
+
+    .cal-rail {
+        top: 66px;
+    }
+
+    .cal-day-btn {
+        min-width: 7.6rem;
+        padding: 0.9rem 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cal-card,
+    .cal-day-btn {
+        transition: none;
+    }
+
+    .cal-card:hover {
+        transform: none;
+    }
+}

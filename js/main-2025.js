@@ -1644,64 +1644,149 @@ $(document).ready(function () {
   }
 
   // --- LÓGICA ESPECÍFICA DE LA PÁGINA DE CALENDARIO ---
+  // Horario SEMANAL: un bloque por día de la semana. Cada anime aparece en el
+  // día en que se emite, con su próximo episodio si ya está programado o, si no,
+  // con el último que salió. Así One Piece sale siempre en su domingo aunque el
+  // capítulo de la semana que viene todavía no esté cargado.
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"];
+  const DIAS_CORTO = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+
   function populateCalendarPage() {
-    const last24hList = $("#last-24h-list");
-    const lastWeekList = $("#last-week-list");
-    if (!last24hList.length && !lastWeekList.length) return;
+    const railEl = document.getElementById("cal-rail");
+    const daysEl = document.getElementById("cal-days");
+    if (!railEl || !daysEl) return;
 
     const now = new Date();
-    const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-    const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const desde = now.getTime() - 8 * 864e5;    // una semana hacia atrás
+    const hasta = now.getTime() + 9 * 864e5;    // y algo más de una semana hacia delante
 
-    let allRecentEpisodes = [];
+    // 1) Todo lo que cae en la ventana, quedándonos con UNA entrada por anime y
+    //    día: la próxima si la hay, y si no la más reciente.
+    const mejor = new Map();
     animeData.forEach((anime) => {
-      if (anime.episodes) {
-        anime.episodes.forEach((episode) => {
-          const releaseDateTime = parseCustomDate(
-            episode.releaseDate,
-            episode.releaseTime
-          );
-          if (releaseDateTime >= oneWeekAgo && releaseDateTime <= now) {
-            allRecentEpisodes.push({
-              anime,
-              episode,
-              dateTime: releaseDateTime,
-            });
-          }
-        });
-      }
+      (anime.episodes || []).forEach((episode) => {
+        if (!episode.releaseDate) return;
+        const dt = parseCustomDate(episode.releaseDate, episode.releaseTime);
+        const t = dt.getTime();
+        if (!t || t < desde || t > hasta) return;
+        const dow = (dt.getDay() + 6) % 7;                 // 0 = lunes
+        const key = anime.id + "|" + dow;
+        const cand = { anime, episode, dt, dow, futuro: t > now.getTime() };
+        const prev = mejor.get(key);
+        if (!prev) { mejor.set(key, cand); return; }
+        // Preferimos el que aún no ha salido; entre dos iguales, el más cercano a hoy.
+        const mejorQue = (a, b) =>
+          a.futuro !== b.futuro ? a.futuro
+            : Math.abs(a.dt - now) < Math.abs(b.dt - now);
+        if (mejorQue(cand, prev)) mejor.set(key, cand);
+      });
     });
 
-    allRecentEpisodes.sort((a, b) => b.dateTime - a.dateTime);
+    const porDia = DIAS.map(() => []);
+    mejor.forEach((v) => porDia[v.dow].push(v));
+    // Ordena por hora de emisión; los que no tienen hora (00:00) van al final.
+    const minutoDelDia = (x) => {
+      const m = x.dt.getHours() * 60 + x.dt.getMinutes();
+      return m === 0 ? 9999 : m;
+    };
+    porDia.forEach((l) => l.sort((a, b) => minutoDelDia(a) - minutoDelDia(b)));
 
-    const last24hAnimes = allRecentEpisodes.filter(
-      (item) => item.dateTime >= oneDayAgo
-    );
-    const lastWeekAnimes = allRecentEpisodes.filter(
-      (item) => item.dateTime < oneDayAgo
-    );
+    const hoyIdx = (now.getDay() + 6) % 7;
+    const total = porDia.reduce((n, l) => n + l.length, 0);
 
-    last24hList.empty();
-    if (last24hAnimes.length > 0) {
-      last24hAnimes.forEach((item) =>
-        last24hList.append(createAnimeCard(item.anime))
-      );
+    // 2) Cabecera y barra de días
+    const chip = document.getElementById("cal-today-chip");
+    if (chip) {
+      chip.innerHTML = `<span class="dot"></span> Hoy es <b>${DIAS[hoyIdx]}</b> · ${porDia[hoyIdx].length} estreno${porDia[hoyIdx].length === 1 ? "" : "s"}`;
+    }
+    const sub = document.getElementById("cal-sub");
+    if (sub) sub.textContent = total ? `${total} episodios repartidos en la semana.` : "Todavía no hay estrenos programados.";
+
+    railEl.innerHTML = DIAS.map((d, i) => `
+        <button type="button" class="cal-day-btn${i === hoyIdx ? " is-today" : ""}${porDia[i].length ? "" : " is-empty"}" data-day="${i}">
+            <span class="d-name">${DIAS_CORTO[i]}</span>
+            <span class="d-count">${porDia[i].length || "–"}</span>
+        </button>`).join("");
+    railEl.querySelectorAll(".cal-day-btn").forEach((b) => {
+      b.addEventListener("click", () => {
+        const sec = document.getElementById("cal-d" + b.dataset.day);
+        if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    // 3) Un bloque por día
+    daysEl.innerHTML = DIAS.map((nombre, i) => {
+      const lista = porDia[i];
+      const cuerpo = lista.length
+        ? `<div class="cal-grid">${lista.map(calCardHtml).join("")}</div>`
+        : `<p class="cal-empty">Sin estrenos este día.</p>`;
+      return `
+        <section class="cal-day${i === hoyIdx ? " today" : ""}" id="cal-d${i}">
+            <div class="cal-day-head">
+                <h2>${nombre}</h2>
+                ${i === hoyIdx ? '<span class="hoy">HOY</span>' : ""}
+                <span class="n">${lista.length || "sin"} ${lista.length === 1 ? "estreno" : "estrenos"}</span>
+            </div>
+            ${cuerpo}
+        </section>`;
+    }).join("");
+
+    // Los que aún no se han estrenado no abren el reproductor.
+    daysEl.querySelectorAll(".cal-card.locked").forEach((c) => {
+      c.addEventListener("click", (e) => {
+        e.preventDefault();
+        showToast(`🔒 Se estrena ${c.dataset.when}.`, "info");
+      });
+    });
+
+    // Deja el día de hoy a la vista sin dar un salto brusco.
+    setTimeout(() => {
+      const btn = railEl.querySelector(".is-today");
+      if (btn && btn.scrollIntoView) btn.scrollIntoView({ block: "nearest", inline: "center" });
+    }, 60);
+  }
+
+  // Tarjeta de un episodio dentro del calendario.
+  function calCardHtml(it) {
+    const { anime, episode, dt } = it;
+    const now = new Date();
+    const hoy = dt.toDateString() === now.toDateString();
+    const futuro = dt.getTime() > now.getTime();
+    const locked = isUnaired(episode);
+    const hora = dt.getHours() || dt.getMinutes()
+      ? String(dt.getHours()).padStart(2, "0") + ":" + String(dt.getMinutes()).padStart(2, "0")
+      : "";
+
+    let clase = "ya", texto = "Disponible";
+    if (futuro) {
+      clase = hoy ? "pronto" : "futuro";
+      texto = countdownText(episode) || (hoy ? "Hoy" : "Próximamente");
+    } else if (hoy) {
+      clase = "hoy"; texto = "Hoy";
     } else {
-      last24hList.html(
-        '<p class="no-results">No se añadieron nuevos animes en las últimas 24 horas.</p>'
-      );
+      const dias = Math.round((now - dt) / 864e5);
+      texto = dias <= 0 ? "Disponible" : dias === 1 ? "Ayer" : `Hace ${dias} días`;
     }
 
-    lastWeekList.empty();
-    if (lastWeekAnimes.length > 0) {
-      lastWeekAnimes.forEach((item) =>
-        lastWeekList.append(createAnimeCard(item.anime))
-      );
-    } else {
-      lastWeekList.html(
-        '<p class="no-results">No se añadieron nuevos animes en la última semana.</p>'
-      );
-    }
+    const img = episode.img || anime.heroImg || anime.img || "";
+    const link = `anime-details.html?id=${anime.id}&season=${encodeURIComponent(episode.season)}&episode=${episode.number}`;
+    return `
+      <a class="cal-card${locked ? " locked" : ""}" href="${locked ? "#" : link}"${locked ? ` data-when="${esc(whenText(episode))}"` : ""}>
+          <div class="cal-thumb">
+              <img src="${esc(img)}" alt="${esc(anime.title)}" loading="lazy" decoding="async">
+              ${hora ? `<span class="cal-time">${hora}</span>` : ""}
+              <span class="cal-state ${clase}">${esc(texto)}</span>
+          </div>
+          <div class="cal-info">
+              <p class="cal-anime">${esc(anime.title)}</p>
+              <p class="cal-ep"><b>E${episode.number}</b>${episode.title ? " · " + esc(episode.title) : ""}</p>
+              <div class="cal-tags">
+                  <span class="cal-tag">${esc(episode.language || anime.audio || "Sub")}</span>
+                  ${episode.duration ? `<span class="cal-tag">${esc(episode.duration)}</span>` : ""}
+              </div>
+          </div>
+      </a>`;
   }
 
   // --- EVENTOS GLOBALES Y DE NAVEGACIÓN ---

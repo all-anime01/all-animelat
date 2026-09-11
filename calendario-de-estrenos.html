@@ -7,6 +7,7 @@
     <title>Calendario de Estrenos - All-anime</title>
     <link rel="shortcut icon" href="image/logo.ico">
     <link rel="stylesheet" href="css/index-css.css">
+    <link rel="stylesheet" href="css/calendario.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -35,20 +36,19 @@
     </header>
 
     <main class="main-content container">
-        <div class="page-header">
-            <h1>Anime Recientemente Añadido</h1>
+        <div class="cal-head">
+            <div class="cal-head-txt">
+                <h1>Calendario de estrenos</h1>
+                <p id="cal-sub">Qué se estrena cada día de la semana.</p>
+            </div>
+            <div class="cal-today-chip" id="cal-today-chip"></div>
         </div>
 
-        <section class="anime-listing-section">
-            <h2 class="section-title">Últimas 24 Horas</h2>
-            <div class="anime-grid" id="last-24h-list"></div>
-        </section>
+        <!-- Barra de días (se rellena desde js/main-2025.js) -->
+        <nav class="cal-rail" id="cal-rail" aria-label="Días de la semana"></nav>
 
-        <section class="anime-listing-section">
-            <h2 class="section-title">De la Última Semana</h2>
-            <div class="anime-grid" id="last-week-list"></div>
-        </section>
-
+        <!-- Un bloque por día -->
+        <div id="cal-days"></div>
     </main>
 
     <footer class="footer">
