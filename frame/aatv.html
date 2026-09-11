@@ -61,6 +61,7 @@
     <script type="module">
         import { db } from "/js/firebase-config.js";
         import { doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { flagsReady, isUnaired, lockedHtml, injectLockStyles } from "/js/unaired.js";
 
         const p = new URLSearchParams(location.search);
         const animeId = p.get("a"), season = p.get("s"), number = p.get("e");
@@ -110,6 +111,12 @@
                     } catch (e) { console.warn("episodios por partes", e); }
                 }
                 const ep = (anime.episodes || []).find((e) => (!season || String(e.season) === String(season)) && Number(e.number) === Number(number));
+                await flagsReady;
+                if (isUnaired(ep)) {                       // aún no estrenado
+                    injectLockStyles();
+                    document.querySelector(".aatv-bar").innerHTML = lockedHtml(ep);
+                    return;
+                }
                 let servers = (ep && Array.isArray(ep.servers) ? ep.servers : []).filter((s) => s && s.url);
                 // Excluir embed69/PelisPlus (ese se muestra aparte como "PelisPlus").
                 servers = servers.filter((s) => !/embed69\.org/i.test(s.url));

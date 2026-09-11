@@ -605,6 +605,11 @@
                         <span style="color:var(--grey);font-size:13px">Mensaje de mantenimiento</span>
                         <input id="fl-maint-msg" type="text" placeholder="Volvemos muy pronto. Gracias por tu paciencia.">
                     </label>
+                    <h2>Episodios sin estrenar</h2>
+                    <p style="color:var(--grey);font-size:14px;margin-bottom:14px">La lista de episodios se sube completa con la fecha de cada uno. Con esto activado, un episodio que todavía no se ha emitido sale con candado y su fecha, y no se puede abrir (ni en la web ni en la app). Se desbloquea solo al llegar el día: no hay que tocar nada.</p>
+                    <label style="display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:16px">
+                        <input id="fl-lock-unaired" type="checkbox" style="width:auto"> Bloquear episodios hasta su fecha de estreno
+                    </label>
                     <h2>Banner global</h2>
                     <p style="color:var(--grey);font-size:14px;margin-bottom:14px">Muestra una barra fija arriba en todo el sitio (avisos, estrenos, alertas).</p>
                     <label style="display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:12px">
@@ -841,6 +846,7 @@
                 $("fl-banner-on").checked = !!f.bannerOn;
                 $("fl-banner-text").value = f.bannerText || "";
                 $("fl-banner-type").value = f.bannerType || "info";
+                $("fl-lock-unaired").checked = !!f.lockUnaired;
             } catch (e) { setMsg($("fl-msg"), "Error: " + (e.message || e), "err"); }
             loadAudit();
         }
@@ -848,6 +854,7 @@
             const f = {
                 maintenance: $("fl-maint").checked, maintenanceMsg: $("fl-maint-msg").value.trim(),
                 bannerOn: $("fl-banner-on").checked, bannerText: $("fl-banner-text").value.trim(), bannerType: $("fl-banner-type").value,
+                lockUnaired: $("fl-lock-unaired").checked,
             };
             setMsg($("fl-msg"), "Guardando…", "");
             try { await saveFlags(f); setMsg($("fl-msg"), "✔ Guardado. Aplica al recargar el sitio.", "ok"); loadAudit(); }

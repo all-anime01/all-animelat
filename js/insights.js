@@ -8,6 +8,7 @@
 //  Control/Moderación.
 // ============================================================================
 import { db } from "./firebase-config.js";
+import { flagsReady } from "./unaired.js";
 import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // --- Dispositivo (una vez por sesión) --------------------------------------
@@ -81,7 +82,8 @@ function showMaintenance(msg) {
 
 // Devuelve {maintenance:true} si bloqueó la página (para que main-2025 pare).
 export async function applyFlags(isAdmin) {
-  try { const s = await getDoc(doc(db, "config", "flags")); flags = s.exists() ? (s.data() || {}) : {}; }
+  // config/flags lo lee unaired.js al arrancar (una sola lectura para todo el sitio).
+  try { flags = (await flagsReady) || {}; }
   catch { flags = {}; }
   if (flags.bannerOn && flags.bannerText) showBanner(flags.bannerText, flags.bannerType);
   if (flags.maintenance && !isAdmin) { showMaintenance(flags.maintenanceMsg || "Volvemos muy pronto. Gracias por tu paciencia."); return { maintenance: true }; }

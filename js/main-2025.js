@@ -69,6 +69,8 @@ async function loadPageData() {
   return getAnimeData();   // otras páginas (explorar, favoritos…) usan todo
 }
 import { initPWA } from "./pwa.js";
+// Episodios que aún no se han estrenado (interruptor en admin → Control).
+import { flagsReady, isUnaired, whenText, countdownText, injectLockStyles } from "./unaired.js";
 
 // Registra la visita (una vez por sesión) para la analítica del admin.
 logVisit();
@@ -197,7 +199,11 @@ setupHero();
 initNotifications();
 
 $(document).ready(function () {
-  loadPageData().then(function (animeData) {
+  injectLockStyles();
+  // Se espera al interruptor de «no estrenados» para que el primer pintado
+  // ya salga bien (va en paralelo con los datos, no añade espera real).
+  Promise.all([loadPageData(), flagsReady]).then(function (_r) {
+    var animeData = _r[0];
   // --- LÓGICA DE ANIMACIÓN DE CARGA ---
   if (window.innerWidth <= 991 && !sessionStorage.getItem("loaderShown")) {
     $("body").css("overflow", "hidden");
@@ -638,6 +644,11 @@ $(document).ready(function () {
 
   function openPlayer(anime, episode, opts) {
     if (!anime || !episode) return;
+    // Episodio que aún no se ha estrenado: no se abre (evita la pantalla negra).
+    if (isUnaired(episode)) {
+      showToast(`🔒 «${episode.title || "Episodio " + episode.number}» se estrena el ${whenText(episode)}.`, "info");
+      return;
+    }
     opts = opts || {};
     currentPlayerAnime = anime;
     currentPlayerEpisode = episode;
@@ -657,7 +668,8 @@ $(document).ready(function () {
       (e) => e.number === episode.number
     );
     const prevEpisode = seasonEpisodes[currentEpisodeIndex - 1];
-    const nextEpisode = seasonEpisodes[currentEpisodeIndex + 1];
+    let nextEpisode = seasonEpisodes[currentEpisodeIndex + 1];
+    if (isUnaired(nextEpisode)) nextEpisode = undefined;   // aún no estrenado: sin «siguiente» ni autoplay
     currentNextEpisode = nextEpisode || null;
     currentPrevEpisode = prevEpisode || null;
 
@@ -1396,13 +1408,19 @@ $(document).ready(function () {
       const sevenDaysAgo = new Date(today);
       sevenDaysAgo.setDate(today.getDate() - 7);
       const isNew = releaseDateTime >= sevenDaysAgo;
+      // Aún no estrenado: se ve en la lista (con su fecha) pero no se puede abrir.
+      const locked = isUnaired(ep);
+      const cd = locked ? countdownText(ep) : "";
       return `
-                <div class="episode-detail-card" data-episode-index="${index}">
-                    <a href="#" class="open-player-from-details" data-episode-index="${index}">
+                <div class="episode-detail-card${locked ? " ep-locked" : ""}" data-episode-index="${index}">
+                    <a href="#" class="open-player-from-details" data-episode-index="${index}"${locked ? ' aria-disabled="true"' : ""}>
                         <div class="episode-img-container">
                             <img src="${ep.img}" alt="${ep.title}" loading="lazy" decoding="async">
-                            ${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
-                            <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
+                            ${locked ? `<div class="ep-lock-badge"><i class="fas fa-lock"></i>
+                              <span class="ep-lock-when">Disponible el ${whenText(ep)}</span>
+                              ${cd ? `<span class="ep-lock-count">${cd}</span>` : ""}</div>`
+                              : `${isNew ? '<span class="new-tag">NUEVO</span>' : ""}
+                            <div class="play-icon-overlay"><i class="fas fa-play"></i></div>`}
                             <span class="duration-tag">${ep.duration}</span>
                         </div>
                         <div class="episode-card-info">

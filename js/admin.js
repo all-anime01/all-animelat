@@ -480,7 +480,7 @@ export async function getFlags() {
 }
 export async function saveFlags(f) {
   await setDoc(doc(db, "config", "flags"), { ...f, updatedAt: serverTimestamp() }, { merge: true });
-  await logAudit("flags", `mantenimiento=${!!f.maintenance}, banner=${!!f.bannerOn}`);
+  await logAudit("flags", `mantenimiento=${!!f.maintenance}, banner=${!!f.bannerOn}, bloquear-no-estrenados=${!!f.lockUnaired}`);
   return true;
 }
 

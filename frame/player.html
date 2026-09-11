@@ -256,6 +256,7 @@
     <script type="module">
         import { db } from "/js/firebase-config.js";
         import { doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { flagsReady, isUnaired, lockedHtml, injectLockStyles } from "/js/unaired.js";
 
         const p = new URLSearchParams(location.search);
         const animeId = p.get("a");
@@ -485,6 +486,13 @@
                 const ep = (anime.episodes || []).find((e) =>
                     (!season || String(e.season) === String(season)) && Number(e.number) === Number(number));
                 if (!ep) { showEmpty("No se encontró el episodio."); return; }
+                // Episodio que aún no se ha estrenado: ni servidores ni pantalla negra.
+                await flagsReady;
+                if (isUnaired(ep)) {
+                    injectLockStyles();
+                    document.getElementById("serverContainer").innerHTML = lockedHtml(ep);
+                    return;
+                }
                 render(anime, ep);
             } catch (e) { console.error(e); showEmpty("No se pudieron cargar los servidores."); }
         })();
