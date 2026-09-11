@@ -15,34 +15,80 @@ const MESES = {
   julio: 6, agosto: 7, septiembre: 8, setiembre: 8, octubre: 9, noviembre: 10, diciembre: 11,
 };
 
-// «Septiembre 17, 2026» (+ hora «19:00») → Date. Devuelve null si no hay fecha
-// utilizable: sin fecha NUNCA se bloquea nada.
+// --- Zona horaria de referencia --------------------------------------------
+// Las fechas y horas del catálogo se escriben con el horario de COLOMBIA
+// (America/Bogotá, UTC-5 todo el año, sin horario de verano). Aquí se convierten
+// al INSTANTE real, así que cada visitante ve la hora de su propio país y la
+// cuenta atrás le sale bien esté donde esté.
+const TZ_REF_MIN = -5 * 60;                 // desfase de Colombia en minutos
+
+/** Desfase del visitante respecto a UTC, en minutos (Madrid = +120). */
+export function localOffsetMin() { return -new Date().getTimezoneOffset(); }
+
+/** «GMT-5», «GMT+2»… tal y como lo ve el visitante. */
+export function tzLabel() {
+  const o = localOffsetMin();
+  const sg = o < 0 ? "-" : "+";
+  const h = Math.floor(Math.abs(o) / 60), m = Math.abs(o) % 60;
+  return "GMT" + sg + h + (m ? ":" + String(m).padStart(2, "0") : "");
+}
+
+/** ¿El visitante está en otra zona distinta a la de Colombia? */
+export function tzDistinta() { return localOffsetMin() !== TZ_REF_MIN; }
+
+// «Septiembre 17, 2026» (+ hora «19:00», hora de Colombia) → Date con el
+// instante real. Devuelve null si no hay fecha utilizable: sin fecha NUNCA se
+// bloquea nada.
 export function parseReleaseDate(dateString, timeString) {
   if (!dateString) return null;
   const hm = String(timeString || "00:00").split(":");
   const hh = parseInt(hm[0], 10) || 0, mm = parseInt(hm[1], 10) || 0;
+  const enColombia = (y, mo, d) => {
+    if (!(y > 1900 && mo >= 0 && mo <= 11 && d >= 1 && d <= 31)) return null;
+    // hora de pared en Colombia → UTC (se le suman las 5 horas de diferencia)
+    return new Date(Date.UTC(y, mo, d, hh, mm) - TZ_REF_MIN * 60000);
+  };
 
   const p = String(dateString).replace(/,/g, " ").toLowerCase().split(/\s+/).filter(Boolean);
   if (p.length === 3 && Object.prototype.hasOwnProperty.call(MESES, p[0])) {
-    const d = new Date(parseInt(p[2], 10), MESES[p[0]], parseInt(p[1], 10), hh, mm);
-    return isNaN(d.getTime()) ? null : d;
+    return enColombia(parseInt(p[2], 10), MESES[p[0]], parseInt(p[1], 10));
   }
   const iso = String(dateString).match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (iso) {   // «2026-09-17»: se interpreta en hora local, no en UTC (si no, se adelanta un día)
-    const d = new Date(+iso[1], +iso[2] - 1, +iso[3], hh, mm);
-    return isNaN(d.getTime()) ? null : d;
-  }
+  if (iso) return enColombia(+iso[1], +iso[2] - 1, +iso[3]);
   const s = String(dateString).split("/");
   if (s.length === 3) {
     let y = parseInt(s[2], 10);
     if (y < 100) y += 2000;
-    const d = new Date(y, parseInt(s[1], 10) - 1, parseInt(s[0], 10), hh, mm);
-    return isNaN(d.getTime()) ? null : d;
+    return enColombia(y, parseInt(s[1], 10) - 1, parseInt(s[0], 10));
   }
   const g = new Date(dateString);
   if (isNaN(g.getTime())) return null;
   g.setHours(hh, mm, 0, 0);
   return g;
+}
+
+/** Año/mes/día/día-de-la-semana/hora de ese instante EN COLOMBIA. dow: 0 = lunes. */
+export function partesColombia(date) {
+  const t = new Date(date.getTime() + TZ_REF_MIN * 60000);
+  return {
+    y: t.getUTCFullYear(), m: t.getUTCMonth(), d: t.getUTCDate(),
+    dow: (t.getUTCDay() + 6) % 7, hh: t.getUTCHours(), mm: t.getUTCMinutes(),
+  };
+}
+
+/** Medianoche (hora de Colombia) de un día, como instante real. */
+export function medianocheColombia(y, m, d) {
+  return new Date(Date.UTC(y, m, d) - TZ_REF_MIN * 60000);
+}
+
+/** La hora del episodio en la zona del VISITANTE («18:30»). Vacío si no tiene hora. */
+export function localTimeText(ep) {
+  const d = parseReleaseDate(ep && ep.releaseDate, ep && ep.releaseTime);
+  if (!d) return "";
+  const c = partesColombia(d);
+  if (!c.hh && !c.mm) return "";          // sin hora de emisión: no se inventa
+  try { return d.toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit", hour12: false }); }
+  catch (e) { return String((ep && ep.releaseTime) || ""); }
 }
 
 // --- Interruptor (config/flags.lockUnaired) ---------------------------------
@@ -80,8 +126,8 @@ export function whenText(ep) {
   let out;
   try { out = d.toLocaleDateString("es", { day: "numeric", month: "long" }); }
   catch (e) { out = (ep && ep.releaseDate) || ""; }
-  const t = String((ep && ep.releaseTime) || "").trim();
-  if (t && t !== "00:00") out += " a las " + t;
+  const t = localTimeText(ep);
+  if (t) out += " a las " + t;
   return out;
 }
 

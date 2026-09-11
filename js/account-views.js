@@ -5,6 +5,7 @@
 
 import { listFavAnimes, listFavEpisodes, listHistory, listFollows, getFollowUpdates, markFollowSeen, animeEpisodeCount } from "./user-data.js";
 import { getAnimeData } from "./data-provider.js";
+import { parseReleaseDate } from "./unaired.js";
 
 export function injectAccountStyles() {
   if (document.getElementById("account-views-styles")) return;
@@ -112,13 +113,9 @@ export async function renderHistory(host) {
 }
 
 // ---- Notificaciones (episodios nuevos de animes seguidos) ------------------
-const MONTHS = { enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,octubre:9,noviembre:10,diciembre:11 };
-function parseRelease(str) {
-  if (!str) return null;
-  const p = String(str).replace(",", "").toLowerCase().split(/\s+/);
-  if (p.length === 3 && MONTHS.hasOwnProperty(p[0])) return new Date(+p[2], MONTHS[p[0]], +p[1]);
-  const d = new Date(str); return isNaN(d) ? null : d;
-}
+// Las fechas del catálogo van con el horario de Colombia; parseReleaseDate las
+// pasa al instante real para que el «hace N días» salga bien en cualquier país.
+function parseRelease(str) { return parseReleaseDate(str, "00:00"); }
 const relTime = (dt) => {
   const days = Math.floor((Date.now() - dt.getTime()) / 86400000);
   if (days <= 0) return "hoy";

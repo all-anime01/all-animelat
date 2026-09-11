@@ -70,7 +70,8 @@ async function loadPageData() {
 }
 import { initPWA } from "./pwa.js";
 // Episodios que aún no se han estrenado (interruptor en admin → Control).
-import { flagsReady, isUnaired, whenText, countdownText, injectLockStyles } from "./unaired.js";
+import { flagsReady, isUnaired, whenText, countdownText, injectLockStyles,
+         parseReleaseDate, partesColombia, medianocheColombia, localTimeText, tzLabel, tzDistinta } from "./unaired.js";
 
 // Registra la visita (una vez por sesión) para la analítica del admin.
 logVisit();
@@ -251,50 +252,11 @@ $(document).ready(function () {
     };
   }
 
+  // Las fechas del catálogo van con el horario de COLOMBIA; parseReleaseDate las
+  // convierte al instante real y el navegador las muestra en la hora de cada país.
+  // Sin fecha se devuelve la época (1970) para no romper listas ni calendario.
   function parseCustomDate(dateString, timeString = "00:00") {
-    // Episodios sin fecha (ej. cargados por lote): no romper — época 1970 (no
-    // salen como "nuevos" pero no crashean el render de listas/calendario).
-    if (!dateString) return new Date(0);
-    if (!timeString) timeString = "00:00";
-    const monthMap = {
-      enero: 0,
-      febrero: 1,
-      marzo: 2,
-      abril: 3,
-      mayo: 4,
-      junio: 5,
-      julio: 6,
-      agosto: 7,
-      septiembre: 8,
-      octubre: 9,
-      noviembre: 10,
-      diciembre: 11,
-    };
-    const [hours, minutes] = timeString.split(":").map(Number);
-
-    const partsWithComma = dateString.replace(",", "").toLowerCase().split(" ");
-    if (
-      partsWithComma.length === 3 &&
-      monthMap.hasOwnProperty(partsWithComma[0])
-    ) {
-      const year = parseInt(partsWithComma[2], 10);
-      const month = monthMap[partsWithComma[0]];
-      const day = parseInt(partsWithComma[1], 10);
-      return new Date(year, month, day, hours, minutes);
-    }
-
-    const partsWithSlash = dateString.split("/");
-    if (partsWithSlash.length === 3) {
-      let year = parseInt(partsWithSlash[2], 10);
-      if (year < 100) year += 2000;
-      const month = parseInt(partsWithSlash[1], 10) - 1;
-      const day = parseInt(partsWithSlash[0], 10);
-      return new Date(year, month, day, hours, minutes);
-    }
-
-    const genericDate = new Date(dateString);
-    genericDate.setHours(hours, minutes, 0, 0);
-    return genericDate;
+    return parseReleaseDate(dateString, timeString) || new Date(0);
   }
 
   // --- FUNCIONES GLOBALES DE MODAL Y FAVORITOS ---
@@ -1661,8 +1623,18 @@ $(document).ready(function () {
     const desde = now.getTime() - 8 * 864e5;    // una semana hacia atrás
     const hasta = now.getTime() + 9 * 864e5;    // y algo más de una semana hacia delante
 
-    // 1) Todo lo que cae en la ventana, quedándonos con UNA entrada por anime y
-    //    día: la próxima si la hay, y si no la más reciente.
+    // El día de la semana se decide con la fecha EN COLOMBIA (que es como se
+    // escriben en el catálogo), así la parrilla es la misma para todo el mundo;
+    // las horas sí se muestran en la zona de cada visitante.
+    const hoyCol = partesColombia(now);
+    const hoyIdx = hoyCol.dow;
+    // Instante de la medianoche de cada día de ESTA semana (lunes → domingo).
+    const objetivo = DIAS.map((_, i) =>
+      medianocheColombia(hoyCol.y, hoyCol.m, hoyCol.d + (i - hoyIdx)).getTime());
+
+    // 1) Una entrada por anime y día: la del día de ESTA semana. Así el episodio
+    //    que sale hoy no queda tapado por el de la semana que viene (les toca el
+    //    mismo día de la semana).
     const mejor = new Map();
     animeData.forEach((anime) => {
       (anime.episodes || []).forEach((episode) => {
@@ -1670,16 +1642,11 @@ $(document).ready(function () {
         const dt = parseCustomDate(episode.releaseDate, episode.releaseTime);
         const t = dt.getTime();
         if (!t || t < desde || t > hasta) return;
-        const dow = (dt.getDay() + 6) % 7;                 // 0 = lunes
+        const dow = partesColombia(dt).dow;                // 0 = lunes
         const key = anime.id + "|" + dow;
-        const cand = { anime, episode, dt, dow, futuro: t > now.getTime() };
+        const cand = { anime, episode, dt, dow, lejos: Math.abs(t - objetivo[dow]) };
         const prev = mejor.get(key);
-        if (!prev) { mejor.set(key, cand); return; }
-        // Preferimos el que aún no ha salido; entre dos iguales, el más cercano a hoy.
-        const mejorQue = (a, b) =>
-          a.futuro !== b.futuro ? a.futuro
-            : Math.abs(a.dt - now) < Math.abs(b.dt - now);
-        if (mejorQue(cand, prev)) mejor.set(key, cand);
+        if (!prev || cand.lejos < prev.lejos) mejor.set(key, cand);
       });
     });
 
@@ -1687,12 +1654,12 @@ $(document).ready(function () {
     mejor.forEach((v) => porDia[v.dow].push(v));
     // Ordena por hora de emisión; los que no tienen hora (00:00) van al final.
     const minutoDelDia = (x) => {
-      const m = x.dt.getHours() * 60 + x.dt.getMinutes();
-      return m === 0 ? 9999 : m;
+      const c = partesColombia(x.dt);
+      const m = c.hh * 60 + c.mm;
+      return m === 0 ? 9999 : m;      // sin hora de emisión → al final del día
     };
     porDia.forEach((l) => l.sort((a, b) => minutoDelDia(a) - minutoDelDia(b)));
 
-    const hoyIdx = (now.getDay() + 6) % 7;
     const total = porDia.reduce((n, l) => n + l.length, 0);
 
     // 2) Cabecera y barra de días
@@ -1701,7 +1668,13 @@ $(document).ready(function () {
       chip.innerHTML = `<span class="dot"></span> Hoy es <b>${DIAS[hoyIdx]}</b> · ${porDia[hoyIdx].length} estreno${porDia[hoyIdx].length === 1 ? "" : "s"}`;
     }
     const sub = document.getElementById("cal-sub");
-    if (sub) sub.textContent = total ? `${total} episodios repartidos en la semana.` : "Todavía no hay estrenos programados.";
+    if (sub) {
+      const base = total ? `${total} episodios repartidos en la semana.` : "Todavía no hay estrenos programados.";
+      // Los horarios se cargan con la hora de Colombia; aquí se muestran en la del visitante.
+      sub.textContent = base + (tzDistinta()
+        ? ` Horarios de Colombia pasados a tu hora (${tzLabel()}).`
+        : " Horarios de Colombia.");
+    }
 
     railEl.innerHTML = DIAS.map((d, i) => `
         <button type="button" class="cal-day-btn${i === hoyIdx ? " is-today" : ""}${porDia[i].length ? "" : " is-empty"}" data-day="${i}">
@@ -1751,12 +1724,11 @@ $(document).ready(function () {
   function calCardHtml(it) {
     const { anime, episode, dt } = it;
     const now = new Date();
-    const hoy = dt.toDateString() === now.toDateString();
+    const c = partesColombia(dt), h = partesColombia(now);
+    const hoy = c.y === h.y && c.m === h.m && c.d === h.d;   // «hoy» según el día en Colombia
     const futuro = dt.getTime() > now.getTime();
     const locked = isUnaired(episode);
-    const hora = dt.getHours() || dt.getMinutes()
-      ? String(dt.getHours()).padStart(2, "0") + ":" + String(dt.getMinutes()).padStart(2, "0")
-      : "";
+    const hora = localTimeText(episode);                      // en la hora de CADA visitante
 
     let clase = "ya", texto = "Disponible";
     if (futuro) {
