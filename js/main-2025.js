@@ -2304,32 +2304,104 @@ $(document).ready(function () {
     // Empareja lo dicho con un anime del catálogo. Estricto: por PALABRAS (no subcadenas sueltas),
     // para no abrir un anime al azar cuando el reconocimiento falla. Si no hay match claro → null
     // (Endo dirá que no está en el catálogo).
-    const STOP = new Set(["el", "la", "los", "las", "un", "una", "de", "del", "y", "a", "anime", "serie"]);
+    const STOP = new Set(["el", "la", "los", "las", "un", "una", "de", "del", "y", "a", "anime", "serie",
+      "the", "of", "no", "ver", "pon", "abre", "busca"]);
+
+    // «Como suena»: el micrófono escribe en español lo que oye, así que antes de
+    // comparar se pasa todo a una forma fonética común. Con esto «quimetsu no
+    // yaiba» encuentra Kimetsu, «yuyutsu kaisen» encuentra Jujutsu y «shinguequi
+    // no kiojin» encuentra Shingeki.
+    function fon(x) {
+      let t = String(x || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      t = t.replace(/[^a-z0-9\s]/g, " ");
+      t = t.replace(/sh/g, "x").replace(/ch/g, "x");
+      t = t.replace(/ph/g, "f");
+      t = t.replace(/\bequis\b/g, "x");
+      t = t.replace(/qu/g, "k");
+      t = t.replace(/gu([ei])/g, "g$1");
+      t = t.replace(/c([ei])/g, "s$1").replace(/c/g, "k");
+      t = t.replace(/z/g, "s");
+      t = t.replace(/h/g, "");
+      t = t.replace(/j/g, "y");
+      t = t.replace(/v/g, "b");
+      t = t.replace(/w/g, "u");
+      t = t.replace(/\be(s[bcdfgklmnpqrstvxyz])/g, "$1");
+      t = t.replace(/(.)\1+/g, "$1");
+      return t.replace(/\s+/g, " ").trim();
+    }
+    // Distancia de edición, cortada en cuanto se pasa del tope (no hace falta
+    // el número exacto si ya sabemos que están lejos).
+    function _dist(a, b, tope) {
+      if (a === b) return 0;
+      if (Math.abs(a.length - b.length) > tope) return tope + 1;
+      let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+      for (let i = 1; i <= a.length; i++) {
+        const cur = [i]; let mejor = i;
+        for (let j = 1; j <= b.length; j++) {
+          cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+          if (cur[j] < mejor) mejor = cur[j];
+        }
+        if (mejor > tope) return tope + 1;
+        prev = cur;
+      }
+      return prev[b.length];
+    }
+    const _parecido = (a, b) => {
+      const m = Math.max(a.length, b.length);
+      return m ? 1 - _dist(a, b, m) / m : 0;
+    };
+
+    // El índice se arma una vez con todo el catálogo, no en cada frase.
+    let _idx = null;
+    function _indice() {
+      if (_idx && _idx.n === (data || []).length) return _idx.lista;
+      const lista = (data || []).map((a) => {
+        const nombres = [a.title, ...(a.altTitles || [])].map(fon).filter(Boolean);
+        return {
+          ref: a, nombres,
+          pegados: nombres.map((n) => n.replace(/ /g, "")),
+          palabras: nombres.map((n) => n.split(" ").filter((w) => w.length > 1 && !STOP.has(w))),
+        };
+      });
+      _idx = { n: (data || []).length, lista };
+      return lista;
+    }
+
+    // Empareja lo dicho con un anime del catálogo. Si no hay nada claro devuelve
+    // null y Endo dice que no lo encuentra: preferimos eso a abrir otro anime.
     function findAnime(q) {
-      q = norm(q).replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-      if (!q) return null;
-      const qw = q.split(" ").filter((w) => w.length > 1 && !STOP.has(w));
+      const fq = fon(q);
+      if (!fq) return null;
+      const qw = fq.split(" ").filter((w) => w.length > 1 && !STOP.has(w));
       if (!qw.length) return null;
-      let best = null, bs = 0;
-      (data || []).forEach((a) => {
-        const titles = [a.title, ...(a.altTitles || [])].map((x) => norm(x || "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim());
+      const qp = fq.replace(/ /g, "");
+      let mejor = null, mejorSc = 0;
+      for (const it of _indice()) {
         let sc = 0;
-        for (const t of titles) {
+        for (let k = 0; k < it.nombres.length; k++) {
+          const t = it.nombres[k], tp = it.pegados[k], tw = it.palabras[k];
           if (!t) continue;
-          if (t === q) { sc = 100; break; }
-          if (q.length >= 4 && (t === q || t.includes(" " + q + " ") || t.startsWith(q + " ") || t.endsWith(" " + q) || t.includes(q) && q.split(" ").length >= 2)) sc = Math.max(sc, 88);
-          const tw = t.split(" ");
-          const tset = new Set(tw);
-          const hits = qw.filter((w) => tset.has(w)).length;               // palabras exactas en común
-          if (qw.length) {
-            const covQ = hits / qw.length;                                  // cuánto de lo dicho está en el título
-            const covT = hits / Math.max(1, tw.filter((w) => !STOP.has(w)).length);
-            sc = Math.max(sc, Math.round(80 * covQ * (0.6 + 0.4 * covT)));
+          if (t === fq || tp === qp) { sc = 100; break; }
+          if (fq.length >= 5 && (t.indexOf(" " + fq + " ") >= 0 || t.indexOf(fq + " ") === 0 || t.endsWith(" " + fq))) {
+            sc = Math.max(sc, 92);
+          }
+          const sim = _parecido(qp, tp);
+          if (sim >= 0.72) sc = Math.max(sc, Math.round(48 + 52 * sim));
+          if (qp.length >= 5 && tp.indexOf(qp) === 0) sc = Math.max(sc, 86);
+          if (tw.length) {
+            let peso = 0;
+            for (const w of qw) {
+              let mp = 0;
+              for (const x of tw) { const v = _parecido(w, x); if (v > mp) mp = v; }
+              if (mp >= 0.6) peso += mp;
+            }
+            const covQ = peso / qw.length, covT = Math.min(1, peso / tw.length);
+            sc = Math.max(sc, Math.round(88 * covQ * (0.55 + 0.45 * covT)));
           }
         }
-        if (sc > bs) { bs = sc; best = a; }
-      });
-      return bs >= 62 ? best : null;   // umbral estricto → evita falsos positivos
+        if (sc > mejorSc) { mejorSc = sc; mejor = it.ref; }
+      }
+      return mejorSc >= 62 ? mejor : null;
     }
     // Ejecuta una búsqueda en el buscador REAL de la página. En móvil/app/TV el buscador
     // activo es el overlay (#msearch-input); en escritorio es la barra (#search-input).
