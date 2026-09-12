@@ -310,9 +310,14 @@ def save_big_doc(aid, doc, episodes, token, log):
         if st != 200:
             log(f"ERROR guardando la parte {i}: {st} {t[:150]}"); return False, t
         log(f"  parte {i + 1}/{len(chunks)} guardada ({len(part)} eps)")
-    # 2) el documento principal, ya con la marca de cuántas partes hay
-    doc["episodes"] = keep; doc["epChunks"] = len(chunks)
-    st, t = patch_fields(path, doc, token)
+    # 2) el documento principal, ya con la marca de cuántas partes hay.
+    # OJO: el `doc` que llega NO se toca. Antes se le metía aquí la lista de
+    # episodios, y quien luego usaba ese mismo diccionario como TARJETA del
+    # catálogo acababa guardando todos los episodios dentro de catalog/index.
+    # Eso engordaba el índice y, de rebote, dejaba el inicio sin «Episodios
+    # nuevos» (solo rehidrata si ninguna tarjeta trae episodios).
+    doc["epChunks"] = len(chunks)          # metadato legítimo del anime
+    st, t = patch_fields(path, dict(doc, episodes=keep), token)
     if st != 200: return False, t
     # 3) limpia trozos viejos que ya no se usan (p. ej. si el anime encogió)
     for cid in list_chunk_ids(aid, token):

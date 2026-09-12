@@ -2651,8 +2651,13 @@ $(document).ready(function () {
   // episodios). Rehidrata en segundo plano, con la colección completa, las
   // secciones que sí necesitan episodios (recientes + seguir viendo). animeData
   // es el parámetro reasignable del callback; las funciones lo leen por closure.
-  if (IS_HOME_PAGE && Array.isArray(animeData) && !animeData.some((a) => a && a.episodes)) {
+  // Se rehidrata SIEMPRE en el inicio. Antes solo se hacía si ninguna tarjeta
+  // traía episodios, y bastaba con que una sola los llevara por error para que
+  // «Episodios nuevos» se quedara mudo para todo el catálogo. La carga sale de
+  // la caché, así que preguntar de más no cuesta nada.
+  if (IS_HOME_PAGE) {
     getAnimeData().then(function (full) {
+      if (!Array.isArray(full) || !full.length) return;
       animeData = full;
       renderRecentEpisodes();
       populateContinueWatching();
