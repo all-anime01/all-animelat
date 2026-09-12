@@ -27,7 +27,16 @@ export function episodeId(animeId, ep) {
 // Devuelve la "tarjeta" ligera de un anime: todo menos el arreglo de episodios.
 export function toCatalogCard(anime) {
   const { episodes, ...card } = anime;
-  card.episodesCount = Array.isArray(episodes) ? episodes.length : 0;
+  // Los DOS contadores salen de la lista real. Antes solo se refrescaba
+  // episodesCount y episodesTotal se colaba viejo por el spread: al añadir un
+  // episodio la tarjeta se quedaba con el número de antes (y es el que lee el
+  // sitio), así que el episodio nuevo no contaba.
+  if (Array.isArray(episodes)) {
+    card.episodesCount = episodes.length;
+    card.episodesTotal = episodes.length;
+  } else {
+    card.episodesCount = 0;
+  }
   return card;
 }
 

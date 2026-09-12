@@ -98,12 +98,18 @@ async function fetchFresh() {
 }
 
 // ---- Revalidación en segundo plano (no bloquea el render) ------------------
+// Al terminar AVISA con el evento «catalog-updated». Sin ese aviso, un episodio
+// recién subido no salía hasta la SEGUNDA recarga: la página se pintaba con la
+// caché vieja y lo nuevo se quedaba en IndexedDB esperando al siguiente arranque.
 async function revalidate(cachedVersion) {
   if (!FIREBASE_CONFIGURED) return;
   try {
     const remote = await getRemoteVersion();
     if (remote && remote !== cachedVersion) {
-      await fetchFresh(); // actualiza IndexedDB para la próxima carga
+      const fresh = await fetchFresh();
+      if (fresh && Array.isArray(fresh.data) && fresh.data.length) {
+        window.dispatchEvent(new CustomEvent("catalog-updated", { detail: { data: fresh.data, version: fresh.version } }));
+      }
     }
   } catch (e) { /* silencioso */ }
 }

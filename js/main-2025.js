@@ -2658,5 +2658,16 @@ $(document).ready(function () {
       populateContinueWatching();
     }).catch(function () { });
   }
+
+  // La caché se sirve al instante y se revalida por detrás. Cuando esa
+  // revalidación trae algo más nuevo (un episodio recién subido), hay que volver
+  // a pintar: si no, lo nuevo no salía hasta la SEGUNDA recarga de la página.
+  window.addEventListener("catalog-updated", function (ev) {
+    const full = ev && ev.detail && ev.detail.data;
+    if (!Array.isArray(full) || !full.length) return;
+    animeData = full;
+    if (IS_HOME_PAGE) { renderRecentEpisodes(); populateContinueWatching(); }
+    if (document.getElementById("cal-rail")) populateCalendarPage();
+  });
   }); // fin de loadPageData().then
 });

@@ -1853,11 +1853,13 @@ class App:
         self.alhd = tk.BooleanVar(value=True)   # animelatinohd: fuente PRINCIPAL de Latino
         self.pory = tk.BooleanVar(value=True)   # porygonsubs: Latino de la familia Pokémon
         self.trad = tk.BooleanVar(value=True)   # títulos y sinopsis SIEMPRE en español
+        # Las fuentes van en DOS filas de cuatro: en una sola se salían de la ventana
+        # y los botones de «Añadir nuevo / Reparar» quedaban cortados por la derecha.
         for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("porygonsubs (Latino)", self.pory, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual), ("Traducir al español", self.trad, None)]):
-            chk(opt, t, v, command=cmd).grid(row=0, column=i, sticky="w", padx=(0, 14))
+            chk(opt, t, v, command=cmd).grid(row=i // 4, column=i % 4, sticky="w", padx=(0, 14), pady=2)
         self.replace = tk.BooleanVar(value=False)
-        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=8, padx=(10, 6))
-        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=9)
+        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=4, padx=(24, 6), sticky="w")
+        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=1, column=4, padx=(24, 6), sticky="w")
         self.voz = tk.BooleanVar(value=bool(self.cfg.get("voz")))
         self.yoru.enabled = self.voz.get()
         def _togvoz():
