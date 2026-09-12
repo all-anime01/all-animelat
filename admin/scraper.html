@@ -40,6 +40,32 @@
         .center { text-align: center; padding: 40px 0; }
         a { color: #ff6b6b; }
         small { color: #8a8a8a; }
+
+        /* --- Móvil: la misma herramienta desde el teléfono ------------------
+           Las rejillas se apilan, los controles crecen para el dedo y la barra
+           de acciones queda fija abajo para no tener que buscarla. */
+        @media (max-width: 640px) {
+            body { padding: 16px 12px 110px; }
+            .wrap { max-width: none; }
+            h1 { font-size: 20px; }
+            .box { padding: 15px; border-radius: 12px; }
+            .row, .row3 { grid-template-columns: 1fr; gap: 10px; }
+            input, select, textarea { font-size: 16px; padding: 13px 12px; }   /* 16px = iOS no hace zoom */
+            .btn { width: 100%; padding: 14px 18px; font-size: 15px; }
+            .chip { padding: 10px 16px; font-size: 14px; }
+            .prev { flex-direction: column; }
+            .prev img { width: 100%; max-width: 220px; }
+            .log { max-height: 180px; font-size: 12px; }
+            .ep img { width: 62px; height: 35px; }
+            .acciones-movil {
+                position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+                display: flex; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+                background: rgba(16, 16, 16, .96); border-top: 1px solid #2e2e2e;
+                backdrop-filter: blur(6px);
+            }
+            .acciones-movil .btn { flex: 1; margin: 0; }
+        }
+        @media (min-width: 641px) { .acciones-movil { display: none; } }
     </style>
 </head>
 
@@ -324,6 +350,35 @@
                 log("✅ GUARDADO " + id + " — " + episodes.length + " episodios");
             } catch (e) { $("save-msg").textContent = "❌ " + e.message; $("save-msg").style.color = "#e08a8a"; log("ERROR guardar: " + e.message); $("btn-save").disabled = false; }
         };
+    </script>
+    <!-- Barra de acciones fija en móvil: repite los botones principales para
+         no tener que buscarlos entre las tarjetas. -->
+    <div class="acciones-movil" id="acciones-movil" style="display:none">
+        <button class="btn" type="button" data-hace="btn-build"><i class="fas fa-gears"></i> Construir</button>
+        <button class="btn green" type="button" data-hace="btn-save"><i class="fas fa-cloud-arrow-up"></i> Guardar</button>
+    </div>
+    <script>
+        (function () {
+            var barra = document.getElementById("acciones-movil");
+            function pinta() {
+                var app = document.getElementById("app");
+                var visible = app && app.style.display !== "none" && window.matchMedia("(max-width: 640px)").matches;
+                barra.style.display = visible ? "flex" : "none";
+                barra.querySelectorAll("[data-hace]").forEach(function (b) {
+                    var real = document.getElementById(b.dataset.hace);
+                    b.disabled = !real || real.disabled;
+                });
+            }
+            barra.querySelectorAll("[data-hace]").forEach(function (b) {
+                b.addEventListener("click", function () {
+                    var real = document.getElementById(b.dataset.hace);
+                    if (real && !real.disabled) real.click();
+                });
+            });
+            setInterval(pinta, 600);
+            window.addEventListener("resize", pinta);
+            pinta();
+        })();
     </script>
 </body>
 
