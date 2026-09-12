@@ -10,3 +10,7 @@ Thumbs.db
 
 # Firebase CLI cache
 .firebase/
+
+# Python (caché de la app de escritorio)
+__pycache__/
+*.pyc

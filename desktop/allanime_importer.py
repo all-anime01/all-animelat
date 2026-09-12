@@ -640,7 +640,7 @@ NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "
         "vidara": "Vidara", "streamtape": "Streamtape", "mp4upload": "Mp4upload",
         "zilla": "AnimeAV1 HD", "mediafire": "Mediafire", "mixdrop": "Mixdrop", "mdbekj": "Mixdrop", "mdy48": "Mixdrop",
         "d-s.io": "Doodstream", "dood": "Doodstream", "desu": "Desu", "desuka": "Desu", "okru": "Okru", "ok.ru": "Okru",
-        "uqload": "Uqload", "yourupload": "YourUpload"}
+        "uqload": "Uqload", "yourupload": "YourUpload", "krakenfiles": "Krakenfiles"}
 def nm(u):
     s = (u or "").lower()
     for k, v in NAME.items():
@@ -937,6 +937,110 @@ def alhd_servers(slug, n):
         out.append({"url": u, "name": f"AnimeLatinoHD {sv}", "lang": lang, "desc": ""})
     return out
 
+# ------------------------------------------------------------------ porygonsubs (Pokémon)
+# porygonsubs.com publica del MISMO episodio el Sub Español y el AUDIO LATINO. Cada botón
+# de servidor trae data-position (btn-sub-N / btn-lat-N → ahí está el idioma de verdad),
+# data-slug (el host) y data-codigo: el id del host envuelto en base64 un número VARIABLE
+# de veces. El listado de series sale del sitemap y la rejilla de episodios va de 15 en 15.
+PORY = "https://porygonsubs.com"
+PORY_HOST = {"fm": "https://bysefujedu.com/e/{}", "voe": "https://voe.sx/e/{}",
+             "dood": "https://dood.re/e/{}", "mega": "https://mega.nz/file/{}",
+             "kf": "https://krakenfiles.com/embed-video/{}"}
+_PORY_B64 = re.compile(r"^[A-Za-z0-9+/]+={0,2}$")
+_PORY_BTN = re.compile(r'<button[^>]*data-position="(btn-(?:lat|sub)-\d+)"'
+                       r'[^>]*data-slug="([a-z]+)"[^>]*data-codigo="([^"]+)"')
+
+def pory_codigo(c):
+    """Desenvuelve el base64 anidado hasta llegar al id real del host."""
+    v = (c or "").strip()
+    for _ in range(6):
+        if not _PORY_B64.match(v): break
+        try: nv = base64.b64decode(v + "=" * (-len(v) % 4)).decode("ascii")
+        except Exception: break
+        if len(nv) < 4 or not nv.isprintable(): break
+        v = nv
+    return v
+
+_pory_index_cache = None
+def pory_index():
+    """Todas las series del sitio (el sitemap las trae completas)."""
+    global _pory_index_cache
+    if _pory_index_cache is None:
+        try:
+            h = get_text(f"{PORY}/sitemap.xml")
+            _pory_index_cache = [u.rsplit("/", 1)[1] for u in re.findall(r"<loc>([^<]+)</loc>", h)
+                                 if "/ver/" not in u and u.count("/") == 3 and u.rsplit("/", 1)[1]]
+        except Exception:
+            _pory_index_cache = []
+    return _pory_index_cache
+
+def _pory_fold(s):
+    """Normaliza quitando tildes: norm() parte «Pokémon» en «pok mon» y nada casaría."""
+    s = unicodedata.normalize("NFKD", str(s or ""))
+    return norm("".join(c for c in s if not unicodedata.combining(c)))
+
+# El sitio titula en español y nuestro catálogo usa el nombre internacional, así que
+# unas pocas series no casan por palabras. Se resuelven a mano (el campo «Slug de
+# porygonsubs» de la ventana manda por encima de todo esto).
+PORY_ALIAS = {
+    "pokemon horizons": "horizontes-pokemon",
+    "pokemon horizontes": "horizontes-pokemon",
+    "pokemon journeys": "pokemon-2019",
+    "pokemon viajes": "pokemon-2019",
+    "pokemon master journeys": "pokemon-2019",
+    "pokemon ultimate journeys": "pokemon-2019",
+    "cardcaptor sakura": "sakura-cardcaptor",
+}
+
+def pory_search(title):
+    """Slug de porygonsubs que mejor encaja con el título."""
+    sl = pory_index()
+    if not sl: return None
+    t = _pory_fold(title)
+    for k, v in PORY_ALIAS.items():
+        if k in t and v in sl: return v
+    want = set(t.split())
+    if not want: return None
+    mejor, punt = None, 0
+    for s in sl:
+        cs = set(_pory_fold(s.replace("-", " ")).split())
+        if not cs: continue
+        comunes = len(want & cs)
+        sc = 100 if cs == want else comunes * 10 + (30 if want <= cs or cs <= want else 0)
+        if sc > punt: punt, mejor = sc, s
+    return mejor if punt >= 30 else None
+
+def pory_max(slug):
+    """Nº del último episodio publicado."""
+    if not slug: return 0
+    top = 0
+    for p in range(1, 40):
+        try: h = get_text(f"{PORY}/{slug}?page={p}")
+        except Exception: break
+        ns = [int(x) for x in re.findall(r'data-episode="(\d+)"', h)]
+        if not ns: break
+        top = max([top] + ns)
+    return top
+
+def pory_servers(slug, n):
+    """Servidores del episodio con su idioma real (btn-lat-* = Latino)."""
+    if not slug: return []
+    try: h = get_text(f"{PORY}/ver/{slug}-{n}", referer=f"{PORY}/{slug}")
+    except Exception: return []
+    out, seen = [], set()
+    for pos, host, cod in _PORY_BTN.findall(h):
+        tpl = PORY_HOST.get(host)
+        if not tpl: continue
+        cid = pory_codigo(cod)
+        if not cid or len(cid) < 6: continue
+        u = tpl.format(cid)
+        if u in seen: continue
+        seen.add(u)
+        lang = "Latino" if pos.startswith("btn-lat") else "Sub"
+        out.append({"url": u, "name": nm(u), "lang": lang,
+                    "desc": "Audio Latino" if lang == "Latino" else ""})
+    return out
+
 # ------------------------------------------------------------------ animeyt (fuente principal)
 # animeyt.cc guarda cada servidor como <option value="BASE64"> que decodifica al iframe con la
 # URL real del host (mp4upload, ok.ru, mega, streamtape, yourupload, animeyt2…). El "omega2"
@@ -1096,6 +1200,7 @@ def build_episodes(data, opts, log, prog, on_ep):
     multi = len(src_slugs) > 1
     jkslug = avslug = ytslug = None
     base_alhd = ""
+    base_pory = ""
     yt_maps = {}
     def yt_srv(ytsl, num):
         """Servidores de animeyt para (slug, nº), con caché del mapa de episodios."""
@@ -1113,11 +1218,16 @@ def build_episodes(data, opts, log, prog, on_ep):
         per_season_num = True
         log(f"SECUELAS como temporadas (manual): {len(src_slugs)} → {', '.join(src_slugs)}")
         base_alhd = (alhd_search(title) if opts.get("alhd") else "") or ""
+        base_pory = (opts.get("pory_slug") or "").strip() or (pory_search(title) if opts.get("pory") else "") or ""
     else:
         src_slug = src_slugs[0] if src_slugs else ""
         base_jk = src_slug or (jk_search(title) if opts["jk"] else "")
         base_av = src_slug or (av1_search(title) if opts["av1"] else "")
         base_alhd = (alhd_search(title) if opts.get("alhd") else "") or ""   # LATINO principal
+        # porygonsubs: el slug se puede fijar a mano (campo «Slug porygonsubs») porque el
+        # sitio titula en español y el buscador por título no siempre acierta.
+        base_pory = (opts.get("pory_slug") or "").strip() or (pory_search(title) if opts.get("pory") else "") or ""
+        if opts.get("pory"): log(f"porygonsubs: {base_pory or '(no)'}")
         # AUTO: descubre TODAS las secuelas (jkanime/av1 separan por temporada). Así se
         # agregan completas sin pedir slugs (ej. Ishura → ishura + ishura-2nd-season).
         jk_list = (jk_seasons(title, base_jk) if (opts["jk"] and base_jk and not src_slug) else ([base_jk] if base_jk else []))
@@ -1197,7 +1307,8 @@ def build_episodes(data, opts, log, prog, on_ep):
         try:
             smax = max(jk_max(jkslug) if (opts["jk"] and jkslug) else 0,
                        av1_max(avslug) if (opts["av1"] and avslug) else 0,
-                       yt_max(ytslug) if (opts.get("yt") and ytslug) else 0)
+                       yt_max(ytslug) if (opts.get("yt") and ytslug) else 0,
+                       pory_max(base_pory) if (opts.get("pory") and base_pory) else 0)
             if smax > 0 and abs(smax - total) <= 400 and seasons:   # confía en la fuente; cap anti-datos-raros
                 diff = smax - total
                 if diff != 0:
@@ -1220,7 +1331,8 @@ def build_episodes(data, opts, log, prog, on_ep):
     disp_total = max(int(disp_total) or 60, 1)
     # Guardas: dejar de consultar una fuente que claramente NO tiene este anime, y terminar
     # cuando la fuente se acaba (evita construir cientos de episodios vacíos / franquicias).
-    skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False}; miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0}
+    skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False}
+    miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0}
     empty_streak = 0; stop = False
     for S in seasons:
         if stop: break
@@ -1229,8 +1341,10 @@ def build_episodes(data, opts, log, prog, on_ep):
         avcur = S.get("av") or S.get("slug") or avslug   # slug de animeav1 de ESTA temporada
         ytcur = S.get("yt") or (ytslug if not multi else None)   # slug de animeyt de ESTA temporada
         alhdcur = S.get("alhd") or (base_alhd if not multi else None)   # slug de animelatinohd
+        porycur = S.get("pory") or (base_pory if not multi else None)   # slug de porygonsubs
         if multi or S.get("psn"):  # secuela/OVA independiente: reinicia guardas
-            skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False}; miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0}; empty_streak = 0
+            skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False}
+            miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0}; empty_streak = 0
             log(f"— {sname}: jk={jkcur or '—'} av={avcur or '—'}")
         if season_sel and str(S["season"]) != season_sel:
             absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
@@ -1277,6 +1391,14 @@ def build_episodes(data, opts, log, prog, on_ep):
                 miss["alhd"] = 0 if cl else miss["alhd"] + 1
                 if miss["alhd"] >= 6: skip["alhd"] = True
                 time.sleep(0.3)
+            cp = 0
+            if opts.get("pory") and porycur and not skip["pory"]:
+                try:
+                    ps = pory_servers(porycur, src_num) or []; servers += ps; cp = len(ps)
+                except Exception as ex: log(f"  (porygonsubs err: {str(ex)[:40]})")
+                miss["pory"] = 0 if cp else miss["pory"] + 1
+                if miss["pory"] >= 6: skip["pory"] = True
+                time.sleep(0.3)
             key_manual = n if (per_season_num or season_sel) else absn   # el usuario suele numerar 1..N
             if opts["manual"] and (key_manual in manual or absn in manual):
                 mu = manual.get(key_manual) or manual.get(absn)
@@ -1284,7 +1406,7 @@ def build_episodes(data, opts, log, prog, on_ep):
                 mname = nm(mu) if nm(mu) != "Servidor" else "Directo"
                 servers.append({"url": mu, "name": mname, "lang": ml, "desc": ""})
             if absn == 1 or (not servers and absn <= 3):
-                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy} alhd={cl}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug}" if not servers else ""))
+                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy} alhd={cl} pory={cp}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug} pory={base_pory or '—'}" if not servers else ""))
             prog(min(len(episodes) + 1, disp_total), disp_total)
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
@@ -1729,12 +1851,13 @@ class App:
         self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True)
         self.yt = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
         self.alhd = tk.BooleanVar(value=True)   # animelatinohd: fuente PRINCIPAL de Latino
+        self.pory = tk.BooleanVar(value=True)   # porygonsubs: Latino de la familia Pokémon
         self.trad = tk.BooleanVar(value=True)   # títulos y sinopsis SIEMPRE en español
-        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual), ("Traducir al español", self.trad, None)]):
+        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("porygonsubs (Latino)", self.pory, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual), ("Traducir al español", self.trad, None)]):
             chk(opt, t, v, command=cmd).grid(row=0, column=i, sticky="w", padx=(0, 14))
         self.replace = tk.BooleanVar(value=False)
-        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=7, padx=(10, 6))
-        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=8)
+        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=8, padx=(10, 6))
+        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=9)
         self.voz = tk.BooleanVar(value=bool(self.cfg.get("voz")))
         self.yoru.enabled = self.voz.get()
         def _togvoz():
@@ -1761,6 +1884,10 @@ class App:
         lab(sg, "Slug(s) de la fuente (opcional · varios por coma = secuelas como temporadas):").pack(side="left")
         self.srcslug = ent(sg, 400); self.srcslug.pack(side="left", padx=6)
         lab(sg, "↳ ej: beyblade-burst, beyblade-burst-god").pack(side="left")
+        pg = ctk.CTkFrame(sc, fg_color="transparent"); pg.pack(fill="x", padx=16, pady=(0, 8))
+        lab(pg, "Slug de porygonsubs (opcional · para el Latino de Pokémon):").pack(side="left")
+        self.poryslug = ent(pg, 300); self.poryslug.pack(side="left", padx=6)
+        lab(pg, "↳ ej: horizontes-pokemon").pack(side="left")
         self.manbox = ctk.CTkFrame(sc, fg_color="transparent")
         lab(self.manbox, "URLs manuales (N|URL por línea)").pack(anchor="w", padx=16)
         self.mantext = ctk.CTkTextbox(self.manbox, height=64, fg_color="#101015", text_color=TXT, corner_radius=8); self.mantext.pack(fill="x", padx=16, pady=(0, 8))
@@ -2105,6 +2232,7 @@ class App:
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
                 "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip(),
+                "pory": self.pory.get(), "pory_slug": self.poryslug.get().strip(),
                 "traducir": self.trad.get()}
         kind = self.kind.get()
         # ¿Actualizar el anime cargado del catálogo? (mismo título, o modo añadir) → NO duplicar.
@@ -2187,6 +2315,7 @@ class App:
         return {"e69": self.e69.get(), "alhd": self.alhd.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": False,
                 "manual_text": "", "prefer": self.prefer.get().split(","), "only": self.only.get(),
                 "tmdb_key": self.tmdb.get().strip(), "range": "", "season": "", "src_slug": "",
+                "pory": self.pory.get(), "pory_slug": "",
                 "traducir": self.trad.get()}
 
     def do_batch(self):
@@ -2464,8 +2593,9 @@ class App:
         self.data["_avslug"] = slug or (av1_search(title) if self.av1.get() else "")
         self.data["_ytslug"] = slug or (yt_search(title) if self.yt.get() else "")
         self.data["_ytmap"] = {}
+        self.data["_poryslug"] = (self.poryslug.get().strip() or (pory_search(title) if self.pory.get() else "")) or ""
         self.data["_src_ready"] = True
-        self.log(f"Fuentes: imdb={imdb or '—'} jk={self.data['_jkslug'] or '—'} av1={self.data['_avslug'] or '—'} yt={self.data['_ytslug'] or '—'}")
+        self.log(f"Fuentes: imdb={imdb or '—'} jk={self.data['_jkslug'] or '—'} av1={self.data['_avslug'] or '—'} yt={self.data['_ytslug'] or '—'} pory={self.data['_poryslug'] or '—'}")
 
     def _fetch_ep_servers(self, ep):
         """Trae los servidores de un episodio concreto desde TODAS las fuentes activas
@@ -2502,8 +2632,13 @@ class App:
                 u = self.data["_ytmap"].get(num)
                 y = yt_servers_url(u) if u else []; servers += y; cy = len(y)
             except Exception: pass
+        cp = 0
+        if self.pory.get() and self.data.get("_poryslug"):
+            try:
+                p = pory_servers(self.data["_poryslug"], num) or []; servers += p; cp = len(p)
+            except Exception: pass
         lat = sum(1 for s in servers if s.get("lang") == "Latino")
-        self.log(f"  E{num}: embed69={ce} av1={ca} jk={cj} yt={cy} · Latino={lat}" + ("" if servers else f"  (imdb={imdb or '—'} jk={jks or '—'} av1={avs or '—'} yt={self.data.get('_ytslug') or '—'})"))
+        self.log(f"  E{num}: embed69={ce} av1={ca} jk={cj} yt={cy} pory={cp} · Latino={lat}" + ("" if servers else f"  (imdb={imdb or '—'} jk={jks or '—'} av1={avs or '—'} yt={self.data.get('_ytslug') or '—'} pory={self.data.get('_poryslug') or '—'})"))
         return servers
 
     def repair_selected(self, mode):
