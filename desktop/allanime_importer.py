@@ -222,12 +222,50 @@ def get_doc(path, token=None):
     if st != 200: return None
     j = json.loads(t)
     return {k: fv(x) for k, x in j["fields"].items()} if "fields" in j else None
-def patch_fields(path, fields, token):
+# Firestore corta las escrituras cuando se pasa de su ancho de banda («429: this
+# database has exceeded their maximum bandwidth for writes») y él mismo pide
+# reintentar con esperas crecientes. Sin esto, un guardado normal se perdía.
+_REINTENTA = (429, 503, 500, 0)
+def patch_fields(path, fields, token, log=None, intentos=5):
     mask = "&".join("updateMask.fieldPaths=" + urllib.parse.quote(k) for k in fields)
-    return http(f"{FS}/{path}?{mask}", data={"fields": {k: to_fs(v) for k, v in fields.items()}},
-                headers={"Authorization": "Bearer " + token}, method="PATCH")
+    url = f"{FS}/{path}?{mask}"
+    body = {"fields": {k: to_fs(v) for k, v in fields.items()}}
+    espera = 2.0
+    for i in range(intentos):
+        st, t = http(url, data=body, headers={"Authorization": "Bearer " + token},
+                     method="PATCH", timeout=90)
+        # el 429 de cuota llega como 400 con "code": 429 dentro del cuerpo
+        cortado = st in _REINTENTA or (st == 400 and '"code": 429' in t) or "exceeded their maximum bandwidth" in t
+        if not cortado or i == intentos - 1:
+            return st, t
+        if log: log(f"  Firestore pide esperar ({espera:.0f}s) — reintento {i + 1}/{intentos - 1}…")
+        time.sleep(espera)
+        espera = min(espera * 2, 30)
+    return st, t
 def get_catalog():
     d = get_doc("catalog/index"); return (d or {}).get("items", []) if d else []
+
+def upsert_card(aid, light, token, log=None):
+    """Mete o actualiza la tarjeta de un anime en catalog/index.
+    El índice entero pesa ~850 KB y Firestore no sabe cambiar un solo elemento de
+    una lista: hay que mandarlo completo. Por eso solo se manda si la tarjeta
+    CAMBIÓ de verdad — reescribirlo en cada guardado agotaba el ancho de banda de
+    escritura. La versión sí se sube siempre (son cuatro bytes) para que el sitio
+    se entere de que hay algo nuevo aunque la tarjeta se vea igual."""
+    light = {k: v for k, v in light.items() if k != "episodes"}
+    cat = get_catalog()
+    i = next((j for j, x in enumerate(cat) if x.get("id") == aid), -1)
+    if i >= 0 and cat[i] == light:
+        if log: log("  la tarjeta del catálogo no cambió: no se reescribe el índice")
+    else:
+        if i >= 0: cat[i] = light
+        else: cat.append(light)
+        st, t = patch_fields("catalog/index", {"items": cat}, token, log)
+        if st != 200:
+            if log: log(f"ERROR guardando el índice: {st} {str(t)[:150]}")
+            return False
+    patch_fields("meta/catalog", {"version": int(time.time() * 1000)}, token, log)
+    return True
 def delete_doc(path, token):
     return http(f"{FS}/{path}", headers={"Authorization": "Bearer " + token}, method="DELETE")
 
@@ -304,12 +342,23 @@ def save_big_doc(aid, doc, episodes, token, log):
         if cur: chunks.append(cur)
         log(f"Anime enorme ({len(episodes)} eps): {len(keep)} en el documento principal y "
             f"{len(rest)} repartidos en {len(chunks)} partes (sin perder nada).")
-    # 1) primero los trozos, para que el sitio nunca vea episodios que aún no existen
+    # 1) primero los trozos, para que el sitio nunca vea episodios que aún no existen.
+    # Solo se escribe el trozo que DE VERDAD cambió: reescribirlos todos en cada
+    # guardado disparaba el ancho de banda de Firestore («exceeded their maximum
+    # bandwidth for writes») en animes largos como One Piece o Detective Conan.
+    saltados = 0
     for i, part in enumerate(chunks):
-        st, t = patch_fields(f"animes/{aid}/eps/{i}", {"i": i, "items": part}, token)
+        try:
+            viejo = get_doc(f"animes/{aid}/eps/{i}", token)
+        except Exception:
+            viejo = None
+        if viejo and viejo.get("items") == part:
+            saltados += 1; continue
+        st, t = patch_fields(f"animes/{aid}/eps/{i}", {"i": i, "items": part}, token, log)
         if st != 200:
             log(f"ERROR guardando la parte {i}: {st} {t[:150]}"); return False, t
         log(f"  parte {i + 1}/{len(chunks)} guardada ({len(part)} eps)")
+    if saltados: log(f"  {saltados} parte(s) sin cambios: no se reescriben")
     # 2) el documento principal, ya con la marca de cuántas partes hay.
     # OJO: el `doc` que llega NO se toca. Antes se le metía aquí la lista de
     # episodios, y quien luego usaba ese mismo diccionario como TARJETA del
@@ -317,8 +366,16 @@ def save_big_doc(aid, doc, episodes, token, log):
     # Eso engordaba el índice y, de rebote, dejaba el inicio sin «Episodios
     # nuevos» (solo rehidrata si ninguna tarjeta trae episodios).
     doc["epChunks"] = len(chunks)          # metadato legítimo del anime
-    st, t = patch_fields(path, dict(doc, episodes=keep), token)
-    if st != 200: return False, t
+    nuevo = dict(doc, episodes=keep)
+    try:
+        actual = get_doc(path, token)
+    except Exception:
+        actual = None
+    if actual and all(actual.get(k) == v for k, v in nuevo.items()):
+        log("  el anime no cambió: no se reescribe")
+    else:
+        st, t = patch_fields(path, nuevo, token, log)
+        if st != 200: return False, t
     # 3) limpia trozos viejos que ya no se usan (p. ej. si el anime encogió)
     for cid in list_chunk_ids(aid, token):
         try: n = int(cid)
@@ -1595,12 +1652,7 @@ def save(data, token, replace, log):
         st = 200 if ok else 400
     if st != 200: log(f"ERROR guardar: {st} {t[:150]}"); return False
     if si: log(f"✓ Guardado ajustado al límite de Firestore (se adelgazó el documento).")
-    cat = get_catalog(); light = {k: v for k, v in doc.items() if k != "episodes"}
-    i = next((j for j, x in enumerate(cat) if x.get("id") == aid), -1)
-    if i >= 0: cat[i] = light
-    else: cat.append(light)
-    patch_fields("catalog/index", {"items": cat}, token)
-    patch_fields("meta/catalog", {"version": int(time.time() * 1000)}, token)
+    upsert_card(aid, doc, token, log)
     log(f"OK GUARDADO: {aid} — {len(episodes)} eps [{doc.get('audio', '')}]. Ya está en el sitio.")
     return True
 
@@ -2567,12 +2619,7 @@ class App:
             try:
                 st, t = patch_fields(f"animes/{aid}", bk, self.token)
                 if st != 200: self.log(f"ERROR revertir: {st} {t[:120]}"); return
-                cat = get_catalog(); light = {k: v for k, v in bk.items() if k != "episodes"}
-                i = next((j for j, x in enumerate(cat) if x.get("id") == aid), -1)
-                if i >= 0: cat[i] = light
-                else: cat.append(light)
-                patch_fields("catalog/index", {"items": cat}, self.token)
-                patch_fields("meta/catalog", {"version": int(time.time() * 1000)}, self.token)
+                upsert_card(aid, bk, self.token, self.log)
                 self.log(f"↶ REVERTIDO: {aid} restaurado ({n} episodios).")
             except Exception as e: self.log("ERROR revertir: " + str(e))
         threading.Thread(target=work, daemon=True).start()
