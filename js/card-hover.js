@@ -94,7 +94,6 @@ export function initCardHover() {
   // o salir de una tarjeta, para mostrar/ocultar la vista previa igual que en PC.
   window.__aaCardPreview = (card) => {
     if (!card || card === activeCard) return;
-    if (!card.dataset.trailer && !card.dataset.video) return;
     clearTimeout(hoverTimer);
     hoverTimer = setTimeout(() => showPreview(card), 420);
   };
@@ -107,7 +106,8 @@ export function initCardHover() {
   document.addEventListener("pointerover", (e) => {
     const card = e.target.closest(".anime-card");
     if (!card || card === activeCard) return;
-    if (!card.dataset.trailer && !card.dataset.video) return; // sin tráiler, sin preview
+    // Antes, sin tráiler no salía panel. Ahora sí: se enseña la imagen de fondo
+    // del anime, que es apaisada y encaja en el hueco 16:9.
     clearTimeout(hoverTimer);
     hoverTimer = setTimeout(() => showPreview(card), 550);
   });

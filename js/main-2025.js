@@ -102,6 +102,82 @@ if (FIREBASE_CONFIGURED) {
   });
 }
 
+// --- FLECHA DE ATRÁS EN LA CABECERA (todas las páginas) ---
+// Como la de la app de Crunchyroll en Windows. Hace falta de verdad cuando el
+// sitio está instalado como aplicación: en ese modo no hay barra del navegador,
+// así que sin esta flecha no hay manera de volver atrás. En el navegador normal
+// también ayuda a no tener que subir el ratón hasta la barra.
+function injectBackButton() {
+  if (document.getElementById("aa-atras")) return;
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  const enPortada = /^\/?(index(\.html)?)?$/i.test(location.pathname.replace(/\/+$/, "/"));
+  const comoApp = window.matchMedia("(display-mode: standalone)").matches ||
+                  window.navigator.standalone === true;
+  // Sin historial propio y en la portada no pinta nada: no hay a dónde volver.
+  if (enPortada && history.length <= 1) return;
+
+  if (!document.getElementById("aa-atras-css")) {
+    const st = document.createElement("style");
+    st.id = "aa-atras-css";
+    st.textContent = `
+      #aa-atras {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 3.8rem; height: 3.8rem; flex: none; margin-right: 1.2rem;
+        border: 1px solid var(--border-color, #303030); border-radius: 50%;
+        background: rgba(255,255,255,.06); color: var(--light-text, #f0f0f0);
+        cursor: pointer; font-size: 1.6rem; line-height: 1;
+        transition: background .15s ease, border-color .15s ease, transform .15s ease;
+        -webkit-app-region: no-drag;
+      }
+      #aa-atras:hover { background: var(--primary-color, #ca3030); border-color: var(--primary-color, #ca3030); }
+      #aa-atras:active { transform: scale(.94); }
+      #aa-atras:focus-visible { outline: 2px solid var(--primary-color, #ca3030); outline-offset: 2px; }
+      #aa-atras[hidden] { display: none !important; }
+      @media (max-width: 600px) { #aa-atras { width: 3.4rem; height: 3.4rem; margin-right: .8rem; font-size: 1.5rem; } }
+      @media (prefers-reduced-motion: reduce) { #aa-atras { transition: none; } }
+    `;
+    document.head.appendChild(st);
+  }
+
+  const b = document.createElement("button");
+  b.id = "aa-atras";
+  b.type = "button";
+  b.title = "Atrás";
+  b.setAttribute("aria-label", "Volver atrás");
+  b.innerHTML = '<i class="fas fa-chevron-left" aria-hidden="true"></i>';
+  b.addEventListener("click", () => {
+    // Si se llegó desde otra página del sitio, se vuelve; si no (enlace directo,
+    // pestaña nueva), se va a la portada, que siempre es una salida válida.
+    if (history.length > 1 && document.referrer && new URL(document.referrer, location.href).origin === location.origin) {
+      history.back();
+    } else if (history.length > 1 && !enPortada) {
+      history.back();
+    } else {
+      location.href = "index.html";
+    }
+  });
+  // La cabecera reparte sus hijos con space-between: si se cuelga el botón como
+  // un hijo más, el logo se desplaza. Se mete junto al logo dentro de un grupo,
+  // así la cabecera sigue teniendo las mismas tres piezas de siempre.
+  const logo = header.querySelector(".logo");
+  if (logo && logo.parentElement === header) {
+    const grupo = document.createElement("div");
+    grupo.id = "aa-grupo-izq";
+    grupo.style.cssText = "display:flex;align-items:center;flex:none";
+    header.insertBefore(grupo, logo);
+    grupo.appendChild(b);
+    grupo.appendChild(logo);
+  } else {
+    header.insertBefore(b, header.firstChild);
+  }
+
+  // En la portada solo se enseña si de verdad hay historial dentro del sitio.
+  if (enPortada && !comoApp) b.hidden = true;
+}
+injectBackButton();
+
 // --- WIDGET DE CUENTA EN EL HEADER (todas las páginas) ---
 function injectAccountWidget() {
   const host = document.querySelector(".header-right") || document.querySelector("header");
@@ -764,7 +840,7 @@ $(document).ready(function () {
              data-title="${ea(anime.title)}" data-img="${ea(anime.img)}" data-logo="${ea(anime.logoImg)}"
              data-fondo="${ea(anime.heroImg || anime.fonImg || anime.img)}"
              data-trailer="${ea(anime.trailerUrl)}" data-video="${ea(anime.video)}"
-             data-meta="${ea([anime.year, anime.rating ? "★ " + anime.rating : "", (anime.seasons ? anime.seasons + " Temp." : "")].filter(Boolean).join(" · "))}"
+             data-meta="${ea([anime.year, anime.rating ? "★ " + anime.rating : "", (anime.seasons > 1 ? anime.seasons + " Temp." : ""), (() => { const n = anime.episodesTotal || anime.episodesCount || (anime.episodes || []).length; return n ? n + (n === 1 ? " episodio" : " episodios") : ""; })()].filter(Boolean).join(" · "))}"
              data-genres="${ea((anime.genres || []).slice(0, 3).join(" • "))}">
             <a href="anime-details.html?id=${anime.id}">
                 <div class="card-image-container">
