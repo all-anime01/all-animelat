@@ -344,6 +344,99 @@ def es_ep_title(name, n):
     if not name or re.match(r"(?i)^(episode|episodio|ep\.?|capitulo|capítulo)\s*\d+$", name):
         return f"Episodio {n}"
     return name
+# ------------------------------------------------------------------ traducción
+# Los títulos y sinopsis de TMDB muchas veces solo existen en inglés. El sitio es
+# en español, así que aquí se traducen antes de guardar. Se usa MyMemory (gratis,
+# sin clave) y de reserva el traductor de Google; TODO lo traducido se guarda en
+# un caché local, así que un título ya visto no vuelve a gastar cuota.
+TRAD_CACHE = os.path.join(os.path.expanduser("~"), ".allanime_traducciones.json")
+_trad = None
+_trad_off = False          # si las dos fuentes fallan, se deja de intentar en esta sesión
+
+def _trad_load():
+    global _trad
+    if _trad is None:
+        try:
+            with open(TRAD_CACHE, encoding="utf-8") as f: _trad = json.load(f)
+        except Exception: _trad = {}
+    return _trad
+
+def _trad_save():
+    try:
+        with open(TRAD_CACHE, "w", encoding="utf-8") as f: json.dump(_trad, f, ensure_ascii=False)
+    except Exception: pass
+
+# Marcas de que un texto YA está en español: tildes/eñe, signos de apertura o
+# alguna palabra corriente del idioma. Si no hay ninguna, se da por inglés y se
+# traduce: es mejor traducir de más que dejar títulos en inglés en el sitio.
+_ES = re.compile(
+    "(?i)[ñáéíóúü¡¿]|"
+    r"\b(el|la|los|las|de|del|un|una|unos|unas|que|qué|y|o|en|con|sin|por|para|es|son|"
+    r"su|sus|se|al|lo|le|les|no|si|ya|más|muy|pero|como|cuando|donde|quien|porque|todo|"
+    r"todos|toda|todas|este|esta|esto|ese|esa|aquel|hacia|desde|entre|sobre|tras|ante|"
+    r"episodio|capitulo|capítulo|parte|temporada|pelicula|película|nuevo|nueva|gran|"
+    r"contra|hasta|antes|después|siempre|nunca|vez|día|noche|mundo|amor|guerra|"
+    r"batalla|rey|reina|hombre|mujer|niño|niña|casa|tierra|secreto|sueño)\b")
+
+def parece_ingles(t):
+    """¿Hay que traducir este texto? True si no se le ve nada de español."""
+    t = str(t or "").strip()
+    if len(t) < 4: return False
+    if re.match(r"(?i)^(episodio|parte|ova|pelicula|película)\b", t): return False
+    if not re.search(r"[A-Za-zÀ-ÿ]", t): return False      # solo números o símbolos
+    return not _ES.search(t)
+
+def _pide_traduccion(txt):
+    """Devuelve la traducción o None. Prueba MyMemory y luego Google."""
+    try:
+        st, r = http("https://api.mymemory.translated.net/get?langpair=en|es&q=" + urllib.parse.quote(txt), timeout=20)
+        if st == 200:
+            j = json.loads(r)
+            out = (j.get("responseData") or {}).get("translatedText") or ""
+            if out and "MYMEMORY WARNING" not in out.upper() and "QUOTA" not in out.upper():
+                return out
+    except Exception: pass
+    try:
+        st, r = http("https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q="
+                     + urllib.parse.quote(txt), timeout=20)
+        if st == 200:
+            j = json.loads(r)
+            out = "".join(p[0] for p in j[0] if p and p[0])
+            if out: return out
+    except Exception: pass
+    return None
+
+def traducir(txt, log=None):
+    """Traduce al español si hace falta. Si no se puede, devuelve el texto original
+    (nunca rompe ni deja el episodio sin título)."""
+    global _trad_off
+    txt = str(txt or "").strip()
+    if not txt or not parece_ingles(txt): return txt
+    c = _trad_load()
+    if txt in c: return c[txt] or txt
+    if _trad_off: return txt
+    out = _pide_traduccion(txt)
+    if out is None:
+        _trad_off = True
+        if log: log("No se pudo traducir (cuota agotada o sin conexión): se deja el texto original.")
+        return txt
+    c[txt] = out
+    _trad_save()
+    return out
+
+def traducir_episodios(episodes, log=None):
+    """Traduce títulos y sinopsis de una lista de episodios, ya construida."""
+    n = 0
+    for e in episodes:
+        for campo in ("title", "description"):
+            v = e.get(campo)
+            if not parece_ingles(v): continue
+            t = traducir(v, log)
+            if t and t != v: e[campo] = t; n += 1
+        if _trad_off: break
+    if n and log: log(f"Traducidos al español {n} textos de episodio.")
+    return n
+
 def fmt_date(d):
     if not d or len(d) < 10: return ""
     try:
@@ -1213,6 +1306,11 @@ def build_episodes(data, opts, log, prog, on_ep):
                   "duration": fmt_duration(rt) or f"{rt} min", "servers": servers}
             episodes.append(ep)
             if on_ep: on_ep(ep)
+    # El sitio es en español: si TMDB solo tenía el título o la sinopsis en inglés,
+    # se traducen aquí antes de guardar (con caché, no gasta cuota dos veces).
+    if opts.get("traducir", True) and episodes:
+        try: traducir_episodios(episodes, log)
+        except Exception as e: log(f"Aviso: la traducción falló ({e}); se deja el texto original.")
     langs = list(dict.fromkeys(e["language"] for e in episodes))
     data["audio"] = audio_label(langs)
     # Aviso de COMPLETITUD vs AniList: si AniList ve más temporadas de las que se armaron,
@@ -1520,11 +1618,12 @@ class App:
         self.e69 = tk.BooleanVar(value=True); self.av1 = tk.BooleanVar(value=True); self.jk = tk.BooleanVar(value=True)
         self.yt = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
         self.alhd = tk.BooleanVar(value=True)   # animelatinohd: fuente PRINCIPAL de Latino
-        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual)]):
+        self.trad = tk.BooleanVar(value=True)   # títulos y sinopsis SIEMPRE en español
+        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual), ("Traducir al español", self.trad, None)]):
             chk(opt, t, v, command=cmd).grid(row=0, column=i, sticky="w", padx=(0, 14))
         self.replace = tk.BooleanVar(value=False)
-        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=6, padx=(10, 6))
-        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=7)
+        ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=7, padx=(10, 6))
+        ctk.CTkRadioButton(opt, text="Reparar (reemplazar)", variable=self.replace, value=True, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=8)
         self.voz = tk.BooleanVar(value=bool(self.cfg.get("voz")))
         self.yoru.enabled = self.voz.get()
         def _togvoz():
@@ -1848,7 +1947,8 @@ class App:
         opts = {"e69": self.e69.get(), "alhd": self.alhd.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": self.man.get(),
                 "manual_text": self.mantext.get("1.0", "end"), "prefer": self.prefer.get().split(","),
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
-                "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip()}
+                "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip(),
+                "traducir": self.trad.get()}
         kind = self.kind.get()
         # ¿Actualizar el anime cargado del catálogo? (mismo título, o modo añadir) → NO duplicar.
         updating = add_only or bool(self.loaded_aid and t == self.loaded_title)
@@ -1929,7 +2029,8 @@ class App:
     def _batch_opts(self):
         return {"e69": self.e69.get(), "alhd": self.alhd.get(), "av1": self.av1.get(), "jk": self.jk.get(), "yt": self.yt.get(), "manual": False,
                 "manual_text": "", "prefer": self.prefer.get().split(","), "only": self.only.get(),
-                "tmdb_key": self.tmdb.get().strip(), "range": "", "season": "", "src_slug": ""}
+                "tmdb_key": self.tmdb.get().strip(), "range": "", "season": "", "src_slug": "",
+                "traducir": self.trad.get()}
 
     def do_batch(self):
         """Agrega VARIOS animes a la vez: pega un título por línea y construye + guarda cada
