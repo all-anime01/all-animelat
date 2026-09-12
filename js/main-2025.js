@@ -647,8 +647,21 @@ $(document).ready(function () {
       .attr("href", `anime-details.html?id=${anime.id}`)
       .text(anime.title);
     $("#player-episode-title").text(`E${episode.number} - ${episode.title}`);
+    // Cuántos episodios tiene el anime (y los de esta temporada si hay varias),
+    // para no tener que volver a la ficha para saberlo.
+    const _totalEps = (Array.isArray(anime.episodes) && anime.episodes.length) || anime.episodesTotal || 0;
+    const _totalTemps = Array.isArray(anime.episodes)
+      ? new Set(anime.episodes.map((e) => e.season)).size : (anime.seasons || 1);
+    const _epsTemp = seasonEpisodes.length;
+    const _cuenta = _totalEps
+      ? (_totalTemps > 1 && _epsTemp && _epsTemp !== _totalEps
+          ? `${_epsTemp} episodios en esta temporada · ${_totalEps} en total`
+          : `${_totalEps} episodio${_totalEps === 1 ? "" : "s"}`)
+      : "";
     $("#player-episode-meta").html(
-      `<span>${episode.language}</span>${episode.releaseDate ? " &bull; <span>Lanzado el " + episode.releaseDate + "</span>" : ""}`
+      `<span>${episode.language}</span>` +
+      (_cuenta ? ` &bull; <span>${_cuenta}</span>` : "") +
+      (episode.releaseDate ? " &bull; <span>Lanzado el " + episode.releaseDate + "</span>" : "")
     );
     $("#player-episode-description").text(episode.description);
     // En autoplay (venido del reproductor nativo) se añade aaap=1 para que player.html
@@ -1335,9 +1348,17 @@ $(document).ready(function () {
         : [];
     if (seasons.length > 0) {
       seasonSelect.empty();
-      seasons.forEach((s) =>
-        seasonSelect.append(`<option value="${s}">${s}</option>`)
-      );
+      // El nombre lleva entre paréntesis cuántos episodios tiene esa temporada.
+      // El value se queda con el nombre a secas: es con lo que se filtra.
+      const _porTemporada = {};
+      (anime.episodes || []).forEach((e) => {
+        _porTemporada[e.season] = (_porTemporada[e.season] || 0) + 1;
+      });
+      seasons.forEach((s) => {
+        const n = _porTemporada[s] || 0;
+        const et = String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+        seasonSelect.append(`<option value="${et}">${et}${n ? ` (${n} ep${n === 1 ? "" : "s"})` : ""}</option>`);
+      });
       // Por defecto la ÚLTIMA temporada (la más reciente), como el resto del sitio.
       seasonSelect.val(seasons[seasons.length - 1]);
       // …pero si el usuario YA está viendo este anime, muestra la temporada en la que va
