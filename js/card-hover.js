@@ -15,16 +15,20 @@ const ytId = (u) => {
 };
 
 function mediaHtml(card) {
-  const { video, trailer, img } = card.dataset;
+  const { video, trailer, img, fondo } = card.dataset;
+  // El panel es 16:9. El póster es vertical y ahí se ve recortado y feo, así que
+  // cuando el anime no tiene vídeo ni tráiler se usa su imagen de FONDO, que ya
+  // es apaisada. Si no hubiera fondo, se cae al póster de siempre.
+  const quieto = fondo || img || "";
   // En TV: preview LIGERO = solo imagen (nada de iframe de tráiler). El iframe pesaba,
   // trababa la navegación y a veces "atrapaba" la entrada. Escritorio sí usa tráiler.
   if (document.documentElement.classList.contains("aa-tv")) {
-    return `<img class="cardpv-media vid" src="${img || ""}" alt="">`;
+    return `<img class="cardpv-media vid" src="${quieto}" alt="">`;
   }
   // tabindex="-1" + pointer-events(CSS) → el tráiler NO captura el D-pad ni el foco,
   // así en TV se puede seguir navegando y OK entra al anime (no lo bloquea el video).
   if (video) {
-    return `<video class="cardpv-media vid" tabindex="-1" autoplay muted loop playsinline poster="${img || ""}"><source src="${video}"></video>`;
+    return `<video class="cardpv-media vid" tabindex="-1" autoplay muted loop playsinline poster="${quieto}"><source src="${video}"></video>`;
   }
   const id = ytId(trailer);
   if (id) {
@@ -33,7 +37,7 @@ function mediaHtml(card) {
     const src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&fs=0`;
     return `<iframe class="cardpv-media yt" tabindex="-1" src="${src}" allow="autoplay; encrypted-media" frameborder="0" scrolling="no"></iframe>`;
   }
-  return `<img class="cardpv-media vid" src="${img || ""}" alt="">`;
+  return `<img class="cardpv-media vid" src="${quieto}" alt="">`;
 }
 
 function removePreview() {

@@ -762,6 +762,7 @@ $(document).ready(function () {
     return `
         <div class="anime-card" data-id="${ea(anime.id)}" data-href="anime-details.html?id=${ea(anime.id)}"
              data-title="${ea(anime.title)}" data-img="${ea(anime.img)}" data-logo="${ea(anime.logoImg)}"
+             data-fondo="${ea(anime.heroImg || anime.fonImg || anime.img)}"
              data-trailer="${ea(anime.trailerUrl)}" data-video="${ea(anime.video)}"
              data-meta="${ea([anime.year, anime.rating ? "★ " + anime.rating : "", (anime.seasons ? anime.seasons + " Temp." : "")].filter(Boolean).join(" · "))}"
              data-genres="${ea((anime.genres || []).slice(0, 3).join(" • "))}">
