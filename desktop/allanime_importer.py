@@ -414,6 +414,7 @@ def es_ep_title(name, n):
 TRAD_CACHE = os.path.join(os.path.expanduser("~"), ".allanime_traducciones.json")
 _trad = None
 _trad_off = False          # si las dos fuentes fallan, se deja de intentar en esta sesión
+_trad_fallos = 0           # fallos SEGUIDOS; uno suelto no apaga la traducción
 
 def _trad_load():
     global _trad
@@ -428,11 +429,14 @@ def _trad_save():
         with open(TRAD_CACHE, "w", encoding="utf-8") as f: json.dump(_trad, f, ensure_ascii=False)
     except Exception: pass
 
-# Marcas de que un texto YA está en español: tildes/eñe, signos de apertura o
-# alguna palabra corriente del idioma. Si no hay ninguna, se da por inglés y se
-# traduce: es mejor traducir de más que dejar títulos en inglés en el sitio.
-_ES = re.compile(
-    "(?i)[ñáéíóúü¡¿]|"
+# ¿En qué idioma está un texto? No vale mirar si APARECE una marca de español o de
+# inglés, porque las dos se cuelan en el idioma contrario: «Pokémon» lleva tilde
+# dentro de frases inglesas, y «One For All» o «All Might» son inglés dentro de
+# sinopsis españolas. Lo que sí funciona es CONTAR: el idioma de verdad deja muchas
+# más marcas que un nombre propio suelto.
+_ES_ACC = re.compile("[ñáéíóúü¡¿]")
+_ES_PAL = re.compile(
+    "(?i)"
     r"\b(el|la|los|las|de|del|un|una|unos|unas|que|qué|y|o|en|con|sin|por|para|es|son|"
     r"su|sus|se|al|lo|le|les|no|si|ya|más|muy|pero|como|cuando|donde|quien|porque|todo|"
     r"todos|toda|todas|este|esta|esto|ese|esa|aquel|hacia|desde|entre|sobre|tras|ante|"
@@ -440,22 +444,41 @@ _ES = re.compile(
     r"contra|hasta|antes|después|siempre|nunca|vez|día|noche|mundo|amor|guerra|"
     r"batalla|rey|reina|hombre|mujer|niño|niña|casa|tierra|secreto|sueño)\b")
 
+# Palabras que SOLO son inglesas: nada de «a», «no», «en» o «son», que también son
+# españolas y contarían para los dos lados.
+_EN_PAL = re.compile(
+    r"(?i)\b(the|and|with|of|is|are|was|were|his|her|their|they|she|he|its|from|"
+    r"that|this|these|those|when|where|what|who|which|into|about|after|before|while|"
+    r"there|here|you|your|we|our|but|for|on|at|by|out|all|new|first|last|one|two|"
+    r"has|have|had|will|would|could|does|doesn|to|an|as|in|up|if|then|"
+    r"decides|meets|begins|finds|takes|goes|gets|becomes|must|each|other|others)\b")
+
 def parece_ingles(t):
-    """¿Hay que traducir este texto? True si no se le ve nada de español."""
+    """¿Hay que traducir este texto? Gana el idioma que deje MÁS marcas: así un
+    «Pokémon» suelto no convierte una frase inglesa en española, ni un «All Might»
+    convierte en inglesa una sinopsis que está en español."""
     t = str(t or "").strip()
     if len(t) < 4: return False
     if re.match(r"(?i)^(episodio|parte|ova|pelicula|película)\b", t): return False
     if not re.search(r"[A-Za-zÀ-ÿ]", t): return False      # solo números o símbolos
-    return not _ES.search(t)
+    en = len(_EN_PAL.findall(t))
+    es = len(_ES_PAL.findall(t)) + len(_ES_ACC.findall(t))
+    if en or es: return en > es
+    return True        # ni español ni inglés reconocible (romaji…) → se traduce
 
 def _pide_traduccion(txt):
-    """Devuelve la traducción o None. Prueba MyMemory y luego Google."""
+    """Devuelve la traducción o None. Prueba MyMemory y luego Google.
+    Si un traductor DEVUELVE EL MISMO TEXTO no vale como traducción: MyMemory a
+    veces se limita a hacer eco (responseStatus 200 y sin aviso ninguno) y así se
+    colaban títulos en inglés dándolos por traducidos."""
+    def _sirve(out):
+        return bool(out) and out.strip().casefold() != txt.strip().casefold()
     try:
         st, r = http("https://api.mymemory.translated.net/get?langpair=en|es&q=" + urllib.parse.quote(txt), timeout=20)
         if st == 200:
             j = json.loads(r)
             out = (j.get("responseData") or {}).get("translatedText") or ""
-            if out and "MYMEMORY WARNING" not in out.upper() and "QUOTA" not in out.upper():
+            if _sirve(out) and "MYMEMORY WARNING" not in out.upper() and "QUOTA" not in out.upper():
                 return out
     except Exception: pass
     try:
@@ -464,14 +487,14 @@ def _pide_traduccion(txt):
         if st == 200:
             j = json.loads(r)
             out = "".join(p[0] for p in j[0] if p and p[0])
-            if out: return out
+            if _sirve(out): return out
     except Exception: pass
     return None
 
 def traducir(txt, log=None):
     """Traduce al español si hace falta. Si no se puede, devuelve el texto original
     (nunca rompe ni deja el episodio sin título)."""
-    global _trad_off
+    global _trad_off, _trad_fallos
     txt = str(txt or "").strip()
     if not txt or not parece_ingles(txt): return txt
     c = _trad_load()
@@ -479,9 +502,16 @@ def traducir(txt, log=None):
     if _trad_off: return txt
     out = _pide_traduccion(txt)
     if out is None:
-        _trad_off = True
-        if log: log("No se pudo traducir (cuota agotada o sin conexión): se deja el texto original.")
+        # Un texto suelto puede resistirse (un título muy corto, con siglas…) sin que
+        # la cuota esté agotada. Antes el primer fallo apagaba la traducción para TODA
+        # la sesión y el resto de episodios se quedaba en inglés; ahora hacen falta
+        # varios fallos seguidos. El fallo NO se guarda en caché, así se reintenta.
+        _trad_fallos += 1
+        if _trad_fallos >= 4:
+            _trad_off = True
+            if log: log("No se pudo traducir (cuota agotada o sin conexión): se deja el texto original.")
         return txt
+    _trad_fallos = 0
     c[txt] = out
     _trad_save()
     return out
