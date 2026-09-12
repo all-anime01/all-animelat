@@ -1477,6 +1477,117 @@ def save(data, token, replace, log):
     log(f"OK GUARDADO: {aid} — {len(episodes)} eps [{doc.get('audio', '')}]. Ya está en el sitio.")
     return True
 
+# ------------------------------------------------------ comprobar servidores
+# Muchos hosts borran los vídeos al tiempo (VOE, VidHide, Google Drive, Mega…) y
+# el episodio se queda con un botón que no reproduce nada. Esto los detecta.
+_MUERTO = re.compile(r"(?i)file (?:was )?(?:deleted|not found)|no longer available|"
+                     r"video (?:not found|has been removed)|does not exist|"
+                     r"404 not found|removed for violat|no se ha encontrado|"
+                     r"this video is unavailable")
+
+def server_vivo(url, referer=None):
+    """True si el enlace responde con algo reproducible. Ante la duda, True:
+    más vale dejar un servidor dudoso que borrar uno bueno."""
+    u = str(url or "")
+    if not u.startswith("http"): return False
+    if "mega.nz" in u or "mega.co.nz" in u:
+        m = re.search(r"(?:embed|file)[/#]([A-Za-z0-9_-]{8})", u)
+        if not m: return True
+        st, t = http("https://g.api.mega.co.nz/cs?id=1",
+                     data=[{"a": "g", "p": m.group(1)}], timeout=20)
+        try:
+            j = json.loads(t)
+            return isinstance(j, list) and isinstance(j[0], dict)
+        except Exception:
+            return True
+    st, t = http(u, referer=referer, timeout=20)
+    if st in (404, 410): return False
+    # Google Drive: un 403 en /preview significa que el archivo dejó de ser público.
+    if "drive.google.com" in u and st in (401, 403): return False
+    if st != 200: return True                 # 403/429/0 en otros hosts = bloqueo, no muerte
+    # OJO: muchos reproductores (VOE, Mega, Mp4upload) devuelven una página corta
+    # que solo carga JavaScript. Una página corta NO significa vídeo borrado; solo
+    # se da por muerto lo que está vacío del todo o lo dice con todas las letras.
+    if len(t.strip()) < 200: return False
+    return not _MUERTO.search(t[:8000])
+
+def comprobar_servidores(episodes, log=None, quitar=True):
+    """Revisa TODOS los servidores. Devuelve (vivos, muertos). Nunca deja un
+    episodio sin ninguno: si todos fallasen, se conservan como estaban."""
+    vivos = muertos = 0
+    for e in episodes:
+        srv = e.get("servers") or []
+        buenos, malos = [], []
+        for sv in srv:
+            (buenos if server_vivo(sv.get("url"), sv.get("ref")) else malos).append(sv)
+        vivos += len(buenos); muertos += len(malos)
+        if malos and log:
+            log(f"  {e.get('season')} ep {e.get('number')}: caídos " +
+                ", ".join(str(x.get("name")) for x in malos))
+        if quitar and buenos and malos:
+            e["servers"] = buenos
+            e["language"] = audio_label({x.get("lang", "Sub") for x in buenos})
+    if log: log(f"Servidores revisados: {vivos} vivos, {muertos} caídos" +
+                (" (quitados)" if quitar else ""))
+    return vivos, muertos
+
+# ------------------------------------------------------------------ diagnóstico
+def diagnostico(aid, episodes, doc=None, card=None):
+    """Revisa un anime y devuelve la lista de problemas, en español y sin rodeos."""
+    avisos = []
+    if not episodes: return ["El anime no tiene episodios."]
+    porSeason = {}
+    for e in episodes:
+        porSeason.setdefault(e.get("season"), {})[str(e.get("number"))] = e
+
+    # temporadas que contienen los mismos episodios (el fallo de Link Click e InuYasha)
+    nombres = list(porSeason)
+    for i in range(len(nombres)):
+        for j in range(i + 1, len(nombres)):
+            a, b = porSeason[nombres[i]], porSeason[nombres[j]]
+            comunes = set(a) & set(b)
+            if not comunes: continue
+            iguales = sum(1 for n in comunes
+                          if (a[n].get("title") or "") == (b[n].get("title") or "") and
+                          ({x.get("url") for x in (a[n].get("servers") or [])} &
+                           {x.get("url") for x in (b[n].get("servers") or [])}))
+            if iguales >= max(3, len(comunes) // 2):
+                avisos.append(f"«{nombres[i]}» y «{nombres[j]}» repiten {iguales} episodios "
+                              f"(mismo título y mismos enlaces): una de las dos sobra.")
+
+    sin_srv = [f"{e.get('season')} {e.get('number')}" for e in episodes if not (e.get("servers") or [])]
+    if sin_srv: avisos.append(f"{len(sin_srv)} episodios sin ningún servidor: {', '.join(sin_srv[:6])}"
+                              + (" …" if len(sin_srv) > 6 else ""))
+
+    imgs = [e.get("img") for e in episodes if e.get("img")]
+    if len(episodes) > 3 and len(set(imgs)) <= max(1, len(episodes) // 10):
+        avisos.append(f"Casi todos los episodios comparten la misma imagen "
+                      f"({len(set(imgs))} distintas para {len(episodes)} episodios).")
+    sin_img = sum(1 for e in episodes if not e.get("img"))
+    if sin_img: avisos.append(f"{sin_img} episodios sin imagen.")
+
+    en = sum(1 for e in episodes if parece_ingles(e.get("title")))
+    if en: avisos.append(f"{en} títulos siguen en inglés (la casilla «Traducir al español» los arregla).")
+
+    gen = sum(1 for e in episodes if re.match(r"(?i)^episodio\s*\d+$", str(e.get("title", ""))))
+    if gen == len(episodes) and len(episodes) > 2:
+        avisos.append("Ningún episodio tiene título propio: todos son «Episodio N».")
+
+    for s, m in porSeason.items():
+        nums = sorted(int(n) for n in m if str(n).lstrip("-").isdigit())
+        if len(nums) > 2:
+            faltan = [x for x in range(nums[0], nums[-1] + 1) if x not in set(nums)]
+            if faltan: avisos.append(f"«{s}» tiene huecos: faltan {faltan[:10]}"
+                                     + (" …" if len(faltan) > 10 else ""))
+
+    if card is not None and card.get("episodesTotal") != len(episodes):
+        avisos.append(f"La tarjeta del catálogo dice {card.get('episodesTotal')} episodios "
+                      f"pero hay {len(episodes)}: se corrige al guardar.")
+    if doc:
+        cerradas = [str(x) for x in (doc.get("lockedSeasons") or []) if x]
+        if cerradas: avisos.append(f"Temporadas cerradas (no se les añade nada): {', '.join(cerradas)}.")
+    return avisos or ["Todo en orden: sin temporadas repetidas, sin huecos y con servidores."]
+
 # ================================================================== GUI
 # Paleta moderna (dark, tono azulado + acento rojo de marca)
 BG   = "#0b0d13"   # fondo general (casi negro azulado)
@@ -1699,8 +1810,53 @@ class App:
         bb = ctk.CTkFrame(pv, fg_color="transparent"); bb.pack(fill="x", padx=16, pady=10)
         self.save_btn = btn(bb, "Guardar en la web", self.do_save, "grn"); self.save_btn.pack(side="left"); self.save_btn.configure(state="disabled")
         btn(bb, "🖼 Reparar imágenes", self.do_fix_images).pack(side="left", padx=10)
+        self.check_btn = btn(bb, "🩺 Comprobar servidores", self.do_check_servers)
+        self.check_btn.pack(side="left", padx=10); self.check_btn.configure(state="disabled")
+        self.diag_btn = btn(bb, "🔎 Diagnóstico", self.do_diagnostico)
+        self.diag_btn.pack(side="left", padx=10); self.diag_btn.configure(state="disabled")
         btn(bb, "↶ Revertir", self.do_revert, "ghost").pack(side="left", padx=10)
         btn(bb, "🧹 Limpiar", self.do_clear, "ghost").pack(side="left", padx=10)
+
+    def do_check_servers(self):
+        """Revisa los enlaces del anime cargado y quita los que ya no reproducen."""
+        if not self.data or not self.data.get("episodes"):
+            messagebox.showinfo("Comprobar servidores", "Primero carga o construye un anime."); return
+        eps = self.data["episodes"]
+        total = sum(len(e.get("servers") or []) for e in eps)
+        if not messagebox.askyesno("Comprobar servidores",
+                                   f"Se van a revisar {total} enlaces de {len(eps)} episodios.\n"
+                                   "Los que ya no reproduzcan se quitan (nunca el último de un episodio).\n\n"
+                                   "Puede tardar. ¿Seguimos?"): return
+        self.check_btn.configure(state="disabled")
+        def work():
+            try:
+                vivos, muertos = comprobar_servidores(eps, self.log, quitar=True)
+                self.after(0, lambda: self.refresh_tree(None))
+                if muertos:
+                    self.log("Pulsa «Guardar en la web» para que el cambio quede subido.")
+            except Exception as e:
+                self.log(f"Error comprobando servidores: {e}")
+            finally:
+                self.after(0, lambda: self.check_btn.configure(state="normal"))
+        threading.Thread(target=work, daemon=True).start()
+
+    def do_diagnostico(self):
+        """Revisa el anime cargado y dice qué está mal antes de guardar."""
+        if not self.data or not self.data.get("episodes"):
+            messagebox.showinfo("Diagnóstico", "Primero carga o construye un anime."); return
+        aid = self.data.get("aid")
+        card = None
+        try:
+            card = next((x for x in get_catalog() if x.get("id") == aid), None)
+        except Exception: pass
+        doc = None
+        if self.loaded_aid == aid:
+            try: doc = get_doc(f"animes/{aid}", self.token)
+            except Exception: pass
+        avisos = diagnostico(aid, self.data["episodes"], doc, card)
+        self.log("── Diagnóstico de " + str(aid) + " ──")
+        for a in avisos: self.log("  • " + a)
+        messagebox.showinfo("Diagnóstico de " + str(aid), "\n\n".join("• " + a for a in avisos))
 
     def _field(self, parent, label, r, w=None):
         self._lab(parent, label).grid(row=r, column=0, sticky="w", pady=3)
@@ -1857,6 +2013,7 @@ class App:
                     if not self._tree_eps and eps:            # red de seguridad: nunca dejar la lista vacía
                         self.refresh_tree(None)
                     self.save_btn.configure(state="normal"); self.addnew_btn.configure(state="normal")
+                    self.check_btn.configure(state="normal"); self.diag_btn.configure(state="normal")
                     ordered = self._distinct_seasons()
                     self.log(f"Cargado: {d.get('title')} — {len(eps)} episodios · {len(ordered)} temporada(s): {', '.join(ordered[:6])}{'…' if len(ordered) > 6 else ''}")
                     self.log("Lista completa cargada; en «Ver temporada» puedes filtrar por temporada.")
