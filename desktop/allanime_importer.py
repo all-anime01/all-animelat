@@ -466,19 +466,49 @@ def parece_ingles(t):
     if en or es: return en > es
     return True        # ni español ni inglés reconocible (romaji…) → se traduce
 
+# MyMemory no avisa con un error cuando algo va mal: devuelve el AVISO dentro del
+# texto traducido, con estado 200. Así llegó a guardarse «QUERY LENGTH LIMIT
+# EXCEEDED. MAX ALLOWED QUERY : 500 CHARS» como sinopsis de varios episodios.
+_MM_AVISO = re.compile(r"(?i)MYMEMORY WARNING|QUOTA|QUERY LENGTH LIMIT|MAX ALLOWED QUERY|"
+                       r"INVALID LANGUAGE PAIR|NO QUERY SPECIFIED|PLEASE SELECT TWO DISTINCT")
+_MM_MAX = 450              # MyMemory corta en 500 bytes; se deja margen para las tildes
+
+def _trozos(txt, maximo=_MM_MAX):
+    """Parte un texto largo por frases (y si una frase sola no cabe, por palabras)."""
+    frases = re.split(r"(?<=[.!?…])\s+", txt.strip())
+    out, cur = [], ""
+    for f in frases:
+        while len(f.encode("utf-8")) > maximo:          # frase kilométrica
+            corte = f[:maximo].rsplit(" ", 1)[0] or f[:maximo]
+            if cur: out.append(cur); cur = ""
+            out.append(corte); f = f[len(corte):].strip()
+        cand = (cur + " " + f).strip()
+        if len(cand.encode("utf-8")) > maximo:
+            out.append(cur); cur = f
+        else:
+            cur = cand
+    if cur: out.append(cur)
+    return [x for x in out if x]
+
 def _pide_traduccion(txt):
     """Devuelve la traducción o None. Prueba MyMemory y luego Google.
     Si un traductor DEVUELVE EL MISMO TEXTO no vale como traducción: MyMemory a
     veces se limita a hacer eco (responseStatus 200 y sin aviso ninguno) y así se
     colaban títulos en inglés dándolos por traducidos."""
+    if len(txt.encode("utf-8")) > _MM_MAX:
+        partes = _trozos(txt)
+        if len(partes) > 1:
+            hechas = [_pide_traduccion(p) for p in partes]
+            return None if any(h is None for h in hechas) else " ".join(hechas)
     def _sirve(out):
-        return bool(out) and out.strip().casefold() != txt.strip().casefold()
+        return (bool(out) and out.strip().casefold() != txt.strip().casefold()
+                and not _MM_AVISO.search(out))
     try:
         st, r = http("https://api.mymemory.translated.net/get?langpair=en|es&q=" + urllib.parse.quote(txt), timeout=20)
         if st == 200:
             j = json.loads(r)
             out = (j.get("responseData") or {}).get("translatedText") or ""
-            if _sirve(out) and "MYMEMORY WARNING" not in out.upper() and "QUOTA" not in out.upper():
+            if _sirve(out):
                 return out
     except Exception: pass
     try:
