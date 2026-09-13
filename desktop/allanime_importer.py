@@ -1739,6 +1739,14 @@ def server_vivo(url, referer=None):
             return isinstance(j, list) and isinstance(j[0], dict)
         except Exception:
             return True
+    # Filemoon con el reproductor nuevo (Byse: filemoon0.top, filemooon.link, byse…):
+    # la página es una app de JavaScript idéntica exista o no el vídeo, así que por
+    # la página siempre parecía vivo. Su API sí lo dice: 404 «video not found».
+    mb = re.match(r"https?://([^/]*(?:filemoo|byse|moonplayer)[^/]*)/e/([A-Za-z0-9]{8,16})", u)
+    if mb:
+        st, t = http(f"https://{mb.group(1)}/api/videos/{mb.group(2)}/embed/details", referer=u, timeout=20)
+        if st == 404: return False
+        if st == 200: return True
     st, t = http(u, referer=referer, timeout=20)
     if st in (404, 410): return False
     # Google Drive: un 403 en /preview significa que el archivo dejó de ser público.
