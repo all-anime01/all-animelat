@@ -1012,11 +1012,37 @@ def av1_servers(slug, n):
 # /ver/{slug}/{n}            -> "players":[{language:LAT|ESP|SUB, server_name, bridge_url}]
 ALHD = "https://www.animelatinohd.com"
 _ALHD_LANG = {"LAT": "Latino", "ESP": "Castellano", "SUB": "Sub"}
+# animelatinohd rechaza las peticiones que no vienen de un navegador: desde aquí
+# siempre respondía vacío y la fuente parecía no tener nada. El Cloudflare Worker
+# del proyecto sí pasa, así que se usa como puente cuando la petición directa falla.
+WORKER = "https://allanime-scraper.all-anime-lat01.workers.dev"
+
+_MURO = re.compile(r"(?i)just a moment|un momento…|challenges\.cloudflare\.com|cf-browser-verification|"
+                   r"enable javascript and cookies|attention required")
+
+def get_text_puente(url, referer=None, worker=None):
+    """Descarga la página; si viene vacía o con el muro de Cloudflare, va por el Worker.
+    OJO: la página del muro pesa varios KB, así que mirar solo el tamaño no vale."""
+    try:
+        h = get_text(url, referer=referer)
+    except Exception:
+        h = ""
+    if h and len(h) > 800 and not _MURO.search(h[:4000]): return h
+    wk = (worker or WORKER).rstrip("/")
+    try:
+        q = f"{wk}/fetch?url={urllib.parse.quote(url, safe='')}"
+        if referer: q += "&ref=" + urllib.parse.quote(referer, safe="")
+        st, t = http(q, timeout=45)
+        if st == 200:
+            j = json.loads(t)
+            if j.get("status") == 200: return j.get("html") or h
+    except Exception: pass
+    return h
 
 def alhd_search(title):
     """Slug de animelatinohd que mejor coincide con el título."""
     try:
-        h = get_text(f"{ALHD}/directorio?search={urllib.parse.quote(title)}", referer=ALHD + "/")
+        h = get_text_puente(f"{ALHD}/directorio?search={urllib.parse.quote(title)}", referer=ALHD + "/")
     except Exception:
         return None
     t = h.replace('\\"', '"')
@@ -1034,7 +1060,7 @@ def alhd_search(title):
 def alhd_max(slug):
     """Nº del último episodio publicado."""
     if not slug: return 0
-    try: h = get_text(f"{ALHD}/anime/{slug}", referer=ALHD + "/")
+    try: h = get_text_puente(f"{ALHD}/anime/{slug}", referer=ALHD + "/")
     except Exception: return 0
     ns = [int(x) for x in re.findall(r"/ver/" + re.escape(slug) + r"/(\d+)", h)]
     return max(ns) if ns else 0
@@ -1042,7 +1068,7 @@ def alhd_max(slug):
 def alhd_servers(slug, n):
     """Servidores del episodio (el bridge_url es la página reproducible del propio sitio)."""
     if not slug: return []
-    try: h = get_text(f"{ALHD}/ver/{slug}/{n}", referer=f"{ALHD}/anime/{slug}")
+    try: h = get_text_puente(f"{ALHD}/ver/{slug}/{n}", referer=f"{ALHD}/anime/{slug}")
     except Exception: return []
     t = h.replace('\\"', '"')
     m = re.search(r'"players":(\[[\s\S]*?\}\])', t)
@@ -1113,6 +1139,63 @@ PORY_ALIAS = {
     "pokemon ultimate journeys": "pokemon-2019",
     "cardcaptor sakura": "sakura-cardcaptor",
 }
+
+# ------------------------------------------------------ temporadas partidas (cours)
+# Muchas temporadas se emiten en DOS tandas («Part 2», «2nd Cour», «Parte 2»). Las
+# fuentes les dan un slug propio y AniList una entrada propia, así que se contaban
+# como una temporada MÁS: Mushoku Tensei salía con 4 cuando son 3. Aquí se reconoce
+# esa continuación para meterla en la MISMA temporada, siguiendo la numeración.
+_CONT = re.compile(r"(?i)(?:^|[\s\-_:])(?:"
+                   r"(?:part|parte|cour|tanda)[\s\-_]*(?:2|3|ii|iii|two|three|dos|tres|b|c)"
+                   r"|(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:part|parte|cour|tanda)"
+                   r")(?:$|[\s\-_])")
+# el mismo sufijo, para recortarlo y comparar la raíz del nombre
+_SUF_CONT = re.compile(r"(?i)[\s\-_]*(?:"
+                       r"(?:part|parte|cour|tanda)[\s\-_]*(?:\d+|ii|iii|two|three|dos|tres|b|c)"
+                       r"|(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:part|parte|cour|tanda)"
+                       r")\s*$")
+
+def es_continuacion(texto, anterior=None):
+    """¿Este slug/título es otra PARTE de la temporada anterior (y no una temporada nueva)?
+    «…-part-2» sí; «…-2nd-season» no, que ahí sí empieza otra temporada."""
+    t = str(texto or "")
+    if not t or not _CONT.search(t): return False
+    def raiz(x):
+        return re.sub(_SUF_CONT, "", str(x or "")).strip("-_: ")
+    if anterior:
+        # Manda la raíz: «…-3rd-season-part-2» SÍ continúa a «…-3rd-season», pero
+        # «Mushoku Tensei II 2nd Season Part 2» NO continúa a «Mushoku Tensei».
+        return bool(raiz(t)) and norm(raiz(t)) == norm(str(anterior).strip("-_: "))
+    # Sin referencia: si el propio nombre anuncia temporada nueva, no es continuación.
+    return not re.search(r"(?i)(?:^|[\s\-_])(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:season|temporada)", t)
+
+def _fusiona_partes(seasons, al=None, log=None):
+    """Marca los bloques que son otra PARTE de la temporada anterior y renumera el
+    resto. Devuelve la misma lista (un bloque por slug, que es como se scrapea), pero
+    las partes comparten el NOMBRE de su temporada y se marcan con «cont», así sus
+    episodios siguen la numeración en vez de empezar otra temporada."""
+    al = al or []
+    out, n_real, ult_slug, ult_tit, ult_nombre = [], 0, "", "", ""
+    for i, S in enumerate(seasons):
+        slug = S.get("av") or S.get("jk") or ""
+        tit = (al[i].get("romaji") or al[i].get("english") or al[i].get("title") or "") if i < len(al) else ""
+        cont = bool(out) and (es_continuacion(slug, ult_slug) or (tit and es_continuacion(tit, ult_tit)))
+        S = dict(S)
+        if cont:
+            if slug and slug == ult_slug:
+                # misma fuente para las dos tandas: ya trae los episodios de ambas,
+                # volver a recorrerla solo duplicaría lo mismo con otros números.
+                if log: log(f"  la 2ª parte de {ult_nombre} usa la MISMA fuente ({slug}): no se recorre dos veces")
+                continue
+            S["cont"] = True; S["name"] = ult_nombre; S["season"] = n_real
+            if log: log(f"  «{slug or tit}» es otra PARTE de {ult_nombre}: se une a esa temporada")
+        else:
+            n_real += 1
+            S["cont"] = False; S["season"] = n_real; S["name"] = f"Temporada {n_real}"
+            ult_nombre = S["name"]
+        ult_slug, ult_tit = slug or ult_slug, tit or ult_tit
+        out.append(S)
+    return out
 
 def pory_search(title):
     """Slug de porygonsubs que mejor encaja con el título."""
@@ -1337,6 +1420,7 @@ def build_episodes(data, opts, log, prog, on_ep):
         # MANUAL: cada slug = una temporada (para franquicias con nombres arbitrarios,
         # ej. beyblade-burst, beyblade-burst-god…). Se usa el mismo slug para jk y av.
         seasons = [{"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "jk": s, "av": s, "e69s": i + 1} for i, s in enumerate(src_slugs)]
+        seasons = _fusiona_partes(seasons, data.get("anilist") or [], log)
         per_season_num = True
         log(f"SECUELAS como temporadas (manual): {len(src_slugs)} → {', '.join(src_slugs)}")
         base_alhd = (alhd_search(title) if opts.get("alhd") else "") or ""
@@ -1391,7 +1475,8 @@ def build_episodes(data, opts, log, prog, on_ep):
                     try: yt = yt_search(t) if t else (yt_search(title) if i == 0 else None)
                     except Exception: yt = None
                 seasons.append({"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "jk": jk, "av": av, "yt": yt, "e69s": e69s})
-            log(f"AUTO temporadas: {nsrc} (jk={jk_list} · av={av_list})")
+            seasons = _fusiona_partes(seasons, al, log)
+            log(f"AUTO temporadas: {len(seasons)} (jk={jk_list} · av={av_list})")
         else:
             jkslug = base_jk or None; avslug = base_av or None
             ytslug = (yt_search(title) if (opts.get("yt") and not src_slug) else None)
@@ -1400,17 +1485,29 @@ def build_episodes(data, opts, log, prog, on_ep):
             if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
         # OVAs: si la fuente tiene un slug de OVAs/especiales, se anexan como bloque propio
         # ("OVAs"), con numeración propia (1..N). embed69 no aplica (e69s=None).
-        if not src_slugs:
-            ova_jk = ova_av = None
-            for suf in ("-ova", "-ovas", "-oad", "-oav", "-especiales", "-specials"):
-                try:
-                    if opts["jk"] and base_jk and not ova_jk and jk_max(base_jk + suf) > 0: ova_jk = base_jk + suf
-                    if opts["av1"] and base_av and not ova_av and av1_max(base_av + suf) > 0: ova_av = base_av + suf
-                except Exception: pass
-            if ova_jk or ova_av:
-                seasons.append({"season": len(seasons) + 1, "count": 60, "name": "OVAs",
-                                "jk": ova_jk, "av": ova_av, "e69s": None, "psn": True})
-                log(f"OVAs detectadas: jk={ova_jk or '—'} av={ova_av or '—'}")
+        # Qué hacer con OVAs y películas: «aparte» (bloque propio, por defecto),
+        # «juntas» (siguen la numeración de la última temporada) o «omitir».
+        modo_extra = (opts.get("ovas") or "aparte").lower()
+        if not src_slugs and modo_extra != "omitir":
+            EXTRAS = [("OVAs", ("-ova", "-ovas", "-oad", "-oav", "-especiales", "-specials")),
+                      ("Películas", ("-movie", "-movies", "-pelicula", "-peliculas", "-the-movie"))]
+            for nombre, sufijos in EXTRAS:
+                ex_jk = ex_av = None
+                for suf in sufijos:
+                    try:
+                        if opts["jk"] and base_jk and not ex_jk and jk_max(base_jk + suf) > 0: ex_jk = base_jk + suf
+                        if opts["av1"] and base_av and not ex_av and av1_max(base_av + suf) > 0: ex_av = base_av + suf
+                    except Exception: pass
+                if not (ex_jk or ex_av): continue
+                if modo_extra == "juntas" and seasons:
+                    ult = seasons[-1].get("name") or f"Temporada {seasons[-1]['season']}"
+                    seasons.append({"season": seasons[-1]["season"], "count": 60, "name": ult,
+                                    "jk": ex_jk, "av": ex_av, "e69s": None, "psn": True, "cont": True})
+                    log(f"{nombre} detectadas (jk={ex_jk or '—'} av={ex_av or '—'}) → se unen a {ult}")
+                else:
+                    seasons.append({"season": len(seasons) + 1, "count": 60, "name": nombre,
+                                    "jk": ex_jk, "av": ex_av, "e69s": None, "psn": True})
+                    log(f"{nombre} detectadas: jk={ex_jk or '—'} av={ex_av or '—'} → bloque «{nombre}»")
     episodes = data["episodes"]
     manual = {}
     if opts["manual"]:
@@ -1456,9 +1553,15 @@ def build_episodes(data, opts, log, prog, on_ep):
     skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False}
     miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0}
     empty_streak = 0; stop = False
+    ult_num, ult_nombre = 0, ""          # último nº y temporada creados (para las partes)
+    sin_foto = []                        # episodios que se quedaron sin foto propia
     for S in seasons:
         if stop: break
         sname = S.get("name") or (f"Temporada {S['season']}" if len(seasons) > 1 else "Temporada 1")
+        # Temporada partida en varias tandas: esta parte NO empieza otra temporada,
+        # continúa la numeración de la anterior (ep 13 en vez de otro ep 1).
+        off = ult_num if (S.get("cont") and sname == ult_nombre) else 0
+        if off: log(f"— {sname}: 2ª parte, sigue en el episodio {off + 1}")
         jkcur = S.get("jk") or S.get("slug") or jkslug   # slug de jkanime de ESTA temporada
         avcur = S.get("av") or S.get("slug") or avslug   # slug de animeav1 de ESTA temporada
         ytcur = S.get("yt") or (ytslug if not multi else None)   # slug de animeyt de ESTA temporada
@@ -1540,16 +1643,28 @@ def build_episodes(data, opts, log, prog, on_ep):
                     log(f"  fin del anime (sin servers) — construidos {len(episodes)}"); stop = True; break
                 continue
             empty_streak = 0
-            em = info["stills"].get(f"{S['season']}x{n}", {})
+            num = (off + n) if off else (n if (per_season_num or S.get("psn")) else absn)
+            # La foto del episodio se busca por la temporada REAL y su número dentro de
+            # ella; antes se pedía con el índice del bloque scrapeado y, en temporadas
+            # partidas o con OVAs de por medio, salía la foto de otro episodio.
+            em = (info["stills"].get(f"{S['season']}x{num}")
+                  or info["stills"].get(f"{S.get('e69s') or S['season']}x{num}")
+                  or (info["stills"].get(f"1x{absn}") if not per_season_num else None) or {})
             rt = em.get("runtime") or info.get("runtime") or 24
-            ep = {"number": n, "season": sname, "title": em.get("title") or f"Episodio {n}",
+            if not em.get("still"): sin_foto.append(f"{sname} {num}")
+            ep = {"number": num, "season": sname, "title": em.get("title") or f"Episodio {num}",
                   "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
-                  "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={n}",
+                  "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={num}",
                   "img": em.get("still") or info["backdrop"] or info["poster"],
                   "description": em.get("overview") or "", "releaseDate": em.get("air_date") or "",
                   "duration": fmt_duration(rt) or f"{rt} min", "servers": servers}
             episodes.append(ep)
+            ult_num, ult_nombre = num, sname
             if on_ep: on_ep(ep)
+    if sin_foto:
+        log(f"⚠ {len(sin_foto)} episodio(s) sin foto propia en TMDB (llevan la imagen del anime): "
+            + ", ".join(sin_foto[:8]) + ("…" if len(sin_foto) > 8 else "")
+            + " — usa «Reparar imágenes» o pon la foto a mano con doble clic.")
     # El sitio es en español: si TMDB solo tenía el título o la sinopsis en inglés,
     # se traducen aquí antes de guardar (con caché, no gasta cuota dos veces).
     if opts.get("traducir", True) and episodes:
@@ -2015,6 +2130,11 @@ class App:
         lab(pg, "Slug de porygonsubs (opcional · para el Latino de Pokémon):").pack(side="left")
         self.poryslug = ent(pg, 300); self.poryslug.pack(side="left", padx=6)
         lab(pg, "↳ ej: horizontes-pokemon").pack(side="left")
+        og = ctk.CTkFrame(sc, fg_color="transparent"); og.pack(fill="x", padx=16, pady=(0, 8))
+        lab(og, "OVAs y películas:").pack(side="left")
+        self.ovas = combo(og, ["En bloque aparte", "Dentro de la temporada", "No incluirlas"], 220)
+        self.ovas.set("En bloque aparte"); self.ovas.pack(side="left", padx=6)
+        lab(og, "↳ «aparte» crea «OVAs» y «Películas»; «dentro» sigue la numeración de la última temporada").pack(side="left")
         self.manbox = ctk.CTkFrame(sc, fg_color="transparent")
         lab(self.manbox, "URLs manuales (N|URL por línea)").pack(anchor="w", padx=16)
         self.mantext = ctk.CTkTextbox(self.manbox, height=64, fg_color="#101015", text_color=TXT, corner_radius=8); self.mantext.pack(fill="x", padx=16, pady=(0, 8))
@@ -2360,6 +2480,8 @@ class App:
                 "only": self.only.get(), "tmdb_key": self.tmdb.get().strip(), "range": self.rangef.get().strip(),
                 "season": self.seasonf.get().strip(), "src_slug": self.srcslug.get().strip(),
                 "pory": self.pory.get(), "pory_slug": self.poryslug.get().strip(),
+                "ovas": {"En bloque aparte": "aparte", "Dentro de la temporada": "juntas",
+                         "No incluirlas": "omitir"}.get(self.ovas.get(), "aparte"),
                 "traducir": self.trad.get()}
         kind = self.kind.get()
         # ¿Actualizar el anime cargado del catálogo? (mismo título, o modo añadir) → NO duplicar.
@@ -2443,6 +2565,8 @@ class App:
                 "manual_text": "", "prefer": self.prefer.get().split(","), "only": self.only.get(),
                 "tmdb_key": self.tmdb.get().strip(), "range": "", "season": "", "src_slug": "",
                 "pory": self.pory.get(), "pory_slug": "",
+                "ovas": {"En bloque aparte": "aparte", "Dentro de la temporada": "juntas",
+                         "No incluirlas": "omitir"}.get(self.ovas.get(), "aparte"),
                 "traducir": self.trad.get()}
 
     def do_batch(self):
