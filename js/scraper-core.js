@@ -402,17 +402,33 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     return out;
   }
 
+  // Devuelve null si NINGÚN candidato se parece de verdad: antes cogía siempre el
+  // primero y por eso se scrapeaban animes equivocados. Y un título sin letras
+  // latinas (chino/japonés) no sirve para comparar, así que no elige nada.
   function mejorSlug(cands, title) {
     if (!cands || !cands.length) return null;
     const want = norm(title);
-    let mejor = cands[0], mx = -1;
+    if (!want) return null;
+    const VACIAS = new Set(["the", "a", "an", "of", "no", "wa", "ga", "ni", "to", "de", "la", "el",
+      "los", "las", "season", "temporada", "tv", "anime", "donghua"]);
+    const toks = (x) => new Set(norm(x).split(" ").filter((w) => w && !VACIAS.has(w)));
+    const ta = toks(want);
+    let mejor = null, mx = 0;
     for (const c of cands) {
-      const cn = norm(c.replace(/[-/]/g, " "));
-      const sc = cn === want ? 100 : (cn.startsWith(want) || want.startsWith(cn)) ? 70
-        : cn.split(" ").filter((w) => want.split(" ").includes(w)).length;
+      const cn = norm(String(c).replace(/[-/]/g, " "));
+      if (!cn) continue;
+      let sc;
+      if (cn === want) sc = 1;
+      else if (cn.startsWith(want) || want.startsWith(cn)) sc = 0.9;
+      else {
+        const tb = toks(cn);
+        const com = [...ta].filter((w) => tb.has(w)).length;
+        sc = (!ta.size || !tb.size || !com) ? 0
+          : (com / Math.min(ta.size, tb.size)) * ((com / Math.max(ta.size, tb.size)) * 0.5 + 0.5);
+      }
       if (sc > mx) { mx = sc; mejor = c; }
     }
-    return mejor;
+    return mx >= 0.45 ? mejor : null;
   }
 
   // ------------------------------------------------------------ metadata

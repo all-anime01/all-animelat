@@ -592,15 +592,40 @@ def parse_range(s, total):
             out.update(range(a, b + 1))
         elif part.isdigit(): out.add(int(part))
     return out or None
-def best(cands, title):
+_VACIAS = {"the", "a", "an", "of", "no", "wa", "ga", "ni", "to", "de", "la", "el", "los", "las",
+           "season", "temporada", "tv", "anime", "donghua"}
+
+def similitud(a, b):
+    """0..1 entre dos títulos, por palabras (sin las vacías). Mira la cobertura de
+    LOS DOS lados: así «Under the Gate» no se parece a «Kekkai Sensen» aunque
+    compartan alguna palabra suelta."""
+    ta = {w for w in norm(a).split() if w not in _VACIAS}
+    tb = {w for w in norm(b).split() if w not in _VACIAS}
+    if not ta or not tb: return 0.0
+    comunes = len(ta & tb)
+    if not comunes: return 0.0
+    return comunes / float(min(len(ta), len(tb))) * (comunes / float(max(len(ta), len(tb))) * 0.5 + 0.5)
+
+def best(cands, title, minimo=0.45):
+    """Mejor candidato, o None si NINGUNO se parece de verdad al título.
+    Antes devolvía siempre el primero aunque no tuviera nada que ver, y por eso se
+    scrapeaban animes equivocados (Under the Gate traía Kekkai Sensen)."""
     if not cands: return None
     want = norm(title)
-    def sc(c):
-        cn = norm(c.replace("-", " ").replace("/", " "))
-        if cn == want: return 100
-        if cn.startswith(want) or want.startswith(cn): return 70
-        ws = set(want.split()); return len([w for w in cn.split() if w in ws])
-    return sorted(cands, key=sc, reverse=True)[0]
+    # Un título sin letras latinas (chino/japonés) deja `want` VACÍO y entonces
+    # cualquier candidato «empezaba por» él y puntuaba altísimo: buscando 界门之下
+    # se aceptaba kekkai-sensen. Sin nombre con el que comparar, no se elige nada.
+    if not want: return None
+    puntuadas = []
+    for c in cands:
+        cn = norm(str(c).replace("-", " ").replace("/", " "))
+        if not cn: continue
+        if cn == want: s = 1.0
+        elif cn.startswith(want) or want.startswith(cn): s = 0.9
+        else: s = similitud(want, cn)
+        puntuadas.append((s, c))
+    puntuadas.sort(key=lambda x: -x[0])
+    return puntuadas[0][1] if puntuadas[0][0] >= minimo else None
 
 # ------------------------------------------------------------------ TMDB (API si hay key; si no, scraping)
 def tmdb_resolve(title, key):
@@ -1323,10 +1348,28 @@ def pory_servers(slug, n):
 # va cifrado → se omite. Las temporadas usan slug propio (/tv/{slug}[-temporada-N]/).
 YT = "https://animeyt.cc"
 def yt_search(title):
+    """Slug en animeyt. Primero su propia API de catálogo (encuentra también los
+    DONGHUA y las películas), y si no responde, la búsqueda normal del sitio."""
     for q in search_variants(title):
+        try:
+            st, t = http(f"{YT}/wp-json/aniyt/v1/catalog/search?q={urllib.parse.quote(q)}", referer=YT + "/")
+            j = json.loads(t) if st == 200 else None
+            items = j if isinstance(j, list) else ((j or {}).get("items") or (j or {}).get("results") or [])
+            cands = []
+            for it in items:
+                sl = it.get("slug") or ""
+                if not sl:
+                    u = it.get("url") or it.get("link") or ""
+                    m = re.search(r"/tv/([a-z0-9\-]+)", u)
+                    sl = m.group(1) if m else slugify(it.get("title") or "")
+                if sl: cands.append(sl)
+            r = best(cands, title)
+            if r: return r
+        except Exception: pass
         h = get_text(f"{YT}/?s={urllib.parse.quote(q)}")
         c = list(dict.fromkeys(re.findall(r'href="https://animeyt\.cc/tv/([a-z0-9-]+)/"', h)))
-        if c: return best(c, title)
+        r = best(c, title)
+        if r: return r
     return None
 def yt_episode_map(slug):
     """{número de episodio → URL de la página del episodio} desde /tv/{slug}/."""
@@ -1342,6 +1385,15 @@ def yt_servers_url(epurl):
     if not epurl: return []
     h = get_text(epurl, referer=YT + "/")
     out, seen = [], set()
+    # animeyt cambió de reproductor: ahora el episodio trae un iframe propio
+    # (mytsumi/multiplayer…) que YA es el reproductor con todos sus servidores
+    # dentro. Se añade tal cual, que es lo que el sitio necesita para el <iframe>.
+    for u in re.findall(r'<iframe[^>]+src="([^"]+)"', h):
+        u = u.replace("&amp;", "&").strip()
+        if u.startswith("//"): u = "https:" + u
+        if not re.search(r"(?i)multiplayer|mytsumi|animeyt|ytlinker", u): continue
+        if u in seen: continue
+        seen.add(u); out.append({"url": u, "name": "AnimeYT", "lang": "Sub", "desc": ""})
     for b in re.findall(r'<option[^>]*value="([A-Za-z0-9+/=]{40,})"', h):
         try: frag = base64.b64decode(b).decode("utf-8", "replace")
         except Exception: continue
@@ -1411,7 +1463,8 @@ def build_meta(title, opts, log):
         info["altTitles"] = alt[:12]
     return {"aid": slugify(real_title), "info": info, "real_title": real_title, "seasons": seasons,
             "episodes": [], "audio": "Sub", "altTitles": info.get("altTitles", []),
-            "creator": info.get("creator", ""), "tmdb": tmdb, "anilist": al}
+            "creator": info.get("creator", ""), "tmdb": tmdb, "anilist": al,
+            "titulo_escrito": title}
 
 def build_movie(title, opts, log):
     """Arma una PELÍCULA de anime (1 entrada, type Película)."""
@@ -1472,6 +1525,19 @@ def build_episodes(data, opts, log, prog, on_ep):
     # (ej. beyblade-burst, beyblade-burst-god, beyblade-burst-chouzetsu…). Cada slug se
     # numera POR TEMPORADA (empiezan en ep 1).
     def _clean(s): return re.sub(r"^https?://[^/]+/(?:media/|anime/|ver/)?", "", s.strip()).strip("/").split("/")[0].split("?")[0]
+    # TMDB devuelve a veces el título ORIGINAL (chino/japonés) y ninguna fuente lo conoce:
+    # «Under the Gate» salía como «界门之下» y no se encontraba en ningún sitio. Por eso se
+    # busca con varios nombres: el que escribió el usuario, el de TMDB y los alternativos.
+    _titulos = [t for t in ([data.get("titulo_escrito"), title] + list(data.get("altTitles") or [])) if t]
+    _titulos = list(dict.fromkeys(_titulos))
+    def buscar(fn):
+        for t in _titulos:
+            try:
+                r = fn(t)
+            except Exception:
+                r = None
+            if r: return r
+        return None
     src_slugs = [_clean(x) for x in (opts.get("src_slug") or "").split(",") if x.strip()]
     multi = len(src_slugs) > 1
     jkslug = avslug = ytslug = None
@@ -1497,17 +1563,17 @@ def build_episodes(data, opts, log, prog, on_ep):
         per_season_num = True
         log(f"SECUELAS como temporadas (manual): {len(src_slugs)} → {', '.join(src_slugs)}")
         base_alhd = (alhd_search(title) if opts.get("alhd") else "") or ""
-        base_pory = (opts.get("pory_slug") or "").strip() or (pory_search(title) if opts.get("pory") else "") or ""
+        base_pory = (opts.get("pory_slug") or "").strip() or (buscar(pory_search) if opts.get("pory") else "") or ""
     else:
         src_slug = src_slugs[0] if src_slugs else ""
-        base_jk = src_slug or (jk_search(title) if opts["jk"] else "")
-        base_av = src_slug or (av1_search(title) if opts["av1"] else "")
-        base_alhd = (alhd_search(title) if opts.get("alhd") else "") or ""   # LATINO principal
+        base_jk = src_slug or (buscar(jk_search) if opts["jk"] else "") or ""
+        base_av = src_slug or (buscar(av1_search) if opts["av1"] else "") or ""
+        base_alhd = (buscar(alhd_search) if opts.get("alhd") else "") or ""   # LATINO principal
         # porygonsubs: el slug se puede fijar a mano (campo «Slug porygonsubs») porque el
         # sitio titula en español y el buscador por título no siempre acierta.
         base_pory = (opts.get("pory_slug") or "").strip() or (pory_search(title) if opts.get("pory") else "") or ""
         if opts.get("pory"): log(f"porygonsubs: {base_pory or '(no)'}")
-        base_ninja = (ninja_search(title) if opts.get("ninja") else "") or ""
+        base_ninja = (buscar(ninja_search) if opts.get("ninja") else "") or ""
         if opts.get("ninja"):
             log(f"animeonline.ninja: {base_ninja or '(no) — el sitio pide verificación; pega su cookie en Ajustes'}")
         # AUTO: descubre TODAS las secuelas (jkanime/av1 separan por temporada). Así se
@@ -1555,7 +1621,7 @@ def build_episodes(data, opts, log, prog, on_ep):
             log(f"AUTO temporadas: {len(seasons)} (jk={jk_list} · av={av_list})")
         else:
             jkslug = base_jk or None; avslug = base_av or None
-            ytslug = (yt_search(title) if (opts.get("yt") and not src_slug) else None)
+            ytslug = (buscar(yt_search) if (opts.get("yt") and not src_slug) else None)
             per_season_num = bool(src_slug)
             if opts["jk"]: log(f"jkanime: {jkslug or '(no)'}" + (" [slug manual · nº por temporada]" if src_slug else ""))
             if opts["av1"]: log(f"animeav1: {avslug or '(no)'}")
