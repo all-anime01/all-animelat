@@ -174,8 +174,13 @@ def http(url, data=None, headers=None, referer=None, method=None, timeout=25):
     h = {"User-Agent": UA, "Accept-Language": "es-ES,es;q=0.9"}
     if referer: h["Referer"] = referer
     if headers: h.update(headers)
-    body = json.dumps(data).encode() if data is not None else None
-    if body is not None: h["Content-Type"] = "application/json"
+    # data puede ser un dict (se manda como JSON) o texto/bytes ya preparados
+    # (formularios de WordPress, que no entienden JSON).
+    if data is None: body = None
+    elif isinstance(data, bytes): body = data
+    elif isinstance(data, str): body = data.encode()
+    else:
+        body = json.dumps(data).encode(); h["Content-Type"] = "application/json"
     req = urllib.request.Request(url, data=body, headers=h, method=method or ("POST" if data is not None else "GET"))
     try:
         with urllib.request.urlopen(req, timeout=timeout, context=_SSL) as r:
@@ -1169,6 +1174,72 @@ def es_continuacion(texto, anterior=None):
     # Sin referencia: si el propio nombre anuncia temporada nueva, no es continuación.
     return not re.search(r"(?i)(?:^|[\s\-_])(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:season|temporada)", t)
 
+# ------------------------------------------------------------------ animeonline.ninja
+# El sitio está detrás del muro de Cloudflare: ni la petición directa, ni el Worker,
+# ni un Chrome sin interacción lo pasan. Por eso admite tu PROPIA sesión: abre el
+# sitio en el navegador, pasa la verificación una vez y pega aquí la cookie
+# (Ajustes → «Cookie de animeonline.ninja»). Sin cookie la fuente se salta sola y
+# lo dice en el registro, en vez de fallar en silencio.
+NINJA = "https://ww3.animeonline.ninja"
+
+def ninja_cookie():
+    return (load_cfg().get("ninja_cookie") or "").strip()
+
+def get_text_ninja(url, referer=None):
+    ck = ninja_cookie()
+    h = {"Cookie": ck} if ck else None
+    st, t = http(url, headers=h, referer=referer or NINJA + "/", timeout=30)
+    if st == 200 and t and not _MURO.search(t[:4000]): return t
+    t2 = get_text_puente(url, referer=referer or NINJA + "/")
+    return "" if (not t2 or _MURO.search(t2[:4000])) else t2
+
+def ninja_search(title):
+    """Slug del anime en animeonline.ninja (tema DooPlay: /anime/<slug>/)."""
+    for q in search_variants(title):
+        h = get_text_ninja(f"{NINJA}/?s={urllib.parse.quote(q)}")
+        if not h: return None                      # muro: no tiene sentido insistir
+        c = list(dict.fromkeys(re.findall(r'href="https?://[^/]*animeonline\.ninja/anime/([a-z0-9\-]+)/?"', h)))
+        if c: return best(c, title)
+    return None
+
+def ninja_max(slug):
+    if not slug: return 0
+    h = get_text_ninja(f"{NINJA}/anime/{slug}/")
+    ns = [int(x) for x in re.findall(r"/episodio/" + re.escape(slug) + r"-\d+x(\d+)/?", h or "")]
+    return max(ns) if ns else 0
+
+def ninja_servers(slug, n, temporada=1):
+    """Servidores del episodio. DooPlay guarda cada opción en un <li> con data-post
+    y data-nume y devuelve el iframe real por admin-ajax.php."""
+    if not slug: return []
+    url = f"{NINJA}/episodio/{slug}-{temporada}x{n}/"
+    h = get_text_ninja(url)
+    if not h: return []
+    out, seen = [], set()
+    for m in re.finditer(r'data-post="(\d+)"[^>]*data-nume="([^"]+)"', h):
+        post, nume = m.group(1), m.group(2)
+        if nume.lower() in ("trailer",): continue
+        cuerpo = urllib.parse.urlencode({"action": "doo_player_ajax", "post": post, "nume": nume, "type": "tv"})
+        st, r = http(f"{NINJA}/wp-admin/admin-ajax.php", data=cuerpo, method="POST",
+                     headers={"Cookie": ninja_cookie(), "X-Requested-With": "XMLHttpRequest",
+                              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+                     referer=url, timeout=30)
+        try: emb = (json.loads(r) or {}).get("embed_url") or ""
+        except Exception: emb = ""
+        u = (re.search(r'src="([^"]+)"', emb).group(1) if "<iframe" in emb else emb).strip()
+        if u.startswith("//"): u = "https:" + u
+        if not u.startswith("http") or u in seen: continue
+        seen.add(u)
+        out.append({"url": u, "name": nm(u), "lang": "Sub", "desc": ""})
+    for u in re.findall(r'<iframe[^>]+src="([^"]+)"', h):      # los que ya vienen puestos
+        if u.startswith("//"): u = "https:" + u
+        if u.startswith("http") and u not in seen and not re.search(r"(?i)youtube|disqus|facebook", u):
+            seen.add(u); out.append({"url": u, "name": nm(u), "lang": "Sub", "desc": ""})
+    # el sitio separa Latino y Sub por pestañas; si la URL o el nombre lo dicen, se marca
+    for s in out:
+        if re.search(r"(?i)lat|dob|espanol|español", s["url"]): s["lang"] = "Latino"; s["desc"] = "Audio Latino"
+    return out
+
 def _fusiona_partes(seasons, al=None, log=None):
     """Marca los bloques que son otra PARTE de la temporada anterior y renumera el
     resto. Devuelve la misma lista (un bloque por slug, que es como se scrapea), pero
@@ -1406,6 +1477,8 @@ def build_episodes(data, opts, log, prog, on_ep):
     jkslug = avslug = ytslug = None
     base_alhd = ""
     base_pory = ""
+    base_ninja = ""
+    base_ninja = ""
     yt_maps = {}
     def yt_srv(ytsl, num):
         """Servidores de animeyt para (slug, nº), con caché del mapa de episodios."""
@@ -1434,6 +1507,9 @@ def build_episodes(data, opts, log, prog, on_ep):
         # sitio titula en español y el buscador por título no siempre acierta.
         base_pory = (opts.get("pory_slug") or "").strip() or (pory_search(title) if opts.get("pory") else "") or ""
         if opts.get("pory"): log(f"porygonsubs: {base_pory or '(no)'}")
+        base_ninja = (ninja_search(title) if opts.get("ninja") else "") or ""
+        if opts.get("ninja"):
+            log(f"animeonline.ninja: {base_ninja or '(no) — el sitio pide verificación; pega su cookie en Ajustes'}")
         # AUTO: descubre TODAS las secuelas (jkanime/av1 separan por temporada). Así se
         # agregan completas sin pedir slugs (ej. Ishura → ishura + ishura-2nd-season).
         jk_list = (jk_seasons(title, base_jk) if (opts["jk"] and base_jk and not src_slug) else ([base_jk] if base_jk else []))
@@ -1550,8 +1626,8 @@ def build_episodes(data, opts, log, prog, on_ep):
     disp_total = max(int(disp_total) or 60, 1)
     # Guardas: dejar de consultar una fuente que claramente NO tiene este anime, y terminar
     # cuando la fuente se acaba (evita construir cientos de episodios vacíos / franquicias).
-    skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False}
-    miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0}
+    skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False, "ninja": False}
+    miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0, "ninja": 0}
     empty_streak = 0; stop = False
     ult_num, ult_nombre = 0, ""          # último nº y temporada creados (para las partes)
     sin_foto = []                        # episodios que se quedaron sin foto propia
@@ -1567,9 +1643,10 @@ def build_episodes(data, opts, log, prog, on_ep):
         ytcur = S.get("yt") or (ytslug if not multi else None)   # slug de animeyt de ESTA temporada
         alhdcur = S.get("alhd") or (base_alhd if not multi else None)   # slug de animelatinohd
         porycur = S.get("pory") or (base_pory if not multi else None)   # slug de porygonsubs
+        ninjacur = S.get("ninja") or (base_ninja if not multi else None)  # slug de animeonline.ninja
         if multi or S.get("psn"):  # secuela/OVA independiente: reinicia guardas
-            skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False}
-            miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0}; empty_streak = 0
+            skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False, "ninja": False}
+            miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0, "ninja": 0}; empty_streak = 0
             log(f"— {sname}: jk={jkcur or '—'} av={avcur or '—'}")
         if season_sel and str(S["season"]) != season_sel:
             absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
@@ -1616,6 +1693,15 @@ def build_episodes(data, opts, log, prog, on_ep):
                 miss["alhd"] = 0 if cl else miss["alhd"] + 1
                 if miss["alhd"] >= 6: skip["alhd"] = True
                 time.sleep(0.3)
+            cn = 0
+            if opts.get("ninja") and ninjacur and not skip["ninja"]:
+                try:
+                    ns_ = ninja_servers(ninjacur, src_num, S.get("e69s") or S.get("season") or 1) or []
+                    servers += ns_; cn = len(ns_)
+                except Exception as ex: log(f"  (animeonline.ninja err: {str(ex)[:40]})")
+                miss["ninja"] = 0 if cn else miss["ninja"] + 1
+                if miss["ninja"] >= 6: skip["ninja"] = True
+                time.sleep(0.4)
             cp = 0
             if opts.get("pory") and porycur and not skip["pory"]:
                 try:
@@ -1631,7 +1717,7 @@ def build_episodes(data, opts, log, prog, on_ep):
                 mname = nm(mu) if nm(mu) != "Servidor" else "Directo"
                 servers.append({"url": mu, "name": mname, "lang": ml, "desc": ""})
             if absn == 1 or (not servers and absn <= 3):
-                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy} alhd={cl} pory={cp}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug} pory={base_pory or '—'}" if not servers else ""))
+                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy} alhd={cl} pory={cp} ninja={cn}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug} pory={base_pory or '—'}" if not servers else ""))
             prog(min(len(episodes) + 1, disp_total), disp_total)
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
@@ -2061,6 +2147,14 @@ class App:
         lab(row, "Gemini API key (Yoru IA · gratis)").grid(row=2, column=0, columnspan=2, sticky="w", pady=(10, 0))
         self.gemini = ent(row, 420); self.gemini.grid(row=3, column=0, columnspan=2, sticky="we", pady=(2, 0)); self.gemini.insert(0, self.cfg.get("gemini_key", ""))
         btn(row, "🎤 Hablar con Yoru", self.do_voice, "blue").grid(row=3, column=2, columnspan=2, sticky="w", padx=(8, 0))
+        # animeonline.ninja exige pasar la verificación de Cloudflare en un navegador.
+        # Se pega aquí la cookie de ESA sesión (F12 → Application → Cookies) y la
+        # aplicación entra con ella; sin cookie, esa fuente se salta sola.
+        lab(row, "Cookie de animeonline.ninja (opcional · pásale la verificación en el navegador y pega la cookie)").grid(
+            row=4, column=0, columnspan=4, sticky="w", pady=(10, 0))
+        self.ninja_ck = ent(row, 560); self.ninja_ck.grid(row=5, column=0, columnspan=3, sticky="we", pady=(2, 0))
+        self.ninja_ck.insert(0, self.cfg.get("ninja_cookie", ""))
+        btn(row, "Guardar cookie", self._guardar_ninja).grid(row=5, column=3, sticky="w", padx=(8, 0))
 
         # Search card
         sc = card(body); sc.pack(fill="x", pady=(12, 0))
@@ -2092,10 +2186,11 @@ class App:
         self.yt = tk.BooleanVar(value=True); self.man = tk.BooleanVar(value=False)
         self.alhd = tk.BooleanVar(value=True)   # animelatinohd: fuente PRINCIPAL de Latino
         self.pory = tk.BooleanVar(value=True)   # porygonsubs: Latino de la familia Pokémon
+        self.ninja = tk.BooleanVar(value=bool(self.cfg.get("ninja_cookie")))  # necesita tu cookie
         self.trad = tk.BooleanVar(value=True)   # títulos y sinopsis SIEMPRE en español
         # Las fuentes van en DOS filas de cuatro: en una sola se salían de la ventana
         # y los botones de «Añadir nuevo / Reparar» quedaban cortados por la derecha.
-        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("porygonsubs (Latino)", self.pory, None), ("animeav1 (Lat+Sub)", self.av1, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual), ("Traducir al español", self.trad, None)]):
+        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("porygonsubs (Latino)", self.pory, None), ("animeav1 (Lat+Sub)", self.av1, None), ("animeonline.ninja", self.ninja, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual), ("Traducir al español", self.trad, None)]):
             chk(opt, t, v, command=cmd).grid(row=i // 4, column=i % 4, sticky="w", padx=(0, 14), pady=2)
         self.replace = tk.BooleanVar(value=False)
         ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=4, padx=(24, 6), sticky="w")
@@ -2250,6 +2345,13 @@ class App:
         try: self._canvas.yview_scroll(int(-1 * (e.delta / 120)), "units")
         except Exception: pass
         return "break"
+
+    def _guardar_ninja(self):
+        """Guarda la cookie de animeonline.ninja y activa la fuente si hay cookie."""
+        ck = self.ninja_ck.get().strip()
+        self.cfg["ninja_cookie"] = ck; save_cfg(self.cfg)
+        self.ninja.set(bool(ck))
+        self.log("Cookie de animeonline.ninja " + ("guardada: la fuente queda activada." if ck else "borrada: la fuente se desactiva."))
 
     def log(self, m): self.logbox.insert("end", m + "\n"); self.logbox.see("end"); self.root.update_idletasks()
     def prog(self, n, t):
@@ -2482,7 +2584,7 @@ class App:
                 "pory": self.pory.get(), "pory_slug": self.poryslug.get().strip(),
                 "ovas": {"En bloque aparte": "aparte", "Dentro de la temporada": "juntas",
                          "No incluirlas": "omitir"}.get(self.ovas.get(), "aparte"),
-                "traducir": self.trad.get()}
+                "ninja": self.ninja.get(), "traducir": self.trad.get()}
         kind = self.kind.get()
         # ¿Actualizar el anime cargado del catálogo? (mismo título, o modo añadir) → NO duplicar.
         updating = add_only or bool(self.loaded_aid and t == self.loaded_title)
@@ -2567,7 +2669,7 @@ class App:
                 "pory": self.pory.get(), "pory_slug": "",
                 "ovas": {"En bloque aparte": "aparte", "Dentro de la temporada": "juntas",
                          "No incluirlas": "omitir"}.get(self.ovas.get(), "aparte"),
-                "traducir": self.trad.get()}
+                "ninja": self.ninja.get(), "traducir": self.trad.get()}
 
     def do_batch(self):
         """Agrega VARIOS animes a la vez: pega un título por línea y construye + guarda cada
@@ -2840,6 +2942,7 @@ class App:
         self.data["_ytslug"] = slug or (yt_search(title) if self.yt.get() else "")
         self.data["_ytmap"] = {}
         self.data["_poryslug"] = (self.poryslug.get().strip() or (pory_search(title) if self.pory.get() else "")) or ""
+        self.data["_ninjaslug"] = (ninja_search(title) if self.ninja.get() else "") or ""
         self.data["_src_ready"] = True
         self.log(f"Fuentes: imdb={imdb or '—'} jk={self.data['_jkslug'] or '—'} av1={self.data['_avslug'] or '—'} yt={self.data['_ytslug'] or '—'} pory={self.data['_poryslug'] or '—'}")
 
@@ -2878,13 +2981,18 @@ class App:
                 u = self.data["_ytmap"].get(num)
                 y = yt_servers_url(u) if u else []; servers += y; cy = len(y)
             except Exception: pass
+        cn = 0
+        if self.ninja.get() and self.data.get("_ninjaslug"):
+            try:
+                x = ninja_servers(self.data["_ninjaslug"], num) or []; servers += x; cn = len(x)
+            except Exception: pass
         cp = 0
         if self.pory.get() and self.data.get("_poryslug"):
             try:
                 p = pory_servers(self.data["_poryslug"], num) or []; servers += p; cp = len(p)
             except Exception: pass
         lat = sum(1 for s in servers if s.get("lang") == "Latino")
-        self.log(f"  E{num}: embed69={ce} av1={ca} jk={cj} yt={cy} pory={cp} · Latino={lat}" + ("" if servers else f"  (imdb={imdb or '—'} jk={jks or '—'} av1={avs or '—'} yt={self.data.get('_ytslug') or '—'} pory={self.data.get('_poryslug') or '—'})"))
+        self.log(f"  E{num}: embed69={ce} av1={ca} jk={cj} yt={cy} pory={cp} ninja={cn} · Latino={lat}" + ("" if servers else f"  (imdb={imdb or '—'} jk={jks or '—'} av1={avs or '—'} yt={self.data.get('_ytslug') or '—'} pory={self.data.get('_poryslug') or '—'})"))
         return servers
 
     def repair_selected(self, mode):

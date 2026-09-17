@@ -81,6 +81,7 @@
                 <div class="row">
                     <div><label>URL del Worker</label><input id="wk-url" placeholder="https://allanime-scraper.tu-usuario.workers.dev"></div>
                     <div><label>API Key</label><input id="wk-key" type="password" placeholder="la que pusiste con wrangler secret"></div>
+                    <div><label>TMDB API key <small>(para títulos, sinopsis y fotos por episodio)</small></label><input id="f-tmdbkey" type="password" placeholder="tu clave de themoviedb.org"></div>
                 </div>
                 <div style="margin-top:12px"><button class="btn grey" id="wk-test"><i class="fas fa-plug"></i> Probar conexión</button> <span id="wk-msg" style="margin-left:10px;font-size:13px"></span></div>
                 <small>Se guarda en este navegador. Guía de despliegue: carpeta <code>worker/</code> del repo.</small>
@@ -104,37 +105,54 @@
                 <small>Automático: con el título busca las fuentes solo (embed69 = Latino, jkanime = Sub), arma todos los episodios y muestra la vista previa para guardar.</small>
                 <div id="meta-prev" style="margin-top:14px"></div>
             </div>
-
             <div class="box">
-                <h2>2 · Fuente de servidores</h2>
+                <h2>2 · Fuentes</h2>
                 <div class="chips" id="src-chips">
-                    <span class="chip on" data-src="embed69">embed69 (Latino)</span>
-                    <span class="chip" data-src="jkanime">jkanime</span>
-                    <span class="chip" data-src="animeav1">animeav1</span>
-                    <span class="chip" data-src="tioanime">tioanime</span>
+                    <span class="chip on" data-src="e69">embed69 (Latino)</span>
+                    <span class="chip on" data-src="alhd">animelatinohd (Latino)</span>
+                    <span class="chip on" data-src="pory">porygonsubs (Latino)</span>
+                    <span class="chip on" data-src="av1">animeav1 (Lat+Sub)</span>
+                    <span class="chip" data-src="ninja">animeonline.ninja</span>
+                    <span class="chip on" data-src="jk">jkanime (Sub)</span>
                     <span class="chip" data-src="manual">URL manual</span>
+                    <span class="chip on" data-src="traducir">Traducir al español</span>
                 </div>
                 <div class="row" style="margin-top:12px">
-                    <div><label>Slug/código en la fuente <small>(jkanime/tioanime/animeav1)</small></label><input id="f-slug" placeholder="ej: dragon-quest-dai-no-daibouken-2020"></div>
-                    <div><label>Temporada (embed69) / Nombre temporada</label><input id="f-season" value="Temporada 1"></div>
+                    <div><label>Slug(s) de la fuente <small>(opcional · varios por coma = secuelas como temporadas)</small></label><input id="f-slug" placeholder="ej: beyblade-burst, beyblade-burst-god"></div>
+                    <div><label>Slug de porygonsubs <small>(para el Latino de Pokémon)</small></label><input id="f-pory" placeholder="ej: horizontes-pokemon"></div>
                 </div>
                 <div class="row3">
-                    <div><label>N.º de episodios (0 = auto)</label><input id="f-count" value="0"></div>
-                    <div><label>Idioma etiqueta</label><input id="f-lang" value="Latino"></div>
-                    <div><label>Empezar desde el episodio</label><input id="f-from" value="1"></div>
+                    <div><label>OVAs y películas</label>
+                        <select id="f-ovas">
+                            <option value="aparte">En bloque aparte</option>
+                            <option value="juntas">Dentro de la temporada</option>
+                            <option value="omitir">No incluirlas</option>
+                        </select>
+                    </div>
+                    <div><label>Episodios <small>(vacío = todos · ej: 5-12)</small></label><input id="f-range" placeholder="todos"></div>
+                    <div><label>Prioridad de servidor <small>(opcional)</small></label><input id="f-prefer" placeholder="vidara,filemoon"></div>
                 </div>
                 <div id="manual-box" style="display:none;margin-top:10px">
                     <label>URLs manuales (una por línea: <code>N|URL</code> o solo URL en orden)</label>
                     <textarea id="f-manual" rows="4" placeholder="1|https://...&#10;2|https://..."></textarea>
                 </div>
+                <small>Las temporadas emitidas en dos tandas («Part 2», «2nd Cour») se reconocen como partes de la MISMA temporada y siguen su numeración, igual que en la aplicación de escritorio.</small>
             </div>
 
             <div class="box">
                 <h2>3 · Construir y revisar</h2>
-                <button class="btn" id="btn-build"><i class="fas fa-gears"></i> Construir episodios</button>
+                <div style="display:flex;gap:10px;flex-wrap:wrap">
+                    <button class="btn" id="btn-build"><i class="fas fa-gears"></i> Buscar y construir</button>
+                    <button class="btn grey" id="btn-lote"><i class="fas fa-list-check"></i> Lote (varios títulos)</button>
+                </div>
                 <span id="build-msg" style="margin-left:10px;font-size:13px"></span>
                 <div class="bar"><div id="prog"></div></div>
                 <div id="ep-prev"></div>
+                <div id="lote-box" style="display:none;margin-top:12px">
+                    <label>Un título por línea — se construye y guarda cada uno</label>
+                    <textarea id="f-lote" rows="5" placeholder="Fate/Zero&#10;Rave Master"></textarea>
+                    <button class="btn" id="btn-lote-go" style="margin-top:10px"><i class="fas fa-play"></i> Procesar todo</button>
+                </div>
             </div>
 
             <div class="box">
@@ -147,14 +165,14 @@
     </div>
 
     <script type="module">
-        import { db, isAdmin } from "../js/firebase-config.js";
+        import { isAdmin } from "../js/firebase-config.js";
         import { observeAuth } from "../js/auth.js";
-        import { saveAnime, getAnime, getWorkerUrl, saveWorkerUrl } from "../js/admin.js";
+        import { saveAnime, getAnime, addEpisodes, getWorkerUrl, saveWorkerUrl } from "../js/admin.js";
+        import { crearNucleo, audioLabel } from "../js/scraper-core.js";
+
         const $ = (id) => document.getElementById(id);
         const logEl = $("log");
         const log = (m) => { logEl.textContent += m + "\n"; logEl.scrollTop = logEl.scrollHeight; };
-        const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-        const pad = (n) => String(n).padStart(2, "0");
         const slugify = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
         observeAuth((user) => {
@@ -162,195 +180,161 @@
             if (!isAdmin(user)) { $("gate").innerHTML = 'La cuenta <b>' + user.email + '</b> no es administrador.'; return; }
             $("gate").style.display = "none"; $("app").style.display = "block";
             $("wk-key").value = localStorage.getItem("aa_wk_key") || "";
-            // La URL del Worker es del SITIO, no de este navegador.
+            $("f-tmdbkey").value = localStorage.getItem("aa_tmdb_key") || "";
             getWorkerUrl().then((u) => { $("wk-url").value = u || localStorage.getItem("aa_wk_url") || ""; })
                           .catch(() => { $("wk-url").value = localStorage.getItem("aa_wk_url") || ""; });
         });
 
-        // Worker client
-        const wk = async (path, params) => {
+        function nucleo() {
             let base = $("wk-url").value.trim().replace(/\/+$/, "");
-            if (base && !/^https?:\/\//i.test(base)) base = "https://" + base;   // acepta URL sin https://
-            $("wk-url").value = base;                                             // normaliza lo que se ve
-            const key = $("wk-key").value.trim();
+            if (base && !/^https?:\/\//i.test(base)) base = "https://" + base;
+            $("wk-url").value = base;
             if (!base) throw new Error("Falta la URL del Worker");
+            const key = $("wk-key").value.trim(), tk = $("f-tmdbkey").value.trim();
             localStorage.setItem("aa_wk_url", base); localStorage.setItem("aa_wk_key", key);
-            saveWorkerUrl(base).catch(() => {});   // que Shyru la vea en todos los navegadores
-            const u = new URL(base + path); u.searchParams.set("key", key);
-            for (const k in params) if (params[k] != null) u.searchParams.set(k, params[k]);
-            const r = await fetch(u.toString());
-            const j = await r.json();
-            if (j.error) throw new Error(j.error);
-            return j;
-        };
-        $("wk-test").onclick = async () => { try { const j = await wk("/health", {}); $("wk-msg").textContent = j.ok ? "✅ Conectado" : "?"; $("wk-msg").style.color = "#9fd89f"; } catch (e) { $("wk-msg").textContent = "❌ " + e.message; $("wk-msg").style.color = "#e08a8a"; } };
+            localStorage.setItem("aa_tmdb_key", tk);
+            saveWorkerUrl(base).catch(() => {});
+            if (!tk) log("⚠ Sin TMDB API key: no habrá títulos, sinopsis ni fotos por episodio.");
+            return crearNucleo({ workerUrl: base, workerKey: key, tmdbKey: tk, log });
+        }
 
-        // Source chips
-        let source = "embed69";
+        $("wk-test").onclick = async () => {
+            try { const j = await nucleo().wk("/health", {}); $("wk-msg").textContent = j.ok ? "✅ Conectado" : "?"; $("wk-msg").style.color = "#9fd89f"; }
+            catch (e) { $("wk-msg").textContent = "❌ " + e.message; $("wk-msg").style.color = "#e08a8a"; }
+        };
+
+        // Fuentes: son interruptores independientes (como las casillas del escritorio).
+        const fuentes = { e69: true, alhd: true, pory: true, av1: true, ninja: false, jk: true, manual: false, traducir: true };
         document.querySelectorAll("#src-chips .chip").forEach((c) => c.onclick = () => {
-            document.querySelectorAll("#src-chips .chip").forEach((x) => x.classList.remove("on"));
-            c.classList.add("on"); source = c.dataset.src;
-            $("manual-box").style.display = source === "manual" ? "block" : "none";
+            const k = c.dataset.src;
+            fuentes[k] = !fuentes[k];
+            c.classList.toggle("on", fuentes[k]);
+            if (k === "manual") $("manual-box").style.display = fuentes.manual ? "block" : "none";
         });
         $("f-title").addEventListener("blur", () => { if (!$("f-id").value) $("f-id").value = slugify($("f-title").value); });
+        $("btn-lote").onclick = () => { const b = $("lote-box"); b.style.display = b.style.display === "none" ? "block" : "none"; };
 
-        // State
-        let meta = null, stills = {}, seasonsInfo = [], built = null;
+        let construido = null;
 
-        // 1 · Resolver
+        function opciones(aid) {
+            return {
+                ...fuentes, aid,
+                src_slug: $("f-slug").value.trim(), pory_slug: $("f-pory").value.trim(),
+                ovas: $("f-ovas").value, range: $("f-range").value.trim(),
+                prefer: $("f-prefer").value.trim(), only: false,
+                manual_text: $("f-manual").value, imdb: $("f-imdb").value.trim(),
+                tmdb: $("f-tmdb").value.trim(),
+            };
+        }
+
+        function pintaFicha(info) {
+            $("meta-prev").innerHTML = `<div class="prev">
+                ${info.poster ? `<img src="${info.poster}" alt="">` : ""}
+                <div><b>${info.title}</b> <small>${info.year || ""}</small><br>
+                <small>${(info.genres || []).join(" · ")}</small>
+                <p style="font-size:13px;color:#c8c8c8;margin-top:6px">${(info.description || "").slice(0, 320)}</p>
+                <small>imdb: ${info.imdb || "—"} · temporadas TMDB: ${info.seasons.length}</small></div></div>`;
+        }
+
+        function pintaEps(eps) {
+            $("ep-prev").innerHTML = eps.slice(0, 400).map((e) => `<div class="ep">
+                <span class="n">${e.season.replace(/[^0-9]/g, "") || "·"}x${String(e.number).padStart(2, "0")}</span>
+                ${e.img ? `<img src="${e.img}" alt="">` : ""}
+                <span style="flex:1">${e.title}</span>
+                <span class="s ${e.servers.length ? "" : "none"}">${e.servers.length} srv · ${e.language}</span></div>`).join("");
+        }
+
+        async function construir(titulo, idForzado) {
+            const N = nucleo();
+            const aid = idForzado || $("f-id").value.trim() || slugify(titulo);
+            const opts = opciones(aid);
+            const data = await N.buildMeta(titulo, opts);
+            if (!$("f-id").value) $("f-id").value = slugify(data.real_title);
+            pintaFicha(data.info);
+            let n = 0;
+            await N.buildEpisodes(data, opts, (ep) => { n++; if (n % 5 === 0) pintaEps(data.episodes); },
+                                  (hechos) => { $("prog").style.width = Math.min(100, hechos * 2) + "%"; });
+            pintaEps(data.episodes);
+            data.aid = aid;
+            return data;
+        }
+
         $("btn-resolve").onclick = async () => {
             try {
-                $("btn-resolve").disabled = true; $("meta-prev").innerHTML = "Resolviendo…";
-                let imdb = $("f-imdb").value.trim(), tmdb = $("f-tmdb").value.trim();
-                if (!imdb || !tmdb) { const r = await wk("/resolve", { title: $("f-title").value.trim(), year: $("f-year").value.trim() }); imdb = imdb || r.imdb || ""; tmdb = tmdb || r.tmdbId || ""; log("resolve → imdb=" + imdb + " tmdb=" + tmdb); }
-                $("f-imdb").value = imdb; $("f-tmdb").value = tmdb;
-                meta = tmdb ? await wk("/meta", { tmdb }) : { poster: "", backdrop: "", description: "", genres: [], year: null };
-                if (tmdb) { const st = await wk("/stills", { tmdb, maxS: 8 }); stills = st.flat || {}; seasonsInfo = st.seasons || []; }
-                if (meta.year && !$("f-year").value) $("f-year").value = meta.year;
-                $("meta-prev").innerHTML = `<div class="prev"><img src="${meta.poster || meta.backdrop || ""}"><div><b>${$("f-title").value}</b><br><small>${meta.year || ""} · ${(meta.genres || []).join(", ")}</small><br><small>Temporadas TMDB: ${seasonsInfo.map((s) => "S" + s.season + "(" + s.count + ")").join(" ") || "—"}</small><p style="margin-top:8px;color:#bbb;font-size:13px">${(meta.description || "").slice(0, 220)}</p></div></div>`;
-            } catch (e) { $("meta-prev").innerHTML = "❌ " + e.message; }
-            $("btn-resolve").disabled = false;
-        };
-
-        // Normaliza servers: cap 3 por idioma
-        const cap3 = (servers) => {
-            const g = {}; for (const s of servers) { const k = (s.lang || "Sub"); (g[k] = g[k] || []).push(s); }
-            const out = []; for (const k in g) out.push(...g[k].slice(0, 3)); return out;
-        };
-        const nm = (n) => { const m = { sfastwish: "StreamWish", streamwish: "StreamWish", swiftplay: "StreamWish", hglink: "StreamWish", "voe": "VOE", vidhide: "VidHide", vidhidevip: "VidHide", filemoon: "Filemoon", minochinos: "VidHide", mega: "Mega", streamtape: "Streamtape", mp4upload: "Mp4upload" }; const s = String(n || "").toLowerCase(); for (const k in m) if (s.includes(k)) return m[k]; return (String(n || "Servidor").charAt(0).toUpperCase() + String(n || "").slice(1)); };
-
-        // Trae los servers de un episodio según la fuente
-        async function epServers(n, season) {
-            const imdb = $("f-imdb").value.trim(), slug = $("f-slug").value.trim(), lang = $("f-lang").value.trim() || "Latino";
-            if (source === "embed69") {
-                const r = await wk("/embed69", { imdb, s: season, e: n });
-                const lat = (r.servers || []).filter((x) => x.lang === "LAT");
-                if (!lat.length && !(r.servers || []).length) return [];
-                // wrapper estable (se ve en app y web)
-                return [{ url: r.wrapper, name: "PelisPlus", lang, desc: "Audio " + lang }];
-            }
-            if (source === "jkanime") { const r = await wk("/jkanime", { slug, n }); return cap3((r.servers || []).map((s) => ({ url: s.url, name: nm(s.name || s.url), lang, desc: "" }))); }
-            if (source === "tioanime") { const r = await wk("/tioanime", { slug, n }); return cap3((r.servers || []).map((s) => ({ url: s.url, name: nm(s.name || s.url), lang: "Sub", desc: "" }))); }
-            if (source === "animeav1") { const r = await wk("/animeav1", { slug, n }); if (r.notfound) return null; return cap3((r.servers || []).map((s) => ({ url: s.url, name: nm(s.name || s.url), lang: "Sub", desc: "" }))); }
-            return [];
-        }
-
-        // AUTO: solo el título → resuelve, busca fuentes (embed69 Latino + jkanime Sub) y
-        // arma TODOS los episodios combinando ambos idiomas (cap 3/idioma). Como el asistente.
-        $("btn-auto").onclick = async () => {
-            try {
-                $("btn-auto").disabled = true; $("btn-save").disabled = true; $("ep-prev").innerHTML = ""; built = null;
-                const title = $("f-title").value.trim(); if (!title) { alert("Escribe el título"); $("btn-auto").disabled = false; return; }
-                if (!$("f-id").value) $("f-id").value = slugify(title);
-                log("== AUTO: " + title + " ==");
-                // 1) resolver + metadata + stills
-                let imdb = $("f-imdb").value.trim(), tmdb = $("f-tmdb").value.trim();
-                if (!imdb || !tmdb) { const r = await wk("/resolve", { title, year: $("f-year").value.trim() }); imdb = imdb || r.imdb || ""; tmdb = tmdb || r.tmdbId || ""; }
-                $("f-imdb").value = imdb; $("f-tmdb").value = tmdb;
-                log("imdb=" + imdb + " tmdb=" + tmdb);
-                meta = tmdb ? await wk("/meta", { tmdb }) : { genres: [], description: "" };
-                const st = tmdb ? await wk("/stills", { tmdb, maxS: 8 }) : { flat: {}, seasons: [] };
-                stills = st.flat || {}; seasonsInfo = st.seasons || [];
-                if (meta.year && !$("f-year").value) $("f-year").value = meta.year;
-                $("meta-prev").innerHTML = `<div class="prev"><img src="${meta.poster || meta.backdrop || ""}"><div><b>${title}</b><br><small>${meta.year || ""} · ${(meta.genres || []).join(", ")}</small><br><small>Temporadas: ${seasonsInfo.map((s) => "S" + s.season + "(" + s.count + ")").join(" ") || "1"}</small></div></div>`;
-                // 2) buscar slug en jkanime (Sub) — auto
-                let jkSlug = null;
-                try { const s = await wk("/search", { source: "jkanime", q: title }); jkSlug = s.slug; log("jkanime slug: " + (jkSlug || "(no encontrado)") + (s.candidates ? "  [" + s.candidates.slice(0, 5).join(", ") + "]" : "")); } catch (e) { log("jkanime search: " + e.message); }
-                // 3) construir por temporada (Latino embed69) + Sub jkanime por nº absoluto
-                const seasons = seasonsInfo.length ? seasonsInfo : [{ season: 1, count: 100 }];
-                const eps = []; let abs = 0; const totalGuess = seasons.reduce((a, s) => a + s.count, 0) || 100;
-                for (const S of seasons) {
-                    const seasonName = seasons.length > 1 ? "Temporada " + S.season : "Temporada 1";
-                    for (let n = 1; n <= S.count; n++) {
-                        abs++;
-                        const servers = [];
-                        // Latino (embed69)
-                        try { const r = await wk("/embed69", { imdb, s: S.season, e: n }); if ((r.servers || []).some((x) => x.lang === "LAT") || (r.servers || []).length) servers.push({ url: r.wrapper, name: "PelisPlus", lang: "Latino", desc: "Audio Latino" }); } catch {}
-                        await sleep(900);
-                        // Sub (jkanime por nº absoluto)
-                        if (jkSlug) { try { const r = await wk("/jkanime", { slug: jkSlug, n: abs }); const sub = cap3((r.servers || []).map((s) => ({ url: s.url, name: nm(s.name || s.url), lang: "Sub", desc: "" })).filter((s) => /mega|streamwish|sfastwish|voe|vidhide|filemoon|streamtape/i.test(s.url))); servers.push(...sub); } catch {} await sleep(350); }
-                        if (!servers.length) { log("ep abs" + abs + " (S" + S.season + "E" + n + "): sin servers"); continue; }
-                        const em = stills[S.season + "x" + n] || {};
-                        eps.push({ number: n, season: seasonName, title: em.title || "Episodio " + n, language: servers.some((s) => s.lang === "Latino") ? "Latino" : "Sub", videoUrl: `frame/player.html?a=${$("f-id").value}&s=${encodeURIComponent(seasonName)}&e=${n}`, img: em.still || meta.backdrop || meta.poster || "", description: "", duration: "24 min", servers: cap3(servers) });
-                        $("build-msg").textContent = "Construidos " + eps.length + "…"; $("prog").style.width = Math.round(abs / totalGuess * 100) + "%";
-                    }
-                }
-                built = eps; renderEps(eps); $("btn-save").disabled = !eps.length;
-                log("== AUTO listo: " + eps.length + " episodios (Sub+Latino donde hay) ==");
-            } catch (e) { log("ERROR auto: " + e.message); $("build-msg").textContent = "❌ " + e.message; }
-            $("btn-auto").disabled = false;
-        };
-
-        // 2/3 · Construir (manual)
-        $("btn-build").onclick = async () => {
-            try {
-                $("btn-build").disabled = true; $("btn-save").disabled = true; $("ep-prev").innerHTML = ""; built = null;
-                const season = $("f-season").value.trim() || "Temporada 1";
-                const sIdx = (season.match(/(\d+)/) || [1])[0];
-                const lang = $("f-lang").value.trim() || "Latino";
-                const from = +$("f-from").value || 1;
-                let count = +$("f-count").value || 0;
-                // manual
-                if (source === "manual") {
-                    const lines = $("f-manual").value.split("\n").map((l) => l.trim()).filter(Boolean);
-                    const eps = [];
-                    lines.forEach((l, i) => { const m = l.match(/^(\d+)\s*\|\s*(https?:\/\/\S+)/); const n = m ? +m[1] : (from + i); const u = m ? m[2] : l; eps.push({ number: n, season, title: (stills[sIdx + "x" + n] || {}).title || "Episodio " + n, language: lang, img: (stills[sIdx + "x" + n] || {}).still || meta?.backdrop || "", description: "", duration: "24 min", videoUrl: `frame/player.html?a=${$("f-id").value}&s=${encodeURIComponent(season)}&e=${n}`, servers: [{ url: u, name: nm(u), lang, desc: "" }] }); });
-                    built = eps; renderEps(eps); $("btn-save").disabled = !eps.length; $("btn-build").disabled = false; return;
-                }
-                // auto count desde TMDB o stills
-                if (!count) { const si = seasonsInfo.find((s) => String(s.season) === String(sIdx)); count = si ? si.count : (source === "embed69" ? 60 : 100); }
-                const eps = []; let done = 0;
-                for (let n = from; n < from + count; n++) {
-                    let servers = [];
-                    try { servers = await epServers(n, sIdx); } catch (e) { servers = []; }
-                    if (servers === null) { log("ep " + n + ": no existe (fin)"); break; }   // animeav1 fin
-                    done++; $("prog").style.width = Math.round((n - from + 1) / count * 100) + "%";
-                    if (!servers.length) { log("ep " + n + ": sin servers"); await sleep(source === "embed69" ? 900 : 350); continue; }
-                    const key = sIdx + "x" + n; const em = stills[key] || {};
-                    eps.push({ number: n, season, title: em.title || "Episodio " + n, language: lang, img: em.still || meta?.backdrop || meta?.poster || "", description: "", duration: "24 min", videoUrl: `frame/player.html?a=${$("f-id").value}&s=${encodeURIComponent(season)}&e=${n}`, servers });
-                    $("build-msg").textContent = "Construidos " + eps.length + " episodios…";
-                    await sleep(source === "embed69" ? 950 : 350);
-                }
-                built = eps; renderEps(eps); $("btn-save").disabled = !eps.length;
-                log("== construidos " + eps.length + " episodios con servers ==");
+                $("build-msg").textContent = "Resolviendo…";
+                const N = nucleo();
+                const d = await N.buildMeta($("f-title").value.trim(), opciones(""));
+                pintaFicha(d.info);
+                if (!$("f-imdb").value) $("f-imdb").value = d.info.imdb || "";
+                if (!$("f-tmdb").value) $("f-tmdb").value = d.tmdb || "";
+                $("build-msg").textContent = "✅ Metadata lista";
             } catch (e) { $("build-msg").textContent = "❌ " + e.message; log("ERROR: " + e.message); }
-            $("btn-build").disabled = false;
         };
-        function renderEps(eps) {
-            $("ep-prev").innerHTML = eps.map((e) => `<div class="ep"><img src="${e.img}" onerror="this.style.visibility='hidden'"><span class="n">E${e.number}</span><span style="flex:1">${e.title}</span><span class="s ${e.servers.length ? "" : "none"}">${e.servers.map((s) => s.name).join(", ") || "sin servers"}</span></div>`).join("");
+
+        $("btn-build").onclick = $("btn-auto").onclick = async () => {
+            const t = $("f-title").value.trim();
+            if (!t) { $("build-msg").textContent = "Escribe el título"; return; }
+            $("btn-build").disabled = true; $("build-msg").textContent = "Construyendo…";
+            try {
+                construido = await construir(t);
+                $("btn-save").disabled = !construido.episodes.length;
+                $("build-msg").textContent = `✅ ${construido.episodes.length} episodios`;
+            } catch (e) { $("build-msg").textContent = "❌ " + e.message; log("ERROR: " + e.message); }
+            finally { $("btn-build").disabled = false; }
+        };
+
+        async function guardar(data) {
+            const existe = await getAnime(data.aid).catch(() => null);
+            if (existe) {
+                // Anime que ya está: SOLO se añaden los episodios que faltan.
+                const hay = new Set((existe.episodes || []).map((e) => e.season + "|" + e.number));
+                const nuevos = data.episodes.filter((e) => !hay.has(e.season + "|" + e.number));
+                if (!nuevos.length) { log("No hay episodios nuevos que añadir."); return data.aid; }
+                await addEpisodes(data.aid, nuevos);
+                log(`+${nuevos.length} episodios nuevos en ${data.aid} (no se tocó lo demás)`);
+                return data.aid;
+            }
+            const info = data.info;
+            await saveAnime({
+                id: data.aid, title: data.real_title, altTitles: info.altTitles || [], type: "TV",
+                audio: data.audio || audioLabel(data.episodes.map((e) => e.language)),
+                status: "Finalizado", quality: "1080p", year: info.year, creator: "",
+                genres: info.genres || [], tags: [], rating: 4.4, ratingCount: 300, contentWarning: "",
+                description: info.description || "", img: info.poster, imgMobile: info.poster,
+                heroImg: info.backdrop, fonImg: info.backdrop, logoImg: info.logo, trailerUrl: "",
+                seasons: new Set(data.episodes.map((e) => e.season)).size,
+                episodes: data.episodes,
+            });
+            log(`Guardado ${data.aid} con ${data.episodes.length} episodios.`);
+            return data.aid;
         }
 
-        // Guardar
         $("btn-save").onclick = async () => {
-            if (!built || !built.length) return;
-            try {
-                $("btn-save").disabled = true; $("save-msg").textContent = "Guardando…";
-                const id = $("f-id").value.trim() || slugify($("f-title").value);
-                const existing = await getAnime(id).catch(() => null);
-                let episodes = built;
-                if (existing && Array.isArray(existing.episodes) && existing.episodes.length) {
-                    // Anime existente: SOLO añade episodios/temporadas nuevos; nunca toca los que ya están.
-                    const have = new Set(existing.episodes.map((e) => e.season + "|" + e.number));
-                    const nuevos = built.filter((e) => !have.has(e.season + "|" + e.number));
-                    episodes = [...existing.episodes, ...nuevos];
-                    log(`anime existente: +${nuevos.length} episodios nuevos (no se tocaron los ${existing.episodes.length} existentes)`);
-                }
-                const langs = [...new Set(episodes.map((e) => e.language))];
-                const doc = existing && existing.title ? { ...existing, episodes } : {
-                    id, title: $("f-title").value.trim(), altTitles: [], type: "TV", audio: langs.join(" | "),
-                    status: "Finalizado", quality: "1080p", year: +$("f-year").value || meta?.year || null,
-                    creator: "", genres: meta?.genres || [], tags: [], seasons: 1,
-                    rating: 4.4, ratingCount: 300, contentWarning: "", description: meta?.description || "",
-                    img: meta?.poster || "", imgMobile: meta?.poster || "", heroImg: meta?.backdrop || "", fonImg: meta?.backdrop || "", logoImg: "", trailerUrl: "",
-                    episodes,
-                };
-                doc.episodes = episodes; doc.episodesTotal = episodes.length; doc.episodesCount = episodes.length;
-                await saveAnime(doc);
-                $("save-msg").textContent = "✅ Guardado: " + id + " (" + episodes.length + " eps)"; $("save-msg").style.color = "#9fd89f";
-                log("✅ GUARDADO " + id + " — " + episodes.length + " episodios");
-            } catch (e) { $("save-msg").textContent = "❌ " + e.message; $("save-msg").style.color = "#e08a8a"; log("ERROR guardar: " + e.message); $("btn-save").disabled = false; }
+            if (!construido) return;
+            $("btn-save").disabled = true; $("save-msg").textContent = "Guardando…";
+            try { await guardar(construido); $("save-msg").textContent = "✅ Guardado"; }
+            catch (e) { $("save-msg").textContent = "❌ " + e.message; log("ERROR al guardar: " + e.message); }
+            finally { $("btn-save").disabled = false; }
+        };
+
+        $("btn-lote-go").onclick = async () => {
+            const titulos = $("f-lote").value.split("\n").map((s) => s.trim()).filter(Boolean);
+            if (!titulos.length) return;
+            $("btn-lote-go").disabled = true;
+            let ok = 0;
+            for (const [i, t] of titulos.entries()) {
+                $("build-msg").textContent = `[${i + 1}/${titulos.length}] ${t}`;
+                try {
+                    const d = await construir(t, slugify(t));
+                    if (d.episodes.length) { await guardar(d); ok++; }
+                    else log(`(sin episodios, no se guardó: ${t})`);
+                } catch (e) { log(`ERROR con «${t}»: ${e.message}`); }
+            }
+            $("build-msg").textContent = `✅ Lote: ${ok}/${titulos.length} guardados`;
+            $("btn-lote-go").disabled = false;
         };
     </script>
+
     <!-- Barra de acciones fija en móvil: repite los botones principales para
          no tener que buscarlos entre las tarjetas. -->
     <div class="acciones-movil" id="acciones-movil" style="display:none">
