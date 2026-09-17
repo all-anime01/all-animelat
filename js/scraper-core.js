@@ -528,6 +528,19 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
       });
       info.altTitles = alt.slice(0, 12);
     }
+    // Los DONGHUA llegan con el título original en chino y de ahí no sale un id
+    // válido: se muestra el que escribió el usuario (o el romaji) y el original
+    // pasa a los títulos alternativos.
+    const conLatinas = (x) => /[A-Za-z]/.test(String(x || "").normalize("NFD").replace(/[^ -]/g, ""));
+    if (!conLatinas(info.title)) {
+      const alt = [titulo, ...(info.altTitles || [])].find(conLatinas);
+      if (alt) {
+        if (info.title && !(info.altTitles || []).includes(info.title))
+          info.altTitles = [info.title, ...(info.altTitles || [])].slice(0, 12);
+        log(`título sin letras latinas (${info.title}) → se usa «${alt}»`);
+        info.title = alt;
+      }
+    }
     log(`título real: ${info.title} | imdb=${info.imdb || "—"} | tmdb=${tv || "—"}`);
     return { info, real_title: info.title, seasons: info.seasons.map((s) => ({ ...s })), anilist: al, tmdb: tv, episodes: [] };
   }

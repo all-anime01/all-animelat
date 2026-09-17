@@ -392,8 +392,20 @@ def save_big_doc(aid, doc, episodes, token, log):
 def norm(s): return re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).strip()
 def dec_ent(s): return (s or "").replace("&#39;", "'").replace("&quot;", '"').replace("&amp;", "&").strip()
 def slugify(s):
-    s = unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode()
+    s = unicodedata.normalize("NFD", s or "").encode("ascii", "ignore").decode()
     return re.sub(r"^-|-$", "", re.sub(r"[^a-z0-9]+", "-", s.lower()))
+
+def tiene_latinas(s):
+    return bool(re.search(r"[A-Za-z]", unicodedata.normalize("NFD", str(s or "")).encode("ascii", "ignore").decode()))
+
+def slug_de(*titulos):
+    """Primer título que dé un identificador válido. Los DONGHUA llegan con el
+    título original en chino («界门之下») y ahí slugify() devuelve vacío: Firestore
+    recibía la ruta «animes/» sin nombre y contestaba con un 400 críptico."""
+    for t in titulos:
+        sl = slugify(t)
+        if sl: return sl
+    return ""
 MESES = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 def fmt_duration(mins):
     """Duración en horas y minutos como en el sitio: 95 → '1h 35 min', 24 → '24 min'."""
@@ -1461,7 +1473,19 @@ def build_meta(title, opts, log):
         for t in [b.get("romaji"), b.get("english"), b.get("native")] + (b.get("synonyms") or [])[:3]:
             if t and t != real_title and t not in alt: alt.append(t)
         info["altTitles"] = alt[:12]
-    return {"aid": slugify(real_title), "info": info, "real_title": real_title, "seasons": seasons,
+    # Si TMDB devolvió el título ORIGINAL sin letras latinas, se muestra el que
+    # escribió el usuario (o el romaji) y el original se guarda como alternativo.
+    if not tiene_latinas(real_title):
+        latino = next((t for t in ([title] + list(info.get("altTitles") or [])) if tiene_latinas(t)), "")
+        if latino:
+            if real_title and real_title not in (info.get("altTitles") or []):
+                info["altTitles"] = ([real_title] + list(info.get("altTitles") or []))[:12]
+            log(f"título sin letras latinas ({real_title}) → se usa «{latino}» para el nombre y el id")
+            real_title = latino
+            info["title"] = latino
+    aid = slug_de(real_title, title, *(info.get("altTitles") or []))
+    if not aid: log("⚠ no se pudo sacar un id del título; escríbelo tú antes de guardar")
+    return {"aid": aid, "info": info, "real_title": real_title, "seasons": seasons,
             "episodes": [], "audio": "Sub", "altTitles": info.get("altTitles", []),
             "creator": info.get("creator", ""), "tmdb": tmdb, "anilist": al,
             "titulo_escrito": title}
@@ -1472,7 +1496,7 @@ def build_movie(title, opts, log):
     m = tmdb_movie(title, key)
     real = m["title"] or title
     imdb = m["imdb"] or imdb_movie(real, m["year"])
-    aid = slugify(real)
+    aid = slug_de(real, title)
     # fallback jkanime para imagen/descripción
     if not m["poster"] or not m["description"]:
         slug0 = (opts.get("src_slug") or "").split(",")[0].strip()
@@ -1835,7 +1859,14 @@ def build_episodes(data, opts, log, prog, on_ep):
     return data
 
 def save(data, token, replace, log):
-    aid = data["aid"]; built = data["episodes"]; info = data["info"]
+    aid = (data.get("aid") or "").strip().strip("/")
+    if not aid:
+        aid = slug_de(data.get("real_title"), *(data.get("altTitles") or []))
+        data["aid"] = aid
+    if not aid:
+        log("ERROR: el anime no tiene id (el título no deja letras latinas). "
+            "Escribe un id a mano en «ID (slug)» y vuelve a guardar."); return False
+    built = data["episodes"]; info = data["info"]
     if not built: log("Nada que guardar."); return
     existing = get_doc(f"animes/{aid}", token)
     if existing and existing.get("epChunks"):
