@@ -682,7 +682,8 @@ def tmdb_full(tv, key):
         if d.get("original_name"): at.insert(0, d["original_name"])
         seen = set(); out["altTitles"] = [x for x in at if x and x != out["title"] and not (x.lower() in seen or seen.add(x.lower()))][:10]
         seasons = [s for s in d.get("seasons", []) if s.get("season_number", 0) >= 1 and s.get("episode_count", 0) > 0]
-        out["seasons"] = [{"season": s["season_number"], "count": s["episode_count"]} for s in seasons]
+        out["seasons"] = [{"season": s["season_number"], "count": s["episode_count"],
+                           "nombre": (s.get("name") or "").strip()} for s in seasons]
         ext = get_json(f"https://api.themoviedb.org/3/tv/{tv}/external_ids?api_key={key}")
         out["imdb"] = ext.get("imdb_id") or ""
         im = get_json(f"https://api.themoviedb.org/3/tv/{tv}/images?api_key={key}&include_image_language=es,en,null")
@@ -1277,6 +1278,14 @@ def ninja_servers(slug, n, temporada=1):
         if re.search(r"(?i)lat|dob|espanol|español", s["url"]): s["lang"] = "Latino"; s["desc"] = "Audio Latino"
     return out
 
+_GENERICA = re.compile(r"(?i)^(?:temporada|season|parte|part|staffel|saison)\s*\d*$|^\d+$")
+
+def nombre_temporada(n, tmdb_nombre=None):
+    """«Stardust Crusaders» en vez de «Temporada 2» cuando TMDB le pone nombre."""
+    t = (tmdb_nombre or "").strip()
+    if t and not _GENERICA.match(t): return t
+    return f"Temporada {n}"
+
 def _fusiona_partes(seasons, al=None, log=None):
     """Marca los bloques que son otra PARTE de la temporada anterior y renumera el
     resto. Devuelve la misma lista (un bloque por slug, que es como se scrapea), pero
@@ -1299,7 +1308,8 @@ def _fusiona_partes(seasons, al=None, log=None):
             if log: log(f"  «{slug or tit}» es otra PARTE de {ult_nombre}: se une a esa temporada")
         else:
             n_real += 1
-            S["cont"] = False; S["season"] = n_real; S["name"] = f"Temporada {n_real}"
+            S["cont"] = False; S["season"] = n_real
+            S["name"] = S.get("name") if (S.get("name") and not _GENERICA.match(S["name"])) else f"Temporada {n_real}"
             ult_nombre = S["name"]
         ult_slug, ult_tit = slug or ult_slug, tit or ult_tit
         out.append(S)
@@ -1542,7 +1552,10 @@ def build_movie(title, opts, log):
 
 def build_episodes(data, opts, log, prog, on_ep):
     """FASE 2 (lenta): servidores por episodio, se van mostrando en vivo."""
-    info = data["info"]; imdb = info["imdb"]; seasons = data["seasons"]; aid = data["aid"]
+    info = data["info"]; imdb = info["imdb"]; seasons = [dict(s) for s in data["seasons"]]; aid = data["aid"]
+    # Nombre propio de cada temporada (JoJo: «Stardust Crusaders», no «Temporada 2»).
+    for _i, _S in enumerate(seasons, 1):
+        if not _S.get("name"): _S["name"] = nombre_temporada(_S.get("season") or _i, _S.get("nombre"))
     title = data["real_title"]
     # SLUG/URL manual de la fuente. Acepta VARIOS separados por coma (uno por temporada,
     # en orden) → así se ensamblan las SECUELAS como temporadas del mismo anime
@@ -1640,7 +1653,9 @@ def build_episodes(data, opts, log, prog, on_ep):
                     t = (al[i].get("romaji") or al[i].get("title") or al[i].get("english")) if i < len(al) else None
                     try: yt = yt_search(t) if t else (yt_search(title) if i == 0 else None)
                     except Exception: yt = None
-                seasons.append({"season": i + 1, "count": 400, "name": f"Temporada {i + 1}", "jk": jk, "av": av, "yt": yt, "e69s": e69s})
+                tn = tmdb_seasons[i].get("nombre") if i < len(tmdb_seasons) else ""
+                seasons.append({"season": i + 1, "count": 400, "name": nombre_temporada(i + 1, tn),
+                                "jk": jk, "av": av, "yt": yt, "e69s": e69s})
             seasons = _fusiona_partes(seasons, al, log)
             log(f"AUTO temporadas: {len(seasons)} (jk={jk_list} · av={av_list})")
         else:
@@ -1655,7 +1670,8 @@ def build_episodes(data, opts, log, prog, on_ep):
         # «juntas» (siguen la numeración de la última temporada) o «omitir».
         modo_extra = (opts.get("ovas") or "aparte").lower()
         if not src_slugs and modo_extra != "omitir":
-            EXTRAS = [("OVAs", ("-ova", "-ovas", "-oad", "-oav", "-especiales", "-specials")),
+            EXTRAS = [("OVAs", ("-ova", "-ovas", "-oad", "-oav")),
+                      ("Especiales", ("-especiales", "-specials", "-special", "-sp")),
                       ("Películas", ("-movie", "-movies", "-pelicula", "-peliculas", "-the-movie"))]
             for nombre, sufijos in EXTRAS:
                 ex_jk = ex_av = None

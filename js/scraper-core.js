@@ -482,7 +482,7 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
       if (d.poster_path) info.poster = `${IMG}/w500${d.poster_path}`;
       if (d.backdrop_path) info.backdrop = `${IMG}/w1280${d.backdrop_path}`;
       info.seasons = (d.seasons || []).filter((s) => s.season_number > 0)
-        .map((s) => ({ season: s.season_number, count: s.episode_count }));
+        .map((s) => ({ season: s.season_number, count: s.episode_count, nombre: (s.name || "").trim() }));
       try {
         const ex = await tmdb(`/tv/${tv}/external_ids`);
         info.imdb = info.imdb || ex.imdb_id || "";
@@ -550,7 +550,10 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     const info = data.info, imdb = info.imdb, titulo = data.real_title;
     const aid = opts.aid;
     const slugsManual = String(opts.src_slug || "").split(",").map((s) => s.trim()).filter(Boolean);
-    let seasons = data.seasons.map((s, i) => ({ ...s, name: `Temporada ${i + 1}`, e69s: s.season }));
+    // Nombre propio de la temporada cuando TMDB se lo pone («Stardust Crusaders»).
+    const GENERICA = /^(?:temporada|season|parte|part|staffel|saison)\s*\d*$|^\d+$/i;
+    const nombreTemporada = (n, tn) => (tn && !GENERICA.test(tn.trim())) ? tn.trim() : `Temporada ${n}`;
+    let seasons = data.seasons.map((s, i) => ({ ...s, name: nombreTemporada(i + 1, s.nombre), e69s: s.season }));
     let perSeasonNum = false, multi = false;
     const activa = (k) => !!opts[k];
 
@@ -586,7 +589,7 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
         seasons = [];
         for (let i = 0; i < nsrc; i++) {
           seasons.push({
-            season: i + 1, count: 400, name: `Temporada ${i + 1}`,
+            season: i + 1, count: 400, name: nombreTemporada(i + 1, (data.seasons[i] || {}).nombre),
             jk: jkList[i] || null, av: avList[i] || null,
             e69s: data.seasons[i] ? data.seasons[i].season : i + 1,
           });
