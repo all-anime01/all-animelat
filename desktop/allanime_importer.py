@@ -1286,6 +1286,121 @@ def nombre_temporada(n, tmdb_nombre=None):
     if t and not _GENERICA.match(t): return t
     return f"Temporada {n}"
 
+# ------------------------------------------------------ extraer de CUALQUIER página
+# Muchas fichas buenas (título, sinopsis, imagen, lista de episodios) están en páginas
+# que no son fuentes de vídeo: MyAnimeList, Wikipedia, fandom, la web del estudio…
+# Esto las lee sin saber nada del sitio, usando lo que TODA página bien hecha publica:
+#   · JSON-LD (<script type="application/ld+json">) — lo más completo
+#   · Open Graph (<meta property="og:…">) — título, imagen y descripción
+#   · el JSON que incrustan las webs modernas (__NEXT_DATA__, __INITIAL_STATE__)
+# Si el sitio pide sesión (Crunchyroll, Netflix…), se usa la cookie que guardes.
+_COOKIES_SITIO = "cookies_sitio"      # {dominio: cookie} en la configuración
+
+def cookie_de(url):
+    dom = urllib.parse.urlparse(str(url or "")).netloc.lower().replace("www.", "")
+    todas = load_cfg().get(_COOKIES_SITIO) or {}
+    for k, v in todas.items():
+        if k and (k in dom or dom in k): return v
+    return ""
+
+def guardar_cookie_sitio(url, cookie):
+    cfg = load_cfg()
+    dom = urllib.parse.urlparse(str(url or "")).netloc.lower().replace("www.", "")
+    todas = dict(cfg.get(_COOKIES_SITIO) or {})
+    if cookie: todas[dom] = cookie
+    else: todas.pop(dom, None)
+    cfg[_COOKIES_SITIO] = todas; save_cfg(cfg)
+    return dom
+
+def _jsonld(h):
+    """Todos los bloques JSON-LD de la página, ya desanidados."""
+    out = []
+    for b in re.findall(r'<script[^>]+application/ld\+json[^>]*>([\s\S]*?)</script>', h, re.I):
+        try: j = json.loads(b.strip())
+        except Exception: continue
+        for x in (j if isinstance(j, list) else [j]):
+            if isinstance(x, dict):
+                out.append(x)
+                for g in (x.get("@graph") or []):
+                    if isinstance(g, dict): out.append(g)
+    return out
+
+def _og(h):
+    d = {}
+    for m in re.finditer(r'<meta[^>]+(?:property|name)="(?:og:|twitter:)([a-z:]+)"[^>]+content="([^"]*)"', h, re.I):
+        d.setdefault(m.group(1).split(":")[0], dec_ent(m.group(2)))
+    return d
+
+def extraer_pagina(url, log=None):
+    """Lee una página cualquiera y devuelve lo que encuentre:
+    {titulo, descripcion, imagen, año, episodios:[{number,title,description,img}]}"""
+    log = log or (lambda m: None)
+    ck = cookie_de(url)
+    h = ""
+    try:
+        st, t = http(url, headers={"Cookie": ck} if ck else None, timeout=30)
+        if st == 200 and t and not _MURO.search(t[:4000]): h = t
+    except Exception: pass
+    if not h: h = get_text_puente(url)
+    if not h:
+        log("La página no respondió o pide verificación. Si te deja verla en el navegador, "
+            "guarda su cookie con «Cookie de la página» y reinténtalo.")
+        return {}
+    out = {"titulo": "", "descripcion": "", "imagen": "", "anio": None, "episodios": []}
+    # 1) JSON-LD
+    for j in _jsonld(h):
+        tipo = str(j.get("@type") or "")
+        if not out["titulo"] and j.get("name"): out["titulo"] = dec_ent(str(j["name"]))
+        if not out["descripcion"] and j.get("description"): out["descripcion"] = dec_ent(str(j["description"]))
+        img = j.get("image") or j.get("thumbnailUrl")
+        if isinstance(img, dict): img = img.get("url")
+        if isinstance(img, list): img = img[0] if img else ""
+        if not out["imagen"] and isinstance(img, str) and img.startswith("http"): out["imagen"] = img
+        fecha = str(j.get("datePublished") or j.get("startDate") or "")[:4]
+        if not out["anio"] and fecha.isdigit(): out["anio"] = int(fecha)
+        if "Episode" in tipo:
+            n = j.get("episodeNumber")
+            try: n = int(n)
+            except (TypeError, ValueError): n = None
+            if n: out["episodios"].append({"number": n, "title": dec_ent(str(j.get("name") or "")),
+                                           "description": dec_ent(str(j.get("description") or "")),
+                                           "img": img if isinstance(img, str) else ""})
+        for lista in (j.get("episode") or j.get("itemListElement") or []):
+            if not isinstance(lista, dict): continue
+            e = lista.get("item") if isinstance(lista.get("item"), dict) else lista
+            n = e.get("episodeNumber") or lista.get("position")
+            try: n = int(n)
+            except (TypeError, ValueError): continue
+            im = e.get("image") or e.get("thumbnailUrl") or ""
+            if isinstance(im, dict): im = im.get("url") or ""
+            if isinstance(im, list): im = im[0] if im else ""
+            out["episodios"].append({"number": n, "title": dec_ent(str(e.get("name") or "")),
+                                     "description": dec_ent(str(e.get("description") or "")),
+                                     "img": im if isinstance(im, str) else ""})
+    # 2) Open Graph como respaldo de la ficha
+    og = _og(h)
+    out["titulo"] = out["titulo"] or og.get("title", "")
+    out["descripcion"] = out["descripcion"] or og.get("description", "")
+    out["imagen"] = out["imagen"] or og.get("image", "")
+    # 3) JSON incrustado de las webs modernas (por si trae la lista de episodios)
+    if not out["episodios"]:
+        m = re.search(r'(?:__NEXT_DATA__|__INITIAL_STATE__|__NUXT__)[^{]*(\{[\s\S]{200,}?\})\s*</script>', h)
+        if m:
+            try:
+                crudo = json.dumps(json.loads(m.group(1)))
+                for mm in re.finditer(r'"episode_?[nN]umber"\s*:\s*(\d+)[^}]{0,400}?"(?:title|name)"\s*:\s*"([^"]{2,120})"', crudo):
+                    out["episodios"].append({"number": int(mm.group(1)), "title": mm.group(2), "description": "", "img": ""})
+            except Exception: pass
+    # sin repetidos, por número
+    vistos, limpio = set(), []
+    for e in sorted(out["episodios"], key=lambda x: x["number"]):
+        if e["number"] in vistos: continue
+        vistos.add(e["number"]); limpio.append(e)
+    out["episodios"] = limpio
+    log("extraído de %s: título=%s | imagen=%s | episodios=%d" % (
+        urllib.parse.urlparse(url).netloc, (out["titulo"] or "—")[:40], "sí" if out["imagen"] else "no", len(limpio)))
+    return out
+
 def _fusiona_partes(seasons, al=None, log=None):
     """Marca los bloques que son otra PARTE de la temporada anterior y renumera el
     resto. Devuelve la misma lista (un bloque por slug, que es como se scrapea), pero
@@ -2343,6 +2458,14 @@ class App:
         self.ovas = combo(og, ["En bloque aparte", "Dentro de la temporada", "No incluirlas"], 220)
         self.ovas.set("En bloque aparte"); self.ovas.pack(side="left", padx=6)
         lab(og, "↳ «aparte» crea «OVAs» y «Películas»; «dentro» sigue la numeración de la última temporada").pack(side="left")
+        # Extraer la ficha (y la lista de episodios si la hay) de CUALQUIER página:
+        # MyAnimeList, Wikipedia, fandom, la web del estudio… Para los sitios que piden
+        # sesión (Crunchyroll, Netflix, Prime Video) se guarda la cookie de tu navegador.
+        ex = ctk.CTkFrame(sc, fg_color="transparent"); ex.pack(fill="x", padx=16, pady=(0, 8))
+        lab(ex, "Extraer de una página (URL):").pack(side="left")
+        self.url_extra = ent(ex, 420); self.url_extra.pack(side="left", padx=6)
+        btn(ex, "📄 Extraer", self.do_extraer, "blue").pack(side="left")
+        btn(ex, "🍪 Cookie de la página", self.do_cookie_sitio).pack(side="left", padx=6)
         self.manbox = ctk.CTkFrame(sc, fg_color="transparent")
         lab(self.manbox, "URLs manuales (N|URL por línea)").pack(anchor="w", padx=16)
         self.mantext = ctk.CTkTextbox(self.manbox, height=64, fg_color="#101015", text_color=TXT, corner_radius=8); self.mantext.pack(fill="x", padx=16, pady=(0, 8))
@@ -2458,6 +2581,56 @@ class App:
         try: self._canvas.yview_scroll(int(-1 * (e.delta / 120)), "units")
         except Exception: pass
         return "break"
+
+    def do_extraer(self):
+        """Lee la URL pegada y rellena lo que encuentre: título, año, imágenes,
+        sinopsis y, si la página publica la lista, los títulos de los episodios."""
+        u = self.url_extra.get().strip()
+        if not u.startswith("http"):
+            messagebox.showinfo("Extraer", "Pega la dirección completa de la página."); return
+        def work():
+            r = extraer_pagina(u, self.log)
+            if not r: return
+            def pinta():
+                if r.get("titulo") and not self.f_title.get().strip():
+                    self.f_title.delete(0, "end"); self.f_title.insert(0, r["titulo"])
+                if r.get("anio") and not self.f_year.get().strip():
+                    self.f_year.delete(0, "end"); self.f_year.insert(0, str(r["anio"]))
+                if r.get("imagen") and not self.f_poster.get().strip():
+                    self.f_poster.delete(0, "end"); self.f_poster.insert(0, r["imagen"])
+                if r.get("descripcion"):
+                    self.data.setdefault("info", {})["description"] = r["descripcion"]
+                    self.log(f"sinopsis tomada de la página ({len(r['descripcion'])} caracteres)")
+                eps = r.get("episodios") or []
+                if eps and self.data.get("episodes"):
+                    porn = {int(e["number"]): e for e in self.data["episodes"]}
+                    n = 0
+                    for x in eps:
+                        e = porn.get(int(x["number"]))
+                        if not e: continue
+                        if x.get("title") and es_ep_title(e.get("title", ""), e["number"]) == f"Episodio {e['number']}":
+                            e["title"] = x["title"]; n += 1
+                        if x.get("description") and not e.get("description"): e["description"] = x["description"]
+                        if x.get("img") and not e.get("img"): e["img"] = x["img"]
+                    self.log(f"{n} título(s) de episodio tomados de la página")
+                    self.refresh_tree()
+                elif eps:
+                    self.log(f"la página trae {len(eps)} episodios; construye primero el anime para volcarlos")
+            self.root.after(0, pinta)
+        threading.Thread(target=work, daemon=True).start()
+
+    def do_cookie_sitio(self):
+        """Guarda la cookie de TU sesión para la página de la URL (Crunchyroll,
+        Netflix…, que no dejan entrar a un programa sin haber iniciado sesión)."""
+        u = self.url_extra.get().strip()
+        if not u.startswith("http"):
+            messagebox.showinfo("Cookie", "Pega antes la dirección de la página."); return
+        ck = simpledialog.askstring("Cookie de la página",
+                                    "Pega la cookie de tu navegador para este sitio\n"
+                                    "(F12 → Application → Cookies). Vacío = borrarla.",
+                                    parent=self.root) or ""
+        dom = guardar_cookie_sitio(u, ck.strip())
+        self.log(f"Cookie de {dom} " + ("guardada." if ck.strip() else "borrada."))
 
     def _guardar_ninja(self):
         """Guarda la cookie de animeonline.ninja y activa la fuente si hay cookie."""
