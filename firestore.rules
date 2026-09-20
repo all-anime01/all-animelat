@@ -102,6 +102,18 @@ service cloud.firestore {
       allow write: if true;
     }
 
+    // ---- Impresiones de publicidad (contadores propios, para comparar redes) ----
+    // Escritura abierta (la suma la manda el visitante); lectura solo admin.
+    match /stats_ads/{docId} {
+      allow read: if isAdmin();
+      allow write: if true;
+    }
+
+    // ---- Ingresos declarados por el admin, para calcular el RPM ----
+    match /stats_ads_ingresos/{docId} {
+      allow read, write: if isAdmin();
+    }
+
     // ---- Analítica por país (agregado) ----
     match /stats_country/{docId} {
       allow read: if isAdmin();
