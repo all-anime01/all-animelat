@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicidad — All-Anime Admin</title>
+    <link rel="shortcut icon" href="../image/logo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Roboto, system-ui, sans-serif; background: #101010; color: #f0f0f0; padding: 26px 16px 80px; }
+        .wrap { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 22px; margin-bottom: 4px; }
+        h2 { font-size: 15px; margin: 22px 0 10px; color: #ff8a8a; text-transform: uppercase; letter-spacing: .04em; }
+        .sub { color: #a0a0a0; font-size: 14px; margin-bottom: 20px; }
+        .box { background: #1c1c1c; border: 1px solid #2e2e2e; border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+        label { display: block; font-size: 13px; color: #bdbdbd; margin: 10px 0 5px; }
+        input, select { width: 100%; background: #0e0e0e; border: 1px solid #333; color: #f0f0f0; border-radius: 9px; padding: 11px 12px; font-size: 14px; font-family: inherit; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        .btn { background: #e0231f; color: #fff; border: none; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; }
+        .btn.green { background: #1f9d55; }
+        .btn.grey { background: #2f2f2f; }
+        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+        th, td { padding: 9px 8px; border-bottom: 1px solid #2a2a2a; font-size: 13.5px; text-align: left; }
+        th { color: #9a9a9a; font-weight: 600; }
+        td.c, th.c { text-align: center; }
+        input[type=checkbox] { width: 18px; height: 18px; accent-color: #e0231f; }
+        .warn { background: #3a2a10; border: 1px solid #6b4d1a; color: #ffcf7a; padding: 11px 13px; border-radius: 10px; font-size: 13.5px; margin-bottom: 14px; }
+        .ok { background: #12301d; border: 1px solid #1f6b3a; color: #9fd89f; padding: 11px 13px; border-radius: 10px; font-size: 13.5px; margin-bottom: 14px; }
+        .center { text-align: center; padding: 40px 0; }
+        a { color: #ff6b6b; }
+        small { color: #8a8a8a; }
+        @media (max-width: 640px) { .row, .row3 { grid-template-columns: 1fr; } .btn { width: 100%; } }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1><i class="fas fa-rectangle-ad"></i> Publicidad</h1>
+        <p class="sub">Qué red se usa en cada dispositivo y qué formatos se permiten. <a href="index.html">← Panel</a></p>
+        <div id="gate" class="center">Verificando sesión…</div>
+
+        <div id="app" style="display:none">
+            <div class="ok"><i class="fas fa-shield-halved"></i> Pase lo que pase aquí, el sitio nunca pone
+                anuncios dentro del reproductor, ni formatos que roben el mando en TV, ni nada a quien
+                pagó por no verlos.</div>
+
+            <div class="box">
+                <h2>Encendido</h2>
+                <label><input type="checkbox" id="activo" style="width:auto"> Mostrar publicidad en el sitio</label>
+                <div class="row" style="margin-top:12px">
+                    <div><label>ID de editor de AdSense</label><input id="adsense" placeholder="ca-pub-…"></div>
+                    <div><label>Horas mínimas entre popunders</label><input id="pophoras" type="number" min="1" value="12"></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2>Red por dispositivo</h2>
+                <div class="row3">
+                    <div><label>Escritorio</label><select id="red-escritorio"><option value="adsense">AdSense</option><option value="adsterra">Adsterra</option><option value="ninguna">Ninguna</option></select></div>
+                    <div><label>Móvil</label><select id="red-movil"><option value="adsense">AdSense</option><option value="adsterra">Adsterra</option><option value="ninguna">Ninguna</option></select></div>
+                    <div><label>TV / Fire TV</label><select id="red-tv"><option value="adsense">AdSense</option><option value="adsterra">Adsterra</option><option value="ninguna">Ninguna</option></select></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2>Formatos permitidos</h2>
+                <table>
+                    <tr><th>Dispositivo</th><th class="c">Banner</th><th class="c">Popunder</th><th class="c">Barra social</th></tr>
+                    <tr><td>Escritorio</td>
+                        <td class="c"><input type="checkbox" id="f-escritorio-banner"></td>
+                        <td class="c"><input type="checkbox" id="f-escritorio-popunder"></td>
+                        <td class="c"><input type="checkbox" id="f-escritorio-social"></td></tr>
+                    <tr><td>Móvil</td>
+                        <td class="c"><input type="checkbox" id="f-movil-banner"></td>
+                        <td class="c"><input type="checkbox" id="f-movil-popunder"></td>
+                        <td class="c"><input type="checkbox" id="f-movil-social"></td></tr>
+                    <tr><td>TV / Fire TV</td>
+                        <td class="c"><input type="checkbox" id="f-tv-banner"></td>
+                        <td class="c" colspan="2"><small>en TV solo se permiten banners</small></td></tr>
+                </table>
+            </div>
+
+            <div class="box">
+                <h2>Códigos de Adsterra</h2>
+                <small>Pega el <code>src</code> del invoke.js de cada formato (panel de Adsterra → tu sitio).</small>
+                <label>Banner nativo</label><input id="ads-banner" placeholder="//pl…/invoke.js">
+                <label>Barra social</label><input id="ads-social" placeholder="//pl…/invoke.js">
+                <label>Popunder</label><input id="ads-pop" placeholder="//pl…/invoke.js">
+            </div>
+
+            <div class="box">
+                <button class="btn green" id="guardar"><i class="fas fa-cloud-arrow-up"></i> Guardar</button>
+                <span id="msg" style="margin-left:10px;font-size:13px"></span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { db, isAdmin } from "../js/firebase-config.js";
+        import { observeAuth } from "../js/auth.js";
+        import { doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        const $ = (id) => document.getElementById(id);
+        const DISPOS = ["escritorio", "movil", "tv"];
+
+        observeAuth(async (user) => {
+            if (!user) { $("gate").innerHTML = 'Inicia sesión como admin. <a href="../cuenta.html?redirect=admin/publicidad.html">Login</a>'; return; }
+            if (!isAdmin(user)) { $("gate").innerHTML = 'La cuenta <b>' + user.email + '</b> no es administrador.'; return; }
+            $("gate").style.display = "none"; $("app").style.display = "block";
+            await cargar();
+        });
+
+        async function cargar() {
+            let d = {};
+            try { const s = await getDoc(doc(db, "config", "ads")); if (s.exists()) d = s.data() || {}; } catch {}
+            $("activo").checked = d.activo !== false;
+            $("adsense").value = d.adsenseClient || "ca-pub-7691106587507822";
+            $("pophoras").value = d.popunderHoras || 12;
+            const redes = d.redes || { escritorio: "adsense", movil: "adsterra", tv: "adsense" };
+            DISPOS.forEach((k) => { $("red-" + k).value = redes[k] || "adsense"; });
+            const f = d.formatos || {
+                escritorio: { banner: true, popunder: false, social: false },
+                movil: { banner: true, popunder: true, social: false },
+                tv: { banner: true },
+            };
+            DISPOS.forEach((k) => {
+                ["banner", "popunder", "social"].forEach((x) => {
+                    const el = $(`f-${k}-${x}`);
+                    if (el) el.checked = !!((f[k] || {})[x]);
+                });
+            });
+            const a = d.adsterra || {};
+            $("ads-banner").value = a.banner || "";
+            $("ads-social").value = a.social || "";
+            $("ads-pop").value = a.popunder || "";
+        }
+
+        $("guardar").onclick = async () => {
+            const formatos = {};
+            DISPOS.forEach((k) => {
+                formatos[k] = {};
+                ["banner", "popunder", "social"].forEach((x) => {
+                    const el = $(`f-${k}-${x}`);
+                    formatos[k][x] = el ? !!el.checked : false;
+                });
+            });
+            formatos.tv.popunder = false; formatos.tv.social = false;   // regla dura
+            const datos = {
+                activo: $("activo").checked,
+                adsenseClient: $("adsense").value.trim(),
+                popunderHoras: Math.max(1, parseInt($("pophoras").value, 10) || 12),
+                redes: Object.fromEntries(DISPOS.map((k) => [k, $("red-" + k).value])),
+                formatos,
+                adsterra: { banner: $("ads-banner").value.trim(), social: $("ads-social").value.trim(), popunder: $("ads-pop").value.trim() },
+                updatedAt: serverTimestamp(),
+            };
+            $("msg").textContent = "Guardando…";
+            try {
+                await setDoc(doc(db, "config", "ads"), datos, { merge: true });
+                $("msg").textContent = "✅ Guardado"; $("msg").style.color = "#9fd89f";
+            } catch (e) { $("msg").textContent = "❌ " + e.message; $("msg").style.color = "#e08a8a"; }
+        };
+    </script>
+</body>
+
+</html>

@@ -22,6 +22,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- AdSense: verificación del sitio y carga de anuncios (el gestor js/ads.js
+         decide si se muestran, según dispositivo y si el usuario pagó sin anuncios). -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7691106587507822"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -192,12 +196,7 @@
             <button class="ad-close" type="button" aria-label="Cerrar anuncio" onclick="this.closest('.ad-container').style.display='none'">&times;</button>
             <span class="ad-label">Publicidad</span>
             <div class="ad-slot">
-                <!-- Adsterra Native Banner — sólo si el usuario NO compró "sin publicidad" -->
-                <script>
-                (function(){try{var v=localStorage.getItem("aa_adfree");if(v==="1"||(v&&Date.now()<parseInt(v,10)))return;}catch(e){}
-                document.write('<script async="async" data-cfasync="false" src="//pl30363041.effectivecpmnetwork.com/992fdc113b3f25751f3dc8f1b44721d7/invoke.js"><\/script>');
-                document.write('<div id="container-992fdc113b3f25751f3dc8f1b44721d7"></div>');})();
-                </script>
+                <div data-aa-ad data-format="auto"></div>
             </div>
         </div>
 

@@ -1,1 +1,4 @@
-# ads.txt — pega aqui las lineas que te da Adsterra (Websites -> tu sitio -> ads.txt)
+# ads.txt — quien puede vender la publicidad de este sitio.
+# AdSense (obligatorio para que Google te apruebe y te pague).
+google.com, pub-7691106587507822, DIRECT, f08c47fec0942fa0
+# Adsterra: pega debajo las lineas que te da su panel (Websites -> tu sitio -> ads.txt).
