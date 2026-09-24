@@ -431,7 +431,7 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     const h = await puente(`${HJ}/animes?buscar=${encodeURIComponent(q)}`, HJ + "/");
     const c = [...new Set([...(h || "").matchAll(/\/anime\/([a-z0-9-]+)/g)].map((m) => m[1]))];
     const limpios = {};
-    for (const x of [...c].reverse()) limpios[x.replace(/-(?:latino|castellano)$/, "")] = x;
+    for (const x of [...c].reverse()) limpios[x.replace(/-(?:latino|castellano|audio-[a-z]+)$/, "")] = x;
     const r = mejorSlug(Object.keys(limpios), q);
     return r ? limpios[r] : null;
   }
@@ -439,7 +439,7 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
   // para no dejarse nunca el doblaje.
   async function hjVariantes(slug) {
     if (!slug) return [];
-    const raiz = slug.replace(/-(?:latino|castellano)$/, "");
+    const raiz = slug.replace(/-(?:latino|castellano|audio-[a-z]+)$/, "");
     const out = [slug];
     for (const suf of ["-latino", "-castellano"]) {
       const c = raiz + suf;

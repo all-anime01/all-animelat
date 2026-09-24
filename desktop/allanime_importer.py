@@ -1105,14 +1105,19 @@ def alhd_search(title):
     t = h.replace('\\"', '"')
     pairs = re.findall(r'"name":"([^"]{2,90})"[\s\S]{0,400}?"slug":"([a-z0-9\-]+)"', t)
     if not pairs:
-        sl = list(dict.fromkeys(re.findall(r'"slug":"([a-z0-9\-]+)"', t)))
-        return sl[0] if sl else None
-    want = norm(title); best, bs = None, -1
+        # Sin nombres con los que comparar se puntúa el propio slug; antes se devolvía
+        # el PRIMERO pasara lo que pasara, y por eso salían animes que no eran.
+        return best(list(dict.fromkeys(re.findall(r'"slug":"([a-z0-9\-]+)"', t))), title)
+    want = norm(title)
+    if not want: return None
+    mejor, punt = None, 0.0
     for name, slug in pairs:
         cn = norm(name)
-        sc = 100 if cn == want else (70 if (want in cn or cn in want) else len(set(want.split()) & set(cn.split())))
-        if sc > bs: bs, best = sc, slug
-    return best
+        if not cn: continue
+        sc = 1.0 if cn == want else (0.9 if (want in cn or cn in want) else similitud(want, cn))
+        if sc > punt: punt, mejor = sc, slug
+    # Igual que en el resto de fuentes: si NINGUNO se parece de verdad, mejor nada.
+    return mejor if punt >= 0.45 else None
 
 def alhd_max(slug):
     """Nº del último episodio publicado."""
@@ -1422,7 +1427,7 @@ def hj_search(title):
         if not c: continue
         # se compara SIN el sufijo de idioma, para que «one-piece-film-gold-latino»
         # no le gane a «one-piece» por casualidad.
-        limpios = {re.sub(r"-(?:latino|castellano)$", "", x): x for x in reversed(c)}
+        limpios = {re.sub(r"-(?:latino|castellano|audio-[a-z]+)$", "", x): x for x in reversed(c)}
         r = best(list(limpios.keys()), title)
         if r: return limpios[r]
     return None
@@ -1431,7 +1436,7 @@ def hj_variantes(slug, title=None):
     """El mismo anime suele estar DOS veces: subtitulado y «…-latino» (y a veces
     «…-castellano»). Se devuelven todas para no perder nunca el doblaje."""
     if not slug: return []
-    raiz = re.sub(r"-(?:latino|castellano)$", "", slug)
+    raiz = re.sub(r"-(?:latino|castellano|audio-[a-z]+)$", "", slug)
     fuera = [slug]
     for suf in ("-latino", "-castellano"):
         cand = raiz + suf
