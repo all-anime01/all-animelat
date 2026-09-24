@@ -992,13 +992,26 @@ def jk_max(slug):
     h = get_text(f"https://jkanime.net/{slug}/")
     nums = [int(x) for x in re.findall(re.escape(slug) + r"/(\d+)", h)]
     if nums: return max(nums)
-    m = re.search(r"(\d+)\s*[Ee]pisodios", h)
+    # Los animes ya terminados NO listan los episodios en el HTML (los carga después por
+    # ajax), pero sí traen la ficha «Episodios: 220». Antes se buscaba el número ANTES de
+    # la palabra y por eso Naruto o Vinland Saga daban 0 y no se scrapeaba nada.
+    m = re.search(r"[Ee]pisodios\s*:?\s*(?:</span>)?\s*(\d{1,4})", h) or re.search(r"(\d{1,4})\s*[Ee]pisodios", h)
     return int(m.group(1)) if m else 0
 def av1_max(slug):
+    """Último episodio en animeav1. La página solo ENLAZA los 50 más recientes (por eso
+    One Piece se quedaba en 50); el listado completo va en su payload:
+    «episodes:[{id:..,number:..},…]» y «episodesCount:N»."""
     if not slug: return 0
     h = get_text(f"https://animeav1.com/media/{slug}")
+    mejor = 0
+    m = re.search(r"episodes\s*:\s*\[(.{0,400000}?)\]", h, re.S)
+    if m:
+        ns = [int(x) for x in re.findall(r"number\s*:\s*(\d+)", m.group(1))]
+        if ns: mejor = max(ns)
+    m = re.search(r"episodesCount\s*:\s*(\d+)", h)
+    if m: mejor = max(mejor, int(m.group(1)))
     nums = [int(x) for x in re.findall(re.escape(slug) + r"/(\d+)", h)]
-    return max(nums) if nums else 0
+    return max(mejor, max(nums) if nums else 0)
 def jk_servers(slug, n):
     h = get_text(f"https://jkanime.net/{slug}/{n}/")
     m = re.search(r'var\s+servers\s*=\s*(\[[\s\S]*?\]);', h)
@@ -1212,6 +1225,106 @@ def es_continuacion(texto, anterior=None):
         return bool(raiz(t)) and norm(raiz(t)) == norm(str(anterior).strip("-_: "))
     # Sin referencia: si el propio nombre anuncia temporada nueva, no es continuación.
     return not re.search(r"(?i)(?:^|[\s\-_])(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:season|temporada)", t)
+
+# ------------------------------------------------------------------ henaojara
+# Fuente MUY completa en Latino y con muchísimos espejos por episodio (filemoon,
+# streamwish, lulustream, vidhide, voe, mp4upload, mixdrop…). Tiene tres piezas:
+#   · buscador   /animes?buscar=…            → enlaces /anime/<slug>
+#   · ficha      /anime/<slug>/              → «var eps = [["1179",…],…]» (nº del último)
+#   · episodio   /ver/<slug>-<n>/            → <ul class="opt" data-encrypt="HEX">
+#     y ese HEX («285-1» = idAnime-episodio) se manda a POST /hj con acc=opt, que
+#     devuelve <li encrypt="HEX de la URL del reproductor">.
+# El IDIOMA va en el propio slug: «…-latino», «…-castellano»; sin sufijo es subtitulado.
+HJ = "https://ww1.henaojara.net"
+
+def _hj_hex(x):
+    """El sitio ofusca las URLs en hexadecimal; esto las devuelve legibles."""
+    try: return bytes.fromhex(str(x).strip()).decode("utf-8", "replace")
+    except Exception: return ""
+
+def _hj_lang(slug):
+    sl = (slug or "").lower()
+    if sl.endswith("-latino") or "-latino-" in sl: return "Latino"
+    if sl.endswith("-castellano") or "-castellano-" in sl: return "Castellano"
+    return "Sub"
+
+def hj_buscar(q):
+    """Slugs que devuelve su buscador para ese texto."""
+    try: h = get_text(f"{HJ}/animes?buscar={urllib.parse.quote(q)}", referer=HJ + "/")
+    except Exception: return []
+    return list(dict.fromkeys(re.findall(r"/anime/([a-z0-9\-]+)", h)))
+
+def hj_search(title):
+    """Slug principal (subtitulado o el que mejor coincida). Se prueba PRIMERO la
+    dirección directa: su buscador devuelve solo 24 resultados y deja fuera
+    justamente la serie principal (buscando «One Piece» salían las 24 películas,
+    pero no One Piece)."""
+    probados = set()
+    for q in search_variants(title):
+        for sl in (slugify(q), re.sub(r"-\d+$", "", slugify(q))):
+            if not sl or sl in probados: continue
+            probados.add(sl)
+            if hj_max(sl) > 0: return sl
+    for q in search_variants(title):
+        c = hj_buscar(q)
+        if not c: continue
+        # se compara SIN el sufijo de idioma, para que «one-piece-film-gold-latino»
+        # no le gane a «one-piece» por casualidad.
+        limpios = {re.sub(r"-(?:latino|castellano)$", "", x): x for x in reversed(c)}
+        r = best(list(limpios.keys()), title)
+        if r: return limpios[r]
+    return None
+
+def hj_variantes(slug, title=None):
+    """El mismo anime suele estar DOS veces: subtitulado y «…-latino» (y a veces
+    «…-castellano»). Se devuelven todas para no perder nunca el doblaje."""
+    if not slug: return []
+    raiz = re.sub(r"-(?:latino|castellano)$", "", slug)
+    fuera = [slug]
+    for suf in ("-latino", "-castellano"):
+        cand = raiz + suf
+        if cand != slug and hj_max(cand) > 0: fuera.append(cand)
+    if raiz != slug and hj_max(raiz) > 0: fuera.append(raiz)
+    return list(dict.fromkeys(fuera))
+
+def hj_max(slug):
+    """Nº del último episodio publicado (la ficha lista los eps de mayor a menor)."""
+    if not slug: return 0
+    try: st, h = http(f"{HJ}/anime/{slug}/", referer=HJ + "/")
+    except Exception: return 0
+    if st != 200 or not h: return 0
+    m = re.search(r'eps\s*=\s*\[\["(\d+)"', h)
+    if m: return int(m.group(1))
+    m = re.search(r"Episodios:\s*(?:</?[^>]*>\s*)?(\d{1,4})", h)
+    return int(m.group(1)) if m else 0
+
+def hj_servers(slug, n):
+    """Reproductores del episodio n. Devuelve [] si ese episodio no existe."""
+    if not slug: return []
+    ver = f"{HJ}/ver/{slug}-{n}/"
+    try: st, h = http(ver, referer=f"{HJ}/anime/{slug}/")
+    except Exception: return []
+    if st != 200 or not h: return []
+    m = re.search(r'data-encrypt="([0-9a-fA-F]+)"', h)
+    if not m: return []
+    try:
+        body = urllib.parse.urlencode({"acc": "opt", "i": m.group(1)}).encode()
+        req = urllib.request.Request(HJ + "/hj", data=body, headers={
+            "User-Agent": UA, "Referer": ver, "X-Requested-With": "XMLHttpRequest",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"})
+        with urllib.request.urlopen(req, timeout=30, context=_SSL) as r:
+            d = r.read().decode("utf-8", "replace")
+    except Exception:
+        return []
+    lang = _hj_lang(slug)
+    out, seen = [], set()
+    for li in re.finditer(r"<li([^>]*)>", d):
+        at = dict(re.findall(r'(\w+)="([^"]*)"', li.group(1)))
+        u = _hj_hex(at.get("encrypt", ""))
+        if not u.startswith("http") or u in seen: continue
+        seen.add(u)
+        out.append({"url": u, "name": nm(u), "lang": lang, "desc": ""})
+    return out
 
 # ------------------------------------------------------------------ animeonline.ninja
 # El sitio está detrás del muro de Cloudflare: ni la petición directa, ni el Worker,
@@ -1485,9 +1598,25 @@ def pory_servers(slug, n):
 # URL real del host (mp4upload, ok.ru, mega, streamtape, yourupload, animeyt2…). El "omega2"
 # va cifrado → se omite. Las temporadas usan slug propio (/tv/{slug}[-temporada-N]/).
 YT = "https://animeyt.cc"
+def yt_existe(slug):
+    """¿Hay página /tv/{slug} en animeyt? Su buscador deja fuera precisamente las
+    series grandes (busca «One Piece» y no sale One Piece), pero la página sí está."""
+    if not slug: return False
+    try: st, _ = http(f"{YT}/tv/{slug}/", referer=YT + "/")
+    except Exception: return False
+    return st == 200
+
 def yt_search(title):
-    """Slug en animeyt. Primero su propia API de catálogo (encuentra también los
-    DONGHUA y las películas), y si no responde, la búsqueda normal del sitio."""
+    """Slug en animeyt. Se prueba PRIMERO la dirección directa —su buscador devolvía
+    «one-piece-heroines» en vez de One Piece y «vinland-saga-temporada-2» en vez de la
+    temporada 1— y solo si no existe se recurre a su API de catálogo y a la búsqueda
+    del sitio, que además encuentran donghuas y películas."""
+    probados = set()
+    for q in search_variants(title):
+        sl = slugify(q)
+        if not sl or sl in probados: continue
+        probados.add(sl)
+        if yt_existe(sl): return sl
     for q in search_variants(title):
         try:
             st, t = http(f"{YT}/wp-json/aniyt/v1/catalog/search?q={urllib.parse.quote(q)}", referer=YT + "/")
@@ -1697,7 +1826,7 @@ def build_episodes(data, opts, log, prog, on_ep):
     base_alhd = ""
     base_pory = ""
     base_ninja = ""
-    base_ninja = ""
+    base_hj = ""
     yt_maps = {}
     def yt_srv(ytsl, num):
         """Servidores de animeyt para (slug, nº), con caché del mapa de episodios."""
@@ -1716,6 +1845,7 @@ def build_episodes(data, opts, log, prog, on_ep):
         per_season_num = True
         log(f"SECUELAS como temporadas (manual): {len(src_slugs)} → {', '.join(src_slugs)}")
         base_alhd = (alhd_search(title) if opts.get("alhd") else "") or ""
+        base_hj = (buscar(hj_search) if opts.get("hj") else "") or ""
         base_pory = (opts.get("pory_slug") or "").strip() or (buscar(pory_search) if opts.get("pory") else "") or ""
     else:
         src_slug = src_slugs[0] if src_slugs else ""
@@ -1726,6 +1856,8 @@ def build_episodes(data, opts, log, prog, on_ep):
         # sitio titula en español y el buscador por título no siempre acierta.
         base_pory = (opts.get("pory_slug") or "").strip() or (pory_search(title) if opts.get("pory") else "") or ""
         if opts.get("pory"): log(f"porygonsubs: {base_pory or '(no)'}")
+        base_hj = (buscar(hj_search) if opts.get("hj") else "") or ""
+        if opts.get("hj"): log(f"henaojara: {base_hj or '(no)'}")
         base_ninja = (buscar(ninja_search) if opts.get("ninja") else "") or ""
         if opts.get("ninja"):
             log(f"animeonline.ninja: {base_ninja or '(no) — el sitio pide verificación; pega su cookie en Ajustes'}")
@@ -1770,8 +1902,16 @@ def build_episodes(data, opts, log, prog, on_ep):
                     try: yt = yt_search(t) if t else (yt_search(title) if i == 0 else None)
                     except Exception: yt = None
                 tn = tmdb_seasons[i].get("nombre") if i < len(tmdb_seasons) else ""
+                # animelatinohd también separa por temporada: se busca su slug con
+                # el título de esa temporada según AniList.
+                al_slug = None
+                if opts.get("alhd"):
+                    t_al = (al[i].get("romaji") or al[i].get("english") or al[i].get("title")) if i < len(al) else None
+                    try: al_slug = alhd_search(t_al) if t_al else None
+                    except Exception: al_slug = None
+                    if i > 0 and al_slug and al_slug == base_alhd: al_slug = None
                 seasons.append({"season": i + 1, "count": 400, "name": nombre_temporada(i + 1, tn),
-                                "jk": jk, "av": av, "yt": yt, "e69s": e69s})
+                                "jk": jk, "av": av, "yt": yt, "alhd": al_slug, "e69s": e69s})
             seasons = _fusiona_partes(seasons, al, log)
             log(f"AUTO temporadas: {len(seasons)} (jk={jk_list} · av={av_list})")
         else:
@@ -1848,8 +1988,8 @@ def build_episodes(data, opts, log, prog, on_ep):
     disp_total = max(int(disp_total) or 60, 1)
     # Guardas: dejar de consultar una fuente que claramente NO tiene este anime, y terminar
     # cuando la fuente se acaba (evita construir cientos de episodios vacíos / franquicias).
-    skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False, "ninja": False}
-    miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0, "ninja": 0}
+    skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False, "ninja": False, "hj": False}
+    miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0, "ninja": 0, "hj": 0}
     empty_streak = 0; stop = False
     ult_num, ult_nombre = 0, ""          # último nº y temporada creados (para las partes)
     sin_foto = []                        # episodios que se quedaron sin foto propia
@@ -1863,12 +2003,26 @@ def build_episodes(data, opts, log, prog, on_ep):
         jkcur = S.get("jk") or S.get("slug") or jkslug   # slug de jkanime de ESTA temporada
         avcur = S.get("av") or S.get("slug") or avslug   # slug de animeav1 de ESTA temporada
         ytcur = S.get("yt") or (ytslug if not multi else None)   # slug de animeyt de ESTA temporada
-        alhdcur = S.get("alhd") or (base_alhd if not multi else None)   # slug de animelatinohd
-        porycur = S.get("pory") or (base_pory if not multi else None)   # slug de porygonsubs
-        ninjacur = S.get("ninja") or (base_ninja if not multi else None)  # slug de animeonline.ninja
+        # OJO: antes estas tres se anulaban en cuanto el anime tenía VARIAS
+        # temporadas, y por eso «nunca extraían nada» en casi todo el catálogo.
+        # Ahora se usan siempre: con slug propio de la temporada si se encontró,
+        # y si no, con el slug general del anime.
+        alhdcur = S.get("alhd") or base_alhd
+        porycur = S.get("pory") or base_pory
+        ninjacur = S.get("ninja") or base_ninja
+        hjcur = S.get("hj") or base_hj
+        # Con slug propio, el episodio va numerado dentro de su temporada; con el
+        # slug general, estas fuentes numeran de corrido para todo el anime.
+        n_alhd = (lambda n_, a_: n_ if S.get("alhd") or not multi else a_)
+        n_pory = (lambda n_, a_: n_ if S.get("pory") or not multi else a_)
+        n_ninja = (lambda n_, a_: n_ if S.get("ninja") or not multi else a_)
+        n_hj = (lambda n_, a_: n_ if S.get("hj") or not multi else a_)
+        # henaojara publica el mismo anime subtitulado y «…-latino»: se piden LOS DOS
+        # para no dejarse nunca el doblaje (se calcula una vez por temporada).
+        hj_todas = hj_variantes(hjcur) if (opts.get("hj") and hjcur) else []
         if multi or S.get("psn"):  # secuela/OVA independiente: reinicia guardas
-            skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False, "ninja": False}
-            miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0, "ninja": 0}; empty_streak = 0
+            skip = {"e69": False, "av1": False, "jk": False, "yt": False, "alhd": False, "pory": False, "ninja": False, "hj": False}
+            miss = {"e69": 0, "av1": 0, "jk": 0, "yt": 0, "alhd": 0, "pory": 0, "ninja": 0, "hj": 0}; empty_streak = 0
             log(f"— {sname}: jk={jkcur or '—'} av={avcur or '—'}")
         if season_sel and str(S["season"]) != season_sel:
             absn += S["count"]; continue   # salta la temporada pero mantiene el nº absoluto
@@ -1910,15 +2064,25 @@ def build_episodes(data, opts, log, prog, on_ep):
             cl = 0
             if opts.get("alhd") and alhdcur and not skip["alhd"]:
                 try:
-                    ls = alhd_servers(alhdcur, src_num) or []; servers += ls; cl = len(ls)
+                    ls = alhd_servers(alhdcur, n_alhd(src_num, absn)) or []; servers += ls; cl = len(ls)
                 except Exception as ex: log(f"  (animelatinohd err: {str(ex)[:40]})")
                 miss["alhd"] = 0 if cl else miss["alhd"] + 1
                 if miss["alhd"] >= 6: skip["alhd"] = True
                 time.sleep(0.3)
+            ch = 0
+            if opts.get("hj") and hj_todas and not skip["hj"]:
+                try:
+                    for _sl in hj_todas:
+                        hs = hj_servers(_sl, n_hj(src_num, absn)) or []
+                        servers += hs; ch += len(hs)
+                except Exception as ex: log(f"  (henaojara err: {str(ex)[:40]})")
+                miss["hj"] = 0 if ch else miss["hj"] + 1
+                if miss["hj"] >= 6: skip["hj"] = True
+                time.sleep(0.3)
             cn = 0
             if opts.get("ninja") and ninjacur and not skip["ninja"]:
                 try:
-                    ns_ = ninja_servers(ninjacur, src_num, S.get("e69s") or S.get("season") or 1) or []
+                    ns_ = ninja_servers(ninjacur, n_ninja(src_num, absn), S.get("e69s") or S.get("season") or 1) or []
                     servers += ns_; cn = len(ns_)
                 except Exception as ex: log(f"  (animeonline.ninja err: {str(ex)[:40]})")
                 miss["ninja"] = 0 if cn else miss["ninja"] + 1
@@ -1927,7 +2091,7 @@ def build_episodes(data, opts, log, prog, on_ep):
             cp = 0
             if opts.get("pory") and porycur and not skip["pory"]:
                 try:
-                    ps = pory_servers(porycur, src_num) or []; servers += ps; cp = len(ps)
+                    ps = pory_servers(porycur, n_pory(src_num, absn)) or []; servers += ps; cp = len(ps)
                 except Exception as ex: log(f"  (porygonsubs err: {str(ex)[:40]})")
                 miss["pory"] = 0 if cp else miss["pory"] + 1
                 if miss["pory"] >= 6: skip["pory"] = True
@@ -1939,7 +2103,7 @@ def build_episodes(data, opts, log, prog, on_ep):
                 mname = nm(mu) if nm(mu) != "Servidor" else "Directo"
                 servers.append({"url": mu, "name": mname, "lang": ml, "desc": ""})
             if absn == 1 or (not servers and absn <= 3):
-                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy} alhd={cl} pory={cp} ninja={cn}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug} pory={base_pory or '—'}" if not servers else ""))
+                log(f"  ep {absn}: embed69={ce} animeav1={ca} jkanime={cj} animeyt={cy} alhd={cl} pory={cp} ninja={cn} henaojara={ch}" + (f" · imdb={imdb} jk={jkslug} av1={avslug} yt={ytslug} pory={base_pory or '—'}" if not servers else ""))
             prog(min(len(episodes) + 1, disp_total), disp_total)
             servers = prioritize(servers, opts.get("prefer"), opts.get("only"))
             if not servers:
@@ -2416,10 +2580,11 @@ class App:
         self.alhd = tk.BooleanVar(value=True)   # animelatinohd: fuente PRINCIPAL de Latino
         self.pory = tk.BooleanVar(value=True)   # porygonsubs: Latino de la familia Pokémon
         self.ninja = tk.BooleanVar(value=bool(self.cfg.get("ninja_cookie")))  # necesita tu cookie
+        self.hj = tk.BooleanVar(value=True)     # henaojara: muchísimos espejos por episodio
         self.trad = tk.BooleanVar(value=True)   # títulos y sinopsis SIEMPRE en español
         # Las fuentes van en DOS filas de cuatro: en una sola se salían de la ventana
         # y los botones de «Añadir nuevo / Reparar» quedaban cortados por la derecha.
-        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("porygonsubs (Latino)", self.pory, None), ("animeav1 (Lat+Sub)", self.av1, None), ("animeonline.ninja", self.ninja, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual), ("Traducir al español", self.trad, None)]):
+        for i, (t, v, cmd) in enumerate([("embed69 (Latino)", self.e69, None), ("animelatinohd (Latino)", self.alhd, None), ("porygonsubs (Latino)", self.pory, None), ("animeav1 (Lat+Sub)", self.av1, None), ("henaojara (Lat+Sub)", self.hj, None), ("animeonline.ninja", self.ninja, None), ("jkanime (Sub)", self.jk, None), ("animeyt (Sub)", self.yt, None), ("Manual", self.man, self.toggle_manual), ("Traducir al español", self.trad, None)]):
             chk(opt, t, v, command=cmd).grid(row=i // 4, column=i % 4, sticky="w", padx=(0, 14), pady=2)
         self.replace = tk.BooleanVar(value=False)
         ctk.CTkRadioButton(opt, text="Añadir nuevo", variable=self.replace, value=False, font=F(12), fg_color=RED, hover_color=REDH, radiobutton_width=20, radiobutton_height=20).grid(row=0, column=4, padx=(24, 6), sticky="w")
@@ -2871,7 +3036,7 @@ class App:
                 "pory": self.pory.get(), "pory_slug": self.poryslug.get().strip(),
                 "ovas": {"En bloque aparte": "aparte", "Dentro de la temporada": "juntas",
                          "No incluirlas": "omitir"}.get(self.ovas.get(), "aparte"),
-                "ninja": self.ninja.get(), "traducir": self.trad.get()}
+                "ninja": self.ninja.get(), "hj": self.hj.get(), "traducir": self.trad.get()}
         kind = self.kind.get()
         # ¿Actualizar el anime cargado del catálogo? (mismo título, o modo añadir) → NO duplicar.
         updating = add_only or bool(self.loaded_aid and t == self.loaded_title)
@@ -2956,7 +3121,7 @@ class App:
                 "pory": self.pory.get(), "pory_slug": "",
                 "ovas": {"En bloque aparte": "aparte", "Dentro de la temporada": "juntas",
                          "No incluirlas": "omitir"}.get(self.ovas.get(), "aparte"),
-                "ninja": self.ninja.get(), "traducir": self.trad.get()}
+                "ninja": self.ninja.get(), "hj": self.hj.get(), "traducir": self.trad.get()}
 
     def do_batch(self):
         """Agrega VARIOS animes a la vez: pega un título por línea y construye + guarda cada
