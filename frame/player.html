@@ -323,7 +323,7 @@
             const srvRank = (name) => {
                 const n = String(name || "").toLowerCase();
                 if (n.includes("mega") || n.includes("youtube")) return 0;
-                if (n.includes("pelisplus") || n.includes("streamwish") || n.includes("filemoon")) return 1;
+                if (n.includes("pelisplus") || n.includes("streamwish") || n.includes("filemoon") || n.includes("lulu")) return 1;
                 if (n.includes("streamtape") || n.includes("mp4upload") || n.includes("doodstream") || n.includes("ok")) return 2;
                 if (n.includes("voe") || n.includes("mixdrop") || n.includes("uqload")) return 3;
                 if (n.includes("vidara")) return 9;   // suele quedarse en negro → al final
@@ -348,6 +348,7 @@
                 if (/mega\.nz|youtube|youtu\.be/.test(n)) return -1;               // imposible → se descarta
                 if (/vidara/.test(n)) return 0;                                     // 1º: TUS subidas propias
                 if (/streamwish|sfastwish|swish|wish/.test(n)) return 1;
+                if (/lulustream|luluvdo|lulu\.st/.test(n)) return 1;
                 if (/filemoon|filemooon|moon|hgcloud/.test(n)) return 2;
                 if (/vidhide|vidhidevip|streamhg/.test(n)) return 3;
                 if (/dood|streamtape|mp4upload/.test(n)) return 4;

@@ -19,6 +19,7 @@ export const NOMBRES = {
   mediafire: "Mediafire", mixdrop: "Mixdrop", "d-s.io": "Doodstream", dood: "Doodstream",
   desu: "Desu", desuka: "Desu", okru: "Okru", "ok.ru": "Okru", uqload: "Uqload",
   yourupload: "YourUpload", krakenfiles: "Krakenfiles", embed69: "PelisPlus",
+  lulustream: "Lulustream", luluvdo: "Lulustream", "lulu.st": "Lulustream",
 };
 export function nm(u) {
   const s = String(u || "").toLowerCase();
@@ -27,7 +28,7 @@ export function nm(u) {
 }
 
 // Orden de calidad (igual que en el escritorio).
-const CALIDAD = ["filemoon", "streamwish", "vidara", "pelisplus", "embed69", "animeav1", "hls",
+const CALIDAD = ["filemoon", "streamwish", "lulustream", "vidara", "pelisplus", "embed69", "animeav1", "hls",
   "desu", "vidhide", "voe", "mega", "magi", "streamtape", "mp4upload", "mixdrop", "doodstream", "mediafire"];
 
 /** Máx. `cap` servidores por idioma, LATINO primero y sin repetir host ni URL. */

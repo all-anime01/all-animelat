@@ -805,7 +805,8 @@ NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "
         "vidara": "Vidara", "streamtape": "Streamtape", "mp4upload": "Mp4upload",
         "zilla": "AnimeAV1 HD", "mediafire": "Mediafire", "mixdrop": "Mixdrop", "mdbekj": "Mixdrop", "mdy48": "Mixdrop",
         "d-s.io": "Doodstream", "dood": "Doodstream", "desu": "Desu", "desuka": "Desu", "okru": "Okru", "ok.ru": "Okru",
-        "uqload": "Uqload", "yourupload": "YourUpload", "krakenfiles": "Krakenfiles"}
+        "uqload": "Uqload", "yourupload": "YourUpload", "krakenfiles": "Krakenfiles",
+        "lulustream": "Lulustream", "luluvdo": "Lulustream", "lulu.st": "Lulustream"}
 def nm(u):
     s = (u or "").lower()
     for k, v in NAME.items():
@@ -813,7 +814,7 @@ def nm(u):
     return "Servidor"
 # Prioridad de servidores (los mejores primero) si no eliges una manual. Orden pedido:
 # Filemoon(byse) → StreamWish → Vidara → PelisPlus/embed69 → HLS(animeav1) → Desu(jkanime) → VidHide.
-QUALITY = ["filemoon", "streamwish", "vidara", "pelisplus", "embed69", "animeav1", "hls", "desu",
+QUALITY = ["filemoon", "streamwish", "lulustream", "vidara", "pelisplus", "embed69", "animeav1", "hls", "desu",
            "vidhide", "voe", "mega", "magi", "streamtape", "mp4upload", "mixdrop", "doodstream", "mediafire"]
 def prioritize(servers, prefer=None, only=False, cap=3):
     """Máx `cap` por idioma; LATINO primero; ordenados por tu preferencia o por calidad.
