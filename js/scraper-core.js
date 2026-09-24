@@ -137,6 +137,8 @@ export async function traducir(txt, log = () => {}) {
 const CONT = /(?:^|[\s\-_:])(?:(?:part|parte|cour|tanda)[\s\-_]*(?:2|3|ii|iii|two|three|dos|tres|b|c)|(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:part|parte|cour|tanda))(?:$|[\s\-_])/i;
 const SUF_CONT = /[\s\-_]*(?:(?:part|parte|cour|tanda)[\s\-_]*(?:\d+|ii|iii|two|three|dos|tres|b|c)|(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:part|parte|cour|tanda))\s*$/i;
 const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+/** El título tal y como lo escriben los sitios en su dirección: «One Piece» → «one-piece». */
+const slugify = (s) => norm(s).replace(/\s+/g, "-");
 
 export function esContinuacion(texto, anterior = null) {
   const t = String(texto || "");
@@ -206,6 +208,102 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     return r.json();
   };
 
+  // ------------------------------------------------- fuente manual por URL
+  // El campo «URL manual» acepta tres cosas: «12|enlace» pone ese enlace en el episodio
+  // 12; la URL de UN episodio saca sus reproductores; y la URL de la ficha saca la lista
+  // entera. Así se puede tirar de cualquier sitio sin programarlo como fuente aparte.
+  const MAN_HOST = /(filemoon|byse\w*|streamwish|sfastwish|swish|luluvdo|lulustream|vidhide|filelions|movearnpre|voe\.|dhcplay|mp4upload|mixdrop|uqload|doodstream|dood\.|d-s\.io|streamtape|yourupload|okru|ok\.ru|mega\.nz|mediafire|vidguard|listeamed|rpmvip|rpmshare|netu|zilla|embed69|vidara|fembed|smoothpre)/i;
+  // Nº de episodio de una ruta, y su «forma» con TODOS los números puestos a #: eso
+  // agrupa los enlaces del mismo molde (animeyt, por ejemplo, mete un id por delante).
+  function manNum(path) {
+    for (const pat of [/(?:cap(?:itulo)?|epi(?:sod(?:e|io))?|ep)[-_/]?(\d{1,4})\/?$/i, /\/(\d{1,4})\/?$/, /-(\d{1,4})\/?$/]) {
+      const m = path.match(pat);
+      if (!m) continue;
+      const n = +m[1];
+      if (n > 0 && n <= 4000) return [n, path.replace(/\d+/g, "#")];
+    }
+    return [null, null];
+  }
+  // Un número al final no basta: «/anime/akuma-kun-2023/» es una ficha, no el ep 2023.
+  const esUrlEpisodio = (p) =>
+    /(?:cap(?:itulo)?|epi(?:sod(?:e|io))?|ep)[-_/]?\d{1,4}\/?$/i.test(p) ||
+    (/\/(?:ver|watch|online)\//i.test(p) && /\d{1,4}\/?$/.test(p)) ||
+    /\/\d{1,4}\/?$/.test(p);
+
+  async function manualServers(url, log2 = () => {}) {
+    // Si la página es de un sitio que ya sabemos leer, se usa SU extractor: esos
+    // esconden el reproductor detrás de otra llamada y un barrido genérico no lo vería.
+    let pr; try { pr = new URL(url); } catch { return []; }
+    const host = pr.hostname.toLowerCase(), ruta = pr.pathname;
+    try {
+      if (host.includes("henaojara")) { const m = ruta.match(/\/ver\/(.+?)-(\d{1,4})\/?$/); if (m) return await hjServers(m[1], +m[2]); }
+      if (host.includes("jkanime")) { const m = ruta.match(/\/([a-z0-9-]+)\/(\d{1,4})\/?$/); if (m) return await jkServers(m[1], +m[2]); }
+      if (host.includes("animelatinohd")) { const m = ruta.match(/\/ver\/([a-z0-9-]+)\/(\d{1,4})/); if (m) return await alhdServers(m[1], +m[2]); }
+      if (host.includes("animeav1")) { const m = ruta.match(/\/media\/([a-z0-9-]+)\/(\d{1,4})/); if (m) return await av1Servers(m[1], +m[2]); }
+    } catch { return []; }
+    const h = await puente(url);
+    if (!h) return [];
+    const cand = [];
+    for (const m of h.matchAll(/<iframe[^>]+(?:data-)?src=["']([^"']+)/gi)) cand.push(m[1]);
+    for (const m of h.matchAll(/data-(?:src|url|video|player|embed|link)=["']([^"']+)/gi)) cand.push(m[1]);
+    for (const m of h.matchAll(/https?:\/\/[^\s"'<>\\]{10,300}/g)) cand.push(m[0]);
+    const out = [], vistos = new Set();
+    for (const c of cand) {
+      let u = String(c).replace(/\\\//g, "/");
+      if (u.startsWith("//")) u = "https:" + u;
+      if (!/^https?:/.test(u) || vistos.has(u) || !MAN_HOST.test(u)) continue;
+      vistos.add(u);
+      out.push({ url: u, name: nm(u), lang: /lat|dob/i.test(url) ? "Latino" : "Sub", desc: "" });
+    }
+    if (out.length) log2(`  manual ${url.slice(0, 60)}… → ${out.length} servidor(es)`);
+    return out;
+  }
+
+  async function manualLista(url, log2 = () => {}) {
+    let pr; try { pr = new URL(url); } catch { return {}; }
+    const [nPropio] = manNum(pr.pathname);
+    if (nPropio && esUrlEpisodio(pr.pathname)) {
+      log2(`fuente manual: episodio ${nPropio} de ${pr.hostname}`);
+      return { [nPropio]: url };
+    }
+    // Fichas de los sitios que ya sabemos leer: su lista vive en un array de
+    // JavaScript, así que se arma con el contador propio de cada fuente.
+    const host = pr.hostname.toLowerCase();
+    const m = pr.pathname.match(/\/(?:anime|media|ver)\/([a-z0-9-]+)/);
+    const sl = m ? m[1] : pr.pathname.replace(/^\/+|\/+$/g, "").split("/")[0];
+    const armar = (t, fn, nombre) => {
+      log2(`fuente manual: ${t} episodio(s) en ${nombre} (${sl})`);
+      const o = {}; for (let i = 1; i <= t; i++) o[i] = fn(i); return o;
+    };
+    try {
+      if (host.includes("henaojara") && sl) { const t = await hjMax(sl); if (t) return armar(t, (i) => `${HJ}/ver/${sl}-${i}/`, "henaojara"); }
+      if (host.includes("jkanime") && sl) { const t = await jkMax(sl); if (t) return armar(t, (i) => `https://jkanime.net/${sl}/${i}/`, "jkanime"); }
+      if (host.includes("animelatinohd") && sl) { const t = await alhdMax(sl); if (t) return armar(t, (i) => `${ALHD}/ver/${sl}/${i}`, "animelatinohd"); }
+      if (host.includes("animeav1") && sl) { const t = await av1Max(sl); if (t) return armar(t, (i) => `https://animeav1.com/media/${sl}/${i}`, "animeav1"); }
+    } catch {}
+    const h = await puente(url);
+    if (!h) { log2(`fuente manual: ${pr.hostname} no respondió`); return {}; }
+    // Se agrupa por forma y gana la familia con más enlaces: esa es la lista de
+    // episodios, y no los enlaces sueltos del menú o de «animes relacionados».
+    const familias = {};
+    const rutas = [...h.matchAll(/href=["']([^"']+)["']/g)].map((x) => x[1])
+      .concat([...h.matchAll(/["'](\/[^"'\s<>]{4,160})["']/g)].map((x) => x[1]));
+    for (const href of rutas) {
+      let u; try { u = new URL(href, url); } catch { continue; }
+      if (u.hostname !== pr.hostname) continue;
+      const [n, forma] = manNum(u.pathname);
+      if (!n) continue;
+      familias[forma] = familias[forma] || {};
+      if (!familias[forma][n]) familias[forma][n] = u.origin + u.pathname + u.search;
+    }
+    const fams = Object.values(familias).sort((a, b) => Object.keys(b).length - Object.keys(a).length);
+    const enlaces = (fams[0] && Object.keys(fams[0]).length > 1) ? fams[0] : {};
+    const ns = Object.keys(enlaces).map(Number).sort((a, b) => a - b);
+    if (ns.length) log2(`fuente manual: ${ns.length} episodio(s) en ${pr.hostname} (${ns[0]}–${ns[ns.length - 1]})`);
+    else log2(`fuente manual: no se reconoció ningún episodio en ${url.slice(0, 70)} — si la lista se carga con JavaScript, pega la URL de un episodio suelto`);
+    return enlaces;
+  }
+
   // ------------------------------------------------------------- fuentes
   async function embed69(imdb, s, e) {
     if (!imdb) return null;
@@ -244,11 +342,19 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     }
     return out;
   }
+  // La ficha solo ENLAZA los 50 episodios más recientes (por eso One Piece se quedaba
+  // en 50); el listado completo viaja en su propio payload.
   async function av1Max(slug) {
     if (!slug) return 0;
     const h = await puente(`https://animeav1.com/media/${slug}`);
-    const ns = [...h.matchAll(new RegExp(`/media/${slug}/(\\d+)`, "g"))].map((m) => +m[1]);
-    return ns.length ? Math.max(...ns) : 0;
+    if (!h) return 0;
+    let mejor = 0;
+    const blk = h.match(/episodes\s*:\s*\[([\s\S]{0,400000}?)\]/);
+    if (blk) for (const m of blk[1].matchAll(/number\s*:\s*(\d+)/g)) mejor = Math.max(mejor, +m[1]);
+    const tot = h.match(/episodesCount\s*:\s*(\d+)/);
+    if (tot) mejor = Math.max(mejor, +tot[1]);
+    for (const m of h.matchAll(new RegExp(`/media/${slug}/(\\d+)`, "g"))) mejor = Math.max(mejor, +m[1]);
+    return mejor;
   }
   async function av1Search(q) {
     const h = await puente("https://animeav1.com/catalogo?search=" + encodeURIComponent(q));
@@ -292,6 +398,63 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     return mejorSlug(c, q);
   }
 
+  // Los animes ya terminados no listan sus episodios en el HTML de jkanime (los carga
+  // por ajax), pero sí traen «Episodios: 220». Antes se buscaba el número ANTES de la
+  // palabra, y Naruto daba 0: no se scrapeaba nada.
+  async function jkMax(slug) {
+    if (!slug) return 0;
+    const h = await puente(`https://jkanime.net/${slug}/`);
+    if (!h) return 0;
+    const ns = [...h.matchAll(new RegExp(`${slug}/(\\d+)`, "g"))].map((m) => +m[1]);
+    if (ns.length) return Math.max(...ns);
+    const m = h.match(/Episodios\s*:?\s*(?:<\/span>)?\s*(\d{1,4})/i);
+    return m ? +m[1] : 0;
+  }
+
+  // ---- henaojara: muchísimos espejos por episodio, y el idioma va en el propio slug.
+  // El Worker hace el trabajo sucio (la lista de reproductores solo sale por POST).
+  const HJ = "https://ww1.henaojara.net";
+  async function hjMax(slug) {
+    if (!slug) return 0;
+    const h = await puente(`${HJ}/anime/${slug}/`, HJ + "/");
+    if (!h) return 0;
+    const m = h.match(/eps\s*=\s*\[\["(\d+)"/);
+    if (m) return +m[1];
+    const t = h.match(/Episodios:\s*(?:<\/?[^>]*>\s*)?(\d{1,4})/);
+    return t ? +t[1] : 0;
+  }
+  // Su buscador deja fuera justo las series grandes, así que se prueba antes la
+  // dirección directa: buscando «One Piece» salían sus 24 películas, pero no la serie.
+  async function hjSearch(q) {
+    const sl = slugify(q);
+    if (sl && await hjMax(sl) > 0) return sl;
+    const h = await puente(`${HJ}/animes?buscar=${encodeURIComponent(q)}`, HJ + "/");
+    const c = [...new Set([...(h || "").matchAll(/\/anime\/([a-z0-9-]+)/g)].map((m) => m[1]))];
+    const limpios = {};
+    for (const x of [...c].reverse()) limpios[x.replace(/-(?:latino|castellano)$/, "")] = x;
+    const r = mejorSlug(Object.keys(limpios), q);
+    return r ? limpios[r] : null;
+  }
+  // El mismo anime suele estar dos veces, subtitulado y «…-latino»: se piden los dos
+  // para no dejarse nunca el doblaje.
+  async function hjVariantes(slug) {
+    if (!slug) return [];
+    const raiz = slug.replace(/-(?:latino|castellano)$/, "");
+    const out = [slug];
+    for (const suf of ["-latino", "-castellano"]) {
+      const c = raiz + suf;
+      if (c !== slug && await hjMax(c) > 0) out.push(c);
+    }
+    if (raiz !== slug && await hjMax(raiz) > 0) out.push(raiz);
+    return [...new Set(out)];
+  }
+  async function hjServers(slug, n) {
+    if (!slug || !n) return [];
+    let r;
+    try { r = await wk("/henaojara", { slug, n }); } catch { return []; }
+    return (r.servers || []).map((s) => ({ url: s.url, name: nm(s.url), lang: s.lang || "Sub", desc: "" }));
+  }
+
   const ALHD = "https://www.animelatinohd.com";
   const ALHD_LANG = { LAT: "Latino", ESP: "Castellano", SUB: "Sub" };
   async function alhdSearch(q) {
@@ -308,6 +471,12 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
       if (sc > mx) { mx = sc; mejor = slug; }
     }
     return mejor;
+  }
+  async function alhdMax(slug) {
+    if (!slug) return 0;
+    const h = await puente(`${ALHD}/anime/${slug}`, ALHD + "/");
+    const ns = [...(h || "").matchAll(new RegExp(`/ver/${slug}/(\\d+)`, "g"))].map((m) => +m[1]);
+    return ns.length ? Math.max(...ns) : 0;
   }
   async function alhdServers(slug, n) {
     if (!slug) return [];
@@ -558,11 +727,14 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     let perSeasonNum = false, multi = false;
     const activa = (k) => !!opts[k];
 
-    let baseJk = "", baseAv = "", baseAlhd = "", basePory = "", baseNinja = "";
+    let baseJk = "", baseAv = "", baseAlhd = "", basePory = "", baseNinja = "", baseHj = "";
     if (slugsManual.length > 1) {
       multi = true; perSeasonNum = true;
       seasons = slugsManual.map((s, i) => ({ season: i + 1, count: 400, name: `Temporada ${i + 1}`, jk: s, av: s, e69s: i + 1 }));
       seasons = fusionaPartes(seasons, data.anilist, log);
+      baseAlhd = activa("alhd") ? (await alhdSearch(titulo)) || "" : "";
+      basePory = (opts.pory_slug || "").trim() || (activa("pory") ? (await porySearch(titulo)) || "" : "");
+      baseHj = activa("hj") ? (await hjSearch(titulo)) || "" : "";
     } else {
       const uno = slugsManual[0] || "";
       baseJk = uno || (activa("jk") ? await jkSearch(titulo) : "") || "";
@@ -570,6 +742,8 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
       baseAlhd = activa("alhd") ? (await alhdSearch(titulo)) || "" : "";
       basePory = (opts.pory_slug || "").trim() || (activa("pory") ? (await porySearch(titulo)) || "" : "");
       baseNinja = activa("ninja") ? (await ninjaSearch(titulo)) || "" : "";
+      baseHj = activa("hj") ? (await hjSearch(titulo)) || "" : "";
+      if (activa("hj")) log(`henaojara: ${baseHj || "(no)"}`);
       if (activa("jk")) log(`jkanime: ${baseJk || "(no)"}`);
       if (activa("av1")) log(`animeav1: ${baseAv || "(no)"}`);
       if (activa("alhd")) log(`animelatinohd: ${baseAlhd || "(no)"}`);
@@ -592,6 +766,15 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
           seasons.push({
             season: i + 1, count: 400, name: nombreTemporada(i + 1, (data.seasons[i] || {}).nombre),
             jk: jkList[i] || null, av: avList[i] || null,
+            // animelatinohd también separa por temporada: se busca su slug con el
+            // título de esa temporada según AniList (y si sale el mismo que el de la
+            // temporada 1, es que esa secuela no está y se descarta).
+            alhd: await (async () => {
+              if (!activa("alhd") || i === 0) return null;
+              const t = (data.anilist[i] || {}).romaji || (data.anilist[i] || {}).title || "";
+              const r = t ? await alhdSearch(t) : null;
+              return (r && r !== baseAlhd) ? r : null;
+            })(),
             e69s: data.seasons[i] ? data.seasons[i].season : i + 1,
           });
         }
@@ -625,11 +808,27 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     const episodes = [];
     const sinFoto = [];
     let ultNum = 0, ultNombre = "", absn = 0, parar = false;
-    const manual = {};
-    String(opts.manual_text || "").split("\n").map((l) => l.trim()).filter(Boolean).forEach((l, i) => {
-      const m = l.match(/^(\d+)\s*\|\s*(\S+)/);
-      manual[m ? +m[1] : i + 1] = m ? m[2] : l;
-    });
+    const manual = {};        // nº → enlace de vídeo que se añade tal cual
+    const manualPag = {};     // nº → página de la que hay que SACAR los reproductores
+    {
+      const lineas = String(opts.manual_text || "").split("\n").map((l) => l.trim()).filter(Boolean);
+      for (let i = 0; i < lineas.length; i++) {
+        const l = lineas[i];
+        const m = l.match(/^(\d+)\s*\|\s*(\S+)/);
+        if (m) { manual[+m[1]] = m[2]; continue; }
+        // Una URL suelta: si ya es el enlace de un reproductor se pone tal cual; si es la
+        // página de un episodio, o la LISTA de episodios de cualquier sitio, se analiza.
+        let esPlayer = false;
+        try { esPlayer = MAN_HOST.test(l) && !esUrlEpisodio(new URL(l).pathname); } catch {}
+        if (/^https?:/.test(l) && !esPlayer) { Object.assign(manualPag, await manualLista(l, log)); continue; }
+        manual[i + 1] = l;
+      }
+    }
+
+    // henaojara publica el mismo anime subtitulado y «…-latino»: se piden los dos para
+    // no dejarse nunca el doblaje (se resuelve una sola vez, no por episodio).
+    const hjSlugs = (activa("hj") && baseHj) ? await hjVariantes(baseHj) : [];
+    if (hjSlugs.length > 1) log(`henaojara: también ${hjSlugs.slice(1).join(", ")}`);
 
     for (const S of seasons) {
       if (parar) break;
@@ -647,12 +846,21 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
           try { const r = await embed69(imdb, S.e69s, n); if (r) servers.push(r); } catch {}
           await esperar(500);
         }
-        if (activa("alhd") && baseAlhd) { try { servers.push(...await alhdServers(baseAlhd, srcNum)); } catch {} }
-        if (activa("pory") && basePory) { try { servers.push(...await poryServers(basePory, srcNum)); } catch {} }
-        if (activa("ninja") && baseNinja) { try { servers.push(...await ninjaServers(baseNinja, srcNum, S.e69s || 1)); } catch {} }
+        // Con slug propio de la temporada el episodio va numerado dentro de ella; con
+        // el slug general del anime, estas fuentes numeran de corrido.
+        const nFuente = (propio) => (propio || !multi) ? srcNum : absn;
+        const alhdCur = S.alhd || baseAlhd;
+        if (activa("alhd") && alhdCur) { try { servers.push(...await alhdServers(alhdCur, nFuente(S.alhd))); } catch {} }
+        if (activa("pory") && basePory) { try { servers.push(...await poryServers(basePory, nFuente(null))); } catch {} }
+        if (activa("ninja") && baseNinja) { try { servers.push(...await ninjaServers(baseNinja, nFuente(null), S.e69s || 1)); } catch {} }
+        if (activa("hj") && hjSlugs.length) {
+          for (const sl of hjSlugs) { try { servers.push(...await hjServers(sl, nFuente(null))); } catch {} }
+        }
         if (activa("av1") && S.av) { try { servers.push(...await av1Servers(S.av, srcNum)); } catch {} }
         if (activa("jk") && S.jk) { try { servers.push(...await jkServers(S.jk, srcNum)); } catch {} }
         const clave = (perSeasonNum ? n : absn);
+        const pag = manualPag[clave] || manualPag[absn];
+        if (pag) { try { servers.push(...await manualServers(pag, log)); } catch {} }
         if (opts.manual && manual[clave]) {
           const u = manual[clave];
           servers.push({ url: u, name: nm(u) !== "Servidor" ? nm(u) : "Directo", desc: "",
@@ -702,7 +910,9 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
 
   return {
     wk, puente, tmdb, buildMeta, buildEpisodes,
-    fuentes: { embed69, av1Servers, av1Max, av1Search, jkServers, jkSearch, alhdSearch, alhdServers, porySearch, poryServers, ninjaSearch, ninjaServers },
+    fuentes: { embed69, av1Servers, av1Max, av1Search, jkServers, jkSearch, jkMax, alhdSearch, alhdServers, alhdMax,
+               porySearch, poryServers, ninjaSearch, ninjaServers, hjSearch, hjMax, hjVariantes, hjServers,
+               manualLista, manualServers },
   };
 }
 

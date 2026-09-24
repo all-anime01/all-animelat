@@ -112,6 +112,7 @@
                     <span class="chip on" data-src="alhd">animelatinohd (Latino)</span>
                     <span class="chip on" data-src="pory">porygonsubs (Latino)</span>
                     <span class="chip on" data-src="av1">animeav1 (Lat+Sub)</span>
+                    <span class="chip on" data-src="hj">henaojara (Lat+Sub)</span>
                     <span class="chip" data-src="ninja">animeonline.ninja</span>
                     <span class="chip on" data-src="jk">jkanime (Sub)</span>
                     <span class="chip" data-src="manual">URL manual</span>
@@ -134,7 +135,7 @@
                 </div>
                 <div id="manual-box" style="display:none;margin-top:10px">
                     <label>URLs manuales (una por línea: <code>N|URL</code> o solo URL en orden)</label>
-                    <textarea id="f-manual" rows="4" placeholder="1|https://...&#10;2|https://..."></textarea>
+                    <textarea id="f-manual" rows="4" placeholder="12|https://…  → ese enlace va al episodio 12&#10;https://…/ver/slug-5/  → saca los reproductores de ese episodio&#10;https://…/anime/slug/  → saca la lista entera de episodios"></textarea>
                 </div>
                 <small>Las temporadas emitidas en dos tandas («Part 2», «2nd Cour») se reconocen como partes de la MISMA temporada y siguen su numeración, igual que en la aplicación de escritorio.</small>
             </div>
@@ -204,7 +205,7 @@
         };
 
         // Fuentes: son interruptores independientes (como las casillas del escritorio).
-        const fuentes = { e69: true, alhd: true, pory: true, av1: true, ninja: false, jk: true, manual: false, traducir: true };
+        const fuentes = { e69: true, alhd: true, pory: true, av1: true, hj: true, ninja: false, jk: true, manual: false, traducir: true };
         document.querySelectorAll("#src-chips .chip").forEach((c) => c.onclick = () => {
             const k = c.dataset.src;
             fuentes[k] = !fuentes[k];

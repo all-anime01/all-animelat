@@ -11,6 +11,39 @@ const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 const pad = (n) => String(n).padStart(2, "0");
 const dec = (s) => (s || "").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&").trim();
 
+async function postForm(url, body, referer) {
+  const h = { "User-Agent": UA, "Accept-Language": "es-ES,es;q=0.9", "Accept": "*/*",
+              "X-Requested-With": "XMLHttpRequest",
+              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" };
+  if (referer) h["Referer"] = referer;
+  const r = await fetch(url, { method: "POST", headers: h, body, redirect: "follow", cf: { cacheTtl: 0 } });
+  return { status: r.status, text: await r.text() };
+}
+
+// henaojara guarda el episodio como data-encrypt="HEX" («285-1» = idAnime-episodio) y
+// devuelve los reproductores por POST a /hj, con la URL otra vez en hexadecimal. El
+// idioma va en el propio slug: «…-latino», «…-castellano», y sin sufijo es subtitulado.
+const HJ = "https://ww1.henaojara.net";
+const hjHex = (x) => (String(x).match(/../g) || []).map((b) => String.fromCharCode(parseInt(b, 16))).join("");
+async function henaojara(slug, n) {
+  if (!slug || !n) return { servers: [] };
+  const ver = `${HJ}/ver/${slug}-${n}/`;
+  const p = await fetchText(ver, `${HJ}/anime/${slug}/`);
+  const m = (p.text || "").match(/data-encrypt="([0-9a-fA-F]+)"/);
+  if (!m) return { servers: [] };
+  const d = await postForm(HJ + "/hj", `acc=opt&i=${m[1]}`, ver);
+  const lang = /-latino$/.test(slug) ? "Latino" : (/-castellano$/.test(slug) ? "Castellano" : "Sub");
+  const out = [], vistos = new Set();
+  for (const li of String(d.text || "").matchAll(/<li([^>]*)>/g)) {
+    const e = li[1].match(/encrypt="([0-9a-fA-F]+)"/);
+    const u = e ? hjHex(e[1]) : "";
+    if (!u.startsWith("http") || vistos.has(u)) continue;
+    vistos.add(u);
+    out.push({ url: u, lang });
+  }
+  return { servers: out };
+}
+
 async function fetchText(url, referer) {
   const h = { "User-Agent": UA, "Accept-Language": "es-ES,es;q=0.9", "Accept": "*/*" };
   if (referer) h["Referer"] = referer;
@@ -305,6 +338,10 @@ export default {
       if (path === "/search") return json(await searchSource(q.get("source"), q.get("q") || ""), ch);
       if (path === "/extract") return json(await extractGeneric(q.get("url")), ch);
       if (path === "/fetch") { const r = await fetchText(q.get("url"), q.get("ref") || null); return json({ status: r.status, html: r.text.slice(0, 500000) }, ch); }
+      // Algunos sitios solo sueltan la lista de reproductores por POST (henaojara la
+      // pide a /hj con acc=opt&i=HEX). Con esto el navegador tampoco choca con CORS.
+      if (path === "/post") { const r = await postForm(q.get("url"), q.get("body") || "", q.get("referer") || null); return json({ status: r.status, html: r.text.slice(0, 200000) }, ch); }
+      if (path === "/henaojara") return json(await henaojara(q.get("slug"), q.get("n")), ch);
       return json({ error: "not_found", path }, ch);
     } catch (e) {
       return json({ error: String(e && e.message || e).slice(0, 200) }, ch);
