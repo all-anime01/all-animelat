@@ -1226,6 +1226,158 @@ def es_continuacion(texto, anterior=None):
     # Sin referencia: si el propio nombre anuncia temporada nueva, no es continuación.
     return not re.search(r"(?i)(?:^|[\s\-_])(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:season|temporada)", t)
 
+# ------------------------------------------------------------------ fuente manual por URL
+# El campo «URLs manuales» acepta tres cosas:
+#   · «12|https://…»            → ese enlace es el servidor del episodio 12 (como siempre)
+#   · la URL de UN EPISODIO     → se le sacan todos los reproductores y se coloca en su nº
+#   · la URL de la LISTA        → se recorren sus episodios y se saca cada uno
+# Así se puede tirar de cualquier sitio sin tener que programarlo como fuente aparte.
+_MAN_EP = re.compile(r"(?:cap(?:itulo)?|epi(?:sod(?:e|io))?|ep|ver|watch)[-_/]?(\d{1,4})(?:[^\d]|$)", re.I)
+# Hosts de vídeo que se aceptan cuando aparecen sueltos en la página.
+_MAN_HOST = re.compile(r"(filemoon|byse\w*|streamwish|sfastwish|swish|luluvdo|lulustream|vidhide|filelions|"
+                       r"movearnpre|voe\.|dhcplay|mp4upload|mixdrop|uqload|doodstream|dood\.|d-s\.io|"
+                       r"streamtape|yourupload|okru|ok\.ru|mega\.nz|mediafire|vidguard|listeamed|"
+                       r"rpmvip|rpmshare|netu|zilla|embed69|vidara|fembed|smoothpre)", re.I)
+
+def _man_html(url):
+    """La página, por la vía directa y, si hay muro, por el Worker."""
+    ck = cookie_de(url)
+    try:
+        st, t = http(url, headers={"Cookie": ck} if ck else None, timeout=30)
+        if st == 200 and t and not _MURO.search(t[:4000]): return t
+    except Exception: pass
+    return get_text_puente(url) or ""
+
+def _man_abs(base, u):
+    u = dec_ent(str(u or "").strip().replace("\/", "/"))
+    if u.startswith("//"): return "https:" + u
+    if u.startswith("http"): return u
+    if u.startswith("/"):
+        pr = urllib.parse.urlparse(base); return f"{pr.scheme}://{pr.netloc}{u}"
+    return ""
+
+def manual_servers(url, lang=None, log=None):
+    """Reproductores de UNA página de episodio, venga del sitio que venga: iframes,
+    atributos data-*, players metidos en JSON/base64 y enlaces sueltos a hosts de vídeo."""
+    log = log or (lambda m: None)
+    # Si la página es de un sitio que ya sabemos leer, se usa SU extractor: esos
+    # esconden el reproductor detrás de una llamada aparte (henaojara lo pide por
+    # POST, animeyt lo trae en base64) y un barrido genérico no lo vería.
+    pr = urllib.parse.urlparse(url)
+    host, ruta = pr.netloc.lower(), pr.path
+    try:
+        if "henaojara" in host:
+            m = re.search(r"/ver/(.+?)-(\d{1,4})/?$", ruta)
+            if m: return hj_servers(m.group(1), int(m.group(2)))
+        if "animeyt" in host:
+            return yt_servers_url(url) or []
+        if "jkanime" in host:
+            m = re.search(r"/([a-z0-9\-]+)/(\d{1,4})/?$", ruta)
+            if m: return jk_servers(m.group(1), int(m.group(2))) or []
+        if "animelatinohd" in host:
+            m = re.search(r"/ver/([a-z0-9\-]+)/(\d{1,4})", ruta)
+            if m: return alhd_servers(m.group(1), int(m.group(2)))
+    except Exception as ex:
+        log(f"  (fuente manual, extractor propio: {str(ex)[:40]})")
+    h = _man_html(url)
+    if not h: return []
+    cand = []
+    cand += re.findall(r'<iframe[^>]+(?:data-)?src=["\']([^"\']+)', h, re.I)
+    cand += re.findall(r'data-(?:src|url|video|player|embed|link)=["\']([^"\']+)', h, re.I)
+    cand += re.findall(r'"(?:url|src|file|embed|link|player)"\s*:\s*"((?:https?:)?\\?/\\?/[^"]{6,300})"', h)
+    cand += re.findall(r'https?://[^\s"\'<>\\]{10,300}', h)
+    # <option value="BASE64"> y data-* en base64 (animeyt y varios clones lo usan)
+    for b in re.findall(r'(?:value|data-\w+)=["\']([A-Za-z0-9+/=]{24,400})["\']', h):
+        try:
+            d = base64.b64decode(b + "=" * (-len(b) % 4)).decode("utf-8", "ignore")
+        except Exception: continue
+        cand += re.findall(r'https?://[^\s"\'<>]{10,300}', d)
+    out, seen = [], set()
+    for c in cand:
+        u = _man_abs(url, c)
+        if not u or u in seen or not _MAN_HOST.search(u): continue
+        seen.add(u)
+        out.append({"url": u, "name": nm(u), "lang": lang or ("Latino" if re.search(r"lat|dob", url, re.I) else "Sub"), "desc": ""})
+    if log and out: log(f"  manual {url[:60]}… → {len(out)} servidor(es)")
+    return out
+
+def _man_num(path):
+    """Nº de episodio dentro de una ruta, y la «forma» del enlace con TODOS sus
+    números sustituidos por #. Cada sitio la escribe a su manera:
+        /115731/anime/slug-capitulo-7/   /anime/slug/episodio-7   /slug/7/   /ver/slug-7/
+    La forma agrupa los enlaces que son del mismo molde (y por eso se borran también
+    los otros números de la ruta, como el id que animeyt pone delante)."""
+    for pat in (r"(?:cap(?:itulo)?|epi(?:sod(?:e|io))?|ep)[-_/]?(\d{1,4})/?$",
+                r"/(\d{1,4})/?$", r"-(\d{1,4})/?$"):
+        m = re.search(pat, path, re.I)
+        if not m: continue
+        n = int(m.group(1))
+        if 0 < n <= 4000:
+            return n, re.sub(r"\d+", "#", path)
+    return None, None
+
+def _man_es_episodio(path):
+    """¿La URL pegada es YA la de un episodio, o la de la ficha del anime? Un número
+    al final no basta: «/anime/akuma-kun-2023/» es una ficha, no el episodio 2023."""
+    if re.search(r"(?:cap(?:itulo)?|epi(?:sod(?:e|io))?|ep)[-_/]?\d{1,4}/?$", path, re.I): return True
+    if re.search(r"/(?:ver|watch|online)/", path, re.I) and re.search(r"\d{1,4}/?$", path): return True
+    return bool(re.search(r"/\d{1,4}/?$", path))     # …/slug/7/
+
+def manual_lista(url, log=None):
+    """De una URL cualquiera saca {nº de episodio → URL de ese episodio}. Si lo que
+    pegaste ya es UN episodio, devuelve solo ese; si es la ficha con la lista, los
+    saca todos."""
+    log = log or (lambda m: None)
+    pr = urllib.parse.urlparse(url)
+    n_propio, _ = _man_num(pr.path)
+    if n_propio and _man_es_episodio(pr.path):
+        log(f"fuente manual: episodio {n_propio} de {pr.netloc}")
+        return {n_propio: url}
+    # Fichas de los sitios que ya sabemos leer: su lista de episodios vive en un array
+    # de JavaScript, así que se arma con el contador propio de cada fuente.
+    host = pr.netloc.lower()
+    try:
+        m = re.search(r"/(?:anime|media|ver)/([a-z0-9\-]+)", pr.path)
+        sl = m.group(1) if m else pr.path.strip("/").split("/")[0]
+        if "henaojara" in host and sl:
+            t = hj_max(sl)
+            if t: log(f"fuente manual: {t} episodio(s) en henaojara ({sl})"); return {n: f"{HJ}/ver/{sl}-{n}/" for n in range(1, t + 1)}
+        if "jkanime" in host and sl:
+            t = jk_max(sl)
+            if t: log(f"fuente manual: {t} episodio(s) en jkanime ({sl})"); return {n: f"https://jkanime.net/{sl}/{n}/" for n in range(1, t + 1)}
+        if "animelatinohd" in host and sl:
+            t = alhd_max(sl)
+            if t: log(f"fuente manual: {t} episodio(s) en animelatinohd ({sl})"); return {n: f"{ALHD}/ver/{sl}/{n}" for n in range(1, t + 1)}
+    except Exception as ex:
+        log(f"fuente manual: {str(ex)[:50]}")
+    h = _man_html(url)
+    if not h:
+        log(f"fuente manual: {pr.netloc} no respondió (si lo ves en el navegador, guarda su cookie)")
+        return {}
+    # Se agrupa por forma y gana la familia con más enlaces: esa es la lista de
+    # episodios, y no los enlaces sueltos del menú o de «animes relacionados».
+    familias = {}
+    # Se miran los href y, además, cualquier ruta entrecomillada del documento: muchos
+    # sitios arman la lista desde un array de JavaScript y no hay ni un <a> que scrapear.
+    rutas = re.findall(r'href=["\']([^"\']+)["\']', h) + re.findall(r'["\'](/[^"\'\s<>]{4,160})["\']', h)
+    for href in rutas:
+        u = _man_abs(url, href)
+        if not u: continue
+        q = urllib.parse.urlparse(u)
+        if q.netloc != pr.netloc: continue          # solo del mismo sitio
+        n, forma = _man_num(q.path)
+        if not n: continue
+        familias.setdefault(forma, {}).setdefault(n, u.split("#")[0])
+    enlaces = max(familias.values(), key=len) if familias else {}
+    if len(enlaces) < 2: enlaces = {}
+    if enlaces:
+        ns = sorted(enlaces)
+        log(f"fuente manual: {len(enlaces)} episodio(s) en {pr.netloc} ({ns[0]}–{ns[-1]})")
+    else:
+        log(f"fuente manual: no se reconoció ningún episodio en {url[:70]} — "
+            "si la lista se carga con JavaScript, pega la URL de un episodio suelto")
+    return enlaces
+
 # ------------------------------------------------------------------ henaojara
 # Fuente MUY completa en Latino y con muchísimos espejos por episodio (filemoon,
 # streamwish, lulustream, vidhide, voe, mp4upload, mixdrop…). Tiene tres piezas:
@@ -1947,12 +2099,22 @@ def build_episodes(data, opts, log, prog, on_ep):
                                     "jk": ex_jk, "av": ex_av, "e69s": None, "psn": True})
                     log(f"{nombre} detectadas: jk={ex_jk or '—'} av={ex_av or '—'} → bloque «{nombre}»")
     episodes = data["episodes"]
-    manual = {}
+    manual = {}        # nº → enlace de vídeo que se añade tal cual
+    manual_pag = {}    # nº → página de la que hay que SACAR los reproductores
     if opts["manual"]:
         for i, line in enumerate([l.strip() for l in opts["manual_text"].splitlines() if l.strip()]):
             mm = re.match(r'^(\d+)\s*\|\s*(\S+)', line)   # "N|URL" (acepta URL directa cualquiera)
-            manual[int(mm.group(1)) if mm else i + 1] = (mm.group(2) if mm else line)
-    manual_max = max(manual) if manual else 0
+            if mm:
+                manual[int(mm.group(1))] = mm.group(2); continue
+            # Una URL suelta: si ya es el enlace de un reproductor se pone tal cual;
+            # si es la página de un episodio o la LISTA de episodios de cualquier sitio,
+            # se analiza y se scrapea (uno solo o la lista entera, según lo que sea).
+            if line.startswith("http") and not (_MAN_HOST.search(line) and not _MAN_EP.search(urllib.parse.urlparse(line).path)):
+                try: manual_pag.update(manual_lista(line, log))
+                except Exception as ex: log(f"fuente manual: no se pudo leer ({str(ex)[:50]})")
+                continue
+            manual[i + 1] = line
+    manual_max = max(list(manual) + list(manual_pag)) if (manual or manual_pag) else 0
 
     absn = 0
     total = sum(s["count"] for s in seasons) or 60
@@ -2097,6 +2259,11 @@ def build_episodes(data, opts, log, prog, on_ep):
                 if miss["pory"] >= 6: skip["pory"] = True
                 time.sleep(0.3)
             key_manual = n if (per_season_num or season_sel) else absn   # el usuario suele numerar 1..N
+            if manual_pag:
+                pu = manual_pag.get(key_manual) or manual_pag.get(absn)
+                if pu:
+                    try: servers += manual_servers(pu, log=log)
+                    except Exception as ex: log(f"  (fuente manual err: {str(ex)[:40]})")
             if opts["manual"] and (key_manual in manual or absn in manual):
                 mu = manual.get(key_manual) or manual.get(absn)
                 ml = "Latino" if re.search(r"lat|dob", mu, re.I) else ("Castellano" if re.search(r"cast|españa|castellano", mu, re.I) else "Sub")
@@ -2633,7 +2800,8 @@ class App:
         btn(ex, "📄 Extraer", self.do_extraer, "blue").pack(side="left")
         btn(ex, "🍪 Cookie de la página", self.do_cookie_sitio).pack(side="left", padx=6)
         self.manbox = ctk.CTkFrame(sc, fg_color="transparent")
-        lab(self.manbox, "URLs manuales (N|URL por línea)").pack(anchor="w", padx=16)
+        lab(self.manbox, "Fuente manual · una línea por cosa: «12|https://…» pone ese enlace en el episodio 12 · "
+                         "la URL de un episodio saca sus reproductores · la URL de la ficha saca la lista entera").pack(anchor="w", padx=16)
         self.mantext = ctk.CTkTextbox(self.manbox, height=64, fg_color="#101015", text_color=TXT, corner_radius=8); self.mantext.pack(fill="x", padx=16, pady=(0, 8))
 
         # Preview card (anime editable + episodes)
