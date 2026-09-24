@@ -426,6 +426,9 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
   // Su buscador deja fuera justo las series grandes, así que se prueba antes la
   // dirección directa: buscando «One Piece» salían sus 24 películas, pero no la serie.
   async function hjSearch(q) {
+    // Aquí se prueba el slug del título COMPLETO, nunca una versión recortada: si se
+    // buscara por «Digimon Adventure» a secas, la película «Bokura no War Game!»
+    // acabaría apuntando a /anime/digimon-adventure/, que es la serie de televisión.
     const sl = slugify(q);
     if (sl && await hjMax(sl) > 0) return sl;
     const h = await puente(`${HJ}/animes?buscar=${encodeURIComponent(q)}`, HJ + "/");

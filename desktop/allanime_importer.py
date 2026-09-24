@@ -1434,7 +1434,10 @@ def hj_search(title):
         for sl in (slugify(q), re.sub(r"-\d+$", "", slugify(q))):
             if not sl or sl in probados: continue
             probados.add(sl)
-            if hj_max(sl) > 0: return sl
+            # El slug que EXISTE hay que compararlo con el título ENTERO: las variantes
+            # de búsqueda recortan el subtítulo, y así «Digimon Adventure: Bokura no War
+            # Game!» acababa en /anime/digimon-adventure/, que es la serie de televisión.
+            if hj_max(sl) > 0 and best([sl], title): return sl
     for q in search_variants(title):
         c = hj_buscar(q)
         if not c: continue
@@ -1786,7 +1789,9 @@ def yt_search(title):
         sl = slugify(q)
         if not sl or sl in probados: continue
         probados.add(sl)
-        if yt_existe(sl): return sl
+        # Se valida contra el título ENTERO: las variantes recortan el subtítulo y una
+        # película acabaría apuntando a la serie de la que sale.
+        if yt_existe(sl) and best([sl], title): return sl
     for q in search_variants(title):
         try:
             st, t = http(f"{YT}/wp-json/aniyt/v1/catalog/search?q={urllib.parse.quote(q)}", referer=YT + "/")
