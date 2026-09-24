@@ -1347,12 +1347,27 @@ $(document).ready(function () {
       if (watchedSetPromise) watchedSetPromise.then((set) => { if (set) { d.watched ? set.add(d.epId) : set.delete(d.epId); } });
     });
 
-    const seasons =
-      anime.episodes && anime.episodes.length > 0
-        ? [...new Set(anime.episodes.map((e) => e.season))]
-            // Siempre en orden (numérico natural: "Temporada 2" antes que "Temporada 10").
-            .sort((a, b) => String(a).localeCompare(String(b), undefined, { numeric: true }))
-        : [];
+    // Las temporadas van en ORDEN DE HISTORIA: manda el episodio por el que
+    // empieza cada una. Ordenar por el nombre solo vale cuando se llaman
+    // "Temporada N"; con nombres propios (los arcos de One Piece, las partes de
+    // JoJo) el alfabético los descoloca — Arabasta salía antes que East Blue.
+    const seasons = (() => {
+      const eps = (anime.episodes && anime.episodes.length > 0) ? anime.episodes : [];
+      if (!eps.length) return [];
+      const desde = new Map();          // temporada -> su episodio más bajo
+      eps.forEach((e) => {
+        const n = parseInt(e.number, 10);
+        if (!Number.isFinite(n)) return;
+        const y = desde.get(e.season);
+        if (y == null || n < y) desde.set(e.season, n);
+      });
+      return [...new Set(eps.map((e) => e.season))].sort((a, b) => {
+        const na = desde.has(a) ? desde.get(a) : Infinity;
+        const nb = desde.has(b) ? desde.get(b) : Infinity;
+        if (na !== nb) return na - nb;
+        return String(a).localeCompare(String(b), undefined, { numeric: true });
+      });
+    })();
     if (seasons.length > 0) {
       seasonSelect.empty();
       // El nombre lleva entre paréntesis cuántos episodios tiene esa temporada.
