@@ -581,21 +581,30 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     if (!want) return null;
     const VACIAS = new Set(["the", "a", "an", "of", "no", "wa", "ga", "ni", "to", "de", "la", "el",
       "los", "las", "season", "temporada", "tv", "anime", "donghua"]);
-    const toks = (x) => new Set(norm(x).split(" ").filter((w) => w && !VACIAS.has(w)));
+    // Etiquetas de idioma o edición que pone el sitio: no son palabras del título y no
+    // cuentan como «palabra de más» («saint-seiya-latino» sigue siendo Saint Seiya).
+    const ETIQ = new Set(["latino", "castellano", "sub", "subtitulado", "audio", "coreano",
+      "japones", "ingles", "hd", "online", "completa", "serie", "parte"]);
+    const toks = (x, quitaEtiq = false) => new Set(norm(x).split(" ")
+      .filter((w) => w && !VACIAS.has(w) && !(quitaEtiq && ETIQ.has(w))));
     const ta = toks(want);
     let mejor = null, mx = 0;
     for (const c of cands) {
       const cn = norm(String(c).replace(/[-/]/g, " "));
       if (!cn) continue;
+      const tb = toks(cn, true);
+      // COBERTURA: qué parte del título que buscas trae el candidato. Es la guarda
+      // importante, porque el error típico es quedarse con la obra MADRE: «Saint Seiya»
+      // no es «Saint Seiya: Saintia Shō», ni «Naruto» es «Naruto Shippuden».
+      const com = [...ta].filter((w) => tb.has(w)).length;
+      const cobertura = ta.size ? com / ta.size : 0;
+      if (cobertura < 0.8) continue;
       let sc;
       if (cn === want) sc = 1;
       else if (cn.startsWith(want) || want.startsWith(cn)) sc = 0.9;
-      else {
-        const tb = toks(cn);
-        const com = [...ta].filter((w) => tb.has(w)).length;
-        sc = (!ta.size || !tb.size || !com) ? 0
-          : (com / Math.min(ta.size, tb.size)) * ((com / Math.max(ta.size, tb.size)) * 0.5 + 0.5);
-      }
+      else sc = Math.max(0.6, (com / Math.min(ta.size, tb.size)) * ((com / Math.max(ta.size, tb.size)) * 0.5 + 0.5));
+      // A igualdad, gana el que menos cosas añade por su cuenta.
+      sc -= 0.01 * [...tb].filter((w) => !ta.has(w)).length;
       if (sc > mx) { mx = sc; mejor = c; }
     }
     return mx >= 0.45 ? mejor : null;

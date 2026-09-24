@@ -628,13 +628,29 @@ def best(cands, title, minimo=0.45):
     # cualquier candidato «empezaba por» él y puntuaba altísimo: buscando 界门之下
     # se aceptaba kekkai-sensen. Sin nombre con el que comparar, no se elige nada.
     if not want: return None
+    pal_want = {w for w in want.split() if w not in _VACIAS}
+    # IDIOMA/EDICIÓN: son etiquetas del sitio, no palabras del título, y no deben
+    # contar como «palabra de más» al comparar («saint-seiya-latino» es Saint Seiya).
+    _ETIQ = {"latino", "castellano", "sub", "subtitulado", "audio", "coreano", "japones",
+             "ingles", "hd", "online", "completa", "serie", "parte"}
     puntuadas = []
     for c in cands:
         cn = norm(str(c).replace("-", " ").replace("/", " "))
         if not cn: continue
+        pal_cn = {w for w in cn.split() if w not in _VACIAS and w not in _ETIQ}
+        # COBERTURA: qué parte del título que buscas trae el candidato. Es la guarda
+        # importante, porque el error típico es quedarse con la obra MADRE: «Saint
+        # Seiya» no es «Saint Seiya: Saintia Shō», ni «Fullmetal Alchemist» es
+        # «Fullmetal Alchemist: Brotherhood», ni «Naruto» es «Naruto Shippuden».
+        # Si al candidato le faltan palabras del título, no es el que se busca.
+        cobertura = (len(pal_want & pal_cn) / float(len(pal_want))) if pal_want else 0.0
+        if cobertura < 0.8:
+            puntuadas.append((0.0, c)); continue
         if cn == want: s = 1.0
         elif cn.startswith(want) or want.startswith(cn): s = 0.9
-        else: s = similitud(want, cn)
+        else: s = max(similitud(want, cn), 0.6)
+        # A igualdad, gana el candidato que menos cosas añade por su cuenta.
+        s -= 0.01 * len(pal_cn - pal_want)
         puntuadas.append((s, c))
     puntuadas.sort(key=lambda x: -x[0])
     return puntuadas[0][1] if puntuadas[0][0] >= minimo else None
@@ -1108,16 +1124,13 @@ def alhd_search(title):
         # Sin nombres con los que comparar se puntúa el propio slug; antes se devolvía
         # el PRIMERO pasara lo que pasara, y por eso salían animes que no eran.
         return best(list(dict.fromkeys(re.findall(r'"slug":"([a-z0-9\-]+)"', t))), title)
-    want = norm(title)
-    if not want: return None
-    mejor, punt = None, 0.0
+    # Se puntúa por el NOMBRE que muestra el sitio (más fiable que el slug) con la
+    # misma regla que el resto de fuentes, y luego se traduce al slug.
+    por_nombre = {}
     for name, slug in pairs:
-        cn = norm(name)
-        if not cn: continue
-        sc = 1.0 if cn == want else (0.9 if (want in cn or cn in want) else similitud(want, cn))
-        if sc > punt: punt, mejor = sc, slug
-    # Igual que en el resto de fuentes: si NINGUNO se parece de verdad, mejor nada.
-    return mejor if punt >= 0.45 else None
+        por_nombre.setdefault(name, slug)
+    elegido = best(list(por_nombre.keys()), title)
+    return por_nombre.get(elegido) if elegido else None
 
 def alhd_max(slug):
     """Nº del último episodio publicado."""
