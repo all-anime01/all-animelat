@@ -71,14 +71,15 @@ async function loadPageData() {
 import { initPWA } from "./pwa.js";
 // Publicidad: un solo gestor decide red y formato segun el dispositivo,
 // respeta a quien pago por no verla y nunca entra en el reproductor.
-import { initAds } from "./ads.js";
 // Episodios que aún no se han estrenado (interruptor en admin → Control).
 import { flagsReady, isUnaired, whenText, countdownText, injectLockStyles,
          parseReleaseDate, partesColombia, medianocheColombia, localTimeText, tzLabel, tzDistinta } from "./unaired.js";
 
 // Registra la visita (una vez por sesión) para la analítica del admin.
 logVisit();
-initAds().catch(() => {});
+// La publicidad se carga APARTE y aislada: si su módulo fallara (WebView viejo,
+// bloqueador, red), la página tiene que seguir funcionando igual.
+import("./ads.js").then((m) => m.initAds()).catch(() => {});
 // Publicidad: los scripts de Adsterra (Social Bar, Popunder y Native Banner) van
 // ESTÁTICOS en el HTML de cada página (así funcionan bien; inyectarlos por JS
 // rompía Social Bar/Native Banner que usan document.write). Aquí no se hace nada.

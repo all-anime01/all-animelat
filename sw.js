@@ -6,7 +6,7 @@
 //  (Firestore, gstatic, YouTube, geojs…), que van directo a la red.
 // ============================================================================
 
-const CACHE = "all-anime-v1";
+const CACHE = "all-anime-v2";   // subir esto obliga a renovar el HTML cacheado
 // URLs "limpias" (cleanUrls en Firebase Hosting): sin .html para no redirigir.
 const SHELL = ["/", "/offline", "/css/index-css.css", "/image/logo.png"];
 

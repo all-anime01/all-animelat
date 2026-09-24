@@ -179,6 +179,10 @@ async function intrusivos() {
 /** Arranque: monta los huecos marcados con data-aa-ad y evalúa los intrusivos. */
 export async function initAds() {
   if (sinAnuncios()) return;
+  // TV (Fire TV, Android TV): NADA de publicidad, ni un script. El WebView de
+  // estos aparatos es antiguo y cualquier capa extra sobre el reproductor deja
+  // la imagen en negro con el sonido corriendo. Además ahí el banner no renta.
+  if (dispositivo() === "tv") return;
   await config();
   if (!cfg.activo) return;
   document.querySelectorAll("[data-aa-ad]").forEach((el) => banner(el));
