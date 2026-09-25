@@ -310,6 +310,28 @@ public class MainActivity extends Activity {
 
     private static final String CHROME_UA =
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+
+    // Desempaquetador del JavaScript de los hosts (el clásico eval(function(p,a,c,k,e,d))).
+    // Deja el enlace del vídeo en la variable `url` si lo encuentra.
+    // La misma lógica, con su prueba contra páginas reales, está en
+    // androidtv/extract-unpack.js y androidtv/extract-unpack.test.mjs: si tocas una,
+    // toca la otra. Va en bloque de texto para no pelear con el escapado.
+    private static final String UNPACK_JS = """
+        try{if(!url){
+          var S=document.documentElement.innerHTML;
+          var pk=S.match(/\\}\\('(.*?)',(\\d+),(\\d+),'(.*?)'\\.split\\('\\|'\\)/);
+          if(pk){
+            var T=pk[1].replace(/\\\\'/g,"'").replace(/\\\\\\\\/g,"\\\\");
+            var B=+pk[2],C=+pk[3],W=pk[4].split('|');
+            var D=function(n,b){var A='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',o='';
+              while(n>0){o=A.charAt(n%b)+o;n=Math.floor(n/b);}return o||'0';};
+            for(var z=C-1;z>=0;z--){if(W[z])T=T.replace(new RegExp('\\\\b'+D(z,B)+'\\\\b','g'),W[z]);}
+            var M=T.match(/https?:\\/\\/[^"'\\s\\\\]+\\.m3u8[^"'\\s\\\\]*/)
+                 ||T.match(/https?:\\/\\/[^"'\\s\\\\]+master\\.txt[^"'\\s\\\\]*/);
+            if(M)url=M[0];
+          }
+        }}catch(e){}
+        """;
     private static String originOf(String u) {
         try { java.net.URL x = new java.net.URL(u); return x.getProtocol() + "://" + x.getHost() + "/"; } catch (Exception e) { return u; }
     }
@@ -431,6 +453,15 @@ public class MainActivity extends Activity {
                         // 4ª VÍA: VOE y similares esconden el enlace en base64 → se decodifican
                         // las cadenas largas y se busca el m3u8 (también dentro de JSON).
                         "try{if(!url){var H=document.documentElement.innerHTML;var B=H.match(/[A-Za-z0-9+\\/=]{100,}/g)||[];for(var q=0;q<B.length&&!url;q++){try{var D=atob(B[q]);var M=D.match(/https?:\\/\\/[^\"'\\s\\\\]+\\.m3u8[^\"'\\s\\\\]*/);if(M){url=M[0];}else{var J=JSON.parse(D);var sc=J&&(J.source||J.file||(J.sources&&J.sources[0]&&(J.sources[0].file||J.sources[0].src)));if(sc&&(''+sc).indexOf('m3u8')>=0)url=sc;}}catch(e){}}}}catch(e){}" +
+                        // 5ª VÍA (la que de verdad hace falta hoy): StreamWish, VidHide y los
+                        // hosts que embed69 carga por dentro NO dejan el enlace en el HTML: va
+                        // dentro de JavaScript EMPAQUETADO (eval(function(p,a,c,k,e,d))). Las
+                        // vías de arriba sólo lo veían si jwplayer llegaba a arrancar solo en
+                        // esta WebView oculta, y eso ya no pasa → «no se capturó video en 35s».
+                        // Aquí se desempaqueta a mano y se lee el enlace. Tiene que hacerse EN
+                        // LA TELE: el token del CDN va atado a la IP que pidió la página, así
+                        // que uno sacado desde un servidor devuelve 403 aquí.
+                        UNPACK_JS +
                         "try{if(url&&window.AAX&&AAX.found)AAX.found(url);}catch(e){}" +
                         "}catch(e){}})();";
                 v.evaluateJavascript(js, null);
