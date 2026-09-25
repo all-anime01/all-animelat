@@ -1,10 +1,10 @@
 // Qué servidores debe reproducir la app por su reproductor NATIVO (ExoPlayer) y
 // cuáles por el iframe del propio host.
 //
-// embed69/PelisPlus iba por iframe porque «tenía su propio reproductor». Ya no:
-// su página es un iframe vacío que descifra los enlaces con AES en el navegador y
-// carga dentro rapidvideo/streamwish/vidhide/voe. En la WebView de Fire TV eso sale
-// en NEGRO y con la publicidad del host anidado, así que tiene que ir por el nativo.
+// embed69/PelisPlus va por IFRAME: trae su propio reproductor con su lista de
+// servidores dentro. Mandarlo al nativo no funciona —el vídeo real está en un
+// iframe de otro dominio que el desempaquetado de la app no puede leer— y acaba en
+// «no se capturó video en 35s». Si alguien lo vuelve a mover, esta prueba salta.
 import { readFileSync } from "node:fs";
 import { strict as assert } from "node:assert";
 
@@ -24,11 +24,11 @@ const aaWebViewFriendly = new Function(
 
 const NATIVO = false, IFRAME = true;
 const casos = [
-  // el host trae su propio reproductor que la WebView sí pinta
+  // traen su propio reproductor (o su stream no lo puede abrir ExoPlayer)
   ["https://www.youtube.com/embed/dQw4w9WgXcQ", IFRAME, "YouTube"],
   ["https://mega.nz/embed/U613TTjT#clave",      IFRAME, "Mega (stream cifrado)"],
-  // envoltorios y hosts que en la WebView salen en negro → reproductor nativo
-  ["https://embed69.org/f/tt30217403-1x01/",    NATIVO, "PelisPlus/embed69"],
+  ["https://embed69.org/f/tt30217403-1x01/",    IFRAME, "PelisPlus/embed69 (reproductor propio)"],
+  // hosts sueltos: en la WebView salen en negro → reproductor nativo
   ["https://streamwish.to/e/vysqglqm0v75",      NATIVO, "Streamwish"],
   ["https://voe.sx/e/gttvorne3gac",             NATIVO, "VOE"],
   ["https://filelions.top/v/drtukxcekfja",      NATIVO, "VidHide"],

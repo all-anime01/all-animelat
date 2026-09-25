@@ -155,15 +155,20 @@ window.addEventListener("message", (e) => {
 // VidHide…) quedan en negro en la WebView → los reproduce el nativo (ExoPlayer).
 function aaWebViewFriendly(url) {
   const u = String(url || "").toLowerCase();
-  // Solo van por su propio iframe los hosts que la WebView SÍ sabe pintar: YouTube,
-  // y Mega porque su stream va cifrado y ExoPlayer no puede con él.
+  // Van por su propio iframe, NO por el reproductor nativo:
+  //  · YouTube, que solo se ve en su embed.
+  //  · Mega, cuyo stream va cifrado y ExoPlayer no puede con él.
+  //  · embed69/PelisPlus, que trae SU PROPIO reproductor con su lista de servidores
+  //    dentro. Aunque hoy descifre los enlaces en el navegador y cargue el vídeo de
+  //    otro host por debajo, esa pantalla es la que el usuario conoce y la que le
+  //    deja cambiar de servidor sin salir del episodio.
   //
-  // embed69/PelisPlus estuvo aquí porque «tenía su propio reproductor y hacía la
-  // extracción del lado del servidor». Eso ya NO es así: hoy su página es un iframe
-  // vacío que descifra los enlaces con AES en el propio navegador y carga dentro
-  // rapidvideo, streamwish, vidhide o voe. En la app eso sale en NEGRO y con la
-  // publicidad del host anidado, así que vuelve al reproductor nativo, como antes.
-  return !!ytIdFrom(url) || u.includes("mega.nz") || u.includes("mega.co");
+  // OJO: no mandar embed69 al reproductor nativo. Se probó y no sirve, porque el
+  // vídeo real vive en un iframe de OTRO dominio: el desempaquetado que la app hace
+  // del JavaScript del host no puede leerlo (es de otro origen), así que se queda
+  // esperando y acaba en «no se capturó video en 35s».
+  return !!ytIdFrom(url) || u.includes("pelisplus") || u.includes("pelisplushd")
+      || u.includes("embed69") || u.includes("mega.nz") || u.includes("mega.co");
 }
 // Pantalla propia de "All-Anime TV" mientras el nativo extrae (así NUNCA se ve el
 // reproductor en negro del server por detrás). Si el nativo no logra el video,
