@@ -582,10 +582,23 @@ def fmt_date(d):
         y, m, day = d[:10].split("-"); return f"{MESES[int(m)]} {int(day)}, {y}"
     except Exception: return ""
 def audio_label(langs):
-    """Mapea los idiomas presentes al valor 'audio' del sitio."""
-    has_lat = "Latino" in langs; has_sub = "Sub" in langs; has_cas = "Castellano" in langs
+    """Mapea los idiomas presentes al valor 'audio' del sitio.
+    OJO con los archivos SUBIDOS POR TI (Filemoon, Streamwish, Vidhide, Vidara):
+    ahí el idioma se marca «Multi» o «Sub | Dob» porque el mismo vídeo lleva varias
+    pistas de audio. Cuentan como doblaje Y subtitulado a la vez; si no, un anime
+    entero subido por ti quedaba etiquetado como si solo tuviera subtítulos."""
+    has_lat = has_sub = has_cas = False
+    for l in langs:
+        t = str(l or "").strip()
+        if not t: continue
+        if t in ("Multi", "Multiaudio") or "|" in t:     # el vídeo trae varias pistas
+            has_lat = has_sub = True; continue
+        if t == "Latino": has_lat = True
+        elif t == "Castellano": has_cas = True
+        else: has_sub = True                              # «Sub», «Japonés», lo que sea
     if has_lat and has_sub: return "Sub | Dob"
     if has_cas and has_sub: return "Sub | Cas"
+    if has_lat and has_cas: return "Latino | Cas"
     if has_lat: return "Latino"
     if has_cas: return "Castellano"
     return "Sub"

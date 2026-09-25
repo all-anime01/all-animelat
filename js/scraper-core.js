@@ -59,11 +59,25 @@ export function prioritize(servers, prefer = [], only = false, cap = 3) {
   return out;
 }
 
+// OJO con los archivos SUBIDOS POR EL USUARIO (Filemoon, Streamwish, Vidhide,
+// Vidara): ahí el idioma se marca «Multi» o «Sub | Dob» porque el mismo vídeo lleva
+// varias pistas de audio. Cuentan como doblaje Y subtitulado a la vez; si no, un
+// anime entero subido por él quedaba etiquetado como si solo tuviera subtítulos.
 export function audioLabel(langs) {
-  const l = new Set(langs);
-  const tiene = l.has("Latino") || l.has("Castellano");
-  if (tiene && l.has("Sub")) return "Sub | Dob";
-  if (tiene) return "Latino";
+  let lat = false, sub = false, cas = false;
+  for (const raw of langs) {
+    const t = String(raw || "").trim();
+    if (!t) continue;
+    if (t === "Multi" || t === "Multiaudio" || t.includes("|")) { lat = true; sub = true; continue; }
+    if (t === "Latino") lat = true;
+    else if (t === "Castellano") cas = true;
+    else sub = true;                      // «Sub», «Japonés», lo que sea
+  }
+  if (lat && sub) return "Sub | Dob";
+  if (cas && sub) return "Sub | Cas";
+  if (lat && cas) return "Latino | Cas";
+  if (lat) return "Latino";
+  if (cas) return "Castellano";
   return "Sub";
 }
 
