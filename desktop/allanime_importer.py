@@ -2460,6 +2460,7 @@ def save(data, token, replace, log):
         abiertos = [g for g in groups if g not in cerradas] or groups
         last_group = (destino if destino in groups else None) or (abiertos[-1] if abiertos else None)
         built_seasons_n = len({b.get("season") for b in built if b.get("season")})
+        nuevas = set()          # temporadas que no existían y se crean en este guardado
         if data.get("_update_only") and groups:
             for b in built:
                 m = re.match(r"^Temporada\s+(\d+)$", str(b.get("season", "")))
@@ -2475,9 +2476,22 @@ def save(data, token, replace, log):
                     # tiene varias: va a la temporada destino, no a la primera. Sin esto,
                     # el episodio nuevo de Link Click caía en la «Temporada 1».
                     b["season"] = destino
-                else:
+                elif 1 <= idx_s <= len(abiertos):
                     # Numeración POR TEMPORADA: mapea por POSICIÓN, saltándose las cerradas.
-                    b["season"] = abiertos[idx_s - 1] if 1 <= idx_s <= len(abiertos) else last_group
+                    b["season"] = abiertos[idx_s - 1]
+                elif destino:
+                    b["season"] = destino            # el usuario dijo dónde va lo nuevo
+                else:
+                    # TEMPORADA NUEVA DE VERDAD: la fuente ve MÁS temporadas que las
+                    # guardadas y el anime no tiene temporada destino. Antes se metía a
+                    # la fuerza en la última, chocaba con un episodio que ya existía y
+                    # el episodio nuevo se perdía sin decir nada. Le pasaba a cualquier
+                    # anime que estrenara temporada: Black Clover, por ejemplo.
+                    # Se crea con su nombre y se avisa en el registro.
+                    nuevas.add(b["season"])
+        if nuevas:
+            log("Temporada(s) NUEVA(S) en este anime: " + ", ".join(sorted(nuevas))
+                + " — si debía ir a una ya existente, ponla en «Nombre temporada» y vuelve a guardar.")
         # Red de seguridad: pase lo que pase, a una temporada cerrada no entra nada
         # que no estuviera ya en ella.
         if cerradas:
