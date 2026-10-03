@@ -398,6 +398,26 @@ def slugify(s):
 def tiene_latinas(s):
     return bool(re.search(r"[A-Za-z]", unicodedata.normalize("NFD", str(s or "")).encode("ascii", "ignore").decode()))
 
+# Kana, ideogramas chinos/japoneses, hangul coreano y las formas de ancho completo.
+_CJK = re.compile(r"[぀-ヿ㐀-䶿一-鿿가-힯＀-￯]")
+def tiene_cjk(s):
+    """¿El título lleva letra japonesa, china o coreana? No basta con mirar si TIENE
+    letras latinas: «新テニスの王子様 U-17 WORLD CUP» las tiene y aun así es un
+    nombre impresentable para el catálogo."""
+    return bool(_CJK.search(str(s or "")))
+
+def titulo_global(candidatos, preferidos=()):
+    """El mejor nombre para mostrar: el primero SIN letra japonesa/china/coreana.
+    Se miran antes los `preferidos` (lo que escribió el usuario, el inglés y el
+    romaji de AniList) y luego el resto. Devuelve "" si no hay ninguno limpio."""
+    vistos = set()
+    for t in list(preferidos) + list(candidatos):
+        t = str(t or "").strip()
+        if not t or t.lower() in vistos: continue
+        vistos.add(t.lower())
+        if tiene_latinas(t) and not tiene_cjk(t): return t
+    return ""
+
 def slug_de(*titulos):
     """Primer título que dé un identificador válido. Los DONGHUA llegan con el
     título original en chino («界门之下») y ahí slugify() devuelve vacío: Firestore
@@ -1916,16 +1936,24 @@ def build_meta(title, opts, log):
         for t in [b.get("romaji"), b.get("english"), b.get("native")] + (b.get("synonyms") or [])[:3]:
             if t and t != real_title and t not in alt: alt.append(t)
         info["altTitles"] = alt[:12]
-    # Si TMDB devolvió el título ORIGINAL sin letras latinas, se muestra el que
-    # escribió el usuario (o el romaji) y el original se guarda como alternativo.
-    if not tiene_latinas(real_title):
-        latino = next((t for t in ([title] + list(info.get("altTitles") or [])) if tiene_latinas(t)), "")
-        if latino:
+    # EL NOMBRE QUE SE MUESTRA NUNCA LLEVA LETRA JAPONESA/CHINA/COREANA. Antes solo
+    # se cambiaba cuando el título no tenía NINGUNA letra latina, y por eso se coló
+    # «新テニスの王子様 U-17 WORLD CUP»: tiene letras latinas al final. Ahora basta
+    # con que lleve un solo carácter CJK para buscar el nombre global.
+    if tiene_cjk(real_title) or not tiene_latinas(real_title):
+        b0 = (al[0] if al else {}) or {}
+        # Se prefiere, por este orden: lo que escribiste tú, el título global en
+        # inglés de AniList y su romaji; después, cualquier alternativo limpio.
+        global_ = titulo_global(info.get("altTitles") or [],
+                                preferidos=(title, b0.get("english"), b0.get("romaji")))
+        if global_:
             if real_title and real_title not in (info.get("altTitles") or []):
                 info["altTitles"] = ([real_title] + list(info.get("altTitles") or []))[:12]
-            log(f"título sin letras latinas ({real_title}) → se usa «{latino}» para el nombre y el id")
-            real_title = latino
-            info["title"] = latino
+            log(f"título con letra japonesa/china ({real_title}) → se usa «{global_}» para el nombre y el id")
+            real_title = global_
+            info["title"] = global_
+        else:
+            log(f"⚠ {real_title}: no se encontró ningún nombre global sin letra japonesa/china; escríbelo tú antes de guardar")
     aid = slug_de(real_title, title, *(info.get("altTitles") or []))
     if not aid: log("⚠ no se pudo sacar un id del título; escríbelo tú antes de guardar")
     return {"aid": aid, "info": info, "real_title": real_title, "seasons": seasons,
