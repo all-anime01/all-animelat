@@ -115,8 +115,23 @@ export const flagsReady = (async () => {
 // devuelve false, así que el sitio se comporta exactamente como antes.
 export function isUnaired(ep) {
   if (!ep || !flags.lockUnaired) return false;
+  // SI YA TIENE SERVIDORES, ESTÁ DISPONIBLE: no se bloquea pase lo que pase con su
+  // fecha. Este candado es para los episodios que se suben por adelantado con la
+  // lista completa y SIN enlaces; si uno se puede ver, es que se estrenó.
+  // Antes no se miraba esto y pasaba lo siguiente: al scrapear una temporada en
+  // emisión, TMDB da fechas de estreno que todavía no han llegado (van por el
+  // calendario japonés), así que los episodios recién subidos salían bloqueados
+  // aunque tuvieran sus enlaces. Le pasó a Black Clover.
+  if (tieneEnlaces(ep)) return false;
   const d = parseReleaseDate(ep.releaseDate, ep.releaseTime);
   return !!d && d.getTime() > Date.now();
+}
+
+/** ¿El episodio tiene algún servidor con enlace de verdad? */
+export function tieneEnlaces(ep) {
+  const s = ep && ep.servers;
+  if (Array.isArray(s)) return s.some((x) => x && typeof x.url === "string" && /^https?:/i.test(x.url));
+  return false;
 }
 
 // «17 de septiembre» o «17 de septiembre a las 19:00»

@@ -341,8 +341,8 @@ export async function exportAllAnimes() {
   return out;
 }
 
-// ---- Worker del reproductor propio (Shyru) ---------------------------------
-// La URL del Worker se guarda en config/worker para que Shyru aparezca en TODOS
+// ---- Worker del reproductor propio (Shyru TV) ------------------------------
+// La URL del Worker se guarda en config/worker para que Shyru TV aparezca en TODOS
 // los navegadores y dispositivos (antes vivia en el localStorage de uno solo, por
 // eso no salia en Brave). La CLAVE del Worker NO se publica: se queda en el
 // navegador del admin (las rutas /stream y /hls no la necesitan).

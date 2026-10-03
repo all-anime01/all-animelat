@@ -64,6 +64,35 @@ async function aaPelisPlusNativo(url, alFallar) {
     if (AA_currentUrl === url && alFallar) alFallar();
   }
 }
+// Intenta reproducir UN servidor en el reproductor propio: el Worker saca el .m3u8
+// del host (desempaquetando su JavaScript) y aquí se pinta en un <video> con HLS.js.
+// Devuelve false si no se puede, para que shyruPlay pruebe el siguiente servidor.
+//
+// OJO: esta función se había BORRADO en ad380e4 dejando la llamada, así que Shyru
+// reventaba con un ReferenceError en el primer servidor y no reproducía nada.
+async function aaTryOwnPlayer(url) {
+  const wk = aaWorkerUrl();
+  if (!wk) return false;
+  const displayVideo = document.querySelector(".DisplayVideo");
+  const playerDisplay = document.getElementById("PlayerDisplay");
+  if (!displayVideo) return false;
+  if (playerDisplay) playerDisplay.classList.add("is-loading");
+  try {
+    const r = await fetch(`${wk}/stream?url=${encodeURIComponent(url)}`, { cache: "no-store" });
+    const j = await r.json();
+    if (!j || !j.stream) return false;
+    // El vídeo va por el Worker porque el CDN del host no admite peticiones desde
+    // otro dominio (CORS) y además ata el enlace a la IP que lo pidió.
+    const proxied = `${wk}/hls?ref=${encodeURIComponent(j.ref || "")}&url=${encodeURIComponent(j.stream)}`;
+    const ok = await aaPlayHls(proxied, j.type || "hls", displayVideo);
+    if (ok && playerDisplay) playerDisplay.classList.remove("is-loading");
+    return ok;
+  } catch (e) {
+    console.warn("Shyru TV", e);
+    return false;
+  }
+}
+
 function aaLoadHls() {
   return new Promise((res) => {
     if (window.Hls) return res(window.Hls);
@@ -162,7 +191,7 @@ window.shyruPlay = async function (urlsJson) {
   if (displayVideo) { displayVideo.classList.add("DisplayVideoA"); displayVideo.style.zIndex = "9999"; }
   if (playerDisplay) playerDisplay.classList.add("is-loading");
   if (displayVideo) displayVideo.innerHTML = `<span id="backToPlayers" onclick="listPlayer();"></span>
-     <div class="loading-overlay" id="shyruMsg"><div class="spinner"></div><p>Shyru: preparando el mejor servidor…</p></div>`;
+     <div class="loading-overlay" id="shyruMsg"><div class="spinner"></div><p>Shyru TV: preparando el mejor servidor…</p></div>`;
   for (const u of urls) {
     AA_currentUrl = u;
     const ok = await aaTryOwnPlayer(u);
@@ -170,7 +199,7 @@ window.shyruPlay = async function (urlsJson) {
   }
   if (playerDisplay) playerDisplay.classList.remove("is-loading");
   if (displayVideo) displayVideo.innerHTML = `<span id="backToPlayers" onclick="listPlayer();"></span>
-     <div class="player-empty" style="padding:24px;text-align:center">Shyru no pudo reproducir este episodio (los servidores bloquean la reproducción directa). Vuelve con <b>ATRÁS</b> y elige un servidor de la lista.</div>`;
+     <div class="player-empty" style="padding:24px;text-align:center">Shyru TV no pudo reproducir este episodio (los servidores bloquean la reproducción directa). Vuelve con <b>ATRÁS</b> y elige un servidor de la lista.</div>`;
 };
 // Control por voz (Endo): pausa/play del <video> propio cuando está activo.
 window.addEventListener("message", (e) => {
