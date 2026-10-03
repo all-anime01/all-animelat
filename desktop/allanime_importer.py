@@ -1003,10 +1003,40 @@ def _al_query(query, variables):
 def anilist_chain(title):
     """Devuelve la cadena de temporadas [{title, episodes, format}] siguiendo las SECUELAS
     de tipo serie (TV/ONA), empezando por el título buscado. [] si no se encuentra."""
-    d = _al_query("query($s:String){Media(search:$s,type:ANIME)" + _AL_MEDIA + "}", {"s": title})
-    base = (d or {}).get("Media") if d else None
-    if not base: return []
     SERIES = {"TV", "TV_SHORT", "ONA"}
+    # Se piden VARIOS candidatos en vez de quedarse con el primero. Buscando «JoJo's
+    # Bizarre Adventure» el buscador devolvía la OVA de 6 episodios y el anime entero
+    # se armaba sobre ella, desordenado.
+    d = _al_query("query($s:String){Page(perPage:10){media(search:$s,type:ANIME,sort:SEARCH_MATCH)"
+                  + _AL_MEDIA + "}}", {"s": title})
+    lista = (((d or {}).get("Page") or {}).get("media")) or []
+    if not lista: return []
+
+    def _parecido(m):
+        """Cuánto se parece el título buscado a los nombres de ese candidato. El nombre
+        PROPIO pesa más que los sinónimos: un anuncio de Suntory lleva «Kimi no Na wa.»
+        entre sus sinónimos y le ganaba a la película de verdad."""
+        tt = m.get("title") or {}
+        w = norm(title)
+        mejor = 0.0
+        for peso, nombres in ((1.0, [tt.get("romaji"), tt.get("english"), tt.get("native")]),
+                              (0.95, list(m.get("synonyms") or [])[:4])):
+            for n in nombres:
+                n = norm(n or "")
+                if not n: continue
+                mejor = max(mejor, peso * (1.0 if n == w else similitud(w, n)))
+        return mejor
+
+    # A igualdad de parecido, una serie o una película valen más que un anuncio.
+    _FMT = {"TV": 0, "TV_SHORT": 1, "ONA": 2, "MOVIE": 3, "OVA": 4, "SPECIAL": 5, "MUSIC": 6}
+    puntos = [(_parecido(m), m) for m in lista]
+    tope = max(p for p, _ in puntos)
+    # Se prefiere la SERIE solo si se parece TANTO como el mejor candidato. Si no, una
+    # película se quedaría fuera por culpa de cualquier serie de nombre vagamente
+    # parecido («Kimi no Na wa» acababa en «Seihantai na Kimi to Boku»).
+    serie = next((m for p, m in sorted(puntos, key=lambda x: -x[0])
+                  if m.get("format") in SERIES and p >= tope - 0.15), None)
+    base = serie or max(puntos, key=lambda x: (x[0], -_FMT.get(x[1].get("format"), 9)))[1]
     chain = [base]; seen = {base["id"]}
     cur = base
     for _ in range(8):   # tope de saltos (evita bucles)
