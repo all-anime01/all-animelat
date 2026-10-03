@@ -2466,29 +2466,28 @@ def save(data, token, replace, log):
                 m = re.match(r"^Temporada\s+(\d+)$", str(b.get("season", "")))
                 if not m: continue          # nombre personalizado del usuario → se respeta tal cual
                 idx_s = int(m.group(1))
-                if built_seasons_n <= 1 and not per_season_existing:
+                if destino and built_seasons_n <= 1:
+                    # El anime declara DÓNDE va lo nuevo: manda eso por encima de todo.
+                    # Sin esto, el episodio nuevo de Link Click caía en la «Temporada 1».
+                    b["season"] = destino
+                elif idx_s > len(abiertos):
+                    # TEMPORADA NUEVA DE VERDAD: la fuente ve MÁS temporadas que las que
+                    # hay guardadas y el anime no dice dónde poner lo nuevo. Antes se
+                    # metía a la fuerza en la última, chocaba con un episodio que ya
+                    # existía y el nuevo se perdía sin decir nada. Le pasaba a cualquier
+                    # anime que estrenara temporada: Black Clover, Sentenced to Be a
+                    # Hero, Classroom of the Elite… Se crea con su nombre y se avisa.
+                    # Esta comprobación va ANTES que la numeración continua: si no, un
+                    # anime guardado en UNA sola temporada se tragaba la segunda.
+                    nuevas.add(b["season"])
+                elif built_seasons_n <= 1 and not per_season_existing:
                     # Numeración CONTINUA (One Piece): el nº de episodio dice la temporada real.
                     try: bn = int(b.get("number"))
                     except (TypeError, ValueError): bn = None
                     b["season"] = by_num.get(bn) or last_group
-                elif built_seasons_n <= 1 and destino:
-                    # Se scrapeó UNA sola temporada (la que está en emisión) y el anime
-                    # tiene varias: va a la temporada destino, no a la primera. Sin esto,
-                    # el episodio nuevo de Link Click caía en la «Temporada 1».
-                    b["season"] = destino
-                elif 1 <= idx_s <= len(abiertos):
-                    # Numeración POR TEMPORADA: mapea por POSICIÓN, saltándose las cerradas.
-                    b["season"] = abiertos[idx_s - 1]
-                elif destino:
-                    b["season"] = destino            # el usuario dijo dónde va lo nuevo
                 else:
-                    # TEMPORADA NUEVA DE VERDAD: la fuente ve MÁS temporadas que las
-                    # guardadas y el anime no tiene temporada destino. Antes se metía a
-                    # la fuerza en la última, chocaba con un episodio que ya existía y
-                    # el episodio nuevo se perdía sin decir nada. Le pasaba a cualquier
-                    # anime que estrenara temporada: Black Clover, por ejemplo.
-                    # Se crea con su nombre y se avisa en el registro.
-                    nuevas.add(b["season"])
+                    # Numeración POR TEMPORADA: mapea por POSICIÓN, saltándose las cerradas.
+                    b["season"] = abiertos[idx_s - 1] if 1 <= idx_s <= len(abiertos) else last_group
         if nuevas:
             log("Temporada(s) NUEVA(S) en este anime: " + ", ".join(sorted(nuevas))
                 + " — si debía ir a una ya existente, ponla en «Nombre temporada» y vuelve a guardar.")
