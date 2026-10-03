@@ -34,6 +34,36 @@ function aaBridge() { try { return window.AAApp || (window.top && window.top.AAA
 function aaWorkerUrl() {
   try { return (window.__AA_WK || localStorage.getItem("aa_wk_url") || localStorage.getItem("aa-wk") || "").replace(/\/+$/, ""); } catch { return ""; }
 }
+
+// --- PelisPlus en la app: su enlace real, para el reproductor nativo ------------
+// La lógica del descifrado vive en js/embed69.js (con su prueba en
+// test/embed69.test.mjs). Aquí solo se pide, se elige el mejor host y se le entrega
+// al puente de la app. Todo va en try/catch: si no hay Worker, si embed69 cambia su
+// cifrado o si no descifra, simplemente no pasa nada y queda el iframe de siempre.
+let _aaPPhecho = "";
+async function aaPelisPlusNativo(url, alFallar) {
+  const wk = aaWorkerUrl();
+  const A = aaBridge();
+  if (!wk || !A) return;
+  _aaPPhecho = url;
+  try {
+    const { enlacesDeEmbed69, mejorEnlace } = await import("./embed69.js");
+    const traerHtml = async (u) => {
+      const r = await fetch(`${wk}/fetch?url=${encodeURIComponent(u)}&ref=${encodeURIComponent("https://pelisplushd.bz/")}`);
+      const j = await r.json();
+      return (j && j.html) || "";
+    };
+    const enlaces = await enlacesDeEmbed69(url, traerHtml);
+    const idioma = (document.querySelector(".SLD_A") || {}).textContent || "";
+    const elegido = mejorEnlace(enlaces, idioma);
+    if (AA_currentUrl !== url) return;        // el usuario ya cambió de servidor
+    if (!elegido) { if (alFallar) alFallar(); return; }
+    A.playNative(elegido.url);
+  } catch (e) {
+    console.warn("PelisPlus nativo", e);
+    if (AA_currentUrl === url && alFallar) alFallar();
+  }
+}
 function aaLoadHls() {
   return new Promise((res) => {
     if (window.Hls) return res(window.Hls);
@@ -276,8 +306,21 @@ function go_to_player(url, _skipOwn) {
   // En ese modo NO se carga el iframe del server (evita ver su reproductor en negro
   // detrás): la app extrae y reproduce en ExoPlayer; aquí solo se ve la pantalla propia.
   const A = aaBridge();
-  const nativeMode = !!(A && typeof A.playNative === "function" && !aaWebViewFriendly(url));
-  try { if (nativeMode) A.playNative(url); } catch {}
+  const hayPuente = !!(A && typeof A.playNative === "function");
+  // PelisPlus EN LA APP: su página es un iframe vacío que carga por dentro el
+  // reproductor de OTRO host (vidhide, streamwish, voe) — de ahí la publicidad del
+  // QR y la pantalla en negro. En vez de mostrarla, se descifra su enlace real y se
+  // le pasa al reproductor nativo, que lo extrae en la propia tele: sin publicidad y
+  // sin negro. Va por el modo nativo para que NO quede el iframe sonando por detrás.
+  const pelisplusApp = hayPuente && aaWorkerUrl() && /embed69|pelisplus/i.test(url);
+  const nativeMode = hayPuente && (!aaWebViewFriendly(url) || pelisplusApp);
+  try { if (nativeMode && !pelisplusApp) A.playNative(url); } catch {}
+  // Si el descifrado no da ningún enlace, se vuelve al iframe de siempre: no se
+  // empeora nada respecto a hoy.
+  if (pelisplusApp) aaPelisPlusNativo(url, () => {
+    const dv = document.querySelector(".DisplayVideo");
+    if (dv && AA_currentUrl === url) dv.innerHTML = aaIframeMarkup(url);
+  });
   const playerDisplay = document.getElementById("PlayerDisplay");
   const displayVideo = document.querySelector(".DisplayVideo");
   let loadingOverlay = document.getElementById("loadingOverlay");
