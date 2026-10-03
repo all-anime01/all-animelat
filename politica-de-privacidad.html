@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad | all-anime</title>
+    <meta name="description" content="Qué datos guarda all-anime, para qué, con quién se comparten y cómo borrar tu cuenta y tu historial.">
+    <link rel="shortcut icon" href="image/logo.ico">
+    <link rel="stylesheet" href="css/index-css.css">
+    <link rel="stylesheet" href="css/legal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <header class="scrolled">
+        <a href="index.html" class="logo">
+            <img src="logo-all-anime.svg" alt="All-Anime Logo" class="logo-desktop">
+            <img src="image/all-anime-logo.png" alt="All-Anime Logo Mobile" class="logo-mobile">
+        </a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="peliculas.html">Películas</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <div class="search-container">
+                <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
+                <input type="text" placeholder="Buscar..." id="search-input">
+                <div id="search-results" class="search-results-dropdown"></div>
+            </div>
+            <div id="menu-icon" class="fas fa-bars"></div>
+        </div>
+    </header>
+
+    <main class="main-content legal">
+        <div class="legal-head">
+            <h1>Política de Privacidad</h1>
+            <p class="legal-sub">Qué guardamos, por qué, con quién se comparte y cómo borrarlo. Sin rodeos.</p>
+            <span class="legal-fecha">Última actualización: 3 de octubre de 2026</span>
+        </div>
+
+        <div class="legal-aviso">
+            <p><strong>En una frase:</strong> si no creas cuenta, no guardamos nada que te identifique. Si la creas, guardamos tu correo, tu nombre visible y lo que necesita el sitio para funcionar: favoritos, historial y avisos. <strong>No vendemos datos a nadie.</strong></p>
+        </div>
+
+        <div class="legal-indice">
+            <p>En esta página</p>
+            <ol>
+                <li><a href="#quien">Quién trata tus datos</a></li>
+                <li><a href="#sin-cuenta">Si navegas sin cuenta</a></li>
+                <li><a href="#con-cuenta">Si creas una cuenta</a></li>
+                <li><a href="#navegador">Lo que se guarda en tu navegador</a></li>
+                <li><a href="#estadisticas">Estadísticas</a></li>
+                <li><a href="#publicidad">Publicidad</a></li>
+                <li><a href="#terceros">Reproductores de terceros</a></li>
+                <li><a href="#apps">Aplicación de TV y Android</a></li>
+                <li><a href="#compartimos">Con quién se comparten</a></li>
+                <li><a href="#cuanto">Cuánto tiempo se guardan</a></li>
+                <li><a href="#derechos">Tus derechos y cómo borrarlo todo</a></li>
+                <li><a href="#menores">Menores de edad</a></li>
+                <li><a href="#cambios">Cambios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ol>
+        </div>
+
+        <h2 id="quien">1. Quién trata tus datos</h2>
+        <p>all-anime es un proyecto personal, sin empresa detrás. El responsable de los datos se puede contactar en <a href="mailto:all.anime.lat01@gmail.com">all.anime.lat01@gmail.com</a>.</p>
+        <p>Técnicamente, el sitio se apoya en <strong>Google Firebase</strong> (Authentication y Firestore) para las cuentas y la base de datos. Eso significa que esos datos se almacenan en la infraestructura de Google.</p>
+
+        <h2 id="sin-cuenta">2. Si navegas sin cuenta</h2>
+        <p>No te pedimos nada y no creamos ningún perfil tuyo. Puedes buscar, explorar y reproducir sin registrarte.</p>
+        <p>Lo único que se registra son <strong>contadores agregados</strong> —cuántas veces se vio un episodio, qué se busca, desde qué país y con qué tipo de dispositivo— que no permiten identificarte. Lo detallamos en el apartado de <a href="#estadisticas">estadísticas</a>.</p>
+
+        <h2 id="con-cuenta">3. Si creas una cuenta</h2>
+        <p>Puedes registrarte con correo y contraseña o entrar con Google. Esto es todo lo que se guarda:</p>
+        <table class="legal-tabla">
+            <thead>
+                <tr><th>Dato</th><th>Para qué</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Correo electrónico</td><td>Identificarte al entrar y recuperar el acceso.</td></tr>
+                <tr><td>Nombre visible</td><td>Mostrarlo en tu perfil y en las funciones sociales.</td></tr>
+                <tr><td>Foto o avatar</td><td>Ilustrar tu perfil. Si no pones ninguna, se genera a partir de tu nombre.</td></tr>
+                <tr><td>Favoritos</td><td>Tu lista de animes guardados.</td></tr>
+                <tr><td>Historial y progreso</td><td>Saber qué has visto y en qué minuto lo dejaste, para continuar.</td></tr>
+                <tr><td>Reacciones y valoraciones</td><td>Lo que puntúas y las reacciones que dejas en un episodio.</td></tr>
+                <tr><td>Avisos</td><td>Enviarte la notificación cuando sale un episodio del anime que sigues.</td></tr>
+                <tr><td>Preferencia «sin publicidad»</td><td>Dejar de mostrarte anuncios si la tienes activada.</td></tr>
+            </tbody>
+        </table>
+        <p><strong>Tu contraseña no la vemos.</strong> La gestiona Firebase Authentication y nunca llega a nuestra base de datos.</p>
+        <p>No pedimos nombre real, dirección, teléfono ni datos de pago.</p>
+
+        <h2 id="navegador">4. Lo que se guarda en tu navegador</h2>
+        <p>Algunas cosas se quedan solo en tu dispositivo, no en nuestros servidores:</p>
+        <ul>
+            <li>El <strong>minuto por el que ibas</strong> en cada episodio, para reanudar.</li>
+            <li>Preferencias de la interfaz: filtros, tipo de vista, servidor preferido.</li>
+            <li>La marca de <strong>sin publicidad</strong> y ajustes del reproductor.</li>
+        </ul>
+        <p>Si borras los datos del navegador, eso desaparece. Lo que esté asociado a tu cuenta se conserva en el servidor.</p>
+
+        <h2 id="estadisticas">5. Estadísticas</h2>
+        <p>Guardamos contadores para saber qué funciona y qué se rompe. Son <strong>números agregados, no fichas de personas</strong>: episodios más vistos, búsquedas más frecuentes, país aproximado, tipo de dispositivo, visitas por día y errores del sitio. No se guarda tu dirección IP junto a tu cuenta ni se construye un perfil publicitario con ellos.</p>
+        <p>El sitio admite además herramientas externas de medición y detección de fallos (<strong>Sentry, Mixpanel, Hotjar y Grafana Faro</strong>), que <strong>solo se cargan si están configuradas</strong>. Cuando lo estén, esas empresas tratarán datos técnicos de tu visita según sus propias políticas.</p>
+
+        <h2 id="publicidad">6. Publicidad</h2>
+        <p>Mostramos anuncios de <strong>Google AdSense</strong> y <strong>Adsterra</strong>. Estas redes pueden usar cookies e identificadores para medir y personalizar lo que ves; ese tratamiento es suyo y se rige por sus políticas:</p>
+        <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Cómo usa Google los datos en publicidad</a></li>
+            <li>Puedes ajustar tus preferencias en <a href="https://adssettings.google.com" target="_blank" rel="noopener">Configuración de anuncios de Google</a>.</li>
+        </ul>
+        <p>Si activas <strong>sin publicidad</strong>, no se carga ningún anuncio nuestro y esas redes no llegan a ejecutarse.</p>
+
+        <h2 id="terceros">7. Reproductores de terceros</h2>
+        <p>El vídeo no sale de nuestros servidores: lo sirve una página externa que se abre dentro de un marco. <strong>Al reproducir, ese tercero ve tu conexión</strong> (dirección IP, navegador) y puede poner sus propias cookies y su propia publicidad.</p>
+        <p>No controlamos ni auditamos lo que hacen con esa información. Si te preocupa, revisa la política del servicio concreto que estés usando.</p>
+
+        <h2 id="apps">8. Aplicación de TV y Android</h2>
+        <p>La aplicación carga el mismo sitio y se comporta igual en cuanto a datos. Dos diferencias:</p>
+        <ul>
+            <li>Pide permiso de <strong>micrófono</strong> solo si usas el asistente de voz. El audio lo procesa el reconocimiento de voz de tu propio Android y <strong>no se envía ni se guarda</strong> en nuestros servidores.</li>
+            <li>Para reproducir en televisores, la aplicación obtiene el enlace del vídeo desde tu propio dispositivo y lo reproduce con su reproductor interno. Ese tráfico va de tu tele al servicio que aloja el vídeo.</li>
+        </ul>
+
+        <h2 id="compartimos">9. Con quién se comparten</h2>
+        <p><strong>No vendemos ni cedemos datos personales.</strong> Los únicos terceros implicados son los que hacen falta para que esto funcione:</p>
+        <ul>
+            <li><strong>Google Firebase</strong>: cuentas y base de datos.</li>
+            <li><strong>GitHub Pages</strong>: alojamiento de las páginas del sitio.</li>
+            <li><strong>Cloudflare</strong>: un servicio intermedio que lee páginas públicas de las fuentes del catálogo. No le enviamos datos tuyos.</li>
+            <li><strong>Google AdSense y Adsterra</strong>: publicidad.</li>
+            <li><strong>TMDB y AniList</strong>: de ahí salen sinopsis, carátulas e imágenes. Se consultan desde nuestras herramientas, no con datos tuyos.</li>
+        </ul>
+
+        <h2 id="cuanto">10. Cuánto tiempo se guardan</h2>
+        <p>Los datos de tu cuenta se conservan mientras la cuenta exista. Las estadísticas agregadas se conservan de forma indefinida, porque ya no identifican a nadie.</p>
+
+        <h2 id="derechos">11. Tus derechos y cómo borrarlo todo</h2>
+        <p>Puedes pedir acceder, corregir o eliminar tus datos, y oponerte a su tratamiento.</p>
+        <ul>
+            <li><strong>Historial:</strong> se puede vaciar desde la página de <a href="historial.html">Historial</a>.</li>
+            <li><strong>Favoritos:</strong> se quitan uno a uno desde <a href="favoritos.html">Favoritos</a>.</li>
+            <li><strong>Cuenta completa:</strong> escribe a <a href="mailto:all.anime.lat01@gmail.com">all.anime.lat01@gmail.com</a> desde el correo de la cuenta y la eliminamos con todo lo asociado: perfil, favoritos, historial, reacciones y avisos.</li>
+        </ul>
+        <p>Si resides en la Unión Europea, tienes además derecho a reclamar ante la autoridad de protección de datos de tu país.</p>
+
+        <h2 id="menores">12. Menores de edad</h2>
+        <p>El sitio no está dirigido a menores de 13 años y no les pedimos datos a sabiendas. Si crees que un menor a tu cargo ha creado una cuenta, escríbenos y la eliminamos.</p>
+
+        <h2 id="cambios">13. Cambios</h2>
+        <p>Si esta política cambia, se actualiza la fecha del encabezado y, si el cambio es relevante, se avisa en el sitio.</p>
+
+        <h2 id="contacto">14. Contacto</h2>
+        <p>Para cualquier duda sobre privacidad: <a href="mailto:all.anime.lat01@gmail.com">all.anime.lat01@gmail.com</a>.</p>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p><span>Anime HD Online</span> - Ningún vídeo se encuentra alojado en nuestros servidores.</p>
+            <nav class="footer-nav">
+                <a href="condiciones-de-uso.html">Términos y Condiciones</a>
+                <a href="politica-de-privacidad.html">Política de Privacidad</a>
+                <a href="sobre-all-anime.html">Sobre all-anime</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="module" src="js/main-2025.js"></script>
+</body>
+
+</html>

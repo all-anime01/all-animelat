@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre all-anime | all-anime</title>
+    <meta name="description" content="Qué es all-anime, cómo se construye el catálogo, de dónde sale el vídeo y cómo se sostiene el proyecto.">
+    <link rel="shortcut icon" href="image/logo.ico">
+    <link rel="stylesheet" href="css/index-css.css">
+    <link rel="stylesheet" href="css/legal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <header class="scrolled">
+        <a href="index.html" class="logo">
+            <img src="logo-all-anime.svg" alt="All-Anime Logo" class="logo-desktop">
+            <img src="image/all-anime-logo.png" alt="All-Anime Logo Mobile" class="logo-mobile">
+        </a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="peliculas.html">Películas</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <div class="search-container">
+                <i class="fas fa-search search-icon" id="search-icon-toggle"></i>
+                <input type="text" placeholder="Buscar..." id="search-input">
+                <div id="search-results" class="search-results-dropdown"></div>
+            </div>
+            <div id="menu-icon" class="fas fa-bars"></div>
+        </div>
+    </header>
+
+    <main class="main-content legal">
+        <div class="legal-head">
+            <h1>Sobre all-anime</h1>
+            <p class="legal-sub">Un catálogo de anime en español, hecho para que encontrar un episodio no sea una pelea.</p>
+            <span class="legal-fecha">Última actualización: 3 de octubre de 2026</span>
+        </div>
+
+        <h2>Qué es esto</h2>
+        <p>all-anime nació de un fastidio concreto: querer ver un anime en <strong>Latino</strong> y acabar saltando entre seis páginas llenas de ventanas emergentes, con los episodios desordenados, las temporadas mal partidas y la mitad de los enlaces caídos.</p>
+        <p>Así que la idea es simple. Un solo sitio donde cada anime tenga <strong>su ficha ordenada</strong>: temporadas en el orden de la historia, episodios numerados como toca, su imagen, su sinopsis en español y varios servidores por episodio para que, si uno falla, haya otro.</p>
+
+        <h2>Qué encontrarás</h2>
+        <ul>
+            <li><strong>Catálogo completo</strong> de series y películas, con buscador y filtros por género, año y estado.</li>
+            <li><strong>Latino siempre que exista.</strong> Es la regla principal del proyecto: si un anime tiene doblaje, se añade.</li>
+            <li><strong>Calendario de estrenos</strong>, para saber qué sale y cuándo.</li>
+            <li><strong>Tu cuenta</strong>: favoritos, historial, continuar donde lo dejaste y aviso cuando sale un episodio nuevo.</li>
+            <li><strong>Aplicación para Fire TV, Android TV y móvil</strong>, con un reproductor propio pensado para el mando a distancia.</li>
+            <li>Funciona también <strong>como aplicación web</strong>: se puede instalar desde el navegador.</li>
+        </ul>
+
+        <h2>De dónde sale el vídeo</h2>
+        <p>Conviene decirlo claro, porque es la pregunta que más se repite: <strong>all-anime no aloja ningún vídeo</strong>.</p>
+        <p>Lo que guardamos es el catálogo —títulos, sinopsis, imágenes, listas de episodios— y <strong>la dirección de páginas externas</strong> donde cada episodio está disponible. Al darle a reproducir, el vídeo viaja desde el servidor de ese tercero hasta tu pantalla, sin pasar por nosotros. Es el mismo mecanismo que usa cualquier web cuando incrusta un vídeo de otra.</p>
+        <p>Por eso un enlace puede caerse de un día para otro: cuando el servicio que lo aloja borra el archivo, nosotros nos quedamos apuntando al vacío. Cuando lo detectamos, buscamos un sustituto.</p>
+
+        <h2>Cómo se construye el catálogo</h2>
+        <p>Detrás hay una herramienta propia que arma cada ficha automáticamente. Dado un título:</p>
+        <ul>
+            <li>Busca la información en <strong>TMDB</strong> y <strong>AniList</strong>: temporadas reales, número de episodios, títulos, sinopsis e imagen de cada episodio.</li>
+            <li>Comprueba el nombre con el que se conoce globalmente, para que nada quede listado en japonés.</li>
+            <li>Detecta cuándo una temporada se emitió <strong>partida en dos o tres trozos</strong> y la une en una sola, en vez de inventarse temporadas que no existen.</li>
+            <li>Separa <strong>OVAs, especiales y películas</strong> en su propio bloque.</li>
+            <li>Recorre varias fuentes para reunir servidores de cada episodio y descarta los que no se parecen de verdad al anime buscado.</li>
+            <li>Traduce al español lo que venga en inglés.</li>
+        </ul>
+        <p>Aun así, el catálogo se revisa a mano. Si ves una imagen que no corresponde, una temporada mal partida o un episodio que falta, avísanos: suele arreglarse el mismo día.</p>
+
+        <h2>Cómo se sostiene</h2>
+        <p>El proyecto es gratuito y se mantiene con publicidad. Intentamos que no moleste y tenemos tres reglas que no rompemos:</p>
+        <ul>
+            <li>Nunca hay anuncios <strong>dentro del reproductor</strong>.</li>
+            <li>En televisores solo banners, nunca formatos que tapen la pantalla.</li>
+            <li>Quien tenga la opción <strong>sin publicidad</strong> no ve ni un anuncio nuestro.</li>
+        </ul>
+        <p>Los reproductores externos ponen su propia publicidad, y eso ya no depende de nosotros.</p>
+
+        <h2>Con qué está hecho</h2>
+        <p>Por si tienes curiosidad: es un sitio estático alojado en GitHub Pages, con <strong>Firebase</strong> para las cuentas y la base de datos, un servicio en <strong>Cloudflare</strong> que lee las páginas públicas de las fuentes, y una aplicación Android para televisores. Los datos de las fichas vienen de <strong>TMDB</strong> y <strong>AniList</strong>.</p>
+
+        <h2>Derechos de autor</h2>
+        <p>Las series, las carátulas y las marcas pertenecen a sus autores, estudios y licenciatarios. all-anime no reclama ningún derecho sobre ellas.</p>
+        <p>Si eres titular de derechos y quieres que retiremos un enlace, escríbenos a <a href="mailto:all.anime.lat01@gmail.com">all.anime.lat01@gmail.com</a> con la dirección exacta: lo quitamos del catálogo en cuanto podamos comprobarlo. El procedimiento completo está en las <a href="condiciones-de-uso.html">Condiciones de uso</a>.</p>
+
+        <h2>Contacto</h2>
+        <p>Para sugerencias, enlaces rotos, animes que faltan o cualquier otra cosa: <a href="mailto:all.anime.lat01@gmail.com">all.anime.lat01@gmail.com</a>.</p>
+        <p>Si vienes a avisar de un fallo, ayuda mucho que incluyas el <strong>anime, la temporada y el episodio</strong>, y si fue en el navegador o en la aplicación de televisión.</p>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p><span>Anime HD Online</span> - Ningún vídeo se encuentra alojado en nuestros servidores.</p>
+            <nav class="footer-nav">
+                <a href="condiciones-de-uso.html">Términos y Condiciones</a>
+                <a href="politica-de-privacidad.html">Política de Privacidad</a>
+                <a href="sobre-all-anime.html">Sobre all-anime</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="module" src="js/main-2025.js"></script>
+</body>
+
+</html>

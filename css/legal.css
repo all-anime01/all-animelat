@@ -1,0 +1,163 @@
+/* Páginas legales (condiciones, privacidad, sobre nosotros).
+   Texto largo para leer: columna estrecha, buen interlineado y jerarquía clara.
+   Se apoya en el tema oscuro del sitio; aquí solo lo propio de estas páginas. */
+.legal {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+    line-height: 1.75;
+    color: #d8d8de;
+}
+
+.legal-head {
+    padding: 2.5rem 0 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    margin-bottom: 2rem;
+}
+
+.legal-head h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0 0 .6rem;
+    color: #fff;
+    text-wrap: balance;
+}
+
+.legal-head .legal-sub {
+    margin: 0;
+    color: #a0a0aa;
+    font-size: 1rem;
+}
+
+.legal-fecha {
+    display: inline-block;
+    margin-top: .9rem;
+    font-size: .82rem;
+    color: #8c8c96;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 999px;
+    padding: .25rem .75rem;
+}
+
+.legal h2 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin: 2.5rem 0 .75rem;
+    padding-top: .5rem;
+    text-wrap: balance;
+}
+
+.legal h3 {
+    font-size: 1.05rem;
+    color: #e8e8ee;
+    margin: 1.75rem 0 .5rem;
+}
+
+.legal p {
+    margin: 0 0 1rem;
+}
+
+.legal ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.25rem;
+}
+
+.legal li {
+    margin-bottom: .5rem;
+}
+
+.legal a {
+    color: #ff6b6b;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.legal a:hover {
+    color: #ff9393;
+}
+
+.legal strong {
+    color: #fff;
+}
+
+/* Aviso destacado: lo que de verdad importa que alguien lea. */
+.legal-aviso {
+    border-left: 3px solid #e0231f;
+    background: rgba(224, 35, 31, .08);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.legal-aviso p:last-child {
+    margin-bottom: 0;
+}
+
+/* Índice de la propia página. */
+.legal-indice {
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.legal-indice p {
+    margin: 0 0 .6rem;
+    font-weight: 700;
+    color: #fff;
+    font-size: .95rem;
+}
+
+.legal-indice ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    columns: 2;
+    column-gap: 2rem;
+}
+
+.legal-indice li {
+    margin-bottom: .35rem;
+    break-inside: avoid;
+}
+
+.legal-indice a {
+    text-decoration: none;
+    color: #c8c8d2;
+}
+
+.legal-indice a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Tabla de datos (qué se guarda y para qué). */
+.legal-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1.5rem;
+    font-size: .92rem;
+    display: block;
+    overflow-x: auto;
+}
+
+.legal-tabla th,
+.legal-tabla td {
+    text-align: left;
+    padding: .65rem .8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    vertical-align: top;
+}
+
+.legal-tabla th {
+    color: #fff;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+    .legal-indice ol {
+        columns: 1;
+    }
+}
