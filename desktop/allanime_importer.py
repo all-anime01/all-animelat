@@ -2461,6 +2461,22 @@ def save(data, token, replace, log):
         last_group = (destino if destino in groups else None) or (abiertos[-1] if abiertos else None)
         built_seasons_n = len({b.get("season") for b in built if b.get("season")})
         nuevas = set()          # temporadas que no existían y se crean en este guardado
+        # ¿Este anime numera DE CORRIDO entre temporadas? (Ranma 1/2: Temporada 1 = 1-12,
+        # Temporada 2 = 13-24.) Si es así, los episodios que vienen numerados por
+        # temporada (1..N en cada una) hay que pasarlos a esa numeración antes de nada.
+        # Sin esto, el episodio 1 de la temporada 2 se guardaba como «Temporada 2, ep 1»
+        # al lado del 13 que ya existía, y el anime se llenaba de duplicados.
+        continua = (not per_season_existing) and len(groups) > 1
+        inicio_grupo, tope_global = {}, 0
+        if continua:
+            for e in ex:
+                try: n_ = int(float(e.get("number")))
+                except (TypeError, ValueError): continue
+                g_ = e.get("season")
+                inicio_grupo[g_] = min(inicio_grupo.get(g_, n_), n_)
+                tope_global = max(tope_global, n_)
+            log("Este anime numera de corrido: %s" % ", ".join(
+                "%s desde %d" % (g, inicio_grupo[g]) for g in groups if g in inicio_grupo))
         if data.get("_update_only") and groups:
             for b in built:
                 m = re.match(r"^Temporada\s+(\d+)$", str(b.get("season", "")))
@@ -2480,6 +2496,11 @@ def save(data, token, replace, log):
                     # Esta comprobación va ANTES que la numeración continua: si no, un
                     # anime guardado en UNA sola temporada se tragaba la segunda.
                     nuevas.add(b["season"])
+                    if continua:
+                        # Temporada nueva en un anime que numera de corrido: sus
+                        # episodios siguen desde el último, no vuelven a empezar en 1.
+                        try: b["number"] = tope_global + int(float(b.get("number")))
+                        except (TypeError, ValueError): pass
                 elif built_seasons_n <= 1 and not per_season_existing:
                     # Numeración CONTINUA (One Piece): el nº de episodio dice la temporada real.
                     try: bn = int(b.get("number"))
@@ -2487,7 +2508,13 @@ def save(data, token, replace, log):
                     b["season"] = by_num.get(bn) or last_group
                 else:
                     # Numeración POR TEMPORADA: mapea por POSICIÓN, saltándose las cerradas.
-                    b["season"] = abiertos[idx_s - 1] if 1 <= idx_s <= len(abiertos) else last_group
+                    g = abiertos[idx_s - 1] if 1 <= idx_s <= len(abiertos) else last_group
+                    b["season"] = g
+                    if continua and g in inicio_grupo:
+                        # …y se pasa el número a la numeración de corrido del anime:
+                        # «Temporada 2, episodio 1» es en realidad el episodio 13.
+                        try: b["number"] = inicio_grupo[g] + int(float(b.get("number"))) - 1
+                        except (TypeError, ValueError): pass
         if nuevas:
             log("Temporada(s) NUEVA(S) en este anime: " + ", ".join(sorted(nuevas))
                 + " — si debía ir a una ya existente, ponla en «Nombre temporada» y vuelve a guardar.")
