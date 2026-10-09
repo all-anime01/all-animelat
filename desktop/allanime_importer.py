@@ -427,6 +427,18 @@ def slug_de(*titulos):
         if sl: return sl
     return ""
 MESES = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+def hora_scrapeo():
+    """La hora a la que se está subiendo el episodio, en formato «19:05».
+
+    Va al campo releaseTime, que el sitio pinta a la derecha de cada episodio en
+    «Episodios nuevos» y en el calendario. El importador nunca lo rellenaba, así que
+    ese hueco salía siempre vacío.
+
+    OJO: el sitio interpreta releaseTime como HORA DE COLOMBIA (GMT-5) y se la
+    convierte a cada visitante, así que aquí se pasa a esa zona en vez de poner la
+    hora del ordenador, que puede estar en otro país."""
+    return time.strftime("%H:%M", time.gmtime(time.time() - 5 * 3600))
+
 def fmt_duration(mins):
     """Duración en horas y minutos como en el sitio: 95 → '1h 35 min', 24 → '24 min'."""
     try: mins = int(round(float(mins)))
@@ -2390,6 +2402,7 @@ def build_episodes(data, opts, log, prog, on_ep):
                   "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={num}",
                   "img": em.get("still") or info["backdrop"] or info["poster"],
                   "description": em.get("overview") or "", "releaseDate": em.get("air_date") or "",
+                  "releaseTime": hora_scrapeo(),
                   "duration": fmt_duration(rt) or f"{rt} min", "servers": servers}
             episodes.append(ep)
             ult_num, ult_nombre = num, sname

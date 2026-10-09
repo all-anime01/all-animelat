@@ -912,6 +912,7 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
           videoUrl: `frame/player.html?a=${aid}&s=${encodeURIComponent(sname)}&e=${num}`,
           img: em.still || info.backdrop || info.poster,
           description: em.overview || "", releaseDate: fmtFecha(em.air_date || ""),
+          releaseTime: horaScrapeo(),
           duration: `${em.runtime || info.runtime || 24} min`, servers,
         };
         episodes.push(ep); ultNum = num; ultNombre = sname;
@@ -940,6 +941,15 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
                porySearch, poryServers, ninjaSearch, ninjaServers, hjSearch, hjMax, hjVariantes, hjServers,
                manualLista, manualServers },
   };
+}
+
+/** La hora a la que se sube el episodio, «19:05», para el campo releaseTime.
+ *  El sitio lo pinta a la derecha de cada episodio en «Episodios nuevos» y en el
+ *  calendario, y lo interpreta como HORA DE COLOMBIA (GMT-5), así que se convierte
+ *  a esa zona en vez de usar la del ordenador, que puede estar en otro país. */
+export function horaScrapeo(ahora = new Date()) {
+  const col = new Date(ahora.getTime() - 5 * 3600 * 1000);
+  return String(col.getUTCHours()).padStart(2, "0") + ":" + String(col.getUTCMinutes()).padStart(2, "0");
 }
 
 const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
