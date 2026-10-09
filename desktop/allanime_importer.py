@@ -1298,24 +1298,31 @@ PORY_ALIAS = {
 _CONT = re.compile(r"(?i)(?:^|[\s\-_:])(?:"
                    r"(?:part|parte|cour|tanda)[\s\-_]*(?:2|3|ii|iii|two|three|dos|tres|b|c)"
                    r"|(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:part|parte|cour|tanda)"
+                   r"|(?:\d+(?:st|nd|rd|th))(?:[\s\-_&y]+\d+(?:st|nd|rd|th))*[\s\-_]*(?:stage|etapa)s?"
                    r")(?:$|[\s\-_])")
 # el mismo sufijo, para recortarlo y comparar la raíz del nombre
 _SUF_CONT = re.compile(r"(?i)[\s\-_]*(?:"
                        r"(?:part|parte|cour|tanda)[\s\-_]*(?:\d+|ii|iii|two|three|dos|tres|b|c)"
                        r"|(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:part|parte|cour|tanda)"
+                       # «Steel Ball Run - 1st STAGE» / «- 2nd & 3rd STAGE»: JoJo parte
+                       # sus temporadas en «stages» en vez de en «parts».
+                       r"|(?:\d+(?:st|nd|rd|th))(?:[\s\-_&y]+\d+(?:st|nd|rd|th))*[\s\-_]*(?:stage|etapa)s?"
                        r")\s*$")
 
 def es_continuacion(texto, anterior=None):
     """¿Este slug/título es otra PARTE de la temporada anterior (y no una temporada nueva)?
     «…-part-2» sí; «…-2nd-season» no, que ahí sí empieza otra temporada."""
     t = str(texto or "")
-    if not t or not _CONT.search(t): return False
     def raiz(x):
         return re.sub(_SUF_CONT, "", str(x or "")).strip("-_: ")
+    if not t or not _CONT.search(t): return False
     if anterior:
-        # Manda la raíz: «…-3rd-season-part-2» SÍ continúa a «…-3rd-season», pero
-        # «Mushoku Tensei II 2nd Season Part 2» NO continúa a «Mushoku Tensei».
-        return bool(raiz(t)) and norm(raiz(t)) == norm(str(anterior).strip("-_: "))
+        # Manda la raíz, y se le quita el sufijo también a la anterior: así
+        # «Steel Ball Run - 2nd & 3rd STAGE» continúa a «Steel Ball Run - 1st STAGE»,
+        # que llevan sufijo los dos. «…-3rd-season-part-2» sigue continuando a
+        # «…-3rd-season», y «Mushoku Tensei II 2nd Season Part 2» sigue SIN continuar
+        # a «Mushoku Tensei».
+        return bool(raiz(t)) and norm(raiz(t)) == norm(raiz(anterior))
     # Sin referencia: si el propio nombre anuncia temporada nueva, no es continuación.
     return not re.search(r"(?i)(?:^|[\s\-_])(?:2nd|3rd|second|third|segunda|tercera)[\s\-_]*(?:season|temporada)", t)
 
@@ -2168,7 +2175,17 @@ def build_episodes(data, opts, log, prog, on_ep):
                     try: al_slug = alhd_search(t_al) if t_al else None
                     except Exception: al_slug = None
                     if i > 0 and al_slug and al_slug == base_alhd: al_slug = None
-                seasons.append({"season": i + 1, "count": 400, "name": nombre_temporada(i + 1, tn),
+                # TOPE de la temporada. Abierto (400) solo para la ÚLTIMA, que es la
+                # que puede estar en emisión y crecer. Las anteriores ya terminaron y
+                # AniList sabe cuántos episodios tienen, así que se cortan ahí.
+                #
+                # Sin esto se colaban episodios de la temporada SIGUIENTE: henaojara
+                # mete «Los diarios de la boticaria» 1 y 2 bajo un mismo slug numerado
+                # del 1 al 50, así que la temporada 1 se llevaba 50 episodios en vez de
+                # 24 y el anime acababa con 76.
+                eps_al = (al[i].get("episodes") if i < len(al) else None) or 0
+                tope = eps_al if (eps_al and i < len(al) - 1) else 400
+                seasons.append({"season": i + 1, "count": tope, "name": nombre_temporada(i + 1, tn),
                                 "jk": jk, "av": av, "yt": yt, "alhd": al_slug, "e69s": e69s})
             seasons = _fusiona_partes(seasons, al, log)
             log(f"AUTO temporadas: {len(seasons)} (jk={jk_list} · av={av_list})")
@@ -2541,7 +2558,7 @@ def save(data, token, replace, log):
                     b["season"] = last_group; movidos += 1
             if movidos: log(f"{movidos} episodios se movieron fuera de una temporada cerrada → «{last_group}».")
         idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
-        added = replaced = 0
+        added = replaced = sumados = con_extra = 0
         for b in built:
             k = f"{b['season']}|{b['number']}"
             if k in idx:
@@ -2558,9 +2575,27 @@ def save(data, token, replace, log):
                     idx[k]["servers"] = prioritize(keep + new_srv); idx[k]["language"] = b["language"]
                     if b.get("img"): idx[k]["img"] = b["img"]
                     replaced += 1
+                else:
+                    # MODO AÑADIR, episodio que YA existe: antes no se hacía nada, así
+                    # que si venías a ponerle el Latino a episodios que ya estaban, no
+                    # entraba ninguno. Ahora se AÑADEN los servidores que faltan, al
+                    # final y sin tocar los que había: no se borra ni se reordena nada.
+                    ya = {s.get("url", "") for s in (idx[k].get("servers") or [])}
+                    extra = [s for s in (b.get("servers") or []) if s.get("url", "") and s.get("url") not in ya]
+                    if extra:
+                        idx[k]["servers"] = list(idx[k].get("servers") or []) + extra
+                        # El idioma del episodio se recalcula con lo que hay ahora.
+                        idx[k]["language"] = ("Latino"
+                                              if any(s.get("lang") == "Latino" for s in idx[k]["servers"])
+                                              else idx[k].get("language", "Sub"))
+                        sumados += len(extra); con_extra += 1
             else: ex.append(b); added += 1
         episodes = ex; doc = existing
-        log(f"Existente: +{added} nuevos" + (f", {replaced} reemplazados" if replace else " (no se tocó lo demás)"))
+        resumen = f"Existente: +{added} nuevos"
+        if replace: resumen += f", {replaced} reemplazados"
+        elif sumados: resumen += f", +{sumados} servidores en {con_extra} episodios que ya estaban"
+        else: resumen += " (no se tocó lo demás)"
+        log(resumen)
     else:
         episodes = built
         doc = {"id": aid, "title": data["real_title"], "altTitles": [], "type": data.get("type", "TV"), "audio": data["audio"],
