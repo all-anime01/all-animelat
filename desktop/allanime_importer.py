@@ -2414,7 +2414,10 @@ def build_episodes(data, opts, log, prog, on_ep):
                   or (info["stills"].get(f"1x{absn}") if not per_season_num else None) or {})
             rt = em.get("runtime") or info.get("runtime") or 24
             if not em.get("still"): sin_foto.append(f"{sname} {num}")
-            ep = {"number": num, "season": sname, "title": em.get("title") or f"Episodio {num}",
+            # _sidx = posición de la temporada dentro del scrapeo. Lo usa save() para
+            # colocar el episodio cuando el nombre no coincide con ninguna temporada
+            # guardada. Se quita antes de escribir en Firestore.
+            ep = {"_sidx": S.get("season"), "number": num, "season": sname, "title": em.get("title") or f"Episodio {num}",
                   "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
                   "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={num}",
                   "img": em.get("still") or info["backdrop"] or info["poster"],
@@ -2507,10 +2510,34 @@ def save(data, token, replace, log):
                 tope_global = max(tope_global, n_)
             log("Este anime numera de corrido: %s" % ", ".join(
                 "%s desde %d" % (g, inicio_grupo[g]) for g in groups if g in inicio_grupo))
+        # ¿La estructura que trae el scrapeo CUADRA con la que ya hay guardada? Se
+        # compara por los nombres de temporada. Si no cuadra, no se puede adivinar a
+        # qué temporada va cada episodio, y forzarlo es lo que llenó JoJo de
+        # duplicados: tiene 7 partes («Parte 1: Phantom Blood»…) y TMDB lo da en 6
+        # temporadas con otros nombres, así que las 6 entraron como temporadas nuevas
+        # y el anime pasó de 193 episodios a 369.
+        nombres_built = {str(b.get("season", "")) for b in built if b.get("season")}
+        desconocidas = [n for n in nombres_built
+                        if n not in groups and not re.match(r"^Temporada\s+\d+$", n)]
+        estructura_distinta = bool(desconocidas) and len(nombres_built) <= len(groups)
+        if estructura_distinta:
+            log("Las temporadas del scrapeo NO coinciden con las de este anime: "
+                + ", ".join(sorted(desconocidas)[:4])
+                + ". Solo se tocarán los episodios que ya existen (se les suman servidores); "
+                  "no se crea ninguna temporada. Para reestructurarlo, usa «Reparar».")
         if data.get("_update_only") and groups:
             for b in built:
-                m = re.match(r"^Temporada\s+(\d+)$", str(b.get("season", "")))
-                if not m: continue          # nombre personalizado del usuario → se respeta tal cual
+                nombre_b = str(b.get("season", ""))
+                if nombre_b in groups: continue      # ya existe con ese nombre: se queda
+                m = re.match(r"^Temporada\s+(\d+)$", nombre_b)
+                if not m:
+                    # Nombre que no reconocemos (viene de TMDB, no lo escribió nadie).
+                    # Se coloca por POSICIÓN sobre la temporada que le toque, y más
+                    # abajo se descarta lo que no encaje con lo que ya hay.
+                    idx_b = b.get("_sidx")
+                    if estructura_distinta and idx_b and 1 <= idx_b <= len(abiertos):
+                        b["season"] = abiertos[idx_b - 1]
+                    continue
                 idx_s = int(m.group(1))
                 if destino and built_seasons_n <= 1:
                     # El anime declara DÓNDE va lo nuevo: manda eso por encima de todo.
@@ -2558,7 +2585,7 @@ def save(data, token, replace, log):
                     b["season"] = last_group; movidos += 1
             if movidos: log(f"{movidos} episodios se movieron fuera de una temporada cerrada → «{last_group}».")
         idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
-        added = replaced = sumados = con_extra = 0
+        added = replaced = sumados = con_extra = descartados = 0
         for b in built:
             k = f"{b['season']}|{b['number']}"
             if k in idx:
@@ -2589,12 +2616,18 @@ def save(data, token, replace, log):
                                               if any(s.get("lang") == "Latino" for s in idx[k]["servers"])
                                               else idx[k].get("language", "Sub"))
                         sumados += len(extra); con_extra += 1
+            elif estructura_distinta:
+                # La estructura no cuadra: crear este episodio sería inventarse dónde
+                # va. Se descarta y se avisa, en vez de duplicar el anime.
+                descartados += 1
             else: ex.append(b); added += 1
+        for e in ex: e.pop("_sidx", None)       # dato interno: no va a Firestore
         episodes = ex; doc = existing
         resumen = f"Existente: +{added} nuevos"
         if replace: resumen += f", {replaced} reemplazados"
         elif sumados: resumen += f", +{sumados} servidores en {con_extra} episodios que ya estaban"
         else: resumen += " (no se tocó lo demás)"
+        if descartados: resumen += f" · {descartados} episodios descartados por no cuadrar con las temporadas de este anime"
         log(resumen)
     else:
         episodes = built
