@@ -130,6 +130,7 @@
     { icon: "fa-home", label: "Inicio", href: "index.html" },
     { icon: "fa-compass", label: "Explorar", href: "explorar.html" },
     { icon: "fa-film", label: "Películas", href: "peliculas.html" },
+    { icon: "fa-calendar-days", label: "Calendario", href: "calendario-de-estrenos.html" },
   ];
   // El buscador de TV reutiliza el overlay a pantalla completa del sitio (igual que
   // en Android). Si no está listo aún, cae al buscador del header como respaldo.

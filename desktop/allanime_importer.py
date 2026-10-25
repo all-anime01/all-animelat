@@ -867,7 +867,12 @@ NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "
         "zilla": "AnimeAV1 HD", "mediafire": "Mediafire", "mixdrop": "Mixdrop", "mdbekj": "Mixdrop", "mdy48": "Mixdrop",
         "d-s.io": "Doodstream", "dood": "Doodstream", "desu": "Desu", "desuka": "Desu", "okru": "Okru", "ok.ru": "Okru",
         "uqload": "Uqload", "yourupload": "YourUpload", "krakenfiles": "Krakenfiles",
-        "lulustream": "Lulustream", "luluvdo": "Lulustream", "lulu.st": "Lulustream"}
+        "lulustream": "Lulustream", "luluvdo": "Lulustream", "lulu.st": "Lulustream",
+        # henaojara/animejara: sin estos nombres salían todos como «Servidor» y, como
+        # prioritize() no repite nombre dentro de un idioma, solo sobrevivía uno.
+        "dooodster": "Doodstream", "doodstream": "Doodstream", "filelions": "VidHide", "minochinos": "VidHide",
+        "hgcloud": "Streamwish", "dhcplay": "Streamwish", "hqq.": "Netu", "waaw": "Netu", "netu": "Netu",
+        "rubyvidhub": "StreamRuby", "streamruby": "StreamRuby"}
 def nm(u):
     s = (u or "").lower()
     for k, v in NAME.items():
@@ -877,7 +882,7 @@ def nm(u):
 # Filemoon(byse) → StreamWish → Vidara → PelisPlus/embed69 → HLS(animeav1) → Desu(jkanime) → VidHide.
 QUALITY = ["filemoon", "streamwish", "lulustream", "vidara", "pelisplus", "embed69", "animeav1", "hls", "desu",
            "vidhide", "voe", "mega", "magi", "streamtape", "mp4upload", "mixdrop", "doodstream", "mediafire"]
-def prioritize(servers, prefer=None, only=False, cap=3):
+def prioritize(servers, prefer=None, only=False, cap=4):
     """Máx `cap` por idioma; LATINO primero; ordenados por tu preferencia o por calidad.
     SIN REPETIDOS: descarta la misma URL exacta y el mismo servidor repetido dentro de un
     idioma (antes un episodio podía quedar con «Filemoon, Filemoon, Filemoon»)."""
@@ -945,6 +950,12 @@ def search_variants(title):
     v = [title]
     if "/" in title: v.append(title.replace("/", " "))   # Fate/Apocrypha → "Fate Apocrypha"
     main = re.split(r"[:\-–—(|~/]", title)[0].strip()
+    # El SUBTÍTULO también, porque hay sitios que lo ponen delante: animeav1 y
+    # henaojara tienen «steel-ball-run-jojo-no-kimyou-na-bouken», y buscando «JoJo no
+    # Kimyou na Bouken» solo salían las partes anteriores.
+    if ":" in title:
+        sub = re.split(r"\s+[-–—]\s+|[(|~]", title.split(":", 1)[1])[0].strip()
+        if len(sub) >= 4: v.append(sub)
     if main and main != title: v.append(main)
     words = main.split()
     if len(words) > 2: v.append(" ".join(words[:2]))
@@ -1131,13 +1142,27 @@ def jk_servers(slug, n):
         if name in seen: continue
         seen.add(name); out.append({"url": u, "name": name, "lang": "Sub", "desc": ""})
     return out
+def sin_tanda(title):
+    """Quita la «tanda» final que los sitios no ponen en el slug: «Steel Ball Run -
+    1st STAGE» se publica como un solo anime, «steel-ball-run-…»."""
+    return re.sub(r"(?i)\s*[-–—:]\s*[^-–—:]*\bstages?\b.*$", "", title or "").strip() or title
 def av1_search(title):
-    for q in search_variants(title):
+    want = sin_tanda(title)
+    for q in search_variants(want):
         for u in (f"https://animeav1.com/catalogo?search={urllib.parse.quote(q)}", f"https://animeav1.com/catalogo?q={urllib.parse.quote(q)}"):
             h = get_text(u)
             c = list(dict.fromkeys(re.findall(r'/media/([a-z0-9-]+)', h)))
-            if c: return best(c, title)
+            # Si nada de lo que sale encaja, se prueba la siguiente variante; antes se
+            # rendía con la primera búsqueda que devolviera algo.
+            r = best(c, want) if c else None
+            if r: return r
+            if c: break
     return None
+# Reproductores PROPIOS de animeav1: «HLS» (player.zilla-networks.com) responde 403
+# a cualquier página que no sea animeav1.com, y UPNShare (animeav1.uns.bio) es su
+# visor interno. En el sitio nunca cargan, así que solo se guardan los hosts de
+# verdad que también publica (Byse = Filemoon, Voe, MP4Upload…).
+_AV1_INTERNO = re.compile(r"zilla-networks\.com|\.uns\.bio|animeav1\.", re.I)
 def av1_servers(slug, n):
     h = get_text(f"https://animeav1.com/media/{slug}/{n}")
     if len(h) < 3000 and "embeds" not in h: return None
@@ -1149,7 +1174,9 @@ def av1_servers(slug, n):
         if not seg: continue
         seen = set()
         for m in re.finditer(r'server:"([^"]+)",url:"([^"]+)"', seg.group(1)):
-            url = m.group(2); name = nm(url) if nm(url) != "Servidor" else (m.group(1) if m.group(1) != "HLS" else "AnimeAV1 HD")
+            url = m.group(2)
+            if _AV1_INTERNO.search(url): continue
+            name = nm(url) if nm(url) != "Servidor" else m.group(1)
             if name in seen: continue
             seen.add(name); res.append({"url": url, "name": name, "lang": tag, "desc": ""})
     return res
@@ -1366,7 +1393,7 @@ def manual_servers(url, lang=None, log=None):
     pr = urllib.parse.urlparse(url)
     host, ruta = pr.netloc.lower(), pr.path
     try:
-        if "henaojara" in host:
+        if es_hj(host):
             m = re.search(r"/ver/(.+?)-(\d{1,4})/?$", ruta)
             if m: return hj_servers(m.group(1), int(m.group(2)))
         if "animeyt" in host:
@@ -1439,7 +1466,7 @@ def manual_lista(url, log=None):
     try:
         m = re.search(r"/(?:anime|media|ver)/([a-z0-9\-]+)", pr.path)
         sl = m.group(1) if m else pr.path.strip("/").split("/")[0]
-        if "henaojara" in host and sl:
+        if es_hj(host) and sl:
             t = hj_max(sl)
             if t: log(f"fuente manual: {t} episodio(s) en henaojara ({sl})"); return {n: f"{HJ}/ver/{sl}-{n}/" for n in range(1, t + 1)}
         if "jkanime" in host and sl:
@@ -1487,7 +1514,25 @@ def manual_lista(url, log=None):
 #     y ese HEX («285-1» = idAnime-episodio) se manda a POST /hj con acc=opt, que
 #     devuelve <li encrypt="HEX de la URL del reproductor">.
 # El IDIOMA va en el propio slug: «…-latino», «…-castellano»; sin sufijo es subtitulado.
-HJ = "https://ww1.henaojara.net"
+# En 2026-10 henaojara se mudó a animejara.com, pero el dominio nuevo está detrás
+# del muro de Cloudflare (ni la petición directa ni el Worker pasan) y el viejo
+# sigue sirviendo lo mismo y al día. Se prueba primero el nuevo y, si no deja
+# entrar, el viejo; el que responda se queda para el resto de la sesión.
+HJ_DOMINIOS = ("https://animejara.com", "https://ww1.henaojara.net")
+HJ = HJ_DOMINIOS[-1]
+_hj_elegido = False
+def hj_dominio():
+    global HJ, _hj_elegido
+    if _hj_elegido: return HJ
+    for d in HJ_DOMINIOS:
+        try: st, h = http(d + "/", referer=d + "/", timeout=15)
+        except Exception: continue
+        if st == 200 and h and not _MURO.search(h[:4000]):
+            HJ = d; break
+    _hj_elegido = True
+    return HJ
+def es_hj(host):
+    return "henaojara" in host or "animejara" in host
 
 def _hj_hex(x):
     """El sitio ofusca las URLs en hexadecimal; esto las devuelve legibles."""
@@ -1502,6 +1547,7 @@ def _hj_lang(slug):
 
 def hj_buscar(q):
     """Slugs que devuelve su buscador para ese texto."""
+    hj_dominio()
     try: h = get_text(f"{HJ}/animes?buscar={urllib.parse.quote(q)}", referer=HJ + "/")
     except Exception: return []
     return list(dict.fromkeys(re.findall(r"/anime/([a-z0-9\-]+)", h)))
@@ -1512,6 +1558,7 @@ def hj_search(title):
     justamente la serie principal (buscando «One Piece» salían las 24 películas,
     pero no One Piece)."""
     probados = set()
+    title = sin_tanda(title)
     for q in search_variants(title):
         for sl in (slugify(q), re.sub(r"-\d+$", "", slugify(q))):
             if not sl or sl in probados: continue
@@ -1545,6 +1592,7 @@ def hj_variantes(slug, title=None):
 def hj_max(slug):
     """Nº del último episodio publicado (la ficha lista los eps de mayor a menor)."""
     if not slug: return 0
+    hj_dominio()
     try: st, h = http(f"{HJ}/anime/{slug}/", referer=HJ + "/")
     except Exception: return 0
     if st != 200 or not h: return 0
@@ -1556,6 +1604,7 @@ def hj_max(slug):
 def hj_servers(slug, n):
     """Reproductores del episodio n. Devuelve [] si ese episodio no existe."""
     if not slug: return []
+    hj_dominio()
     ver = f"{HJ}/ver/{slug}-{n}/"
     try: st, h = http(ver, referer=f"{HJ}/anime/{slug}/")
     except Exception: return []
@@ -1785,7 +1834,13 @@ def _fusiona_partes(seasons, al=None, log=None):
         if cont:
             if slug and slug == ult_slug:
                 # misma fuente para las dos tandas: ya trae los episodios de ambas,
-                # volver a recorrerla solo duplicaría lo mismo con otros números.
+                # volver a recorrerla solo duplicaría lo mismo con otros números. Pero
+                # su TOPE sí se suma: Steel Ball Run «1st STAGE» tiene 1 episodio y la
+                # tanda siguiente otros 11 en el mismo slug; con el tope de la primera
+                # se traía solo el episodio 1.
+                c_ant, c_nue = out[-1].get("count") or 0, S.get("count") or 0
+                out[-1]["count"] = 400 if (c_ant >= 400 or c_nue >= 400) else c_ant + c_nue
+                if S.get("al_tit"): out[-1]["al_tit"] = (out[-1].get("al_tit") or "") + " | " + S["al_tit"]
                 if log: log(f"  la 2ª parte de {ult_nombre} usa la MISMA fuente ({slug}): no se recorre dos veces")
                 continue
             S["cont"] = True; S["name"] = ult_nombre; S["season"] = n_real
@@ -1905,19 +1960,41 @@ def yt_episode_map(slug):
     return out
 def yt_max(slug):
     mp = yt_episode_map(slug); return max(mp) if mp else 0
+_YT_LANG = {"SUB": "Sub", "LAT": "Latino", "DUB": "Latino", "ESP": "Castellano", "CAST": "Castellano"}
+_YT_NOMBRE = {"byse": "Filemoon", "ok": "Okru", "mega": "Mega", "omega": "Archive", "epsilon": "RPMVid"}
+def yt_mytsumi(container, referer):
+    """Servidores reales del reproductor mytsumi que usa animeyt."""
+    m = re.search(r"[?&]lang=([A-Za-z]+)", container)
+    lang = _YT_LANG.get((m.group(1) if m else "SUB").upper(), "Sub")
+    u = container if "open=1" in container else container + "&open=1"
+    try: h = get_text(u, referer=referer)
+    except Exception: return []
+    out = []
+    for tag in re.findall(r"<[a-z]+[^>]*data-player-url=[^>]*>", h):
+        at = dict(re.findall(r'([\w-]+)="([^"]*)"', tag))
+        url = (at.get("data-player-url") or "").replace("&amp;", "&").strip()
+        if not url.startswith("http"): continue
+        etiqueta = at.get("data-player-label") or ""
+        name = nm(url)
+        if name == "Servidor": name = _YT_NOMBRE.get(etiqueta.lower(), etiqueta or "Servidor")
+        q = re.search(r"(\d{3,4}p)", at.get("title") or "")
+        out.append({"url": url, "name": name, "lang": lang, "desc": q.group(1) if q else ""})
+    return out
 def yt_servers_url(epurl):
     if not epurl: return []
     h = get_text(epurl, referer=YT + "/")
     out, seen = [], set()
-    # animeyt cambió de reproductor: ahora el episodio trae un iframe propio
-    # (mytsumi/multiplayer…) que YA es el reproductor con todos sus servidores
-    # dentro. Se añade tal cual, que es lo que el sitio necesita para el <iframe>.
-    for u in re.findall(r'<iframe[^>]+src="([^"]+)"', h):
-        u = u.replace("&amp;", "&").strip()
+    # animeyt cambió de reproductor: el episodio trae un iframe propio
+    # (mytsumi.com/container.php?id=…&lang=SUB). Ese reproductor NO se guarda: se
+    # abre con «&open=1», que lista cada servidor de verdad como
+    # <button data-player-url=… data-player-label=… title="Byse · 1080p">.
+    for u in dict.fromkeys(re.findall(r'<iframe[^>]+src="([^"]+)"', h)):
+        u = u.replace("&#038;", "&").replace("&amp;", "&").strip()
         if u.startswith("//"): u = "https:" + u
-        if not re.search(r"(?i)multiplayer|mytsumi|animeyt|ytlinker", u): continue
-        if u in seen: continue
-        seen.add(u); out.append({"url": u, "name": "AnimeYT", "lang": "Sub", "desc": ""})
+        if not re.search(r"(?i)mytsumi\.com/container", u): continue
+        for s in yt_mytsumi(u, epurl):
+            if s["url"] in seen: continue
+            seen.add(s["url"]); out.append(s)
     for b in re.findall(r'<option[^>]*value="([A-Za-z0-9+/=]{40,})"', h):
         try: frag = base64.b64decode(b).decode("utf-8", "replace")
         except Exception: continue
@@ -2175,6 +2252,18 @@ def build_episodes(data, opts, log, prog, on_ep):
                     try: al_slug = alhd_search(t_al) if t_al else None
                     except Exception: al_slug = None
                     if i > 0 and al_slug and al_slug == base_alhd: al_slug = None
+                # henaojara también publica cada temporada con su slug («tokyo-revengers-
+                # seiya-kessen-hen», «steel-ball-run-jojo-no-kimyou-na-bouken»). Con el
+                # slug general se pedía el episodio por su número de corrido, y en esos
+                # slugs no existe: la temporada se quedaba sin henaojara.
+                hj_slug = None
+                if opts.get("hj") and i < len(al):
+                    t_hj = al[i].get("romaji") or al[i].get("english") or al[i].get("title")
+                    try: hj_slug = hj_search(t_hj) if t_hj else None
+                    except Exception: hj_slug = None
+                    if i > 0 and hj_slug and hj_slug == base_hj: hj_slug = None
+                al_tit = " | ".join(x for x in ((al[i].get("romaji"), al[i].get("english"), al[i].get("title"))
+                                                if i < len(al) else ()) if x)
                 # TOPE de la temporada. Abierto (400) solo para la ÚLTIMA, que es la
                 # que puede estar en emisión y crecer. Las anteriores ya terminaron y
                 # AniList sabe cuántos episodios tienen, así que se cortan ahí.
@@ -2186,7 +2275,8 @@ def build_episodes(data, opts, log, prog, on_ep):
                 eps_al = (al[i].get("episodes") if i < len(al) else None) or 0
                 tope = eps_al if (eps_al and i < len(al) - 1) else 400
                 seasons.append({"season": i + 1, "count": tope, "name": nombre_temporada(i + 1, tn),
-                                "jk": jk, "av": av, "yt": yt, "alhd": al_slug, "e69s": e69s})
+                                "jk": jk, "av": av, "yt": yt, "alhd": al_slug, "hj": hj_slug, "e69s": e69s,
+                                "al_tit": al_tit})
             seasons = _fusiona_partes(seasons, al, log)
             log(f"AUTO temporadas: {len(seasons)} (jk={jk_list} · av={av_list})")
         else:
@@ -2417,7 +2507,7 @@ def build_episodes(data, opts, log, prog, on_ep):
             # _sidx = posición de la temporada dentro del scrapeo. Lo usa save() para
             # colocar el episodio cuando el nombre no coincide con ninguna temporada
             # guardada. Se quita antes de escribir en Firestore.
-            ep = {"_sidx": S.get("season"), "number": num, "season": sname, "title": em.get("title") or f"Episodio {num}",
+            ep = {"_sidx": S.get("season"), "_stit": S.get("al_tit") or "", "number": num, "season": sname, "title": em.get("title") or f"Episodio {num}",
                   "language": "Latino" if any(s["lang"] == "Latino" for s in servers) else "Sub",
                   "videoUrl": f"frame/player.html?a={aid}&s={urllib.parse.quote(sname)}&e={num}",
                   "img": em.get("still") or info["backdrop"] or info["poster"],
@@ -2447,6 +2537,63 @@ def build_episodes(data, opts, log, prog, on_ep):
         log(f"⚠ AniList indica {len(al)} temporadas y se armaron {built_seasons}. Puede faltar: {', '.join(faltan)} (agrégalas con slug manual si tu fuente las tiene).")
     log(f"== {len(episodes)} episodios == audio: {data['audio']}")
     return data
+
+# Campos de trabajo que lleva cada episodio mientras se arma y que no se guardan.
+INTERNOS = ("_sidx", "_corrido", "_stit", "_mapeado", "_descartar")
+_GENERICAS = {"temporada", "parte", "part", "season", "the", "and", "hen", "arc", "arco", "tv",
+              "stage", "stages", "1st", "2nd", "3rd", "final", "cour", "edition"}
+
+def _palabras_temp(t):
+    return {w for w in re.findall(r"[a-z0-9]+", norm(t or "")) if len(w) >= 3 and not w.isdigit()}
+
+def emparejar_por_nombre(built, grupos, titulo, log=None):
+    """Coloca cada temporada del scrapeo en la temporada GUARDADA cuyo nombre comparte
+    palabras distintivas con ella («Steel Ball Run» → «Parte 7: Steel Ball Run»). Se usa
+    cuando la estructura no cuadra: antes se colocaban por POSICIÓN y en JoJo el bloque
+    «JoJo (TV)» (Phantom Blood + Battle Tendency) caía en la Parte 1, Stardust Crusaders
+    en la Parte 2… y los servidores acababan en el episodio que no era.
+
+    · Las palabras que salen en casi todas las temporadas (el nombre del anime) no
+      cuentan; tampoco «temporada», «parte», «stage»…
+    · Hace falta un ganador claro; con empate o sin coincidencias, esa temporada se
+      marca «_descartar» y no toca nada.
+    · Si dos temporadas caen en la misma guardada (Stardust Crusaders y su Egypt-hen),
+      la segunda sigue la numeración de la primera."""
+    log = log or (lambda m: None)
+    por_sidx = {}
+    for b in built: por_sidx.setdefault(b.get("_sidx"), []).append(b)
+    textos = {i: (L[0].get("_stit") or str(L[0].get("season") or "")) for i, L in por_sidx.items()}
+    cuenta = {}
+    for t in textos.values():
+        for w in _palabras_temp(t): cuenta[w] = cuenta.get(w, 0) + 1
+    comunes = {w for w, c in cuenta.items() if c > max(1, len(textos) // 2)} | _palabras_temp(titulo) | _GENERICAS
+    pal_g = {g: _palabras_temp(g) - comunes for g in grupos}
+    destino = {}
+    for i, t in textos.items():
+        pb = _palabras_temp(t) - comunes
+        notas = sorted(((len(pb & pg), g) for g, pg in pal_g.items() if pb & pg), key=lambda x: -x[0])
+        if notas and (len(notas) == 1 or notas[0][0] > notas[1][0]):
+            destino[i] = notas[0][1]
+    desplaz = {}
+    for i in sorted(por_sidx, key=lambda x: (x is None, x or 0)):
+        L = por_sidx[i]
+        g = destino.get(i)
+        if not g:
+            for b in L: b["_descartar"] = True
+            log("  «%s»: no se parece a ninguna temporada guardada → no se toca" % (textos[i].split(" | ")[0][:60]))
+            continue
+        off = desplaz.get(g, 0)
+        mayor = 0
+        for b in L:
+            try: n = int(float(b.get("number")))
+            except (TypeError, ValueError): n = None
+            if n is not None and off:
+                b["number"] = n + off; b["_corrido"] = True; n += off
+            if n is not None: mayor = max(mayor, n)
+            b["season"] = g; b["_mapeado"] = True
+        desplaz[g] = max(off, mayor)
+        log("  «%s» → «%s»%s" % (textos[i].split(" | ")[0][:60], g, (" (sigue desde el %d)" % (off + 1)) if off else ""))
+    return destino
 
 def save(data, token, replace, log):
     aid = (data.get("aid") or "").strip().strip("/")
@@ -2525,8 +2672,11 @@ def save(data, token, replace, log):
                 + ", ".join(sorted(desconocidas)[:4])
                 + ". Solo se tocarán los episodios que ya existen (se les suman servidores); "
                   "no se crea ninguna temporada. Para reestructurarlo, usa «Reparar».")
+        if estructura_distinta and data.get("_update_only"):
+            emparejar_por_nombre(built, abiertos, data.get("real_title") or "", log)
         if data.get("_update_only") and groups:
             for b in built:
+                if b.get("_mapeado") or b.get("_descartar"): continue   # ya colocado por nombre
                 nombre_b = str(b.get("season", ""))
                 if nombre_b in groups: continue      # ya existe con ese nombre: se queda
                 m = re.match(r"^Temporada\s+(\d+)$", nombre_b)
@@ -2556,7 +2706,7 @@ def save(data, token, replace, log):
                     if continua:
                         # Temporada nueva en un anime que numera de corrido: sus
                         # episodios siguen desde el último, no vuelven a empezar en 1.
-                        try: b["number"] = tope_global + int(float(b.get("number")))
+                        try: b["number"] = tope_global + int(float(b.get("number"))); b["_corrido"] = True
                         except (TypeError, ValueError): pass
                 elif built_seasons_n <= 1 and not per_season_existing:
                     # Numeración CONTINUA (One Piece): el nº de episodio dice la temporada real.
@@ -2570,11 +2720,32 @@ def save(data, token, replace, log):
                     if continua and g in inicio_grupo:
                         # …y se pasa el número a la numeración de corrido del anime:
                         # «Temporada 2, episodio 1» es en realidad el episodio 13.
-                        try: b["number"] = inicio_grupo[g] + int(float(b.get("number"))) - 1
+                        try: b["number"] = inicio_grupo[g] + int(float(b.get("number"))) - 1; b["_corrido"] = True
                         except (TypeError, ValueError): pass
         if nuevas:
             log("Temporada(s) NUEVA(S) en este anime: " + ", ".join(sorted(nuevas))
                 + " — si debía ir a una ya existente, ponla en «Nombre temporada» y vuelve a guardar.")
+        # Temporada guardada de corrido aunque el resto del anime no lo esté: Tokyo
+        # Revengers tiene la T1-T3 numeradas 1..N cada una, pero la T4 va 51-54. Si
+        # lo scrapeado para una temporada que empieza más allá del 1 viene desde el 1
+        # (y no llega a solaparse), se pasa a la numeración guardada. Sin esto el
+        # «Temporada 4, ep 1» entraba como nuevo al lado del 51, que es el mismo.
+        if data.get("_update_only"):
+            inicio_ex = {}
+            for e in ex:
+                try: n_ = int(float(e.get("number")))
+                except (TypeError, ValueError): continue
+                inicio_ex[e.get("season")] = min(inicio_ex.get(e.get("season"), n_), n_)
+            for g, s0 in inicio_ex.items():
+                if s0 <= 1: continue
+                mios = [b for b in built if b.get("season") == g and not b.get("_corrido")]
+                try: nums = [int(float(b.get("number"))) for b in mios]
+                except (TypeError, ValueError): continue
+                if not nums or min(nums) != 1 or max(nums) >= s0: continue
+                for b in mios:
+                    b["number"] = s0 + int(float(b["number"])) - 1; b["_corrido"] = True
+                log("«%s» numera de corrido desde el %d: lo scrapeado (1-%d) pasa a %d-%d."
+                    % (g, s0, max(nums), s0, s0 + max(nums) - 1))
         # Red de seguridad: pase lo que pase, a una temporada cerrada no entra nada
         # que no estuviera ya en ella.
         if cerradas:
@@ -2585,52 +2756,58 @@ def save(data, token, replace, log):
                     b["season"] = last_group; movidos += 1
             if movidos: log(f"{movidos} episodios se movieron fuera de una temporada cerrada → «{last_group}».")
         idx = {f"{e.get('season')}|{e.get('number')}": e for e in ex}
-        added = replaced = sumados = con_extra = descartados = 0
+        added = replaced = sumados = con_extra = descartados = repuestos = 0
         for b in built:
+            if b.get("_descartar"):
+                # no se sabe a qué temporada va: ni se crea ni se toca nada existente
+                descartados += 1; continue
             k = f"{b['season']}|{b['number']}"
             if k in idx:
                 if replace:
                     # Al reemplazar, CONSERVA las subidas propias del usuario (Vidara/Filemoon/
                     # Streamwish) — por NOMBRE o por dominio del host. Nunca se borran. Se añaden
                     # las nuevas encima (sin duplicar por URL).
-                    def _is_user_upload(s):
-                        blob = (str(s.get("name", "")) + " " + str(s.get("url", ""))).lower()
-                        return bool(re.search(r"vidara|filemoon|file-moon|moonfile|streamwish|swish|sfastwish|bysekoze|kswplayer|wishonly|embedwish", blob))
-                    keep = [s for s in (idx[k].get("servers") or []) if _is_user_upload(s)]
+                    keep = [s for s in (idx[k].get("servers") or []) if es_subida_usuario(s)]
                     keep_urls = {s.get("url", "") for s in keep}
                     new_srv = [s for s in b["servers"] if s.get("url", "") not in keep_urls]
                     idx[k]["servers"] = prioritize(keep + new_srv); idx[k]["language"] = b["language"]
                     if b.get("img"): idx[k]["img"] = b["img"]
                     replaced += 1
                 else:
-                    # MODO AÑADIR, episodio que YA existe: antes no se hacía nada, así
-                    # que si venías a ponerle el Latino a episodios que ya estaban, no
-                    # entraba ninguno. Ahora se AÑADEN los servidores que faltan, al
-                    # final y sin tocar los que había: no se borra ni se reordena nada.
-                    ya = {s.get("url", "") for s in (idx[k].get("servers") or [])}
-                    extra = [s for s in (b.get("servers") or []) if s.get("url", "") and s.get("url") not in ya]
-                    if extra:
-                        idx[k]["servers"] = list(idx[k].get("servers") or []) + extra
-                        # El idioma del episodio se recalcula con lo que hay ahora.
+                    # MODO AÑADIR, episodio que YA existe. Reglas del usuario:
+                    #  · máximo MAX_POR_IDIOMA servidores por idioma (Sub, Latino…);
+                    #  · si ya tiene Sub Y Latino no se añade nada: solo se REEMPLAZA
+                    #    el que esté roto;
+                    #  · nunca un servidor repetido.
+                    # Antes este camino sumaba todo lo nuevo sin límite, y por eso
+                    # había episodios llenos de servidores repetidos.
+                    r = combinar_servidores(idx[k].get("servers") or [], b.get("servers") or [], log)
+                    if r["cambio"]:
+                        idx[k]["servers"] = r["servidores"]
                         idx[k]["language"] = ("Latino"
-                                              if any(s.get("lang") == "Latino" for s in idx[k]["servers"])
+                                              if any(s.get("lang") == "Latino" for s in r["servidores"])
                                               else idx[k].get("language", "Sub"))
-                        sumados += len(extra); con_extra += 1
-            elif estructura_distinta:
+                        sumados += r["anadidos"]; repuestos += r["repuestos"]; con_extra += 1
+            elif estructura_distinta and not b.get("_mapeado"):
                 # La estructura no cuadra: crear este episodio sería inventarse dónde
                 # va. Se descarta y se avisa, en vez de duplicar el anime.
                 descartados += 1
             else: ex.append(b); added += 1
-        for e in ex: e.pop("_sidx", None)       # dato interno: no va a Firestore
+        for e in ex:                            # datos internos: no van a Firestore
+            for k_ in INTERNOS: e.pop(k_, None)
         episodes = ex; doc = existing
         resumen = f"Existente: +{added} nuevos"
         if replace: resumen += f", {replaced} reemplazados"
-        elif sumados: resumen += f", +{sumados} servidores en {con_extra} episodios que ya estaban"
+        elif sumados or repuestos:
+            resumen += f", en {con_extra} episodios que ya estaban: +{sumados} servidores"
+            if repuestos: resumen += f" y {repuestos} rotos reemplazados"
         else: resumen += " (no se tocó lo demás)"
         if descartados: resumen += f" · {descartados} episodios descartados por no cuadrar con las temporadas de este anime"
         log(resumen)
     else:
         episodes = built
+        for e in episodes:                      # datos internos: no van a Firestore
+            for k_ in INTERNOS: e.pop(k_, None)
         doc = {"id": aid, "title": data["real_title"], "altTitles": [], "type": data.get("type", "TV"), "audio": data["audio"],
                "status": "Finalizado", "quality": "1080p", "year": info["year"], "creator": "", "genres": info["genres"],
                "tags": [], "seasons": len(data["seasons"]), "rating": 4.4, "ratingCount": 300, "contentWarning": "",
@@ -2699,6 +2876,114 @@ _MUERTO = re.compile(r"(?i)file (?:was )?(?:deleted|not found)|no longer availab
                      r"video (?:not found|has been removed)|does not exist|"
                      r"404 not found|removed for violat|no se ha encontrado|"
                      r"this video is unavailable")
+
+# Máximo de servidores por idioma en cada episodio (regla del usuario).
+MAX_POR_IDIOMA = 4
+
+def _host(url):
+    try: return urllib.parse.urlparse(str(url or "")).netloc.lower().replace("www.", "")
+    except Exception: return ""
+
+# Subidas PROPIAS del usuario (Vidara/Filemoon/Streamwish): nunca se borran, ni
+# se reemplazan, ni se recortan. Se reconocen por el nombre o por el dominio.
+_SUBIDA_USUARIO = re.compile(r"vidara|filemoon|file-moon|moonfile|streamwish|swish|sfastwish|bysekoze|"
+                             r"kswplayer|wishonly|embedwish", re.I)
+def es_subida_usuario(s):
+    return bool(_SUBIDA_USUARIO.search(str((s or {}).get("name", "")) + " " + str((s or {}).get("url", ""))))
+
+# Espejos MUERTOS de un host cuyo vídeo sigue vivo en otro dominio. sfastwish.com
+# pasó a ser un dominio aparcado (responde con una redirección a «/lander»), pero
+# el mismo código de vídeo carga en streamwish.to, que redirige al espejo vivo.
+_ESPEJOS_MUERTOS = ((re.compile(r"^https?://(?:www\.)?sfastwish\.com/", re.I), "https://streamwish.to/"),)
+def espejo_vivo(url):
+    for patron, nuevo in _ESPEJOS_MUERTOS:
+        if patron.match(url or ""): return patron.sub(nuevo, url, count=1)
+    return url
+
+def _idiomas(lang):
+    """«Sub | Dob» (subida con los dos audios) cuenta como Sub Y como Latino."""
+    l = str(lang or "Sub")
+    if "|" in l or "dob" in l.lower(): return {"Sub", "Latino"}
+    return {l}
+
+def combinar_servidores(actuales, nuevos, log=None, comprobar=None):
+    """Junta los servidores que YA tiene un episodio con los que trae un scrapeo,
+    siguiendo las reglas del usuario:
+
+      1. Máximo MAX_POR_IDIOMA por idioma.
+      2. Si el episodio YA tiene Sub y Latino, no se añade nada; solo se REEMPLAZA
+         un servidor que esté roto, por otro nuevo del MISMO idioma.
+      3. Si le falta un idioma, se rellena ese idioma hasta el máximo.
+      4. Nunca repetido: ni la misma URL, ni el mismo host dos veces en un idioma.
+
+    Los que ya estaban conservan su orden. Devuelve {servidores, anadidos, repuestos,
+    cambio}. `comprobar(url)` dice si un servidor sigue vivo (por defecto,
+    server_vivo); solo se llama cuando hace falta, porque cuesta una petición."""
+    comprobar = comprobar or server_vivo
+    log = log or (lambda m: None)
+    actuales = [dict(x) for x in (actuales or []) if x and x.get("url")]
+    urls = {x["url"] for x in actuales}
+    por_idioma = {}
+    for x in actuales:
+        por_idioma.setdefault(x.get("lang") or "Sub", []).append(x)
+    candidatos = {}
+    for x in (nuevos or []):
+        u = espejo_vivo((x or {}).get("url") or "")
+        if not u or u in urls: continue
+        candidatos.setdefault(x.get("lang") or "Sub", []).append(dict(x, url=u))
+
+    presentes = set()
+    for lang, lista in por_idioma.items():
+        if lista: presentes |= _idiomas(lang)
+    tiene_lat = "Latino" in presentes or "Castellano" in presentes
+    tiene_sub = "Sub" in presentes
+    anadidos = repuestos = 0
+
+    if tiene_lat and tiene_sub:
+        # Regla 2: el episodio está completo. Solo se cambia lo que esté roto.
+        for lang, lista in por_idioma.items():
+            reserva = list(candidatos.get(lang) or [])
+            for i, x in enumerate(lista):
+                if not reserva: break
+                if es_subida_usuario(x): continue    # lo suyo no se toca nunca
+                try: vivo = comprobar(x["url"])
+                except Exception: vivo = True        # ante la duda, se queda
+                if vivo: continue
+                hosts = {_host(y["url"]) for j, y in enumerate(lista) if j != i}
+                otro = next((c for c in reserva if _host(c["url"]) not in hosts), None)
+                if not otro: continue
+                reserva.remove(otro)
+                log("  servidor roto reemplazado: %s → %s" % (x.get("name") or _host(x["url"]),
+                                                              otro.get("name") or _host(otro["url"])))
+                lista[i] = otro; repuestos += 1
+    else:
+        # Regla 3: falta un idioma (o los hay a medias): se rellena hasta el máximo.
+        for lang, lista_nuevos in candidatos.items():
+            lista = por_idioma.setdefault(lang, [])
+            hosts = {_host(y["url"]) for y in lista}
+            for c in lista_nuevos:
+                if len(lista) >= MAX_POR_IDIOMA: break
+                h = _host(c["url"])
+                if h and h in hosts: continue
+                lista.append(c); hosts.add(h); anadidos += 1
+
+    # Regla 1, también para lo que ya hubiera: se recorta lo que se pase del máximo.
+    orden = [x.get("lang") or "Sub" for x in actuales]
+    idiomas = list(dict.fromkeys(orden + list(por_idioma)))
+    salida = []
+    for lang in idiomas:
+        lista = por_idioma.get(lang) or []
+        if len(lista) > MAX_POR_IDIOMA:
+            # se sobra: fuera los últimos que NO sean subidas del usuario
+            sobran = len(lista) - MAX_POR_IDIOMA
+            quitar = set()
+            for j in range(len(lista) - 1, -1, -1):
+                if sobran <= 0: break
+                if not es_subida_usuario(lista[j]): quitar.add(j); sobran -= 1
+            lista = [x for j, x in enumerate(lista) if j not in quitar]
+        salida += lista
+    cambio = bool(anadidos or repuestos) or [x["url"] for x in salida] != [x["url"] for x in actuales]
+    return {"servidores": salida, "anadidos": anadidos, "repuestos": repuestos, "cambio": cambio}
 
 def server_vivo(url, referer=None):
     """True si el enlace responde con algo reproducible. Ante la duda, True:

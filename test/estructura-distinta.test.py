@@ -70,8 +70,54 @@ p1 = [e for e in eps if e["season"] == "Parte 1: Phantom Blood"]
 check(len(p1) == 3, "la Parte 1 sigue con sus 3 episodios")
 urls1 = [s["url"] for s in p1[0]["servers"]]
 check("https://mega.nz/embed/A" in urls1, "el servidor que ya estaba sigue ahí")
-check(any("nuevo.com" in u for u in urls1), "al episodio 1 se le SUMÓ el servidor nuevo")
+check(not any("nuevo.com" in u for u in urls1),
+      "y como no se sabe a qué parte va el bloque de TMDB, no se le mete nada (antes iba por posición)")
 check(all("_sidx" not in e for e in eps), "el dato interno _sidx no se guarda")
 
-print("\n%d de 7 correctos" % (7 - fallos))
+
+# --- Emparejado por NOMBRE (títulos de AniList): JoJo real
+# Las 7 partes, como están guardadas (las que no importan aquí, con 2 episodios).
+OTRAS = ["Parte 1: Phantom Blood", "Parte 2: Battle Tendency", "Parte 4: Diamond is Unbreakable",
+         "Parte 5: Golden Wind", "Parte 6: Stone Ocean"]
+EXISTENTE = {"id": "jojo", "title": "JoJo", "episodes":
+    [{"number": n, "season": g, "language": "Latino",
+      "servers": [{"url": "https://mega.nz/embed/%s%d" % (g[:7], n), "name": "Mega", "lang": "Latino"}]}
+     for g in OTRAS for n in (1, 2)] +
+    [{"number": n, "season": "Parte 3: Stardust Crusaders", "language": "Latino",
+      "servers": [{"url": "https://mega.nz/embed/sc%d" % n, "name": "Mega", "lang": "Latino"}]} for n in range(1, 49)] +
+    [{"number": n, "season": "Parte 7: Steel Ball Run", "language": "Latino",
+      "servers": [{"url": "https://mega.nz/embed/sbr%d" % n, "name": "Mega", "lang": "Latino"}]} for n in range(1, 5)]}
+
+
+def T(sidx, tit, nombre, ns):
+    return [{"_sidx": sidx, "_stit": tit, "number": n, "season": nombre, "language": "Sub",
+             "servers": [{"url": "https://nuevo.com/%d/%d" % (sidx, n), "name": "Filemoon", "lang": "Sub"}]} for n in ns]
+
+
+CONSTRUIDO = (T(1, "JoJo no Kimyou na Bouken (TV) | JoJo's Bizarre Adventure (2012)",
+                "Sangre Fantasma & Tendencia de batalla", range(1, 27))
+              + T(2, "JoJo no Kimyou na Bouken: Stardust Crusaders | JoJo's Bizarre Adventure: Stardust Crusaders",
+                  "Stardust Crusaders", range(1, 25))
+              + T(3, "JoJo no Kimyou na Bouken: Stardust Crusaders - Egypt-hen | "
+                     "JoJo's Bizarre Adventure: Stardust Crusaders - Battle in Egypt", "Diamond Is Unbreakable", range(1, 25))
+              + T(4, "JoJo no Kimyou na Bouken: Steel Ball Run - 1st STAGE | "
+                     "JoJo no Kimyou na Bouken: Steel Ball Run - 2nd & 3rd STAGE", "Temporada 8", range(1, 7)))
+guardado.clear()
+data = {"aid": "jojo", "real_title": "JoJo's Bizarre Adventure", "episodes": copy.deepcopy(CONSTRUIDO),
+        "info": {"year": 2012, "genres": [], "description": "", "poster": "", "backdrop": "", "logo": ""},
+        "audio": "Latino", "seasons": [{"season": 1, "count": 5}], "_update_only": True}
+A.save(data, "tok", False, lambda m: print("   " + str(m)))
+eps = guardado.get("eps", [])
+sbr = sorted(e["number"] for e in eps if e["season"] == "Parte 7: Steel Ball Run")
+check(sbr == [1, 2, 3, 4, 5, 6], "Steel Ball Run: entran los episodios 5 y 6 nuevos en su parte (%s)" % sbr)
+check({str(e["season"]) for e in eps} == set(OTRAS) | {"Parte 3: Stardust Crusaders", "Parte 7: Steel Ball Run"},
+      "no se crea ninguna temporada (ni «Temporada 8» ni la de TMDB)")
+sc = {e["number"]: e for e in eps if e["season"] == "Parte 3: Stardust Crusaders"}
+check(len(sc) == 48, "Stardust Crusaders sigue con 48")
+check(any(x["url"].endswith("/3/1") for x in sc[25]["servers"]),
+      "el ep 1 de Egypt-hen va al 25 de Stardust Crusaders (sigue la numeración)")
+check(not any(x["url"].endswith("/3/1") for x in sc[1]["servers"]), "y no al 1")
+check(all(not k.startswith("_") for e in eps for k in e), "ningún dato interno se guarda")
+
+print("\n%d de %d correctos" % (13 - fallos, 13))
 sys.exit(1 if fallos else 0)

@@ -1361,12 +1361,36 @@ $(document).ready(function () {
         const y = desde.get(e.season);
         if (y == null || n < y) desde.set(e.season, n);
       });
-      return [...new Set(eps.map((e) => e.season))].sort((a, b) => {
-        const na = desde.has(a) ? desde.get(a) : Infinity;
-        const nb = desde.has(b) ? desde.get(b) : Infinity;
-        if (na !== nb) return na - nb;
-        return String(a).localeCompare(String(b), undefined, { numeric: true });
+      const lista = [...new Set(eps.map((e) => e.season))];
+      // Las temporadas que llevan su número en el nombre («Temporada 4: The Calamity»,
+      // «Parte 3: Stardust Crusaders») se ordenan por ese número. Ordenar por el
+      // episodio más bajo falla cuando un anime mezcla numeración de corrido con una
+      // temporada que vuelve a empezar en 1: le pasó a Bleach TYBW, cuya temporada 4
+      // salía la segunda. Las que no tienen número (los arcos de One Piece, el «Bridon
+      // Arc» de Link Click, una película) van detrás de la última temporada numerada
+      // que empieza antes que ellas; si no hay ninguna, por su primer episodio.
+      const numeroDe = (s) => {
+        const m = String(s || "").match(/^(?:temporada|parte|season|part)\s*(\d+)/i);
+        return m ? parseInt(m[1], 10) : null;
+      };
+      const primero = (s) => (desde.has(s) ? desde.get(s) : Infinity);
+      const porNombre = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
+      const numeradas = lista.filter((s) => numeroDe(s) != null)
+        .sort((a, b) => (numeroDe(a) - numeroDe(b)) || (primero(a) - primero(b)) || porNombre(a, b));
+      const hueco = (s) => {
+        let k = -1;
+        numeradas.forEach((n, j) => { if (primero(n) <= primero(s)) k = j; });
+        return k;
+      };
+      const sueltas = lista.filter((s) => numeroDe(s) == null)
+        .sort((a, b) => (hueco(a) - hueco(b)) || (primero(a) - primero(b)) || porNombre(a, b));
+      const orden = [];
+      sueltas.filter((s) => hueco(s) < 0).forEach((s) => orden.push(s));
+      numeradas.forEach((n, j) => {
+        orden.push(n);
+        sueltas.filter((s) => hueco(s) === j).forEach((s) => orden.push(s));
       });
+      return orden;
     })();
     if (seasons.length > 0) {
       seasonSelect.empty();
