@@ -119,5 +119,26 @@ check(any(x["url"].endswith("/3/1") for x in sc[25]["servers"]),
 check(not any(x["url"].endswith("/3/1") for x in sc[1]["servers"]), "y no al 1")
 check(all(not k.startswith("_") for e in eps for k in e), "ningún dato interno se guarda")
 
-print("\n%d de %d correctos" % (13 - fallos, 13))
+
+# --- Avatar: Los Siete Refugios. Guardado como «Temporada 1» (6 eps); TMDB la llama
+# «Libro 1: Supervivencia» y ya hay 12. Los nuevos deben entrar en la Temporada 1.
+EXISTENTE = {"id": "avatar", "title": "Avatar", "episodes": [
+    {"number": n, "season": "Temporada 1", "language": "Latino",
+     "servers": [{"url": "https://embed69.org/f/tt35854736-1x%02d/" % n, "name": "PelisPlus", "lang": "Latino"}]}
+    for n in range(1, 7)]}
+guardado.clear()
+data = {"aid": "avatar", "real_title": "Avatar: Los Siete Refugios",
+        "episodes": [{"_sidx": 1, "_stit": "Avatar: Seven Havens", "number": n, "season": "Libro 1: Supervivencia",
+                      "language": "Latino",
+                      "servers": [{"url": "https://embed69.org/f/tt35854736-1x%02d/" % n, "name": "PelisPlus",
+                                   "lang": "Latino"}]} for n in range(1, 13)],
+        "info": {"year": 2026, "genres": [], "description": "", "poster": "", "backdrop": "", "logo": ""},
+        "audio": "Latino", "seasons": [{"season": 1, "count": 12}], "_update_only": True}
+A.save(data, "tok", False, lambda m: print("   " + str(m)))
+eps = guardado.get("eps", [])
+check(sorted(e["number"] for e in eps if e["season"] == "Temporada 1") == list(range(1, 13)),
+      "Avatar: entran los episodios 7-12 en la «Temporada 1»")
+check({e["season"] for e in eps} == {"Temporada 1"}, "y no se crea «Libro 1: Supervivencia»")
+
+print("\n%d de %d correctos" % (15 - fallos, 15))
 sys.exit(1 if fallos else 0)

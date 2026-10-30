@@ -2574,6 +2574,12 @@ def emparejar_por_nombre(built, grupos, titulo, log=None):
         notas = sorted(((len(pb & pg), g) for g, pg in pal_g.items() if pb & pg), key=lambda x: -x[0])
         if notas and (len(notas) == 1 or notas[0][0] > notas[1][0]):
             destino[i] = notas[0][1]
+        elif isinstance(i, int) and ("Temporada %d" % i) in grupos:
+            # Sin parecido por nombre, pero la guardada se llama «Temporada N» a secas
+            # y ocupa la misma posición: es esa. Avatar: Los Siete Refugios está como
+            # «Temporada 1» y TMDB la llama «Libro 1: Supervivencia»; sin esto se
+            # descartaban todos sus episodios nuevos.
+            destino[i] = "Temporada %d" % i
     desplaz = {}
     for i in sorted(por_sidx, key=lambda x: (x is None, x or 0)):
         L = por_sidx[i]
