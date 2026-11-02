@@ -1743,16 +1743,24 @@ $(document).ready(function () {
         : " Horarios de Colombia.");
     }
 
+    // La barra funciona como pestañas: se ve UN día, y al entrar es el de hoy.
+    // Antes salía la semana entera empezando por el lunes y lo de hoy quedaba
+    // abajo, a varios pantallazos.
     railEl.innerHTML = DIAS.map((d, i) => `
-        <button type="button" class="cal-day-btn${i === hoyIdx ? " is-today" : ""}${porDia[i].length ? "" : " is-empty"}" data-day="${i}">
+        <button type="button" class="cal-day-btn${i === hoyIdx ? " is-today is-active" : ""}${porDia[i].length ? "" : " is-empty"}" data-day="${i}" aria-pressed="${i === hoyIdx}">
             <span class="d-name">${DIAS_CORTO[i]}</span>
             <span class="d-count">${porDia[i].length || "–"}</span>
         </button>`).join("");
-    railEl.querySelectorAll(".cal-day-btn").forEach((b) => {
-      b.addEventListener("click", () => {
-        const sec = document.getElementById("cal-d" + b.dataset.day);
-        if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+    const verDia = (dia) => {
+      railEl.querySelectorAll(".cal-day-btn").forEach((b) => {
+        const si = b.dataset.day === String(dia);
+        b.classList.toggle("is-active", si);
+        b.setAttribute("aria-pressed", si);
       });
+      daysEl.querySelectorAll(".cal-day").forEach((sec) => { sec.hidden = sec.id !== "cal-d" + dia; });
+    };
+    railEl.querySelectorAll(".cal-day-btn").forEach((b) => {
+      b.addEventListener("click", () => verDia(b.dataset.day));
     });
 
     // 3) Un bloque por día
@@ -1762,7 +1770,7 @@ $(document).ready(function () {
         ? `<div class="cal-grid">${lista.map(calCardHtml).join("")}</div>`
         : `<p class="cal-empty">Sin estrenos este día.</p>`;
       return `
-        <section class="cal-day${i === hoyIdx ? " today" : ""}" id="cal-d${i}">
+        <section class="cal-day${i === hoyIdx ? " today" : ""}" id="cal-d${i}"${i === hoyIdx ? "" : " hidden"}>
             <div class="cal-day-head">
                 <h2>${nombre}</h2>
                 ${i === hoyIdx ? '<span class="hoy">HOY</span>' : ""}
@@ -1772,11 +1780,12 @@ $(document).ready(function () {
         </section>`;
     }).join("");
 
-    // Los que aún no se han estrenado no abren el reproductor.
-    daysEl.querySelectorAll(".cal-card.locked").forEach((c) => {
-      c.addEventListener("click", (e) => {
+    // Los que aún no se han estrenado no abren el reproductor (la ficha del
+    // anime, desde su título, sí se puede abrir).
+    daysEl.querySelectorAll(".cal-card.locked .cal-to-ep").forEach((a) => {
+      a.addEventListener("click", (e) => {
         e.preventDefault();
-        showToast(`🔒 Se estrena ${c.dataset.when}.`, "info");
+        showToast(`🔒 Se estrena ${a.dataset.when}.`, "info");
       });
     });
 
@@ -1810,22 +1819,28 @@ $(document).ready(function () {
 
     const img = episode.img || anime.heroImg || anime.img || "";
     const link = `anime-details.html?id=${anime.id}&season=${encodeURIComponent(episode.season)}&episode=${episode.number}`;
+    const ficha = `anime-details.html?id=${encodeURIComponent(anime.id)}`;
+    // La imagen y el episodio llevan al episodio; el TÍTULO lleva a la ficha del
+    // anime. Por eso la tarjeta ya no es un único enlace (no se pueden anidar).
+    const alEp = `class="cal-to-ep" href="${locked ? "#" : link}"${locked ? ` data-when="${esc(whenText(episode))}"` : ""}`;
     return `
-      <a class="cal-card${locked ? " locked" : ""}" href="${locked ? "#" : link}"${locked ? ` data-when="${esc(whenText(episode))}"` : ""}>
-          <div class="cal-thumb">
-              <img src="${esc(img)}" alt="${esc(anime.title)}" loading="lazy" decoding="async">
-              ${hora ? `<span class="cal-time">${hora}</span>` : ""}
-              <span class="cal-state ${clase}">${esc(texto)}</span>
-          </div>
+      <div class="cal-card${locked ? " locked" : ""}">
+          <a ${alEp} tabindex="-1" aria-hidden="true">
+              <div class="cal-thumb">
+                  <img src="${esc(img)}" alt="" loading="lazy" decoding="async">
+                  ${hora ? `<span class="cal-time">${hora}</span>` : ""}
+                  <span class="cal-state ${clase}">${esc(texto)}</span>
+              </div>
+          </a>
           <div class="cal-info">
-              <p class="cal-anime">${esc(anime.title)}</p>
-              <p class="cal-ep"><b>E${episode.number}</b>${episode.title ? " · " + esc(episode.title) : ""}</p>
+              <a class="cal-anime" href="${ficha}" title="Ver ${esc(anime.title)}">${esc(anime.title)}</a>
+              <a ${alEp.replace('class="cal-to-ep"', 'class="cal-ep cal-to-ep"')}><b>E${episode.number}</b>${episode.title ? " · " + esc(episode.title) : ""}</a>
               <div class="cal-tags">
                   <span class="cal-tag">${esc(episode.language || anime.audio || "Sub")}</span>
                   ${episode.duration ? `<span class="cal-tag">${esc(episode.duration)}</span>` : ""}
               </div>
           </div>
-      </a>`;
+      </div>`;
   }
 
   // --- EVENTOS GLOBALES Y DE NAVEGACIÓN ---
