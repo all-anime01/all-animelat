@@ -389,7 +389,13 @@ def save_big_doc(aid, doc, episodes, token, log):
     return True, ""
 
 # ------------------------------------------------------------------ util
-def norm(s): return re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).strip()
+_ROMANOS = {"ii": "2", "iii": "3", "iv": "4"}
+def norm(s):
+    """Minúsculas y solo letras/números. El apóstrofo se quita sin dejar hueco
+    («Mourner's» → «mourners», como en los slugs) y los romanos II-IV pasan a cifra
+    («Long Zu 2» = «long-zu-ii-…»)."""
+    t = re.sub(r"[^a-z0-9]+", " ", re.sub(r"['’`]", "", (s or "").lower())).strip()
+    return " ".join(_ROMANOS.get(w, w) for w in t.split())
 def dec_ent(s): return (s or "").replace("&#39;", "'").replace("&quot;", '"').replace("&amp;", "&").strip()
 def slugify(s):
     s = unicodedata.normalize("NFD", s or "").encode("ascii", "ignore").decode()
@@ -1145,7 +1151,10 @@ def jk_servers(slug, n):
 def sin_tanda(title):
     """Quita la «tanda» final que los sitios no ponen en el slug: «Steel Ball Run -
     1st STAGE» se publica como un solo anime, «steel-ball-run-…»."""
-    return re.sub(r"(?i)\s*[-–—:]\s*[^-–—:]*\bstages?\b.*$", "", title or "").strip() or title
+    t = re.sub(r"(?i)\s*[-–—:]\s*[^-–—:]*\bstages?\b.*$", "", title or "").strip() or title
+    # «Part 1» / «Cour 1» final: la primera parte ES la temporada, y los sitios no lo
+    # ponen en el slug («Shiguang Dailiren III Part 1» = «shiguang-dailiren-iii»).
+    return re.sub(r"(?i)\s+(?:part|parte|cour)\s*0*1$", "", t).strip() or t
 def av1_search(title):
     want = sin_tanda(title)
     for q in search_variants(want):
@@ -1215,9 +1224,17 @@ def get_text_puente(url, referer=None, worker=None):
     return h
 
 def alhd_search(title):
-    """Slug de animelatinohd que mejor coincide con el título."""
+    """Slug de animelatinohd que mejor coincide con el título. Se prueban las mismas
+    variantes que en las demás fuentes: con el título entero («Dragon Raja II -The
+    Mourner's Eyes-») su buscador no devolvía nada."""
+    for q in search_variants(sin_tanda(title)):
+        r = _alhd_search_una(q, title)
+        if r: return r
+    return None
+
+def _alhd_search_una(q, title):
     try:
-        h = get_text_puente(f"{ALHD}/directorio?search={urllib.parse.quote(title)}", referer=ALHD + "/")
+        h = get_text_puente(f"{ALHD}/directorio?search={urllib.parse.quote(q)}", referer=ALHD + "/")
     except Exception:
         return None
     t = h.replace('\\"', '"')
@@ -1255,12 +1272,50 @@ def alhd_servers(slug, n):
     out, seen = [], set()
     for pl in arr:
         u = str(pl.get("bridge_url") or "").strip()
-        if not u.startswith("http") or u in seen: continue
-        seen.add(u)
+        if not u.startswith("http"): continue
         lang = _ALHD_LANG.get(str(pl.get("language", "")).upper(), "Sub")
-        sv = str(pl.get("server_name") or "Player").strip()
-        out.append({"url": u, "name": f"AnimeLatinoHD {sv}", "lang": lang, "desc": ""})
+        # El bridge_url es el reproductor PROPIO del sitio (website.animelatinohd.com/v/…),
+        # que solo envuelve un <iframe> con el servidor de verdad. Se guarda ese.
+        real = alhd_real(u, f"{ALHD}/ver/{slug}/{n}")
+        if not real or real in seen: continue
+        seen.add(real)
+        out.append({"url": real, "name": nm_por_pagina(real), "lang": lang, "desc": ""})
     return out
+
+_NOMBRE_EN_PAGINA = (("voe", "VOE"), ("streamwish", "Streamwish"), ("filemoon", "Filemoon"),
+                     ("vidhide", "VidHide"), ("lulustream", "Lulustream"), ("doodstream", "Doodstream"),
+                     ("mp4upload", "Mp4upload"), ("streamtape", "Streamtape"), ("uqload", "Uqload"))
+_cache_nombre = {}
+def nm_por_pagina(url):
+    """Como nm(), pero si el dominio no se conoce mira el título de la página. VOE
+    cambia de dominio cada poco (shannoncoldalready.com…) y salía como «Servidor»."""
+    n = nm(url)
+    if n != "Servidor": return n
+    host = _host(url)
+    if host in _cache_nombre: return _cache_nombre[host]
+    try:
+        st, h = http(url, timeout=15)
+        tit = (re.search(r"<title>([^<]*)", h or "", re.I) or [None, ""])[1].lower()
+    except Exception:
+        tit = ""
+    n = next((v for k, v in _NOMBRE_EN_PAGINA if k in tit), "Servidor")
+    _cache_nombre[host] = n
+    return n
+
+def alhd_real(bridge, referer=None):
+    """URL del servidor que hay dentro de la página puente de animelatinohd."""
+    try:
+        st, h = http(bridge, referer=referer or ALHD + "/", timeout=20)
+        if st != 200 or not h or _MURO.search(h[:4000]):
+            h = get_text_puente(bridge, referer=referer or ALHD + "/")
+    except Exception:
+        return None
+    for src in re.findall(r'<iframe[^>]+src="([^"]+)"', h or ""):
+        src = src.replace("&amp;", "&").strip()
+        if src.startswith("//"): src = "https:" + src
+        if src.startswith("http") and "animelatinohd" not in src and "cloudflare" not in src:
+            return espejo_vivo(src)
+    return None
 
 # ------------------------------------------------------------------ porygonsubs (Pokémon)
 # porygonsubs.com publica del MISMO episodio el Sub Español y el AUDIO LATINO. Cada botón
@@ -2211,17 +2266,28 @@ def build_episodes(data, opts, log, prog, on_ep):
         # Tokyo Ghoul √A / :re, Megalo Box Nomad, InuYasha Final Act), busca el slug de cada
         # temporada por su TÍTULO de AniList → capta esas secuelas que el patrón no ve.
         al = data.get("anilist") or []
+        def por_titulos(fn, c, base=None, idx=0):
+            """Busca la temporada con CADA título que da AniList (romaji, inglés…), no
+            solo el primero. Dragon Raja 2 se llama «Long Zu 2» en romaji y en las
+            fuentes es «long-zu-ii-…» o «dragon-raja-ii-the-mourners-eyes»: solo el
+            título inglés («Dragon Raja II -The Mourner's Eyes-») la encuentra."""
+            if not c: return None
+            vistos = set()
+            for t in (c.get("romaji"), c.get("english"), c.get("title")):
+                t = (t or "").strip()
+                if not t or t.lower() in vistos: continue
+                vistos.add(t.lower())
+                try: r = fn(t)
+                except Exception: r = None
+                # el buscador cae al slug BASE cuando la secuela no existe en esa
+                # fuente: en temporadas > 1 es un falso positivo.
+                if r and not (idx > 0 and base and r == base): return r
+            return None
         if not src_slug and len(al) > max(len(jk_list), len(av_list), 1):
             jk_al, av_al = [], []
             for idx, c in enumerate(al):
-                t = (c.get("romaji") or c.get("title") or c.get("english") or "").strip()
-                j = jk_search(t) if (opts["jk"] and t) else None
-                a = av1_search(t) if (opts["av1"] and t) else None
-                # el buscador cae al slug BASE cuando la secuela no existe en esa fuente →
-                # en temporadas > 1 eso es un FALSO match: descártalo (evita duplicar la T1).
-                if idx > 0:
-                    if j and j == base_jk: j = None
-                    if a and a == base_av: a = None
+                j = por_titulos(jk_search, c, base_jk, idx) if opts["jk"] else None
+                a = por_titulos(av1_search, c, base_av, idx) if opts["av1"] else None
                 jk_al.append(j); av_al.append(a)
             if len([x for x in jk_al if x]) >= len([x for x in jk_list if x]) or \
                len([x for x in av_al if x]) >= len([x for x in av_list if x]):
@@ -2240,28 +2306,23 @@ def build_episodes(data, opts, log, prog, on_ep):
                 e69s = tmdb_seasons[i]["season"] if i < len(tmdb_seasons) else (i + 1)
                 yt = None
                 if opts.get("yt"):
-                    t = (al[i].get("romaji") or al[i].get("title") or al[i].get("english")) if i < len(al) else None
-                    try: yt = yt_search(t) if t else (yt_search(title) if i == 0 else None)
-                    except Exception: yt = None
+                    if i < len(al): yt = por_titulos(yt_search, al[i])
+                    elif i == 0:
+                        try: yt = yt_search(title)
+                        except Exception: yt = None
                 tn = tmdb_seasons[i].get("nombre") if i < len(tmdb_seasons) else ""
                 # animelatinohd también separa por temporada: se busca su slug con
                 # el título de esa temporada según AniList.
                 al_slug = None
                 if opts.get("alhd"):
-                    t_al = (al[i].get("romaji") or al[i].get("english") or al[i].get("title")) if i < len(al) else None
-                    try: al_slug = alhd_search(t_al) if t_al else None
-                    except Exception: al_slug = None
-                    if i > 0 and al_slug and al_slug == base_alhd: al_slug = None
+                    al_slug = por_titulos(alhd_search, al[i], base_alhd, i) if i < len(al) else None
                 # henaojara también publica cada temporada con su slug («tokyo-revengers-
                 # seiya-kessen-hen», «steel-ball-run-jojo-no-kimyou-na-bouken»). Con el
                 # slug general se pedía el episodio por su número de corrido, y en esos
                 # slugs no existe: la temporada se quedaba sin henaojara.
                 hj_slug = None
                 if opts.get("hj") and i < len(al):
-                    t_hj = al[i].get("romaji") or al[i].get("english") or al[i].get("title")
-                    try: hj_slug = hj_search(t_hj) if t_hj else None
-                    except Exception: hj_slug = None
-                    if i > 0 and hj_slug and hj_slug == base_hj: hj_slug = None
+                    hj_slug = por_titulos(hj_search, al[i], base_hj, i)
                 al_tit = " | ".join(x for x in ((al[i].get("romaji"), al[i].get("english"), al[i].get("title"))
                                                 if i < len(al) else ()) if x)
                 # TOPE de la temporada. Abierto (400) solo para la ÚLTIMA, que es la
@@ -2561,7 +2622,8 @@ def emparejar_por_nombre(built, grupos, titulo, log=None):
       la segunda sigue la numeración de la primera."""
     log = log or (lambda m: None)
     por_sidx = {}
-    for b in built: por_sidx.setdefault(b.get("_sidx"), []).append(b)
+    for b in built:
+        if not b.get("_mapeado"): por_sidx.setdefault(b.get("_sidx"), []).append(b)
     textos = {i: (L[0].get("_stit") or str(L[0].get("season") or "")) for i, L in por_sidx.items()}
     cuenta = {}
     for t in textos.values():
@@ -2678,6 +2740,30 @@ def save(data, token, replace, log):
                 + ", ".join(sorted(desconocidas)[:4])
                 + ". Solo se tocarán los episodios que ya existen (se les suman servidores); "
                   "no se crea ninguna temporada. Para reestructurarlo, usa «Reparar».")
+        # Temporadas del scrapeo que SON una temporada cerrada. Link Click: AniList
+        # cuenta el «Bridon Arc» como su tercera temporada y la «Season 3» como la
+        # cuarta. Como el arco está cerrado no entra en el reparto por posición, y la
+        # Season 3 caía en una «Temporada 4» nueva, duplicando la que ya había. Se
+        # apartan por NOMBRE a su temporada y las demás se numeran sin contarlas.
+        pos_ajustada = {}
+        if cerradas and data.get("_update_only"):
+            sidxs = sorted({b.get("_sidx") for b in built if isinstance(b.get("_sidx"), int)})
+            quitar = _GENERICAS | _palabras_temp(data.get("real_title") or "")
+            a_cerrada = {}
+            for i in sidxs:
+                tit = next((b.get("_stit") for b in built if b.get("_sidx") == i), "") or ""
+                pb = _palabras_temp(tit) - quitar
+                for g in cerradas:
+                    if pb & (_palabras_temp(g) - quitar): a_cerrada[i] = g
+            k = 0
+            for i in sidxs:
+                if i in a_cerrada:
+                    for b in built:
+                        if b.get("_sidx") == i: b["season"] = a_cerrada[i]; b["_mapeado"] = True
+                    log("«%s» es la temporada cerrada «%s»: no cuenta para repartir el resto."
+                        % (next((b.get("_stit") for b in built if b.get("_sidx") == i), "").split(" | ")[0], a_cerrada[i]))
+                else:
+                    k += 1; pos_ajustada[i] = k
         if estructura_distinta and data.get("_update_only"):
             emparejar_por_nombre(built, abiertos, data.get("real_title") or "", log)
         if data.get("_update_only") and groups:
@@ -2694,7 +2780,7 @@ def save(data, token, replace, log):
                     if estructura_distinta and idx_b and 1 <= idx_b <= len(abiertos):
                         b["season"] = abiertos[idx_b - 1]
                     continue
-                idx_s = int(m.group(1))
+                idx_s = pos_ajustada.get(b.get("_sidx"), int(m.group(1)))
                 if destino and built_seasons_n <= 1:
                     # El anime declara DÓNDE va lo nuevo: manda eso por encima de todo.
                     # Sin esto, el episodio nuevo de Link Click caía en la «Temporada 1».
