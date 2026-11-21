@@ -9,6 +9,8 @@ sitio y además CADUCA. Guardado tal cual, en el reproductor daba error. Reglas:
      el MISMO reproductor (Gamma/Delta/Epsilon) y el MISMO idioma.
   3. Lo que no es puente no se toca; no quedan URLs repetidas.
   4. Si no hay forma de arreglarlo y el episodio se quedaría vacío, no se borra.
+  5. Si el episodio NO se pudo bajar (429, Cloudflare) o vino a medias, el puente
+     se deja: un fallo de conexión nunca borra servidores.
 
   python test/puentes-animelatinohd.test.py
 """
@@ -32,12 +34,16 @@ CADUCADO = P + "token-caducado"
 A.alhd_real = lambda u, referer=None: "https://byseraguci.com/e/vivo1" if u == VIVO else None
 A.nm_por_pagina = lambda u: A.nm(u) if A.nm(u) != "Servidor" else "VOE"
 pedidos = []
-def players(slug, n):
+RESPUESTA = {"modo": "ok"}
+def episodio(slug, n):
     pedidos.append((slug, int(n)))
-    return [{"url": "https://caseyseemavoid.com/e/lat-g", "name": "VOE", "lang": "Latino", "desc": "", "player": "Gamma"},
+    if RESPUESTA["modo"] == "falla": return None
+    if RESPUESTA["modo"] == "a-medias": return (False, [])
+    return (True, [{"url": "https://caseyseemavoid.com/e/lat-g", "name": "VOE", "lang": "Latino", "desc": "", "player": "Gamma"},
             {"url": "https://lplaygo.com/e/lat-e", "name": "Lulustream", "lang": "Latino", "desc": "", "player": "Epsilon"},
-            {"url": "https://byseraguci.com/e/sub-d", "name": "Filemoon", "lang": "Sub", "desc": "", "player": "Delta"}]
-A.alhd_players = players
+            {"url": "https://byseraguci.com/e/sub-d", "name": "Filemoon", "lang": "Sub", "desc": "", "player": "Delta"}])
+A.alhd_episodio = episodio
+A.time.sleep = lambda s: None            # sin esperas de reintento en la prueba
 A._cache_players.clear()
 
 check(A.es_puente_alhd(VIVO) and not A.es_puente_alhd("https://voe.sx/e/x"), "reconoce los puentes")
@@ -63,6 +69,16 @@ check(not any(A.es_puente_alhd(u) for u in urls), "3. no queda ningún puente")
 
 solo = [{"url": CADUCADO, "name": "AnimeLatinoHD Gamma", "lang": "Castellano"}]
 check(A.resolver_puentes_alhd(solo) == solo, "4. sin arreglo posible y sin más servidores: no se vacía")
+
+check(A.resolver_puentes_alhd(solo + [propio]) == [propio],
+      "4. el idioma ya no existe en el episodio: el puente sí se quita")
+
+for modo in ("falla", "a-medias"):
+    A._cache_players.clear(); RESPUESTA["modo"] = modo
+    ep = [propio, {"url": CADUCADO, "name": "AnimeLatinoHD Gamma", "lang": "Latino"}]
+    check(A.resolver_puentes_alhd(ep) == ep, "5. episodio %s: el puente se deja tal cual" % modo)
+    if modo == "falla":
+        check(("mi-anime", 3) not in A._cache_players, "5. un fallo de red no se guarda en caché")
 
 print("\n%d/%d bien" % (total - fallos, total))
 sys.exit(1 if fallos else 0)

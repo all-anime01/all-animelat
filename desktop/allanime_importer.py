@@ -1268,15 +1268,25 @@ def alhd_players(slug, n):
     """Como alhd_servers, pero cada servidor lleva además "player": el nombre que le
     da animelatinohd (Gamma, Delta, Epsilon…). Sirve para cambiar un puente caducado
     por el MISMO servidor recién sacado."""
-    if not slug: return []
+    r = alhd_episodio(slug, n)
+    return r[1] if r else []
+
+def alhd_episodio(slug, n):
+    """(completo, servidores) del episodio, o None si la página NO se pudo bajar
+    (429, muro de Cloudflare…). «completo» es False si algún puente del episodio no
+    se pudo abrir: entonces la lista puede estar a medias. Distinguir esto es lo que
+    evita borrar servidores buenos cuando el fallo es solo de la conexión."""
+    if not slug: return None
     try: h = get_text_puente(f"{ALHD}/ver/{slug}/{n}", referer=f"{ALHD}/anime/{slug}")
-    except Exception: return []
-    t = h.replace('\\"', '"')
-    m = re.search(r'"players":(\[[\s\S]*?\}\])', t)
-    if not m: return []
-    try: arr = json.loads(m.group(1))
-    except Exception: return []
-    out, seen = [], set()
+    except Exception: return None
+    t = (h or "").replace('\\"', '"')
+    if '"players":' not in t: return None
+    m = re.search(r'"players":(\[[\s\S]*?\])(?=,"|\})', t) or re.search(r'"players":(\[[\s\S]*?\}\])', t)
+    try: arr = json.loads(m.group(1)) if m else []
+    except Exception:
+        try: arr = json.loads(re.search(r'"players":(\[[\s\S]*?\}\])', t).group(1))
+        except Exception: return None
+    out, seen, completo = [], set(), True
     for pl in arr:
         u = str(pl.get("bridge_url") or "").strip()
         if not u.startswith("http"): continue
@@ -1284,11 +1294,12 @@ def alhd_players(slug, n):
         # El bridge_url es el reproductor PROPIO del sitio (website.animelatinohd.com/v/…),
         # que solo envuelve un <iframe> con el servidor de verdad. Se guarda ese.
         real = alhd_real(u, f"{ALHD}/ver/{slug}/{n}")
-        if not real or real in seen: continue
+        if not real: completo = False; continue
+        if real in seen: continue
         seen.add(real)
         out.append({"url": real, "name": nm_por_pagina(real), "lang": lang, "desc": "",
                     "player": str(pl.get("server_name") or "")})
-    return out
+    return completo, out
 
 _NOMBRE_EN_PAGINA = (("voe", "VOE"), ("streamwish", "Streamwish"), ("filemoon", "Filemoon"),
                      ("vidhide", "VidHide"), ("lulustream", "Lulustream"), ("doodstream", "Doodstream"),
@@ -1323,12 +1334,22 @@ def es_puente_alhd(url):
 _PUENTE_EP = re.compile(r"/v/([a-z0-9-]+?)-episodio-(\d+)(?:/|$)", re.I)
 _cache_players = {}
 def _players_cache(slug, n):
+    """alhd_episodio con caché y reintentos. None = no se pudo saber (no se cachea)."""
     k = (slug, int(n))
-    if k not in _cache_players: _cache_players[k] = alhd_players(slug, n)
-    return _cache_players[k]
+    if k in _cache_players: return _cache_players[k]
+    for espera in (0, 8, 20):
+        if espera: time.sleep(espera)
+        r = alhd_episodio(slug, n)
+        if r and r[0]:
+            _cache_players[k] = r; return r
+    if r: _cache_players[k] = r          # a medias: se usa, pero sin borrar nada
+    return r
+
+PENDIENTE = object()   # «no se pudo comprobar»: el puente se deja para otra pasada
 
 def real_de_puente(srv, usados=()):
-    """Servidor real {url, name} para un puente de animelatinohd, o None.
+    """Servidor real {url, name} para un puente de animelatinohd; None si el sitio ya
+    no tiene ese idioma en el episodio; PENDIENTE si no se pudo comprobar.
     Los puentes CADUCAN («El enlace ha expirado»): si el guardado ya no abre, se
     vuelve a pedir el episodio (slug y nº van en la propia URL del puente) y se toma
     el mismo reproductor (Gamma/Delta/Epsilon) del mismo idioma; si ya no está,
@@ -1337,26 +1358,34 @@ def real_de_puente(srv, usados=()):
     real = alhd_real(u)
     if real: return {"url": real, "name": nm_por_pagina(real)}
     m = _PUENTE_EP.search(u)
-    if not m: return None
-    frescos = _players_cache(m.group(1).lower(), m.group(2))
+    if not m: return PENDIENTE
+    r = _players_cache(m.group(1).lower(), m.group(2))
+    if not r: return PENDIENTE
+    completo, frescos = r
     lang = srv.get("lang") or "Sub"
     jugador = re.sub(r"(?i)^animelatinohd\s*", "", str(srv.get("name") or "")).strip().lower()
     del_idioma = [f for f in frescos if f["lang"] == lang and f["url"] not in usados]
     elegido = next((f for f in del_idioma if f["player"].lower() == jugador), None)
     elegido = elegido or (del_idioma[0] if del_idioma else None)
-    return {"url": elegido["url"], "name": elegido["name"]} if elegido else None
+    if elegido: return {"url": elegido["url"], "name": elegido["name"]}
+    return None if completo else PENDIENTE
 
 def resolver_puentes_alhd(servidores, log=None):
     """Cambia cada puente de animelatinohd por el servidor real (VOE, Filemoon,
     Lulustream…), con su nombre de verdad y el mismo idioma. El que no se pueda
     resolver se quita (en nuestro reproductor nunca abre), salvo que el episodio
-    se fuese a quedar sin ningún servidor. No toca nada más."""
+    se fuese a quedar sin ningún servidor. Si no se pudo COMPROBAR (fallo de red,
+    429…), se deja como está. No toca nada más."""
     servidores = [dict(x) for x in (servidores or []) if x and x.get("url")]
     usados = {x["url"] for x in servidores if not es_puente_alhd(x["url"])}
-    out, vistos, quitados = [], set(), []
+    out, vistos, quitados, pendientes = [], set(), [], []
     for x in servidores:
         if es_puente_alhd(x["url"]):
             r = real_de_puente(x, usados)
+            if r is PENDIENTE:
+                pendientes.append(x)
+                if x["url"] not in vistos: vistos.add(x["url"]); out.append(x)
+                continue
             if not r:
                 quitados.append(x); continue
             x["url"], x["name"] = r["url"], r["name"]
@@ -1367,6 +1396,8 @@ def resolver_puentes_alhd(servidores, log=None):
         out.append(x)
     if quitados and log:
         log(f"  {len(quitados)} puente(s) de animelatinohd sin servidor: se quitan")
+    if pendientes and log:
+        log(f"  {len(pendientes)} puente(s) de animelatinohd no se pudieron comprobar: se dejan")
     return out or servidores
 
 # animelatinohd corta con «429 Too Many Requests» si se le piden muchas páginas
