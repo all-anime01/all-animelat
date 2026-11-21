@@ -17,7 +17,11 @@
       "automation/**",
       "FIREBASE-SETUP.md",
       "MIGRACION-HOSTING.md",
-      "README.md"
+      "README.md",
+      "descargas/*.apk"
+    ],
+    "redirects": [
+      { "source": "/descargas/:file", "destination": "https://raw.githubusercontent.com/all-anime01/all-animelat/main/descargas/:file", "type": 302 }
     ],
     "headers": [
       {
