@@ -1180,11 +1180,30 @@ body.red-theme header {
     max-width: 90%;
 }
 
+/* ==========================================================================
+   Botones de la ficha: «Reproducir» en píldora + acciones de solo icono
+   (Mi lista con aro, campanita, info, compartir). Diseño limpio tipo
+   plataforma de streaming con NUESTROS colores (blanco + verde de acento).
+   ========================================================================== */
 .anime-actions {
     display: flex;
-    gap: 1.2rem;
+    gap: 1rem;
     flex-wrap: wrap;
     align-items: center;
+}
+
+/* Entrada escalonada de los botones al cargar la ficha */
+.anime-actions > * {
+    animation: aa-actions-in .5s cubic-bezier(.2, .8, .2, 1) both;
+}
+.anime-actions > *:nth-child(2) { animation-delay: .06s; }
+.anime-actions > *:nth-child(3) { animation-delay: .12s; }
+.anime-actions > *:nth-child(4) { animation-delay: .18s; }
+.anime-actions > *:nth-child(5) { animation-delay: .24s; }
+.anime-actions > *:nth-child(6) { animation-delay: .30s; }
+@keyframes aa-actions-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
 }
 
 .action-btn {
@@ -1199,66 +1218,158 @@ body.red-theme header {
     transition: all 0.3s ease;
 }
 
-.action-btn.play {
+/* Reproducir / Continuar viendo / Repetir */
+.anime-actions .action-btn.play {
     background-color: var(--light-text);
     color: var(--dark-bg);
+    border-radius: 999px;
+    padding: 1.3rem 3rem 1.3rem 2.6rem;
+    gap: 1.1rem;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, .35);
+    transition: background-color .25s ease, transform .2s ease, box-shadow .25s ease;
 }
-
-.action-btn.play:hover {
+.anime-actions .action-btn.play i { transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); }
+.anime-actions .action-btn.play:hover {
     background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(7, 247, 59, .25);
 }
+.anime-actions .action-btn.play:hover i { transform: translateX(3px) scale(1.12); }
+.anime-actions .action-btn.play:active { transform: scale(.97); }
 
-.action-btn.more-info {
-    background-color: rgba(128, 128, 128, 0.4);
+/* Enlace serie ↔ películas: píldora con contorno, discreta */
+.action-btn.ghost {
+    background: transparent;
     color: var(--light-text);
+    border: 1.5px solid rgba(255, 255, 255, .35);
+    border-radius: 999px;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+}
+.action-btn.ghost:hover {
+    background: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .7);
 }
 
-.action-btn.more-info:hover {
-    background-color: rgba(128, 128, 128, 0.6);
-}
-
-.action-btn.favorite-btn {
-    background-color: rgba(128, 128, 128, 0.4);
+/* --- Botón de solo icono --- */
+.icon-btn {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 0;
+    background: transparent;
     color: var(--light-text);
-    padding: 1.2rem 1.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .15s ease;
+}
+.icon-btn i { transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); }
+.icon-btn:hover { background-color: rgba(255, 255, 255, .1); }
+.icon-btn:hover i { transform: translateY(-2px) scale(1.1); }
+.icon-btn:active { transform: scale(.9); }
+.icon-btn:focus-visible { outline: 2px solid var(--secondary-color); outline-offset: 3px; }
+
+/* Con aro (Mi lista) */
+.icon-btn.ring { border: 2px solid rgba(255, 255, 255, .85); }
+.icon-btn.ring:hover { border-color: #fff; }
+
+/* Activos: Mi lista / Siguiendo / enlace copiado → verde de acento */
+.icon-btn.is-favorite,
+.icon-btn.is-following,
+.icon-btn.is-done { color: var(--secondary-color); }
+.icon-btn.ring.is-favorite {
+    border-color: var(--secondary-color);
+    background-color: rgba(7, 247, 59, .12);
+    box-shadow: 0 0 14px rgba(7, 247, 59, .25);
 }
 
-.action-btn.favorite-btn:hover {
-    background-color: rgba(128, 128, 128, 0.6);
-}
-
-.action-btn.favorite-btn.is-favorite {
-    background-color: var(--secondary-color);
-    color: var(--dark-text);
-}
-
-/* Botones "Mi lista" y "Compartir" (con etiqueta) */
-.action-btn.mylist-btn {
-    padding: 1.2rem 2.2rem;
-}
-
-/* Campanita "Avísame" (seguir para recibir aviso de nuevos episodios) */
-.action-btn.notify-btn {
-    background-color: rgba(128, 128, 128, 0.4);
+/* Globito con el nombre de la acción (hover, foco o TV) */
+.icon-btn[data-tip]::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translate(-50%, 6px);
+    padding: .5rem 1rem;
+    border-radius: 6px;
+    background: rgba(20, 20, 20, .95);
+    border: 1px solid rgba(255, 255, 255, .12);
     color: var(--light-text);
+    font: 600 1.25rem/1.2 var(--font-main);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s ease, transform .18s ease;
+    z-index: 10;
+}
+.icon-btn[data-tip]:hover::after,
+.icon-btn[data-tip]:focus-visible::after,
+.icon-btn[data-tip].aa-focus::after,
+.icon-btn[data-tip].tip-show::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+@media (hover: none) {
+    .icon-btn[data-tip]:hover::after { opacity: 0; }
+    .icon-btn[data-tip].tip-show::after { opacity: 1; }
 }
 
-.action-btn.notify-btn:hover {
-    background-color: rgba(128, 128, 128, 0.6);
+/* Destello circular al activar */
+.icon-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+    opacity: 0;
+    pointer-events: none;
+}
+.icon-btn.anim-pop::before,
+.icon-btn.anim-ring::before { animation: aa-burst .6s ease-out; }
+
+.icon-btn.anim-pop i    { animation: aa-pop .5s cubic-bezier(.3, 1.6, .5, 1); }
+.icon-btn.anim-ring i   { animation: aa-ring .8s ease-in-out; transform-origin: 50% 8%; }
+.icon-btn.anim-shrink i { animation: aa-shrink .35s ease; }
+
+@keyframes aa-pop {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.4); }
+    65%  { transform: scale(.88); }
+    100% { transform: scale(1); }
+}
+@keyframes aa-ring {
+    0%   { transform: rotate(0); }
+    15%  { transform: rotate(18deg); }
+    30%  { transform: rotate(-16deg); }
+    45%  { transform: rotate(12deg); }
+    60%  { transform: rotate(-8deg); }
+    75%  { transform: rotate(4deg); }
+    100% { transform: rotate(0); }
+}
+@keyframes aa-shrink {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(.75); }
+    100% { transform: scale(1); }
+}
+@keyframes aa-burst {
+    0%   { opacity: .9; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.7); }
 }
 
-.action-btn.notify-btn.is-following {
-    background-color: var(--secondary-color);
-    color: var(--dark-text);
-}
+/* TV: el foco del control remoto respeta la forma redonda */
+html.aa-tv .icon-btn.aa-focus { border-radius: 50% !important; }
+html.aa-tv .anime-actions .action-btn.aa-focus { border-radius: 999px !important; }
 
-.action-btn.share-btn {
-    background-color: rgba(128, 128, 128, 0.4);
-    color: var(--light-text);
-}
-
-.action-btn.share-btn:hover {
-    background-color: rgba(128, 128, 128, 0.6);
+@media (prefers-reduced-motion: reduce) {
+    .anime-actions > *,
+    .icon-btn i,
+    .icon-btn::before { animation: none !important; }
+    .icon-btn i, .anime-actions .action-btn.play i { transition: none; }
 }
 
 /* Póster vertical dentro del modal de episodios */
@@ -2860,9 +2971,13 @@ header .logo:hover .logo-desktop {
         padding: 4rem 5%;
     }
 
+    /* Móvil: «Reproducir» a todo el ancho y los iconos en fila debajo */
     .anime-actions {
-        flex-direction: column;
-        align-items: stretch;
+        gap: .8rem;
+    }
+
+    .anime-actions .action-btn.play {
+        flex: 1 1 100%;
     }
 
     .action-btn {

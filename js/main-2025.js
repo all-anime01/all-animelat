@@ -22,6 +22,20 @@ function showToast(message, style = "info", extra = {}) {
   try { return showNotification({ id: "t" + Date.now(), message, style, format: "toast", duration: 6, ...extra }); } catch {}
 }
 
+// Micro-animación de los botones de icono de la ficha (Mi lista, campanita,
+// compartir). kind: "pop" (rebote + destello), "ring" (la campana suena +
+// destello) o "shrink" (al desactivar). Reinicia la animación aunque se pulse
+// varias veces seguidas.
+function playIconAnim(btn, kind) {
+  if (!btn) return;
+  const all = ["anim-pop", "anim-ring", "anim-shrink"];
+  btn.classList.remove(...all);
+  void btn.offsetWidth;            // fuerza reflow → la animación vuelve a empezar
+  btn.classList.add("anim-" + kind);
+  clearTimeout(btn._animT);
+  btn._animT = setTimeout(() => btn.classList.remove(...all), 900);
+}
+
 // Coincidencia de búsqueda por el título O cualquier título alternativo
 // (nombre japonés/romaji + internacional + sinónimos). Ej: "Attack on Titan"
 // encuentra "Shingeki no Kyojin" y viceversa.
@@ -1194,8 +1208,8 @@ $(document).ready(function () {
 
     // Enlace cruzado serie ↔ colección de películas (data-driven: campos moviesId / seriesId).
     let crossLinkBtn = "";
-    if (anime.moviesId) crossLinkBtn = `<a class="action-btn more-info" href="anime-details.html?id=${anime.moviesId}" title="Ver las películas"><i class="fas fa-film"></i> Películas</a>`;
-    else if (anime.seriesId) crossLinkBtn = `<a class="action-btn more-info" href="anime-details.html?id=${anime.seriesId}" title="Ver la serie"><i class="fas fa-tv"></i> Ver la serie</a>`;
+    if (anime.moviesId) crossLinkBtn = `<a class="action-btn ghost" href="anime-details.html?id=${anime.moviesId}" title="Ver las películas"><i class="fas fa-film"></i> Películas</a>`;
+    else if (anime.seriesId) crossLinkBtn = `<a class="action-btn ghost" href="anime-details.html?id=${anime.seriesId}" title="Ver la serie"><i class="fas fa-tv"></i> Ver la serie</a>`;
 
     const heroContent = `
             <div class="hero-content">
@@ -1211,11 +1225,11 @@ $(document).ready(function () {
                 <div id="anime-reactions"></div>
                 <div class="anime-actions">
                     <button class="action-btn play" id="hero-play-btn"><i class="fas fa-play"></i> <span id="hero-play-label">Reproducir</span></button>
-                    <button class="action-btn more-info" id="open-trailer-modal"><i class="fas fa-info-circle"></i> Más info</button>
+                    <button class="icon-btn ring favorite-btn" id="favorite-anime-btn" aria-label="Añadir a Mi lista" data-tip="Añadir a Mi lista"><i class="far fa-bookmark"></i></button>
+                    <button class="icon-btn notify-btn" id="notify-anime-btn" aria-label="Avísame cuando haya nuevos episodios" data-tip="Avísame"><i class="far fa-bell"></i></button>
+                    <button class="icon-btn" id="open-trailer-modal" aria-label="Más info y trailer" data-tip="Más info"><i class="fas fa-circle-info"></i></button>
+                    <button class="icon-btn share-btn" id="share-anime-btn" aria-label="Compartir" data-tip="Compartir"><i class="fas fa-share-nodes"></i></button>
                     ${crossLinkBtn}
-                    <button class="action-btn mylist-btn favorite-btn" id="favorite-anime-btn" title="Añadir a Mi lista"><i class="far fa-bookmark"></i> <span class="mylist-label">Mi lista</span></button>
-                    <button class="action-btn notify-btn" id="notify-anime-btn" title="Avísame cuando haya nuevos episodios"><i class="far fa-bell"></i> <span class="notify-label">Avísame</span></button>
-                    <button class="action-btn share-btn" id="share-anime-btn" title="Compartir"><i class="fas fa-share-nodes"></i> Compartir</button>
                 </div>
             </div>`;
     container.html(heroContent);
@@ -1303,10 +1317,18 @@ $(document).ready(function () {
       try {
         if (navigator.share) { await navigator.share(data); return; }
         await navigator.clipboard.writeText(url);
-        const lbl = btn.querySelector("span") || btn;
-        const prevHTML = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> ¡Enlace copiado!';
-        setTimeout(() => { btn.innerHTML = prevHTML; }, 1800);
+        // Botón de solo icono: el ✓ entra animado y el globito dice «¡Enlace copiado!».
+        const ic = btn.querySelector("i");
+        btn.dataset.tip = "¡Enlace copiado!";
+        btn.classList.add("is-done", "tip-show");
+        if (ic) ic.className = "fas fa-check";
+        playIconAnim(btn, "pop");
+        clearTimeout(btn._shareT);
+        btn._shareT = setTimeout(() => {
+          btn.dataset.tip = "Compartir";
+          btn.classList.remove("is-done", "tip-show");
+          if (ic) ic.className = "fas fa-share-nodes";
+        }, 1800);
       } catch { }
     });
 
@@ -1604,12 +1626,13 @@ $(document).ready(function () {
       if (!on) f = f.filter((favId) => favId !== id);
       localStorage.setItem("favoriteAnimes", JSON.stringify(f));
     }
-    function paintAnimeFav(on) {
+    function paintAnimeFav(on, animate) {
+      const tip = on ? "En Mi lista" : "Añadir a Mi lista";
       favoriteAnimeBtn
         .toggleClass("is-favorite", on)
-        .attr("title", on ? "Quitar de Mi lista" : "Añadir a Mi lista")
+        .attr({ "aria-label": on ? "Quitar de Mi lista" : "Añadir a Mi lista", "aria-pressed": on ? "true" : "false", "data-tip": tip })
         .find("i").toggleClass("fas", on).toggleClass("far", !on);
-      favoriteAnimeBtn.find(".mylist-label").text(on ? "En Mi lista" : "Mi lista");
+      if (animate) playIconAnim(favoriteAnimeBtn[0], on ? "pop" : "shrink");
     }
     async function refreshAnimeFavState() {
       if (UD.isLoggedIn()) { try { paintAnimeFav(await UD.isFavAnime(animeId)); return; } catch {} }
@@ -1623,12 +1646,12 @@ $(document).ready(function () {
         try {
           const on = await UD.toggleFavAnime(anime);
           setAnimeFavLocal(animeId, on);
-          paintAnimeFav(on);
+          paintAnimeFav(on, true);
         } catch (err) { console.error(err); }
       } else {
         const on = !getAnimeFavorites().includes(animeId);
         setAnimeFavLocal(animeId, on);
-        paintAnimeFav(on);
+        paintAnimeFav(on, true);
       }
     });
 
@@ -1636,11 +1659,13 @@ $(document).ready(function () {
     function setupNotifyButton(a) {
       const btn = document.getElementById("notify-anime-btn");
       if (!btn) return;
-      const paint = (on) => {
+      const paint = (on, animate) => {
         btn.classList.toggle("is-following", on);
-        btn.title = on ? "Dejar de seguir (no más avisos)" : "Avísame cuando haya nuevos episodios";
+        btn.setAttribute("aria-label", on ? "Dejar de seguir (no más avisos)" : "Avísame cuando haya nuevos episodios");
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+        btn.dataset.tip = on ? "Siguiendo" : "Avísame";
         btn.querySelector("i").className = on ? "fas fa-bell" : "far fa-bell";
-        const lbl = btn.querySelector(".notify-label"); if (lbl) lbl.textContent = on ? "Siguiendo" : "Avísame";
+        if (animate) playIconAnim(btn, on ? "ring" : "shrink");
       };
       UD.userReady.then(async () => {
         if (!UD.isLoggedIn()) { paint(false); return; }
@@ -1650,7 +1675,7 @@ $(document).ready(function () {
         if (!UD.isLoggedIn()) { location.href = `cuenta.html?redirect=${encodeURIComponent(location.pathname + location.search)}`; return; }
         try {
           const on = await UD.toggleFollow(a);
-          paint(on);
+          paint(on, true);
           if (on) showToast(`🔔 Te avisaremos cuando haya nuevos episodios de ${a.title}.`, "success");
         } catch (err) { console.error(err); }
       });
