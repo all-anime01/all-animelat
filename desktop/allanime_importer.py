@@ -873,7 +873,7 @@ NAME = {"mega": "Mega", "sfastwish": "Streamwish", "streamwish": "Streamwish", "
         "zilla": "AnimeAV1 HD", "mediafire": "Mediafire", "mixdrop": "Mixdrop", "mdbekj": "Mixdrop", "mdy48": "Mixdrop",
         "d-s.io": "Doodstream", "dood": "Doodstream", "desu": "Desu", "desuka": "Desu", "okru": "Okru", "ok.ru": "Okru",
         "uqload": "Uqload", "yourupload": "YourUpload", "krakenfiles": "Krakenfiles",
-        "lulustream": "Lulustream", "luluvdo": "Lulustream", "lulu.st": "Lulustream",
+        "lulustream": "Lulustream", "luluvdo": "Lulustream", "lulu.st": "Lulustream", "lplaygo": "Lulustream",
         # henaojara/animejara: sin estos nombres salían todos como «Servidor» y, como
         # prioritize() no repite nombre dentro de un idioma, solo sobrevivía uno.
         "dooodster": "Doodstream", "doodstream": "Doodstream", "filelions": "VidHide", "minochinos": "VidHide",
@@ -1208,10 +1208,11 @@ def get_text_puente(url, referer=None, worker=None):
     """Descarga la página; si viene vacía o con el muro de Cloudflare, va por el Worker.
     OJO: la página del muro pesa varios KB, así que mirar solo el tamaño no vale."""
     try:
-        h = get_text(url, referer=referer)
+        # animelatinohd: con ritmo y reintentos ante el 429 (ver http_alhd)
+        st, h = http_alhd(url, referer) if "animelatinohd.com" in url else http(url, referer=referer)
     except Exception:
-        h = ""
-    if h and len(h) > 800 and not _MURO.search(h[:4000]): return h
+        st, h = 0, ""
+    if st != 429 and h and len(h) > 800 and not _MURO.search(h[:4000]): return h
     wk = (worker or WORKER).rstrip("/")
     try:
         q = f"{wk}/fetch?url={urllib.parse.quote(url, safe='')}"
@@ -1261,6 +1262,12 @@ def alhd_max(slug):
 
 def alhd_servers(slug, n):
     """Servidores del episodio (el bridge_url es la página reproducible del propio sitio)."""
+    return [{k: v for k, v in x.items() if k != "player"} for x in alhd_players(slug, n)]
+
+def alhd_players(slug, n):
+    """Como alhd_servers, pero cada servidor lleva además "player": el nombre que le
+    da animelatinohd (Gamma, Delta, Epsilon…). Sirve para cambiar un puente caducado
+    por el MISMO servidor recién sacado."""
     if not slug: return []
     try: h = get_text_puente(f"{ALHD}/ver/{slug}/{n}", referer=f"{ALHD}/anime/{slug}")
     except Exception: return []
@@ -1279,7 +1286,8 @@ def alhd_servers(slug, n):
         real = alhd_real(u, f"{ALHD}/ver/{slug}/{n}")
         if not real or real in seen: continue
         seen.add(real)
-        out.append({"url": real, "name": nm_por_pagina(real), "lang": lang, "desc": ""})
+        out.append({"url": real, "name": nm_por_pagina(real), "lang": lang, "desc": "",
+                    "player": str(pl.get("server_name") or "")})
     return out
 
 _NOMBRE_EN_PAGINA = (("voe", "VOE"), ("streamwish", "Streamwish"), ("filemoon", "Filemoon"),
@@ -1297,15 +1305,94 @@ def nm_por_pagina(url):
         st, h = http(url, timeout=15)
         tit = (re.search(r"<title>([^<]*)", h or "", re.I) or [None, ""])[1].lower()
     except Exception:
-        tit = ""
-    n = next((v for k, v in _NOMBRE_EN_PAGINA if k in tit), "Servidor")
+        h, tit = "", ""
+    n = next((v for k, v in _NOMBRE_EN_PAGINA if k in tit), None)
+    if not n:
+        # Hay reproductores con un título genérico («Loading...», como lplaygo.com,
+        # que es Lulustream): entonces se mira qué marca aparece en la propia página.
+        cuerpo = (h or "").lower()
+        n = max(((cuerpo.count(k), v) for k, v in _NOMBRE_EN_PAGINA), default=(0, "Servidor"))
+        n = n[1] if n[0] else "Servidor"
     _cache_nombre[host] = n
     return n
+
+_PUENTE_ALHD = re.compile(r"^https?://(?:[a-z0-9-]+\.)*animelatinohd\.com/v/", re.I)
+def es_puente_alhd(url):
+    return bool(_PUENTE_ALHD.match(str(url or "")))
+
+_PUENTE_EP = re.compile(r"/v/([a-z0-9-]+?)-episodio-(\d+)(?:/|$)", re.I)
+_cache_players = {}
+def _players_cache(slug, n):
+    k = (slug, int(n))
+    if k not in _cache_players: _cache_players[k] = alhd_players(slug, n)
+    return _cache_players[k]
+
+def real_de_puente(srv, usados=()):
+    """Servidor real {url, name} para un puente de animelatinohd, o None.
+    Los puentes CADUCAN («El enlace ha expirado»): si el guardado ya no abre, se
+    vuelve a pedir el episodio (slug y nº van en la propia URL del puente) y se toma
+    el mismo reproductor (Gamma/Delta/Epsilon) del mismo idioma; si ya no está,
+    otro de ese idioma que el episodio no tenga."""
+    u = str((srv or {}).get("url") or "")
+    real = alhd_real(u)
+    if real: return {"url": real, "name": nm_por_pagina(real)}
+    m = _PUENTE_EP.search(u)
+    if not m: return None
+    frescos = _players_cache(m.group(1).lower(), m.group(2))
+    lang = srv.get("lang") or "Sub"
+    jugador = re.sub(r"(?i)^animelatinohd\s*", "", str(srv.get("name") or "")).strip().lower()
+    del_idioma = [f for f in frescos if f["lang"] == lang and f["url"] not in usados]
+    elegido = next((f for f in del_idioma if f["player"].lower() == jugador), None)
+    elegido = elegido or (del_idioma[0] if del_idioma else None)
+    return {"url": elegido["url"], "name": elegido["name"]} if elegido else None
+
+def resolver_puentes_alhd(servidores, log=None):
+    """Cambia cada puente de animelatinohd por el servidor real (VOE, Filemoon,
+    Lulustream…), con su nombre de verdad y el mismo idioma. El que no se pueda
+    resolver se quita (en nuestro reproductor nunca abre), salvo que el episodio
+    se fuese a quedar sin ningún servidor. No toca nada más."""
+    servidores = [dict(x) for x in (servidores or []) if x and x.get("url")]
+    usados = {x["url"] for x in servidores if not es_puente_alhd(x["url"])}
+    out, vistos, quitados = [], set(), []
+    for x in servidores:
+        if es_puente_alhd(x["url"]):
+            r = real_de_puente(x, usados)
+            if not r:
+                quitados.append(x); continue
+            x["url"], x["name"] = r["url"], r["name"]
+            if (x.get("desc") or "") == "Audio Latino": x["desc"] = ""
+            usados.add(r["url"])
+        if x["url"] in vistos: continue
+        vistos.add(x["url"])
+        out.append(x)
+    if quitados and log:
+        log(f"  {len(quitados)} puente(s) de animelatinohd sin servidor: se quitan")
+    return out or servidores
+
+# animelatinohd corta con «429 Too Many Requests» si se le piden muchas páginas
+# seguidas (un episodio trae hasta 9 puentes). Antes ese 429 se tomaba como «no hay
+# servidor» y los servidores se perdían sin avisar. Ahora las peticiones van con un
+# pequeño espacio entre ellas y, si aun así llega un 429, se espera y se reintenta.
+_ALHD_LOCK = threading.Lock()
+_ALHD_ULTIMA = [0.0]
+_ALHD_PAUSA = 0.35          # segundos mínimos entre dos peticiones a animelatinohd
+def http_alhd(url, referer=None, intentos=5):
+    espera = 3.0
+    for i in range(intentos):
+        with _ALHD_LOCK:
+            falta = _ALHD_ULTIMA[0] + _ALHD_PAUSA - time.time()
+            if falta > 0: time.sleep(falta)
+            _ALHD_ULTIMA[0] = time.time()
+        st, h = http(url, referer=referer, timeout=20)
+        if st != 429 or i == intentos - 1: return st, h
+        time.sleep(espera); espera = min(espera * 2, 40)
+    return st, h
 
 def alhd_real(bridge, referer=None):
     """URL del servidor que hay dentro de la página puente de animelatinohd."""
     try:
-        st, h = http(bridge, referer=referer or ALHD + "/", timeout=20)
+        st, h = http_alhd(bridge, referer=referer or ALHD + "/")
+        if "expirado" in (h or "")[:200].lower(): return None   # puente caducado
         if st != 200 or not h or _MURO.search(h[:4000]):
             h = get_text_puente(bridge, referer=referer or ALHD + "/")
     except Exception:
@@ -3013,6 +3100,11 @@ def combinar_servidores(actuales, nuevos, log=None, comprobar=None):
     server_vivo); solo se llama cuando hace falta, porque cuesta una petición."""
     comprobar = comprobar or server_vivo
     log = log or (lambda m: None)
+    # Los puentes de animelatinohd («AnimeLatinoHD Gamma/Delta/Epsilon») solo abren
+    # desde su propio sitio: en nuestro reproductor dan 403. Se cambian por el
+    # servidor de verdad que llevan dentro antes de hacer nada más.
+    actuales = resolver_puentes_alhd(actuales, log)
+    nuevos = resolver_puentes_alhd(nuevos, log)
     actuales = [dict(x) for x in (actuales or []) if x and x.get("url")]
     urls = {x["url"] for x in actuales}
     por_idioma = {}
@@ -3117,6 +3209,11 @@ def comprobar_servidores(episodes, log=None, quitar=True):
     vivos = muertos = 0
     for e in episodes:
         srv = e.get("servers") or []
+        if any(es_puente_alhd(x.get("url")) for x in srv):
+            # puentes de animelatinohd → servidor real (antes pasaban por «vivos»:
+            # su 403 se tomaba como bloqueo, pero en el sitio nunca reproducen)
+            srv = resolver_puentes_alhd(srv, log)
+            if srv: e["servers"] = srv
         buenos, malos = [], []
         for sv in srv:
             (buenos if server_vivo(sv.get("url"), sv.get("ref")) else malos).append(sv)

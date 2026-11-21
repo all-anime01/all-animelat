@@ -19,7 +19,7 @@ export const NOMBRES = {
   mediafire: "Mediafire", mixdrop: "Mixdrop", "d-s.io": "Doodstream", dood: "Doodstream",
   desu: "Desu", desuka: "Desu", okru: "Okru", "ok.ru": "Okru", uqload: "Uqload",
   yourupload: "YourUpload", krakenfiles: "Krakenfiles", embed69: "PelisPlus",
-  lulustream: "Lulustream", luluvdo: "Lulustream", "lulu.st": "Lulustream",
+  lulustream: "Lulustream", luluvdo: "Lulustream", "lulu.st": "Lulustream", lplaygo: "Lulustream",
 };
 export function nm(u) {
   const s = String(u || "").toLowerCase();
@@ -503,15 +503,62 @@ export function crearNucleo({ workerUrl, workerKey = "", tmdbKey = "", log = () 
     if (!m) return [];
     let arr = [];
     try { arr = JSON.parse(m[1]); } catch { return []; }
-    const out = [], vistos = new Set();
+    // El bridge_url (website.animelatinohd.com/v/…) SOLO abre con el Referer del
+    // propio sitio: en nuestro reproductor daba 403 y «AnimeLatinoHD Gamma/Delta/
+    // Epsilon» salían con error. Se abre por el Worker y se guarda el servidor real
+    // que lleva dentro (VOE, Filemoon, Lulustream…). El que no se resuelve, no se guarda.
+    // De uno en uno: animelatinohd responde «429» si se le piden los 9 a la vez.
+    const reales = [];
     for (const pl of arr) {
       const u = String(pl.bridge_url || "").trim();
-      if (!u.startsWith("http") || vistos.has(u)) continue;
-      vistos.add(u);
+      if (!u.startsWith("http")) continue;
+      const real = await alhdReal(u);
+      if (!real) continue;
       const lang = ALHD_LANG[String(pl.language || "").toUpperCase()] || "Sub";
-      out.push({ url: u, name: "AnimeLatinoHD " + (pl.server_name || "Player"), lang, desc: lang === "Latino" ? "Audio Latino" : "" });
+      reales.push({ url: real, name: await nombrePorPagina(real), lang, desc: "" });
+    }
+    const out = [], vistos = new Set();
+    for (const x of reales) {
+      if (!x || vistos.has(x.url)) continue;
+      vistos.add(x.url); out.push(x);
     }
     return out;
+  }
+  async function alhdReal(bridge) {
+    let h = "";
+    for (let i = 0; i < 3 && !h; i++) {          // reintento ante un 429 pasajero
+      if (i) await new Promise((r) => setTimeout(r, 2500 * i));
+      h = await puente(bridge, ALHD + "/");
+      if (/expirado/i.test(h.slice(0, 200))) return null;
+    }
+    for (const m of (h || "").matchAll(/<iframe[^>]+src="([^"]+)"/gi)) {
+      let src = m[1].replace(/&amp;/g, "&").trim();
+      if (src.startsWith("//")) src = "https:" + src;
+      if (src.startsWith("http") && !/animelatinohd|cloudflare/i.test(src)) return src;
+    }
+    return null;
+  }
+  // VOE cambia de dominio cada poco (caseyseemavoid.com…) y lplaygo.com no dice en
+  // la URL que es Lulustream: si el dominio no se conoce, se mira la propia página.
+  const MARCAS = [["voe", "VOE"], ["streamwish", "Streamwish"], ["filemoon", "Filemoon"], ["vidhide", "VidHide"],
+    ["lulustream", "Lulustream"], ["doodstream", "Doodstream"], ["mp4upload", "Mp4upload"],
+    ["streamtape", "Streamtape"], ["uqload", "Uqload"]];
+  const nombreHost = new Map();
+  async function nombrePorPagina(url) {
+    const n = nm(url);
+    if (n !== "Servidor") return n;
+    let host = "";
+    try { host = new URL(url).host; } catch { return n; }
+    if (!nombreHost.has(host)) nombreHost.set(host, (async () => {
+      const h = (await puente(url)).toLowerCase();
+      const tit = (h.match(/<title>([^<]*)/) || [, ""])[1];
+      const porTitulo = MARCAS.find(([k]) => tit.includes(k));
+      if (porTitulo) return porTitulo[1];
+      let mejor = null, max = 0;
+      for (const [k, v] of MARCAS) { const c = h.split(k).length - 1; if (c > max) { max = c; mejor = v; } }
+      return mejor || "Servidor";
+    })());
+    return nombreHost.get(host);
   }
 
   // porygonsubs: el id del host va en base64 anidado un número VARIABLE de veces.
