@@ -4,15 +4,18 @@
 // ============================================================================
 
 const CMDS = [
+  ["▶️", "Abrir cualquier anime", "«Endo, pon Jujutsu Kaisen» · «Endo, Jujutsu Kaisen temporada 2» · «Endo, la película de Dragon Ball»"],
   ["🔍", "Buscar", "«Endo, busca One Piece»"],
-  ["▶️", "Abrir un anime", "«Endo, abre Naruto»"],
-  ["🎬", "Poner un episodio", "«Endo, pon el episodio 5 de Naruto»"],
-  ["⏭️", "Siguiente episodio", "«Endo, siguiente episodio»"],
-  ["⏮️", "Episodio anterior", "«Endo, episodio anterior»"],
-  ["⏸️", "Pausar / reanudar", "«Endo, pausa» · «Endo, dale play» (en la app)"],
+  ["🎬", "Poner un episodio", "«Endo, pon el episodio 5 de Naruto» · «Endo, capítulo tres»"],
+  ["⏭️", "Siguiente / anterior", "«Endo, siguiente episodio» · «Endo, episodio anterior»"],
   ["⏯️", "Continuar viendo", "«Endo, continuar» (retoma lo último)"],
-  ["🎞️", "Ver el tráiler", "«Endo, ver el tráiler de One Piece»"],
-  ["🧭", "Navegar", "«Endo, ve a explorar / películas / inicio / favoritos»"],
+  ["🎞️", "Tráiler y sinopsis", "«Endo, ver el tráiler» · «Endo, ¿de qué trata?»"],
+  ["🗂️", "Temporadas", "«Endo, temporada 2» (en la ficha del anime)"],
+  ["🧭", "Ir a cualquier página", "«Endo, llévame al calendario» · «mi lista» · «historial» · «perfil»"],
+  ["🏷️", "Géneros", "«Endo, animes de acción» · «Endo, películas de comedia»"],
+  ["👆", "Pulsar botones", "«Endo, pulsa compartir» · «Endo, añadir a mi lista» · «Endo, avísame»"],
+  ["↕️", "Moverte por la página", "«Endo, baja» · «Endo, sube» · «Endo, ve a episodios nuevos» · «Endo, arriba del todo»"],
+  ["🗣️", "Su voz", "«Endo, cambia de voz» · «Endo, cállate»"],
   ["🎲", "Recomendación", "«Endo, recomiéndame algo»"],
 ];
 

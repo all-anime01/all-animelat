@@ -3421,3 +3421,13 @@ html.aa-tv .player-video-container:fullscreen #episode-iframe,
 html.aa-tv .player-video-container:-webkit-full-screen #episode-iframe {
     width: 100vw !important; height: 100vh !important; max-width: none !important; max-height: none !important;
 }
+
+/* Endo pulsa un botón por voz: destello breve para que se vea qué pulsó */
+.endo-pulso {
+    animation: endo-pulso .9s ease-out;
+}
+@keyframes endo-pulso {
+    0%   { box-shadow: 0 0 0 0 rgba(226, 59, 59, .75); }
+    100% { box-shadow: 0 0 0 16px rgba(226, 59, 59, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .endo-pulso { animation: none; outline: 2px solid #e23b3b; } }

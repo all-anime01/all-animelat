@@ -1,0 +1,310 @@
+[
+{
+"id": "jujutsu-kaisen",
+"title": "Jujutsu Kaisen",
+"altTitles": [
+"JJK",
+"Sorcery Fight",
+"Guerra de Hechiceros"
+],
+"type": "TV"
+},
+{
+"id": "one-piece",
+"title": "One Piece",
+"altTitles": [
+"ONE PIECE"
+],
+"type": "TV"
+},
+{
+"id": "spy-x-family",
+"title": "Spy x Family",
+"altTitles": [
+"SPY×FAMILY",
+"SxF"
+],
+"type": "TV"
+},
+{
+"id": "kaiju-no-8",
+"title": "Kaiju No. 8",
+"altTitles": [
+"Kaijuu 8-gou",
+"Monster #8",
+"8Kaijuu",
+"KAIJU No. EIGHT",
+"Kaiju N°8"
+],
+"type": "TV"
+},
+{
+"id": "haikyu",
+"title": "Haikyu!!",
+"altTitles": [
+"Haikyuu"
+],
+"type": "anime"
+},
+{
+"id": "haikyu-la-batalla-del-basurero",
+"title": "Haikyu!! La batalla del basurero",
+"altTitles": [
+"Haikyuu!! Movie: Gomisuteba no Kessen",
+"The Dumpster Battle"
+],
+"type": "Película"
+},
+{
+"id": "my-hero-academia",
+"title": "My Hero Academia",
+"altTitles": [
+"Boku no Hero Academia",
+"BNHA",
+"MHA",
+"Akademia bohaterów",
+"Hősakadémia",
+"Mi Héroe Academia"
+],
+"type": "TV"
+},
+{
+"id": "my-hero-academia-vigilantes",
+"title": "My Hero Academia: Vigilantes",
+"altTitles": [
+"Vigilante: Boku no Hero Academia ILLEGALS",
+"MHA Vigilantes",
+"BNHA Vigilantes"
+],
+"type": "TV"
+},
+{
+"id": "boku-no-hero-academia-the-movie-1-futari-no-hero",
+"title": "Boku no Hero Academia the Movie 1: Futari no Hero",
+"altTitles": [],
+"type": "Película"
+},
+{
+"id": "shingeki-no-kyojin",
+"title": "Shingeki no Kyojin",
+"altTitles": [
+"SnK",
+"AoT",
+"Ataque a los Titanes",
+"Ataque dos Titãs",
+"L'Attacco dei Giganti"
+],
+"type": "TV"
+},
+{
+"id": "kimetsu-no-yaiba",
+"title": "Demon slayer",
+"altTitles": [
+"Kimetsu no Yaiba",
+"Demon Slayer: Kimetsu no Yaiba",
+"KnY",
+"Kimetsu no Yaiba: Kyoudai no Kizuna",
+"Demon Slayer: Kimetsu no Yaiba: Bonds of Siblings",
+"Guardianes de la Noche"
+],
+"type": "TV"
+},
+{
+"id": "chainsaw-man",
+"title": "Chainsaw Man",
+"altTitles": [
+"CSM",
+"El Hombre Motosierra"
+],
+"type": "TV"
+},
+{
+"id": "hunter-x-hunter-2011",
+"title": "Hunter x Hunter (2011)",
+"altTitles": [
+"HUNTER×HUNTER (2011)",
+"HxH"
+],
+"type": "Anime"
+},
+{
+"id": "hunter-hunter-phantom-rouge",
+"title": "Hunter × Hunter: Phantom Rouge",
+"altTitles": [],
+"type": "Película"
+},
+{
+"id": "death-note",
+"title": "Death Note",
+"altTitles": [],
+"type": "anime"
+},
+{
+"id": "bleach",
+"title": "Bleach",
+"altTitles": [],
+"type": "TV"
+},
+{
+"id": "one-punch-man",
+"title": "One Punch Man",
+"altTitles": [
+"One-Punch Man",
+"OPM",
+"Wanpanman",
+"Jagoan Sekali Pukul S1"
+],
+"type": "TV"
+},
+{
+"id": "dragon-ball",
+"title": "Dragon Ball",
+"altTitles": [],
+"type": "anime"
+},
+{
+"id": "dragon-ball-z",
+"title": "Dragon Ball Z",
+"altTitles": [],
+"type": "anime"
+},
+{
+"id": "dragon-ball-gt",
+"title": "Dragon Ball GT",
+"altTitles": [],
+"type": "anime"
+},
+{
+"id": "dragon-ball-super",
+"title": "Dragon Ball Super",
+"altTitles": [],
+"type": "anime"
+},
+{
+"id": "dragon-ball-daima",
+"title": "Dragon Ball: Daima",
+"altTitles": [
+"Dragon Ball DAIMA"
+],
+"type": "TV"
+},
+{
+"id": "dragon-ball-super-super-hero",
+"title": "Dragon Ball Super: Super Hero",
+"altTitles": [
+"Dragon Ball Super - Szuperhős"
+],
+"type": "Película"
+},
+{
+"id": "dragon-ball-peliculas",
+"title": "Dragon Ball: Películas",
+"altTitles": [],
+"type": "Película"
+},
+{
+"id": "naruto",
+"title": "Naruto",
+"altTitles": [],
+"type": "TV"
+},
+{
+"id": "dandadan",
+"title": "Dandadan",
+"altTitles": [
+"DAN DA DAN",
+"DAN DA DAN: FIRST ENCOUNTER"
+],
+"type": "TV"
+},
+{
+"id": "frieren-beyond-journeys-end",
+"title": "Frieren: Más allá del final del viaje",
+"altTitles": [
+"Sousou no Frieren",
+"Frieren at the Funeral",
+"Frieren - Oltre la Fine del Viaggio",
+"Frieren e a Jornada para o Além"
+],
+"type": "TV"
+},
+{
+"id": "la-caja-azul",
+"title": "La caja azul",
+"altTitles": [
+"Ao no Hako",
+"Blue Box"
+],
+"type": "TV"
+},
+{
+"id": "re-zero",
+"title": "Re:Zero - Empezar de Cero en Otro Mundo",
+"altTitles": [],
+"type": "TV"
+},
+{
+"id": "re-zero-empezar-de-cero-en-un-mundo-diferente-memory-snow",
+"title": "Re:ZERO - Empezar de cero en un mundo diferente - Memory Snow",
+"altTitles": [],
+"type": "Película"
+},
+{
+"id": "fate-zero",
+"title": "Fate/Zero",
+"altTitles": [
+"Fate 2 - Zero",
+"Feito/Zero",
+"Fate Zero"
+],
+"type": "TV"
+},
+{
+"id": "edens-zero",
+"title": "Edens Zero",
+"altTitles": [],
+"type": "TV"
+},
+{
+"id": "the-rising-of-the-shield-hero",
+"title": "The Rising of the Shield Hero",
+"altTitles": [],
+"type": "anime"
+},
+{
+"id": "blue-lock",
+"title": "Blue Lock",
+"altTitles": [],
+"type": "TV"
+},
+{
+"id": "solo-leveling",
+"title": "Solo Leveling",
+"altTitles": [
+"Ore dake Level Up na Ken",
+"Na Honjaman Level Up"
+],
+"type": "TV"
+},
+{
+"id": "link-click",
+"title": "Link Click",
+"altTitles": [
+"Shiguang Dailiren",
+"Time Agent"
+],
+"type": "Anime"
+},
+{
+"id": "tokyo-revengers",
+"title": "Tokyo Revengers",
+"altTitles": [],
+"type": "TV"
+},
+{
+"id": "black-clover",
+"title": "Black Clover",
+"altTitles": [],
+"type": "TV"
+}
+]

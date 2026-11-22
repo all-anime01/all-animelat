@@ -13,6 +13,8 @@ import { initDonations } from "./donations.js";
 import { initRemoveAdsUI, syncAdFree, setAdFreeUid, openRemoveAds, isAdFree } from "./adfree.js";
 import { initCardHover } from "./card-hover.js";
 import "./tv-nav.js";  // navegación con control remoto (Fire TV / Android TV)
+import { crearBuscador } from "./endo-catalogo.js";   // Endo: qué anime se pide
+import { crearNavegador } from "./endo-navegar.js";   // Endo: navegar por toda la página
 import { initMetrics, identify as metricsIdentify, track as metricsTrack, captureError } from "./metrics.js";
 import { applyFlags, recordDevice, recordSearch, recordError } from "./insights.js";
 import { initNotifications, showNotification } from "./notifications.js";
@@ -1133,6 +1135,14 @@ $(document).ready(function () {
         applyFilters();
       });
     syncBars();     // marca el orden/vista recordados
+    // ?genero=Acción (lo usa Endo: «animes de acción»): deja ese género marcado.
+    const _generoUrl = new URLSearchParams(location.search).get("genero");
+    if (_generoUrl && genreButtonsContainer.length) {
+      const quiero = canonGenre(_generoUrl) || _generoUrl;
+      const sin = (x) => String(x || "").toLowerCase().normalize("NFD").replace(/[^a-z0-9 ]/g, "");
+      const btn = genreButtonsContainer.find(".genre-btn").filter(function () { return sin($(this).data("genre")) === sin(quiero); });
+      if (btn.length) { btn.addClass("active"); filtersSection.show(); }
+    }
     applyFilters();
   }
 
@@ -1433,8 +1443,15 @@ $(document).ready(function () {
       // (la de su último episodio visto). Prioridad: enlace ?season= > temporada vista >
       // última temporada. Se resuelve async (historial local + Firestore) y re-renderiza.
       const _urlS = urlParams.get("season");
+      // ?temporada=N (lo usa Endo: «pon Jujutsu Kaisen temporada 2»): la que se llame
+      // «Temporada N» o, si los nombres son otros, la N-ésima de la lista.
+      const _urlN = parseInt(urlParams.get("temporada"), 10);
+      const _porNumero = _urlN > 0 ? (seasons.find((s) => new RegExp(`\\b${_urlN}\\b`).test(String(s)) && /temporada|season/i.test(String(s))) || seasons[_urlN - 1]) : null;
       if (_urlS && seasons.includes(decodeURIComponent(_urlS))) {
         seasonSelect.val(decodeURIComponent(_urlS));
+      } else if (_porNumero) {
+        seasonSelect.val(_porNumero);
+        setTimeout(() => { try { seasonSelect[0].scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {} }, 600);
       } else {
         (async () => {
           try {
@@ -2274,31 +2291,92 @@ $(document).ready(function () {
       fab.innerHTML = '<i class="fas fa-microphone"></i>';
       document.body.appendChild(fab);
     }
-    // Voz más NATURAL: elige una voz española de alta calidad (Google/neural/online) si existe,
-    // en vez de la voz robótica por defecto. Y pausa el micrófono mientras Yoru habla para que
-    // no se corte ni se oiga a sí misma (causa típica de que «no ejecutara» en móvil).
+    // --- VOZ de Endo -----------------------------------------------------------
+    // Se elige la voz española MÁS NATURAL que tenga el dispositivo, por calidad:
+    // las neuronales de Microsoft («… Online (Natural)», en Edge) suenan casi
+    // humanas; luego las de Google; luego el resto. Se prefiere acento latino
+    // (el sitio es de anime en Latino). «Endo, cambia de voz» prueba otra y la
+    // recuerda. Mientras Endo habla, el micrófono se pausa para no oírse a sí mismo.
     let _voices = [];
     const loadVoices = () => { try { _voices = speechSynthesis.getVoices() || []; } catch { _voices = []; } };
     loadVoices(); try { speechSynthesis.onvoiceschanged = loadVoices; } catch {}
+    const calidadVoz = (v) => {
+      let s = 0;
+      if (/natural|neural/i.test(v.name)) s += 60;
+      else if (/online/i.test(v.name)) s += 45;
+      if (/google/i.test(v.name)) s += 40;
+      if (/es[-_](419|MX|US|CO|AR|CL|PE|VE)/i.test(v.lang)) s += 15; else if (/es[-_]ES/i.test(v.lang)) s += 6;
+      if (/(dalia|jorge|salome|gonzalo|elena|camila|paola|sabina|helena|laura|elvira|alvaro|ximena|renata)/i.test(v.name)) s += 8;
+      if (v.localService === false) s += 5;                  // voces en la nube = mejor calidad
+      if (/espeak|compact|eloquence|robot/i.test(v.name)) s -= 50;
+      return s;
+    };
+    const vocesEs = () => _voices
+      .filter((v) => /^es(-|_|$)/i.test(v.lang) || /spanish|español/i.test(v.name))
+      .sort((a, b) => calidadVoz(b) - calidadVoz(a));
     const pickVoice = () => {
-      const es = _voices.filter((v) => /^es(-|_|$)/i.test(v.lang) || /spanish|español/i.test(v.name));
-      return es.find((v) => /google/i.test(v.name))
-        || es.find((v) => /(neural|natural|online|sabina|dalia|helena|laura|elvira|paloma|jorge|juan)/i.test(v.name))
-        || es.find((v) => /es-US|es-MX/i.test(v.lang))
-        || es[0] || null;
+      const es = vocesEs();
+      let fav = ""; try { fav = localStorage.getItem("aa-endo-voz") || ""; } catch {}
+      return es.find((v) => v.name === fav) || es[0] || null;
     };
     let speaking = false;
+    // Habla por frases: Chrome corta en seco los textos largos (p. ej. una sinopsis).
     const say = (m) => {
       try {
-        const u = new SpeechSynthesisUtterance(m);
-        const v = pickVoice(); if (v) { u.voice = v; u.lang = v.lang; } else u.lang = "es-ES";
-        u.rate = 1.02; u.pitch = 1.05; u.volume = 1;
+        const texto = String(m || "").replace(/\s+/g, " ").trim();
+        if (!texto) return;
+        const trozos = texto.match(/[^.!?¡¿]+[.!?]*|[¡¿][^.!?]+[.!?]*/g) || [texto];
+        const partes = [];
+        for (const t of trozos) {
+          const x = t.trim(); if (!x) continue;
+          if (partes.length && (partes[partes.length - 1] + " " + x).length < 180) partes[partes.length - 1] += " " + x;
+          else partes.push(x);
+        }
+        const v = pickVoice();
         speaking = true; try { if (rec) rec.abort(); } catch {}
-        u.onend = u.onerror = () => { speaking = false; if (wakeOn) restartRec(); };
         try { speechSynthesis.cancel(); } catch {}
-        speechSynthesis.speak(u);
+        partes.forEach((p, i) => {
+          const u = new SpeechSynthesisUtterance(p);
+          if (v) { u.voice = v; u.lang = v.lang; } else u.lang = "es-MX";
+          // Las neuronales ya entonan bien a velocidad normal; a las demás un pelín
+          // más rápido les quita el tono robótico.
+          u.rate = v && /natural|neural|online|google/i.test(v.name) ? 1.0 : 1.06; u.pitch = 1.0; u.volume = 1;
+          if (i === partes.length - 1) u.onend = u.onerror = () => { speaking = false; if (wakeOn) restartRec(); };
+          speechSynthesis.speak(u);
+        });
       } catch { speaking = false; }
     };
+    const callar = () => { try { speechSynthesis.cancel(); } catch {} speaking = false; if (wakeOn) restartRec(); };
+    function cambiarVoz() {
+      const es = vocesEs();
+      if (es.length < 2) { say("Este dispositivo solo tiene una voz en español."); return; }
+      const actual = pickVoice();
+      const sig = es[(Math.max(0, es.indexOf(actual)) + 1) % es.length];
+      try { localStorage.setItem("aa-endo-voz", sig.name); } catch {}
+      toast("Voz de Endo: " + sig.name);
+      say("¿Qué tal suena esta voz? Si quieres otra, dime: cambia de voz.");
+    }
+    // Respuestas variadas: oír siempre la misma frase es lo que más suena a robot.
+    const una = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const FRASES = {
+      abrir: (d) => una([`¡Claro! Aquí tienes ${d.titulo}.`, `Abriendo ${d.titulo}.`, `Listo, ${d.titulo}.`, `Va, te pongo ${d.titulo}.`]),
+      abrirTemporada: (d) => una([`${d.titulo}, temporada ${d.n}.`, `Listo: temporada ${d.n} de ${d.titulo}.`]),
+      episodio: (d) => una([`Episodio ${d.n} de ${d.titulo}.`, `Va el episodio ${d.n} de ${d.titulo}.`]),
+      noEsta: (d) => una([`Mmm, no encuentro ${d.q} en el catálogo.`, `Lo siento, ${d.q} no está en el catálogo.`, `No di con ${d.q}. ¿Me lo dices de otra forma?`]),
+      buscar: (d) => una([`Buscando ${d.q}.`, `Déjame buscar ${d.q}.`]),
+      ir: (d) => una([`Vamos a ${d.nombre}.`, `Te llevo a ${d.nombre}.`, `Abriendo ${d.nombre}.`]),
+      yaEstas: (d) => `Ya estás en ${d.nombre}.`,
+      seccion: () => una(["Aquí está.", "Listo."]),
+      pulsado: () => una(["Hecho.", "Listo.", "Ya está."]),
+      noBoton: (d) => `No veo ${d.nombre} en esta página.`,
+      temporada: (d) => una([`Temporada ${d.n}.`, `Te muestro la temporada ${d.n}.`]),
+      sinTemporada: (d) => `Este anime no tiene temporada ${d.n}.`,
+      sinopsis: (d, extra) => (extra ? `${d.titulo}. ${extra}` : `No tengo la sinopsis de ${d.titulo}.`),
+      genero: (d) => `Te muestro ${d.peliculas ? "películas" : "animes"} de ${d.genero}.`,
+      ayuda: () => "Esto es lo que puedo hacer.",
+      ok: () => una(["Vale.", "Listo."]),
+    };
+    const decir = (clave, d = {}, extra) => { const f = FRASES[clave]; if (f) say(f(d, extra)); };
     let toastT;
     const toast = (m) => {
       let el = document.getElementById("yoru-toast");
@@ -2306,111 +2384,26 @@ $(document).ready(function () {
       el.textContent = m; requestAnimationFrame(() => el.classList.add("show"));
       clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("show"), 4000);
     };
-    const PAGES = { inicio: "index.html", casa: "index.html", explorar: "explorar.html", explora: "explorar.html",
-      "películas": "peliculas.html", peliculas: "peliculas.html", pelis: "peliculas.html", favoritos: "mis-favoritos.html",
-      "mi lista": "mis-favoritos.html", historial: "historial.html", notificaciones: "notificaciones.html", cuenta: "cuenta.html", perfil: "perfil.html" };
     const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-    // Empareja lo dicho con un anime del catálogo. Estricto: por PALABRAS (no subcadenas sueltas),
-    // para no abrir un anime al azar cuando el reconocimiento falla. Si no hay match claro → null
-    // (Endo dirá que no está en el catálogo).
-    const STOP = new Set(["el", "la", "los", "las", "un", "una", "de", "del", "y", "a", "anime", "serie",
-      "the", "of", "no", "ver", "pon", "abre", "busca"]);
-
-    // «Como suena»: el micrófono escribe en español lo que oye, así que antes de
-    // comparar se pasa todo a una forma fonética común. Con esto «quimetsu no
-    // yaiba» encuentra Kimetsu, «yuyutsu kaisen» encuentra Jujutsu y «shinguequi
-    // no kiojin» encuentra Shingeki.
-    function fon(x) {
-      let t = String(x || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      t = t.replace(/[^a-z0-9\s]/g, " ");
-      t = t.replace(/sh/g, "x").replace(/ch/g, "x");
-      t = t.replace(/ph/g, "f");
-      t = t.replace(/\bequis\b/g, "x");
-      t = t.replace(/qu/g, "k");
-      t = t.replace(/gu([ei])/g, "g$1");
-      t = t.replace(/c([ei])/g, "s$1").replace(/c/g, "k");
-      t = t.replace(/z/g, "s");
-      t = t.replace(/h/g, "");
-      t = t.replace(/j/g, "y");
-      t = t.replace(/v/g, "b");
-      t = t.replace(/w/g, "u");
-      t = t.replace(/\be(s[bcdfgklmnpqrstvxyz])/g, "$1");
-      t = t.replace(/(.)\1+/g, "$1");
-      return t.replace(/\s+/g, " ").trim();
-    }
-    // Distancia de edición, cortada en cuanto se pasa del tope (no hace falta
-    // el número exacto si ya sabemos que están lejos).
-    function _dist(a, b, tope) {
-      if (a === b) return 0;
-      if (Math.abs(a.length - b.length) > tope) return tope + 1;
-      let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
-      for (let i = 1; i <= a.length; i++) {
-        const cur = [i]; let mejor = i;
-        for (let j = 1; j <= b.length; j++) {
-          cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
-          if (cur[j] < mejor) mejor = cur[j];
-        }
-        if (mejor > tope) return tope + 1;
-        prev = cur;
-      }
-      return prev[b.length];
-    }
-    const _parecido = (a, b) => {
-      const m = Math.max(a.length, b.length);
-      return m ? 1 - _dist(a, b, m) / m : 0;
-    };
-
-    // El índice se arma una vez con todo el catálogo, no en cada frase.
-    let _idx = null;
-    function _indice() {
-      if (_idx && _idx.n === (data || []).length) return _idx.lista;
-      const lista = (data || []).map((a) => {
-        const nombres = [a.title, ...(a.altTitles || [])].map(fon).filter(Boolean);
-        return {
-          ref: a, nombres,
-          pegados: nombres.map((n) => n.replace(/ /g, "")),
-          palabras: nombres.map((n) => n.split(" ").filter((w) => w.length > 1 && !STOP.has(w))),
-        };
-      });
-      _idx = { n: (data || []).length, lista };
-      return lista;
-    }
-
-    // Empareja lo dicho con un anime del catálogo. Si no hay nada claro devuelve
-    // null y Endo dice que no lo encuentra: preferimos eso a abrir otro anime.
-    function findAnime(q) {
-      const fq = fon(q);
-      if (!fq) return null;
-      const qw = fq.split(" ").filter((w) => w.length > 1 && !STOP.has(w));
-      if (!qw.length) return null;
-      const qp = fq.replace(/ /g, "");
-      let mejor = null, mejorSc = 0;
-      for (const it of _indice()) {
-        let sc = 0;
-        for (let k = 0; k < it.nombres.length; k++) {
-          const t = it.nombres[k], tp = it.pegados[k], tw = it.palabras[k];
-          if (!t) continue;
-          if (t === fq || tp === qp) { sc = 100; break; }
-          if (fq.length >= 5 && (t.indexOf(" " + fq + " ") >= 0 || t.indexOf(fq + " ") === 0 || t.endsWith(" " + fq))) {
-            sc = Math.max(sc, 92);
-          }
-          const sim = _parecido(qp, tp);
-          if (sim >= 0.72) sc = Math.max(sc, Math.round(48 + 52 * sim));
-          if (qp.length >= 5 && tp.indexOf(qp) === 0) sc = Math.max(sc, 86);
-          if (tw.length) {
-            let peso = 0;
-            for (const w of qw) {
-              let mp = 0;
-              for (const x of tw) { const v = _parecido(w, x); if (v > mp) mp = v; }
-              if (mp >= 0.6) peso += mp;
-            }
-            const covQ = peso / qw.length, covT = Math.min(1, peso / tw.length);
-            sc = Math.max(sc, Math.round(88 * covQ * (0.55 + 0.45 * covT)));
-          }
-        }
-        if (sc > mejorSc) { mejorSc = sc; mejor = it.ref; }
-      }
-      return mejorSc >= 62 ? mejor : null;
+    // Qué anime se pide (fonética, títulos en inglés, «temporada 2», «la película»…): js/endo-catalogo.js
+    const buscador = crearBuscador(data);
+    const findAnime = (q) => buscador.findAnime(q);
+    // Navegación por toda la página (páginas, secciones, botones, scroll…): js/endo-navegar.js
+    const navegador = crearNavegador({
+      decir, aviso: toast,
+      animeActual: () => currentDetailsAnime || currentPlayerAnime,
+      generos: () => [...new Set((data || []).flatMap((a) => (a.genres || []).map(canonGenre)).filter(Boolean))],
+      manual: () => import("./yoru-manual.js").then((m) => m.showYoruManual()).catch(() => {}),
+    });
+    // Abre la ficha de lo que se pidió (con la temporada, si la dijo).
+    function abrirAnime(q) {
+      const r = buscador.buscar(q);
+      if (!r) return false;
+      const a = r.anime;
+      if (r.temporada) decir("abrirTemporada", { titulo: a.title, n: r.temporada }); else decir("abrir", { titulo: a.title });
+      toast("Abriendo " + a.title + "…");
+      setTimeout(() => { location.href = "anime-details.html?id=" + a.id + (r.temporada ? "&temporada=" + r.temporada : ""); }, 350);
+      return true;
     }
     // Ejecuta una búsqueda en el buscador REAL de la página. En móvil/app/TV el buscador
     // activo es el overlay (#msearch-input); en escritorio es la barra (#search-input).
@@ -2442,8 +2435,15 @@ $(document).ready(function () {
       return false;
     }
     function handle(text) {
-      const t = norm(text); if (!t) { say("No te entendí."); return; }
+      const t = norm(text).replace(/[.,;:!?¡¿]+/g, " ").replace(/\s+/g, " ").trim();
+      if (!t) { say("Perdona, no te entendí."); return; }
       let m;
+      // CALLAR / APAGAR a Endo
+      if (/^(?:callate|calla|silencio|para de hablar|deja de hablar|shh+|basta)$/.test(t)) { callar(); return; }
+      if (/^(?:desactivate|apagate|deja de escuchar|duerme|adios endo|hasta luego)$/.test(t)) { say("Hasta luego. Si me necesitas, actívame desde tu perfil."); setTimeout(() => setWake(false), 2500); return; }
+      if (/^(?:cambia(?:r)? (?:de |la )?voz|otra voz|usa otra voz)$/.test(t)) { cambiarVoz(); return; }
+      if (/^(?:hola|hey|oye|buenas|buenos dias|buenas tardes|buenas noches)$/.test(t)) { say(una(["¡Hola! ¿Qué quieres ver?", "¡Hola! Dime qué anime te pongo."])); return; }
+      if (/^(?:gracias|muchas gracias|genial|perfecto)$/.test(t)) { say(una(["¡De nada!", "¡Para eso estoy!"])); return; }
       // EPISODIO ANTERIOR (antes que «atrás» para no confundir «regresa el episodio anterior»)
       if (/(?:episodio|cap[ií]tulo|capitulo|cap)\s+anterior|anterior\s+(?:episodio|cap[ií]tulo|capitulo|cap)|(?:pon|dale|ve|regresa|vuelve|reproduce)\s+(?:el\s+|al\s+)?(?:episodio\s+|cap[ií]tulo\s+)?anterior|episodio previo|cap[ií]tulo previo/.test(t)) {
         if (currentPlayerAnime && currentPrevEpisode) { say("Episodio anterior."); toast("Episodio anterior…"); openPlayer(currentPlayerAnime, currentPrevEpisode); return; }
@@ -2459,18 +2459,16 @@ $(document).ready(function () {
         if (mediaControl("play")) { indMsg("Reproduciendo", 1800); return; }
         toast("Solo puedo dar play en la app All-Anime; este servidor de video no se controla por voz."); say("No puedo controlar este reproductor."); return;
       }
+      // NAVEGAR por toda la página: páginas, secciones, botones, scroll, temporada,
+      // sinopsis, géneros, ayuda (js/endo-navegar.js). Va antes que «atrás» para que
+      // «vuelve al inicio» lleve al inicio y no a la página anterior.
+      if (navegador.navegar(t)) return;
       // CERRAR / ATRÁS: cierra el reproductor o el modal de trailer abierto, o vuelve atrás.
       if (/^(cierra|cerrar|quita|salir|sal del|cierra el)\b|^(atr[aá]s|volver|regresa|vuelve|ret[oó]rnate)\b/.test(t)) {
         const pm = $("#episode-player-modal"); const tm = $("#trailer-modal");
         if (pm.length && (pm.is(":visible") || pm.css("display") !== "none")) { $("#close-player, #episode-player-modal .close, #close-episode-player").first().trigger("click"); say("Cerrado."); return; }
         if (tm.length && tm.is(":visible")) { $("#close-trailer-modal").trigger("click"); say("Cerrado."); return; }
         say("Volviendo."); history.back(); return;
-      }
-      // NAVEGACIÓN por nombre suelto: «Yoru, explorar» / «Yoru, inicio» / «películas»…
-      if ((m = t.match(/^(?:la\s+|el\s+)?(inicio|casa|explorar|explora|peliculas|pel[ií]culas|pelis|favoritos|mi lista|mis favoritos|historial|notificaciones|cuenta|perfil)$/))) {
-        const key = Object.keys(PAGES).find((k) => norm(k) === norm(m[1])) || m[1];
-        const url = PAGES[key] || PAGES[norm(m[1])];
-        if (url) { say("Enseguida."); toast("Abriendo " + m[1] + "…"); location.href = url; return; }
       }
       // SIGUIENTE EPISODIO (solo si hay uno reproduciéndose / en la página de detalles)
       if (/(?:siguiente|pr[oó]ximo|proximo|otro)\s+(?:episodio|cap[ií]tulo|capitulo|cap)|pasa(?:r)?\s+al?\s+(?:siguiente|pr[oó]ximo|proximo)/.test(t)) {
@@ -2487,9 +2485,9 @@ $(document).ready(function () {
             if (!h) { toast("No hay nada reciente para continuar."); say("No encontré nada reciente."); return; }
             const a = (data || []).find((x) => x.id === h.animeId);
             if (!a) { location.href = "historial.html"; return; }
-            const ep = a.episodes.find((e) => e.season === h.season && e.number == h.number) || a.episodes.find((e) => e.number == h.number);
+            const ep = (a.episodes || []).find((e) => e.season === h.season && e.number == h.number) || (a.episodes || []).find((e) => e.number == h.number);
             if (ep) { toast("Continuando: " + a.title + " · ep " + h.number); openPlayer(a, ep); }
-            else location.href = "anime-details.html?id=" + a.id;
+            else location.href = "anime-details.html?id=" + a.id + "&season=" + encodeURIComponent(h.season || "") + "&episode=" + h.number;
           } catch (e) { location.href = "historial.html"; }
         })();
         return;
@@ -2499,47 +2497,52 @@ $(document).ready(function () {
         const q = (m[1] || "").trim();
         const a = q ? findAnime(q) : (currentDetailsAnime || currentPlayerAnime);
         if (a) {
-          say("Trailer de " + a.title + ".");
+          say("Tráiler de " + a.title + ".");
           if (currentDetailsAnime && a.id === currentDetailsAnime.id && a.trailerUrl) { try { $("#open-trailer-modal").trigger("click"); return; } catch (e) {} }
           location.href = "anime-details.html?id=" + a.id + "&trailer=1"; return;
         }
-        toast("¿De qué anime quieres el trailer?"); say("¿De qué anime?"); return;
+        toast("¿De qué anime quieres el tráiler?"); say("¿De qué anime?"); return;
       }
-      // PONER UN EPISODIO CONCRETO: «pon el episodio 5 de Naruto»
-      if ((m = t.match(/(?:pon|reproduce|ver|abre|quiero ver|coloca|dale|ir al)\s+(?:el\s+)?(?:episodio|cap[ií]tulo|capitulo|cap)\s+(\d+)\s*(?:de\s+|del\s+)?(.*)$/))) {
-        const n = m[1]; const q = (m[2] || "").trim();
+      // PONER UN EPISODIO CONCRETO: «pon el episodio 5 de Naruto» (números con letra también)
+      const tn = t.replace(/\b(uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|trece|catorce|quince|veinte)\b/g,
+        (w) => ({ uno: 1, dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7, ocho: 8, nueve: 9, diez: 10, once: 11, doce: 12, trece: 13, catorce: 14, quince: 15, veinte: 20 }[w]));
+      const verEp = (n, q) => {
         const a = q ? findAnime(q) : (currentDetailsAnime || currentPlayerAnime);
-        if (a) { say("Episodio " + n + " de " + a.title + "."); toast("Episodio " + n + " de " + a.title + "…"); location.href = "anime-details.html?id=" + a.id + "&episode=" + n; return; }
-        toast("¿De qué anime el episodio " + n + "?"); say("¿De qué anime?"); return;
+        if (a) { decir("episodio", { n, titulo: a.title }); toast("Episodio " + n + " de " + a.title + "…"); location.href = "anime-details.html?id=" + a.id + "&episode=" + n; return true; }
+        return false;
+      };
+      if ((m = tn.match(/(?:^|\s)(?:pon|reproduce|ver|abre|quiero ver|coloca|dale|ir al|ve al)?\s*(?:el\s+)?(?:episodio|cap[ií]tulo|capitulo|cap)\s+(\d+)\s*(?:de\s+|del\s+)?(.*)$/))) {
+        if (verEp(m[1], (m[2] || "").trim())) return;
+        toast("¿De qué anime el episodio " + m[1] + "?"); say("¿De qué anime?"); return;
       }
       // …o el orden inverso: «pon Naruto episodio 5»
-      if ((m = t.match(/(?:pon|reproduce|ver|abre|coloca|dale)\s+(.+?)\s+(?:episodio|cap[ií]tulo|capitulo|cap)\s+(\d+)/))) {
-        const q = m[1].trim(); const n = m[2]; const a = findAnime(q);
-        if (a) { say("Episodio " + n + " de " + a.title + "."); toast("Episodio " + n + " de " + a.title + "…"); location.href = "anime-details.html?id=" + a.id + "&episode=" + n; return; }
-      }
-      if ((m = t.match(/(?:llevame|ll[eé]vame|ve|abre|ir|vamos)\s+(?:a\s+)?(?:la\s+|el\s+)?(inicio|casa|explorar|explora|peliculas|pel[ií]culas|pelis|favoritos|mi lista|historial|notificaciones|cuenta|perfil)/))) {
-        const key = Object.keys(PAGES).find((k) => norm(k) === norm(m[1])) || m[1];
-        const url = PAGES[key] || PAGES[norm(m[1])];
-        if (url) { say("Enseguida."); toast("Abriendo " + m[1] + "…"); location.href = url; return; }
-      }
-      // ABRIR / REPRODUCIR un anime (acepta infinitivos: abrir, reproducir, poner, mirar).
-      if ((m = t.match(/(?:reproduce|reproducir|ver|abre|abrir|pon|poner|mira|mirar|dale|quiero ver)\s+(.+)/))) {
-        const q = m[1].trim(); const a = findAnime(q);
-        if (a) { say("Abriendo " + a.title + "."); toast("Abriendo " + a.title + "…"); location.href = "anime-details.html?id=" + a.id; return; }
-        say(q + " no está en el catálogo."); toast('«' + q + '» no está en el catálogo de All-Anime.'); return;
+      if ((m = tn.match(/(?:pon|reproduce|ver|abre|coloca|dale)\s+(.+?)\s+(?:episodio|cap[ií]tulo|capitulo|cap)\s+(\d+)/))) {
+        if (verEp(m[2], m[1].trim())) return;
       }
       // BUSCAR: si calza un anime lo abre; si no, muestra el buscador con lo dicho.
-      if ((m = t.match(/(?:busca|buscar|encuentra|encontrar|b[uú]scame|buscame)\s+(.+)/))) {
+      if ((m = t.match(/^(?:busca|buscar|encuentra|encontrar|b[uú]scame|buscame)\s+(.+)/))) {
         const q = m[1].trim();
-        const a = findAnime(q);
-        if (a) { say("Abriendo " + a.title + "."); location.href = "anime-details.html?id=" + a.id; return; }
-        say("Buscando " + q + "."); toast('Buscando "' + q + '"…'); doSearch(q); return;
+        if (abrirAnime(q)) return;
+        decir("buscar", { q }); toast('Buscando "' + q + '"…'); doSearch(q); return;
       }
-      if (/recomi[eé]nda|qu[eé]\s+veo|sorpr[eé]ndeme/.test(t)) { say("Vamos a explorar."); location.href = "explorar.html"; return; }
-      // por defecto: si calza un anime del catálogo, lo abre; si no, dice que no está.
-      const a = findAnime(text);
-      if (a) { say("Abriendo " + a.title + "."); toast("Abriendo " + a.title + "…"); location.href = "anime-details.html?id=" + a.id; return; }
-      say("No encontré «" + text + "» en el catálogo."); toast('No encontré «' + text + '» en el catálogo. Prueba: «Endo, busca …».');
+      // ABRIR / REPRODUCIR un anime (acepta infinitivos: abrir, reproducir, poner, mirar).
+      if ((m = t.match(/^(?:(?:quiero|me gustaria|puedes|podrias)\s+)?(?:reproduce|reproducir|ver|abre|abrir|pon|poner|ponme|mira|mirar|dale|quiero ver|muestrame|ensename)\s+(.+)/))) {
+        const q = m[1].trim();
+        if (abrirAnime(q)) return;
+        if (navegador.pulsarSiCoincide(t)) return;          // «ver más», «abrir filtros»…
+        decir("noEsta", { q }); toast('«' + q + '» no está en el catálogo de All-Anime.'); return;
+      }
+      if (/recomi[eé]nda|qu[eé]\s+veo|sorpr[eé]ndeme|no se que ver/.test(t)) {
+        const pool = (data || []).filter((a) => (a.rating || 0) >= 4);
+        const a = pool.length ? una(pool) : null;
+        if (a) { say(una([`¿Qué tal ${a.title}?`, `Te recomiendo ${a.title}.`])); setTimeout(() => { location.href = "anime-details.html?id=" + a.id; }, 1200); return; }
+        say("Vamos a explorar."); location.href = "explorar.html"; return;
+      }
+      // Por defecto: si es un anime del catálogo lo abre; si es el nombre de un botón
+      // visible («compartir», «añadir a mi lista», «avísame»), lo pulsa.
+      if (abrirAnime(t)) return;
+      if (navegador.pulsarSiCoincide(t)) return;
+      decir("noEsta", { q: text }); toast('No encontré «' + text + '». Prueba: «Endo, busca …» o «Endo, ayuda».');
     }
     // Reconocimiento de voz. Al ACTIVAR (clic o al decir «Yoru»), queda escuchando y ejecuta
     // CADA frase como una orden — ya NO hay que repetir «Yoru» en cada pedido (ese paso doble
@@ -2561,12 +2564,17 @@ $(document).ready(function () {
     const CMD_RE = new RegExp("\\b(?:" + CMD + ")\\b");
     const detectWake = (t) => t.match(WAKE_RE);
     // Vocabulario para la gramática de Vosk (Brave/Edge): órdenes + títulos → mucha más precisión.
+    // Solo nombres escritos con letras latinas (los de kana/hangul no sirven al reconocedor).
+    const tieneLatinas = (x) => !!x && /[a-z]/i.test(x) && ![...x].some((c) => { const n = c.codePointAt(0); return n >= 0x370 && !(n >= 0x1e00 && n <= 0x1eff) && !(n >= 0x2010 && n <= 0x2027); });
     function buildGrammar() {
       const words = new Set();
       const add = (s) => norm(s).split(/[^a-z0-9]+/i).forEach((w) => { if (w && w.length > 1) words.add(w); });
-      add("endo busca buscar encuentra abre pon reproduce ver ve ir vamos mira llevame coloca dale siguiente proximo continua continuar reanuda sigue trailer avance pasa cierra atras volver regresa episodio capitulo pelicula peliculas explorar inicio casa favoritos historial cuenta perfil notificaciones recomiendame que necesitas el la los las de del uno dos tres cuatro cinco seis siete ocho nueve diez once doce");
-      (data || []).forEach((a) => { add(a.title); (a.altTitles || []).slice(0, 1).forEach(add); });
-      try { return JSON.stringify([...words].slice(0, 1800).concat("[unk]")); } catch (e) { return null; }
+      add("endo busca buscar encuentra abre pon ponme reproduce reproducir ver ve ir vamos mira llevame coloca dale siguiente proximo continua continuar reanuda sigue trailer avance pasa cierra atras volver regresa episodio capitulo pelicula peliculas explorar inicio casa favoritos historial cuenta perfil notificaciones recomiendame que necesitas el la los las de del uno dos tres cuatro cinco seis siete ocho nueve diez once doce");
+      add("baja sube arriba abajo todo final principio pulsa presiona toca clic haz selecciona temporada primera segunda tercera cuarta quinta sinopsis trata calendario estrenos lista mi ayuda puedes hacer callate silencio cambia voz otra hola gracias animes series algo genero accion aventura comedia drama fantasia romance terror misterio deportes musica recuentos vida ciencia ficcion sobrenatural isekai mecha shonen seinen numero compartir avisame anadir info mas filtros reproducir");
+      // TODOS los nombres con letras latinas (antes solo el título y un alternativo:
+      // en modo sin conexión no se podía pedir un anime por su otro nombre).
+      (data || []).forEach((a) => { add(a.title); (a.altTitles || []).filter((x) => tieneLatinas(x)).forEach(add); });
+      try { return JSON.stringify([...words].slice(0, 6000).concat("[unk]")); } catch (e) { return null; }
     }
     // Reacción INSTANTÁNEA: en cuanto el parcial contiene «Endo», muestra «Escuchando…».
     function reactToInterim(raw) {
@@ -2574,7 +2582,7 @@ $(document).ready(function () {
       if (armed || detectWake(t)) indHearing("Escuchando…");
     }
     const _stripVerb = (s) => (s || "").replace(/^(?:reproduce|reproducir|ver|abre|abrir|pon|poner|mira|mirar|dale|coloca|busca|buscar|encuentra|encontrar|quiero ver)\s+/, "").trim();
-    const _cmdMatchesAnime = (cmd) => !!cmd && !!(findAnime(_stripVerb(cmd)) || findAnime(cmd));
+    const _cmdMatchesAnime = (cmd) => !!cmd && !!findAnime(_stripVerb(cmd));   // el buscador ya aparta el relleno
     function _parseCand(t) {
       const wake = detectWake(t); const said = !!wake;
       return { said, cmd: said ? t.slice(wake.index + wake[0].length).replace(/^[\s,]+/, "").trim() : t };
