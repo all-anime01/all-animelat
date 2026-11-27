@@ -811,6 +811,26 @@ def imdb_suggest(title, year=None):
         return pool[0]["id"] if pool else None
     except Exception: return None
 
+def _pegado(s):
+    """Título sin espacios ni signos: «Foolnight» y «Fool Night» quedan iguales."""
+    return re.sub(r"[^a-z0-9]", "", norm(s or ""))
+
+def tmdb_por_imdb(title, key, log=None):
+    """Segundo intento cuando la búsqueda de TMDB no devuelve nada porque el título va
+    escrito distinto (Netflix «Fool Night» importado como «Foolnight»: TMDB no lo
+    encuentra y la ficha se quedaba sin imagen, logo ni episodios). IMDB sí lo
+    encuentra, y TMDB sabe pasar de IMDB a su propio id con /find. Solo se acepta si
+    el título que devuelve se parece de verdad al buscado, para no colar otra serie."""
+    imdb = imdb_suggest(title)
+    if not imdb: return None
+    j = get_json(f"https://api.themoviedb.org/3/find/{imdb}?api_key={key}&external_source=imdb_id&language=es-ES")
+    for r in (j.get("tv_results") or []):
+        nombres = [r.get("name"), r.get("original_name")]
+        if any(similitud(_pegado(title), _pegado(n)) >= 0.8 for n in nombres if n):
+            if log: log(f"TMDB no encontró «{title}» por título; encontrado por IMDB {imdb} → {r.get('name')}")
+            return str(r["id"])
+    return None
+
 def guess_kind(title):
     """'movie' o 'tv' según la API de sugerencias de IMDB (feature/video/short = película)."""
     slug = re.sub(r"\s+", "_", re.sub(r"[^a-z0-9 ]", "", title.lower()).strip())
@@ -2193,6 +2213,8 @@ def build_meta(title, opts, log):
     """FASE 1 (rápida): metadata + imágenes. Rellena la ficha al instante."""
     log(f"== {title} ==")
     tmdb = tmdb_resolve(title, opts["tmdb_key"])
+    if not tmdb and opts["tmdb_key"]:
+        tmdb = tmdb_por_imdb(title, opts["tmdb_key"], log)
     info = tmdb_full(tmdb, opts["tmdb_key"]) if tmdb else {"title": title, "year": None, "genres": [], "description": "",
             "poster": "", "backdrop": "", "logo": "", "imdb": "", "seasons": [], "stills": {}, "altTitles": [], "creator": "", "runtime": 24}
     real_title = info["title"] or title
