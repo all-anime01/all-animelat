@@ -43,15 +43,15 @@ export function injectAccountStyles() {
   .cr-card:hover .cr-thumb img{transform:scale(1.06)}
   .cr-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);opacity:0;transition:opacity .2s}
   .cr-card:hover .cr-ov{opacity:1}
-  .cr-play{width:52px;height:52px;border-radius:50%;background:rgba(244,117,33,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+  .cr-play{width:52px;height:52px;border-radius:50%;background:rgba(202,48,48,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.5)}
   .cr-play svg{width:22px;height:22px;fill:#fff;margin-left:3px}
   .cr-epn{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.72);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:5px;letter-spacing:.3px}
   .cr-bar{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.28)}
-  .cr-bar i{display:block;height:100%;background:#f47521}
+  .cr-bar i{display:block;height:100%;background:var(--primary-color,#ca3030)}
   .cr-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
   .cr-title{font-size:14px;font-weight:700;line-height:1.25;color:#f5f5f5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .cr-sub{font-size:12.5px;color:#9a9a9a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .cr-cont{font-size:11.5px;color:#f47521;font-weight:600}`;
+  .cr-cont{font-size:11.5px;color:var(--primary-color,#ca3030);font-weight:600}`;
   document.head.appendChild(s);
 }
 

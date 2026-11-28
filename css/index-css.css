@@ -1618,13 +1618,10 @@ html.aa-tv .anime-actions .action-btn.aa-focus { border-radius: 999px !important
     border-radius: 8px;
     overflow: hidden;
     background: #141414;
-    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.8);
-    opacity: 0;
-    transform: scale(0.8) translateY(10px);
-    transform-origin: center center;
-    /* Expansión fluida tipo Netflix/Prime: sale creciendo desde la tarjeta con un
-       ease-out suave (no un simple fundido). */
-    transition: opacity 0.2s ease, transform 0.36s cubic-bezier(0.16, 0.84, 0.24, 1), box-shadow 0.36s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    /* El origen y el tamaño inicial (el de la tarjeta) los pone card-hover.js:
+       el panel crece desde la tarjeta con un ease-out largo, como Netflix. */
+    transition: opacity 0.22s ease, transform 0.42s cubic-bezier(0.2, 0.9, 0.25, 1), box-shadow 0.42s ease;
     will-change: transform, opacity;
     cursor: pointer;
     display: flex;
@@ -1632,20 +1629,60 @@ html.aa-tv .anime-actions .action-btn.aa-focus { border-radius: 999px !important
 }
 
 .card-preview.show {
-    opacity: 1;
-    transform: scale(1) translateY(0);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.82), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Al salir: se encoge de vuelta sobre la tarjeta mientras se desvanece. El
+   fundido va un poco por detrás del encogido para que no "parpadee". */
+.card-preview.closing {
+    pointer-events: none;
+    transition: opacity 0.3s ease 0.06s, transform 0.36s cubic-bezier(0.4, 0, 0.5, 1), box-shadow 0.36s ease;
 }
 
 /* El contenido interno (título, botones, géneros) aparece con un leve retraso
-   escalonado para que se sienta más pulido. */
+   escalonado para que se sienta más pulido, y al cerrar se va el primero. */
 .card-preview .cardpv-info {
     opacity: 0;
     transform: translateY(8px);
-    transition: opacity 0.28s ease 0.08s, transform 0.32s cubic-bezier(0.16, 0.84, 0.24, 1) 0.06s;
+    transition: opacity 0.28s ease 0.12s, transform 0.36s cubic-bezier(0.2, 0.9, 0.25, 1) 0.1s;
 }
 .card-preview.show .cardpv-info {
     opacity: 1;
     transform: translateY(0);
+}
+.card-preview.closing .cardpv-info {
+    transition: opacity 0.12s ease, transform 0.2s ease;
+}
+.card-preview .cardpv-logo,
+.card-preview .cardpv-title {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease 0.18s, transform 0.4s cubic-bezier(0.2, 0.9, 0.25, 1) 0.16s;
+}
+.card-preview.show .cardpv-logo,
+.card-preview.show .cardpv-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+.card-preview.closing .cardpv-logo,
+.card-preview.closing .cardpv-title {
+    transition: opacity 0.12s ease;
+}
+
+/* Imagen quieta debajo; el tráiler entra encima con fundido cuando ya se ve. */
+.cardpv-live {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+.cardpv-live.on {
+    opacity: 1;
+}
+.card-preview .cardpv-still {
+    transform: translate(-50%, -50%) scale(1.06);
+    transition: transform 6s linear;
+}
+.card-preview.show .cardpv-still {
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .cardpv-media-wrap {
@@ -3431,3 +3468,167 @@ html.aa-tv .player-video-container:-webkit-full-screen #episode-iframe {
     100% { box-shadow: 0 0 0 16px rgba(226, 59, 59, 0); }
 }
 @media (prefers-reduced-motion: reduce) { .endo-pulso { animation: none; outline: 2px solid #e23b3b; } }
+
+/* ===================================================================
+   Filas estilo Prime Video (Doblajes de la Temporada / Favoritos del
+   público). js/prime-row.js. La tarjeta se abre hacia el lado: crece en
+   ancho hasta 16:9 con el mismo alto y empuja a sus vecinas.
+   =================================================================== */
+.prow-wrap { position: relative; }
+.prow {
+  position: relative;
+  display: flex;
+  gap: var(--gap, 12px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1.2rem 0 1.6rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.prow::-webkit-scrollbar { display: none; }
+
+.prow-item {
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--pw, 200px);
+  height: var(--ph, 300px);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-bg);
+  /* Abrir: ease-out largo y suave. El cierre usa la misma curva. */
+  transition: width 0.46s cubic-bezier(0.25, 0.9, 0.3, 1), box-shadow 0.46s ease, transform 0.46s cubic-bezier(0.25, 0.9, 0.3, 1);
+  will-change: width;
+  isolation: isolate;
+}
+.prow-item:not(.open):hover { transform: translateY(-4px); }
+.prow-item.open {
+  width: var(--ww, 480px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.07);
+  z-index: 2;
+}
+
+/* Póster (estado normal) */
+.prow-poster { position: absolute; inset: 0; display: block; z-index: 1; transition: opacity 0s; }
+.prow-poster img { width: var(--pw, 200px); height: 100%; object-fit: cover; display: block; }
+.prow-quality {
+  position: absolute; top: 1rem; right: 1rem; background: var(--secondary-color); color: var(--dark-text);
+  padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 1.2rem; font-weight: 700;
+}
+.prow-item.open .prow-poster { opacity: 0; pointer-events: none; transition: opacity 0.2s ease 0.18s; }
+
+/* Tarjeta ancha (estado abierto). Tiene SIEMPRE el ancho final; la tarjeta la
+   va descubriendo al crecer, así el texto nunca se reacomoda a mitad. */
+.prow-wide {
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: var(--ww, 480px);
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  /* Al cerrar, la imagen ancha acompaña a la tarjeta mientras se estrecha y se
+     funde al final sobre el póster (así nunca asoma un hueco vacío). */
+  transition: opacity 0.26s ease 0.2s, visibility 0s linear 0.46s;
+}
+.prow-item.open .prow-wide {
+  opacity: 1; visibility: visible;
+  transition: opacity 0.2s ease, visibility 0s;
+}
+.prow-bg, .prow-video, .prow-video > * {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; display: block;
+}
+.prow-bg { transform: scale(1.08); transition: transform 0.9s cubic-bezier(0.25, 0.9, 0.3, 1); }
+.prow-item.open .prow-bg { transform: scale(1); }
+.prow-video { opacity: 0; transition: opacity 0.8s ease; pointer-events: none; overflow: hidden; }
+.prow-video.on { opacity: 1; }
+.prow-video iframe { transform: scale(1.35); }   /* recorta la marca de YouTube */
+.prow-shade {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(12, 12, 12, 0.96) 0%, rgba(12, 12, 12, 0.82) 30%, rgba(12, 12, 12, 0.25) 62%, transparent 85%),
+    linear-gradient(0deg, rgba(12, 12, 12, 0.55) 0%, transparent 40%);
+}
+.prow-body {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 58%;
+  padding: 2.2rem 2rem 2rem 2.2rem;
+  display: flex; flex-direction: column; justify-content: center; gap: 1.1rem;
+}
+/* Cada línea entra escalonada al abrir y se va toda junta al cerrar. */
+.prow-body > * {
+  opacity: 0; transform: translateX(-12px);
+  transition: opacity 0.16s ease, transform 0.2s ease;
+}
+.prow-item.open .prow-body > * {
+  opacity: 1; transform: none;
+  transition: opacity 0.36s ease, transform 0.46s cubic-bezier(0.25, 0.9, 0.3, 1);
+}
+.prow-item.open .prow-body > :nth-child(1) { transition-delay: 0.12s; }
+.prow-item.open .prow-body > :nth-child(2) { transition-delay: 0.18s; }
+.prow-item.open .prow-body > :nth-child(3) { transition-delay: 0.23s; }
+.prow-item.open .prow-body > :nth-child(4) { transition-delay: 0.27s; }
+.prow-item.open .prow-body > :nth-child(5) { transition-delay: 0.3s; }
+
+.prow-logo {
+  max-width: 100%; max-height: 8.5rem; object-fit: contain; object-position: left center; align-self: flex-start;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+}
+.prow-title {
+  font-family: var(--font-headings); font-size: 2.4rem; font-weight: 800; line-height: 1.1; color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8); margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.prow-actions { display: flex; align-items: center; gap: 1rem; }
+.prow-play {
+  display: inline-flex; align-items: center; gap: 0.9rem;
+  background: #fff; color: #111; text-decoration: none; font-weight: 700; font-size: 1.5rem;
+  padding: 1.05rem 2rem; border-radius: 8px; white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.prow-play:hover { background: var(--primary-color); color: #fff; transform: scale(1.04); }
+.prow-circle {
+  position: relative;
+  width: 44px; height: 44px; border-radius: 50%; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(70, 70, 70, 0.7); color: #fff; border: 0; cursor: pointer; text-decoration: none; font-size: 1.6rem;
+  backdrop-filter: blur(6px);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.prow-circle:hover { background: rgba(255, 255, 255, 0.92); color: #111; transform: scale(1.08); }
+.prow-circle.on { background: var(--primary-color); color: #fff; }
+.prow-circle.pop { animation: prow-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1); }
+@keyframes prow-pop { 0% { transform: scale(0.8); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+.prow-circle[data-tip]::after {
+  content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translate(-50%, 4px);
+  background: #fff; color: #111; font-size: 1.2rem; font-weight: 700; padding: 0.4rem 0.8rem; border-radius: 5px;
+  white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.prow-circle:hover::after { opacity: 1; transform: translate(-50%, 0); }
+.prow-hl { color: var(--secondary-color); font-weight: 700; font-size: 1.4rem; display: flex; align-items: center; gap: 0.7rem; }
+.prow-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.1rem; color: #d6d6d6; font-size: 1.3rem; font-weight: 600; }
+.prow-box {
+  background: #fff; color: #111; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.04em;
+  padding: 0.25rem 0.7rem; border-radius: 3px;
+}
+.prow-box.hot { background: var(--primary-color); color: #fff; }
+.prow-sub { color: var(--grey-text); font-size: 1.3rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.prow-sub .fa-star { color: var(--primary-color); }
+.prow-dot { opacity: 0.6; }
+
+/* Flechas laterales (aparecen al pasar por la fila) */
+.prow-nav {
+  position: absolute; top: 1.2rem; bottom: 1.6rem; width: 52px; z-index: 6; border: 0; cursor: pointer;
+  color: #fff; font-size: 2.2rem; display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.2s ease, background 0.2s ease;
+}
+.prow-nav.prev { left: -60px; background: linear-gradient(90deg, rgba(16, 16, 16, 0.85), transparent); border-radius: 8px 0 0 8px; }
+.prow-nav.next { right: -60px; background: linear-gradient(270deg, rgba(16, 16, 16, 0.85), transparent); border-radius: 0 8px 8px 0; }
+.prow-wrap:hover .prow-nav { opacity: 0.85; }
+.prow-nav:hover { opacity: 1 !important; }
+.prow-wrap.at-start .prow-nav.prev, .prow-wrap.at-end .prow-nav.next { opacity: 0 !important; pointer-events: none; }
+
+@media (max-width: 1100px) {
+  .prow-nav.prev { left: 0; }
+  .prow-nav.next { right: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prow-item, .prow-wide, .prow-poster, .prow-body > *, .prow-bg, .card-preview, .card-preview * { transition-duration: 0.01s !important; transition-delay: 0s !important; }
+}

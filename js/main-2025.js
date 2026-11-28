@@ -12,6 +12,7 @@ import { logVisit, touchLastVisit } from "./analytics.js";
 import { initDonations } from "./donations.js";
 import { initRemoveAdsUI, syncAdFree, setAdFreeUid, openRemoveAds, isAdFree } from "./adfree.js";
 import { initCardHover } from "./card-hover.js";
+import { mountPrimeRow, primeRowEnabled } from "./prime-row.js";
 import "./tv-nav.js";  // navegación con control remoto (Fire TV / Android TV)
 import { crearBuscador } from "./endo-catalogo.js";   // Endo: qué anime se pide
 import { crearNavegador } from "./endo-navegar.js";   // Endo: navegar por toda la página
@@ -37,6 +38,23 @@ function playIconAnim(btn, kind) {
   clearTimeout(btn._animT);
   btn._animT = setTimeout(() => btn.classList.remove(...all), 900);
 }
+
+// «Mi lista» desde las filas estilo Prime: igual que el botón de la ficha
+// (Firestore con sesión; si no, localStorage), y el localStorage siempre al día.
+const localFavs = () => { try { return JSON.parse(localStorage.getItem("favoriteAnimes")) || []; } catch { return []; } };
+const primeFavOpts = {
+  async isFav(id) {
+    if (UD.isLoggedIn()) { try { return await UD.isFavAnime(id); } catch {} }
+    return localFavs().includes(id);
+  },
+  async toggleFav(anime) {
+    const on = UD.isLoggedIn() ? await UD.toggleFavAnime(anime) : !localFavs().includes(anime.id);
+    let f = localFavs().filter((x) => x !== anime.id);
+    if (on) f.push(anime.id);
+    localStorage.setItem("favoriteAnimes", JSON.stringify(f));
+    return on;
+  },
+};
 
 // Coincidencia de búsqueda por el título O cualquier título alternativo
 // (nombre japonés/romaji + internacional + sinónimos). Ej: "Attack on Titan"
@@ -954,10 +972,15 @@ $(document).ready(function () {
         .forEach((anime) =>
           recommendationsCarousel.append(createAnimeCard(anime))
         );
-    if (dubsCarousel.length)
-      animeData
-        .filter((a) => a.tags.includes("doblaje"))
-        .forEach((anime) => dubsCarousel.append(createAnimeCard(anime)));
+    if (dubsCarousel.length) {
+      const dubs = animeData.filter((a) => a.tags.includes("doblaje"));
+      // Con ratón: fila estilo Prime Video (la tarjeta se abre hacia el lado).
+      // En móvil y en la app de TV sigue el carrusel de siempre.
+      if (primeRowEnabled()) {
+        dubsCarousel.removeClass("card-carousel");
+        mountPrimeRow(dubsCarousel[0], dubs, primeFavOpts);
+      } else dubs.forEach((anime) => dubsCarousel.append(createAnimeCard(anime)));
+    }
     if (addedGrid.length)
       animeData
         .filter((a) => a.tags.includes("agregado"))
@@ -2110,6 +2133,12 @@ $(document).ready(function () {
     if (!row.length || !list.length) return;
     if (row.hasClass("slick-initialized")) row.slick("unslick");
     row.empty();
+    if (rowSel === "#public-favs-row" && primeRowEnabled()) {
+      row.removeClass("disc-carousel");
+      $(sectionSel).show();
+      mountPrimeRow(row[0], list, primeFavOpts);
+      return;
+    }
     list.forEach((a) => row.append(createAnimeCard(a)));
     $(sectionSel).show();
     row.slick({

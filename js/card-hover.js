@@ -5,9 +5,14 @@
 //  del anime superpuesto, más un botón "Ver ahora" e info rápida.
 //  Usa un panel flotante en position:fixed para no recortarse dentro de los
 //  carruseles (overflow:hidden). En dispositivos táctiles se desactiva.
+//
+//  Animación: el panel NACE de la tarjeta (crece desde su centro) y al salir
+//  vuelve a encogerse sobre ella mientras se desvanece, en vez de desaparecer de
+//  golpe. Mientras se cierra, otra tarjeta ya puede abrir el suyo.
 // ============================================================================
 
 let hoverTimer = null, closeTimer = null, pv = null, activeCard = null;
+const CLOSE_MS = 380;
 
 const ytId = (u) => {
   const m = String(u || "").match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([\w-]{11})/);
@@ -15,36 +20,51 @@ const ytId = (u) => {
 };
 
 function mediaHtml(card) {
-  const { video, trailer, img, fondo } = card.dataset;
-  // El panel es 16:9. El póster es vertical y ahí se ve recortado y feo, así que
-  // cuando el anime no tiene vídeo ni tráiler se usa su imagen de FONDO, que ya
-  // es apaisada. Si no hubiera fondo, se cae al póster de siempre.
-  const quieto = fondo || img || "";
+  const { video, trailer } = card.dataset;
   // En TV: preview LIGERO = solo imagen (nada de iframe de tráiler). El iframe pesaba,
   // trababa la navegación y a veces "atrapaba" la entrada. Escritorio sí usa tráiler.
-  if (document.documentElement.classList.contains("aa-tv")) {
-    return `<img class="cardpv-media vid" src="${quieto}" alt="">`;
-  }
-  // tabindex="-1" + pointer-events(CSS) → el tráiler NO captura el D-pad ni el foco,
-  // así en TV se puede seguir navegando y OK entra al anime (no lo bloquea el video).
+  if (document.documentElement.classList.contains("aa-tv")) return "";
+  // tabindex="-1" + pointer-events(CSS) → el tráiler NO captura el D-pad ni el foco.
   if (video) {
-    return `<video class="cardpv-media vid" tabindex="-1" autoplay muted loop playsinline poster="${quieto}"><source src="${video}"></video>`;
+    return `<video class="cardpv-media vid cardpv-live" tabindex="-1" autoplay muted loop playsinline><source src="${video}"></video>`;
   }
   const id = ytId(trailer);
   if (id) {
     // controls=0 + sin interacción (pointer-events) + recorte por CSS → sin
     // título, botones ni marca de YouTube.
     const src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&fs=0`;
-    return `<iframe class="cardpv-media yt" tabindex="-1" src="${src}" allow="autoplay; encrypted-media" frameborder="0" scrolling="no"></iframe>`;
+    return `<iframe class="cardpv-media yt cardpv-live" tabindex="-1" src="${src}" allow="autoplay; encrypted-media" frameborder="0" scrolling="no"></iframe>`;
   }
-  return `<img class="cardpv-media vid" src="${quieto}" alt="">`;
+  return "";
 }
 
-function removePreview() {
+// El vídeo no aparece de golpe: primero se ve la imagen de fondo y, cuando el
+// vídeo de verdad está reproduciéndose, entra con un fundido (YouTube enseña
+// negro y su marca los primeros instantes, por eso espera un poco más).
+function fadeInWhenReady(panel) {
+  const live = panel.querySelector(".cardpv-live");
+  if (!live) return;
+  const show = () => { if (panel.isConnected && !panel.classList.contains("closing")) live.classList.add("on"); };
+  if (live.tagName === "VIDEO") live.addEventListener("playing", show, { once: true });
+  else live.addEventListener("load", () => setTimeout(show, 900), { once: true });
+}
+
+// Cierra el panel actual animándolo de vuelta a su tarjeta. El panel se suelta
+// enseguida (pv = null) para que otra tarjeta pueda abrir el suyo sin esperar.
+function removePreview(instant) {
   clearTimeout(closeTimer); closeTimer = null;
   if (activeCard) activeCard.removeEventListener("mouseleave", onCardLeave);
-  if (pv) { pv.remove(); pv = null; }
-  activeCard = null;
+  const el = pv;
+  pv = null; activeCard = null;
+  if (!el) return;
+  if (instant === true || !el._from) { el.remove(); return; }
+  el.classList.add("closing");
+  el.classList.remove("show");
+  el.style.transform = el._from;
+  el.style.opacity = "0";
+  const done = () => el.remove();
+  el.addEventListener("transitionend", (e) => { if (e.target === el && e.propertyName === "transform") done(); });
+  setTimeout(done, CLOSE_MS + 120);
 }
 function onCardLeave() { closeTimer = setTimeout(removePreview, 160); }
 
@@ -58,17 +78,22 @@ function showPreview(card) {
   const cx = r.left + r.width / 2;
   const left = Math.max(8, Math.min(cx - pw / 2, window.innerWidth - pw - 8));
   const top = Math.max(8, r.top - 22);
-  // Altura que cubre toda la tarjeta (el tráiler 16:9 arriba y la info debajo
-  // se estiran para tapar el póster por completo).
   const mediaH = pw * 9 / 16;
   const coverH = Math.max(r.height + 30, mediaH + 96);
 
   pv = document.createElement("div");
   pv.className = "card-preview";
-  pv.style.cssText = `left:${left}px;top:${top}px;width:${pw}px;height:${coverH}px;`;
-  const logo = card.dataset.logo;
+  // Crece desde el centro de la tarjeta y empieza del tamaño de la tarjeta.
+  const ox = cx - left, oy = r.top + r.height / 2 - top;
+  const s0 = Math.max(0.35, Math.min(1, r.width / pw));
+  pv._from = `scale(${s0.toFixed(3)})`;
+  pv.style.cssText = `left:${left}px;top:${top}px;width:${pw}px;height:${coverH}px;` +
+    `transform-origin:${ox}px ${oy}px;transform:${pv._from};opacity:0;`;
+  const { logo, fondo, img } = card.dataset;
+  const quieto = fondo || img || "";
   pv.innerHTML = `
     <a class="cardpv-media-wrap" href="${card.dataset.href}" aria-label="${card.dataset.title || ""}">
+      <img class="cardpv-media vid cardpv-still" src="${quieto}" alt="">
       ${mediaHtml(card)}
       <div class="cardpv-catch"></div>
       <div class="cardpv-grad"></div>
@@ -82,10 +107,18 @@ function showPreview(card) {
       ${card.dataset.genres ? `<div class="cardpv-genres">${card.dataset.genres}</div>` : ""}
     </div>`;
   document.body.appendChild(pv);
-  requestAnimationFrame(() => pv.classList.add("show"));
+  fadeInWhenReady(pv);
+  const el = pv;
+  // Doble rAF: asegura que el navegador pinte el estado inicial antes de animar.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if (el !== pv) return;
+    el.classList.add("show");
+    el.style.transform = "scale(1)";
+    el.style.opacity = "1";
+  }));
 
   pv.addEventListener("mouseenter", () => clearTimeout(closeTimer));
-  pv.addEventListener("mouseleave", removePreview);
+  pv.addEventListener("mouseleave", () => { if (el === pv) removePreview(); });
   card.addEventListener("mouseleave", onCardLeave);
 }
 
@@ -100,20 +133,18 @@ export function initCardHover() {
   window.__aaCardPreviewClose = () => { clearTimeout(hoverTimer); removePreview(); };
 
   // Con puntero real (escritorio) se activa por hover automático. En táctil no.
-  if (window.matchMedia("(hover: none)").matches && !document.documentElement.classList.contains("aa-tv")) return;
-  if (window.matchMedia("(hover: none)").matches && document.documentElement.classList.contains("aa-tv")) return; // en TV lo dispara tv-nav, no el puntero
+  if (window.matchMedia("(hover: none)").matches) return; // en TV lo dispara tv-nav, no el puntero
 
   document.addEventListener("pointerover", (e) => {
     const card = e.target.closest(".anime-card");
     if (!card || card === activeCard) return;
-    // Antes, sin tráiler no salía panel. Ahora sí: se enseña la imagen de fondo
-    // del anime, que es apaisada y encaja en el hueco 16:9.
     clearTimeout(hoverTimer);
     hoverTimer = setTimeout(() => showPreview(card), 550);
   });
   document.addEventListener("pointerout", (e) => {
     if (e.target.closest(".anime-card")) clearTimeout(hoverTimer);
   });
-  window.addEventListener("scroll", removePreview, { passive: true });
-  window.addEventListener("resize", removePreview, { passive: true });
+  // Al hacer scroll el panel se queda fuera de sitio: se cierra rápido (sin rebote).
+  window.addEventListener("scroll", () => { clearTimeout(hoverTimer); removePreview(); }, { passive: true });
+  window.addEventListener("resize", () => removePreview(true), { passive: true });
 }
