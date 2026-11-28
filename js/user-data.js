@@ -5,6 +5,7 @@
 // ============================================================================
 
 import { db, FIREBASE_CONFIGURED } from "./firebase-config.js";
+import { profCol } from "./profiles.js";   // cada perfil tiene su historial, Mi lista, vistos…
 import { observeAuth } from "./auth.js";
 import { episodeId as makeEpId } from "./catalog-utils.js";
 import {
@@ -42,7 +43,7 @@ export function isLoggedIn() { return !!currentUser; }
 export { makeEpId };
 
 // ---- FAVORITOS: ANIMES ------------------------------------------------------
-function favAnimeRef(uid, id) { return doc(db, "users", uid, "favAnimes", id); }
+function favAnimeRef(uid, id) { return doc(db, "users", uid, profCol("favAnimes", uid), id); }
 
 export async function isFavAnime(id) {
   await userReady;
@@ -65,12 +66,12 @@ export async function toggleFavAnime(anime) {
 export async function listFavAnimes() {
   await userReady;
   if (!currentUser) return [];
-  const snap = await getDocs(collection(db, "users", currentUser.uid, "favAnimes"));
+  const snap = await getDocs(collection(db, "users", currentUser.uid, profCol("favAnimes", currentUser.uid)));
   return snap.docs.map((d) => d.data()).sort((a, b) => (b.at?.seconds || 0) - (a.at?.seconds || 0));
 }
 
 // ---- FAVORITOS: EPISODIOS ---------------------------------------------------
-function favEpRef(uid, epId) { return doc(db, "users", uid, "favEpisodes", epId); }
+function favEpRef(uid, epId) { return doc(db, "users", uid, profCol("favEpisodes", uid), epId); }
 
 export async function isFavEpisode(anime, episode) {
   await userReady;
@@ -94,12 +95,12 @@ export async function toggleFavEpisode(anime, episode) {
 export async function listFavEpisodes() {
   await userReady;
   if (!currentUser) return [];
-  const snap = await getDocs(collection(db, "users", currentUser.uid, "favEpisodes"));
+  const snap = await getDocs(collection(db, "users", currentUser.uid, profCol("favEpisodes", currentUser.uid)));
   return snap.docs.map((d) => d.data()).sort((a, b) => (b.at?.seconds || 0) - (a.at?.seconds || 0));
 }
 
 // ---- HISTORIAL / SEGUIR VIENDO (sincronizado entre dispositivos) -----------
-function historyRef(uid, epId) { return doc(db, "users", uid, "history", epId); }
+function historyRef(uid, epId) { return doc(db, "users", uid, profCol("history", uid), epId); }
 
 // Registra que el usuario abrió/vio un episodio (actualiza la fecha).
 export async function recordHistory(anime, episode) {
@@ -158,7 +159,7 @@ export async function listHistory(max = 60) {
   await userReady;
   if (!currentUser) return [];
   try {
-    const q = query(collection(db, "users", currentUser.uid, "history"), orderBy("at", "desc"), limit(max));
+    const q = query(collection(db, "users", currentUser.uid, profCol("history", currentUser.uid)), orderBy("at", "desc"), limit(max));
     const snap = await getDocs(q);
     return snap.docs.map((d) => d.data());
   } catch (e) { return []; }
@@ -193,7 +194,7 @@ export async function setYoruEnabled(on) {
 // ---- CALIFICACIÓN CON ESTRELLAS (agregada entre todos) ----------------------
 // animeStats/{id} = { ratingSum, ratingCount }  →  promedio = sum / count
 function animeStatsRef(id) { return doc(db, "animeStats", id); }
-function myRatingRef(uid, id) { return doc(db, "users", uid, "ratings", id); }
+function myRatingRef(uid, id) { return doc(db, "users", uid, profCol("ratings", uid), id); }
 
 // Convierte "5.7K" / "1.2K" / "500" a número.
 export function parseCount(v) {
@@ -250,7 +251,7 @@ export async function setRating(animeId, stars) {
 // users/{uid}/reactions/{animeId} = { value:'dislike'|'like'|'love', genres, at }
 // Alimenta las recomendaciones (like/love = semillas fuertes; dislike = excluir).
 export const REACTIONS = ["dislike", "like", "love"];
-function reactionRef(uid, id) { return doc(db, "users", uid, "reactions", id); }
+function reactionRef(uid, id) { return doc(db, "users", uid, profCol("reactions", uid), id); }
 
 export async function getReaction(id) {
   await userReady;
@@ -272,7 +273,7 @@ export async function setReaction(anime, value) {
 export async function listReactions() {
   await userReady;
   if (!currentUser) return [];
-  try { const snap = await getDocs(collection(db, "users", currentUser.uid, "reactions")); return snap.docs.map((d) => d.data()); }
+  try { const snap = await getDocs(collection(db, "users", currentUser.uid, profCol("reactions", currentUser.uid))); return snap.docs.map((d) => d.data()); }
   catch { return []; }
 }
 
@@ -282,7 +283,7 @@ export async function listReactions() {
 export function animeEpisodeCount(a) {
   return Number(a?.episodesCount ?? a?.episodesTotal ?? (a?.episodes ? a.episodes.length : 0)) || 0;
 }
-function followRef(uid, id) { return doc(db, "users", uid, "follows", id); }
+function followRef(uid, id) { return doc(db, "users", uid, profCol("follows", uid), id); }
 
 export async function isFollowing(id) {
   await userReady;
@@ -302,7 +303,7 @@ export async function toggleFollow(anime) {
 export async function listFollows() {
   await userReady;
   if (!currentUser) return [];
-  try { const snap = await getDocs(collection(db, "users", currentUser.uid, "follows")); return snap.docs.map((d) => d.data()); }
+  try { const snap = await getDocs(collection(db, "users", currentUser.uid, profCol("follows", currentUser.uid))); return snap.docs.map((d) => d.data()); }
   catch { return []; }
 }
 // Compara lo seguido con el catálogo actual → animes con episodios nuevos.

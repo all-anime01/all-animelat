@@ -2168,96 +2168,193 @@ html.aa-tv .anime-actions .action-btn.aa-focus { border-radius: 999px !important
     padding: 0;
 }
 
-/* --- Modal del Tráiler y Sinopsis --- */
+/* --- «Más info»: ventana estilo Netflix (tráiler + datos + póster) --- */
+/* La abre/cierra setupInfoModal() (main-2025.js) con las clases is-open /
+   is-closing: el fondo se oscurece y la ventana sube con un zoom suave. */
 .trailer-modal {
     display: none;
     position: fixed;
     z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
+    inset: 0;
     justify-content: center;
-    align-items: center;
-    padding: 2rem;
+    align-items: flex-start;
+    padding: 4vh 2rem;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    transition: background-color 0.38s ease, backdrop-filter 0.38s ease;
+    overflow: hidden;
 }
+.trailer-modal.is-open {
+    background-color: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(6px);
+}
+html.mi-lock, html.mi-lock body { overflow: hidden; }
 
 .trailer-modal .modal-content {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    width: 90%;
-    max-width: 900px;
     position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 3rem;
-}
-
-.close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    font-size: 3rem;
-    color: var(--light-text);
-    background: none;
-    cursor: pointer;
-    z-index: 5;
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    background-color: #000;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
+    max-width: 920px;
+    max-height: 92vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #181818;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    padding: 0;
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    transform-origin: 50% 20%;
+    transition: opacity 0.3s ease, transform 0.46s cubic-bezier(0.2, 0.9, 0.25, 1);
+    scrollbar-width: thin;
+    scrollbar-color: #444 transparent;
+}
+.trailer-modal.is-open .modal-content { opacity: 1; transform: none; }
+.trailer-modal.is-closing .modal-content {
+    transition: opacity 0.26s ease 0.04s, transform 0.34s cubic-bezier(0.4, 0, 0.6, 1);
+    transform: translateY(24px) scale(0.95);
 }
 
-.modal-info {
-    padding-top: 3rem;
-}
-
-.modal-info h3 {
-    font-size: 2.8rem;
-    font-family: var(--font-headings);
-    margin-bottom: 1.5rem;
-}
-
-.modal-info p {
-    font-size: 1.5rem;
-    line-height: 1.6;
-    color: var(--grey-text);
-    margin-bottom: 2.5rem;
-}
-
-.modal-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    font-size: 1.4rem;
-    color: var(--grey-text);
-}
-
-.modal-details-grid div {
-    background-color: var(--light-bg);
-    padding: 1rem;
-    border-radius: 4px;
+/* Botón cerrar: redondo, sobre el tráiler */
+.trailer-modal .close-modal {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.4rem;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(20, 20, 20, 0.75);
+    color: #fff;
+    font-size: 2.6rem;
+    line-height: 1;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background 0.18s ease, transform 0.2s ease;
+}
+.trailer-modal .close-modal:hover,
+.trailer-modal .close-modal:focus-visible { background: var(--primary-color); transform: rotate(90deg); }
+
+/* Cabecera con el tráiler */
+.trailer-modal .video-container {
+    position: relative;
+    height: auto;
+    padding: 0;
+    background: #000;
+}
+.mi-hero { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+.mi-bg, .mi-vid, .mi-vid iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.mi-bg { transform: scale(1.08); transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.25, 1); }
+.trailer-modal.is-open .mi-bg { transform: scale(1); }
+.mi-vid { opacity: 0; transition: opacity 0.9s ease; pointer-events: none; overflow: hidden; }
+.mi-vid.on { opacity: 1; }
+.mi-vid iframe { transform: scale(1.32); }   /* recorta el título y la marca de YouTube */
+.mi-shade {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+        linear-gradient(0deg, #181818 0%, rgba(24, 24, 24, 0.55) 22%, transparent 55%),
+        linear-gradient(90deg, rgba(10, 10, 10, 0.55) 0%, transparent 50%);
+}
+.mi-hero-body {
+    position: absolute; left: 4.4rem; right: 4.4rem; bottom: 3.6rem;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 1.8rem;
+}
+.mi-logo { max-width: 46%; max-height: 13rem; object-fit: contain; object-position: left bottom; filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.8)); }
+.mi-title { font-family: var(--font-headings); font-size: 3.6rem; font-weight: 800; line-height: 1.05; color: #fff; text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85); margin: 0; max-width: 70%; }
+.mi-actions { display: flex; align-items: center; gap: 1rem; }
+.mi-play {
+    display: inline-flex; align-items: center; gap: 1rem; border: 0; cursor: pointer;
+    background: #fff; color: #111; font-weight: 700; font-size: 1.7rem; font-family: inherit;
+    padding: 1.1rem 2.6rem; border-radius: 6px;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.mi-play:hover, .mi-play:focus-visible { background: var(--primary-color); color: #fff; transform: scale(1.04); }
+.mi-circle {
+    position: relative; width: 46px; height: 46px; border-radius: 50%; flex: none; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 1.7rem;
+    background: rgba(30, 30, 30, 0.6); color: #fff; border: 2px solid rgba(255, 255, 255, 0.55);
+    transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+.mi-circle:hover, .mi-circle:focus-visible { border-color: #fff; background: rgba(255, 255, 255, 0.14); transform: scale(1.08); }
+.mi-circle.on { background: var(--primary-color); border-color: var(--primary-color); }
+.mi-circle.pop { animation: prow-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.mi-circle[data-tip]::after {
+    content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translate(-50%, 4px);
+    background: #fff; color: #111; font-size: 1.2rem; font-weight: 700; padding: 0.4rem 0.8rem; border-radius: 5px;
+    white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.mi-circle:hover::after { opacity: 1; transform: translate(-50%, 0); }
+
+/* Cuerpo: datos + sinopsis a la izquierda, póster y ficha a la derecha */
+.trailer-modal .modal-info {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 230px;
+    gap: 3.2rem;
+    padding: 0.6rem 4.4rem 4rem;
+    align-items: start;
+}
+.mi-main { display: flex; flex-direction: column; gap: 1.3rem; min-width: 0; }
+.mi-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.4rem; color: #bcbcbc; font-size: 1.55rem; font-weight: 600; }
+.mi-q { border: 1px solid rgba(255, 255, 255, 0.45); border-radius: 4px; padding: 0.05rem 0.6rem; font-size: 1.2rem; color: #ddd; }
+.mi-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; }
+.mi-tags:empty { display: none; }
+.mi-age { border: 1px solid rgba(255, 255, 255, 0.55); color: #fff; font-weight: 700; font-size: 1.3rem; padding: 0.15rem 0.7rem; border-radius: 3px; }
+.mi-why { color: #ddd; font-size: 1.45rem; }
+.mi-status { font-size: 1.35rem; font-weight: 700; color: #ddd; background: rgba(255, 255, 255, 0.08); padding: 0.3rem 0.9rem; border-radius: 30px; }
+.mi-status.live { color: #fff; background: rgba(202, 48, 48, 0.22); }
+.mi-status.live i { color: var(--primary-color); font-size: 0.8rem; vertical-align: middle; animation: mi-blink 1.6s ease-in-out infinite; }
+@keyframes mi-blink { 50% { opacity: 0.25; } }
+.mi-rating { display: flex; align-items: center; gap: 0.6rem; font-size: 1.7rem; font-weight: 800; color: #fff; }
+.mi-rating .fa-star { color: var(--primary-color); }
+.mi-rating small { font-size: 1.3rem; font-weight: 500; color: var(--grey-text); }
+.trailer-modal .mi-desc { font-size: 1.55rem; line-height: 1.65; color: #e2e2e2; margin: 0.4rem 0 0; padding: 0; }
+.mi-side { display: flex; flex-direction: column; gap: 1.6rem; }
+.trailer-modal .mi-poster { width: 100%; border-radius: 10px; margin-top: -9rem; position: relative; z-index: 3; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65); }
+.mi-facts { display: flex; flex-direction: column; gap: 0.9rem; }
+.mi-kv { font-size: 1.35rem; line-height: 1.5; color: #e6e6e6; }
+.mi-kv span { color: #8f8f8f; }
+
+/* Entrada escalonada del contenido */
+.trailer-modal .mi-hero-body > *, .trailer-modal .mi-main > *, .trailer-modal .mi-side > * {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+.trailer-modal.is-open .mi-hero-body > *, .trailer-modal.is-open .mi-main > *, .trailer-modal.is-open .mi-side > * { opacity: 1; transform: none; }
+.trailer-modal.is-open .mi-hero-body > :nth-child(1) { transition-delay: 0.16s; }
+.trailer-modal.is-open .mi-hero-body > :nth-child(2) { transition-delay: 0.24s; }
+.trailer-modal.is-open .mi-side > :nth-child(1) { transition-delay: 0.22s; }
+.trailer-modal.is-open .mi-side > :nth-child(2) { transition-delay: 0.32s; }
+.trailer-modal.is-open .mi-main > :nth-child(1) { transition-delay: 0.26s; }
+.trailer-modal.is-open .mi-main > :nth-child(2) { transition-delay: 0.3s; }
+.trailer-modal.is-open .mi-main > :nth-child(3) { transition-delay: 0.34s; }
+.trailer-modal.is-open .mi-main > :nth-child(4) { transition-delay: 0.38s; }
+.trailer-modal.is-closing .mi-hero-body > *, .trailer-modal.is-closing .mi-main > *, .trailer-modal.is-closing .mi-side > * {
+    transition: opacity 0.15s ease; transition-delay: 0s; opacity: 0;
 }
 
-.modal-details-grid strong {
-    color: var(--light-text);
-    margin-right: 0.5rem;
+@media (max-width: 760px) {
+    .trailer-modal { padding: 0; align-items: stretch; }
+    .trailer-modal .modal-content { max-height: 100vh; border-radius: 0; }
+    .mi-hero-body { left: 1.8rem; right: 1.8rem; bottom: 1.6rem; gap: 1.1rem; }
+    .mi-logo { max-width: 60%; max-height: 7rem; }
+    .mi-title { font-size: 2.4rem; }
+    .mi-play { padding: 0.9rem 1.8rem; font-size: 1.5rem; }
+    .trailer-modal .modal-info { grid-template-columns: 1fr; padding: 1rem 1.8rem 3rem; gap: 2rem; }
+    .mi-side { flex-direction: row; align-items: flex-start; }
+    .trailer-modal .mi-poster { width: 110px; margin-top: 0; flex: none; }
+    /* En el móvil el tráiler es bajito: el logo y los botones van debajo de él. */
+    .mi-hero { aspect-ratio: auto; padding-top: 56.25%; overflow: visible; background: transparent; }
+    .trailer-modal .video-container { background: transparent; }
+    .mi-bg, .mi-vid, .mi-shade { bottom: auto; height: 56.25vw; }
+    .mi-vid iframe { top: 0; height: 100%; }
+    .mi-hero-body { position: relative; left: auto; right: auto; bottom: auto; padding: 0 1.8rem; margin-top: -3.4rem; z-index: 2; }
+}
+.trailer-modal .modal-info, .trailer-modal .mi-facts { text-align: left; }
+@media (prefers-reduced-motion: reduce) {
+    .trailer-modal, .trailer-modal * { transition-duration: 0.01s !important; transition-delay: 0s !important; }
 }
 
 /* --- Modal del Reproductor (Nuevo Diseño) --- */

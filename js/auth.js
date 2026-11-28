@@ -99,6 +99,15 @@ export async function changePassword(currentPassword, newPassword) {
   await updatePassword(user, newPassword);
 }
 
+// Comprueba la contraseña de la cuenta sin cambiar nada. La usan los perfiles
+// para quitar un PIN olvidado (como Netflix, que pide la contraseña de la cuenta).
+export async function verifyPassword(password) {
+  const user = auth.currentUser;
+  if (!user || !user.email) throw new Error("No hay sesión.");
+  await reauthenticateWithCredential(user, EmailAuthProvider.credential(user.email, password));
+  return true;
+}
+
 // Actualiza el perfil (nombre y/o avatar) en Auth y en Firestore.
 export async function updateUserProfile({ displayName, photoURL }) {
   const user = auth.currentUser;

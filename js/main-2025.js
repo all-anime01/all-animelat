@@ -13,6 +13,7 @@ import { initDonations } from "./donations.js";
 import { initRemoveAdsUI, syncAdFree, setAdFreeUid, openRemoveAds, isAdFree } from "./adfree.js";
 import { initCardHover } from "./card-hover.js";
 import { mountPrimeRow, primeRowEnabled } from "./prime-row.js";
+import { initProfiles, openProfilePicker, forgetProfileSession } from "./profiles.js";
 import "./tv-nav.js";  // navegación con control remoto (Fire TV / Android TV)
 import { crearBuscador } from "./endo-catalogo.js";   // Endo: qué anime se pide
 import { crearNavegador } from "./endo-navegar.js";   // Endo: navegar por toda la página
@@ -37,6 +38,148 @@ function playIconAnim(btn, kind) {
   btn.classList.add("anim-" + kind);
   clearTimeout(btn._animT);
   btn._animT = setTimeout(() => btn.classList.remove(...all), 900);
+}
+
+// ============================================================================
+//  «MÁS INFO» de la ficha (ventana estilo Netflix)
+//  Tráiler a todo lo ancho (sin controles ni marca de YouTube) con el logo,
+//  «Ver ahora», Mi lista y sonido; debajo, los datos y la sinopsis, y a la
+//  derecha el póster del anime. Entra con un zoom suave y al cerrar se detiene
+//  el tráiler. Conserva los ids (#trailer-modal, #close-trailer-modal) que usa
+//  Endo, el asistente de voz.
+// ============================================================================
+const ytIdOf = (u) => {
+  const m = String(u || "").match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([\w-]{11})/);
+  return m ? m[1] : null;
+};
+const escHtml = (v) => String(v == null ? "" : v)
+  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+function setupInfoModal(anime) {
+  const modal = document.getElementById("trailer-modal");
+  if (!modal) return;
+  modal.classList.add("mi");
+  const vid = ytIdOf(anime.trailerUrl);
+  const fondo = anime.heroImg || anime.fonImg || anime.img || "";
+  const nEps = anime.episodesTotal || anime.episodesCount || (anime.episodes || []).length || 0;
+  // Clasificación: «+16 Violencia, Gore» → recuadro «+16» y el motivo al lado.
+  // Algunas fichas traen ahí un número suelto (p. ej. «4.8»): no se pinta.
+  const cw = String(anime.contentWarning || "").trim();
+  const cwOk = cw && !/^\d+(?:[.,]\d+)?$/.test(cw);
+  const cwAge = cwOk ? (cw.match(/^\+?\d+\+?/) || [cw])[0] : "";
+  const cwRest = cwOk ? cw.slice(cwAge.length).replace(/^[\s,·-]+/, "") : "";
+  const meta = [
+    anime.year ? `<span>${escHtml(anime.year)}</span>` : "",
+    anime.type !== "Película" && anime.seasons ? `<span>${anime.seasons} ${anime.seasons == 1 ? "temporada" : "temporadas"}</span>` : "",
+    nEps ? `<span>${nEps} ${nEps === 1 ? "episodio" : "episodios"}</span>` : "",
+    anime.quality ? `<span class="mi-q">${escHtml(anime.quality)}</span>` : "",
+  ].join("");
+  const row = (k, v) => v ? `<div class="mi-kv"><span>${k}:</span> ${v}</div>` : "";
+  const isLive = /emisi/i.test(anime.status || "");
+
+  document.getElementById("modal-video-container").innerHTML = `
+    <div class="mi-hero">
+      <img class="mi-bg" src="${escHtml(fondo)}" alt="">
+      <div class="mi-vid"></div>
+      <div class="mi-shade"></div>
+      <div class="mi-hero-body">
+        ${anime.logoImg ? `<img class="mi-logo" src="${escHtml(anime.logoImg)}" alt="${escHtml(anime.title)}">` : `<h2 class="mi-title">${escHtml(anime.title)}</h2>`}
+        <div class="mi-actions">
+          <button type="button" class="mi-play"><i class="fas fa-play"></i> Ver ahora</button>
+          <button type="button" class="mi-circle mi-fav" aria-label="Añadir a Mi lista" data-tip="Mi lista"><i class="fas fa-plus"></i></button>
+          ${vid ? `<button type="button" class="mi-circle mi-sound" aria-label="Activar sonido" data-tip="Sonido"><i class="fas fa-volume-xmark"></i></button>` : ""}
+        </div>
+      </div>
+    </div>`;
+  document.getElementById("modal-info-content").innerHTML = `
+    <div class="mi-main">
+      <div class="mi-meta">${meta}</div>
+      <div class="mi-tags">
+        ${cwOk ? `<span class="mi-age">${escHtml(cwAge)}</span>${cwRest ? `<span class="mi-why">${escHtml(cwRest)}</span>` : ""}` : ""}
+        ${anime.status ? `<span class="mi-status ${isLive ? "live" : ""}">${isLive ? '<i class="fas fa-circle"></i> ' : ""}${escHtml(anime.status)}</span>` : ""}
+      </div>
+      ${anime.rating ? `<div class="mi-rating"><i class="fas fa-star"></i> ${escHtml(anime.rating)}<small>${anime.ratingCount ? ` · ${escHtml(anime.ratingCount)} votos` : ""}</small></div>` : ""}
+      <p class="mi-desc">${escHtml(anime.description || "")}</p>
+    </div>
+    <aside class="mi-side">
+      <img class="modal-poster mi-poster" src="${escHtml(anime.img || anime.imgMobile || "")}" alt="${escHtml(anime.title)}" loading="lazy">
+      <div class="mi-facts">
+        ${row("Creador", escHtml(anime.creator))}
+        ${row("Géneros", (anime.genres || []).map(escHtml).join(", "))}
+        ${row("Audio", escHtml(anime.audio))}
+        ${row("Tipo", escHtml(anime.type))}
+      </div>
+    </aside>`;
+
+  const vbox = modal.querySelector(".mi-vid");
+  let muted = true, closeT = null, trailerT = null;
+  const post = (func) => {
+    const f = vbox.querySelector("iframe");
+    if (f) try { f.contentWindow.postMessage(JSON.stringify({ event: "command", func, args: [] }), "*"); } catch {}
+  };
+  const paintSound = () => {
+    const b = modal.querySelector(".mi-sound"); if (!b) return;
+    b.querySelector("i").className = muted ? "fas fa-volume-xmark" : "fas fa-volume-high";
+    b.setAttribute("aria-label", muted ? "Activar sonido" : "Silenciar");
+    b.dataset.tip = muted ? "Sonido" : "Silenciar";
+  };
+  function startTrailer() {
+    if (!vid || vbox.firstChild || !modal.classList.contains("is-open")) return;
+    const f = document.createElement("iframe");
+    // Sin controles ni marca de YouTube; en silencio para que pueda arrancar solo.
+    f.src = `https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&mute=1&controls=0&loop=1&playlist=${vid}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1`;
+    f.allow = "autoplay; encrypted-media";
+    f.setAttribute("frameborder", "0"); f.tabIndex = -1;
+    // YouTube enseña negro y su marca al principio: el vídeo entra con fundido después.
+    // Se espera a que YouTube quite su capa de controles del arranque.
+    f.addEventListener("load", () => setTimeout(() => f.isConnected && modal.classList.contains("is-open") && vbox.classList.add("on"), 2400), { once: true });
+    vbox.appendChild(f);
+  }
+  function stopTrailer() { clearTimeout(trailerT); vbox.classList.remove("on"); vbox.innerHTML = ""; muted = true; paintSound(); }
+
+  // «Mi lista» del modal = el mismo botón de la ficha (y se mantienen iguales).
+  const heroFav = document.getElementById("favorite-anime-btn");
+  const syncFav = () => {
+    const on = !!heroFav && heroFav.getAttribute("aria-pressed") === "true";
+    const b = modal.querySelector(".mi-fav");
+    b.classList.toggle("on", on);
+    b.querySelector("i").className = on ? "fas fa-check" : "fas fa-plus";
+    b.setAttribute("aria-label", on ? "Quitar de Mi lista" : "Añadir a Mi lista");
+    b.dataset.tip = on ? "En Mi lista" : "Mi lista";
+  };
+  if (heroFav) new MutationObserver(syncFav).observe(heroFav, { attributes: true, attributeFilter: ["aria-pressed"] });
+  syncFav();
+
+  function open() {
+    clearTimeout(closeT);
+    modal.classList.remove("is-closing");
+    modal.style.display = "flex";
+    document.documentElement.classList.add("mi-lock");
+    modal.querySelector(".modal-content").scrollTop = 0;
+    requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add("is-open")));
+    trailerT = setTimeout(startTrailer, 500);
+    setTimeout(() => { try { modal.querySelector(".mi-play").focus({ preventScroll: true }); } catch {} }, 380);
+  }
+  function close() {
+    if (!modal.classList.contains("is-open")) return;
+    modal.classList.remove("is-open");
+    modal.classList.add("is-closing");
+    document.documentElement.classList.remove("mi-lock");
+    stopTrailer();
+    closeT = setTimeout(() => { modal.style.display = "none"; modal.classList.remove("is-closing"); }, 380);
+  }
+  $("#open-trailer-modal").off("click").on("click", open);
+  $(modal).off("click").on("click", (e) => {
+    if (e.target === modal || e.target.closest(".close-modal")) close();
+  });
+  $(document).off("keydown.mi").on("keydown.mi", (e) => { if (e.key === "Escape") close(); });
+  modal.querySelector(".mi-play").addEventListener("click", () => { close(); setTimeout(() => $("#hero-play-btn").trigger("click"), 220); });
+  modal.querySelector(".mi-fav").addEventListener("click", (e) => {
+    $("#favorite-anime-btn").trigger("click");
+    const b = e.currentTarget; b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
+  });
+  modal.querySelector(".mi-sound")?.addEventListener("click", () => {
+    muted = !muted; post(muted ? "mute" : "unMute"); if (!muted) post("playVideo"); paintSound();
+  });
 }
 
 // «Mi lista» desde las filas estilo Prime: igual que el botón de la ficha
@@ -184,6 +327,17 @@ function injectAccountWidget() {
     }`;
     document.head.appendChild(s);
   }
+  // El botón de la cuenta enseña el PERFIL que está viendo (avatar y nombre),
+  // como Netflix. Lo avisa profiles.js con el evento «aa-profile».
+  const paintProfile = (p) => {
+    if (!p || !w.querySelector(".acct-btn")) return;
+    w.querySelectorAll(".acct-btn img, .acct-btn .acct-ph, .acct-head img, .acct-head .acct-ph").forEach((el) => {
+      const img = document.createElement("img"); img.src = p.avatar; img.alt = ""; el.replaceWith(img);
+    });
+    const nm = w.querySelector(".acct-nm"); if (nm) nm.textContent = p.name;
+    const hb = w.querySelector(".acct-head b"); if (hb) hb.textContent = p.name;
+  };
+  document.addEventListener("aa-profile", (e) => paintProfile(e.detail));
   // La cuenta (perfil, favoritos, historial, etc.) se accede desde el botón
   // de perfil del header (menú desplegable), no desde el drawer.
   const w = document.createElement("div");
@@ -215,7 +369,10 @@ function injectAccountWidget() {
       </button>
       <div class="acct-menu" id="acct-menu">
         <div class="acct-head">${ph("")}<div><b>${name}</b><span>${user.email}</span></div></div>
-        <a href="perfil.html"><i class="fas fa-user-gear"></i> Mi perfil</a>
+        <button class="acct-switch"><i class="fas fa-repeat"></i> Cambiar perfil</button>
+        <button class="acct-manage"><i class="fas fa-user-pen"></i> Administrar perfiles</button>
+        <div class="sep"></div>
+        <a href="perfil.html"><i class="fas fa-user-gear"></i> Mi cuenta</a>
         <a href="mis-favoritos.html"><i class="fas fa-bookmark"></i> Mi lista</a>
         <a href="historial.html"><i class="fas fa-clock-rotate-left"></i> Historial</a>
         <a href="notificaciones.html"><i class="fas fa-bell"></i> Notificaciones</a>
@@ -228,9 +385,14 @@ function injectAccountWidget() {
     w.querySelector("#acct-toggle").addEventListener("click", (e) => { e.stopPropagation(); menu.classList.toggle("open"); });
     document.addEventListener("click", (e) => { if (!w.contains(e.target)) menu.classList.remove("open"); });
     w.querySelector(".acct-adfree")?.addEventListener("click", () => { menu.classList.remove("open"); openRemoveAds(); });
-    w.querySelector("#acct-logout").addEventListener("click", async () => { await logoutUser(); location.href = "index.html"; });
+    w.querySelector(".acct-switch").addEventListener("click", () => { menu.classList.remove("open"); openProfilePicker(); });
+    w.querySelector(".acct-manage").addEventListener("click", () => { menu.classList.remove("open"); openProfilePicker({ manage: true }); });
+    w.querySelector("#acct-logout").addEventListener("click", async () => { forgetProfileSession(); await logoutUser(); location.href = "index.html"; });
+    paintProfile(window.__aaProfile);
   });
 }
+// ¿Quién está viendo ahora? (perfiles). Va antes que nada que lea datos del usuario.
+initProfiles();
 injectAccountWidget();
 
 // Monta el hero cuanto antes (no depende del catálogo). Ver hero.js
@@ -1622,32 +1784,10 @@ $(document).ready(function () {
       renderEpisodes(seasonSelect.val());
     }
 
-    $("#modal-video-container").html(
-      `<iframe width="560" height="315" src="${anime.trailerUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-    );
-    $("#modal-info-content").html(
-      `<img class="modal-poster" src="${anime.img || anime.imgMobile || ""}" alt="${anime.title}" loading="lazy">
-      <div class="modal-info-text"><h3>${anime.title}</h3><p>${anime.description
-      }</p><div class="modal-details-grid">${anime.rating
-        ? `<div><strong>Rating:</strong> <i class="fas fa-star" style="color: #ffc107;"></i> ${anime.rating
-        } ${anime.ratingCount ? `(${anime.ratingCount} votos)` : ""}</div>`
-        : ""
-      }<div><strong>Audio:</strong> ${anime.audio
-      }</div><div><strong>Año:</strong> ${anime.year
-      }</div><div><strong>Estado:</strong> ${anime.status
-      }</div><div><strong>Creador:</strong> ${anime.creator
-      }</div><div><strong>Clasificación:</strong> ${anime.contentWarning
-      }</div></div></div>`
-    );
-    $("#open-trailer-modal").on("click", () =>
-      $("#trailer-modal").css("display", "flex").hide().fadeIn()
-    );
-    $("#close-trailer-modal, .trailer-modal").on(
-      "click",
-      (e) =>
-        (e.target === e.currentTarget || $(e.target).hasClass("close-modal")) &&
-        $("#trailer-modal").fadeOut()
-    );
+    // --- «MÁS INFO»: ventana estilo Netflix (tráiler arriba, datos debajo y el
+    // póster del anime a la derecha). Abre con zoom suave y al cerrar se detiene
+    // el tráiler (antes seguía sonando de fondo). Ver setupInfoModal().
+    setupInfoModal(anime);
 
     $(document).on("click", ".open-player-from-details", function (e) {
       e.preventDefault();
@@ -2133,8 +2273,9 @@ $(document).ready(function () {
     if (!row.length || !list.length) return;
     if (row.hasClass("slick-initialized")) row.slick("unslick");
     row.empty();
-    if (rowSel === "#public-favs-row" && primeRowEnabled()) {
-      row.removeClass("disc-carousel");
+    // Filas con la tarjeta que se abre hacia el lado (estilo Prime Video).
+    if ((rowSel === "#public-favs-row" || rowSel === "#related-carousel") && primeRowEnabled()) {
+      row.removeClass("disc-carousel card-carousel");
       $(sectionSel).show();
       mountPrimeRow(row[0], list, primeFavOpts);
       return;

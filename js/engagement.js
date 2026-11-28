@@ -5,6 +5,7 @@
 // ============================================================================
 
 import { db, isAdmin, FIREBASE_CONFIGURED } from "./firebase-config.js";
+import { profCol } from "./profiles.js";   // cada perfil tiene su historial, Mi lista, vistos…
 import { observeAuth } from "./auth.js";
 import { episodeId as makeEpId } from "./catalog-utils.js";
 import { defaultAvatar } from "./avatars.js";
@@ -201,14 +202,14 @@ async function readReactionState(epId, user) {
   const d = statSnap.exists() ? statSnap.data() : {};
   let mine = null;
   if (user) {
-    const rSnap = await getDoc(doc(db, "users", user.uid, "reactions", epId));
+    const rSnap = await getDoc(doc(db, "users", user.uid, profCol("reactions", user.uid), epId));
     if (rSnap.exists()) mine = rSnap.data().type;
   }
   return { likeCount: d.likeCount || 0, dislikeCount: d.dislikeCount || 0, mine };
 }
 async function setReaction(epId, anime, user, type) {
   const statRef = doc(db, "episodeStats", epId);
-  const rRef = doc(db, "users", user.uid, "reactions", epId);
+  const rRef = doc(db, "users", user.uid, profCol("reactions", user.uid), epId);
   let result = null;
   await runTransaction(db, async (tx) => {
     const [sSnap, rSnap] = [await tx.get(statRef), await tx.get(rRef)];
@@ -230,7 +231,7 @@ async function setReaction(epId, anime, user, type) {
 }
 
 // ---- Vistos -----------------------------------------------------------------
-function watchedRef(user, epId) { return doc(db, "users", user.uid, "watched", epId); }
+function watchedRef(user, epId) { return doc(db, "users", user.uid, profCol("watched", user.uid), epId); }
 async function markWatched(epId, anime, episode, user) {
   await setDoc(watchedRef(user, epId), {
     animeId: anime.id, animeTitle: anime.title, img: episode.img || anime.img || "",
@@ -246,7 +247,7 @@ export async function getWatchedSet(animeId) {
   await userReady;
   if (!currentUser) return new Set();
   try {
-    const q = query(collection(db, "users", currentUser.uid, "watched"), where("animeId", "==", animeId));
+    const q = query(collection(db, "users", currentUser.uid, profCol("watched", currentUser.uid)), where("animeId", "==", animeId));
     const snap = await getDocs(q);
     return new Set(snap.docs.map((d) => d.id));
   } catch (e) { return new Set(); }
@@ -368,7 +369,9 @@ export async function initPlayerEngagement(ctx) {
 
   // ---- Comentarios ----
   if (commentsHost) {
-    const myPhoto = user ? (user.photoURL || defaultAvatar(user.displayName || user.email)) : "";
+    // Se comenta con el nombre y el avatar del PERFIL que está viendo (perfiles).
+    const prof = window.__aaProfile || null;
+    const myPhoto = user ? ((prof && prof.avatar) || user.photoURL || defaultAvatar(user.displayName || user.email)) : "";
     commentsHost.innerHTML = `
       <div class="eng-comments">
         <h4><i class="fas fa-comments"></i> Comentarios</h4>
@@ -392,8 +395,8 @@ export async function initPlayerEngagement(ctx) {
         try {
           await addDoc(collection(db, "comments"), {
             episodeId: epId, animeId: anime.id,
-            uid: user.uid, userName: user.displayName || user.email.split("@")[0],
-            userPhoto: user.photoURL || "",
+            uid: user.uid, userName: (prof && prof.name) || user.displayName || user.email.split("@")[0],
+            userPhoto: (prof && prof.avatar) || user.photoURL || "",
             text, createdAt: serverTimestamp(),
           });
           input.value = "";

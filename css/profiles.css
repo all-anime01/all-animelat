@@ -1,0 +1,183 @@
+/* ===========================================================================
+   PERFILES — «¿Quién está viendo ahora?»  (js/profiles.js)
+   Pantalla completa con el rojo de all-anime, como Netflix/Crunchyroll pero
+   con nuestra identidad: Poppins, rojo #ca3030 y fondo #101010.
+   =========================================================================== */
+html.pf-lock, html.pf-lock body { overflow: hidden !important; }
+
+.pf {
+  --pf-red: var(--primary-color, #ca3030);
+  position: fixed; inset: 0; z-index: 2147483000;   /* por encima de avisos y anuncios */
+  display: flex; flex-direction: column;
+  color: #f2f2f2; font-family: var(--font-main, "Roboto", sans-serif);
+  opacity: 0; transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.2, 0.9, 0.25, 1);
+  overflow-y: auto; overflow-x: hidden;
+}
+.pf.show { opacity: 1; }
+.pf.leave { opacity: 0; }
+.pf.leave-zoom { opacity: 0; transform: scale(1.08); transition: opacity 0.45s ease, transform 0.5s ease; }
+
+.pf-bg {
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(120% 70% at 50% -10%, rgba(202, 48, 48, 0.55) 0%, rgba(120, 20, 24, 0.35) 35%, transparent 70%),
+    radial-gradient(60% 50% at 100% 100%, rgba(202, 48, 48, 0.12) 0%, transparent 70%),
+    linear-gradient(180deg, #2a0b0d 0%, #140607 45%, #0b0b0b 100%);
+}
+.pf-bg::after {   /* grano sutil para que no se vea «plano» */
+  content: ""; position: absolute; inset: 0; opacity: 0.06; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.pf-top { padding: 2.6rem 4%; flex: none; }
+.pf-logo { height: 34px; width: auto; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5)); }
+
+.pf-stage { flex: 1; position: relative; display: grid; justify-items: center; align-items: start; padding: 2rem 4% 6rem; }
+.pf-view { grid-area: 1 / 1; width: 100%; margin-block: auto;   /* centrado que nunca se sale por arriba */
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  opacity: 0; transform: translateY(18px) scale(0.985); transition: opacity 0.32s ease, transform 0.45s cubic-bezier(0.2, 0.9, 0.25, 1); }
+.pf-view.in { opacity: 1; transform: none; }
+.pf-view.out { opacity: 0; transform: translateY(-10px) scale(1.01); transition-duration: 0.22s; pointer-events: none; }
+
+.pf-loading span { display: block; width: 44px; height: 44px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.15); border-top-color: var(--pf-red); animation: pf-spin 0.8s linear infinite; }
+@keyframes pf-spin { to { transform: rotate(360deg); } }
+
+.pf-h1 { font-family: var(--font-headings, "Poppins", sans-serif); font-size: clamp(2.6rem, 3.6vw, 4.2rem); font-weight: 700; margin: 0 0 3.6rem; letter-spacing: -0.01em; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); }
+.pf-h1.small { font-size: clamp(2.4rem, 3vw, 3.4rem); margin-bottom: 1rem; }
+.pf-h2 { font-family: var(--font-headings, "Poppins", sans-serif); font-size: 2.2rem; font-weight: 600; margin: 0.6rem 0 2.2rem; }
+.pf-sub { color: #b9b9b9; font-size: 1.5rem; margin: -0.6rem 0 2.4rem; max-width: 480px; line-height: 1.5; }
+.pf-kicker { color: var(--pf-red); text-transform: uppercase; letter-spacing: 0.14em; font-size: 1.2rem; font-weight: 700; margin: 1.6rem 0 0; }
+
+/* --- Rejilla de perfiles --- */
+.pf-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.6rem 2.8rem; margin-bottom: 4.6rem; }
+.pf-tile { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; width: clamp(96px, 10vw, 150px);
+  opacity: 0; transform: translateY(22px) scale(0.9);
+  animation: pf-tile-in 0.55s cubic-bezier(0.2, 0.9, 0.25, 1.15) forwards; animation-delay: calc(0.08s + var(--i, 0) * 0.07s); }
+@keyframes pf-tile-in { to { opacity: 1; transform: none; } }
+.pf-av { position: relative; width: 100%; aspect-ratio: 1; border-radius: 16px; overflow: hidden; display: grid; place-items: center;
+  background: rgba(255, 255, 255, 0.06); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+  outline: 3px solid transparent; outline-offset: 3px;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.25, 1.2), outline-color 0.2s ease, box-shadow 0.28s ease, filter 0.25s ease; }
+.pf-av img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; }
+.pf-name { font-size: 1.6rem; font-weight: 600; color: #a9a9a9; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color 0.2s ease; }
+.pf-lock { font-size: 1.2rem; color: #8a8a8a; height: 1.2rem; margin-top: -0.4rem; }
+.pf-tile:hover .pf-av, .pf-tile:focus-visible .pf-av, .pf-tile.aa-focus .pf-av { transform: translateY(-6px) scale(1.06); outline-color: #fff; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55), 0 0 40px rgba(202, 48, 48, 0.35); }
+.pf-tile:hover .pf-name, .pf-tile:focus-visible .pf-name, .pf-tile.aa-focus .pf-name { color: #fff; }
+.pf-grid:hover .pf-tile:not(:hover) .pf-av { filter: brightness(0.7) saturate(0.85); }
+.pf-add .pf-av { background: rgba(255, 255, 255, 0.07); border: 1px dashed rgba(255, 255, 255, 0.25); font-size: 4rem; color: #cfcfcf; box-shadow: none; }
+.pf-add:hover .pf-av, .pf-add:focus-visible .pf-av { background: rgba(202, 48, 48, 0.18); color: #fff; }
+
+/* Modo administrar: velo + lápiz sobre cada avatar */
+.pf-edit { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, 0.5); font-size: 2.6rem; color: #fff; transition: background 0.2s ease; }
+.pf-edit i { width: 54px; height: 54px; border-radius: 50%; border: 2px solid #fff; display: grid; place-items: center; font-size: 1.9rem; transition: transform 0.2s ease, background 0.2s ease; }
+.pf-tile:hover .pf-edit i, .pf-tile:focus-visible .pf-edit i { transform: scale(1.1); background: var(--pf-red); border-color: var(--pf-red); }
+.pf-grid.managing .pf-av { animation: pf-wiggle 2.6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * 0.15s); }
+@keyframes pf-wiggle { 0%, 92%, 100% { rotate: 0deg; } 95% { rotate: -1.6deg; } 98% { rotate: 1.6deg; } }
+
+/* Al elegir: el avatar crece y el resto se apaga */
+.pf.choosing .pf-tile:not(.chosen) { opacity: 0.25 !important; transform: scale(0.92) !important; transition: opacity 0.3s ease, transform 0.3s ease; }
+.pf-tile.chosen .pf-av { transform: scale(1.18); outline-color: var(--pf-red); box-shadow: 0 0 0 6px rgba(202, 48, 48, 0.35), 0 24px 60px rgba(0, 0, 0, 0.6); }
+
+/* --- Botones --- */
+.pf-btn { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 0.9rem;
+  font-family: inherit; font-size: 1.5rem; font-weight: 700; padding: 1.1rem 2.6rem; border-radius: 40px; transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease, border-color 0.18s ease; }
+.pf-btn:disabled { opacity: 0.55; cursor: default; }
+.pf-outline { border: 1.5px solid rgba(255, 255, 255, 0.55); color: #e8e8e8; }
+.pf-outline:hover, .pf-outline:focus-visible { border-color: #fff; background: #fff; color: #111; }
+.pf-primary { background: var(--pf-red); color: #fff; }
+.pf-primary:hover, .pf-primary:focus-visible { background: #e23b3b; transform: translateY(-1px); }
+.pf-ghost { color: #cfcfcf; border: 1.5px solid rgba(255, 255, 255, 0.18); }
+.pf-ghost:hover, .pf-ghost:focus-visible { color: #fff; border-color: rgba(255, 255, 255, 0.6); }
+.pf-danger { color: #ff8a8a; border: 1.5px solid rgba(255, 90, 90, 0.35); }
+.pf-danger:hover, .pf-danger:focus-visible { background: #b3261e; border-color: #b3261e; color: #fff; }
+.pf-link { all: unset; cursor: pointer; color: #bdbdbd; font-size: 1.4rem; text-decoration: underline; text-underline-offset: 3px; margin: 0.4rem 0 1.8rem; display: inline-flex; gap: 0.6rem; align-items: center; }
+.pf-link:hover, .pf-link:focus-visible { color: #fff; }
+.pf-row { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: center; }
+.pf-btn:focus-visible, .pf-link:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* --- PIN --- */
+.pf-pin { display: flex; flex-direction: column; align-items: center; max-width: 520px; }
+.pf-pin-av { width: 96px; height: 96px; border-radius: 14px; object-fit: cover; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); animation: pf-pop 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.3); }
+@keyframes pf-pop { from { transform: scale(0.7); opacity: 0; } }
+.pf-digits { display: flex; gap: 1.4rem; margin-bottom: 1rem; }
+.pf-digit { width: 64px; height: 76px; border-radius: 12px; text-align: center; font-size: 3rem; font-weight: 700; color: #fff;
+  background: rgba(255, 255, 255, 0.06); border: 2px solid rgba(255, 255, 255, 0.28); outline: none; caret-color: var(--pf-red);
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease; }
+.pf-digit:focus { border-color: #fff; background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
+.pf-digit.filled { border-color: var(--pf-red); }
+.pf-digits.small .pf-digit { width: 50px; height: 58px; font-size: 2.4rem; }
+.pf-digits.bad { animation: pf-shake 0.42s ease; }
+.pf-digits.bad .pf-digit { border-color: #ff5a5a; }
+.pf-digits.ok .pf-digit { border-color: var(--secondary-color, #07f73b); }
+@keyframes pf-shake { 20% { transform: translateX(-10px); } 40% { transform: translateX(9px); } 60% { transform: translateX(-6px); } 80% { transform: translateX(4px); } }
+.pf-err { color: #ff7a7a; font-size: 1.4rem; min-height: 2rem; margin: 0.4rem 0 0.6rem; }
+
+/* --- Editor --- */
+.pf-editor { width: 100%; max-width: 760px; display: flex; flex-direction: column; align-items: center; }
+.pf-ed-grid { display: grid; grid-template-columns: 170px 1fr; gap: 3.4rem; width: 100%; text-align: left; margin: 2.4rem 0 3.2rem; padding: 3rem; border-radius: 18px;
+  background: rgba(16, 16, 16, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(8px); }
+.pf-ed-av { all: unset; cursor: pointer; position: relative; width: 170px; height: 170px; border-radius: 18px; overflow: hidden; box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5); }
+.pf-ed-av img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease, filter 0.3s ease; }
+.pf-ed-pen { position: absolute; right: 10px; bottom: 10px; width: 40px; height: 40px; border-radius: 50%; background: var(--pf-red); display: grid; place-items: center; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); }
+.pf-ed-av:hover img, .pf-ed-av:focus-visible img { transform: scale(1.06); filter: brightness(0.8); }
+.pf-ed-av:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.pf-ed-form { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.pf-label { font-size: 1.3rem; color: #a8a8a8; font-weight: 600; margin: 0; }
+.pf-in { box-sizing: border-box; width: 100%; padding: 1.3rem 1.5rem; border-radius: 10px; border: 1.5px solid rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.06);
+  color: #fff; font-size: 1.7rem; font-family: inherit; outline: none; transition: border-color 0.18s ease, background 0.18s ease; }
+.pf-in:focus { border-color: var(--pf-red); background: rgba(255, 255, 255, 0.09); }
+.pf-pin .pf-in { max-width: 360px; margin-bottom: 0.4rem; }
+.pf-sec { display: flex; align-items: center; justify-content: space-between; gap: 1.6rem; padding: 1.4rem 0 0.4rem; margin-top: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.pf-sec b { font-size: 1.5rem; display: flex; gap: 0.7rem; align-items: center; }
+.pf-sec b i { color: var(--pf-red); }
+.pf-sec small { display: block; color: #9c9c9c; font-size: 1.25rem; margin-top: 0.3rem; }
+.pf-switch { position: relative; flex: none; width: 50px; height: 28px; cursor: pointer; }
+.pf-switch input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.pf-switch span { position: absolute; inset: 0; border-radius: 30px; background: #3a3a3a; transition: background 0.2s ease; pointer-events: none; }
+.pf-switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.25, 1.3); }
+.pf-switch input:checked + span { background: var(--pf-red); }
+.pf-switch input:checked + span::after { transform: translateX(22px); }
+.pf-switch input:focus-visible + span { outline: 2px solid #fff; outline-offset: 2px; }
+.pf-pinset { animation: pf-fade-down 0.35s ease; }
+@keyframes pf-fade-down { from { opacity: 0; transform: translateY(-6px); } }
+.pf-ed-form .pf-link { margin: 0.2rem 0 0; align-self: flex-start; }
+.pf-ed-actions { gap: 1.2rem; }
+
+/* --- Avatares --- */
+.pf-avatars { width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
+.pf-av-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 1.6rem; width: 100%; margin: 2.4rem 0 3rem; }
+.pf-av-opt { all: unset; cursor: pointer; aspect-ratio: 1; border-radius: 14px; overflow: hidden; outline: 3px solid transparent; outline-offset: 2px;
+  opacity: 0; animation: pf-tile-in 0.4s ease forwards; animation-delay: calc(var(--i, 0) * 0.02s); transform: scale(0.9);
+  transition: outline-color 0.18s ease, transform 0.2s ease; }
+.pf-av-opt img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pf-av-opt:hover, .pf-av-opt:focus-visible { outline-color: #fff; transform: scale(1.07) !important; }
+.pf-av-opt.sel { outline-color: var(--pf-red); }
+
+@media (max-width: 640px) {
+  .pf-top { padding: 1.8rem 5%; }
+  .pf-logo { height: 28px; }
+  .pf-grid { gap: 2rem; }
+  /* En el móvil la web usa otra base de «rem»: aquí van en píxeles. */
+  .pf-tile { width: 112px; gap: 8px; }
+  .pf-name { font-size: 14px; }
+  .pf-h1 { font-size: 26px; margin-bottom: 28px; }
+  .pf-h1.small { font-size: 24px; }
+  .pf-h2 { font-size: 19px; }
+  .pf-sub, .pf-err { font-size: 14px; }
+  .pf-btn { font-size: 15px; padding: 11px 24px; }
+  .pf-link { font-size: 14px; }
+  .pf-in { font-size: 16px; }
+  .pf-sec b { font-size: 15px; } .pf-sec small { font-size: 12.5px; }
+  .pf-label { font-size: 13px; }
+  .pf-grid { gap: 22px 26px; margin-bottom: 36px; }
+  .pf-add .pf-av { font-size: 34px; }
+  .pf-kicker { font-size: 12px; }
+  .pf-stage { padding-top: 8px; }
+  .pf-ed-grid { grid-template-columns: 1fr; justify-items: center; padding: 2rem; gap: 2rem; }
+  .pf-ed-form { width: 100%; }
+  .pf-ed-av { width: 130px; height: 130px; }
+  .pf-digit { width: 54px; height: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf, .pf *, .pf-view { animation-duration: 0.01s !important; animation-delay: 0s !important; transition-duration: 0.01s !important; }
+}
+.pf-add .pf-name { white-space: normal; line-height: 1.25; text-align: center; }
